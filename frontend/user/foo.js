@@ -27,3 +27,31 @@ const person2 = {
 console.log(person2.fullName); // getter 함수 호출
 person2.fullName = "Na YoungJae"; // setter 함수 호출
 console.log(person2.fullName);
+let descriptor = Object.getOwnPropertyDescriptor(person2, "fullName");
+console.log(descriptor);
+console.log(person2);
+
+// 일반 객체의 __proto__는 접근자 프로퍼티다
+person2.__proto__ = { kms: "baka" };
+const person2proto = Object.getOwnPropertyDescriptor(
+  Object.prototype,
+  "__proto__"
+);
+const functionproto = Object.getOwnPropertyDescriptor(function () {
+  console.log("baka");
+}, "prototype");
+console.log(person2proto, functionproto);
+
+const kmsobj = {};
+// 데이터 프로퍼티 정의
+
+Object.defineProperty(kmsobj, "kmsprops", {
+  value: "baka!",
+  writable: false,
+  enumerable: true,
+  configurable: false,
+});
+
+console.log(kmsobj);
+kmsobj.kmsprops = "mooyaho";
+console.log(kmsobj);
