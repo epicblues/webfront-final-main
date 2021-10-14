@@ -2,8 +2,10 @@ import "./App.css";
 
 function App() {
   const counter = (function () {
+    // 사실상 class 에서 private member
     let count = 0;
     return {
+      // 사실상 class에서 public  member
       increase() {
         ++count;
       },
