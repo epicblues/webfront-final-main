@@ -8,6 +8,12 @@ public class AppUserVo {
 
 	}
 
+	public AppUserVo(String name, String email) {
+		this.name = name;
+		this.email = email;
+		
+	}
+	
 	public AppUserVo(String name, String email, Date regDate, Long point) {
 		super();
 		
