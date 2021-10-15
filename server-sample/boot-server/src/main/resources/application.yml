@@ -1,3 +1,14 @@
 # 포트 설정
 server:
   port: 5000
+spring:  datasource:    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: c##webfront
+    password: WEBFRONT
+mybatis:
+  type-aliases-package: com.api.user.controller.repository
+  mapper-locations: classpath:mybatis/mapper/*.xml  
+
+
+
+  
