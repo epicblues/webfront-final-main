@@ -2,34 +2,28 @@ package com.api.user.controller.repository;
 
 import java.util.Date;
 
-public class User {
+public class AppUserVo {
 
-	public User() {
+	public AppUserVo() {
 
 	}
 
-	public User(String id, String name, String email) {
+	public AppUserVo(String name, String email, Date regDate, Long point) {
 		super();
-		this.id = id;
+		
 		this.name = name;
 		this.email = email;
-		this.regDate = new Date();
-		this.point = 0L;
+		this.regDate = regDate;
+		this.point = point;
 	}
 
-	private String id;
+	
 	private String name;
 	private String email;
 	private Date regDate;
 	private Long point; // Grade는 point에 맞춰서
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
+	
 
 	public String getName() {
 		return name;
@@ -65,7 +59,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", regDate=" + regDate + ", point=" + point
+		return "User [ name=" + name + ", email=" + email + ", regDate=" + regDate + ", point=" + point
 				+ "]";
 	}
 
