@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.api.user.controller.repository.AppUserDao">
+	<!-- 인터페이스랑 연결해도 그에 맞는 객체를 생성해준다!! 그리고 인터페이스에 맞는 메소드 연결-->
+		<select id="getUsers" resultType="com.api.user.controller.repository.AppUserVo">
+			SELECT 
+			name, 
+			email, 
+			reg_date as regDate, 
+			point from app_user
+			
+			
+		</select>
+		<insert id="join" parameterType="com.api.user.controller.repository.AppUserVo">
+			INSERT INTO
+			app_user(name, email)
+			values (#{name}, #{email})
+		</insert>
+	</mapper>
