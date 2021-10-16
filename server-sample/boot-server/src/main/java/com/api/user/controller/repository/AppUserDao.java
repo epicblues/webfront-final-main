@@ -9,4 +9,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface AppUserDao {
 	public List<AppUserVo> getUsers();
 	public Integer join(AppUserVo user);
+	public Integer updatePoint(AppUserVo user);
 }
