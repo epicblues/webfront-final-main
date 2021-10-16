@@ -2,6 +2,7 @@ package com.api.user.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,18 @@ public class AppUserController {
 	@ResponseBody
 	@GetMapping({"","/"})
 	public List<AppUserVo> getUsers() {
+		
 		return appUserDao.getUsers();
+	}
+	
+	@GetMapping("/main") 
+	@ResponseBody
+	public String mainPage(HttpSession session) {
+		AppUserVo loggedUser = (AppUserVo)session.getAttribute("authUser");
+		if(loggedUser == null) {
+			return "redirect:/user/join";
+		}
+		return "<h2>" + loggedUser.getName() + "님 환영합니다!" + "<h2>";
 	}
 	
 	@GetMapping("/join") 
@@ -37,9 +49,9 @@ public class AppUserController {
 	}
 	
 	@PostMapping("/join")
-	public String joinForm(@ModelAttribute AppUserVo userVo) {
+	public String joinForm(@ModelAttribute AppUserVo userVo, HttpSession session) {
 		System.out.println(appUserDao.join(userVo));
-		
-		return "redirect:/user";
+		session.setAttribute("authUser", userVo);
+		return "redirect:/user/main";
 	}
 }
