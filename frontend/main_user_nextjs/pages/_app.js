@@ -1,11 +1,12 @@
 import "../styles/globals.css";
+import Layout from "../components/Layout";
+import { getStaticProps } from ".";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
-      <h1>Hello world Top Layout</h1>
+    <Layout>
       <Component {...pageProps}></Component>
-    </div>
+    </Layout>
   );
 }
 
