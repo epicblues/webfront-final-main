@@ -7,6 +7,7 @@ import Breakfast from './components/meal/Breakfast';
 import Lunch from './components/meal/Lunch';
 import Dinner from './components/meal/Dinner';
 import Snack from './components/meal/Snack';
+import ReviewPage from './components/review/ReviewPage';
 import AddFood from './AddFood'
 
 import './App.css';
@@ -17,20 +18,20 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Date />
-        <button onClick={() => {setShowMeal(!showMeal)}}>{showMeal? "ShowReview" : "ShowMeal"}</button>
+        <Date /><br />
+
+        <button onClick={() => {setShowMeal(!showMeal)}}>{showMeal? "ShowMeal" : "ShowReview"}</button>
         {showMeal ?
-        <>
+          <ReviewPage />
+         : 
+         <>
           <div style={{width:'100px', height:'100px', background: 'pink'}}>아침<Breakfast /></div>
           <div style={{width:'100px', height:'100px', background: 'orange'}}>점심<Lunch /></div>
           <div style={{width:'100px', height:'100px', background: 'skyblue'}}>저녁<Dinner /></div>
           <div style={{width:'100px', height:'100px', background: 'yellow'}}>간식<Snack /></div>
         </>
-         : ''}
-                
-  
-        
-        
+        }
+
 
         <switch>
           <Route path="/AddFood">
