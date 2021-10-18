@@ -8,7 +8,7 @@ const ArticleItem: FunctionComponent<{ article: { userId, id, title, body } }> =
 
     <Link href="/article/[id]" as={`/article/${article.id}`}>
       <a className={articleStyle.card}>
-        <h2>{article.title} &rarr;</h2>
+        <h2 className={articleStyle.excerpt}>{article.title} &rarr;</h2>
         <p>{article.body}</p>
       </a>
     </Link>

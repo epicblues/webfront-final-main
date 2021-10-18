@@ -2,6 +2,7 @@ import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult
 
 import articleStyle from '/styles/Article.module.css';
 import Link from 'next/link';
+import { server } from '../../../config';
 
 
 
@@ -31,7 +32,7 @@ const article = (article) => {
 // }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${context.params.id}`)
+  const res = await fetch(`${server}/api/articles/${context.params.id}`)
   // static paths를 통해서 얻은 params를 동적으로 ajax URL에 탑재
   const article = await res.json();
   return { props: article };
@@ -40,7 +41,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 
 export const getStaticPaths: GetStaticPaths = async (context) => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/`)
+  const res = await fetch(`${server}/api/articles`)
   const articles = await res.json();
 
   const ids = articles.map((article) => article.id)
