@@ -2,18 +2,24 @@ import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
 import './App.css';
-import Categories from './components/CategoryComponents/Categories'
-import Search from './components/MainPageComponents/Search';
-import ShowLatestRecipe from './components/listComponents/ShowLatestRecipe';
+
+import Categories from './components/pageComponents/main/Categories'
+import Search from './components/pageComponents/main/Search';
+import ShowLatestRecipe from './components/pageComponents/recipeList/ShowLatestRecipe';
+
+import FoodData from './Data/FoodData';
 
 function App() {
   const [showCategories, setShowCategories] = useState(false);
+  const [foodData, setFoodData] = useState(FoodData);
 
   return (
     <BrowserRouter>
       <div className="container">
         {/* 홈 */}
-          <h1>Recipe Main</h1>  
+        <Link exact to="/">
+          <h1>Recipe Main</h1>
+        </Link>
 
         {/* 카테고리 검색 */}
         <input type="button" value="카테고리 펼치기" 
@@ -26,13 +32,10 @@ function App() {
 
         {/* 인기 레시피 */}
         <h3>인기 레시피</h3>
-        <ShowLatestRecipe ></ShowLatestRecipe>
-        <ShowLatestRecipe ></ShowLatestRecipe>
 
         {/* 최신 레시피 */}
         <h3>최신 레시피</h3>
-        <ShowLatestRecipe ></ShowLatestRecipe>
-        <ShowLatestRecipe ></ShowLatestRecipe>
+        <ShowLatestRecipe foodData={foodData}/>
       </div>
       <Switch>
       </Switch>
