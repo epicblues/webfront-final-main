@@ -131,9 +131,3 @@ footer {
   font-size: 20px;
   padding-left: 10px;
 }
-
-.AddFood li {
-  border: solid 1px gray;
-  margin: 2px;
-  font-size: 18px;
-}

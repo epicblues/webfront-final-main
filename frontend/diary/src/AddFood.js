@@ -1,12 +1,39 @@
 import React from "react"
 import { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, } from 'react-router-dom';
+
 import './App.css';
 // import Information from './info-json'; ex. JSON 파일 추가
 
 function AddFood() {
     const [searchTerm, setSearchTerm] = useState('')
-    const [showRecent, setShowRecent] = useState(false);
+
+    const [activeIndex, setActiveIndex]=useState(0);
+
+        const tabClickHandler=(index)=>{
+            setActiveIndex(index);
+        };
+
+        const tabContArr=[
+            {
+                tabTitle:(
+                    <li className={activeIndex===0 ? "is-active" : ""}
+                        onClick={()=>tabClickHandler(0)}><button>최근</button></li>
+                ),
+                tabCont:(
+                    <div style={{backgroundColor:'skyblue'}}>최근 데이터</div>
+                )
+            },
+            {
+                tabTitle:(
+                    <li className={activeIndex===1 ? "is-active" : ""}
+                        onClick={()=>tabClickHandler(1)}><button>저장한레시피</button></li>
+                ),
+                tabCont:(
+                    <div style={{backgroundColor:'pink'}}>저장한레시피데이터</div>
+                )
+            }
+        ];
+    
       
     return(
         <div className="AddFood" style={{backgroundColor: 'lightgray'}}>
@@ -33,26 +60,14 @@ function AddFood() {
             } */}
             </div>
 
-            <button onClick={() => {setShowRecent(!showRecent)}}>{showRecent? "최근" : "저장한레시피"}</button>
-            {showRecent ?
-            <>
-            <ul>
-                <li style={{width:'260px', height:'30px'}}>저장한레시피 데이터1</li>
-                <li style={{width:'260px', height:'30px'}}>저장한레시피 데이터2</li>
-                <li style={{width:'260px', height:'30px'}}>저장한레세피 데이터3</li>
-                <li style={{width:'260px', height:'30px'}}>저장한레시피 데이터4</li>
+            <ul className="tabs is-boxed">
+            {tabContArr.map((section, index)=>{
+                return section.tabTitle
+            })}
             </ul>
-            </>
-            : 
-            <>
-            <ul>
-                <li style={{width:'260px', height:'30px'}}>최근 데이터1</li>
-                <li style={{width:'260px', height:'30px'}}>최근 데이터2</li>
-                <li style={{width:'260px', height:'30px'}}>최근 데이터3</li>
-                <li style={{width:'260px', height:'30px'}}>최근 데이터4</li>
-            </ul>
-            </>
-            }
+            <div>
+            {tabContArr[activeIndex].tabCont}
+            </div>
       </div>
     )
 }
