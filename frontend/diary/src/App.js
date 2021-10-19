@@ -8,7 +8,7 @@ import Lunch from './components/meal/Lunch';
 import Dinner from './components/meal/Dinner';
 import Snack from './components/meal/Snack';
 import ReviewPage from './components/review/ReviewPage';
-import AddFood from './AddFood'
+import AddFood from './AddFood';
 
 import './App.css';
 
@@ -31,33 +31,14 @@ function App() {
           <div style={{width:'100px', height:'100px', background: 'yellow'}}>간식<Snack /></div>
         </>
         }
-
-
-        <switch>
-          <Route path="/AddFood">
-            <AddFood/>
-          </Route>
-         
-          <Route path="/Breakfast">
-            <Breakfast/>
-          </Route>
-          <Route path="/Lunch">
-            <Lunch/>
-          </Route>
-          <Route path="/Dinner">
-            <Dinner/>
-          </Route>
-          <Route path="/Snack">
-            <Snack/>
-          </Route>
-          
-        </switch>
-
       </div>
+      
+      <Switch>
+        <AddFood />
+      </Switch>
+
     </Router>
   );
 }
-
-
 
 export default App;

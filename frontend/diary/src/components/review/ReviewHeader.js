@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import Button from './Button'
-import '../../../src/index.css'
 
 const ReviewHeader = ({ title, onAdd, showAdd }) => {
     return (

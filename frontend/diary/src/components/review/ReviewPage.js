@@ -4,6 +4,8 @@ import ReviewHeader from "./ReviewHeader";
 import Reviews from "./Reviews";
 import AddReview from "./AddReview";
 
+import '../../../src/App.css'
+
 // *function component
 const ReviewPage = () => {
   const [showAddReview, setShowAddReview] = useState(false)
