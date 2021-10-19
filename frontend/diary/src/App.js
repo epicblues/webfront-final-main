@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, } from 'react-router-dom';
 
-import Date from './components/Date';
+import SelectDate from './components/SelectDate';
 import Breakfast from './components/meal/Breakfast';
 import Lunch from './components/meal/Lunch';
 import Dinner from './components/meal/Dinner';
@@ -18,7 +18,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Date /><br />
+        <SelectDate /><br />
 
         <button onClick={() => {setShowMeal(!showMeal)}}>{showMeal? "ShowMeal" : "ShowReview"}</button>
         {showMeal ?
