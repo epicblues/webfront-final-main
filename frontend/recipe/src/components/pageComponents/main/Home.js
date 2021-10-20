@@ -1,13 +1,15 @@
 import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
 
+import RcpData from '../../../Data/RecipeData';
+
 import Categories from './Categories';
 import Search from './Search';
 import ShowLatestCard from '../recipeList/ShowLatestCard';
 
-function Home(props) {
-    const [showCategories, setShowCategories] = useState(props.showCategories);
-    const [rcpData, setRcpData] = useState(props.rcpData); 
+function Home() {
+    const [showCategories, setShowCategories] = useState(false);
+    const [_rcpData, setRcpData] = useState(RcpData); 
 
     return (
         // App으로 보내주다가 괜히 Home 따로 만들어서 개고생 중
@@ -40,7 +42,7 @@ function Home(props) {
 
             {/* 최신 레시피 */}
             <h3>최신 레시피</h3>
-            <ShowLatestCard rcpData={rcpData}/>
+            <ShowLatestCard rcpData={_rcpData}/>
         </>
     );
 }

@@ -1,6 +1,6 @@
 function showCategories() {
     return (
-        <div class="category_button">
+        <div className="category_button">
             <a href="#">
                 <p>밥</p>
             </a>

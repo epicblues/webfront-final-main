@@ -1,14 +1,19 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+import { Link } from 'react-router-dom';
+import { useLocation } from "react-router";
 
-function ReadRecipe(props) {
-    let [rcpData, setRcpData] = useState(props.rcpData);
-
-
+function ReadRecipe() {
+    const {rcpData} = useLocation().state;
+    // const abc = useLocation().state;
     return (
         <div>
-            <div class="rcp_thumb">
+            <Link exact to="/">
+                <h1>Recipe Main</h1>
+            </Link>
+           
+            <div className="rcp_thumb">
                 {/* 상단 레시피 인트로 이미지, 썸네일과 동일 */}
-                <img id="rcp_thumb" src={rcpData.rcp_thumb_url} />
+                <img id="rcp_thumb" src={`../${rcpData.rcp_thumb_url}`} />
                 {/* 카테고리 중간 사이즈 폰트 */}
                 <p id="rcp_category">{rcpData.rcp_category}</p>
                 {/* 레시피 이름 */}
