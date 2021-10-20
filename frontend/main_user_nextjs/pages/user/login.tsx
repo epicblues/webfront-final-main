@@ -28,7 +28,7 @@ const login = () => {
         passRef.current.value = '';
       }
       setMessage(data.message)
-      location.href = location.origin;
+
     } catch (err) {
       console.log(err);
     }

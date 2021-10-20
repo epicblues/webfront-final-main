@@ -10,16 +10,15 @@ import cookie from 'cookie';
 
 const login: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
 
-  const resp = await fetch('http://localhost:5000/user/email=' + req.body.email)
+  const resp = await fetch('http://localhost:5000/user?email=' + req.body.email)
   const searchedUser = await resp.json();
-  console.log(searchedUser);
+  const { name, password } = searchedUser[0];
+  const keyPW = req.body.password;
 
-  const keyPW = await hash(req.body.password, 10);
-
-  const comparedResult = await compare(searchedUser.password, keyPW);
+  const comparedResult = await compare(keyPW, password); // hash이전 비교 대상 password, hash된 password
 
   if (req.method === "POST" && comparedResult) {
-    const claims = { sub: req.body.email, data: "muyaho", name: searchedUser.name }
+    const claims = { sub: req.body.email, data: "muyaho", name }
     const jwt = sign(claims, secret, { expiresIn: '1h' })
 
     // claims => 집어 넣을 객체 , secret => 암호화 방식(UUID generator 사용), {expiresIn :'1h'}한시간 뒤에 만료 

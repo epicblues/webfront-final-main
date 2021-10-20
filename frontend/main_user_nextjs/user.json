@@ -9,12 +9,7 @@
     {
       "id": 2
     },
-    {
-      "name": "epicblue",
-      "email": "epicblue@hanmail.net",
-      "password": "$2b$10$wU0mIdP5uUtruzJPV0Oj1O31ADeWhxs9srIQedNnMd6XURCcLcnea",
-      "id": 3
-    },
+
     {
       "name": "blueha1023",
       "email": "blueha1023@naver.com",
@@ -58,22 +53,10 @@
       "id": 10
     },
     {
-      "name": "asdfascv",
-      "email": "asdfascv@hanamil.net",
-      "password": "$2b$10$gEVMuW64Ikop4WOWtK3CDe/JRYevlClnPw66kzWwqS7n3UQK1vFhq",
+      "name": "epicblue",
+      "email": "epicblue@hanmail.net",
+      "password": "$2b$10$EToPC7aVAtx7o6w1CUUq7e9Jo8BFa8Q.wCW1sfWynU1t4eS.SsM9C",
       "id": 11
-    },
-    {
-      "name": "epicblue",
-      "email": "epicblue@hanmail.net",
-      "password": "$2b$10$9PW/OOjYxbnmlBrON8CMcuhAjf69SCwnhdg3uHdlp676K7vVESeya",
-      "id": 12
-    },
-    {
-      "name": "epicblue",
-      "email": "epicblue@hanmail.net",
-      "password": "$2b$10$VpeZMQQ87o6zS14xwXtate2eUXvKB6OPTf0.wMwajG/lfBQ7amPPi",
-      "id": 13
     }
   ]
 }

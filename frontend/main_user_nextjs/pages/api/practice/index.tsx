@@ -4,12 +4,11 @@ import { sign } from 'jsonwebtoken';
 import { secret } from '../secret'; // 환경 변수 처럼 활용
 import { send } from 'micro';
 import { verify } from 'jsonwebtoken';
-import { getCookieParser } from 'next/dist/server/api-utils';
-import { parse } from 'cookie';
 
 
 
-const authenticated = (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
+
+export const authenticated = (fn: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
 
   verify(req.cookies.auth, secret, async (err, decoded) => {
     // 에러 없음(secret 일치) decoded된 객체로 실제 데이터 비교
@@ -31,7 +30,8 @@ const authenticated = (fn: NextApiHandler) => async (req: NextApiRequest, res: N
 // 함수를 감싼다.
 
 const index: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
-  res.status(200).json({ "status": "authenticated", "welcome": parse(req.cookies.auth).name })
+  const { ...userData } = Object(await verify(req.cookies.auth, secret));
+  res.status(200).json({ "status": "authenticated", "welcome": userData.name })
 }
 
 export default authenticated(index) // error를 핸들링하는 미들웨어가 탑재된 index 함수.
