@@ -24,6 +24,7 @@ function ReadRecipe() {
                 <p id="rcp_desc">{rcpData.rcp_desc}</p>
                 {/* 레시피 재료 */}
                 {/* 영양성분표 Modal */}
+                <input type="button" value="영양성분보기" />
             </div>
         </div>
     );

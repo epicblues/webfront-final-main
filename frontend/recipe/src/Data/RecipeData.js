@@ -1,7 +1,10 @@
+//  data RecipeData.js
+//  레시피 기본정보 데이터 샘플
+
 let RcpData =
 [
     {
-        rcp_post_id: 0,
+        rcp_post_id: 0, //  PK
         user_id: "작성자1",
         rcp_thumb_url: "img/1thumb.jpg",
         rcp_main_title: "음식1",
