@@ -1,0 +1,21 @@
+
+{
+    "igr_data":[{
+        "Igr_no": 1, 
+        "Igr_name": "pork",
+        "Igr_qty": 100
+    },
+    {
+        "Igr_no": 2,
+        "Igr_name": "onion",
+        
+        "Igr_qty": 200
+    },
+    {
+        "Igr_no": 3,
+        "Igr_name": "salt",
+        "Igr_qty": 5
+    }
+]
+}
+ 
