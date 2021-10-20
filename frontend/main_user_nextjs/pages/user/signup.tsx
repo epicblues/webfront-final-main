@@ -8,10 +8,10 @@ const login = () => {
   const [message, setMessage] = useState<any>(null);
 
 
-  const handleLogin = async () => {
+  const handleSignup = async () => {
     console.log(emailRef.current?.value, passRef.current?.value);
     try {
-      const res = await fetch("/api/practice/login", {
+      const res = await fetch("/api/practice/signup", {
         method: "post",
         body: JSON.stringify({
           email: emailRef.current.value,
@@ -28,7 +28,8 @@ const login = () => {
         passRef.current.value = '';
       }
       setMessage(data.message)
-      location.href = location.origin;
+      window.location.href = "http://" + window.location.host + "/user/login";
+      // Login Page로 Redirect
     } catch (err) {
       console.log(err);
     }
@@ -37,10 +38,10 @@ const login = () => {
 
   return (
     <div className={articleStyle.card}>
-      <h3>{message ? message : "Login Please"}</h3>
+      <h3>{message ? message : "SignUp Please"}</h3>
       <input type="email" name="email" id="email" ref={emailRef} />
       <input type="password" name="password" id="password" ref={passRef} />
-      <button onClick={handleLogin}>Login</button>
+      <button onClick={handleSignup}>Signup</button>
 
     </div>
 
