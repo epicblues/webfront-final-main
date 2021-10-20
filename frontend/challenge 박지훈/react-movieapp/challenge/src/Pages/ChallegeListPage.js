@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ChallengeList from "../Components/ChallengeList/ChallengsList";
 const ChallengeListPage = () => {
-  const [challeges, setChalleges] = useState([
+  const [challenges, setChallenges] = useState([
     {
       id: 1,
       userid: "kim jong guk",
@@ -34,7 +34,7 @@ const ChallengeListPage = () => {
     },
   ]);
 
-  return <ChallengeList></ChallengeList>;
+  return <ChallengeList challenges={challenges} />;
 };
 
 export default ChallengeListPage;

@@ -1,7 +1,7 @@
 import React from "react";
-
+import ChallengeWrite from "../Components/ChallengeList/ChallengeWrite";
 const WritePage = () => {
-  return <div>챌린지 작성</div>;
+  return <ChallengeWrite></ChallengeWrite>;
 };
 
 export default WritePage;
