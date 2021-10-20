@@ -32,3 +32,5 @@ const ChallengeData = [
     challegeContent: "한 달 동안, 양식 레피시 3개 올리기",
   },
 ];
+
+export default ChallengeData;
