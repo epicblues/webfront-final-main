@@ -1,3 +1,5 @@
+//  component ShowRecipeCard
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -6,8 +8,12 @@ function ShowRecipeCard(props) {
 
     return (
         <div id="columns">
-            <div class="rcp_thumb_card">
-                <Link to={`/${rcpData.rcp_post_id}`}>
+            <div className="rcp_thumb_card">
+                <Link to={{
+                    pathname: `/card/${rcpData.rcp_post_id}`,
+                    state: {rcpData}
+
+                }}>
                     {/* img를 DB에서 불러올 수 있게 연결할 것 */}
                     <img id="rcp_thumb" src={rcpData.rcp_thumb_url} />
                     <p id="rcp_main_title">{rcpData.rcp_main_title}</p>
