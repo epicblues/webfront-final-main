@@ -1,22 +1,36 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { ko } from "date-fns/esm/locale";
+import "./ChallengeWrite.css";
 
 const ChallengeWrite = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [message, setMessage] = useState("");
+  const { inputStatus, setInputStatus } = useState("");
+
   const onChangeMessage = (e) => setMessage(e.target.message);
+
+  const changeRadioType1 = (e) => {
+    setInputStatus(e.target.value);
+  };
+
+  const changeRadioType2 = (e) => {
+    setInputStatus(e.target.value);
+  };
 
   const onClick = () => {
     alert(message);
     setMessage("");
   };
+
   const onKeyPress = (e) => {
     if (e.key === "Enter") {
       onClick();
     }
   };
+
   return (
     <form className="challengeform">
       <div className="challengeName">
@@ -30,32 +44,51 @@ const ChallengeWrite = () => {
           onChange={onChangeMessage}
           onKeyPress={onKeyPress}
         />
-        <button onClick={onClick}>완료</button>
+        <button>완료</button>
       </div>
       <div className="challengeKind">
         <h3>챌린지의 종류:</h3>
-        <input type="radio" id="diet" name="challenge" value="diet" />
-        <label for="diet">diet</label>
-        <input type="radio" id="receipe" name="challenge" value="receipe" />
-        <label for="receipe">receipe</label>
+        <input
+          type="radio"
+          id="diet"
+          name="challenge"
+          value="diet"
+          checked={inputStatus === " diet"}
+          onChange={changeRadioType1}
+        />
+        <label htmlfor="diet">diet</label>
+        <input
+          type="radio"
+          id="receipe"
+          name="challenge"
+          value="receipe"
+          checked={inputStatus === "reciepe"}
+          onChange={changeRadioType2}
+        />
+        <label htmlfor="receipe">receipe</label>
       </div>
       <section className="ChallengeDate">
         <sectionTitle>챌린지 기간</sectionTitle>
-        <h3> 챌린지 기간</h3>
+        <br />
         <sectionInfo>챌린지 진행기간을 선택해주세요.</sectionInfo>
         <div>
-          <challegeDateTitle>챌린지 시작일:</challegeDateTitle>
+          <challengeDateTitle>챌린지 시작일:</challengeDateTitle>
           <DatePicker
+            locale={ko}
+            dateFormat="yyyy년 MM월 dd일"
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             selectsStart
+            mindate={new Date()}
             startDate={startDate}
             endDate={endDate}
           />
         </div>
         <div>
-          <challegeDateTitle>챌린지 종료일:</challegeDateTitle>
+          <challengeDateTitle>챌린지 종료일:</challengeDateTitle>
           <DatePicker
+            locale={ko}
+            dateFormat="yyyy년 MM월 dd일"
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             selectsEnd
@@ -64,6 +97,18 @@ const ChallengeWrite = () => {
           />
         </div>
       </section>
+      <div className="ChallengeContent">
+        <h3>다이어트,레시피 챌린지 조건</h3>
+        <input type="radio" id="diet" name="challenge" value="diet" />
+        <label htmlFor="diet">pluskcal</label>
+        <input type="radio" id="diet" name="challenge" value="diet" />
+        <label htmlFor="receipe">minuskcal</label>
+        <br />
+        <input type="radio" id="diet" name="challenge" value="diet" />
+        <label htmlFor="diet">2000kcal</label>
+        <input type="radio" id="diet" name="challenge" value="diet" />
+        <label htmlFor="receipe">3000kcal</label>
+      </div>
       <button type="submit">작성</button>
     </form>
   );
