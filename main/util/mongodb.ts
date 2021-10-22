@@ -1,4 +1,5 @@
 import { MongoClient, MongoClientOptions } from "mongodb";
+
 declare module globalThis {
   let _mongoClientPromise: Promise<MongoClient>;
 }
@@ -6,7 +7,7 @@ declare module globalThis {
 const uri = process.env.MONGODB_URI || "ERROR";
 const options: MongoClientOptions = {};
 
-let client;
+let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
 if (uri === "ERROR") {
