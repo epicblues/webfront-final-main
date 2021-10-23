@@ -1,4 +1,4 @@
-# CSV 파일 MongoDB에 넣기
+# CSV 파일 MongoDB에 넣기(Local Version)
 
  1. MongoDB DataBase Tool 설치 *Version 4.4 이상일 경우
 
