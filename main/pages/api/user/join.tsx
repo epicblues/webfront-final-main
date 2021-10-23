@@ -11,11 +11,11 @@ const join: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) =
   const userForm = req.body;
   const password = await hash(userForm.password, 10);
 
-  console.log(process.env.UUID_SECRET);
+
   const result = await (await clientPromise)
     .db("webfront")
     .collection("user")
-    .insertOne({ ...userForm, password })
+    .insertOne({ ...userForm, password, _id: { abc: "dfef" } })
 
 
 
