@@ -18,15 +18,21 @@ const login: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) 
     .collection("user")
     .findOne({ email: userForm.email }) as Document
 
-  const isValidPW = await compare(password, result.password);
-  // 로그인 성공 후에 유저 인증 관련 jwt를 db에 저장
-  if (isValidPW) {
-    const jwt = sign({ email: result.email, name: result.name }, secret, { expiresIn: '1h' });
-    // 인증 토큰을 생성하고 쿠키에 저장
-    res.setHeader("Set-Cookie", cookie.serialize('auth', jwt, { httpOnly: true, secure: process.env.NODE_ENV !== 'development', sameSite: 'strict', maxAge: 3600, path: '/' }))
+  if (!result) {
+    res.status(200).json({ status: "failed" });
+  } else {
+    const isValidPW = await compare(password, result.password);
+    // 로그인 성공 후에 유저 인증 관련 jwt를 db에 저장
+    if (isValidPW) {
+      const jwt = sign({ email: result.email, name: result.name }, secret, { expiresIn: '1h' });
+      // 인증 토큰을 생성하고 쿠키에 저장
+      res.setHeader("Set-Cookie", cookie.serialize('auth', jwt, { httpOnly: true, secure: process.env.NODE_ENV !== 'development', sameSite: 'strict', maxAge: 3600, path: '/' }))
+    }
+
+    res.status(200).json(isValidPW ? { status: "OK" } : { status: "Failed" });
   }
 
-  res.status(200).json(isValidPW ? { status: "OK" } : { status: "Failed" });
+
 }
 
 export default login

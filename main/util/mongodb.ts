@@ -4,13 +4,13 @@ declare module globalThis {
   let _mongoClientPromise: Promise<MongoClient>;
 }
 
-const uri = process.env.MONGODB_URI || "ERROR";
+const uri = process.env.MONGODB_URI as string;
 const options: MongoClientOptions = {};
 
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
-if (uri === "ERROR") {
+if (!uri) {
   throw new Error("Please add your Mongo URI to .env.local");
 }
 
