@@ -14,13 +14,12 @@ const Home: NextPage<any> = ({ foodData }) => {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  console.log(context.req);
+
   const client = await clientPromise
   const db = client.db('webfront');
 
-
-
   const foodData = await db.collection('food').findOne({})
+
   if (foodData) {
     delete foodData._id;
   }
