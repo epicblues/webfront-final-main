@@ -15,20 +15,20 @@ if (!uri) {
 }
 
 if (process.env.NODE_ENV === "development") {
-  // In development mode, use a global variable so that the value
-  // is preserved across module reloads caused by HMR (Hot Module Replacement).
+  // Hot Module Replacement(개발 중에 파일을 바꿨을 때 바뀐 내용을 새로고침 없이 브라우저에 반영하는 것?)를 위해 커넥션 객체를 전역 변수로 선언해서 연결을 유지시키도록 한다.
   if (!globalThis._mongoClientPromise) {
     client = new MongoClient(uri, options);
     globalThis._mongoClientPromise = client.connect();
   }
   clientPromise = globalThis._mongoClientPromise;
 } else {
-  // In production mode, it's best to not use a global variable.
+  // 실제 배포 환경에서는 전역 변수로 사용하지 않는다.
 
   client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }
 
-// Export a module-scoped MongoClient promise. By doing this in a
-// separate module, the client can be shared across functions.
+// 모듈 형태로 Connection을 형성한 client 객체를 내보내서
+// 자원을 많이 소모하는 Connection 생성을 최소화한다.
+// Spring 에서 DataSource 같은 개념?
 export default clientPromise;
