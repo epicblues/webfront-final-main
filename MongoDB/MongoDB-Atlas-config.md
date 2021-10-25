@@ -1,4 +1,4 @@
-CSV 파일 MongoDB에 넣기(Local Version)
+CSV 파일 MongoDB에 넣기(Cloud Version)
 MongoDB DataBase Tool 설치 *Version 4.4 이상일 경우
 
 (https://docs.mongodb.com/database-tools/installation/installation/)
