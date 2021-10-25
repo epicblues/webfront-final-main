@@ -24,7 +24,9 @@
     "util/mongodb.js",
     "util/mongodb.js",
     "util/mongodb.js",
-    "util/mongodb.js"
+    "util/mongodb.js",
+    "pages/challenge/index.js",
+    "pages/challenge/index.tx"
   ],
   "exclude": ["node_modules"]
 }
