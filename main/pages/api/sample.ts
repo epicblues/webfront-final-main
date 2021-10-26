@@ -2,11 +2,9 @@
 import { Document } from "bson";
 import type { NextApiRequest, NextApiResponse } from "next";
 import clientPromise from "../../util/mongodb";
+import { authenticated } from "./auth";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Document>
-) {
+async function handler(req: NextApiRequest, res: NextApiResponse<Document>) {
   const client = await clientPromise;
   const db = client.db("webfront");
 
@@ -19,3 +17,5 @@ export default async function handler(
     res.status(404).json({ status: "failed" });
   }
 }
+
+export default authenticated(handler);
