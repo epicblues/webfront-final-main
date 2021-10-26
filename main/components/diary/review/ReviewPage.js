@@ -1,12 +1,14 @@
 // import React from 'react'
 import { useState } from 'react';
+
+// components
 import ReviewHeader from "./ReviewHeader";
 import Reviews from "./Reviews";
 import AddReview from './AddReview';
 
+// CSS
 import 'semantic-ui-css/semantic.min.css';
 
-// *function component
 const ReviewPage = () => {
   const [showAddReview, setShowAddReview] = useState(false)
   const [reviews, setReviews] = useState ([
