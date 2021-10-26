@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react';
-
+import Link from 'next/link';
 import PickDate from "../../components/diary/PickDate";
 import ReviewPage from "../../components/diary/review/ReviewPage";
 
@@ -45,7 +45,7 @@ const index = () => {
 
   return (
     <div>
-    <PickDate />
+    <PickDate/>
 
     <div className="container">
 
