@@ -5,26 +5,28 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ShowCategories from '../../../components/recipe/main/Categories'
+import RcpData from '../../../public/static/recipe/dataSample/RecipeData'
 
-import RcpData from '../../../public/recipe/dataSample/RecipeData';
+import recipeListStyles from '../../../styles/RecipeList.module.css'
 
 // API 추가시 recipeAll을 인자로 사용
 const index = () => {
     let [rcpData ,setRcpData] = useState(RcpData)
     return (
         <div>
-            {/* <ShowCategories></ShowCategories> */}
+            <ShowCategories></ShowCategories>
             <h1>레시피 : 전체</h1>
             <div>
-                <ul>
+                <ul className={recipeListStyles.cards}>
                     {rcpData.map((card, index) => {
                         return (
                             <li key={card.rcp_post_id}>
                                 <Link href={`/card/${card.rcp_post_id}`}>
                                     <a>
                                         <Image 
-                                            src={require(card.rcp_thumb_url)}
-                                            layout="fill"
+                                            src={card.rcp_thumb_url}
+                                            width={100}
+                                            height={100}
                                             alt={card.rcp_main_title}
                                         />
                                         <p>{card.rcp_main_title}</p>
@@ -41,14 +43,17 @@ const index = () => {
     )
 }
 
-// export const getServerSideProps = async() => {
-//   const res = await fetch('');
-//   const _recipeAll = await res.json();
-//   return {
-//     props: {
-//       recipeAll: _recipeAll
-//     }
-//   }
-// }
+// export const getServerSideProps = async (ctx) => {
+//     await getUserOrRedirect(ctx);
+//     const client = await clientPromise;
+//     const rcpData = await client
+//       .db("webfront")
+//       .collection("recipe")
+//       .find({})
+//       .project({ _id: 0 })
+//       .toArray();
+//     console.log(rcpData);
+//     return { props: { rcpData } };
+//   };
 
 export default index

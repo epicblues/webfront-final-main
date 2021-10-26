@@ -57,29 +57,17 @@ const index = ({ rcpData }) => {
 };
 
 // 식품 데이터 API 완성되면 붙일 것
-// export const getServerSideProps = async() => {
-//     const res = await fetch('api 주소');
-//     const rcpData = await res.json();
-
-//     return {
-//         props: {
-//             _rcpData : rcpData
-//         },
-//         revalidate: 20
-//     }
-// }
-
-export const getServerSideProps = async (ctx) => {
-  await getUserOrRedirect(ctx);
-  const client = await clientPromise;
-  const rcpData = await client
-    .db("webfront")
-    .collection("recipe")
-    .find({})
-    .project({ _id: 0 })
-    .toArray();
-  console.log(rcpData);
-  return { props: { rcpData } };
-};
+// export const getServerSideProps = async (ctx) => {
+//   await getUserOrRedirect(ctx);
+//   const client = await clientPromise;
+//   const rcpData = await client
+//     .db("webfront")
+//     .collection("recipe")
+//     .find({})
+//     .project({ _id: 0 })
+//     .toArray();
+//   console.log(rcpData);
+//   return { props: { rcpData } };
+// };
 
 export default index;

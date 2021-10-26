@@ -6,7 +6,7 @@ let RcpData =
     {
         rcp_post_id: 0, //  PK
         user_id: "작성자1",
-        rcp_thumb_url: "/imageSample/1thumb.jpg",
+        rcp_thumb_url: "/static/recipe/imageSample/1thumb.jpg",
         rcp_main_title: "음식1",
         rcp_sub_title: "맛있어요",
         rcp_desc: "닭꼬치 구이를 구워봅시다.",
@@ -21,7 +21,7 @@ let RcpData =
     {
         rcp_post_id: 1,
         user_id: "작성자2",
-        rcp_thumb_url: "/imageSample/2thumb.jpg",
+        rcp_thumb_url: "/static/recipe/imageSample/2thumb.jpg",
         rcp_main_title: "음식2",
         rcp_sub_title: "맛있어요",
         rcp_desc: "냉채미역국을 해봅시다.",
@@ -36,7 +36,7 @@ let RcpData =
     {
         rcp_post_id: 3,
         user_id: "작성자3",
-        rcp_thumb_url: "/imageSample/3thumb.jpg",
+        rcp_thumb_url: "/static/recipe/imageSample/3thumb.jpg",
         rcp_main_title: "음식3",
         rcp_sub_title: "맛있어요",
         rcp_desc: "불고기 말이를 구워봅시다.",
