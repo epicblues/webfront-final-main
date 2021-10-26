@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import RcpData from "../../public/recipe/dataSample/RecipeData";
+// import RcpData from "../../public/static/recipe/dataSample/RecipeData";
 import { getUserOrRedirect } from "../api/auth";
 import Categories from "../../components/recipe/main/Categories";
 import Search from "../../components/recipe/main/Search";
