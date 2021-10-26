@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from 'react';
-import Link from 'next/link';
 import PickDate from "../../components/diary/PickDate";
 import ReviewPage from "../../components/diary/review/ReviewPage";
 
@@ -44,23 +43,42 @@ const index = () => {
   ];
 
   return (
-    <div>
-    <PickDate/>
+    <div className='container'
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            backgroundColor: 'pink'
+          }}
+      >
 
-    <div className="container">
+      <div className='DatePart'
+            style={{
+              position: 'relative',
+              backgroundColor: '#fee',
+              padding: '10px 0 10px',
+              marginBottom: '20px'
+            }}
+      >
+          <PickDate></PickDate>
+          <i className='calendar alternate outline icon'
+            style={{position:"absolute", top: 12, left: 140}}>
+          </i>
+      </div>
 
-        <ul className="ui compact menu"
-            style={{listStyle:'none'}}
-        >
-          {tabContArr.map((section, index)=>{
-              return section.tabTitle
-          })}
-        </ul>
-        <div>
-          {tabContArr[activeIndex].tabCont}
-        </div>
-        
-    </div>
+      <div className="content">
+
+          <ul className="ui compact menu"
+              style={{listStyle:'none'}}
+          >
+            {tabContArr.map((section, index)=>{
+                return section.tabTitle
+            })}
+          </ul>
+          <div>
+            {tabContArr[activeIndex].tabCont}
+          </div>
+          
+      </div>
 
     </div>
 
