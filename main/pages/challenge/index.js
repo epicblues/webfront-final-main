@@ -13,7 +13,7 @@ const index = () => {
       <MyChallenge />
       <ChallengeList />
       <Link href="challenge/list">
-        <button>챌린지 리스트 보기</button>
+        <button>챌린지 리스트 보기 </button>
       </Link>
     </>
   );

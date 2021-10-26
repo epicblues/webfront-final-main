@@ -1,15 +1,27 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ko from "date-fns/locale/ko";
 import { Input, Button, Segment, Header, Radio } from "semantic-ui-react";
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 registerLocale("ko", ko);
 const ChallengeWrite = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [message, setMessage] = useState("");
   const [checkedInputs, setCheckInputs] = useState([]);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    formState,
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
+  };
 
   const onChangeMessage = (e) => setMessage(e.target.value);
 
@@ -23,11 +35,7 @@ const ChallengeWrite = () => {
       setCheckInputs(checkedInputs.filter((el) => el !== id));
     }
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const challenges = [message, startDate, endDate, checkedInputs];
-    console.log(challenges);
-  };
+
   const onClick = (e) => {
     alert(message);
     setMessage("");
@@ -40,9 +48,11 @@ const ChallengeWrite = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="challengeform">
+    <form onSubmit={handleSubmit(onSubmit)} className="challengeform">
       <Segment basic padded="very" vertical>
-        <Header as="h1">챌린지 작성</Header>
+        <Header a s="h1">
+          챌린지 작성
+        </Header>
         <div className="challengeName">
           <Header as="h3">챌린지 이름:</Header>
           <Input
@@ -69,9 +79,8 @@ const ChallengeWrite = () => {
             }}
             checked={checkedInputs.includes("diet") ? true : false}
           />
-          <label label htmlFor="diet">
-            diet
-          </label>
+          <label htmlFor="diet">diet</label>
+
           <input
             type="radio"
             id="receipe"
@@ -84,36 +93,33 @@ const ChallengeWrite = () => {
           />
           <label htmlFor="receipe">receipe</label>
         </div>
-        <section className="challenDate">
-          <sectionTitle>챌린지 기간</sectionTitle>
+        <section className="challengDate">
+          <div className="sectionTitle">챌린지 기간</div>
           <br />
-          <sectionInfo>챌린지 진행 기간을 선택해주세요</sectionInfo>
-          <div>
-            <challengeDatetitle>챌린지 시작일</challengeDatetitle>
-            <ReactDatePicker
-              locale="ko"
-              dateFormat="yyyy년 MM월 dd일"
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              selectsStart
-              minDate={new Date()}
-              startDate={startDate}
-              endDate={endDate}
-            />
-          </div>
-          <div>
-            <challengeDateTitle>챌린지 종료일:</challengeDateTitle>
-            <ReactDatePicker
-              locale="ko"
-              dateFormat="yyyy년 MM월 dd일"
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              selectsEnd
-              endDate={endDate}
-              minDate={startDate}
-            />
-          </div>
+          <div className="sectionInfo">챌린지 진행 기간을 선택해주세요</div>
+          <div className="challengeDatetitle">챌린지 시작일</div>
+          <ReactDatePicker
+            locale="ko"
+            dateFormat="yyyy년 MM월 dd일"
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            selectsStart
+            minDate={new Date()}
+            startDate={startDate}
+            endDate={endDate}
+          />
+          <div className="challengeDateTitle>">챌린지 종료일:</div>
+          <ReactDatePicker
+            locale="ko"
+            dateFormat="yyyy년 MM월 dd일"
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            selectsEnd
+            endDate={endDate}
+            minDate={startDate}
+          />
         </section>
+
         <button type="submit" value="challenges">
           작성
         </button>
