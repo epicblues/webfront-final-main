@@ -1,6 +1,11 @@
+import Link from 'next/link'
+
 function showCategories() {
     return (
         <div className="category_button">
+            <Link href="/list">
+                <a>전체</a>
+            </Link>
             <a href="#">
                 <p>밥</p>
             </a>
