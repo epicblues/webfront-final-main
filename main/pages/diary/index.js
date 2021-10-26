@@ -1,8 +1,17 @@
 import React from "react";
 import { useState } from "react";
-import PickDate from "../../components/diary/PickDate";
-import ReviewPage from "../../components/diary/review/ReviewPage";
 import { getUserOrRedirect } from "../api/auth";
+
+// Date
+import PickDate from "../../components/diary/PickDate";
+// meal
+import Breakfast from "../../components/diary/meal/Breakfast";
+import Lunch from "../../components/diary/meal/Lunch";
+import Dinner from "../../components/diary/meal/Dinner";
+import Snack from "../../components/diary/meal/Snack";
+// Review
+import ReviewPage from "../../components/diary/review/ReviewPage";
+
 
 const index = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -15,17 +24,28 @@ const index = () => {
     {
       tabTitle: (
         <li
-          key="uniqueId1"
+        key="uniqueId1"
           className={activeIndex === 0 ? "is-active" : ""}
           onClick={() => tabClickHandler(0)}
         >
           <a className="item">
             <i className="utensils icon"></i> 식단
-            <div className="floating ui red label">22</div>
           </a>
         </li>
       ),
-      tabCont: <div>MealPage</div>,
+      tabCont: (
+        <div className='ui two column centered grid'>
+          <div className="column">
+            <div className="container"
+                  style={{display: 'flex', flexWrap: 'wrap'}}>
+              <Breakfast className='item'></Breakfast>
+              <Lunch className='item'></Lunch>
+              <Dinner className='item'></Dinner>
+              <Snack className='item'></Snack>
+            </div>
+          </div>
+        </div>
+      ),
     },
     {
       tabTitle: (
@@ -36,7 +56,6 @@ const index = () => {
         >
           <a className="item">
             <i className="pencil alternate icon"></i> 일기
-            <div className="floating ui teal label">22</div>
           </a>
         </li>
       ),
@@ -49,43 +68,21 @@ const index = () => {
   ];
 
   return (
+    // Wrapper
+    <div className='ui center aligned container'>
 
-    <div className='container'
-          style={{
-            display: "flex",
-            flexDirection: 'column',
-            height: '100%',
-            backgroundColor: 'pink'
-          }}
-      >
-
-      <div className='DatePart'
-            style={{
-              position: 'relative',
-              backgroundColor: '#fee',
-              padding: '10px 0 10px',
-              marginBottom: '20px'
-            }}
-      >
+      <div className='DatePart'>
           <PickDate></PickDate>
-          <i className='calendar alternate outline icon'
-            style={{position:"absolute", top: 12, left: 140}}>
-          </i>
+          <i className='calendar alternate outline icon'></i>
       </div>
 
-      <div className="content"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              backgroundColor: 'hotpink'
-            }}>
+      <div className="content">
 
-          <ul className="ui compact menu"
-              style={{listStyle:'none'}}
-          >
-            {tabContArr.map((section, index)=>{
-                return section.tabTitle
-            })}
+          <ul className="ui secondary pointing menu"
+                style={{listStyle:'none'}}>
+              {tabContArr.map((section, index)=>{
+                  return section.tabTitle
+              })}
           </ul>
           <div>
             {tabContArr[activeIndex].tabCont}
@@ -93,8 +90,8 @@ const index = () => {
           
       </div>
 
-
     </div>
+    // End of Wrapper
   );
 };
 
