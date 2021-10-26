@@ -1,7 +1,5 @@
 import React from "react";
-
 import { useState } from "react";
-import Link from "next/link";
 import PickDate from "../../components/diary/PickDate";
 import ReviewPage from "../../components/diary/review/ReviewPage";
 import { getUserOrRedirect } from "../api/auth";
@@ -17,6 +15,7 @@ const index = () => {
     {
       tabTitle: (
         <li
+          key="uniqueId1"
           className={activeIndex === 0 ? "is-active" : ""}
           onClick={() => tabClickHandler(0)}
         >
@@ -31,6 +30,7 @@ const index = () => {
     {
       tabTitle: (
         <li
+          key="uniqueId2"
           className={activeIndex === 1 ? "is-active" : ""}
           onClick={() => tabClickHandler(1)}
         >
@@ -53,7 +53,8 @@ const index = () => {
     <div className='container'
           style={{
             display: "flex",
-            justifyContent: "center",
+            flexDirection: 'column',
+            height: '100%',
             backgroundColor: 'pink'
           }}
       >
@@ -72,7 +73,12 @@ const index = () => {
           </i>
       </div>
 
-      <div className="content">
+      <div className="content"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              backgroundColor: 'hotpink'
+            }}>
 
           <ul className="ui compact menu"
               style={{listStyle:'none'}}
