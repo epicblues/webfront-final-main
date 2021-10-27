@@ -20,7 +20,7 @@ const AddReview = ({ onAdd }) => {
     return (
         <form className='ui form' onSubmit={onSubmit}>
             <div className='field'>
-                <label>오늘의 일기
+                <label style={{textAlign: 'left'}}>오늘의 일기
                     <i className='pencil alternate icon'></i>
                 </label>
                 <textarea type='text'
@@ -29,7 +29,7 @@ const AddReview = ({ onAdd }) => {
                         onChange={(e) => setText(e.target.value)} />
             </div>
 
-            <div className='ui checkbox'>
+            <div className='ui checkbox' style={{display: "flex", justifyContent: 'space-between', marginBottom: '10px'}}>
                 <label>Set Reminder</label>
                 <input type='checkbox' name='example'
                     checked={reminder}
@@ -38,7 +38,10 @@ const AddReview = ({ onAdd }) => {
             </div>
 
             <button type='submit'
-                    className='ui button'>작성완료</button>
+                    className='fluid ui button'
+                    style={{marginBottom: '10px'}}>
+                작성완료
+            </button>
 
             
         </form>

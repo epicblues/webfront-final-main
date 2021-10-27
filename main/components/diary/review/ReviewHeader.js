@@ -6,9 +6,12 @@ import 'semantic-ui-css/semantic.min.css';
 const ReviewHeader = ({ title, onAdd, showAdd }) => {
     return (
         <header className='ui header'
-                style={{marginTop: 20}}>
-            <h1 className="ui Large header" style={{display: 'inline-block'}}>{title}</h1>
-            <Button color={showAdd ? 'red' : 'green'}
+                style={{display: "flex", justifyContent: 'space-between',marginTop: 10}}>
+            <h2 className="ui Large header">
+                {title}
+            </h2>
+            <Button
+                    color={showAdd ? 'red' : 'green'}
                     text={showAdd ? '취소' : '작성'}
                     onClick={onAdd} />
         </header>

@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { getUserOrRedirect } from "../api/auth";
-
 // Date
 import PickDate from "../../components/diary/PickDate";
 // meal
@@ -11,6 +10,7 @@ import Dinner from "../../components/diary/meal/Dinner";
 import Snack from "../../components/diary/meal/Snack";
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
+import AddFood from "../../components/diary/AddFood";
 
 
 const index = () => {
@@ -89,7 +89,7 @@ const index = () => {
           </div>
           
       </div>
-
+      <AddFood />
     </div>
     // End of Wrapper
   );

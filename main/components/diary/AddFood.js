@@ -5,40 +5,17 @@ import { useState } from 'react'
 
 function AddFood() {
     const [searchTerm, setSearchTerm] = useState('')
-
-    const [activeIndex, setActiveIndex]=useState(0);
-
-        const tabClickHandler=(index)=>{
-            setActiveIndex(index);
-        };
-
-        const tabContArr=[
-            {
-                tabTitle:(
-                    <li className={activeIndex===0 ? "is-active" : ""}
-                        onClick={()=>tabClickHandler(0)}><button>최근</button></li>
-                ),
-                tabCont:(
-                    <div style={{backgroundColor:'skyblue'}}>최근 데이터</div>
-                )
-            },
-            {
-                tabTitle:(
-                    <li className={activeIndex===1 ? "is-active" : ""}
-                        onClick={()=>tabClickHandler(1)}><button>저장한레시피</button></li>
-                ),
-                tabCont:(
-                    <div style={{backgroundColor:'pink'}}>저장한레시피데이터</div>
-                )
-            }
-        ];
     
       
     return(
-        <div className="AddFood" style={{backgroundColor: 'lightgray'}}>
-            <h1>여기는 식단 기록 페이지</h1>
-            <input type="text" placeholder="음식 검색하기"
-                                onChange={event => {setSearchTerm(event.target.value)}}/>
+        <div className="AddFood">
+            
+            <div className="ui fluid icon input">
+                <input type="text" placeholder="음식 검색하기"
+                                    onChange={event => {setSearchTerm(event.target.value)}}/>
+                <i className="search icon"></i>
+            </div>
+
             <div className="container">
             {/* {JSONDATA.filter((data)=> {
                 if (searchTerm == ""){
@@ -59,15 +36,93 @@ function AddFood() {
             } */}
             </div>
 
-            <ul className="tabs is-boxed">
-            {tabContArr.map((section, index)=>{
-                return section.tabTitle
-            })}
-            </ul>
-            <div>
-            {tabContArr[activeIndex].tabCont}
+            <div className="ui middle aligned divided list">
+                <div className="item">
+                    <div className="right floated content">
+                        <div className="ui button">
+                            <font style={{verticalAlign: 'inherit'}}>
+                                <font style={{verticalAlign: 'inherit'}}>
+                                    삭제
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+
+                    <div className="content">
+                        <div style={{display: "flex", justifyContent: 'space-between', textAlign:'left'}}>
+                            <div className="header">사과
+                                <div className="description">gram</div>
+                            </div>
+                            <div>Kcal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="item">
+                    <div className="right floated content">
+                        <div className="ui button">
+                            <font style={{verticalAlign: 'inherit'}}>
+                                <font style={{verticalAlign: 'inherit'}}>
+                                    삭제
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+
+                    <div className="content">
+                        <div style={{display: "flex", justifyContent: 'space-between', textAlign:'left'}}>
+                            <div className="header">미역국
+                                <div className="description">gram</div>
+                            </div>
+                            <div>Kcal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="item">
+                    <div className="right floated content">
+                        <div className="ui button">
+                            <font style={{verticalAlign: 'inherit'}}>
+                                <font style={{verticalAlign: 'inherit'}}>
+                                    삭제
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+
+                    <div className="content">
+                        <div style={{display: "flex", justifyContent: 'space-between', textAlign:'left'}}>
+                            <div className="header">닭가슴살
+                                <div className="description">gram</div>
+                            </div>
+                            <div>Kcal</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="item">
+                    <div className="right floated content">
+                        <div className="ui button">
+                            <font style={{verticalAlign: 'inherit'}}>
+                                <font style={{verticalAlign: 'inherit'}}>
+                                    삭제
+                                </font>
+                            </font>
+                        </div>
+                    </div>
+
+                    <div className="content">
+                        <div style={{display: "flex", justifyContent: 'space-between', textAlign:'left'}}>
+                            <div className="header">초밥
+                                <div className="description">gram</div>
+                            </div>
+                            <div style={{}}>Kcal</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-      </div>
+
+        </div>
     )
 }
 

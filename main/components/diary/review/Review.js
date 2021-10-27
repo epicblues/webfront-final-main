@@ -3,16 +3,17 @@ import 'semantic-ui-css/semantic.min.css';
 const Review = ({ review, onDelete, onToggle }) => {
     return (
         <div className={`review ${review.reminder ? 'reminder' : ''}`}
-            onDoubleClick={() => onToggle(review.id)}>
-            <h3>
+            onDoubleClick={() => onToggle(review.id)}
+            style={{display: "flex", justifyContent: 'space-between',
+                    backgroundColor:'#eef',
+                    padding:'20px', marginBottom: '10px'}}>
+            <p>
                 {review.text}{''}
-                <button className="ui button"
-                        onClick={() => onDelete(review.id)}
-                >
-                    삭제
-                </button>
-            </h3>
-            <p>{review.day}</p>            
+            </p>            
+            <button className="ui button"
+                    onClick={() => onDelete(review.id)}>
+                삭제
+            </button>
         </div>
     )
 }
