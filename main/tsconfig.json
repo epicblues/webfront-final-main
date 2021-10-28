@@ -28,6 +28,8 @@
     "pages/challenge/index.js",
     "pages/challenge/index.tx",
     "pages/diary/index.js",
+    "pages/recipe/index.js",
+    "pages/diary/index.js",
     "pages/diary/index.js"
   ],
   "exclude": ["node_modules"]
