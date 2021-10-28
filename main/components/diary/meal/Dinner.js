@@ -6,9 +6,9 @@ import 'semantic-ui-css/semantic.min.css';
 function Dinner() {
     return(
         <div>
-            <a>
-                <i className='plus icon'></i>
-            </a>
+            <p>
+                저녁
+            </p>
         </div>
     )
 }

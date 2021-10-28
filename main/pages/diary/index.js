@@ -33,56 +33,49 @@ const index = () => {
         </li>
       ),
       tabCont: (
-        <div className='ui two column centered grid'>
-          <div className="column">
-            <div className="container">
-              
-              <div class="ui four column grid">
+            <div className="container"
+                  style={{display: 'grid',
+                          gridTemplateColumns: '5fr 5fr',
+                          gridGap: '1rem',
+                          gridAutoRows:'200px'}}>
+            
                 <Link href="/diary/add_food">
-                  <div class="column">
-                    <div class="ui fluid image">
-                      <a class="ui red right corner label">
-                        <Breakfast className='item'></Breakfast>
-                        <i class="heart icon"></i>
-                      </a>
-                    </div>
+                  <div className='item' style={{border:'solid 1px gray'}}>
+                    <a>
+                      <Breakfast />
+                      <i className='plus icon'></i>
+                    </a>
                   </div>
                 </Link>
+
                 <Link href="/diary/add_food">
-                  <div class="column">
-                    <div class="ui fluid image">
-                      <a class="ui red right corner label">
-                        <Lunch className='item'></Lunch>
-                        <i class="heart icon"></i>
-                      </a>
-                    </div>
+                  <div className='item' style={{border:'solid 1px gray'}}>
+                    <a>
+                      <Lunch />
+                      <i className='plus icon'></i>
+                    </a>
                   </div>
                 </Link>
+
                 <Link href="/diary/add_food">
-                  <div class="column">
-                    <div class="ui fluid image">
-                      <a class="ui red right corner label">
-                        <Dinner className='item'></Dinner>
-                        <i class="heart icon"></i>
-                      </a>
-                    </div>
+                  <div className='item' style={{border:'solid 1px gray'}}>
+                    <a>
+                      <Dinner />
+                      <i className='plus icon'></i>
+                    </a>
                   </div>
                 </Link>
+
                 <Link href="/diary/add_food">
-                  <div class="column">
-                    <div class="ui fluid image">
-                      <a class="ui red right corner label">
-                        <Snack className='item'></Snack>
-                        <i class="heart icon"></i>
-                      </a>
-                    </div>
+                  <div className='item' style={{border:'solid 1px gray'}}>
+                    <a>
+                      <Snack />
+                      <i className='plus icon'></i>
+                    </a>
                   </div>
                 </Link>
-              </div>
 
             </div>
-          </div>
-        </div>
       ),
     },
     {
