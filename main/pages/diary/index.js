@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { getUserOrRedirect } from "../api/auth";
+import Link from 'next/link'
 // Date
 import PickDate from "../../components/diary/PickDate";
 // meal
@@ -10,8 +11,6 @@ import Dinner from "../../components/diary/meal/Dinner";
 import Snack from "../../components/diary/meal/Snack";
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
-import AddFood from "../../components/diary/AddFood";
-
 
 const index = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -36,12 +35,51 @@ const index = () => {
       tabCont: (
         <div className='ui two column centered grid'>
           <div className="column">
-            <div className="container"
-                  style={{display: 'flex', flexWrap: 'wrap'}}>
-              <Breakfast className='item'></Breakfast>
-              <Lunch className='item'></Lunch>
-              <Dinner className='item'></Dinner>
-              <Snack className='item'></Snack>
+            <div className="container">
+              
+              <div class="ui four column grid">
+                <Link href="/diary/add_food">
+                  <div class="column">
+                    <div class="ui fluid image">
+                      <a class="ui red right corner label">
+                        <Breakfast className='item'></Breakfast>
+                        <i class="heart icon"></i>
+                      </a>
+                    </div>
+                  </div>
+                </Link>
+                <Link href="/diary/add_food">
+                  <div class="column">
+                    <div class="ui fluid image">
+                      <a class="ui red right corner label">
+                        <Lunch className='item'></Lunch>
+                        <i class="heart icon"></i>
+                      </a>
+                    </div>
+                  </div>
+                </Link>
+                <Link href="/diary/add_food">
+                  <div class="column">
+                    <div class="ui fluid image">
+                      <a class="ui red right corner label">
+                        <Dinner className='item'></Dinner>
+                        <i class="heart icon"></i>
+                      </a>
+                    </div>
+                  </div>
+                </Link>
+                <Link href="/diary/add_food">
+                  <div class="column">
+                    <div class="ui fluid image">
+                      <a class="ui red right corner label">
+                        <Snack className='item'></Snack>
+                        <i class="heart icon"></i>
+                      </a>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+
             </div>
           </div>
         </div>
@@ -89,7 +127,7 @@ const index = () => {
           </div>
           
       </div>
-      <AddFood />
+
     </div>
     // End of Wrapper
   );
