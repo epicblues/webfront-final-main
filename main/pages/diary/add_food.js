@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from 'react'
-
+import Link from 'next/link'
 // import Information from './info-json'; ex. JSON 파일 추가
 
 function AddFood() {
@@ -9,7 +9,18 @@ function AddFood() {
       
     return(
         <div className="AddFood">
-            
+
+            <div style={{marginBottom: 10, display: 'flex', justifyContent: 'space-between'}}>
+                <h4>아침</h4>
+                <Link href='/diary/add_food_detail'>
+                    <a>
+                        <button className='ui button'>
+                            완료
+                        </button>
+                    </a>
+                </Link>
+            </div>
+
             <div className="ui fluid icon input">
                 <input type="text" placeholder="음식 검색하기"
                                     onChange={event => {setSearchTerm(event.target.value)}}/>

@@ -5,7 +5,7 @@ const ChallengeList = (challenges) => {
     data: [],
   };
 
-  return <div>return( )</div>;
+  return <div></div>;
 };
 
 export default ChallengeList;

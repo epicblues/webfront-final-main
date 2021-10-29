@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
 import "semantic-ui-css/semantic.min.css";
-import ChallengeList from "../../components/challenge/ChallengeList";
-import MyChallenge from "../../components/challenge/MyChallenge";
+import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
+import MyChallenge from "../../components/challenge/List/MyChallenge";
 import { getUserOrRedirect } from "../api/auth";
 import { Button } from "semantic-ui-react";
 const index = () => {
@@ -11,8 +11,7 @@ const index = () => {
       <Link href="challenge/write">
         <Button>챌린지 작성</Button>
       </Link>
-      <MyChallenge />
-      <ChallengeList />
+
       <Link href="challenge/list">
         <Button>챌린지 리스트 보기 </Button>
       </Link>
