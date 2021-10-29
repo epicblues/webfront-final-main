@@ -5,7 +5,6 @@ import Link from "next/link";
 import { getUserOrRedirect } from "../api/auth";
 import Categories from "../../components/recipe/main/Categories";
 import Search from "../../components/recipe/main/Search";
-import ShowLatestCard from "../../components/recipe/recipeList/ShowLatestCard";
 import clientPromise from "../../util/mongodb";
 
 const index = ({ rcpData }) => {
@@ -70,4 +69,17 @@ const index = ({ rcpData }) => {
 //   return { props: { rcpData } };
 // };
 
+
+export const getServerSideProps = async (ctx) => {
+    await getUserOrRedirect(ctx);
+    const client = await clientPromise;
+    const rcpData = await client
+      .db("webfront")
+      .collection("recipe")
+      .find({})
+      .project({ _id: 0 })
+      .toArray();
+    console.log(rcpData);
+    return { props: { rcpData } };
+  };
 export default index;

@@ -21,7 +21,13 @@ const index = () => {
                     {rcpData.map((card, index) => {
                         return (
                             <li key={card.rcp_post_id}>
-                                <Link href={`/card/${card.rcp_post_id}`}>
+                                <Link 
+                                    href={{
+                                    pathname: `/recipe/card/${card.rcp_post_id}`,
+                                    query: {  props : JSON.stringify(card) }
+                                    }}
+                                    as={`/recipe/card/${card.rcp_post_id}`}
+                                    >
                                     <a>
                                         <Image 
                                             src={card.rcp_thumb_url}

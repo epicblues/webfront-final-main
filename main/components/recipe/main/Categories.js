@@ -1,17 +1,26 @@
 import Link from 'next/link'
+import categoriesStyles from '../../../styles/Categories.module.css'
 
 function showCategories() {
     return (
-        <div className="category_button">
-            <Link href="/recipe/list">
-                <a>전체</a>
-            </Link>
-            <a href="#">
-                <p>밥</p>
-            </a>
-            <a href="#">
-                <p>국/탕</p>
-            </a>
+        <div className={categoriesStyles.button}>
+            <ul>
+                <li>
+                    <Link href="/recipe/list">
+                    <a>전체</a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="/recipe/list/grill">
+                    <a>구이</a>
+                    </Link>                    
+                </li>
+                <li>
+                    <Link href="recipe/list/soup">
+                    <a>국/탕</a>
+                    </Link>
+                </li>
+            </ul>
         </div>
     );
 }
