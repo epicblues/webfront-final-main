@@ -6,7 +6,7 @@ const client = new MongoClient(
 );
 
 const diarySample = {
-  user_email: "epicblue@hanmail.net",
+  user_email: "blueha1023@naver.com",
   upload_date: new Date(),
   calorie_target: 1000,
   calorie_total: 0,
