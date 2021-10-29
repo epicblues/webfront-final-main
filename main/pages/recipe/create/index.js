@@ -1,7 +1,8 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-
 import * as Yup from 'yup'
+
+import IngredientForm from '../../../components/recipe/createRecipe/IngredientForm'
 
 //  작성폼 초기값
 const initialValues = {
@@ -27,67 +28,71 @@ export const index = () => {
     const onSubmit = (data) => {
         let recipeData = initialValues
         recipeData = {
+            ...initialValues,
             title: data.title,
             desc: data.desc,
             category: data.category,
             qtt: data.qtt,
             duration: data.duration,
-            ...initialValues
         }
         console.log(recipeData)
     }
     return (
         <div>
+            <h2>레시피 등록하기</h2>
+            <h3>레시피 정보 입력</h3>
             <form onSubmit ={handleSubmit(onSubmit)}>
-                <h2>레시피 등록하기</h2>
-                            <label>요리명</label>
-                    <input 
-                        type="text" 
-                        placeholder="ex) 소고기 미역국" 
-                        {...register("title")}
-                    />
-                    <br />
+                <label>요리명</label>
+                <input 
+                    type="text" 
+                    placeholder=" ex) 소고기 미역국" 
+                    {...register("title")}
+                />
+                <br />
 
-                    <label>요리소개</label>
-                    <textarea
-                        type="text"
-                        cols="40"
-                        rows="5"
-                        placeholder="레시피에 대한 설명을 적어주세요. 
-                        ex) 어머니로부터 배운 미역국 레시피를 
-                        아내의 입맛에 맞게 고안했습니다." 
-                        {...register("desc")}
-                    />
-                    <br />
+                <label>요리소개</label>
+                <textarea
+                    type="text"
+                    cols="40"
+                    rows="5"
+                    placeholder=" 레시피에 대한 설명을 적어주세요.
+                    ex) 어머니로부터 배운 미역국 레시피를
+                    아내의 입맛에 맞게 고안했습니다." 
+                    {...register("desc")}
+                />
+                <br />
 
-                    <label>카테고리</label>
-                    <select {...register("category")}>
-                        <option value="grill">구이</option>
-                        <option value="soup">국/탕</option>
-                    </select>
-                    <br />
+                <label>카테고리</label>
+                <select {...register("category")}>
+                    <option value="grill">구이</option>
+                    <option value="soup">국/탕</option>
+                </select>
+                <br />
 
-                    <label>인원</label>
-                    <select {...register("qtt")}>
-                        <option value="1">1인분</option>
-                        <option value="2">2인분</option>
-                        <option value="3">3인분</option>
-                        <option value="4">4인분</option>
-                        <option value="5">5인분 이상</option>
-                    </select>
-                    <br />
+                <label>인원</label>
+                <select {...register("qtt")}>
+                    <option value="1">1인분</option>
+                    <option value="2">2인분</option>
+                    <option value="3">3인분</option>
+                    <option value="4">4인분</option>
+                    <option value="5">5인분 이상</option>
+                </select>
+                <br />
 
-                    <label>시간</label>
-                    <select {...register("duration")}>
-                        <option value="1">10분 이내</option>
-                        <option value="2">10분 ~ 30분</option>
-                        <option value="3">30분 ~ 1시간</option>
-                        <option value="4">1시간 ~ 2시간</option>
-                        <option value="5">2시간 이상</option>
-                    </select>
-                    <br />
-                <input type="submit" value="작성완료"/>
+                <label>시간</label>
+                <select {...register("duration")}>
+                    <option value="1">10분 이내</option>
+                    <option value="2">10분 ~ 30분</option>
+                    <option value="3">30분 ~ 1시간</option>
+                    <option value="4">1시간 ~ 2시간</option>
+                    <option value="5">2시간 이상</option>
+                </select>
+                <br />
+                <input type="submit" value="1단계 작성완료"/>
             </form>
+
+            <h3>재료 입력</h3>
+            <IngredientForm />
         </div>
     )
 }

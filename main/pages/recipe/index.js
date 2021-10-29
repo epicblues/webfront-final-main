@@ -24,7 +24,9 @@ const index = ({ rcpData }) => {
       </Link>
 
       {/* 레시피 등록하기 */}
-      <input type="button" value="레시피 등록하기" />
+      <Link href="recipe/create">
+        <button>레시피 등록하기</button>
+      </Link>
 
       {/* 카테고리 검색 */}
       <input
