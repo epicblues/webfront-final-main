@@ -4,6 +4,9 @@ import ko from "date-fns/locale/ko";
 registerLocale("ko", ko);
 import "react-datepicker/dist/react-datepicker.css";
 
+// CSS
+import 'semantic-ui-css/semantic.min.css';
+
 const PickDate = () => {
   // Potal Version
   const [startDate, setStartDate] = useState(new Date());
@@ -39,15 +42,19 @@ const PickDate = () => {
   };
 
   return (
+    <div>
+    <i className='calendar alternate outline icon'></i>
+    
     <DatePicker
         withPortal
-        dateFormat="yyyy.MM.dd"
+        dateFormat="yyyy.MM.dd(eee)"
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         disabledKeyboardNavigation // 다른 월의 같은 날짜시 자동 selected되는 현상 방지
         locale="ko" // 한국어로 설정
         fixedHeight // calendar의 height 값을 고정시키면 핸재달의 비어있는 칸에 지난달과 다음달의 날짜가 자동 표시
         
+
         popperModifiers={{ // 화면을 벗어나지 않도록 하는 설정
           preventOverflow: { enbled: true }
         }}
@@ -80,6 +87,7 @@ const PickDate = () => {
             </button>
         </div> */}
     </DatePicker>
+    </div>
   );
 };
 

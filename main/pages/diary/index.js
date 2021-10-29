@@ -12,6 +12,7 @@ import Snack from "../../components/diary/meal/Snack";
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
 
+
 const index = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -104,7 +105,6 @@ const index = () => {
 
       <div className='DatePart'>
           <PickDate></PickDate>
-          <i className='calendar alternate outline icon'></i>
       </div>
 
       <div className="content">
