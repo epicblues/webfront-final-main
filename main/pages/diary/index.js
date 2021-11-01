@@ -43,28 +43,28 @@ const index = () => {
                 <Link href="/diary/add_food">
                   <div className='item' style={{border:'solid 1px gray'}}>
                       <Breakfast />
-                      <i className='plus icon'></i>
+                      <i className='plus circle icon'></i>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
                   <div className='item' style={{border:'solid 1px gray'}}>
                       <Lunch />
-                      <i className='plus icon'></i>
+                      <i className='plus circle icon'></i>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
                   <div className='item' style={{border:'solid 1px gray'}}>
                       <Dinner />
-                      <i className='plus icon'></i>
+                      <i className='plus circle icon'></i>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
                   <div className='item' style={{border:'solid 1px gray'}}>
                       <Snack />
-                      <i className='plus icon'></i>
+                      <i className='plus circle icon'></i>
                   </div>
                 </Link>
 

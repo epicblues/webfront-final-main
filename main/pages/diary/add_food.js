@@ -1,8 +1,8 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
-// import Information from './info-json'; ex. JSON 파일 추가
+import { Button, Header, Modal } from 'semantic-ui-react'
 
 function AddFood() {
   const [allData, setAllData] = useState([]);
@@ -22,17 +22,7 @@ function AddFood() {
     // setFilteredData(result);
   };
 
-  useEffect(() => {
-    axios("https://jsonplaceholder.typicode.com/albums/1/photos")
-      .then((response) => {
-        console.log(response.data);
-        setAllData(response.data);
-        setFilteredData(response.data);
-      })
-      .catch((error) => {
-        console.log("Error getting fake data: " + error);
-      });
-  }, []);
+  const [open, setOpen] = React.useState(false)
 
   return (
     <div className="AddFood">
@@ -43,10 +33,14 @@ function AddFood() {
           justifyContent: "space-between",
         }}
       >
-        <h3>아침</h3>
+        <div>
+            <span>아침</span>
+            <a class="ui teal circular label">2</a>
+        </div>
+        
         <Link href="/diary/add_food_detail">
           <a>
-            <button className="ui button blue">완료</button>
+            <button className="ui button teal">완료</button>
           </a>
         </Link>
       </div>
@@ -66,10 +60,35 @@ function AddFood() {
             // 검색 리스트 출력
             <div className="item" key={value.id}>
               <div className="right floated content">
-                <div className="ui button">
-                  <font style={{ verticalAlign: "inherit" }}>
-                    <font style={{ verticalAlign: "inherit" }}>추가</font>
-                  </font>
+                <div>
+                    <Modal
+                    onClose={() => setOpen(false)}
+                    onOpen={() => setOpen(true)}
+                    open={open}
+                    trigger={<i className='plus circle icon'></i>}
+                    >
+                    <Modal.Header>Select</Modal.Header>
+                    <Modal.Content>
+                        <Modal.Description>
+                            <Header>영양정보</Header>
+                            <p>
+                                계산
+                            </p>
+                        </Modal.Description>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button color='black' onClick={() => setOpen(false)}>
+                        Nope
+                        </Button>
+                        <Button
+                        content="Okay"
+                        labelPosition='right'
+                        icon='checkmark'
+                        onClick={() => setOpen(false)}
+                        positive
+                        />
+                    </Modal.Actions>
+                    </Modal>
                 </div>
               </div>
 
@@ -82,8 +101,8 @@ function AddFood() {
                   }}
                 >
                   <div className="header">
-                    {value.title}
-                    <div className="description">{value.gram}gram</div>
+                    {value.name}
+                    <div className="description">{value.mfr} / {value.serve}gram</div>
                   </div>
                   <div>{value.kcal}Kcal</div>
                 </div>

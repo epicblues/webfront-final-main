@@ -18,13 +18,22 @@ const AddFoodDetail = () => {
         let DiaryData = initialValues
         DiaryData = {
             ...initialValues,
-            name: data.name,
-            kcal: data.kcal,
+            name: data.name,        // 이름
+            serve: data.serve,      // 1회 제공량
+            unit: data.unit,        // g, ml
+            kcal: data.kcal,        // 칼로리
+            prot: data.prot,        // 단백질
+            carbs: data.carbs,      // 탄수화물
+            fat: data.fat,          // 지방
+            sugars: data.sugars,    // 당
+            sodium: data.sodium,    // 나트륨
+            chole: data.chole,      // 콜레스테롤
+            stdfat: data.stdfat,    // 포화지방
+            trnfat: data.trnfat,    // 트랜스 지방
         }
         // 기본으로 Diarydata 가져오기
         console.log(DiaryData)
     }
-
 
     return (
         <div style={{display: 'grid', gridGap: '1rem'}}>
@@ -45,31 +54,72 @@ const AddFoodDetail = () => {
                     <label>칼로리</label>
                     <input
                         type="text"
-                        placeholder="칼로리 Kcal"
+                        placeholder="칼로리"
                         {...register("kcal", { required : true })}
-                    />
-                    <br />
-
-                    <label>탄수화물</label>
-                    <input
-                        type="text"
-                        placeholder="탄수화물 g"
-                        {...register("", { required : true })}
                     />
                     <br />
 
                     <label>단백질</label>
                     <input
                         type="text"
-                        placeholder="단백질 g"
+                        placeholder="단백질"
                         {...register("", { required : true })}
                     />
                     <br />
 
+                    <label>탄수화물</label>
+                    <input
+                        type="text"
+                        placeholder="탄수화물"
+                        {...register("", { required : true })}
+                    />
+                    <br />
+
+
                     <label>지방</label>
                     <input
                         type="text"
-                        placeholder="지방 g"
+                        placeholder="지방"
+                        {...register("", { required : true })}
+                    />
+                    <br />
+
+                    <label>당</label>
+                    <input
+                        type="text"
+                        placeholder="당"
+                        {...register("", { required : true })}
+                    />
+                    <br />
+
+                    <label>나트륨</label>
+                    <input
+                        type="text"
+                        placeholder="나트륨"
+                        {...register("", { required : true })}
+                    />
+                    <br />
+
+                    <label>콜레스테롤</label>
+                    <input
+                        type="text"
+                        placeholder="콜레스테롤"
+                        {...register("", { required : true })}
+                    />
+                    <br />
+
+                    <label>포화지방</label>
+                    <input
+                        type="text"
+                        placeholder="포화지방"
+                        {...register("", { required : true })}
+                    />
+                    <br />
+
+                    <label>트랜스지방</label>
+                    <input
+                        type="text"
+                        placeholder="트랜스지방"
                         {...register("", { required : true })}
                     />
                     <br />
