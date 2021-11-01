@@ -28,23 +28,21 @@ function AddFood() {
             </div>
 
             <div className="container">
-            {/* {JSONDATA.filter((data)=> {
+            {JSONDATA.filter((data)=> {
                 if (searchTerm == ""){
                     return data
-                } else if (data.sta_nm.toLowerCase().includes(searchTerm.toLowerCase())
-                        || data.sido_nm.toLowerCase().includes(searchTerm.toLowerCase())){
+                } else if (data.food_name.toLowerCase().includes(searchTerm.toLowerCase())) {
                     return data
                 }}).map((data, key)=> {
                 return
                     // ex. 사과 검색 리스트 출력
                     // <div className="apple" key={key}>
                     //     <ul>
-                    //         <li>{data.sta_nm}</li>
-                    //         <li>{data.sta_nm}</li>
+                    //         <li>{data.food_name}</li>
                     //     </ul>
                     // </div>
                 })
-            } */}
+            }
             </div>
 
             <div className="ui middle aligned divided list">
