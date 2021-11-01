@@ -42,37 +42,29 @@ const index = () => {
             
                 <Link href="/diary/add_food">
                   <div className='item' style={{border:'solid 1px gray'}}>
-                    <a>
                       <Breakfast />
                       <i className='plus icon'></i>
-                    </a>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
                   <div className='item' style={{border:'solid 1px gray'}}>
-                    <a>
                       <Lunch />
                       <i className='plus icon'></i>
-                    </a>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
                   <div className='item' style={{border:'solid 1px gray'}}>
-                    <a>
                       <Dinner />
                       <i className='plus icon'></i>
-                    </a>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
                   <div className='item' style={{border:'solid 1px gray'}}>
-                    <a>
                       <Snack />
                       <i className='plus icon'></i>
-                    </a>
                   </div>
                 </Link>
 
