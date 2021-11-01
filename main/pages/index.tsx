@@ -3,11 +3,16 @@ import styles from '../styles/Home.module.css'
 import { getUserOrRedirect } from './api/auth'
 import Link from 'next/link';
 import { Button, Container } from 'semantic-ui-react';
+import clientPromise from '../util/mongodb';
 
-const Home: NextPage<any> = ({ name, email }) => {
+
+const Home: NextPage<any> = ({ user: { name, email }, foods }) => {
+
+
   return (
 
     <Container textAlign="center">
+
       <h1>hello {name}</h1>
       <p>This is Main Page</p>
       <p>Your Email : {email}</p>
@@ -46,8 +51,9 @@ const Home: NextPage<any> = ({ name, email }) => {
 export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
 
   const user = await getUserOrRedirect(ctx);
+  // const foods = await (await clientPromise).db('webfront').collection('food').find().project({ "_id": 0 }).toArray();
   console.log("user:", user);
-  return { props: user };
+  return { props: { user } };
 
 }
 
