@@ -1,9 +1,6 @@
 const { MongoClient } = require("mongodb");
 
-const client = new MongoClient(
-  "mongodb+srv://epicblue:v2OvTJiTodfg5XQO@cluster0.bopwr.mongodb.net/webfront?retryWrites=true&w=majority",
-  {}
-);
+const client = new MongoClient(process.env.MONGO_URI, {});
 
 const diarySample = {
   user_email: "blueha1023@naver.com",
