@@ -29,46 +29,57 @@ const index = () => {
           onClick={() => tabClickHandler(0)}
         >
           <a className="item">
-            <i className="utensils icon"></i> 식단
+              식단<i className="utensils icon" style={{marginLeft: 4}}></i>
           </a>
         </li>
       ),
       tabCont: (
+        <div style={{border: 'solid 2px lightgray',
+                    borderRadius: '5px'}}>
+            
+            <h2 style={{textAlign: 'left', padding: '16px'}}>
+              오늘의 식단
+              <i className="utensils icon" style={{marginLeft: 4}}></i>
+            </h2>
+            
+
             <div className="container"
                   style={{display: 'grid',
                           gridTemplateColumns: '5fr 5fr',
                           gridGap: '1rem',
-                          gridAutoRows:'200px'}}>
+                          gridAutoRows:'200px',
+                          padding: '0 16px 16px'}}>
             
                 <Link href="/diary/add_food">
-                  <div className='item' style={{border:'solid 1px gray'}}>
+                  <div className='item' style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
                       <Breakfast />
                       <i className='plus circle icon'></i>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
-                  <div className='item' style={{border:'solid 1px gray'}}>
+                  <div className='item' style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
                       <Lunch />
                       <i className='plus circle icon'></i>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
-                  <div className='item' style={{border:'solid 1px gray'}}>
+                  <div className='item' style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
                       <Dinner />
                       <i className='plus circle icon'></i>
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
-                  <div className='item' style={{border:'solid 1px gray'}}>
+                  <div className='item' style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
                       <Snack />
                       <i className='plus circle icon'></i>
                   </div>
                 </Link>
 
             </div>
+        </div>
       ),
     },
     {
@@ -79,7 +90,7 @@ const index = () => {
           onClick={() => tabClickHandler(1)}
         >
           <a className="item">
-            <i className="pencil alternate icon"></i> 일기
+              일기<i className="pencil alternate icon" style={{marginLeft: 4}}></i>
           </a>
         </li>
       ),

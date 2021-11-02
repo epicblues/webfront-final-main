@@ -2,9 +2,9 @@ import PropTypes from 'prop-types'
 
 
 const Button = ({ color, text, onClick }) => {
-    return <button onClick={onClick}
-                    style={{ backgroundColor: color }}
-                    className='ui button'>{text}</button>
+    return <i onClick={onClick}
+                style={{ backgroundColor: color, marginLeft: 4 }}
+                className='pencil alternate icon'>{text}</i>
 }
 
 Button.propTypes = {

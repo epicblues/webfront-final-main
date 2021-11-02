@@ -6,7 +6,7 @@ const Review = ({ review, onDelete, onToggle }) => {
             onDoubleClick={() => onToggle(review.id)}
             style={{display: "flex", justifyContent: 'space-between',
                     backgroundColor:'#eef',
-                    padding:'20px', marginBottom: '10px'}}>
+                    padding:'20px', margin: 16}}>
             <p>
                 {review.text}{''}
             </p>            

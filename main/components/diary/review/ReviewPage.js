@@ -47,7 +47,11 @@ const ReviewPage = () => {
   }
 
   return (
-    <div className="ui content">
+    <div className="ui content"
+        style={{border: 'solid 2px lightgray',
+                borderRadius: '5px'
+        }}
+    >
       <ReviewHeader onAdd={() => setShowAddReview(!showAddReview)}
               showAdd={showAddReview} />
       {showAddReview && <AddReview onAdd={addReview} />}
