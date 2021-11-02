@@ -7,6 +7,7 @@ const ChallengeCondition = () => {
   const [checkedInputs2, setCheckInputs2] = useState(false);
   const [checkedInputs3, setCheckInputs3] = useState(false);
   const [checkedInputs4, setCheckInputs4] = useState(false);
+  const [checkedInputs5, setCheckInputs5] = useState(false);
   const [dropdown, setDropDown] = useState("soup");
   return (
     <div className="challengeCondition">
@@ -96,28 +97,82 @@ const ChallengeCondition = () => {
       {checkedInputs === "diet" ? (
         <>
           <Header as="h4" inverted color="orange">
+            다이어트 조건 ( 기준: 하루 섭취량)
+          </Header>
+          <div className="dietCondition1">
+            <input
+              type="radio"
+              id="5"
+              name="DietCondition"
+              value="1500kcal"
+              checked={checkedInputs3 === "1500kcal"}
+              onChange={(e) => {
+                setCheckInputs3(e.target.value);
+              }}
+            />
+            <label>1500kcal</label>
+            <input
+              type="radio"
+              id="6"
+              name="DietCondition"
+              value="2000kcal"
+              checked={checkedInputs3 === "2000kcal"}
+              onChange={(e) => {
+                setCheckInputs3(e.target.value);
+              }}
+            />
+            <label>2000kcal</label>
+            <input
+              type="radio"
+              id="7"
+              name="DietCondition"
+              value="2500kcal"
+              checked={checkedInputs3 === "2500kcal"}
+              onChange={(e) => {
+                setCheckInputs3(e.target.value);
+              }}
+            />
+            <label>2500kcal</label>
+            <input
+              type="radio"
+              id="8"
+              name="DietCondition"
+              value="3000kcal"
+              checked={checkedInputs3 === "3000kcal"}
+              onChange={(e) => {
+                setCheckInputs3(e.target.value);
+              }}
+            />
+            <label>3000kcal</label>
+          </div>
+        </>
+      ) : null}
+
+      {checkedInputs === "diet" ? (
+        <>
+          <Header as="h4" inverted color="orange">
             다이어트 조건 ( 기준 : 하루)
           </Header>
           <div className="dietCondition2">
             <input
               type="radio"
-              id="5"
-              name="DietCondition"
+              id="9"
+              name="DietCondition2"
               value="proteinShake"
-              checked={checkedInputs3 === "proteinShake"}
+              checked={checkedInputs4 === "proteinShake"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value);
+                setCheckInputs4(e.target.value);
               }}
             />
             <label>단백질쉐이크 챙겨먹기</label>
             <input
               type="radio"
-              id="6"
-              name="DietCondition"
+              id="10"
+              name="DietCondition2"
               value="everymeal"
-              checked={checkedInputs3 === "everymeal"}
+              checked={checkedInputs4 === "everymeal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value);
+                setCheckInputs4(e.target.value);
               }}
             />
             <label>아침,점심,저녁 다 챙겨먹기</label>
@@ -131,45 +186,45 @@ const ChallengeCondition = () => {
           <div className="receipeUploadCount">
             <input
               type="radio"
-              id="7"
+              id="11"
               name="receipeCount"
               value="3times"
-              checked={checkedInputs4 === "3times"}
+              checked={checkedInputs5 === "3times"}
               onChange={(e) => {
-                setCheckInputs4(e.target.value);
+                setCheckInputs5(e.target.value);
               }}
             />
             <label>3회</label>
             <input
               type="radio"
-              id="8"
+              id="12"
               name="receipeCount"
               value="5times"
-              checked={checkedInputs4 === "5times"}
+              checked={checkedInputs5 === "5times"}
               onChange={(e) => {
-                setCheckInputs4(e.target.value);
+                setCheckInputs5(e.target.value);
               }}
             />
-            <label>3회</label>
+            <label>5회</label>
             <input
               type="radio"
-              id="9"
+              id="13"
               name="receipeCount"
               value="7times"
-              checked={checkedInputs4 === "7times"}
+              checked={checkedInputs5 === "7times"}
               onChange={(e) => {
-                setCheckInputs4(e.target.value);
+                setCheckInputs5(e.target.value);
               }}
             />
-            <label>3회</label>
+            <label>7회</label>
             <input
               type="radio"
-              id="10"
+              id="14"
               name="receipeCount"
               value="9times"
-              checked={checkedInputs4 === "9times"}
+              checked={checkedInputs5 === "9times"}
               onChange={(e) => {
-                setCheckInputs4(e.target.value);
+                setCheckInputs5(e.target.value);
               }}
             />
             <label>9회</label>

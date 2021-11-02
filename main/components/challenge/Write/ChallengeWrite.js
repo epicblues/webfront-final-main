@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import Link from "next/link";
+import { useForm, control } from "react-hook-form";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -76,19 +77,27 @@ const ChallengeWrite = () => {
         <Header as="h4" inverted color="orange" className="challengeDatetitle">
           챌린지 시작일
         </Header>
-        <ReactDatePicker
-          locale="ko"
-          dateFormat="yyyy년 MM월 dd일"
-          selected={startDate}
-          onChange={(date) => setStartDate(date)}
-          selectsStart
-          minDate={new Date()}
-          startDate={startDate}
-          endDate={endDate}
+        <Controller
+          name="startDate"
+          control={control}
+          render={() => (
+            <ReactDatePicker
+              locale="ko"
+              dateFormat="yyyy년 MM월 dd일"
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              selectsStart
+              minDate={new Date()}
+              startDate={startDate}
+              endDate={endDate}
+            />
+          )}
         />
+
         <Header as="h4" inverted color="orange" className="challengeDateTitle">
           챌린지 종료일:
         </Header>
+
         <ReactDatePicker
           locale="ko"
           dateFormat="yyyy년 MM월 dd일"
@@ -100,7 +109,11 @@ const ChallengeWrite = () => {
         />
       </section>
       <ChallengeCondition></ChallengeCondition>
-      <Button type="submit">작성</Button>
+      <Link href="/challenge/list">
+        <Button type="submit" value="submit">
+          작성
+        </Button>
+      </Link>
     </form>
   );
 };
