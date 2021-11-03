@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as Yup from 'yup'
 
 import IngredientForm from '../../../components/recipe/createRecipe/IngredientForm'
+import StepForm from '../../../components/recipe/createRecipe/StepForm'
 
 //  작성폼 초기값
 const initialValues = {
@@ -24,6 +25,7 @@ const initialValues = {
 
 //  작성폼
 export const index = () => {
+    const [stepData, setStepData] = useState([]);
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
         let recipeData = initialValues
@@ -92,7 +94,11 @@ export const index = () => {
             </form>
 
             <h3>재료 입력</h3>
-            <IngredientForm />
+            {/* <IngredientForm /> */}
+
+            <h3>요리 순서</h3>
+
+            <StepForm stepData={stepData} setStepData={setStepData} />
         </div>
     )
 }
