@@ -103,7 +103,6 @@ export const index = () => {
 
                 <h3>재료</h3>
                 <FoodForm 
-                    isModalVisible={isModalVisible} 
                     setIsModalVisible={setIsModalVisible}
                     handleSetIsModalVisible={handleSetIsModalVisible}    
                 />
