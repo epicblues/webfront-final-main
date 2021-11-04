@@ -1,8 +1,9 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import modalStyles from '../../../../styles/Modal.module.css';
+import SelectedFoodMap from './SelectedFoodMap';
 
-const AddFoodModal = ({ setIsModalVisible }) => {
+const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
     //  검색필터
     const [filteredData, setFilteredData] = useState([]);
     const [selectedData, setSelectedData] = useState([]);
@@ -10,24 +11,22 @@ const AddFoodModal = ({ setIsModalVisible }) => {
     const handleSearch = async (event) => {
       const value = event.target.value;
       const { data } = await axios.get("/api/food/" + value);
-      console.log(data);
       setFilteredData(data);
-    }
-    const onSubmitBtn = () => {
-        setIsModalVisible(false);
     }
     const onCancelBtn = () => {
         setIsModalVisible(false);
     }
     const onSelectBtn = (data) => {
-        setSelectedData(data)        
+        setSelectedData([data])        
         setIsDataSelected(true)
+        console.log(data.no)
     }
 
     return (
         <div className={modalStyles.modal}>
             <div>
                 <h3>재료 검색하기</h3>
+                <h4>TODO: 선생님께 map() key에러 질문</h4>
                 <input 
                     type='text' 
                     placeholder='음식/제품명 검색하기'
@@ -39,12 +38,16 @@ const AddFoodModal = ({ setIsModalVisible }) => {
                         return (
                             //  검색 리스트 출력
                             <div 
-                                key={index}
                                 className={modalStyles.products}
                             >
-                                <div>
-                                    {value.name} / 
-                                    {value.mfr}
+                                <div key={index}>
+                                    <span>
+                                        {value.name}   
+                                    </span>
+                                    /
+                                    <span>
+                                        {value.mfr}
+                                    </span>
                                     <button 
                                         type='button'
                                         onClick={() => onSelectBtn(value)}
@@ -59,26 +62,15 @@ const AddFoodModal = ({ setIsModalVisible }) => {
                 }
             </div>
             <div>
-                {isDataSelected &&
-                    <>                    
-                        <h4>선택한 음식</h4>
-                        <div>
-                            {/* {selectedData.map((value, index) => {
-                                return (
-                                    <div key={index}>
-                                        {value.name}
-                                    </div>
-                                );
-                            })} */}
-                        </div>
-                        <input 
-                            type='text'
-                        />
-                    </>
-                }
+                <SelectedFoodMap
+                    foodData={foodData}
+                    setFoodData={setFoodData}
+                    selectedData={selectedData}
+                    setIsModalVisible={setIsModalVisible}
+                    isDataSelected={isDataSelected}
+                />
             </div>
             <div>
-                <button onClick={() => onSubmitBtn(false)}>확인</button>
                 <button onClick={() => onCancelBtn(false)}>취소</button>
             </div>
         </div>

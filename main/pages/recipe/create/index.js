@@ -19,10 +19,13 @@ const initialValues = {};
 
 //  작성폼
 export const index = () => {
+  //  Modal Data, 렌더링 로직
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleSetIsModalVisible = (value) => {
     setIsModalVisible(value);
   };
+
+  const [foodData, setFoodData] = useState([]);
   const [recipeData, setRecipeData] = useState([]);
   const [stepData, setStepData] = useState([]);
   const { register, handleSubmit } = useForm();
@@ -40,7 +43,9 @@ export const index = () => {
       category: data.category,
       qtt: Number(data.qtt),
       duration: data.duration,
-      igr_array: [], //  음식(재료) 객체의 배열
+      igr_array: foodData.map(food => {
+        return `${food.foodObj.no}/${food.quantity}`
+      }), //  음식(재료) 객체의 배열
       stepData: stepData.map((step) => step.stepDesc),
     };
 
@@ -115,6 +120,8 @@ export const index = () => {
 
         <h3>재료</h3>
         <FoodForm
+          foodData={foodData}
+          setFoodData={setFoodData}
           setIsModalVisible={setIsModalVisible}
           isModalVisible={isModalVisible}
         />

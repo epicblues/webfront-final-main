@@ -1,13 +1,37 @@
 import React from 'react'
 import AddFoodModal from './AddFoodModal'
 
-const FoodForm = ({ isModalVisible, setIsModalVisible }) => {
+const FoodForm = ({ foodData, setFoodData, isModalVisible, setIsModalVisible }) => {
     const onModalBtn = (active) => {
         setIsModalVisible(active)
+
     }
     return (
         <div>
-            <div>재료 창</div>
+            <div>
+                {foodData.length === 0 ? <p>재료를 추가해주세요</p>
+                    :   foodData.map((value,index) => {
+                        return (
+                            <div key={index}>
+                                <span>
+                                    {value.foodObj.name}
+                                    {" "}
+                                </span>
+                                <span>
+                                    (제조사: {value.foodObj.mfr})
+                                    {" "}
+                                </span>
+                                <span>
+                                    {value.quantity}
+                                </span>
+                                <span>
+                                    {value.foodObj.unit}
+                                </span>
+                            </div>
+                        );
+                    })
+                }
+            </div>
             <button onClick={() => onModalBtn(true)}>
                 재료추가하기
             </button>
@@ -15,6 +39,8 @@ const FoodForm = ({ isModalVisible, setIsModalVisible }) => {
                 {isModalVisible &&
                 (
                     <AddFoodModal
+                        foodData={foodData}
+                        setFoodData={setFoodData}
                         setIsModalVisible={setIsModalVisible}
                     />
                 )}
