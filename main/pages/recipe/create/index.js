@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form'
 import { getUserOrRedirect } from '../../api/auth'
 import * as Yup from 'yup'
 
-import IngredientForm from '../../../components/recipe/createRecipe/IngredientForm'
+// Food(재료) 
+
+
 // Step(요리순서)
-import StepForm from '../../../components/recipe/createRecipe/StepForm'
+import StepForm from '../../../components/recipe/create_recipe/step/stepForm'
 
 //  post_id 초기값 확인을 위한 logic(post 개수 확인)
 //  처음에 초기값 받아 놓고, 마지막 submit할 때 post_id 겹치는지 한 번 더 확인 후,
@@ -23,16 +25,17 @@ export const index = () => {
         const date = new Date();
         let finalRecipeData = {
             ...initialValues,
-            post_id: "",
-            user_id: "",
+            post_no: "",    //  백엔드 컨트롤
+            user_id: "",    //  백엔드 컨트롤
             upload_date: date,
             title: data.title,
             desc: data.desc,
+            hit: 0,
             category: data.category,
-            qtt: data.qtt,
+            qtt: Number(data.qtt),
             duration: data.duration,
-            igr_array: [],
-            stepData: stepData
+            igr_array: [],  //  음식(재료) 객체의 배열
+            steps: stepData  //  순서 객체의 배열
         }
         setRecipeData(finalRecipeData)
         console.log(recipeData)
@@ -89,6 +92,8 @@ export const index = () => {
                 </select>
                 <br />
 
+                <h3>재료</h3>
+                
                 <h3>요리 순서</h3>
                 <StepForm stepData={stepData} setStepData={setStepData} />
                 <button type="button">임시저장</button>

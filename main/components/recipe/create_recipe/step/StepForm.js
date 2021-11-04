@@ -1,10 +1,12 @@
 import React from 'react'
-import AddStep from './AddStep';
+import AddStep from './AddStep'
 
 const StepForm = ({stepData, setStepData}) => {
-    // const removeStep = (stepToRemove) => {
-    //     setStepData((stepToRemove) => )
-    // }
+    const removeStep = (index) => {
+        setStepData(
+            stepData.filter((value) => value !== index)
+        );
+    }
 
     return (
         <div>
@@ -22,8 +24,8 @@ const StepForm = ({stepData, setStepData}) => {
                                         width : '100px'
                                     }}
                                 />
-                                {value.stepDesc}
-                                {/* <button onClick={removeStep(stepToRemove)}>삭제</button> */}
+                                {value.desc}
+                                <button onClick={() => removeStep(value)}>삭제</button>
                             </div>
                     );
                 })}

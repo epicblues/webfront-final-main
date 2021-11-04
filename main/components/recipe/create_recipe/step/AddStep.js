@@ -9,7 +9,7 @@ const AddStep = ({stepData, setStepData}) => {
         if (stepData.length <= 12) {
             stepData = 
             [...stepData,
-            {stepDesc:inputRef.current.value,
+            {desc:inputRef.current.value,
             stepImageData:imgPreview}
             ]
             setStepData(stepData)
