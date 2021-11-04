@@ -9,8 +9,12 @@ export const authenticated =
     const token = req.cookies.auth;
     // Token이 유효한가
     try {
-      await verify(token, process.env.UUID_SECRET as string);
+      const decoded = verify(token, process.env.UUID_SECRET as string);
       // 에러가 나지 않으면 유효한 토큰!
+      // 서버에서 index로 활용할 유저 이메일을 리퀘스트에 심는다.
+      console.log("API 미들웨어 인증 성공");
+      req.headers.authorization = JSON.stringify(decoded);
+
       return await fn(req, res);
     } catch (error) {
       // token이 없거나 유효하지 않은 경우
@@ -29,28 +33,16 @@ export const getUserOrRedirect = async (
 ): Promise<any> => {
   const jwt = ctx.req.cookies.auth;
   try {
-    const user = await verify(jwt, process.env.UUID_SECRET as string);
+    const user = verify(jwt, process.env.UUID_SECRET as string);
     // 토큰 인증이 성공할 경우 토큰의 user 데이터를 return
     return user;
   } catch (error) {
     // 토큰 인증이 실패할 경우 redirect
+    console.log(error);
     ctx.res.writeHead(302, {
       Location: "/user/login",
     });
     ctx.res.end();
     return { status: "auth required" };
   }
-
-  // 토큰이 존재하지 않을 경우 로그인 페이지로 redirect
-  // if (!ctx.req.cookies.auth) {
-  //   ctx.res.writeHead(302, {
-  //     Location: "/user/login",
-  //   });
-  //   ctx.res.end();
-  //   return { status: "auth required" };
-  // }
-  // auth 토큰이 존재할 경우
-  // props의 도구로 활용할 수 있는 user 데이터를 보내준다.
-
-  // return user;
 };
