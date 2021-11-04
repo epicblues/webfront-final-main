@@ -1,3 +1,4 @@
+import { useRouter } from 'next/dist/client/router'
 import React, { FunctionComponent } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { Container } from 'semantic-ui-react'
@@ -5,11 +6,11 @@ import { Container } from 'semantic-ui-react'
 
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
-
+  const router = useRouter()
   const clickHandler = async () => {
     const res = await fetch('/api/user/logout');
     if (res.status === 200) {
-      location.href = "/"
+      router.push('/user/login')
     }
   }
   return (

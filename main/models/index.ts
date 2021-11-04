@@ -27,3 +27,13 @@ export interface ImageFile {
   headers: Object;
   size: number;
 }
+
+export interface Diary {
+  _id: number;
+  user_email: string;
+  upload_date: Date;
+  calorie_target: number;
+  calorie_total: number;
+  success: boolean;
+  review: string;
+}
