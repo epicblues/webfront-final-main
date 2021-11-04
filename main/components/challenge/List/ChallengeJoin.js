@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
 
+const [challengeId, setChallengeId] = useState("");
+
 const ChallengeJoin = () => {
   const onClick = (e) => {
     if (confirm("참가하시겠습니가?")) {
@@ -10,7 +12,8 @@ const ChallengeJoin = () => {
     }
   };
   const onSubmit = (e) => {
-    console.log("submit");
+    setChallengeId(e.target.value);
+    console.log(challengeId);
   };
   return (
     <Button type="submit" onClick={onClick} onSubmit={onSubmit}>

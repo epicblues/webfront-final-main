@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { useForm, control } from "react-hook-form";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -13,19 +12,7 @@ const ChallengeWrite = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [message, setMessage] = useState("");
-
-  const {
-    Controller,
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-    formState,
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  const [data, setData] = useState([]);
 
   const onChangeMessage = (e) => setMessage(e.target.value);
 
@@ -36,6 +23,7 @@ const ChallengeWrite = () => {
   const onClick = (e) => {
     alert(message);
     setMessage("");
+    console.log([message]);
   };
 
   const onKeyPress = (e) => {
@@ -43,10 +31,9 @@ const ChallengeWrite = () => {
       onClick();
     }
   };
-  console.log(watch());
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="challengeform">
+    <form className="challengeform">
       <Header as="h1" inverted color="yellow">
         챌린지 작성
       </Header>
@@ -61,9 +48,12 @@ const ChallengeWrite = () => {
           defaultValue={message}
           onChange={onChangeMessage}
           onKeyPress={onKeyPress}
-          {...register("challengename")}
         />
-        <Form.Button onClick={onClick}>완료</Form.Button>
+        <div>
+          <Form.Button type="button" onClick={onClick}>
+            완료
+          </Form.Button>
+        </div>
       </div>
 
       <br />
@@ -77,21 +67,17 @@ const ChallengeWrite = () => {
         <Header as="h4" inverted color="orange" className="challengeDatetitle">
           챌린지 시작일
         </Header>
-        <Controller
-          name="startDate"
-          control={control}
-          render={() => (
-            <ReactDatePicker
-              locale="ko"
-              dateFormat="yyyy년 MM월 dd일"
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              selectsStart
-              minDate={new Date()}
-              startDate={startDate}
-              endDate={endDate}
-            />
-          )}
+
+        <ReactDatePicker
+          locale="ko"
+          dateFormat="yyyy년 MM월 dd일"
+          selected={startDate}
+          onChange={(date) => setStartDate(date)}
+          selectsStart
+          minDate={new Date()}
+          startDate={startDate}
+          endDate={endDate}
+          onSelect={console.log([startDate])}
         />
 
         <Header as="h4" inverted color="orange" className="challengeDateTitle">
@@ -106,6 +92,7 @@ const ChallengeWrite = () => {
           selectsEnd
           endDate={endDate}
           minDate={startDate}
+          onSelect={console.log([endDate])}
         />
       </section>
       <ChallengeCondition></ChallengeCondition>

@@ -1,5 +1,4 @@
 import { React, useState } from "react";
-import { set, useForm } from "react-hook-form";
 import { Input, Button, Header } from "semantic-ui-react";
 
 const ChallengeCondition = () => {
@@ -9,6 +8,7 @@ const ChallengeCondition = () => {
   const [checkedInputs4, setCheckInputs4] = useState(false);
   const [checkedInputs5, setCheckInputs5] = useState(false);
   const [dropdown, setDropDown] = useState("soup");
+
   return (
     <div className="challengeCondition">
       <Header as="h3" inverted color="orange" className="challengeContent">
@@ -25,7 +25,7 @@ const ChallengeCondition = () => {
           value="diet"
           checked={checkedInputs === "diet"}
           onChange={(e) => {
-            setCheckInputs(e.target.value);
+            setCheckInputs(e.target.value), console.log([checkedInputs]);
           }}
         />
         <label> diet</label>
@@ -36,7 +36,7 @@ const ChallengeCondition = () => {
           value="receipe"
           checked={checkedInputs === "receipe"}
           onChange={(e) => {
-            setCheckInputs(e.target.value);
+            setCheckInputs(e.target.value), console.log([checkedInputs]);
           }}
         />
         <label>receipe</label>
@@ -53,7 +53,8 @@ const ChallengeCondition = () => {
                 value="plusKcal"
                 checked={checkedInputs2 === "plusKcal"}
                 onChange={(e) => {
-                  setCheckInputs2(e.target.value);
+                  setCheckInputs2(e.target.value),
+                    console.log([checkedInputs2]);
                 }}
               />
               <label>살 찌우는 다이어트</label>
@@ -64,7 +65,8 @@ const ChallengeCondition = () => {
                 value="minusKcal"
                 checked={checkedInputs2 === "minusKcal"}
                 onChange={(e) => {
-                  setCheckInputs2(e.target.value);
+                  setCheckInputs2(e.target.value),
+                    console.log([checkedInputs2]);
                 }}
               />
               <label>살 빼는 다이어트</label>
@@ -79,7 +81,7 @@ const ChallengeCondition = () => {
               <select
                 value={dropdown}
                 onChange={(e) => {
-                  setDropDown(e.target.value);
+                  setDropDown(e.target.value), console.log([dropdown]);
                 }}
               >
                 <option value="soup">Soup</option>
@@ -107,7 +109,7 @@ const ChallengeCondition = () => {
               value="1500kcal"
               checked={checkedInputs3 === "1500kcal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value);
+                setCheckInputs3(e.target.value), console.log([checkedInputs3]);
               }}
             />
             <label>1500kcal</label>
@@ -118,7 +120,7 @@ const ChallengeCondition = () => {
               value="2000kcal"
               checked={checkedInputs3 === "2000kcal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value);
+                setCheckInputs3(e.target.value), console.log([checkedInputs3]);
               }}
             />
             <label>2000kcal</label>
@@ -129,7 +131,7 @@ const ChallengeCondition = () => {
               value="2500kcal"
               checked={checkedInputs3 === "2500kcal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value);
+                setCheckInputs3(e.target.value), console.log([checkedInputs3]);
               }}
             />
             <label>2500kcal</label>
@@ -140,7 +142,7 @@ const ChallengeCondition = () => {
               value="3000kcal"
               checked={checkedInputs3 === "3000kcal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value);
+                setCheckInputs3(e.target.value), console.log([checkedInputs3]);
               }}
             />
             <label>3000kcal</label>
@@ -161,7 +163,7 @@ const ChallengeCondition = () => {
               value="proteinShake"
               checked={checkedInputs4 === "proteinShake"}
               onChange={(e) => {
-                setCheckInputs4(e.target.value);
+                setCheckInputs4(e.target.value), console.log([checkedInputs4]);
               }}
             />
             <label>단백질쉐이크 챙겨먹기</label>
@@ -172,7 +174,7 @@ const ChallengeCondition = () => {
               value="everymeal"
               checked={checkedInputs4 === "everymeal"}
               onChange={(e) => {
-                setCheckInputs4(e.target.value);
+                setCheckInputs4(e.target.value), console.log([checkedInputs4]);
               }}
             />
             <label>아침,점심,저녁 다 챙겨먹기</label>
@@ -191,7 +193,7 @@ const ChallengeCondition = () => {
               value="3times"
               checked={checkedInputs5 === "3times"}
               onChange={(e) => {
-                setCheckInputs5(e.target.value);
+                setCheckInputs5(e.target.value), console.log([checkedInputs4]);
               }}
             />
             <label>3회</label>
@@ -202,7 +204,7 @@ const ChallengeCondition = () => {
               value="5times"
               checked={checkedInputs5 === "5times"}
               onChange={(e) => {
-                setCheckInputs5(e.target.value);
+                setCheckInputs5(e.target.value), console.log([checkedInputs4]);
               }}
             />
             <label>5회</label>
@@ -213,7 +215,7 @@ const ChallengeCondition = () => {
               value="7times"
               checked={checkedInputs5 === "7times"}
               onChange={(e) => {
-                setCheckInputs5(e.target.value);
+                setCheckInputs5(e.target.value), console.log([checkedInputs4]);
               }}
             />
             <label>7회</label>
@@ -224,7 +226,7 @@ const ChallengeCondition = () => {
               value="9times"
               checked={checkedInputs5 === "9times"}
               onChange={(e) => {
-                setCheckInputs5(e.target.value);
+                setCheckInputs5(e.target.value), console.log([checkedInputs4]);
               }}
             />
             <label>9회</label>

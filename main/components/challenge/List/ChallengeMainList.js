@@ -1,5 +1,5 @@
 import React from "react";
-
+import ChallengeJoin from "../../challenge/List/ChallengeJoin";
 const ChallengeMainList = () => {
   const challenges = [
     {
@@ -51,18 +51,23 @@ const ChallengeMainList = () => {
     <div className="challengeListMain">
       {challenges.map((challenges, index) => {
         return (
-          <ul>
-            <li>{challenges.id}</li>
-            <li>{challenges.userId}</li>
-            <li>{challenges.challengeName}</li>
-            <li>{challenges.challengeKind}</li>
-            <li>{challenges.challengeContent}</li>
-            <li>{challenges.joinCount}</li>
-            <li>{challenges.points}</li>
-            <li>{challenges.startDate}</li>
-            <li>{challenges.endDate}</li>
-            <challenges key={index}></challenges>
-          </ul>
+          <>
+            <ul>
+              <li>{challenges.id}</li>
+              <li>{challenges.userId}</li>
+              <li>{challenges.challengeName}</li>
+              <li>{challenges.challengeKind}</li>
+              <li>{challenges.challengeContent}</li>
+              <li>{challenges.joinCount}</li>
+              <li>{challenges.points}</li>
+              <li>{challenges.startDate}</li>
+              <li>{challenges.endDate}</li>
+              <challenges key={index}></challenges>
+            </ul>
+            <div>
+              <ChallengeJoin></ChallengeJoin>
+            </div>
+          </>
         );
       })}
     </div>
