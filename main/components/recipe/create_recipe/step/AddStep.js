@@ -8,7 +8,7 @@ const AddStep = ({ stepData, setStepData }) => {
   const inputRef = useRef();
   const imageRef = useRef();
   const handleSubmitStep = () => {
-    if (stepData.length <= 12) {
+    if (stepData.length <= 5) {
       stepData = [
         ...stepData,
         {
@@ -18,26 +18,10 @@ const AddStep = ({ stepData, setStepData }) => {
         },
       ];
 
-<<<<<<< HEAD:main/components/recipe/createRecipe/AddStep.js
       setStepData(stepData);
       setImgPreview(null);
     } else {
       alert("더 이상 추가하실 수 없습니다.");
-=======
-    const inputRef = useRef();
-    const handleSubmitStep = () => {
-        if (stepData.length <= 12) {
-            stepData = 
-            [...stepData,
-            {desc:inputRef.current.value,
-            stepImageData:imgPreview}
-            ]
-            setStepData(stepData)
-            setImgPreview(null)
-        } else {
-            alert('더 이상 추가하실 수 없습니다.')
-        }
->>>>>>> 4f9d21625c66ee43edbecd15fe01cf942f26eea5:main/components/recipe/create_recipe/step/AddStep.js
     }
   };
 

@@ -1,13 +1,16 @@
 import React from 'react';
-// import { useState } from "react";
+import { useState } from "react";
+import ImageUpload from '../../components/diary/meal_detail/ImageUpload';
 
-// const PAGE_PRODUCTS = 'products';
+const PAGE_PRODUCTS = 'products';
+const PAGE_CART = 'cart';
 
-export default function Cart({ cart, setCart }) {
-    // const [page, setPage] = useState(PAGE_PRODUCTS);
-    // const navigateTo = (nextPage) => {
-    //   setPage(nextPage);
-    // };
+export default function Cart({ cart, setCart, page, setPage }) {
+    
+
+    const navigateTo = (nextPage) => {
+      setPage(nextPage);
+    };
 
     const getTotalSum = () => {
       return cart.reduce(
@@ -33,10 +36,16 @@ export default function Cart({ cart, setCart }) {
         cart.filter((product) => product !== productToRemove)
       );
     };
+
+    
+    
   
     return (
-      <>
-        <div style={{textAlign: 'right', padding: 16}}>
+      <div style={{padding: 16}}>
+        <div>
+            <ImageUpload />
+        </div>
+        <div style={{textAlign: 'right'}}>
             {cart.length > 0 && (
                 <i className='red large trash alternate icon'
                     onClick={clearCart}
@@ -44,11 +53,11 @@ export default function Cart({ cart, setCart }) {
                 </i>
             )}
         </div>
-        <div className="ui middle aligned divided list" style={{ padding: 8 }}>
+        <div className="ui middle aligned divided list">
           {cart.map((product, idx) => (
             <div className='item'
                   key={idx}
-                  style={{padding: '8px'}}
+                  style={{padding: '8px 0'}}
             >
               <div style={{
                         display: "flex",
@@ -57,11 +66,22 @@ export default function Cart({ cart, setCart }) {
                   }}>
                 <div className="header">
                     {product.name}
-                    <div className="description">회사/ g</div>
+                    <div className="description">{product.mfr} / {product.serve} gram</div>
                 </div>
-                <div>
-                    Kcal
+                <div className='ui input'>
+                    <p style={{margin: '8px 10px 0 0'}}>
+                      {product.kcal}Kcal
+                      <span style={{
+                              fontWeight: 600,
+                              fontSize: '1rem',
+                              padding: '0 0 0 8px'
+                            }}
+                      > x
+                      </span>
+                    </p>
                     <input
+                    style={{marginRight: 8}}
+                    type="text"
                     value={product.quantity}
                     onChange={(e) =>
                         setQuantity(
@@ -70,7 +90,8 @@ export default function Cart({ cart, setCart }) {
                         )
                     }
                     />
-                    <i className='red large close icon'
+                    <i className='red large minus circle icon'
+                        style={{marginTop: 8}}
                         onClick={() => removeFromCart(product)}
                     >
                     </i>
@@ -80,12 +101,16 @@ export default function Cart({ cart, setCart }) {
           ))}
         </div>
       
-        {/* <button className="ui button blue"
+        <button className="ui fluid button blue"
                 onClick={() => navigateTo(PAGE_PRODUCTS)}>
             더 추가하기
-        </button> */}
+        </button>
+
+        {/* {page === PAGE_CART && (
+          <Cart cart={cart} setCart={setCart} />
+        )} */}
 
       <div>Total: {getTotalSum()}</div>
-    </>
+    </div>
   );
 }
