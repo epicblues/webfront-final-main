@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form'
 import { getUserOrRedirect } from '../../api/auth'
 import * as Yup from 'yup'
 
+import ModalBlackout from '../../../components/recipe/create_recipe/food/ModalBlackout'
 // Food(재료) 
-
-
+import FoodForm from '../../../components/recipe/create_recipe/food/FoodForm'
 // Step(요리순서)
 import StepForm from '../../../components/recipe/create_recipe/step/stepForm'
 
@@ -18,6 +18,10 @@ const initialValues = {}
 
 //  작성폼
 export const index = () => {
+    const [isModalVisible, setIsModalVisible] = useState(false)
+    const handleSetIsModalVisible = (active) => {
+        setIsModalVisible(active);
+    }
     const [recipeData, setRecipeData] = useState([]);
     const [stepData, setStepData] = useState([]);
     const { register, handleSubmit } = useForm();
@@ -42,6 +46,11 @@ export const index = () => {
     }
     return (
         <div>
+            {isModalVisible && 
+                <ModalBlackout 
+                    handleSetIsModalVisible={handleSetIsModalVisible} 
+                />
+            }
             <h2>레시피 등록하기</h2>
             <h3>레시피 정보 입력</h3>
             <form onSubmit = {handleSubmit(onSubmit)}>
@@ -93,7 +102,12 @@ export const index = () => {
                 <br />
 
                 <h3>재료</h3>
-                
+                <FoodForm 
+                    isModalVisible={isModalVisible} 
+                    setIsModalVisible={setIsModalVisible}
+                    handleSetIsModalVisible={handleSetIsModalVisible}    
+                />
+
                 <h3>요리 순서</h3>
                 <StepForm stepData={stepData} setStepData={setStepData} />
                 <button type="button">임시저장</button>
