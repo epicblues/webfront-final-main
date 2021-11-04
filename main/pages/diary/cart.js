@@ -1,6 +1,14 @@
 import React from 'react';
+// import { useState } from "react";
+
+// const PAGE_PRODUCTS = 'products';
 
 export default function Cart({ cart, setCart }) {
+    // const [page, setPage] = useState(PAGE_PRODUCTS);
+    // const navigateTo = (nextPage) => {
+    //   setPage(nextPage);
+    // };
+
     const getTotalSum = () => {
       return cart.reduce(
         (sum, { cost, quantity }) => sum + cost * quantity,
@@ -28,22 +36,25 @@ export default function Cart({ cart, setCart }) {
   
     return (
       <>
-        {/* {cart.length > 0 && (
-            <button className='ui button red'
+        <div style={{textAlign: 'right', padding: 16}}>
+            {cart.length > 0 && (
+                <i className='red large trash alternate icon'
                     onClick={clearCart}
-            >
-                전체 삭제
-            </button>
-        )} */}
-        <div className="ui middle aligned divided list" style={{ padding: 10 }}>
+                >
+                </i>
+            )}
+        </div>
+        <div className="ui middle aligned divided list" style={{ padding: 8 }}>
           {cart.map((product, idx) => (
-            <div key={idx}
-                  style={{
+            <div className='item'
+                  key={idx}
+                  style={{padding: '8px'}}
+            >
+              <div style={{
                         display: "flex",
                         justifyContent: "space-between",
                         textAlign: "left"
-                  }}
-            >
+                  }}>
                 <div className="header">
                     {product.name}
                     <div className="description">회사/ g</div>
@@ -59,46 +70,20 @@ export default function Cart({ cart, setCart }) {
                         )
                     }
                     />
-                    <i className='close icon red'
+                    <i className='red large close icon'
                         onClick={() => removeFromCart(product)}
                     >
                     </i>
                 </div>
+              </div>
             </div>
-        ))}
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          ))}
+        </div>
+      
+        {/* <button className="ui button blue"
+                onClick={() => navigateTo(PAGE_PRODUCTS)}>
+            더 추가하기
+        </button> */}
 
       <div>Total: {getTotalSum()}</div>
     </>
