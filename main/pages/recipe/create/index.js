@@ -20,8 +20,8 @@ const initialValues = {};
 //  작성폼
 export const index = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const handleSetIsModalVisible = (active) => {
-    setIsModalVisible(active);
+  const handleSetIsModalVisible = (value) => {
+    setIsModalVisible(value);
   };
   const [recipeData, setRecipeData] = useState([]);
   const [stepData, setStepData] = useState([]);
@@ -116,7 +116,7 @@ export const index = () => {
         <h3>재료</h3>
         <FoodForm
           setIsModalVisible={setIsModalVisible}
-          handleSetIsModalVisible={handleSetIsModalVisible}
+          isModalVisible={isModalVisible}
         />
 
         <h3>요리 순서</h3>
