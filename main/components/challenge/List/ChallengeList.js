@@ -1,11 +1,14 @@
 import React from "react";
-import ChallengeMainList from "../../components/challenge/ChallengeMainList";
-const ChallengeList = (challenges) => {
-  const defaultProps = {
-    data: [],
-  };
+import ChallengeMainList from "../../challenge/List/ChallengeMainList";
 
-  return <div></div>;
+const ChallengeList = () => {
+  return (
+    <>
+      <div>List</div>
+      <div>List</div>
+      <div>List</div>
+    </>
+  );
 };
 
 export default ChallengeList;
