@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { Input, Button, Header } from "semantic-ui-react";
+import { Input, Button, Header, dropdown, Dropdown } from "semantic-ui-react";
 
 const ChallengeCondition = () => {
   const [checkedInputs, setCheckInputs] = useState(false);
@@ -8,14 +8,26 @@ const ChallengeCondition = () => {
   const [checkedInputs4, setCheckInputs4] = useState(false);
   const [checkedInputs5, setCheckInputs5] = useState(false);
   const [dropdown, setDropDown] = useState("soup");
+  const changeHandler = (e) => {
+    setDropDown(e.target.value);
+  };
 
+  const dropdownData = [
+    { key: "so", value: "soup", text: "Soup" },
+    { key: "no", value: "noodle", text: "Noodle" },
+    { key: "de", value: "dessert", text: "Dessert" },
+    { key: "ri", value: "rice", text: "Rice" },
+    { key: "ki", value: "kimchi", text: "Kimchi" },
+    { key: "gr", value: "grill", text: "Grill" },
+    { key: "et", value: "etc", text: "Etc" },
+  ];
   return (
-    <div className="challengeCondition">
-      <Header as="h3" inverted color="orange" className="challengeContent">
+    <div className="challengeCondition" style={{ backgroundColor: "#EAEAEA" }}>
+      <Header as="h3" inverted color="blue" className="challengeContent">
         챌린지 조건
       </Header>
       <div className="challengeKind">
-        <Header as="h4" inverted color="orange">
+        <Header as="h4" inverted color="blue">
           챌린지의 종류
         </Header>
         <input
@@ -25,7 +37,7 @@ const ChallengeCondition = () => {
           value="diet"
           checked={checkedInputs === "diet"}
           onChange={(e) => {
-            setCheckInputs(e.target.value), console.log([checkedInputs]);
+            setCheckInputs(e.currentTarget.value), console.log([checkedInputs]);
           }}
         />
         <label> diet</label>
@@ -36,13 +48,13 @@ const ChallengeCondition = () => {
           value="receipe"
           checked={checkedInputs === "receipe"}
           onChange={(e) => {
-            setCheckInputs(e.target.value), console.log([checkedInputs]);
+            setCheckInputs(e.currentTarget.value), console.log([checkedInputs]);
           }}
         />
         <label>receipe</label>
         {checkedInputs === "diet" ? (
           <>
-            <Header as="h4" inverted color="orange">
+            <Header as="h4" inverted color="blue">
               다이어트 종류
             </Header>
             <div className="dietKind">
@@ -53,7 +65,7 @@ const ChallengeCondition = () => {
                 value="plusKcal"
                 checked={checkedInputs2 === "plusKcal"}
                 onChange={(e) => {
-                  setCheckInputs2(e.target.value),
+                  setCheckInputs2(e.currentTarget.value),
                     console.log([checkedInputs2]);
                 }}
               />
@@ -65,7 +77,7 @@ const ChallengeCondition = () => {
                 value="minusKcal"
                 checked={checkedInputs2 === "minusKcal"}
                 onChange={(e) => {
-                  setCheckInputs2(e.target.value),
+                  setCheckInputs2(e.currentTarget.value),
                     console.log([checkedInputs2]);
                 }}
               />
@@ -74,31 +86,22 @@ const ChallengeCondition = () => {
           </>
         ) : (
           <>
-            <Header as="h4" inverted color="orange">
+            <Header as="h4" inverted color="blue">
               레시피 종류
             </Header>
             <div className="receipeKind">
-              <select
-                value={dropdown}
-                onChange={(e) => {
-                  setDropDown(e.target.value), console.log([dropdown]);
-                }}
-              >
-                <option value="soup">Soup</option>
-                <option value="noodle">Noodle</option>
-                <option value="dessert">Dessert</option>
-                <option value="rice">Rice</option>
-                <option value="kimchi">Kimchi</option>
-                <option value="grill">Grill</option>
-                <option value="etc">Etc</option>
-              </select>
+              <Dropdown
+                selection
+                options={dropdownData}
+                onChange={changeHandler}
+              />
             </div>
           </>
         )}
       </div>
       {checkedInputs === "diet" ? (
         <>
-          <Header as="h4" inverted color="orange">
+          <Header as="h4" inverted color="blue">
             다이어트 조건 ( 기준: 하루 섭취량)
           </Header>
           <div className="dietCondition1">
@@ -109,7 +112,8 @@ const ChallengeCondition = () => {
               value="1500kcal"
               checked={checkedInputs3 === "1500kcal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value), console.log([checkedInputs3]);
+                setCheckInputs3(e.currentTarget.value),
+                  console.log([checkedInputs3]);
               }}
             />
             <label>1500kcal</label>
@@ -120,7 +124,8 @@ const ChallengeCondition = () => {
               value="2000kcal"
               checked={checkedInputs3 === "2000kcal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value), console.log([checkedInputs3]);
+                setCheckInputs3(e.currentTarget.value),
+                  console.log([checkedInputs3]);
               }}
             />
             <label>2000kcal</label>
@@ -131,7 +136,8 @@ const ChallengeCondition = () => {
               value="2500kcal"
               checked={checkedInputs3 === "2500kcal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value), console.log([checkedInputs3]);
+                setCheckInputs3(e.currentTarget.value),
+                  console.log([checkedInputs3]);
               }}
             />
             <label>2500kcal</label>
@@ -142,7 +148,8 @@ const ChallengeCondition = () => {
               value="3000kcal"
               checked={checkedInputs3 === "3000kcal"}
               onChange={(e) => {
-                setCheckInputs3(e.target.value), console.log([checkedInputs3]);
+                setCheckInputs3(e.currentTarget.value),
+                  console.log([checkedInputs3]);
               }}
             />
             <label>3000kcal</label>
@@ -152,7 +159,7 @@ const ChallengeCondition = () => {
 
       {checkedInputs === "diet" ? (
         <>
-          <Header as="h4" inverted color="orange">
+          <Header as="h4" inverted color="blue">
             다이어트 조건 ( 기준 : 하루)
           </Header>
           <div className="dietCondition2">
@@ -163,7 +170,8 @@ const ChallengeCondition = () => {
               value="proteinShake"
               checked={checkedInputs4 === "proteinShake"}
               onChange={(e) => {
-                setCheckInputs4(e.target.value), console.log([checkedInputs4]);
+                setCheckInputs4(e.currentTarget.value),
+                  console.log([checkedInputs4]);
               }}
             />
             <label>단백질쉐이크 챙겨먹기</label>
@@ -174,7 +182,8 @@ const ChallengeCondition = () => {
               value="everymeal"
               checked={checkedInputs4 === "everymeal"}
               onChange={(e) => {
-                setCheckInputs4(e.target.value), console.log([checkedInputs4]);
+                setCheckInputs4(e.currentTarget.value),
+                  console.log([checkedInputs4]);
               }}
             />
             <label>아침,점심,저녁 다 챙겨먹기</label>
@@ -182,7 +191,7 @@ const ChallengeCondition = () => {
         </>
       ) : (
         <>
-          <Header as="h4" inverted color="orange">
+          <Header as="h4" inverted color="blue">
             레시피 업로드 횟수
           </Header>
           <div className="receipeUploadCount">
@@ -193,7 +202,8 @@ const ChallengeCondition = () => {
               value="3times"
               checked={checkedInputs5 === "3times"}
               onChange={(e) => {
-                setCheckInputs5(e.target.value), console.log([checkedInputs4]);
+                setCheckInputs5(e.currentTarget.value),
+                  console.log([checkedInputs4]);
               }}
             />
             <label>3회</label>
@@ -204,7 +214,8 @@ const ChallengeCondition = () => {
               value="5times"
               checked={checkedInputs5 === "5times"}
               onChange={(e) => {
-                setCheckInputs5(e.target.value), console.log([checkedInputs4]);
+                setCheckInputs5(e.currentTarget.value),
+                  console.log([checkedInputs4]);
               }}
             />
             <label>5회</label>
@@ -215,7 +226,8 @@ const ChallengeCondition = () => {
               value="7times"
               checked={checkedInputs5 === "7times"}
               onChange={(e) => {
-                setCheckInputs5(e.target.value), console.log([checkedInputs4]);
+                setCheckInputs5(e.currentTarget.value),
+                  console.log([checkedInputs4]);
               }}
             />
             <label>7회</label>
@@ -226,7 +238,8 @@ const ChallengeCondition = () => {
               value="9times"
               checked={checkedInputs5 === "9times"}
               onChange={(e) => {
-                setCheckInputs5(e.target.value), console.log([checkedInputs4]);
+                setCheckInputs5(e.currentTarget.value),
+                  console.log([checkedInputs4]);
               }}
             />
             <label>9회</label>

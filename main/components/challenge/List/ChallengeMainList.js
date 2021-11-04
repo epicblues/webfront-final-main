@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import ChallengeJoin from "../../challenge/List/ChallengeJoin";
 const ChallengeMainList = () => {
+  const [challengeIds, setChallengeIds] = useState("");
   const challenges = [
     {
       id: 1,
@@ -52,7 +53,18 @@ const ChallengeMainList = () => {
       {challenges.map((challenges, index) => {
         return (
           <>
-            <ul>
+            <ul
+              style={{
+                listStyleType: "none",
+                fontSize: "20px",
+                fontFamily: "Arial",
+                color: "#6B66FF",
+                backgroundColor: "#EAEAEA",
+                marginLeft: "auto",
+                marginRight: "auto",
+                padding: "0",
+              }}
+            >
               <li>{challenges.id}</li>
               <li>{challenges.userId}</li>
               <li>{challenges.challengeName}</li>
@@ -64,7 +76,7 @@ const ChallengeMainList = () => {
               <li>{challenges.endDate}</li>
               <challenges key={index}></challenges>
             </ul>
-            <div>
+            <div className="challengeJoin">
               <ChallengeJoin></ChallengeJoin>
             </div>
           </>

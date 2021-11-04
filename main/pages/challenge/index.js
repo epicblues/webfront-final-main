@@ -15,6 +15,9 @@ const index = () => {
       <Link href="challenge/list">
         <Button>챌린지 리스트 보기 </Button>
       </Link>
+      <Link href="challenge/mylist">
+        <Button>나의 챌린지 보기</Button>
+      </Link>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
-
-const [challengeId, setChallengeId] = useState("");
+import ChallengeMainList from "./ChallengeMainList";
 
 const ChallengeJoin = () => {
   const onClick = (e) => {
@@ -11,12 +10,16 @@ const ChallengeJoin = () => {
       alert("취소를 누르셨습니다");
     }
   };
-  const onSubmit = (e) => {
-    setChallengeId(e.target.value);
-    console.log(challengeId);
+  const onSubmit = ({ id }) => {
+    if (challengeIds === "id") {
+      setChallengeIds("");
+      console.log("전송완료");
+    } else {
+      null;
+    }
   };
   return (
-    <Button type="submit" onClick={onClick} onSubmit={onSubmit}>
+    <Button type="submit" color="twitter" onClick={onClick} onSubmit={onSubmit}>
       참가하기
     </Button>
   );
