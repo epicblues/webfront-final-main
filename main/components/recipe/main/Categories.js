@@ -32,7 +32,12 @@ function showCategories() {
                 </li>
                 <li>
                     <Link href="recipe/list/side">
-                    <a>반찬류</a>
+                    <a>반찬</a>
+                    </Link>
+                </li>
+                <li>
+                    <Link href="recipe/list/kimchi">
+                    <a>김치</a>
                     </Link>
                 </li>
                 <li>

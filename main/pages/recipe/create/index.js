@@ -9,6 +9,7 @@ import ModalBlackout from "../../../components/recipe/create_recipe/food/ModalBl
 import FoodForm from "../../../components/recipe/create_recipe/food/FoodForm";
 // Step(요리순서)
 import StepForm from "../../../components/recipe/create_recipe/step/stepForm";
+import { useRouter } from "next/dist/client/router";
 
 //  post_id 초기값 확인을 위한 logic(post 개수 확인)
 //  처음에 초기값 받아 놓고, 마지막 submit할 때 post_id 겹치는지 한 번 더 확인 후,
@@ -24,18 +25,16 @@ export const index = () => {
   const handleSetIsModalVisible = (value) => {
     setIsModalVisible(value);
   };
+  const router = useRouter()
 
   const [foodData, setFoodData] = useState([]);
-  const [recipeData, setRecipeData] = useState([]);
   const [stepData, setStepData] = useState([]);
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+  const submitBtnClick = async (data) => {
     const date = new Date();
 
     let finalRecipeData = {
       ...initialValues,
-      post_no: "", //  백엔드 컨트롤
-      user_id: "", //  백엔드 컨트롤
       upload_date: date,
       title: data.title,
       desc: data.desc,
@@ -46,7 +45,7 @@ export const index = () => {
       igr_array: foodData.map(food => {
         return `${food.foodObj.no}/${food.quantity}`
       }), //  음식(재료) 객체의 배열
-      stepData: stepData.map((step) => step.stepDesc),
+      stepData: stepData.map((step) => step.stepDesc)
     };
 
     const formData = new FormData();
@@ -56,12 +55,17 @@ export const index = () => {
     stepData.forEach((step, index) => {
       formData.append(`step_img_${index + 1}`, step.stepImageFile);
     });
+    try {
+      await axios.put("/api/recipe/create", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      router.push('/recipe')
+    } catch(error) {
+      alert(error);
+    }
 
-    axios.put("/api/recipe/create", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
   };
   return (
     <div>
@@ -69,8 +73,9 @@ export const index = () => {
         <ModalBlackout handleSetIsModalVisible={handleSetIsModalVisible} />
       )}
       <h2>레시피 등록하기</h2>
+      <h3>재료추가시 submit 요청 가는 것 수정</h3>
       <h3>레시피 정보 입력</h3>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(submitBtnClick)}>
         <label>요리명</label>
         <input
           type="text"
@@ -93,8 +98,14 @@ export const index = () => {
 
         <label>카테고리</label>
         <select {...register("category")}>
+          <option value="soup">국/탕/찌개</option>
           <option value="grill">구이</option>
-          <option value="soup">국/탕</option>
+          <option value="noodle">면/파스타</option>
+          <option value="rice">밥/볶음밥</option>
+          <option value="side">반찬</option>
+          <option value="kimchi">김치</option>
+          <option value="dessert">디저트</option>
+          <option value="etc">기타</option>
         </select>
         <br />
 
