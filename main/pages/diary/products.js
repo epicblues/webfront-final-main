@@ -6,6 +6,12 @@ export default function Products({ setCart, cart }) {
 
   const [products] = useState([]);
 
+  const [style, setStyle] = useState();
+  
+  const changeStyle = () => {
+    return <i className='check circle icon'></i>
+  }
+
   const addToCart = (value) => {
     let newCart = [...cart];
     let itemInCart = newCart.find(
@@ -22,7 +28,6 @@ export default function Products({ setCart, cart }) {
     }
     setCart(newCart);
   };
-
 
   // 검색필터
   const [allData, setAllData] = useState([]);
@@ -61,16 +66,32 @@ export default function Products({ setCart, cart }) {
             // 검색 리스트 출력
             <div className="item"
                   key={value.id}
-                  onClick={() => addToCart(value)}
                   style={{padding: '8px'}}
             >
-              <div className="right floated content">
+              <div style={{
+                      textAlign: "left",
+                      display: 'grid',
+                      gridTemplateColumns: '9.5fr 0.5fr'}}
+              >
                 <div>
                     <Modal
-                    onClose={() => setOpen(false)}
-                    onOpen={() => setOpen(true)}
-                    open={open}
-                    trigger={<i className='plus circle icon' style={{verticalAlign:'-webkit-baseline-middle'}}></i>}
+                      onClose={() => setOpen(false)}
+                      onOpen={() => setOpen(true)}
+                      open={open}
+                      trigger={
+                        <div className="content"
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                        >
+                            <div className="header">
+                              {value.name}
+                              <div className="description">{value.mfr} / {value.serve}gram</div>
+                            </div>
+                            <div className='right floated'>{value.kcal}Kcal</div>
+                        </div>
+                      }
                     >
                       <Modal.Header>Select</Modal.Header>
                       <Modal.Content>
@@ -89,28 +110,23 @@ export default function Products({ setCart, cart }) {
                           content="Okay"
                           labelPosition='right'
                           icon='checkmark'
-                          onClick={() => setOpen(false)}
+                          onClick={() => {setOpen(false); addToCart(value)}}
                           positive
                           />
                       </Modal.Actions>
                     </Modal>
                 </div>
-              </div>
-
-              <div className="content">
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    textAlign: "left",
-                  }}
+                <i className='plus circle icon right floated'
+                    onClick={(e) => {
+                      addToCart(value);
+                      e.currentTarget.className='green check circle icon right floated';
+                      const targetReverse = (target) => () => {
+                        target.className = 'plus circle icon right floated'
+                      }
+                      setTimeout( targetReverse(e.currentTarget),1000)}}
+                    style={{verticalAlign:'-webkit-baseline-middle'}}
                 >
-                  <div className="header">
-                    {value.name}
-                    <div className="description">{value.mfr} / {value.serve}gram</div>
-                  </div>
-                  <div>{value.kcal}Kcal</div>
-                </div>
+                </i>
               </div>
             </div>
           );
