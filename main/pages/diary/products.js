@@ -37,14 +37,6 @@ export default function Products({ setCart, cart }) {
     const { data } = await axios.get("/api/food/" + value);
     console.log(data);
     setFilteredData(data);
-
-  // let value = event.target.value.toLowerCase();
-  // let result = [];
-  // console.log(value);
-  // result = allData.filter((data) => {
-  // return data.title.search(value) != -1;
-  // });
-  // setFilteredData(result);
   };
 
   const [open, setOpen] = React.useState(false)
@@ -89,7 +81,7 @@ export default function Products({ setCart, cart }) {
                               {value.name}
                               <div className="description">{value.mfr} / {value.serve}gram</div>
                             </div>
-                            <div className='right floated'>{value.kcal}Kcal</div>
+                            <div className='right floated' style={{margin: '8px 10px 0 0'}}>{value.kcal}Kcal</div>
                         </div>
                       }
                     >
@@ -116,15 +108,15 @@ export default function Products({ setCart, cart }) {
                       </Modal.Actions>
                     </Modal>
                 </div>
-                <i className='plus circle icon right floated'
+                <i className='teal plus circle icon right floated'
                     onClick={(e) => {
                       addToCart(value);
                       e.currentTarget.className='green check circle icon right floated';
                       const targetReverse = (target) => () => {
-                        target.className = 'plus circle icon right floated'
+                        target.className = 'teal plus circle icon right floated'
                       }
                       setTimeout( targetReverse(e.currentTarget),1000)}}
-                    style={{verticalAlign:'-webkit-baseline-middle'}}
+                    style={{marginTop: 8}}
                 >
                 </i>
               </div>
