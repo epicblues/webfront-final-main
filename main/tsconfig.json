@@ -31,7 +31,7 @@
     "pages/recipe/index.js",
     "pages/diary/index.js",
     "pages/diary/index.js",
-    "mongodbEx.js"
+    "root.js"
   ],
   "exclude": ["node_modules"]
 }

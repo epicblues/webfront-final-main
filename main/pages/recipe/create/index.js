@@ -41,7 +41,7 @@ export const index = () => {
       qtt: Number(data.qtt),
       duration: data.duration,
       igr_array: [], //  음식(재료) 객체의 배열
-      stepData: stepData.map((step) => ({stepDesc : step.stepDesc})),
+      stepData: stepData.map((step) => step.stepDesc),
     };
 
     const formData = new FormData();
