@@ -4,9 +4,11 @@ import { getUserOrRedirect } from "../../api/auth";
 import * as Yup from "yup";
 import axios from "axios";
 
-import IngredientForm from "../../../components/recipe/createRecipe/IngredientForm";
+import ModalBlackout from "../../../components/recipe/create_recipe/food/ModalBlackout";
+// Food(재료)
+import FoodForm from "../../../components/recipe/create_recipe/food/FoodForm";
 // Step(요리순서)
-import StepForm from "../../../components/recipe/createRecipe/StepForm";
+import StepForm from "../../../components/recipe/create_recipe/step/stepForm";
 
 //  post_id 초기값 확인을 위한 logic(post 개수 확인)
 //  처음에 초기값 받아 놓고, 마지막 submit할 때 post_id 겹치는지 한 번 더 확인 후,
@@ -17,6 +19,10 @@ const initialValues = {};
 
 //  작성폼
 export const index = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const handleSetIsModalVisible = (active) => {
+    setIsModalVisible(active);
+  };
   const [recipeData, setRecipeData] = useState([]);
   const [stepData, setStepData] = useState([]);
   const { register, handleSubmit } = useForm();
@@ -25,13 +31,16 @@ export const index = () => {
 
     let finalRecipeData = {
       ...initialValues,
+      post_no: "", //  백엔드 컨트롤
+      user_id: "", //  백엔드 컨트롤
       upload_date: date,
       title: data.title,
       desc: data.desc,
+      hit: 0,
       category: data.category,
-      qtt: data.qtt,
+      qtt: Number(data.qtt),
       duration: data.duration,
-      igr_array: [],
+      igr_array: [], //  음식(재료) 객체의 배열
       stepData: stepData.map((step) => step.stepDesc),
     };
 
@@ -51,6 +60,9 @@ export const index = () => {
   };
   return (
     <div>
+      {isModalVisible && (
+        <ModalBlackout handleSetIsModalVisible={handleSetIsModalVisible} />
+      )}
       <h2>레시피 등록하기</h2>
       <h3>레시피 정보 입력</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -100,6 +112,12 @@ export const index = () => {
           <option value="5">2시간 이상</option>
         </select>
         <br />
+
+        <h3>재료</h3>
+        <FoodForm
+          setIsModalVisible={setIsModalVisible}
+          handleSetIsModalVisible={handleSetIsModalVisible}
+        />
 
         <h3>요리 순서</h3>
         <StepForm stepData={stepData} setStepData={setStepData} />

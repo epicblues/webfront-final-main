@@ -62,15 +62,15 @@ function AddFood() {
             </a>
         </div>
         
-        {/* <button className="ui button blue"
+        <button className="ui button blue"
                 onClick={() => navigateTo(PAGE_PRODUCTS)}>
-            음식 추가하기
-        </button> */}
+            더 추가하기
+        </button>
 
       
         <button className="ui button teal"
                 onClick={() => navigateTo(PAGE_CART)}>
-            추가한 음식 보기
+            완료
         </button>
         
       </div>
