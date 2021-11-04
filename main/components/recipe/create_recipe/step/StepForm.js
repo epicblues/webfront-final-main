@@ -7,7 +7,6 @@ const StepForm = ({stepData, setStepData}) => {
             stepData.filter((value) => value !== index)
         );
     }
-
     return (
         <div>
             <div>
@@ -24,7 +23,7 @@ const StepForm = ({stepData, setStepData}) => {
                                         width : '100px'
                                     }}
                                 />
-                                {value.desc}
+                                {value.stepDesc}
                                 <button onClick={() => removeStep(value)}>삭제</button>
                             </div>
                     );

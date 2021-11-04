@@ -1,7 +1,7 @@
 import React from 'react'
 import AddFoodModal from './AddFoodModal'
 
-const FoodForm = ({ handleSetIsModalVisible, isModalVisible, setIsModalVisible}) => {
+const FoodForm = ({ handleSetIsModalVisible, isModalVisible, setIsModalVisible }) => {
     return (
         <div>
             <div>재료 창</div>
