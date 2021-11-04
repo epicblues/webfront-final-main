@@ -1,22 +1,12 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { getUserOrRedirect } from "../../../api/auth"
-import clientPromise from '../../../../util/mongodb'
-
-import RcpData from '../../../../public/static/recipe/dataSample/RecipeData'
 
 const index = () => {
     const router = useRouter();
     const { props } = router.query;
     console.log(props);
     return (
-        <div id="columns">
-            <Link exact to="/">
-                <h1>Recipe Main</h1>
-            </Link>
-           
-            <div className="rcp_thumb">
+        <div >
+            <div>
                 {/* 상단 레시피 인트로 이미지, 썸네일과 동일 */}
                 {/* <img id="rcp_thumb" src={`../${card.rcp_thumb_url}`} /> */}
                 {/* 카테고리 중간 사이즈 폰트 */}
@@ -32,18 +22,5 @@ const index = () => {
         </div>
     )
 }
-
-// export const getServerSideProps = async (ctx) => {
-//     await getUserOrRedirect(ctx);
-//     const client = await clientPromise;
-//     const rcpData = await client
-//       .db("webfront")
-//       .collection("recipe")
-//       .find({ "post_id": {card.post_id}  })
-//       .project({ _id: 0 })
-//       .toArray();
-//     console.log(rcpData);
-//     return { props: { rcpData } };
-//   };
 
 export default index

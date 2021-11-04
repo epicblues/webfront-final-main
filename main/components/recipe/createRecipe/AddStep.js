@@ -1,24 +1,22 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState, useRef } from 'react'
 
-const AddStep = ({stepData, getAddedStep}) => {
-    const [stepCount, setStepCount] = useState(1);
+const AddStep = ({stepData, setStepData}) => {
     const [imgPreview, setImgPreview] = useState(null);
     const [error, setError] = useState(false);
-    const sendStepData = () => {
-        getAddedStep(stepData)
-    }
 
-    const handleSubmitStep = (e) => {
-        e.preventDefault()
-        stepData = [...stepData,
-            {stepCount:stepCount,
-            stepDesc:e.target.stepDesc.value,
+    const inputRef = useRef();
+    const handleSubmitStep = () => {
+        if (stepData.length <= 12) {
+            stepData = 
+            [...stepData,
+            {stepDesc:inputRef.current.value,
             stepImageData:imgPreview}
-        ]
-        setStepCount(stepCount+1)
-        sendStepData()
-        setImgPreview(null)
+            ]
+            setStepData(stepData)
+            setImgPreview(null)
+        } else {
+            alert('더 이상 추가하실 수 없습니다.')
+        }
     }
 
     const handleImageChange = (e) => {
@@ -45,7 +43,7 @@ const AddStep = ({stepData, getAddedStep}) => {
                         <i className='frown outline icon'></i>
                     </p>
                 }
-                <form onSubmit={handleSubmitStep}
+                <div 
                     style={{
                     display: 'flex'
                 }}>
@@ -77,6 +75,7 @@ const AddStep = ({stepData, getAddedStep}) => {
                     )}
                 </div>
                 <textarea 
+                    ref={inputRef}
                     type='text'
                     name='stepDesc'
                     placeholder='설명을 입력하세요'
@@ -87,10 +86,8 @@ const AddStep = ({stepData, getAddedStep}) => {
                 {imgPreview && (
                     <button className='ui fluid button' onClick={() => setImgPreview(null)}>사진 삭제</button>
                 )}
-                <div>
-                    <button type="submit">등록</button>
                 </div>
-                </form>
+                <button type="button" onClick={handleSubmitStep}>순서등록</button>
             </div>
         </div>
     )

@@ -1,9 +1,9 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
-import styles from '../styles/Home.module.css'
+
 import { getUserOrRedirect } from './api/auth'
 import Link from 'next/link';
 import { Button, Container } from 'semantic-ui-react';
-import clientPromise from '../util/mongodb';
+
 
 
 const Home: NextPage<any> = ({ user: { name, email }, foods }) => {
