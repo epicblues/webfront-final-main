@@ -3,9 +3,9 @@ import React from 'react';
 function Dinner() {
     return(
         <div>
-            <p>
-                저녁
-            </p>
+            <a className="ui teal circular label">
+                +
+            </a>
         </div>
     )
 }

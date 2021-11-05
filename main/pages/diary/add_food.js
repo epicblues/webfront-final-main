@@ -31,7 +31,6 @@ function AddFood() {
     >
       <div
         style={{
-          marginBottom: 10,
           display: "flex",
           justifyContent: "space-between",
           padding: '16px'
@@ -45,7 +44,7 @@ function AddFood() {
             </a>
         </div>
 
-        <Link href='/diary/'>
+        <Link href='/diary/add_food_detail'>
           <button className="yellow ui button">
               추가 완료
           </button>

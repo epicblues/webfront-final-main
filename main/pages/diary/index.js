@@ -51,30 +51,30 @@ const index = () => {
                           padding: '0 16px 16px'}}>
             
                 <Link href="/diary/add_food">
-                  <div className='item' style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
-                      <Breakfast />
-                      <i className='plus circle icon'></i>
+                  <div className='item'
+                        style={{border:'solid 2px lightgray', borderRadius: '5px', }}>
+                      <Breakfast />아침
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
-                  <div className='item' style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
-                      <Lunch />
-                      <i className='plus circle icon'></i>
+                  <div className='item'
+                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
+                      <Lunch />점심
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
-                  <div className='item' style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
-                      <Dinner />
-                      <i className='plus circle icon'></i>
+                  <div className='item'
+                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
+                      <Dinner />저녁
                   </div>
                 </Link>
 
                 <Link href="/diary/add_food">
-                  <div className='item' style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
-                      <Snack />
-                      <i className='plus circle icon'></i>
+                  <div className='item'
+                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
+                      <Snack />간식
                   </div>
                 </Link>
 

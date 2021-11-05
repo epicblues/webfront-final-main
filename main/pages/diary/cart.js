@@ -1,20 +1,17 @@
 import React from 'react';
-import { useState } from "react";
-import ImageUpload from '../../components/diary/meal_detail/ImageUpload';
 
 const PAGE_PRODUCTS = 'products';
 const PAGE_CART = 'cart';
 
 export default function Cart({ cart, setCart, page, setPage }) {
     
-
     const navigateTo = (nextPage) => {
       setPage(nextPage);
     };
 
     const getTotalSum = () => {
       return cart.reduce(
-        (sum, { cost, quantity }) => sum + cost * quantity,
+        (sum, { kcal, quantity }) => sum + kcal * quantity,
         0
       );
     };
@@ -23,11 +20,11 @@ export default function Cart({ cart, setCart, page, setPage }) {
       setCart([]);
     };
   
-    const setQuantity = (product, amount) => {
+    const setQuantity = (product, total) => {
       const newCart = [...cart];
       newCart.find(
         (item) => item.name === product.name
-      ).quantity = amount;
+      ).quantity = total;
       setCart(newCart);
     };
   
@@ -37,14 +34,8 @@ export default function Cart({ cart, setCart, page, setPage }) {
       );
     };
 
-    
-    
-  
     return (
-      <div style={{padding: 16}}>
-        <div>
-            <ImageUpload />
-        </div>
+      <div style={{padding: '0 16px 16px'}}>
         <div style={{textAlign: 'right'}}>
             {cart.length > 0 && (
                 <i className='red large trash alternate icon'
@@ -54,9 +45,9 @@ export default function Cart({ cart, setCart, page, setPage }) {
             )}
         </div>
         <div className="ui middle aligned divided list">
-          {cart.map((product, idx) => (
+          {cart.map((product, index) => (
             <div className='item'
-                  key={idx}
+                  key={index}
                   style={{padding: '8px 0'}}
             >
               <div style={{
@@ -110,7 +101,9 @@ export default function Cart({ cart, setCart, page, setPage }) {
           <Cart cart={cart} setCart={setCart} />
         )} */}
 
-      <div>Total: {getTotalSum()}</div>
+      <div style={{marginTop: '16px'}}>
+        오늘 아침 섭취 열량은 {getTotalSum()} kcal 입니다
+      </div>
     </div>
   );
 }

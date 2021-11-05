@@ -3,9 +3,9 @@ import React from 'react';
 function Lunch() {
     return(
         <div>
-            <p>
-                점심
-            </p>
+            <a className="ui teal circular label">
+                +
+            </a>
         </div>
     )
 }
