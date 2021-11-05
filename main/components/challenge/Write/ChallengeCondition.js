@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { Input, Button, Header, dropdown, Dropdown } from "semantic-ui-react";
-
+import ChallengeWrite from "./ChallengeWrite";
 const ChallengeCondition = () => {
   const [checkedInputs, setCheckInputs] = useState(false);
   const [checkedInputs2, setCheckInputs2] = useState(false);
@@ -8,6 +8,7 @@ const ChallengeCondition = () => {
   const [checkedInputs4, setCheckInputs4] = useState(false);
   const [checkedInputs5, setCheckInputs5] = useState(false);
   const [dropdown, setDropDown] = useState("soup");
+
   const changeHandler = (e) => {
     setDropDown(e.target.value);
   };
@@ -93,7 +94,7 @@ const ChallengeCondition = () => {
               <Dropdown
                 selection
                 options={dropdownData}
-                onChange={changeHandler}
+                onChange={(changeHandler, console.log(dropdown))}
               />
             </div>
           </>

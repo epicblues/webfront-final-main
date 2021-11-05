@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import "semantic-ui-css/semantic.min.css";
-import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
-import MyChallenge from "../../components/challenge/List/MyChallenge";
 import { getUserOrRedirect } from "../api/auth";
 import { Button } from "semantic-ui-react";
 const index = () => {
