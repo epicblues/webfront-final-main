@@ -34,13 +34,25 @@ export const getServerSideProps = async (ctx) => {
   )
     .db("webfront")
     .collection("recipe")
-    .findOne({ _id: Number(ctx.query.post_no) });
-  if (recipe) {
-    recipe.upload_date = Date.parse(recipe.upload_date);
-  }
-  console.log(recipe);
-
-  return { props: { user, recipe } };
+    .aggregate([
+      {
+        $lookup: {
+          from: "food",
+          localField: "ingredients.food_id",
+          foreignField: "no",
+          as: "ingredients_data",
+        },
+      },
+    ])
+    .match({
+      _id: Number(ctx.query.post_no),
+    })
+    .toArray();
+  // .findOne({ _id: Number(ctx.query.post_no) });
+  const newRecipe = JSON.parse(JSON.stringify(recipe[0]));
+  newRecipe.ingredients.forEach((ingredient, index) => {
+    ingredient.food = newRecipe.ingredients_data[index];
+  });
+  return { props: { user, recipe: newRecipe } };
 };
-
 export default index;
