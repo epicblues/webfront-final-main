@@ -48,6 +48,7 @@ const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
                                     <span>
                                         {value.mfr}
                                     </span>
+                                    
                                     <button 
                                         type='button'
                                         onClick={() => onSelectBtn(value)}

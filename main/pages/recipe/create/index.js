@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getUserOrRedirect } from "../../api/auth";
-import * as Yup from "yup";
 import axios from "axios";
 
 import ModalBlackout from "../../../components/recipe/create_recipe/food/ModalBlackout";
@@ -72,7 +71,6 @@ export const index = () => {
         <ModalBlackout handleSetIsModalVisible={handleSetIsModalVisible} />
       )}
       <h2>레시피 등록하기</h2>
-      <h3>재료추가시 submit 요청 가는 것 수정</h3>
       <h3>레시피 정보 입력</h3>
       <form onSubmit={handleSubmit(submitBtnClick)}>
         <label>요리명</label>
@@ -138,7 +136,7 @@ export const index = () => {
 
         <h3>요리 순서</h3>
         <StepForm stepData={stepData} setStepData={setStepData} />
-        <button type="button">임시저장</button>
+        <button type="button">임시저장(미구현)</button>
         <button type="submit">글쓰기</button>
       </form>
     </div>
