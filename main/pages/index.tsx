@@ -6,7 +6,7 @@ import { Card, CardHeader, Container } from 'semantic-ui-react';
 
 
 
-const Home: NextPage<any> = ({ name, email }) => {
+const Home: NextPage<any> = ({ user: { name, email } }) => {
 
 
   return (
@@ -32,7 +32,7 @@ export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
   // 유저 인증 로직
   const user = await getUserOrRedirect(ctx);
   console.log("user:", user);
-  return { props: user };
+  return { props: { user } };
 
 }
 

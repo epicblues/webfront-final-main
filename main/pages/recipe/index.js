@@ -6,7 +6,6 @@ import { getUserOrRedirect } from "../api/auth";
 import Categories from "../../components/recipe/main/Categories";
 import Search from "../../components/recipe/main/Search";
 
-
 const index = () => {
   const [showCategories, setShowCategories] = useState(false);
 
@@ -52,7 +51,7 @@ const index = () => {
 };
 
 export const getServerSideProps = async (ctx) => {
-    const user = await getUserOrRedirect(ctx);
-    return { props:  user  };
-  };
+  const user = await getUserOrRedirect(ctx);
+  return { props: { user } };
+};
 export default index;

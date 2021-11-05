@@ -19,12 +19,12 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
     <div>
       <hr />
       <Container textAlign="center">
-        {pageProps.email
+        {pageProps.user
           ?
           (<Grid centered>
 
             <Grid.Row textAlign="center">
-              <button className="ui button facebook" onClick={clickHandler}>{pageProps.name}님 Logout</button>
+              <button className="ui button facebook" onClick={clickHandler}>{pageProps.user?.name}님 Logout</button>
 
               <Link href="/challenge" >
                 <button className="ui button">Challenge</button>

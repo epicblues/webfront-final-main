@@ -71,6 +71,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     res.status(createResult.acknowledged ? 200 : 404).json({
       status: createResult.acknowledged ? createResult.insertedId : "failed",
     });
+    return;
   });
 
   res.status(200).json({ status: "Failed" });
