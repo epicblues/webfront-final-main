@@ -38,10 +38,10 @@ const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
                             //  검색 리스트 출력
                             <div 
                                 className={modalStyles.products}
-                                key={index}
+                                key={Math.random()}
                             >
-                                <div key={value.no}>
-                                    <span>
+                                <div>
+                                    <span key={Math.random()}>
                                         {value.name}   
                                     </span>
                                     /

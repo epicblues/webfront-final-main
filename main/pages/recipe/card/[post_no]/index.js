@@ -4,7 +4,7 @@ import clientPromise from "../../../../util/mongodb";
 import { getUserOrRedirect } from "../../../api/auth";
 
 const index = ({user, recipe}) => {
-  
+  console.log(recipe);
   return (
     <div>
       <div>

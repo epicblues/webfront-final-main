@@ -18,8 +18,7 @@ const SelectedFoodMap = ({ foodData, setFoodData, selectedData, setIsModalVisibl
                 <h4>선택한 음식</h4>
                 {selectedData.map((value, index) => {
                     return (
-                        <>
-                        <div key={index}>
+                        <div key={Math.random()}>
                             <span>
                                 {value.name}
                             </span>
@@ -38,8 +37,6 @@ const SelectedFoodMap = ({ foodData, setFoodData, selectedData, setIsModalVisibl
                             </span>
                             <button type='button' onClick={() => onSubmitBtn(value)}>확인</button>
                         </div>
-                        </>
-
                     );
                 })}
             </div>
