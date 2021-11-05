@@ -19,7 +19,7 @@
 
 - Recipe, Challenge, Diary 는 User의 Id를 참조한다
 
-- (임시)이미지의 디렉토리 주소는 /public/static/{recipe,challenge,diary,user}/사용자ID_게시물ID_순서.jpg
+- (임시)이미지의 폴더 주소는 /public/{recipe,challenge,diary,user}/이미지id값
 
   ### Recipe
 
