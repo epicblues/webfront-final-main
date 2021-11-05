@@ -37,3 +37,7 @@ export interface Diary {
   success: boolean;
   review: string;
 }
+export interface Ingredient {
+  food_id: number;
+  quantity: number;
+}

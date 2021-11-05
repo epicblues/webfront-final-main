@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getUserOrRedirect } from "../../api/auth";
-import * as Yup from "yup";
 import axios from "axios";
 
 import ModalBlackout from "../../../components/recipe/create_recipe/food/ModalBlackout";
@@ -25,7 +24,7 @@ export const index = () => {
   const handleSetIsModalVisible = (value) => {
     setIsModalVisible(value);
   };
-  const router = useRouter()
+  const router = useRouter();
 
   const [foodData, setFoodData] = useState([]);
   const [stepData, setStepData] = useState([]);
@@ -42,10 +41,10 @@ export const index = () => {
       category: data.category,
       qtt: Number(data.qtt),
       duration: data.duration,
-      igr_array: foodData.map(food => {
-        return `${food.foodObj.no}/${food.quantity}`
+      igr_array: foodData.map((food) => {
+        return `${food.foodObj.no}/${food.quantity}`;
       }), //  음식(재료) 객체의 배열
-      stepData: stepData.map((step) => step.stepDesc)
+      stepData: stepData.map((step) => step.stepDesc),
     };
 
     const formData = new FormData();
@@ -61,11 +60,10 @@ export const index = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      router.push('/recipe')
-    } catch(error) {
+      router.push("/recipe");
+    } catch (error) {
       alert(error);
     }
-
   };
   return (
     <div>
@@ -73,7 +71,6 @@ export const index = () => {
         <ModalBlackout handleSetIsModalVisible={handleSetIsModalVisible} />
       )}
       <h2>레시피 등록하기</h2>
-      <h3>재료추가시 submit 요청 가는 것 수정</h3>
       <h3>레시피 정보 입력</h3>
       <form onSubmit={handleSubmit(submitBtnClick)}>
         <label>요리명</label>
@@ -139,7 +136,7 @@ export const index = () => {
 
         <h3>요리 순서</h3>
         <StepForm stepData={stepData} setStepData={setStepData} />
-        <button type="button">임시저장</button>
+        <button type="button">임시저장(미구현)</button>
         <button type="submit">글쓰기</button>
       </form>
     </div>
@@ -148,7 +145,7 @@ export const index = () => {
 
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
-  return { props: user };
+  return { props: { user } };
 };
 
 export default index;

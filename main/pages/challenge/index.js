@@ -23,6 +23,6 @@ const index = () => {
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
   console.log("user:", user);
-  return { props: user };
+  return { props: { user } };
 };
 export default index;

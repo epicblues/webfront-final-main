@@ -5,61 +5,72 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ShowCategories from '../../../components/recipe/main/Categories'
-import RcpData from '../../../public/static/recipe/dataSample/RecipeData'
+import { getUserOrRedirect } from '../../api/auth'
+import clientPromise from '../../../util/mongodb'
 
+//  CSS
 import recipeListStyles from '../../../styles/RecipeList.module.css'
 
-// API 추가시 recipeAll을 인자로 사용
-const index = () => {
-    let [rcpData ,setRcpData] = useState(RcpData)
+const index = ({ user, recipes }) => {
+    //  레시피 전체 리스트 데이터 받아오기
+    console.log(recipes)
+    const [userData, setUserData] = useState(user)
+    const [recipeData, setRecipeData] = useState(recipes)
+    
     return (
         <div>
-            <ShowCategories></ShowCategories>
+            {/* <ShowCategories></ShowCategories>
             <h1>레시피 : 전체</h1>
             <div>
                 <ul className={recipeListStyles.cards}>
-                    {rcpData.map((card, index) => {
+                    {recipeData.map((card, index) => {
                         return (
-                            <li key={card.rcp_post_id}>
+                            <li key={card._id}>
                                 <Link 
                                     href={{
-                                    pathname: `/recipe/card/${card.rcp_post_id}`,
-                                    query: {  props : JSON.stringify(card) }
+                                    pathname: `/recipe/card/${card._id}`,
+                                    query: { props : {card} }
                                     }}
-                                    as={`/recipe/card/${card.rcp_post_id}`}
+                                    as={`/recipe/card/${card._id}`}
                                     >
                                     <a>
                                         <Image 
-                                            src={card.rcp_thumb_url}
+                                            src={card.steps[steps.length]}
                                             width={100}
                                             height={100}
-                                            alt={card.rcp_main_title}
+                                            alt={card.steps[steps.length]}
                                         />
-                                        <p>{card.rcp_main_title}</p>
-                                        <p>{card.rcp_sub_title}</p>
-                                        <p>좋아요: {card.rcp_likes}</p>
+                                        <p>{card.title}</p>
+                                        <p>{card.user_id}</p>
+                                        <p>조회수: {card.hit}</p>
                                     </a>
                                 </Link>
                             </li>
                         )                        
                     })}
                 </ul>
-            </div>
+            </div> */}
         </div>
     )
 }
 
-// export const getServerSideProps = async (ctx) => {
-//     await getUserOrRedirect(ctx);
-//     const client = await clientPromise;
-//     const rcpData = await client
-//       .db("webfront")
-//       .collection("recipe")
-//       .find({})
-//       .project({ _id: 0 })
-//       .toArray();
-//     console.log(rcpData);
-//     return { props: { rcpData } };
-//   };
+export const getServerSideProps = async (ctx) => {
+    // 유저 인증 로직
+    const user = await getUserOrRedirect(ctx);
+    const data = await (
+      await clientPromise
+    )
+      .db("webfront")
+      .collection("recipe")
+      .find({user_id : user.id})
+      .limit(9)
+      .toArray()
+    
+    const recipes =JSON.parse(JSON.stringify(data));
+        
+
+    return { props: { user, recipes } };
+  };
+
 
 export default index

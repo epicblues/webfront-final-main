@@ -8,7 +8,7 @@ const AddStep = ({ stepData, setStepData }) => {
   const inputRef = useRef();
   const imageRef = useRef();
   const handleSubmitStep = () => {
-    if (stepData.length <= 5) {
+    if (stepData.length <= 15) {
       stepData = [
         ...stepData,
         {
@@ -17,7 +17,6 @@ const AddStep = ({ stepData, setStepData }) => {
           stepImageFile: imageFile,
         },
       ];
-
       setStepData(stepData);
       setImgPreview(null);
     } else {
@@ -111,6 +110,7 @@ const AddStep = ({ stepData, setStepData }) => {
           />
           {imgPreview && (
             <button
+              type='button'
               className="ui fluid button"
               onClick={() => setImgPreview(null)}
             >

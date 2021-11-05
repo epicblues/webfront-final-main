@@ -6,6 +6,11 @@ const FoodForm = ({ foodData, setFoodData, isModalVisible, setIsModalVisible }) 
         setIsModalVisible(active)
 
     }
+    const removeFood = (food) => {
+        setFoodData(
+            foodData.filter((value) => value !== food)
+        );
+    }
     return (
         <div>
             <div>
@@ -27,12 +32,18 @@ const FoodForm = ({ foodData, setFoodData, isModalVisible, setIsModalVisible }) 
                                 <span>
                                     {value.foodObj.unit}
                                 </span>
+                                <button 
+                                    type='button'
+                                    onClick={() => removeFood(value)}
+                                >
+                                    삭제
+                                </button>
                             </div>
                         );
                     })
                 }
             </div>
-            <button onClick={() => onModalBtn(true)}>
+            <button type='button' onClick={() => onModalBtn(true)}>
                 재료추가하기
             </button>
             <div>
