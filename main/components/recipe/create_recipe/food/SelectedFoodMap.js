@@ -36,7 +36,7 @@ const SelectedFoodMap = ({ foodData, setFoodData, selectedData, setIsModalVisibl
                             <span>
                                 단위:({value.unit})
                             </span>
-                            <button onClick={() => onSubmitBtn(value)}>확인</button>
+                            <button type='button' onClick={() => onSubmitBtn(value)}>확인</button>
                         </div>
                         </>
 

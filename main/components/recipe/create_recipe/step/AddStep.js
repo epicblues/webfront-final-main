@@ -111,6 +111,7 @@ const AddStep = ({ stepData, setStepData }) => {
           />
           {imgPreview && (
             <button
+              type='button'
               className="ui fluid button"
               onClick={() => setImgPreview(null)}
             >

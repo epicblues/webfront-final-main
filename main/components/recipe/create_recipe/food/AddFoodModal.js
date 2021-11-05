@@ -71,7 +71,7 @@ const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
                 />
             </div>
             <div>
-                <button onClick={() => onCancelBtn(false)}>취소</button>
+                <button type='button' onClick={() => onCancelBtn(false)}>취소</button>
             </div>
         </div>
     )
