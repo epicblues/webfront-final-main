@@ -5,28 +5,35 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import ShowCategories from '../../../components/recipe/main/Categories'
-import RcpData from '../../../public/static/recipe/dataSample/RecipeData'
+import axios from 'axios'
 
+//  CSS
 import recipeListStyles from '../../../styles/RecipeList.module.css'
 
-// API 추가시 recipeAll을 인자로 사용
 const index = () => {
-    let [rcpData ,setRcpData] = useState(RcpData)
+    //  레시피 전체 리스트 데이터 받아오기
+    const getRecipeDataAll = async () => {
+        const { data } = await axios.get('/api/recipe');
+        return data
+    }
+    const initialData = getRecipeDataAll();
+    const [recipeData, setRecipeData] = useState(initialData)
+
     return (
         <div>
             <ShowCategories></ShowCategories>
             <h1>레시피 : 전체</h1>
             <div>
                 <ul className={recipeListStyles.cards}>
-                    {rcpData.map((card, index) => {
+                    {recipeData.map((card, index) => {
                         return (
-                            <li key={card.rcp_post_id}>
+                            <li key={card._id}>
                                 <Link 
                                     href={{
-                                    pathname: `/recipe/card/${card.rcp_post_id}`,
-                                    query: {  props : JSON.stringify(card) }
+                                    pathname: `/recipe/card/${card._id}`,
+                                    query: { props : JSON.stringify(card) }
                                     }}
-                                    as={`/recipe/card/${card.rcp_post_id}`}
+                                    as={`/recipe/card/${card._id}`}
                                     >
                                     <a>
                                         <Image 
@@ -49,17 +56,6 @@ const index = () => {
     )
 }
 
-// export const getServerSideProps = async (ctx) => {
-//     await getUserOrRedirect(ctx);
-//     const client = await clientPromise;
-//     const rcpData = await client
-//       .db("webfront")
-//       .collection("recipe")
-//       .find({})
-//       .project({ _id: 0 })
-//       .toArray();
-//     console.log(rcpData);
-//     return { props: { rcpData } };
-//   };
+
 
 export default index
