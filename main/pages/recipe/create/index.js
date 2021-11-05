@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getUserOrRedirect } from "../../api/auth";
-import { yupResolver } from '@hookform/resolvers/yup'
-import * as Yup from "yup";
 import axios from "axios";
 
 import ModalBlackout from "../../../components/recipe/create_recipe/food/ModalBlackout";

@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import clientPromise from "../../../../util/mongodb";
 import { getUserOrRedirect } from "../../../api/auth";
 
-const index = (props) => {
-  console.log(props);
+const index = ({user, recipe}) => {
+  
   return (
     <div>
       <div>
