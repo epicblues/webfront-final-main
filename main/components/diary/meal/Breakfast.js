@@ -3,9 +3,9 @@ import React from 'react';
 function Breakfast() {
     return(
         <div>
-            <p>
-                아침
-            </p>
+            <a className="ui teal circular label">
+                +
+            </a>
         </div>
     )
 }

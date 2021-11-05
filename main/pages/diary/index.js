@@ -33,62 +33,51 @@ const index = () => {
         </li>
       ),
       tabCont: (
-        <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
-          <h2 style={{ textAlign: "left", padding: "16px" }}>
-            오늘의 식단
-            <i className="utensils icon" style={{ marginLeft: 4 }}></i>
-          </h2>
+        <div style={{border: 'solid 2px lightgray',
+                    borderRadius: '5px'}}>
+            
+            <h2 style={{textAlign: 'left', padding: '16px'}}>
+              오늘의 식단
+              <i className="utensils icon" style={{marginLeft: 4}}></i>
+            </h2>
+            
 
-          <div
-            className="container"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "5fr 5fr",
-              gridGap: "1rem",
-              gridAutoRows: "200px",
-              padding: "0 16px 16px",
-            }}
-          >
-            <Link href="/diary/add_food">
-              <div
-                className="item"
-                style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-              >
-                <Breakfast />
-                <i className="plus circle icon"></i>
-              </div>
-            </Link>
+            <div className="container"
+                  style={{display: 'grid',
+                          gridTemplateColumns: '5fr 5fr',
+                          gridGap: '1rem',
+                          gridAutoRows:'200px',
+                          padding: '0 16px 16px'}}>
+            
+                <Link href="/diary/add_food">
+                  <div className='item'
+                        style={{border:'solid 2px lightgray', borderRadius: '5px', }}>
+                      <Breakfast />아침
+                  </div>
+                </Link>
 
-            <Link href="/diary/add_food">
-              <div
-                className="item"
-                style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-              >
-                <Lunch />
-                <i className="plus circle icon"></i>
-              </div>
-            </Link>
+                <Link href="/diary/add_food">
+                  <div className='item'
+                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
+                      <Lunch />점심
+                  </div>
+                </Link>
 
-            <Link href="/diary/add_food">
-              <div
-                className="item"
-                style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-              >
-                <Dinner />
-                <i className="plus circle icon"></i>
-              </div>
-            </Link>
+                <Link href="/diary/add_food">
+                  <div className='item'
+                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
+                      <Dinner />저녁
+                  </div>
+                </Link>
 
-            <Link href="/diary/add_food">
-              <div
-                className="item"
-                style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-              >
-                <Snack />
-                <i className="plus circle icon"></i>
-              </div>
-            </Link>
-          </div>
+                <Link href="/diary/add_food">
+                  <div className='item'
+                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
+                      <Snack />간식
+                  </div>
+                </Link>
+
+            </div>
         </div>
       ),
     },
