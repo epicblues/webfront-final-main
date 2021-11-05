@@ -1,8 +1,8 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
 
 import { getUserOrRedirect } from './api/auth'
-import Link from 'next/link';
-import { Button, Container } from 'semantic-ui-react';
+
+import { Card, CardHeader, Container } from 'semantic-ui-react';
 
 
 
@@ -12,19 +12,14 @@ const Home: NextPage<any> = ({ name, email }) => {
   return (
 
     <Container textAlign="center">
+      <Card centered >
+        <h3>Hello {name}</h3>
 
-      <h1>hello {name}</h1>
-      <p>This is Main Page</p>
-      <p>Your Email : {email}</p>
-      <Link href="/challenge" >
-        <button className="ui button">Challenge</button>
-      </Link>
-      <Link href="/diary">
-        <button className="ui button">Diary</button>
-      </Link>
-      <Link href="/recipe">
-        <button className="ui button">Recipe</button>
-      </Link>
+        <p>This is Main Page</p>
+        <p>Your Email : {email}</p>
+      </Card>
+
+
     </Container>
 
 
