@@ -26,7 +26,7 @@ export const index = () => {
   const handleSetIsModalVisible = (value) => {
     setIsModalVisible(value);
   };
-  const router = useRouter()
+  const router = useRouter();
 
   const [foodData, setFoodData] = useState([]);
   const [stepData, setStepData] = useState([]);
@@ -43,10 +43,10 @@ export const index = () => {
       category: data.category,
       qtt: Number(data.qtt),
       duration: data.duration,
-      igr_array: foodData.map(food => {
-        return `${food.foodObj.no}/${food.quantity}`
+      igr_array: foodData.map((food) => {
+        return `${food.foodObj.no}/${food.quantity}`;
       }), //  음식(재료) 객체의 배열
-      stepData: stepData.map((step) => step.stepDesc)
+      stepData: stepData.map((step) => step.stepDesc),
     };
 
     const formData = new FormData();
@@ -62,11 +62,10 @@ export const index = () => {
           "Content-Type": "multipart/form-data",
         },
       });
-      router.push('/recipe')
-    } catch(error) {
+      router.push("/recipe");
+    } catch (error) {
       alert(error);
     }
-
   };
   return (
     <div>
@@ -148,7 +147,7 @@ export const index = () => {
 
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
-  return { props: user };
+  return { props: { user } };
 };
 
 export default index;

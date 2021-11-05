@@ -7,7 +7,7 @@ const write = () => {
 
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
-  return { props: user };
+  return { props: { user } };
 };
 
 export default write;
