@@ -8,6 +8,7 @@ const index = ({user, recipe}) => {
   return (
     <div>
       <div>
+      <img src={recipe.steps[0].image_url} />
         {/* 상단 레시피 인트로 이미지, 썸네일과 동일 */}
         {/* <img id="rcp_thumb" src={`../${card.rcp_thumb_url}`} /> */}
         {/* 카테고리 중간 사이즈 폰트 */}
@@ -38,7 +39,6 @@ export const getServerSideProps = async (ctx) => {
   if (recipe) {
     recipe.upload_date = Date.parse(recipe.upload_date);
   }
-  console.log(recipe);
 
   return { props: { user, recipe } };
 };

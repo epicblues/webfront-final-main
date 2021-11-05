@@ -7,7 +7,7 @@ import Categories from "../../components/recipe/main/Categories";
 import Search from "../../components/recipe/main/Search";
 
 const index = () => {
-  const [showCategories, setShowCategories] = useState(false);
+  const [showCategories, setShowCategories] = useState(true);
 
   return (
     <div>
@@ -24,12 +24,12 @@ const index = () => {
       {/* 카테고리 검색 */}
       <input
         type="button"
-        value="카테고리 펼치기"
+        value={showCategories ? "카테고리 접기" : "카테고리 펼치기 "}
         onClick={() => {
           setShowCategories(showCategories ? false : true);
         }}
       />
-      {showCategories ? <Categories></Categories> : null}
+      {showCategories ? <Categories></Categories> :  null }
 
       {/* 찜한 레시피 조회 */}
       <input type="button" value="찜한 레시피" />

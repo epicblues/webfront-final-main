@@ -13,13 +13,12 @@ import recipeListStyles from '../../../styles/RecipeList.module.css'
 
 const index = ({ user, recipes }) => {
     //  레시피 전체 리스트 데이터 받아오기
-    console.log(recipes)
     const [userData, setUserData] = useState(user)
     const [recipeData, setRecipeData] = useState(recipes)
     
     return (
         <div>
-            {/* <ShowCategories></ShowCategories>
+            <ShowCategories></ShowCategories>
             <h1>레시피 : 전체</h1>
             <div>
                 <ul className={recipeListStyles.cards}>
@@ -35,13 +34,13 @@ const index = ({ user, recipes }) => {
                                     >
                                     <a>
                                         <Image 
-                                            src={card.steps[steps.length]}
+                                            src={card.steps.slice(-1)[0].image_url}
                                             width={100}
                                             height={100}
-                                            alt={card.steps[steps.length]}
+                                            alt={card.steps.slice(-1)[0].image_url}
                                         />
                                         <p>{card.title}</p>
-                                        <p>{card.user_id}</p>
+                                        <p>작성자: {card.user_id}</p>
                                         <p>조회수: {card.hit}</p>
                                     </a>
                                 </Link>
@@ -49,7 +48,7 @@ const index = ({ user, recipes }) => {
                         )                        
                     })}
                 </ul>
-            </div> */}
+            </div>
         </div>
     )
 }
@@ -65,7 +64,6 @@ export const getServerSideProps = async (ctx) => {
       .find({user_id : user.id})
       .limit(9)
       .toArray()
-    
     const recipes =JSON.parse(JSON.stringify(data));
         
 

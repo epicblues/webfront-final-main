@@ -19,7 +19,6 @@ const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
     const onSelectBtn = (data) => {
         setSelectedData([data])        
         setIsDataSelected(true)
-        console.log(data.no)
     }
 
     return (
@@ -39,8 +38,9 @@ const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
                             //  검색 리스트 출력
                             <div 
                                 className={modalStyles.products}
+                                key={index}
                             >
-                                <div key={index}>
+                                <div key={value.no}>
                                     <span>
                                         {value.name}   
                                     </span>
