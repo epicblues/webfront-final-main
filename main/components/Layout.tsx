@@ -1,7 +1,7 @@
 import { useRouter } from 'next/dist/client/router'
 import React, { FunctionComponent } from 'react'
 import 'semantic-ui-css/semantic.min.css'
-import { Container, Grid, Card, CommentText, CardContent, Button } from 'semantic-ui-react'
+import { Container, Grid, Card } from 'semantic-ui-react'
 import Link from 'next/link'
 
 
@@ -24,7 +24,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
           (<Grid centered>
 
             <Grid.Row textAlign="center">
-              <button className="ui button facebook" onClick={clickHandler}>Logout</button>
+              <button className="ui button facebook" onClick={clickHandler}>{pageProps.name}님 Logout</button>
 
               <Link href="/challenge" >
                 <button className="ui button">Challenge</button>

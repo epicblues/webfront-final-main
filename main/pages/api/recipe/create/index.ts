@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse, NextConfig } from "next";
-import { ImageFile, Recipe } from "../../../../models";
+import { ImageFile, Ingredient, Recipe } from "../../../../models";
 import clientPromise, { getNextSequence } from "../../../../util/mongodb";
 import { authenticated } from "../../auth";
 import multiparty from "multiparty";
@@ -12,16 +12,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
   await form.parse(req, async (err, fields, files) => {
     console.log(fields, "files:", files);
-
-    const stepNames = fields.stepData[0].split(",");
-    // step Name과 file을 순서대로 맞춰서 steps 배열에 삽입
-    // 이미지 파일 이름 예상 : postId_순서
-    const steps = stepNames.map((desc: string) => {
-      return {
-        desc,
-        image_url: null,
-      };
-    });
+    const client = await clientPromise;
+    const recipeId = await getNextSequence("recipe", client);
 
     // igr_array => split "," => split "/" 시켜야함.
 
@@ -34,15 +26,32 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         tempPath,
         path.join(
           path.resolve("./"),
-          `public/static/recipe/${user_id}_${imageMetaData.fieldName}.${
+          `public/static/recipe/${recipeId}_${imageMetaData.fieldName}.${
             imageMetaData.originalFilename.split(".")[1]
           }`
         )
       );
     }
 
-    const client = await clientPromise;
-    const recipeId = await getNextSequence("recipe", client);
+    const stepNames = fields.stepData[0].split(",") as [];
+    // step Name과 file을 순서대로 맞춰서 steps 배열에 삽입
+    // 이미지 파일 이름 예상 : postId_순서
+    const steps = stepNames.map((desc: string, index: number) => {
+      return {
+        desc,
+        image_url: `/static/recipe/${recipeId}_step_img_${index + 1}.jpg`,
+      };
+    });
+
+    const ingredients: Ingredient[] = fields.igr_array[0]
+      .split(",")
+      .map((item: string): Ingredient => {
+        return {
+          food_id: Number(item.split("/")[0]),
+          quantity: Number(item.split("/")[1]),
+        };
+      });
+
     const createResult = await client
       .db("webfront")
       .collection("recipe")
@@ -56,12 +65,15 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         category: fields.category[0],
         qtt: Number(fields.qtt[0]),
         duration: fields.duration[0],
-        igr_array: fields.igr_array[0].split(","),
-        steps: fields.stepData[0].split, // image_url과 desc 탑재
+        ingredients,
+        steps, // image_url과 desc 탑재
       });
+    res.status(createResult.acknowledged ? 200 : 404).json({
+      status: createResult.acknowledged ? createResult.insertedId : "failed",
+    });
   });
 
-  res.status(200).json({ status: "Success" });
+  res.status(200).json({ status: "Failed" });
 }
 
 export default authenticated(handler);
