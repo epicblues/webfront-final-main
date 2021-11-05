@@ -1,11 +1,11 @@
 import React from "react";
-import ChallengeList from "../../components/challenge/List/ChallengeList";
-import MyChallenge from "../../components/challenge/List/MyChallenge";
+import SmallList from "../../components/challenge/Main/SmallList";
+import MyChallenge from "../../components/challenge/Main/MyChallenge";
 const mylist = () => {
   return (
     <>
-      <div className="littleList">
-        <ChallengeList></ChallengeList>
+      <div className="SamllList">
+        <SmallList> </SmallList>
       </div>
       <div className="myChallenge">
         <MyChallenge></MyChallenge>
