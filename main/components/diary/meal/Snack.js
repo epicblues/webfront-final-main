@@ -3,9 +3,9 @@ import React from 'react';
 function Snack() {
     return(
         <div>
-            <p>
-                간식
-            </p>
+            <a className="ui teal circular label">
+                +
+            </a>
         </div>
     )
 }

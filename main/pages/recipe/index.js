@@ -5,19 +5,12 @@ import Link from "next/link";
 import { getUserOrRedirect } from "../api/auth";
 import Categories from "../../components/recipe/main/Categories";
 import Search from "../../components/recipe/main/Search";
-import clientPromise from "../../util/mongodb";
 
-const index = ({ rcpData }) => {
-  const [_rcpData, setRcpData] = useState(rcpData);
-  const [showCategories, setShowCategories] = useState(false);
+const index = () => {
+  const [showCategories, setShowCategories] = useState(true);
 
   return (
     <div>
-      {/* 로그인 버튼 */}
-      <Link href="/user/login">
-        <button>Login</button>
-      </Link>
-
       {/* 홈 */}
       <Link href="/recipe">
         <h1>Recipe Main</h1>
@@ -31,12 +24,12 @@ const index = ({ rcpData }) => {
       {/* 카테고리 검색 */}
       <input
         type="button"
-        value="카테고리 펼치기"
+        value={showCategories ? "카테고리 접기" : "카테고리 펼치기 "}
         onClick={() => {
           setShowCategories(showCategories ? false : true);
         }}
       />
-      {showCategories ? <Categories></Categories> : null}
+      {showCategories ? <Categories></Categories> :  null }
 
       {/* 찜한 레시피 조회 */}
       <input type="button" value="찜한 레시피" />
@@ -57,31 +50,8 @@ const index = ({ rcpData }) => {
   );
 };
 
-// 식품 데이터 API 완성되면 붙일 것
-// export const getServerSideProps = async (ctx) => {
-//   await getUserOrRedirect(ctx);
-//   const client = await clientPromise;
-//   const rcpData = await client
-//     .db("webfront")
-//     .collection("recipe")
-//     .find({})
-//     .project({ _id: 0 })
-//     .toArray();
-//   console.log(rcpData);
-//   return { props: { rcpData } };
-// };
-
-
 export const getServerSideProps = async (ctx) => {
-    await getUserOrRedirect(ctx);
-    const client = await clientPromise;
-    const rcpData = await client
-      .db("webfront")
-      .collection("recipe")
-      .find({})
-      .project({ _id: 0 })
-      .toArray();
-    console.log(rcpData);
-    return { props: { rcpData } };
-  };
+  const user = await getUserOrRedirect(ctx);
+  return { props: { user } };
+};
 export default index;

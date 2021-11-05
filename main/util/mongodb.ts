@@ -28,6 +28,22 @@ if (process.env.NODE_ENV === "development") {
   clientPromise = client.connect();
 }
 
+export async function getNextSequence(schemaName: string, client: MongoClient) {
+  try {
+    const result = await client
+      .db("webfront")
+      .collection("counters")
+      .findOneAndUpdate(
+        { _id: `${schemaName}id` },
+        { $inc: { sequence_value: 1 } }
+      );
+    if (result.value) return result.value["sequence_value"];
+    else throw new Error("시퀀스 입력 실패!!!");
+  } catch (error) {
+    throw error;
+  }
+}
+
 // 모듈 형태로 Connection을 형성한 client 객체를 내보내서
 // 자원을 많이 소모하는 Connection 생성을 최소화한다.
 // Spring 에서 DataSource 같은 개념?

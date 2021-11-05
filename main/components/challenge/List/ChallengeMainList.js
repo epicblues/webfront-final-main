@@ -1,9 +1,11 @@
-import React from "react";
-
+import React, { useState } from "react";
+import ChallengeJoin from "../../challenge/List/ChallengeJoin";
+import ChallengeList from "../../challenge/List/ChallengeList";
 const ChallengeMainList = () => {
+  const [challengeIds, setChallengeIds] = useState("");
   const challenges = [
     {
-      id: 1,
+      id: "1",
       userId: "강호동",
       challengeName: "10000kcal 챌린지",
       challengeKind: "diet",
@@ -14,7 +16,7 @@ const ChallengeMainList = () => {
       endDate: "2021.11.26",
     },
     {
-      id: 2,
+      id: "2",
       userId: "정준하",
       challengeName: "100000kcal 챌린지",
       challengeKind: "diet",
@@ -25,7 +27,7 @@ const ChallengeMainList = () => {
       endDate: "2021.11.5",
     },
     {
-      id: 3,
+      id: "3",
       userId: "유재석",
       challengeName: "20000kcal 챌린지",
       challengeKind: "diet",
@@ -36,7 +38,7 @@ const ChallengeMainList = () => {
       endDate: "2021.11.2",
     },
     {
-      id: 4,
+      id: "4",
       userId: "백종원",
       challengeName: "나만의 한식 레시피",
       challengeKind: "receipe",
@@ -49,20 +51,17 @@ const ChallengeMainList = () => {
   ];
   return (
     <div className="challengeListMain">
-      {challenges.map((challenges, index) => {
+      {challenges.map((challenges) => {
         return (
-          <ul>
-            <li>{challenges.id}</li>
-            <li>{challenges.userId}</li>
-            <li>{challenges.challengeName}</li>
-            <li>{challenges.challengeKind}</li>
-            <li>{challenges.challengeContent}</li>
-            <li>{challenges.joinCount}</li>
-            <li>{challenges.points}</li>
-            <li>{challenges.startDate}</li>
-            <li>{challenges.endDate}</li>
-            <challenges key={index}></challenges>
-          </ul>
+          <>
+            <ChallengeList challenges={challenges} key={challenges.id} />
+            <div className="challengeJoin">
+              <ChallengeJoin
+                challenges={challenges}
+                key={challenges.id}
+              ></ChallengeJoin>
+            </div>
+          </>
         );
       })}
     </div>

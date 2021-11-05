@@ -18,10 +18,10 @@ const AddReview = ({ onAdd }) => {
     }
         
     return (
-        <form className='ui form' onSubmit={onSubmit}>
+        <form className='ui form' onSubmit={onSubmit} style={{padding: 16}}>
             <div className='field'>
                 <label style={{textAlign: 'left'}}>오늘의 일기
-                    <i className='pencil alternate icon'></i>
+                    <i className='edit icon'></i>
                 </label>
                 <textarea type='text'
                         placeholder='Add Review'

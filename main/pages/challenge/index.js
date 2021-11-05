@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import "semantic-ui-css/semantic.min.css";
-import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
-import MyChallenge from "../../components/challenge/List/MyChallenge";
 import { getUserOrRedirect } from "../api/auth";
 import { Button } from "semantic-ui-react";
 const index = () => {
@@ -15,6 +13,9 @@ const index = () => {
       <Link href="challenge/list">
         <Button>챌린지 리스트 보기 </Button>
       </Link>
+      <Link href="challenge/mylist">
+        <Button>나의 챌린지 보기</Button>
+      </Link>
     </>
   );
 };
@@ -22,6 +23,6 @@ const index = () => {
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
   console.log("user:", user);
-  return { props: user };
+  return { props: { user } };
 };
 export default index;
