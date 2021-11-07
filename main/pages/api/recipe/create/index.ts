@@ -5,10 +5,13 @@ import { authenticated } from "../../auth";
 import multiparty from "multiparty";
 import fs from "fs";
 import path from "path";
+import axios from "axios";
+import FormData from "form-data";
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id: user_id } = JSON.parse(req.headers.authorization as string);
   const form = new multiparty.Form();
+  const formData = new FormData();
 
   await form.parse(req, async (err, fields, files) => {
     console.log(fields, "files:", files);
@@ -31,7 +34,24 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           }`
         )
       );
+      const imageFile = fs.readFileSync(tempPath);
+      // const imageFile = fs.createReadStream(tempPath);
+
+      formData.append("images", imageFile);
     }
+    formData.append("desc", "muyaho");
+    console.log(formData);
+
+    const result = await axios.post(
+      "http://localhost:5000/image/post/hello",
+      formData,
+      {
+        headers: {
+          "Content-Type":
+            "multipart/form-data; boundary=" + formData.getBoundary(),
+        },
+      }
+    );
 
     const stepNames = fields.stepData[0].split(",") as [];
     // step Name과 file을 순서대로 맞춰서 steps 배열에 삽입
@@ -73,7 +93,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     });
     return;
   });
-  
 }
 
 export default authenticated(handler);

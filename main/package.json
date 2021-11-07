@@ -13,6 +13,7 @@
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "cookie": "^0.4.1",
+    "form-data": "^4.0.0",
     "jsonwebtoken": "^8.5.1",
     "multiparty": "^4.2.2",
     "next": "11.1.2",
