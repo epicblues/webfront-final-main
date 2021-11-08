@@ -1,5 +1,9 @@
-# 애플리케이션 핵심 기능
+# 사용 애플리케이션
+## 클라이언트 Next.js -  SSR 기능이 추가된 React Framework, Vercel을 통한 배포. 이미지를 요구하지 않는 API 백엔드 보조 기능.
+## 백엔드 Node.js(Express) - AWS EC2를 통한 배포. 이미지 파일 조작이 요구되는 폼 데이터 요청을 Handling
+## 데이터베이스 MongoDB Atlas - 클라우드 지원. 회원, 핵심 컨텐츠 관련 데이터 저장. 이미지 파일 메타 데이터 저장(URL)
 
+# 애플리케이션 핵심 기능
 
 
 ## 요리 레시피 공유
@@ -19,7 +23,7 @@
 
 - Recipe, Challenge, Diary 는 User의 Id를 참조한다
 
-- (임시)이미지의 디렉토리 주소는 /public/static/{recipe,challenge,diary,user}/사용자ID_게시물ID_순서.jpg
+- (임시)이미지의 디렉토리 주소는 /public/static/{recipe,challenge,diary,user}_사용자ID_게시물ID_순서.jpg
 
   ### Recipe
 
