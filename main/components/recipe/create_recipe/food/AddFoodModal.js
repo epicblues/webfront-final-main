@@ -27,6 +27,7 @@ const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
                 <h3>재료 검색하기</h3>
                 <h4>TODO: 선생님께 map() key에러 질문</h4>
                 <input 
+                    autoFocus={true}
                     type='text' 
                     placeholder='음식/제품명 검색하기'
                     onChange={(event) => handleSearch(event)}

@@ -28,6 +28,7 @@ const SelectedFoodMap = ({ foodData, setFoodData, selectedData, setIsModalVisibl
                             </span>
                             <br />
                             <input
+                                autoFocus={true}
                                 ref={inputRef}
                                 type='text'
                                 placeholder='선택한 음식의 양'
