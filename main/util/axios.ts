@@ -8,7 +8,6 @@ export const postStaticAxios = async (
   formData: FormData
 ) => {
   const axiosInstance = axios.create({
-    baseURL: process.env.STATIC_SERVER_URL || "http://localhost:5000",
     headers: {
       Authorization: "Bearer " + token,
     },

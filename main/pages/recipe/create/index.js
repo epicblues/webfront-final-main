@@ -55,7 +55,11 @@ export const index = ({ user }) => {
       formData.append(`step_img_${index + 1}`, step.stepImageFile);
     });
     try {
-      await postStaticAxios("/api/recipe/create", user.token, formData);
+      await postStaticAxios(
+        user.url + "/api/recipe/create",
+        user.token,
+        formData
+      );
 
       router.push("/recipe");
     } catch (error) {

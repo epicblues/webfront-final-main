@@ -36,6 +36,10 @@ export const getUserOrRedirect = async (
     const user = verify(jwt, process.env.UUID_SECRET as string) as JwtPayload;
     // 토큰 인증이 성공할 경우 토큰의 user 데이터를 return
     user.token = jwt;
+    const url = process.env.STATIC_SERVER_URL || "http://localhost:5000";
+    console.log(url);
+    user.url = url;
+    // static server url 탑재.
     return user;
   } catch (error) {
     // 토큰 인증이 실패할 경우 redirect
