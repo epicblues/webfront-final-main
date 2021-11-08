@@ -26,7 +26,7 @@ const login: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) 
     if (isValidPW) {
       const jwt = sign({ email: result.email, name: result.name, id: result._id }, secret, { expiresIn: '1h' });
       // 인증 토큰을 생성하고 쿠키에 저장
-      res.setHeader("Set-Cookie", cookie.serialize('auth', jwt, { httpOnly: true, secure: process.env.NODE_ENV !== 'development', sameSite: 'strict', maxAge: 3600, path: '/' }))
+      res.setHeader("Set-Cookie", cookie.serialize('auth', jwt, { httpOnly: true, secure: process.env.NODE_ENV !== 'development', sameSite: true, maxAge: 3600, path: '/', }))
     }
 
     res.status(200).json(isValidPW ? { status: "OK" } : { status: "Failed" });
