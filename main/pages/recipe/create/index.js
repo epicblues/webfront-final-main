@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { getUserOrRedirect } from "../../api/auth";
-import axios from "axios";
+import { postStaticAxios } from "../../../util/axios";
 
 import ModalBlackout from "../../../components/recipe/create_recipe/food/ModalBlackout";
 // Food(재료)
@@ -18,7 +18,7 @@ import { useRouter } from "next/dist/client/router";
 const initialValues = {};
 
 //  작성폼
-export const index = () => {
+export const index = ({ user }) => {
   //  Modal Data, 렌더링 로직
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleSetIsModalVisible = (value) => {
@@ -55,11 +55,8 @@ export const index = () => {
       formData.append(`step_img_${index + 1}`, step.stepImageFile);
     });
     try {
-      await axios.put("/api/recipe/create", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await postStaticAxios("/api/recipe/create", user.token, formData);
+
       router.push("/recipe");
     } catch (error) {
       alert(error);
