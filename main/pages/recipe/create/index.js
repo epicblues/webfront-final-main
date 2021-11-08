@@ -21,8 +21,8 @@ const initialValues = {};
 export const index = () => {
   //  Modal Data, 렌더링 로직
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const handleSetIsModalVisible = (value) => {
-    setIsModalVisible(value);
+  const handleSetIsModalVisible = (val) => {
+    setIsModalVisible(val);
   };
   const router = useRouter();
 
@@ -75,6 +75,7 @@ export const index = () => {
       <form onSubmit={handleSubmit(submitBtnClick)}>
         <label>요리명</label>
         <input
+          autoFocus={true}
           type="text"
           placeholder=" ex) 소고기 미역국"
           {...register("title")}
