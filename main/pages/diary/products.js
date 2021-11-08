@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import axios from "axios";
 import { Button, Header, Modal } from 'semantic-ui-react';
 
 export default function Products({ setCart, cart }) {
-
+  const inputRef = useRef();
   const [products] = useState([]);
+  const [selectedData, setSelectedData] = useState([]);
 
   const [style, setStyle] = useState();
   
@@ -85,21 +86,42 @@ export default function Products({ setCart, cart }) {
                         </div>
                       }
                     >
-                      <Modal.Header>Select</Modal.Header>
+                      <Modal.Header>선택한 음식</Modal.Header>
                       <Modal.Content>
                           <Modal.Description>
                               <Header>영양정보</Header>
-                              <p>
-                                  계산
-                              </p>
+                              {/* {selectedData.map((value, index) => {
+                                return (
+                                    <>
+                                    <div key={index}>
+                                        <span>
+                                            {value.name}
+                                        </span>
+                                        /
+                                        <span>
+                                            {value.mfr}
+                                        </span>
+                                        <br />
+                                        <input
+                                            ref={inputRef}
+                                            type='text'
+                                            placeholder='선택한 음식의 양'
+                                        />
+                                        <span>
+                                            단위:({value.unit})
+                                        </span>
+                                    </div>
+                                    </>
+                                );
+                            })} */}
                           </Modal.Description>
                       </Modal.Content>
                       <Modal.Actions>
                           <Button color='black' onClick={() => setOpen(false)}>
-                          Nope
+                          취소
                           </Button>
                           <Button
-                          content="Okay"
+                          content="확인"
                           labelPosition='right'
                           icon='checkmark'
                           onClick={() => {setOpen(false); addToCart(value)}}

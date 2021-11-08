@@ -11,6 +11,8 @@ import Dinner from "../../components/diary/meal/Dinner";
 import Snack from "../../components/diary/meal/Snack";
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
+// Bmr
+import Bmr from "../../components/diary/Bmr";
 
 const index = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -119,6 +121,10 @@ const index = () => {
           })}
         </ul>
         <div>{tabContArr[activeIndex].tabCont}</div>
+      </div>
+
+      <div>
+        <Bmr />
       </div>
     </div>
     // End of Wrapper

@@ -1,4 +1,5 @@
 import React from 'react';
+import ListModal from '../../components/diary/meal_detail/ListModal';
 
 const PAGE_PRODUCTS = 'products';
 const PAGE_CART = 'cart';
