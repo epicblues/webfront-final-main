@@ -1,18 +1,11 @@
 import React from "react";
 
 import ImageUpload from "./ImageUpload";
-
+import Product from "./Product";
 const PAGE_PRODUCTS = "products";
 const PAGE_CART = "cart";
 
-export default function Cart({
-  diary,
-  setDiary,
-  setCart,
-  page,
-  setPage,
-  type,
-}) {
+export default function Cart({ diary, setDiary, page, setPage, type }) {
   const cart = diary.meals[type].foods;
   const navigateTo = (nextPage) => {
     setPage(nextPage);
@@ -37,13 +30,26 @@ export default function Cart({
   };
 
   const setQuantity = (product, total) => {
-    const newCart = [...cart];
-    newCart.find((item) => item.name === product.name).quantity = total;
-    setCart(newCart);
+    const newCart = [...diary.meals[type].foods];
+
+    setDiary((originalDiary) => {
+      const newDiary = { ...originalDiary };
+      newDiary.meals[type].foods = newCart.map((item) => {
+        if (item.no === product.no) {
+          item.quantity = total;
+        }
+        return item;
+      });
+      return newDiary;
+    });
   };
 
   const removeFromCart = (productToRemove) => {
-    setCart(cart.filter((product) => product !== productToRemove));
+    const newDiary = { ...diary };
+    newDiary.meals[type].foods = cart.filter(
+      (product) => product.no !== productToRemove.no
+    );
+    setDiary(newDiary);
   };
 
   return (
@@ -56,50 +62,12 @@ export default function Cart({
       </div>
       <div className="ui middle aligned divided list">
         {cart.map((product, index) => (
-          <div className="item" key={index} style={{ padding: "8px 0" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                textAlign: "left",
-              }}
-            >
-              <div className="header">
-                {product.name}
-                <div className="description">
-                  {product.mfr} / {product.serve}{product.unit}
-                </div>
-              </div>
-              <div className="ui input">
-                <p style={{ margin: "8px 10px 0 0" }}>
-                  {product.kcal}Kcal
-                  <span
-                    style={{
-                      fontWeight: 600,
-                      fontSize: "1rem",
-                      padding: "0 0 0 8px",
-                    }}
-                  >
-                    {" "}
-                    x
-                  </span>
-                </p>
-                <input
-                  style={{ marginRight: 8 }}
-                  type="text"
-                  value={product.quantity}
-                  onChange={(e) =>
-                    setQuantity(product, parseInt(e.target.value))
-                  }
-                />
-                <i
-                  className="red large minus circle icon"
-                  style={{ marginTop: 8 }}
-                  onClick={() => removeFromCart(product)}
-                ></i>
-              </div>
-            </div>
-          </div>
+          <Product
+            product={product}
+            index={index}
+            setQuantity={setQuantity}
+            removeFromCart={removeFromCart}
+          />
         ))}
       </div>
 

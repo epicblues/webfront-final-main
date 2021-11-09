@@ -15,8 +15,15 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
 
   const addToCart = (value) => {
     const prevMeal = diary.meals[type];
-
-    prevMeal.foods.push(value);
+    const foodIndex = prevMeal.foods.findIndex(
+      (originalFood) => originalFood.no === value.no
+    );
+    if (foodIndex !== -1) {
+      prevMeal.foods[foodIndex].quantity += 1;
+    } else {
+      value.quantity = 1;
+      prevMeal.foods.push(value);
+    }
     prevMeal.calories += value.kcal;
     prevMeal.fat += value.fat;
     prevMeal.carbs += value.carbs;
@@ -80,7 +87,8 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
                         <div className="header">
                           {value.name}
                           <div className="description">
-                            {value.mfr} / {value.serve}{value.unit}
+                            {value.mfr} / {value.serve}
+                            {value.unit}
                           </div>
                         </div>
                         <div

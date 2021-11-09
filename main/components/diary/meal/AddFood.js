@@ -19,7 +19,11 @@ function AddFood({ type, setWritingMode, diary, setDiary }) {
 
   // Count
   const getCartTotal = () => {
-    return diary.meals[type]?.foods.length || 0;
+    return (
+      diary.meals[type].foods.reduce((prev, current) => {
+        return prev + current.quantity;
+      }, 0) || 0
+    );
   };
 
   return (
@@ -68,8 +72,6 @@ function AddFood({ type, setWritingMode, diary, setDiary }) {
           type={type}
           diary={diary}
           setDiary={setDiary}
-          cart={cart}
-          setCart={setCart}
           page={page}
           setPage={setPage}
         />
