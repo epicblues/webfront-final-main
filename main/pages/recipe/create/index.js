@@ -44,7 +44,11 @@ export const index = ({ user }) => {
       igr_array: foodData.map((food) => {
         return `${food.foodObj.no}/${food.quantity}`;
       }), //  음식(재료) 객체의 배열
-      stepData: stepData.map((step) => step.stepDesc),
+      stepData: JSON.stringify(
+        stepData.map((step) => {
+          return { desc: step.stepDesc };
+        })
+      ),
     };
 
     const formData = new FormData();
