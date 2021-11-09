@@ -9,9 +9,7 @@ const ModalNutrition = ({setIsModalVisible, ingredients}) => {
     const forEachNutrition = () => {
         ingredients.forEach((value, index) => {
             return(
-                [{
-                    
-                }]
+                console.log(value)
             );
         })
         let summarizeNutrition = {
@@ -34,7 +32,7 @@ const ModalNutrition = ({setIsModalVisible, ingredients}) => {
             식품정보 Modal
             <button
                 type='button'
-                onClick={() => onModalBtn(false)}
+                onClick={() => onModalBtn(false), forEachNutrition()}
             >
                 X
             </button>

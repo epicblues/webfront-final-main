@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Image from "next/image";
 import clientPromise from "../../../../util/mongodb";
 import { getUserOrRedirect } from "../../../api/auth";
 
@@ -13,13 +14,39 @@ const index = ({user, recipe}) => {
   return (
     <div>
       <div>
-        <img src={recipe.steps.slice(-1)[0].image_url} />
+        <Image 
+          src={user.url + recipe.steps.slice(-1)[0].image_url}
+          width={500}
+          height={300}
+          alt='main image'
+        />
         <h2>{recipe.title}</h2>
         <p>{recipe.desc}</p>
         <p>등록일: {recipe.upload_date}</p>
       </div>
       <div>
         <h3>레시피 재료</h3>
+        {recipe.ingredients.map((value,index) => {
+                        return (
+                            <div key={Math.random()}>
+                                <span>
+                                    {value.food.name}
+                                    {" "}
+                                </span>
+                                <span>
+                                    (제조사: {value.food.mfr})
+                                    {" "}
+                                </span>
+                                <span>
+                                    {value.quantity}
+                                </span>
+                                <span>
+                                    {value.food.unit}
+                                </span>
+                            </div>
+                        );
+                    })
+                }
         
       </div>
       <div>
@@ -44,7 +71,12 @@ const index = ({user, recipe}) => {
             <div key={Math.random()}>
               <p>Step {index + 1}.</p>
               <p>{value.desc}</p>
-              <img src={value.image_url} />
+              <Image 
+                src={user.url + value.image_url}
+                width={500}
+                height={300}
+                alt='main image'
+              />
               <hr />
             </div>
           );

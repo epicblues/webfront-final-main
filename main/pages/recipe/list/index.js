@@ -37,7 +37,7 @@ const index = ({ user, recipes }) => {
                       src={user.url + card.steps.slice(-1)[0].image_url}
                       width={100}
                       height={100}
-                      alt={card.steps.slice(-1)[0].image_url}
+                      alt='thumbnail image'
                     />
                     <p>{card.title}</p>
                     <p>작성자: {card.user_id}</p>
@@ -59,7 +59,7 @@ export const getServerSideProps = async (ctx) => {
   const data = await (await clientPromise)
     .db("webfront")
     .collection("recipe")
-    .find({ user_id: user.id })
+    .find({})
     .limit(9)
     .toArray();
   const recipes = JSON.parse(JSON.stringify(data));
