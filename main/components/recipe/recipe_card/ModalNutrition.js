@@ -3,36 +3,15 @@ import React, {useState} from 'react'
 const ModalNutrition = ({setIsModalVisible, ingredients}) => {
     const onModalBtn = (val) => {
         setIsModalVisible(val)
-        console.log(ingredients)
     }
 
-    const forEachNutrition = () => {
-        ingredients.forEach((value, index) => {
-            return(
-                console.log(value)
-            );
-        })
-        let summarizeNutrition = {
-            kcal: '',
-            carbs: '',
-            sugars: '',
-            prot: '',
-            fat: '',
-            stdfat: '',
-            trnfat: '',
-            chole: '',
-            sodium: ''
-        }
-    }
-
-    
     const [totalNutrition, setTotalNutrition] = useState()
     return (
         <div>
             식품정보 Modal
             <button
                 type='button'
-                onClick={() => onModalBtn(false), forEachNutrition()}
+                onClick={() => onModalBtn(false)}
             >
                 X
             </button>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import modalStyles from '../../../../styles/Modal.module.css';
 import SelectedFoodMap from './SelectedFoodMap';
 
-const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
+const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible, nutritionData, setNutritionData }) => {
     //  검색필터
     const [filteredData, setFilteredData] = useState([]);
     const [selectedData, setSelectedData] = useState([]);
@@ -25,7 +25,6 @@ const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
         <div className={modalStyles.modal}>
             <div>
                 <h3>재료 검색하기</h3>
-                <h4>TODO: 선생님께 map() key에러 질문</h4>
                 <input 
                     autoFocus={true}
                     type='text' 
@@ -70,6 +69,8 @@ const AddFoodModal = ({ foodData, setFoodData, setIsModalVisible }) => {
                     selectedData={selectedData}
                     setIsModalVisible={setIsModalVisible}
                     isDataSelected={isDataSelected}
+                    nutritionData={nutritionData}
+                    setNutritionData={setNutritionData}
                 />
             </div>
             <div>

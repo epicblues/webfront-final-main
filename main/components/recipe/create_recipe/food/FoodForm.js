@@ -1,7 +1,7 @@
 import React from 'react'
 import AddFoodModal from './AddFoodModal'
 
-const FoodForm = ({ foodData, setFoodData, isModalVisible, setIsModalVisible }) => {
+const FoodForm = ({ foodData, setFoodData, isModalVisible, setIsModalVisible, nutritionData, setNutritionData }) => {
     const onModalBtn = (active) => {
         setIsModalVisible(active)
 
@@ -53,6 +53,8 @@ const FoodForm = ({ foodData, setFoodData, isModalVisible, setIsModalVisible }) 
                         foodData={foodData}
                         setFoodData={setFoodData}
                         setIsModalVisible={setIsModalVisible}
+                        nutritionData={nutritionData}
+                        setNutritionData={setNutritionData}
                     />
                 )}
             </div>

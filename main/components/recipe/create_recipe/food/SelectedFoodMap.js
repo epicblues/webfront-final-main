@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-const SelectedFoodMap = ({ foodData, setFoodData, selectedData, setIsModalVisible, isDataSelected}) => {
+const SelectedFoodMap = ({ foodData, setFoodData, selectedData, setIsModalVisible, isDataSelected, nutritionData, setNutritionData}) => {
     const inputRef = useRef();
     const onSubmitBtn = (foodObj) => {
         setIsModalVisible(false);
@@ -10,6 +10,13 @@ const SelectedFoodMap = ({ foodData, setFoodData, selectedData, setIsModalVisibl
                 quantity: inputRef.current.value}
         ]
         setFoodData(foodDataToSubmit)
+        const coefficient = inputRef.current.value / foodObj.serve
+        const copiedNutritionData = Object.assign({}, nutritionData)
+        for (let key in copiedNutritionData) {
+           copiedNutritionData[key] += foodObj[key] * coefficient
+        }
+
+        setNutritionData(copiedNutritionData)
     }
     return (
         <>

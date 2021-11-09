@@ -26,6 +26,19 @@ export const index = ({ user }) => {
   };
   const router = useRouter();
 
+  const [nutritionData, setNutritionData] = useState(
+    {
+      kcal: 0,
+      carbs: 0,
+      sugars: 0,
+      prot: 0,
+      fat: 0,
+      stdfat: 0,
+      trnfat: 0,
+      chole: 0,
+      sodium: 0
+    }
+  );
   const [foodData, setFoodData] = useState([]);
   const [stepData, setStepData] = useState([]);
   const { register, handleSubmit } = useForm();
@@ -136,8 +149,10 @@ export const index = ({ user }) => {
         <FoodForm
           foodData={foodData}
           setFoodData={setFoodData}
-          setIsModalVisible={setIsModalVisible}
           isModalVisible={isModalVisible}
+          setIsModalVisible={setIsModalVisible}
+          nutritionData={nutritionData}
+          setNutritionData={setNutritionData}
         />
 
         <h3>요리 순서</h3>
