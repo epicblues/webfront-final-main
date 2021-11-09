@@ -29,13 +29,42 @@ export interface ImageFile {
 }
 
 export interface Diary {
-  _id: number;
-  user_email: string;
+  user_id: number;
   upload_date: Date;
-  calorie_target: number;
-  calorie_total: number;
-  success: boolean;
-  review: string;
+  reviews: [];
+  meals: [
+    {
+      foods: [];
+      calories: 0;
+      fat: 0;
+      protein: 0;
+      carbs: 0;
+      image: null;
+    },
+    {
+      foods: [];
+      calories: 0;
+      fat: 0;
+      protein: 0;
+      carbs: 0;
+      image: null;
+    },
+    {
+      foods: [];
+      calories: 0;
+      fat: 0;
+      protein: 0;
+      carbs: 0;
+      image: null;
+    },
+    { foods: []; calories: 0; fat: 0; protein: 0; carbs: 0; image: null }
+  ];
+  total: {
+    calories: 0;
+    fat: 0;
+    protein: 0;
+    carbs: 0;
+  };
 }
 export interface Ingredient {
   food_id: number;

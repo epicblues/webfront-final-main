@@ -3,28 +3,19 @@ import Link from "next/link";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ko from "date-fns/locale/ko";
-import { Dropdown, Button, Header, Form, Container } from "semantic-ui-react";
+import { Button, Header, Container } from "semantic-ui-react";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 registerLocale("ko", ko);
 
 const ChallengeWrite = () => {
-  const [checkedInputs, setCheckInputs] = useState(false);
-  const [checkedInputs2, setCheckInputs2] = useState(false);
-  const [checkedInputs3, setCheckInputs3] = useState(false);
-  const [checkedInputs4, setCheckInputs4] = useState(false);
-  const [checkedInputs5, setCheckInputs5] = useState(false);
-  const [dropdown, setDropDown] = useState("");
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
-  const [message, setMessage] = useState("");
   const [challenge, setChallenge] = useState({
     title: "",
     startDate: "",
     endDate: "",
 
-    checkedInputs: "",
+    challengeType: "",
     diet: {
       type: "",
       dailyCalorie: "",
@@ -39,22 +30,11 @@ const ChallengeWrite = () => {
   {
     /*챌린지 명 기능*/
   }
-  const resetForm = () => {
-    setMessage("");
-    setEndDate("");
-    setStartDate("");
-    setCheckInputs(false);
-    setCheckInputs2(false);
-    setCheckInputs3(false);
-    setCheckInputs4(false);
-    setCheckInputs5(false);
-    setDropDown("");
-  };
 
   const onClick = (e) => {
-    alert(message);
+    alert(challenge.title);
     e.preventDefault();
-    console.log(message);
+    console.log(challenge.title);
   };
 
   const onKeyPress = (e) => {
@@ -64,7 +44,22 @@ const ChallengeWrite = () => {
   };
   const onSubmit = (event) => {
     event.preventDefault();
-    resetForm();
+    setChallenge({
+      title: "",
+      startDate: "",
+      endDate: "",
+
+      challengeType: "",
+      diet: {
+        type: "",
+        dailyCalorie: "",
+        condition: "",
+      },
+      receipe: {
+        kind: "",
+        uploadCount: "",
+      },
+    });
     console.log(challenge);
   };
 
@@ -106,10 +101,9 @@ const ChallengeWrite = () => {
             type="text"
             name="title"
             placeholder="챌린지의 이름을 입력해주세요"
-            value={message}
+            value={challenge.title}
             onChange={(e) => {
-              setMessage(e.currentTarget.value),
-                setChallenge({ title: message });
+              setChallenge({ ...challenge, title: e.currentTarget.value });
             }}
             onKeyPress={onKeyPress}
           />
@@ -139,13 +133,15 @@ const ChallengeWrite = () => {
             name="startDate"
             locale="ko"
             dateFormat="yyyy년 MM월 dd일"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            selected={challenge.startDate}
+            onChange={(date) => setChallenge({ ...challenge, startDate: date })}
             selectsStart
+            placeholderText="챌린지 시작일 선택"
             minDate={new Date()}
-            startDate={startDate}
-            endDate={endDate}
+            startDate={challenge.startDate}
+            endDate={challenge.endDate}
             withPortal
+            popperModifiers
           />
 
           <Header as="h4" inverted color="blue" className="challengeDateTitle">
@@ -156,12 +152,20 @@ const ChallengeWrite = () => {
             name="endDate"
             locale="ko"
             dateFormat="yyyy년 MM월 dd일"
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
+            selected={challenge.endDate}
+            placeholderText="챌린지 종료일 선택"
+            onChange={(date) => setChallenge({ ...challenge, endDate: date })}
             selectsEnd
-            endDate={endDate}
-            minDate={startDate}
+            endDate={challenge.endDate}
+            minDate={challenge.startDate}
             withPortal
+            popperModifier={{
+              //모바일 web환경에서 화면을 벗어나지 않도록 하는 설정
+              preventOverflow: {
+                enabled: true,
+              },
+            }}
+            popperPlacement="auto" // 화면 중앙에 팝업
           />
         </section>
         <ChallengeCondition challenge={challenge} setChallenge={setChallenge} />

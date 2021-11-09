@@ -4,18 +4,69 @@ import { getUserOrRedirect } from "../api/auth";
 import Link from "next/link";
 // Date
 import PickDate from "../../components/diary/PickDate";
-// meal
-import Breakfast from "../../components/diary/meal/Breakfast";
-import Lunch from "../../components/diary/meal/Lunch";
-import Dinner from "../../components/diary/meal/Dinner";
-import Snack from "../../components/diary/meal/Snack";
+
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
 // Bmr
 import Bmr from "../../components/diary/Bmr";
+import AddFood from "../../components/diary/AddFood";
 
-const index = () => {
+export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
+  0,
+  1,
+  2,
+  3,
+  "DEFAULT",
+]; // Diary용 상수 설정
+
+const index = ({ user }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [writingMode, setWritingMode] = useState("DEFAULT");
+  const [diary, setDiary] = useState({
+    user_id: user.id,
+    upload_date: new Date(),
+    reviews: [],
+    meals: [
+      {
+        foods: [],
+        calories: 0,
+        fat: 0,
+        protein: 0,
+        carbs: 0,
+        image: null,
+      },
+      {
+        foods: [],
+        calories: 0,
+        fat: 0,
+        protein: 0,
+        carbs: 0,
+        image: null,
+      },
+      {
+        foods: [],
+        calories: 0,
+        fat: 0,
+        protein: 0,
+        carbs: 0,
+        image: null,
+      },
+      {
+        foods: [],
+        calories: 0,
+        fat: 0,
+        protein: 0,
+        carbs: 0,
+        image: null,
+      },
+    ],
+    total: {
+      calories: 0,
+      fat: 0,
+      protein: 0,
+      carbs: 0,
+    },
+  });
 
   const tabClickHandler = (index) => {
     setActiveIndex(index);
@@ -35,51 +86,94 @@ const index = () => {
         </li>
       ),
       tabCont: (
-        <div style={{border: 'solid 2px lightgray',
-                    borderRadius: '5px'}}>
-            
-            <h2 style={{textAlign: 'left', padding: '16px'}}>
-              오늘의 식단
-              <i className="utensils icon" style={{marginLeft: 4}}></i>
-            </h2>
-            
+        <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
+          <h2 style={{ textAlign: "left", padding: "16px" }}>
+            오늘의 식단
+            <i className="utensils icon" style={{ marginLeft: 4 }}></i>
+          </h2>
 
-            <div className="container"
-                  style={{display: 'grid',
-                          gridTemplateColumns: '5fr 5fr',
-                          gridGap: '1rem',
-                          gridAutoRows:'200px',
-                          padding: '0 16px 16px'}}>
-            
-                <Link href="/diary/add_food">
-                  <div className='item'
-                        style={{border:'solid 2px lightgray', borderRadius: '5px', }}>
-                      <Breakfast />아침
-                  </div>
-                </Link>
-
-                <Link href="/diary/add_food">
-                  <div className='item'
-                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
-                      <Lunch />점심
-                  </div>
-                </Link>
-
-                <Link href="/diary/add_food">
-                  <div className='item'
-                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
-                      <Dinner />저녁
-                  </div>
-                </Link>
-
-                <Link href="/diary/add_food">
-                  <div className='item'
-                        style={{border:'solid 2px lightgray', borderRadius: '5px'}}>
-                      <Snack />간식
-                  </div>
-                </Link>
-
+          <div
+            className="container"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "5fr 5fr",
+              gridGap: "1rem",
+              gridAutoRows: "200px",
+              padding: "0 16px 16px",
+            }}
+          >
+            <div
+              className="item"
+              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
+            >
+              <div>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setWritingMode(BREAKFAST);
+                  }}
+                  className="ui teal circular label"
+                >
+                  +
+                </a>
+              </div>
+              아침
             </div>
+
+            <div
+              className="item"
+              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
+            >
+              <div>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setWritingMode(LUNCH);
+                  }}
+                  className="ui teal circular label"
+                >
+                  +
+                </a>
+              </div>
+              점심
+            </div>
+
+            <div
+              className="item"
+              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
+            >
+              <div>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setWritingMode(DINNER);
+                  }}
+                  className="ui teal circular label"
+                >
+                  +
+                </a>
+              </div>
+              저녁
+            </div>
+
+            <div
+              className="item"
+              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
+            >
+              <div>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setWritingMode(SNACK);
+                  }}
+                  className="ui teal circular label"
+                >
+                  +
+                </a>
+              </div>
+              간식
+            </div>
+          </div>
         </div>
       ),
     },
@@ -106,27 +200,64 @@ const index = () => {
 
   return (
     // Wrapper
-    <div className="ui center aligned container">
-      <div className="DatePart">
-        <PickDate></PickDate>
-      </div>
+    <>
+      {writingMode === BREAKFAST && (
+        <AddFood
+          diary={diary}
+          setDiary={setDiary}
+          type={BREAKFAST}
+          setWritingMode={setWritingMode}
+        />
+      )}
+      {writingMode === LUNCH ? (
+        <AddFood
+          diary={diary}
+          setDiary={setDiary}
+          type={LUNCH}
+          setWritingMode={setWritingMode}
+        />
+      ) : null}
+      {writingMode === DINNER ? (
+        <AddFood
+          diary={diary}
+          setDiary={setDiary}
+          type={DINNER}
+          setWritingMode={setWritingMode}
+        />
+      ) : null}
+      {writingMode === SNACK ? (
+        <AddFood
+          diary={diary}
+          setDiary={setDiary}
+          type={SNACK}
+          setWritingMode={setWritingMode}
+        />
+      ) : null}
 
-      <div className="content">
-        <ul
-          className="ui secondary pointing menu"
-          style={{ listStyle: "none" }}
-        >
-          {tabContArr.map((section, index) => {
-            return section.tabTitle;
-          })}
-        </ul>
-        <div>{tabContArr[activeIndex].tabCont}</div>
-      </div>
+      {writingMode === DEFAULT && (
+        <div className="ui center aligned container">
+          <div className="DatePart">
+            <PickDate />
+          </div>
 
-      <div>
-        <Bmr />
-      </div>
-    </div>
+          <div className="content">
+            <ul
+              className="ui secondary pointing menu"
+              style={{ listStyle: "none" }}
+            >
+              {tabContArr.map((section, index) => {
+                return section.tabTitle;
+              })}
+            </ul>
+            <div>{tabContArr[activeIndex].tabCont}</div>
+          </div>
+
+          <div>
+            <Bmr />
+          </div>
+        </div>
+      )}
+    </>
     // End of Wrapper
   );
 };

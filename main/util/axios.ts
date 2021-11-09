@@ -14,3 +14,5 @@ export const postStaticAxios = async (
   });
   return await axiosInstance.post(url, formData);
 };
+
+
