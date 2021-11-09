@@ -36,7 +36,7 @@
 
 
 
-## 기타 정보
+# 기타 정보
 
 - 고유의 id를 가진 Schema : User, Recipe, Challenge, Diary
 
