@@ -31,7 +31,9 @@
     "pages/recipe/index.js",
     "pages/diary/index.js",
     "pages/diary/index.js",
-    "root.js"
-, "pages/recipe/card/[post_no]/index.js", "pages/recipe/card/[post_no]/index.js"  ],
+    "root.js",
+    "pages/recipe/card/[post_no]/index.js",
+    "components/diary/meal_detail/Cart.js"
+  ],
   "exclude": ["node_modules"]
 }
