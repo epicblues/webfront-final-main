@@ -1,15 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import { getUserOrRedirect } from "../api/auth";
-import Link from "next/link";
+
 // Date
 import PickDate from "../../components/diary/PickDate";
-
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
 // Bmr
 import Bmr from "../../components/diary/Bmr";
-import AddFood from "../../components/diary/AddFood";
+// 음식 작성
+import AddFood from "../../components/diary/meal/AddFood";
+// 음식 조회
+import LookupMeal from "../../components/diary/meal/LookupMeal";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -252,9 +254,12 @@ const index = ({ user }) => {
             <div>{tabContArr[activeIndex].tabCont}</div>
           </div>
 
+
           <div>
             <Bmr />
           </div>
+          
+          
         </div>
       )}
     </>

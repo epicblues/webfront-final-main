@@ -67,7 +67,7 @@ export default function Cart({
               <div className="header">
                 {product.name}
                 <div className="description">
-                  {product.mfr} / {product.serve} gram
+                  {product.mfr} / {product.serve}{product.unit}
                 </div>
               </div>
               <div className="ui input">

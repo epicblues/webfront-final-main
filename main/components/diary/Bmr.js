@@ -157,7 +157,7 @@ class Bmr extends Component {
                             <Popup
                               trigger={
                                 <Icon
-                                  name="help circle outline"
+                                  name="circle outline"
                                   size="large"
                                   color="teal"
                                 />
@@ -195,7 +195,7 @@ class Bmr extends Component {
                               <Popup
                                 trigger={
                                   <Icon
-                                    name="help circle outline"
+                                    name="circle outline"
                                     size="large"
                                     color="teal"
                                   />

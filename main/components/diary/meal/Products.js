@@ -80,7 +80,7 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
                         <div className="header">
                           {value.name}
                           <div className="description">
-                            {value.mfr} / {value.serve}gram
+                            {value.mfr} / {value.serve}{value.unit}
                           </div>
                         </div>
                         <div

@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-import Products from "../../pages/diary/products";
-import Cart from "./meal_detail/Cart";
+import Products from "./Products";
+import Cart from "./Cart";
 
 const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
 
