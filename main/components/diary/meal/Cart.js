@@ -2,8 +2,10 @@ import React from "react";
 
 import ImageUpload from "./ImageUpload";
 import Product from "./Product";
+
 const PAGE_PRODUCTS = "products";
 const PAGE_CART = "cart";
+const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
 
 export default function Cart({ diary, setDiary, page, setPage, type }) {
   const cart = diary.meals[type].foods;
@@ -81,7 +83,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
       {/* {page === PAGE_CART && <Cart cart={cart} setCart={setCart} />} */}
 
       <div style={{ marginTop: "16px" }}>
-        오늘 아침 섭취 열량은 {getTotalSum()} kcal 입니다
+        오늘 {mealType[type]}의 총 섭취 열량은 {getTotalSum()} kcal 입니다
       </div>
     </div>
   );

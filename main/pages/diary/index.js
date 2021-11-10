@@ -256,7 +256,7 @@ const index = ({ user }) => {
 
 
           <div>
-            <Bmr />
+            <LookupMeal diary={diary} setDiary={setDiary} type={BREAKFAST} />
           </div>
           
           
