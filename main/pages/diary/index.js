@@ -12,6 +12,7 @@ import Bmr from "../../components/diary/Bmr";
 import AddFood from "../../components/diary/meal/AddFood";
 // 음식 조회
 import LookupMeal from "../../components/diary/meal/LookupMeal";
+import Meal from "../../components/diary/meal/Meal";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -36,6 +37,7 @@ const index = ({ user }) => {
         protein: 0,
         carbs: 0,
         image: null,
+        imageBuffer: null,
       },
       {
         foods: [],
@@ -44,6 +46,7 @@ const index = ({ user }) => {
         protein: 0,
         carbs: 0,
         image: null,
+        imageBuffer: null,
       },
       {
         foods: [],
@@ -52,6 +55,7 @@ const index = ({ user }) => {
         protein: 0,
         carbs: 0,
         image: null,
+        imageBuffer: null,
       },
       {
         foods: [],
@@ -60,6 +64,7 @@ const index = ({ user }) => {
         protein: 0,
         carbs: 0,
         image: null,
+        imageBuffer: null,
       },
     ],
     total: {
@@ -104,77 +109,14 @@ const index = ({ user }) => {
               padding: "0 16px 16px",
             }}
           >
-            <div
-              className="item"
-              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-            >
-              <div>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setWritingMode(BREAKFAST);
-                  }}
-                  className="ui teal circular label"
-                >
-                  +
-                </a>
-              </div>
-              아침
-            </div>
-
-            <div
-              className="item"
-              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-            >
-              <div>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setWritingMode(LUNCH);
-                  }}
-                  className="ui teal circular label"
-                >
-                  +
-                </a>
-              </div>
-              점심
-            </div>
-
-            <div
-              className="item"
-              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-            >
-              <div>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setWritingMode(DINNER);
-                  }}
-                  className="ui teal circular label"
-                >
-                  +
-                </a>
-              </div>
-              저녁
-            </div>
-
-            <div
-              className="item"
-              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-            >
-              <div>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setWritingMode(SNACK);
-                  }}
-                  className="ui teal circular label"
-                >
-                  +
-                </a>
-              </div>
-              간식
-            </div>
+            <Meal
+              diary={diary}
+              setWritingMode={setWritingMode}
+              type={BREAKFAST}
+            />
+            <Meal diary={diary} setWritingMode={setWritingMode} type={LUNCH} />
+            <Meal diary={diary} setWritingMode={setWritingMode} type={DINNER} />
+            <Meal diary={diary} setWritingMode={setWritingMode} type={SNACK} />
           </div>
         </div>
       ),
@@ -254,12 +196,9 @@ const index = ({ user }) => {
             <div>{tabContArr[activeIndex].tabCont}</div>
           </div>
 
-
           <div>
             <Bmr />
           </div>
-          
-          
         </div>
       )}
     </>
