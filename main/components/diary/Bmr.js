@@ -101,7 +101,12 @@ class Bmr extends Component {
 
         let error;
         if(this.state.error)
-        {error= <div className='error' >{this.state.error} </div>}
+        {error=
+            <div className='error' style={{color: 'red', marginBottom: '1rem'}} >
+                {this.state.error}
+                <i className="frown outline icon"></i>
+            </div>
+        }
         let result;
         if(this.state.bmr)
         {result = <div className="result">{this.state.bmr}</div>}

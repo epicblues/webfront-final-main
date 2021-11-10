@@ -5,21 +5,19 @@ const Meal = ({ diary, type, setWritingMode }: { diary: any, type: any, setWriti
   return (
     <div
       className="item"
-      style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-    >
-      <div>
-        <a
-          onClick={(e) => {
-            e.preventDefault();
-            setWritingMode(type);
-          }}
-          className="ui teal circular label"
-        >
-          +
-        </a>
-        <img src={diary.meals[type].imageBuffer} width={100} height={100} />
-      </div>
-      {typeName[type]}
+      onClick={(e) => {
+        e.preventDefault();
+        setWritingMode(type);
+      }}
+      style={{ border: "solid 2px lightgray", borderRadius: "5px",
+                display: "grid", gridTemplateColumns: "5fr", gridAutoRows: "200px"
+      }}
+    >   
+        <img src={diary.meals[type].imageBuffer}
+              className='ui rounded image'
+              style={{objectFit: 'cover', width: '100%', height: '100%', boxSizing: 'border-box'}} />
+      
+      {/* {typeName[type]} */}
     </div>
   )
 }

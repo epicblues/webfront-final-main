@@ -30,9 +30,11 @@ const LookupMeal = ({ diary, setDiary, type }) => {
   return (
     <div style={{ padding: "0 16px 16px" }}>
         
-        <div>
-          <img src={diary.meals[type].imageBuffer} width={100} height={100}
-                className='ui rounded image'/>
+        <div style={{width: "100%", height: "40vh"}}>
+          <img src={diary.meals[type].imageBuffer}
+                className='ui rounded image'
+                style={{objectFit: 'cover', width: '100%', height: '100%'}}
+          />
         </div>
 
         <div
@@ -51,7 +53,7 @@ const LookupMeal = ({ diary, setDiary, type }) => {
               <div className='content' style={{marginBottom: '8px'}}>단백질</div>
               <div className="header">{protTotalSum()}g</div>
           </div>
-          <div class="item" style={{width: '25%'}}>
+          <div className="item" style={{width: '25%'}}>
               <div className='content' style={{marginBottom: '8px'}}>지방</div>
               <div className="header">{fatTotalSum()}g</div>
           </div>

@@ -39,12 +39,20 @@ const ImageUpload = ({ diary, setDiary, type }) => {
       className="ui rounded image"
       style={{ display: "flex", height: "auto" }}
     >
-      <div className="container" style={{ width: "100%", margin: "auto" }}>
+      <div className="container" style={{ width: "100%" }}>
         {error && (
           <p className="errorMsg" style={{ color: "red" }}>
             File not supported
             <i className="frown outline icon"></i>
           </p>
+        )}
+        {imgPreview && (
+          <div style={{textAlign: 'right', marginBottom: '16px'}}>
+              <i className="red large trash alternate icon"
+                  onClick={handleImageChange}
+              >
+              </i>
+          </div>
         )}
         <div
           className="imgPreview ui rounded image"
@@ -60,7 +68,7 @@ const ImageUpload = ({ diary, setDiary, type }) => {
             alignItems: "center",
             textAlign: "center",
             color: "white",
-            marginBottom: 10,
+            marginBottom: '16px',
           }}
         >
           {!imgPreview && (
@@ -86,11 +94,8 @@ const ImageUpload = ({ diary, setDiary, type }) => {
             </>
           )}
         </div>
-        {imgPreview && (
-          <button className="ui fluid button" onClick={handleImageChange}>
-            사진 삭제
-          </button>
-        )}
+
+
       </div>
     </div>
   );
