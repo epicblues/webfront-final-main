@@ -9,6 +9,7 @@ const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
 
 export default function Cart({ diary, setDiary, page, setPage, type }) {
   const cart = diary.meals[type].foods;
+
   const navigateTo = (nextPage) => {
     setPage(nextPage);
   };
@@ -56,7 +57,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
 
   return (
     <div style={{ padding: "0 16px 16px" }}>
-      <ImageUpload />
+      <ImageUpload diary={diary} setDiary={setDiary} type={type} />
       <div style={{ textAlign: "right" }}>
         {cart.length > 0 && (
           <i className="red large trash alternate icon" onClick={clearCart}></i>
