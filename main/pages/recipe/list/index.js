@@ -16,6 +16,29 @@ const index = ({ user, recipes }) => {
   const [userData, setUserData] = useState(user);
   const [recipeData, setRecipeData] = useState(recipes);
 
+  function renderSwitchCategory(param) {
+    switch(param) {
+      case 'soup' :
+        return '국/탕/찌개'
+      case 'grill' :
+        return '구이'
+      case 'noodle' :
+        return '면/파스타'
+      case 'rice' :
+        return '밥/볶음밥'
+      case 'side' :
+        return '반찬' 
+      case 'kimchi' :
+        return '김치'
+      case 'dessert' :
+        return '디저트'
+      case 'etc' :
+        return '기타'
+      default :
+        return '몰라용'
+    }
+  }
+
   return (
     <div>
       <ShowCategories></ShowCategories>
@@ -41,6 +64,7 @@ const index = ({ user, recipes }) => {
                       alt='thumbnail image'
                     />
                     <p>{card.title}</p>
+                    <p>카테고리: {renderSwitchCategory(card.category)}</p>
                     <p>작성자: {
                        card.author[0].name
                       }
