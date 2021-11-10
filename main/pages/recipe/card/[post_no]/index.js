@@ -12,7 +12,30 @@ const index = ({user, recipe}) => {
     setIsModalVisible(val);
   }
 
-  function renderSwitch(param) {
+  function renderSwitchCategory(param) {
+    switch(param) {
+      case 'soup' :
+        return '국/탕/찌개'
+      case 'grill' :
+        return '구이'
+      case 'noodle' :
+        return '면/파스타'
+      case 'rice' :
+        return '밥/볶음밥'
+      case 'side' :
+        return '반찬' 
+      case 'kimchi' :
+        return '김치'
+      case 'dessert' :
+        return '디저트'
+      case 'etc' :
+        return '기타'
+      default :
+        return '몰라용'
+    }
+  }
+
+  function renderSwitchDuration(param) {
     switch(param) {
       case '1' :
         return '10분 이내'
@@ -28,6 +51,7 @@ const index = ({user, recipe}) => {
         return '몰라용'
     }
   }
+
   return (
     <div>
       <div>
@@ -37,11 +61,11 @@ const index = ({user, recipe}) => {
           height={300}
           alt='main image'
         />
-        <p>카테고리: {recipe.category}</p>
+        <p>카테고리: {renderSwitchCategory(recipe.category)}</p>
         <h2>{recipe.title}</h2>
         <p>{recipe.desc}</p>
         <p>기준: {recipe.qtt}인분</p>
-        <p>소요시간: {renderSwitch(recipe.duration)}</p>
+        <p>소요시간: {renderSwitchDuration(recipe.duration)}</p>
         <p>등록일: {recipe.upload_date}</p>
         {/* <p>작성자 : {recipe.</p> */}
         <p>조회수: {recipe.hit}</p>
