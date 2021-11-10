@@ -1,6 +1,7 @@
 # 이미지 서버 재부팅으로 도메인 주소 변경 시 바꾸어야 할 설정들
 - next.config.js 의 domain
 - env.local의 STATIC_SERVER_URL
+- env.local의 AWS_CONNECT SSH 주소
 
 # 사용 애플리케이션
 
