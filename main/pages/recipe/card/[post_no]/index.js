@@ -60,7 +60,7 @@ const index = ({user, recipe}) => {
         (
           <ModalNutrition 
             setIsModalVisible={setIsModalVisible}
-            ingredients={recipe.ingredients}
+            nutritionData={recipe.nutrition}
           />
         )}
       </div>
