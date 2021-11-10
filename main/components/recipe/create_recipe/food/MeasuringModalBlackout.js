@@ -1,14 +1,14 @@
 import React from 'react'
 import modalBlackoutStyles from '../../../../styles/ModalBlackout.module.css'
 
-const ModalBlackout = ({ handleSetIsModalVisible }) => {
+const MeasuringModalBlackout = ({ handleSetIsMeasuringModalVisible }) => {
     return (
         <div
             className={modalBlackoutStyles.blackout}
-            onClick = {() => handleSetIsModalVisible(false)}
+            onClick = {() => handleSetIsMeasuringModalVisible(false)}
         >
         </div>
     )
 }
 
-export default ModalBlackout
+export default MeasuringModalBlackout

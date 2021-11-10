@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { getUserOrRedirect } from "../../api/auth";
 import { postStaticAxios } from "../../../util/axios";
 
-import ModalBlackout from "../../../components/recipe/create_recipe/food/ModalBlackout";
+import MeasuringModal from "../../../components/recipe/create_recipe/food/MeasuringModal";
+import MeasuringModalBlackout from "../../../components/recipe/create_recipe/food/MeasuringModalBlackout";
+import AddFoodModalBlackout from "../../../components/recipe/create_recipe/food/AddFoodModalBlackout";
 // Food(재료)
 import FoodForm from "../../../components/recipe/create_recipe/food/FoodForm";
 // Step(요리순서)
@@ -17,9 +19,13 @@ import { useRouter } from "next/dist/client/router";
 //  작성폼
 export const index = ({ user }) => {
   //  Modal Data, 렌더링 로직
+  const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
+  const handleSetIsMeasuringModalVisible = (active) => {
+    setIsMeasuringModalVisible(active)
+  }
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const handleSetIsModalVisible = (val) => {
-    setIsModalVisible(val);
+  const handleSetIsModalVisible = (active) => {
+    setIsModalVisible(active);
   };
   const router = useRouter();
 
@@ -82,8 +88,18 @@ export const index = ({ user }) => {
   };
   return (
     <div>
+      {isMeasuringModalVisible && (
+        <>
+          <MeasuringModal 
+            setIsMeasuringModalVisible={setIsMeasuringModalVisible}
+          />
+          <MeasuringModalBlackout
+            handleSetIsMeasuringModalVisible={handleSetIsMeasuringModalVisible}
+          />
+        </>
+      )}
       {isModalVisible && (
-        <ModalBlackout handleSetIsModalVisible={handleSetIsModalVisible} />
+        <AddFoodModalBlackout handleSetIsModalVisible={handleSetIsModalVisible} />
       )}
       <h2>레시피 등록하기</h2>
       <h3>레시피 정보 입력</h3>
