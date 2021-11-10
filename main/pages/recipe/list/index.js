@@ -4,18 +4,17 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import ShowCategories from "../../../components/recipe/main/Categories";
 import { getUserOrRedirect } from "../../api/auth";
 import clientPromise from "../../../util/mongodb";
+
+import Categories from "../../../components/recipe/main/Categories"
 
 //  CSS
 import recipeListStyles from "../../../styles/RecipeList.module.css";
 
 const index = ({ user, recipes }) => {
-  //  레시피 전체 리스트 데이터 받아오기
-  const [userData, setUserData] = useState(user);
-  const [recipeData, setRecipeData] = useState(recipes);
 
+  //  카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
   function renderSwitchCategory(param) {
     switch(param) {
       case 'soup' :
@@ -41,11 +40,11 @@ const index = ({ user, recipes }) => {
 
   return (
     <div>
-      <ShowCategories></ShowCategories>
+      <Categories></Categories>
       <h1>레시피 : 전체</h1>
       <div>
         <ul className={recipeListStyles.cards}>
-          {recipeData.map((card, index) => {
+          {recipes.map((card, index) => {
             return (
               <li key={card._id}>
                 <Link

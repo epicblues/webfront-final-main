@@ -12,9 +12,7 @@ const index = () => {
   return (
     <div>
       {/* 홈 */}
-      <Link href="/recipe">
         <h1>Recipe Main</h1>
-      </Link>
 
       {/* 레시피 등록하기 */}
       <Link href="recipe/create">
