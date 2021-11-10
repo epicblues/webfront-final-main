@@ -38,6 +38,7 @@ const index = ({ user }) => {
         carbs: 0,
         image: null,
         imageBuffer: null,
+        written: false
       },
       {
         foods: [],
@@ -47,6 +48,7 @@ const index = ({ user }) => {
         carbs: 0,
         image: null,
         imageBuffer: null,
+        written: false
       },
       {
         foods: [],
@@ -56,6 +58,7 @@ const index = ({ user }) => {
         carbs: 0,
         image: null,
         imageBuffer: null,
+        written: false
       },
       {
         foods: [],
@@ -65,6 +68,7 @@ const index = ({ user }) => {
         carbs: 0,
         image: null,
         imageBuffer: null,
+        written: false
       },
     ],
     total: {
@@ -145,38 +149,30 @@ const index = ({ user }) => {
   return (
     // Wrapper
     <>
-      {writingMode === BREAKFAST && (
-        <AddFood
-          diary={diary}
-          setDiary={setDiary}
-          type={BREAKFAST}
-          setWritingMode={setWritingMode}
-        />
-      )}
-      {writingMode === LUNCH ? (
-        <AddFood
-          diary={diary}
-          setDiary={setDiary}
-          type={LUNCH}
-          setWritingMode={setWritingMode}
-        />
-      ) : null}
-      {writingMode === DINNER ? (
-        <AddFood
-          diary={diary}
-          setDiary={setDiary}
-          type={DINNER}
-          setWritingMode={setWritingMode}
-        />
-      ) : null}
-      {writingMode === SNACK ? (
-        <AddFood
-          diary={diary}
-          setDiary={setDiary}
-          type={SNACK}
-          setWritingMode={setWritingMode}
-        />
-      ) : null}
+      <AddFood
+          writingMode = {writingMode}
+           diary={diary}
+           setDiary={setDiary}
+           type={BREAKFAST}
+           setWritingMode={setWritingMode} />
+      <AddFood
+       writingMode = {writingMode}
+           diary={diary}
+           setDiary={setDiary}
+           type={LUNCH}
+           setWritingMode={setWritingMode} />
+      <AddFood
+       writingMode = {writingMode}
+           diary={diary}
+           setDiary={setDiary}
+           type={DINNER}
+           setWritingMode={setWritingMode} />
+      <AddFood
+       writingMode = {writingMode}
+           diary={diary}
+           setDiary={setDiary}
+           type={SNACK}
+           setWritingMode={setWritingMode} />
 
       {writingMode === DEFAULT && (
         <div className="ui center aligned container">
@@ -197,7 +193,7 @@ const index = ({ user }) => {
           </div>
 
           <div>
-            <LookupMeal diary={diary} setDiary={setDiary} type={BREAKFAST} />
+            <Bmr />
           </div>
         </div>
       )}
