@@ -11,6 +11,23 @@ const index = ({user, recipe}) => {
   const handleSetIsModalVisible = (val) => {
     setIsModalVisible(val);
   }
+
+  function renderSwitch(param) {
+    switch(param) {
+      case '1' :
+        return '10분 이내'
+      case '2' :
+        return '10분 ~ 30분'
+      case '3' :
+        return '30분 ~ 1시간'
+      case '4' :
+        return '1시간 ~ 2시간'
+      case '5' :
+        return '2시간 이상' 
+      default :
+        return '몰라용'
+    }
+  }
   return (
     <div>
       <div>
@@ -20,9 +37,14 @@ const index = ({user, recipe}) => {
           height={300}
           alt='main image'
         />
+        <p>카테고리: {recipe.category}</p>
         <h2>{recipe.title}</h2>
         <p>{recipe.desc}</p>
+        <p>기준: {recipe.qtt}인분</p>
+        <p>소요시간: {renderSwitch(recipe.duration)}</p>
         <p>등록일: {recipe.upload_date}</p>
+        {/* <p>작성자 : {recipe.</p> */}
+        <p>조회수: {recipe.hit}</p>
       </div>
       <div>
         <h3>레시피 재료</h3>
@@ -88,12 +110,11 @@ const index = ({user, recipe}) => {
 
 export const getServerSideProps = async (ctx) => {
   // 유저 인증 로직
-
+  const client = await clientPromise;
   const user = await getUserOrRedirect(ctx);
-
-  const recipe = await (
-    await clientPromise
-  )
+  const hitResult = await client.db("webfront").collection("recipe").findOneAndUpdate({_id : Number(ctx.query.post_no) }, {$inc : {hit : 1}});
+  console.log(hitResult);
+  const recipe = await client
     .db("webfront")
     .collection("recipe")
     .aggregate([
@@ -110,6 +131,9 @@ export const getServerSideProps = async (ctx) => {
       _id: Number(ctx.query.post_no),
     })
     .toArray();
+    
+    
+  
   // .findOne({ _id: Number(ctx.query.post_no) });
   const newRecipe = JSON.parse(JSON.stringify(recipe[0]));
   newRecipe.ingredients.forEach((ingredient, index) => {

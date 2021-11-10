@@ -41,7 +41,10 @@ const index = ({ user, recipes }) => {
                       alt='thumbnail image'
                     />
                     <p>{card.title}</p>
-                    <p>작성자: {card.user_id}</p>
+                    <p>작성자: {
+                       card.author[0].name
+                      }
+                    </p>
                     <p>조회수: {card.hit}</p>
                   </a>
                 </Link>
@@ -60,7 +63,14 @@ export const getServerSideProps = async (ctx) => {
   const data = await (await clientPromise)
     .db("webfront")
     .collection("recipe")
-    .find({})
+    .aggregate([{
+      $lookup : {
+        from : "user",
+        localField : "user_id",
+        foreignField: "_id",
+        as: "author"
+      }
+    }])
     .limit(9)
     .toArray();
   const recipes = JSON.parse(JSON.stringify(data));
