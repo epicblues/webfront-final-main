@@ -14,9 +14,6 @@ import { useRouter } from "next/dist/client/router";
 //  처음에 초기값 받아 놓고, 마지막 submit할 때 post_id 겹치는지 한 번 더 확인 후,
 //  겹치면 post_id + 1 해줄 것
 
-//  작성폼 초기값
-const initialValues = {};
-
 //  작성폼
 export const index = ({ user }) => {
   //  Modal Data, 렌더링 로직
@@ -46,13 +43,13 @@ export const index = ({ user }) => {
     const date = new Date();
 
     let finalRecipeData = {
-      ...initialValues,
       upload_date: date,
       title: data.title,
       desc: data.desc,
       hit: 0,
       category: data.category,
       qtt: Number(data.qtt),
+      totalNutrition: JSON.stringify(nutritionData),
       duration: data.duration,
       igr_array: foodData.map((food) => {
         return `${food.foodObj.no}/${food.quantity}`;
@@ -63,7 +60,7 @@ export const index = ({ user }) => {
         })
       ),
     };
-
+    
     const formData = new FormData();
     for (let key in finalRecipeData) {
       formData.append(key, finalRecipeData[key]);

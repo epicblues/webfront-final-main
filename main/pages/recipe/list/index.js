@@ -31,6 +31,7 @@ const index = ({ user, recipes }) => {
                     query: { props: { card } },
                   }}
                   as={`/recipe/card/${card._id}`}
+                  passHref
                 >
                   <a>
                     <Image

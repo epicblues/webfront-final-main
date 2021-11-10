@@ -17,7 +17,7 @@ const ModalNutrition = ({setIsModalVisible, ingredients}) => {
             </button>
             <div>
                 <ul>
-                    <li>칼로리: </li>
+                    <li>칼로리: {totalNutrition.kcal}</li>
                     <li>탄수화물: </li>
                     <li> 당류: </li>
                     <li>단백질: </li>

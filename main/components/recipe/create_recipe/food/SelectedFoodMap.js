@@ -13,9 +13,8 @@ const SelectedFoodMap = ({ foodData, setFoodData, selectedData, setIsModalVisibl
         const coefficient = inputRef.current.value / foodObj.serve
         const copiedNutritionData = Object.assign({}, nutritionData)
         for (let key in copiedNutritionData) {
-           copiedNutritionData[key] += foodObj[key] * coefficient
+           copiedNutritionData[key] += Math.round((isNaN(foodObj[key]) ? 0 : foodObj[key]) * coefficient)
         }
-
         setNutritionData(copiedNutritionData)
     }
     return (

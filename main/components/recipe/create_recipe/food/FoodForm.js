@@ -7,6 +7,20 @@ const FoodForm = ({ foodData, setFoodData, isModalVisible, setIsModalVisible, nu
 
     }
     const removeFood = (food) => {
+        const coefficient = 
+            foodData[foodData.indexOf(food)].quantity / foodData[foodData.indexOf(food)].foodObj.serve
+        const copiedNutritionData = Object.assign({}, nutritionData)
+        for (let key in copiedNutritionData) {
+            copiedNutritionData[key] -= 
+                Math.round((isNaN(foodData[foodData.indexOf(food)].foodObj[key]) ? 
+                    0 : foodData[foodData.indexOf(food)].foodObj[key]) * coefficient)
+        }
+        for (let key in copiedNutritionData) {
+            if (copiedNutritionData[key] < 0) {
+                copiedNutritionData[key] = 0
+            }
+        }
+        setNutritionData(copiedNutritionData)
         setFoodData(
             foodData.filter((value) => value !== food)
         );
