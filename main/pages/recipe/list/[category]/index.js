@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import Categories from '../../../../components/recipe/main/Categories';
+import Search from '../../../../components/recipe/main/Search'
 
 //CSS
 import recipeListStyles from '../../../../styles/RecipeList.module.css'
@@ -37,7 +38,8 @@ const index = ({user, filteredRecipes, category}) => {
 
     return (
         <div>
-            <Categories></Categories>
+            <Search />
+            <Categories />
             <h1>레시피 : {renderSwitchCategory(category)}</h1>
             <div>
                 <ul className={recipeListStyles.cards}>

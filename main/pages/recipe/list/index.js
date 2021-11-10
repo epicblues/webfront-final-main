@@ -1,13 +1,14 @@
 // page component '/recipe/list'
 // 모든 레시피를 보여주는 리스트
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getUserOrRedirect } from "../../api/auth";
 import clientPromise from "../../../util/mongodb";
 
 import Categories from "../../../components/recipe/main/Categories"
+import Search from "../../../components/recipe/main/Search"
 
 //  CSS
 import recipeListStyles from "../../../styles/RecipeList.module.css";
@@ -40,7 +41,8 @@ const index = ({ user, recipes }) => {
 
   return (
     <div>
-      <Categories></Categories>
+      <Search/>
+      <Categories />
       <h1>레시피 : 전체</h1>
       <div>
         <ul className={recipeListStyles.cards}>
