@@ -47,19 +47,24 @@ const ImageUpload = ({ diary, setDiary, type }) => {
           </p>
         )}
         {imgPreview && (
-          <div style={{textAlign: 'right', marginBottom: '16px'}}>
-              <i className="red large trash alternate icon"
-                  onClick={handleImageChange}
-              >
-              </i>
+          <div style={{ textAlign: "right", marginBottom: "16px" }}>
+            <i
+              className="red large trash alternate icon"
+              onClick={handleImageChange}
+            ></i>
           </div>
         )}
         <div
           className="imgPreview ui rounded image"
           style={{
-            background: imgPreview || diary.meals[type].image
-              ? `url("${imgPreview || process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image}") no-repeat center/cover`
-              : "#9e9e9e",
+            background:
+              imgPreview || diary.meals[type].image
+                ? `url("${
+                    imgPreview ||
+                    process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                      diary.meals[type].image
+                  }") no-repeat center/cover`
+                : "#9e9e9e",
             width: "100%",
             height: "40vh",
             display: "flex",
@@ -68,7 +73,7 @@ const ImageUpload = ({ diary, setDiary, type }) => {
             alignItems: "center",
             textAlign: "center",
             color: "white",
-            marginBottom: '16px',
+            marginBottom: "16px",
           }}
         >
           {!imgPreview && (
@@ -94,8 +99,6 @@ const ImageUpload = ({ diary, setDiary, type }) => {
             </>
           )}
         </div>
-
-
       </div>
     </div>
   );

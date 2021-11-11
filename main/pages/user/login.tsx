@@ -1,6 +1,6 @@
 import React, { LegacyRef, MutableRefObject, useRef } from 'react'
 import Link from 'next/link';
-import { checkValid } from '../api/auth';
+import { checkValid } from '../../util/auth';
 import { useRouter } from 'next/dist/client/router';
 
 const login = () => {

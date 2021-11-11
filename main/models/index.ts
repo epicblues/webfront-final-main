@@ -30,20 +30,33 @@ export interface ImageFile {
   size: number;
 }
 
+export class Meal {
+  foods: any[];
+  calories: number;
+  fat: number;
+  protein: number;
+  carbs: number;
+  image: File | null;
+  imageBuffer: string | null;
+  written: boolean;
+
+  constructor() {
+    this.foods = [];
+    this.calories = 0;
+    this.fat = 0;
+    this.protein = 0;
+    this.carbs = 0;
+    this.image = null;
+    this.imageBuffer = null;
+    this.written = false;
+  }
+}
+
 export class Diary {
   user_id: number;
   upload_date: string;
   reviews: [];
-  meals: Array<{
-    foods: any[];
-    calories: number;
-    fat: number;
-    protein: number;
-    carbs: number;
-    image: File | null;
-    imageBuffer: string | null;
-    written: boolean;
-  }>;
+  meals: Array<Meal>;
   total: {
     calories: number;
     fat: number;
@@ -55,50 +68,7 @@ export class Diary {
     this.user_id = userId;
     this.upload_date = getDateId(new Date());
     this.reviews = [];
-    this.meals = [
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-        imageBuffer: null,
-        written: false,
-      },
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-        imageBuffer: null,
-        written: false,
-      },
-
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-        imageBuffer: null,
-        written: false,
-      },
-
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-        imageBuffer: null,
-        written: false,
-      },
-    ];
+    this.meals = [new Meal(), new Meal(), new Meal(), new Meal()];
     this.total = {
       calories: 0,
       fat: 0,

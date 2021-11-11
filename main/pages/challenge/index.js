@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import "semantic-ui-css/semantic.min.css";
-import { getUserOrRedirect } from "../api/auth";
+import { getUserOrRedirect } from "../../util/auth";
 import { Button } from "semantic-ui-react";
 const index = () => {
   return (

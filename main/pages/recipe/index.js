@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 
 // import RcpData from "../../public/static/recipe/dataSample/RecipeData";
-import { getUserOrRedirect } from "../api/auth";
+import { getUserOrRedirect } from "../../util/auth";
 import Categories from "../../components/recipe/index/Categories";
 import Search from "../../components/recipe/index/Search";
 
@@ -18,7 +18,7 @@ const index = () => {
       <Search />
 
       {/* 카테고리 검색 */}
-      {showCategories ? <Categories /> :  null }
+      {showCategories ? <Categories /> : null}
       <input
         type="button"
         value={showCategories ? "카테고리 접기" : "카테고리 펼치기 "}

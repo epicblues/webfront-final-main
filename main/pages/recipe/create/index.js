@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { getUserOrRedirect } from "../../api/auth";
+import { getUserOrRedirect } from "../../../util/auth";
 import { postStaticAxios } from "../../../util/axios";
 
 import MeasuringModal from "../../../components/recipe/create/food/MeasuringModal";
@@ -21,27 +21,25 @@ export const index = ({ user }) => {
   //  Modal Data, 렌더링 로직
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
   const handleSetIsMeasuringModalVisible = (active) => {
-    setIsMeasuringModalVisible(active)
-  }
+    setIsMeasuringModalVisible(active);
+  };
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleSetIsModalVisible = (active) => {
     setIsModalVisible(active);
   };
   const router = useRouter();
 
-  const [nutritionData, setNutritionData] = useState(
-    {
-      kcal: 0,
-      carbs: 0,
-      sugars: 0,
-      prot: 0,
-      fat: 0,
-      stdfat: 0,
-      trnfat: 0,
-      chole: 0,
-      sodium: 0
-    }
-  );
+  const [nutritionData, setNutritionData] = useState({
+    kcal: 0,
+    carbs: 0,
+    sugars: 0,
+    prot: 0,
+    fat: 0,
+    stdfat: 0,
+    trnfat: 0,
+    chole: 0,
+    sodium: 0,
+  });
   const [foodData, setFoodData] = useState([]);
   const [stepData, setStepData] = useState([]);
   const { register, handleSubmit } = useForm();
@@ -66,7 +64,7 @@ export const index = ({ user }) => {
         })
       ),
     };
-    
+
     const formData = new FormData();
     for (let key in finalRecipeData) {
       formData.append(key, finalRecipeData[key]);
@@ -90,7 +88,7 @@ export const index = ({ user }) => {
     <div>
       {isMeasuringModalVisible && (
         <>
-          <MeasuringModal 
+          <MeasuringModal
             setIsMeasuringModalVisible={setIsMeasuringModalVisible}
           />
           <MeasuringModalBlackout
@@ -99,7 +97,9 @@ export const index = ({ user }) => {
         </>
       )}
       {isModalVisible && (
-        <AddFoodModalBlackout handleSetIsModalVisible={handleSetIsModalVisible} />
+        <AddFoodModalBlackout
+          handleSetIsModalVisible={handleSetIsModalVisible}
+        />
       )}
       <h2>레시피 등록하기</h2>
       <h3>레시피 정보 입력</h3>
