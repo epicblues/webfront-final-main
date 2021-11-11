@@ -7,8 +7,8 @@ import Link from "next/link";
 import { getUserOrRedirect } from "../../api/auth";
 import clientPromise from "../../../util/mongodb";
 
-import Categories from "../../../components/recipe/main/Categories"
-import Search from "../../../components/recipe/main/Search"
+import Categories from "../../../components/recipe/index/Categories"
+import Search from "../../../components/recipe/index/Search"
 
 //  CSS
 import recipeListStyles from "../../../styles/RecipeList.module.css";
@@ -43,7 +43,7 @@ const index = ({ user, recipes }) => {
     <div>
       <Search/>
       <Categories />
-      <h1>레시피 : 전체</h1>
+      <h1>카테고리 : 전체</h1>
       <div>
         <ul className={recipeListStyles.cards}>
           {recipes.map((card, index) => {

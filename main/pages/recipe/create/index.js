@@ -3,13 +3,13 @@ import { useForm } from "react-hook-form";
 import { getUserOrRedirect } from "../../api/auth";
 import { postStaticAxios } from "../../../util/axios";
 
-import MeasuringModal from "../../../components/recipe/create_recipe/food/MeasuringModal";
-import MeasuringModalBlackout from "../../../components/recipe/create_recipe/food/MeasuringModalBlackout";
-import AddFoodModalBlackout from "../../../components/recipe/create_recipe/food/AddFoodModalBlackout";
+import MeasuringModal from "../../../components/recipe/create/food/MeasuringModal";
+import MeasuringModalBlackout from "../../../components/recipe/create/food/MeasuringModalBlackout";
+import AddFoodModalBlackout from "../../../components/recipe/create/food/AddFoodModalBlackout";
 // Food(재료)
-import FoodForm from "../../../components/recipe/create_recipe/food/FoodForm";
+import FoodForm from "../../../components/recipe/create/food/FoodForm";
 // Step(요리순서)
-import StepForm from "../../../components/recipe/create_recipe/step/stepForm";
+import StepForm from "../../../components/recipe/create/step/stepForm";
 import { useRouter } from "next/dist/client/router";
 
 //  post_id 초기값 확인을 위한 logic(post 개수 확인)

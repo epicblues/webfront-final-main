@@ -3,8 +3,8 @@ import Link from "next/link";
 
 // import RcpData from "../../public/static/recipe/dataSample/RecipeData";
 import { getUserOrRedirect } from "../api/auth";
-import Categories from "../../components/recipe/main/Categories";
-import Search from "../../components/recipe/main/Search";
+import Categories from "../../components/recipe/index/Categories";
+import Search from "../../components/recipe/index/Search";
 
 const index = () => {
   const [showCategories, setShowCategories] = useState(true);
@@ -12,14 +12,13 @@ const index = () => {
   return (
     <div>
       {/* 홈 */}
-        <h1>Recipe Main</h1>
+      <h1>Recipe Main</h1>
 
-      {/* 레시피 등록하기 */}
-      <Link href="recipe/create">
-        <button>레시피 등록하기</button>
-      </Link>
+      {/* 검색창 */}
+      <Search />
 
       {/* 카테고리 검색 */}
+      {showCategories ? <Categories /> :  null }
       <input
         type="button"
         value={showCategories ? "카테고리 접기" : "카테고리 펼치기 "}
@@ -27,16 +26,19 @@ const index = () => {
           setShowCategories(showCategories ? false : true);
         }}
       />
-      {showCategories ? <Categories /> :  null }
+      <br />
+      <p></p>
+
+      {/* 레시피 등록하기 */}
+      <Link href="recipe/create">
+        <button>레시피 등록하기</button>
+      </Link>
 
       {/* 찜한 레시피 조회 */}
       <input type="button" value="찜한 레시피" />
 
       {/* 내 레시피 조회 */}
       <input type="button" value="내 레시피" />
-
-      {/* 검색창 */}
-      <Search />
 
       {/* 인기 레시피 */}
       <h3>인기 레시피</h3>

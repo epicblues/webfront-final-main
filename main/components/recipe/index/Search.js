@@ -11,13 +11,13 @@ const Search = () => {
   }
   return (
     <form onSubmit= {handleSubmit(searchBtnClick)} className="search">
-          <input 
-            type="text" 
+          <input
+            type="text"
             placeholder="요리명을 검색해보세요!(예: 감바스)"
             {...register("keyword")}
           />
           <input type="submit" value="검색" />
-    </form> 
+    </form>
   )
 }
 

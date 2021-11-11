@@ -4,8 +4,8 @@ import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
 
-import Categories from '../../../../../components/recipe/main/Categories';
-import Search from '../../../../../components/recipe/main/Search'
+import Categories from '../../../../../components/recipe/index/Categories';
+import Search from '../../../../../components/recipe/index/Search'
 
 //CSS
 import recipeListStyles from '../../../../../styles/RecipeList.module.css'

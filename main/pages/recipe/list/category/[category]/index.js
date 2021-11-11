@@ -4,8 +4,8 @@ import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
 
-import Categories from '../../../../../components/recipe/main/Categories';
-import Search from '../../../../../components/recipe/main/Search'
+import Categories from '../../../../../components/recipe/index/Categories';
+import Search from '../../../../../components/recipe/index/Search'
 
 //CSS
 import recipeListStyles from '../../../../../styles/RecipeList.module.css'
@@ -39,7 +39,7 @@ const index = ({user, filteredRecipes, category}) => {
         <div>
             <Search />
             <Categories />
-            <h1>레시피 : {renderSwitchCategory(category)}</h1>
+            <h1>카테고리 : {renderSwitchCategory(category)}</h1>
             <div>
                 <ul className={recipeListStyles.cards}>
                     {filteredRecipes.map((card, index) => {

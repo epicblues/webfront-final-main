@@ -3,7 +3,7 @@ import Image from "next/image";
 import clientPromise from "../../../../util/mongodb";
 import { getUserOrRedirect } from "../../../api/auth";
 
-import ModalNutrition from '../../../../components/recipe/recipe_card/ModalNutrition'
+import ModalNutrition from '../../../../components/recipe/card/ModalNutrition'
 
 const index = ({user, recipe}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
