@@ -57,8 +57,8 @@ const ImageUpload = ({ diary, setDiary, type }) => {
         <div
           className="imgPreview ui rounded image"
           style={{
-            background: imgPreview
-              ? `url("${imgPreview}") no-repeat center/cover`
+            background: imgPreview || diary.meals[type].image
+              ? `url("${imgPreview || process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image}") no-repeat center/cover`
               : "#9e9e9e",
             width: "100%",
             height: "40vh",

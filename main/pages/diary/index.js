@@ -59,9 +59,9 @@ const index = ({ user, fetchedDiary }) => {
             style={{
               display: "grid",
               gridTemplateColumns: "5fr 5fr",
-              gridGap: "1rem",
               gridAutoRows: "200px",
-              padding: "0 16px 16px",
+              gridGap: "1rem",
+              padding: "0 16px 16px"
             }}
           >
             {[0, 1, 2, 3].map((type) => (
