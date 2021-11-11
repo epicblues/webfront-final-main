@@ -44,32 +44,27 @@ const LookupMeal = ({ diary, setDiary, type, user }) => {
         style={{ display: "flex" }}
       >
         <div className="item" style={{ width: "25%" }}>
-          <div className="content" style={{ marginBottom: "8px" }}>
-            칼로리
-          </div>
+          <div className="content" style={{ marginBottom: "8px" }}>칼로리</div>
           <div className="header">{getTotalSum()}kcal</div>
         </div>
+
         <div className="item" style={{ width: "25%" }}>
-          <div className="content" style={{ marginBottom: "8px" }}>
-            탄수화물
-          </div>
+          <div className="content" style={{ marginBottom: "8px" }}>탄수화물</div>
           <div className="header">{carbsTotalSum()}g</div>
         </div>
+
         <div className="item" style={{ width: "25%" }}>
-          <div className="content" style={{ marginBottom: "8px" }}>
-            단백질
-          </div>
-          <div className="item" style={{ width: "25%" }}>
-            <div className="content" style={{ marginBottom: "8px" }}>
-              지방
-            </div>
+            <div className="content" style={{ marginBottom: "8px" }}>단백질</div>
+            <div className="header">{protTotalSum()}g</div>
+        </div>
+
+        <div class="item" style={{width: '25%'}}>
+            <div className='content' style={{marginBottom: '8px'}}>지방</div>
             <div className="header">{fatTotalSum()}g</div>
-          </div>
-          <div className="header">{fatTotalSum()}g</div>
         </div>
       </div>
 
-      <div className="ui middle aligned divided list">
+      <div className="ui middle aligned selection list">
         {cart.map((product, index) => (
           <List product={product} index={index} key={index} />
         ))}
