@@ -1,35 +1,36 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/dist/client/router";
 import { getUserOrRedirect } from "../../../util/auth";
 import { postStaticAxios } from "../../../util/axios";
 
 import MeasuringModal from "../../../components/recipe/create/food/MeasuringModal";
 import MeasuringModalBlackout from "../../../components/recipe/create/food/MeasuringModalBlackout";
 import AddFoodModalBlackout from "../../../components/recipe/create/food/AddFoodModalBlackout";
-// Food(재료)
-import FoodForm from "../../../components/recipe/create/food/FoodForm";
-// Step(요리순서)
-import StepForm from "../../../components/recipe/create/step/stepForm";
-import { useRouter } from "next/dist/client/router";
 
-//  post_id 초기값 확인을 위한 logic(post 개수 확인)
-//  처음에 초기값 받아 놓고, 마지막 submit할 때 post_id 겹치는지 한 번 더 확인 후,
-//  겹치면 post_id + 1 해줄 것
+import FoodForm from "../../../components/recipe/create/food/FoodForm";
+import StepForm from "../../../components/recipe/create/step/stepForm";
 
 //  작성폼
 export const index = ({ user }) => {
-  //  Modal Data, 렌더링 로직
+  //  계량 팁 Modal, 렌더링 로직
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
   const handleSetIsMeasuringModalVisible = (active) => {
     setIsMeasuringModalVisible(active);
   };
+
+  //  음식 추가 Modal, 렌더링 로직
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleSetIsModalVisible = (active) => {
     setIsModalVisible(active);
   };
   const router = useRouter();
 
+  const [imageCounter, setImageCounter] = useState(0); //  사진 개수 카운터
+  const [foodData, setFoodData] = useState([]); //  재료 데이터
+  const [stepData, setStepData] = useState([]); //  요리순서 데이터
   const [nutritionData, setNutritionData] = useState({
+    //  영양정보 데이터
     kcal: 0,
     carbs: 0,
     sugars: 0,
@@ -40,48 +41,58 @@ export const index = ({ user }) => {
     chole: 0,
     sodium: 0,
   });
-  const [foodData, setFoodData] = useState([]);
-  const [stepData, setStepData] = useState([]);
-  const { register, handleSubmit } = useForm();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const submitBtnClick = async (data) => {
-    const date = new Date();
+    if (foodData.length === 0) {
+      alert("재료를 입력해주세요");
+    } else if (imageCounter === 0) {
+      alert("순서 사진을 최소 1개 이상 등록해주세요.");
+    } else {
+      const date = new Date();
 
-    let finalRecipeData = {
-      upload_date: date,
-      title: data.title,
-      desc: data.desc,
-      hit: 0,
-      category: data.category,
-      qtt: Number(data.qtt),
-      totalNutrition: JSON.stringify(nutritionData),
-      duration: data.duration,
-      igr_array: foodData.map((food) => {
-        return `${food.foodObj.no}/${food.quantity}`;
-      }), //  음식(재료) 객체의 배열
-      stepData: JSON.stringify(
-        stepData.map((step) => {
-          return { desc: step.stepDesc };
-        })
-      ),
-    };
+      let finalRecipeData = {
+        upload_date: date,
+        title: data.title,
+        desc: data.desc,
+        hit: 0,
+        category: data.category,
+        qtt: Number(data.qtt),
+        totalNutrition: JSON.stringify(nutritionData), //  레시피 칼로리 총합
+        duration: data.duration,
+        igr_array: foodData.map((food) => {
+          return `${food.foodObj.no}/${food.quantity}`;
+        }), //  음식(재료) 객체의 배열
+        stepData: JSON.stringify(
+          stepData.map((step) => {
+            return { desc: step.stepDesc };
+          })
+        ),
+      };
 
-    const formData = new FormData();
-    for (let key in finalRecipeData) {
-      formData.append(key, finalRecipeData[key]);
-    }
-    stepData.forEach((step, index) => {
-      formData.append(`step_img_${index + 1}`, step.stepImageFile);
-    });
-    try {
-      await postStaticAxios(
-        user.url + "/api/recipe/create",
-        user.token,
-        formData
-      );
+      const formData = new FormData();
+      for (let key in finalRecipeData) {
+        formData.append(key, finalRecipeData[key]);
+      }
+      stepData.forEach((step, index) => {
+        formData.append(`step_img_${index + 1}`, step.stepImageFile);
+      });
+      try {
+        await postStaticAxios(
+          user.url + "/api/recipe/create",
+          user.token,
+          formData
+        );
 
-      router.push("/recipe");
-    } catch (error) {
-      alert(error);
+        router.push("/recipe");
+      } catch (error) {
+        alert(error);
+      }
     }
   };
   return (
@@ -104,25 +115,39 @@ export const index = ({ user }) => {
       <h2>레시피 등록하기</h2>
       <h3>레시피 정보 입력</h3>
       <form onSubmit={handleSubmit(submitBtnClick)}>
-        <label>요리명</label>
+        <label htmlFor="title">요리명</label>
         <input
           autoFocus={true}
+          id="title"
           type="text"
           placeholder=" ex) 소고기 미역국"
-          {...register("title")}
+          {...register("title", { required: true, maxLength: 15 })}
         />
+        {errors.title && errors.title.type === "required" && (
+          <span>제목을 입력해주세요.</span>
+        )}
+        {errors.title && errors.title.type === "maxLength" && (
+          <span>제목은 15글자 이내로 입력해주세요.</span>
+        )}
         <br />
 
         <label>요리소개</label>
         <textarea
+          id="desc"
           type="text"
           cols="40"
           rows="5"
           placeholder=" 레시피에 대한 설명을 적어주세요.
                     ex) 어머니로부터 배운 미역국 레시피를
                     아내의 입맛에 맞게 고안했습니다."
-          {...register("desc")}
+          {...register("desc", { required: true, maxLength: 200 })}
         />
+        {errors.desc && errors.desc.type === "required" && (
+          <span>요리소개를 입력해주세요.</span>
+        )}
+        {errors.desc && errors.desc.type === "maxLength" && (
+          <span>제목은 200글자 이내로 입력해주세요.</span>
+        )}
         <br />
 
         <label>카테고리</label>
@@ -169,7 +194,12 @@ export const index = ({ user }) => {
         />
 
         <h3>요리 순서</h3>
-        <StepForm stepData={stepData} setStepData={setStepData} />
+        <StepForm
+          stepData={stepData}
+          setStepData={setStepData}
+          setImageCounter={setImageCounter}
+          imageCounter={imageCounter}
+        />
         <button type="button">임시저장(미구현)</button>
         <button type="submit">글쓰기</button>
       </form>

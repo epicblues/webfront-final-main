@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-const AddStep = ({ stepData, setStepData }) => {
+const AddStep = ({ stepData, setStepData, imageCounter, setImageCounter }) => {
   const [imgPreview, setImgPreview] = useState(null);
   const [error, setError] = useState(false);
   const [imageFile, setImageFile] = useState(null);
@@ -8,19 +8,24 @@ const AddStep = ({ stepData, setStepData }) => {
   const inputRef = useRef();
   const imageRef = useRef();
   const handleSubmitStep = () => {
-    if (stepData.length <= 15) {
-      stepData = [
-        ...stepData,
-        {
-          stepDesc: inputRef.current.value,
-          stepImageData: imgPreview,
-          stepImageFile: imageFile,
-        },
-      ];
-      setStepData(stepData);
-      setImgPreview(null);
+    if (inputRef.current.value.length === 0) {
+      alert("순서 설명을 입력해주세요.");
     } else {
-      alert("더 이상 추가하실 수 없습니다.");
+      if (stepData.length <= 10) {
+        stepData = [
+          ...stepData,
+          {
+            stepDesc: inputRef.current.value,
+            stepImageData: imgPreview,
+            stepImageFile: imageFile,
+          },
+        ];
+        setStepData(stepData);
+        setImgPreview(null);
+        imgPreview ? setImageCounter(imageCounter + 1) : null;
+      } else {
+        alert("순서를 더 이상 추가하실 수 없습니다.");
+      }
     }
   };
 
@@ -49,7 +54,7 @@ const AddStep = ({ stepData, setStepData }) => {
       <div className="container" style={{ width: "100%", margin: "auto" }}>
         {error && (
           <p className="errorMsg" style={{ color: "red" }}>
-            File not supported
+            지원하지 않는 파일 형식입니다.
             <i className="frown outline icon"></i>
           </p>
         )}
@@ -103,14 +108,14 @@ const AddStep = ({ stepData, setStepData }) => {
             ref={inputRef}
             type="text"
             name="stepDesc"
-            placeholder="설명을 입력하세요"
+            placeholder="순서에 대한 설명을 입력해 주세요"
             style={{
               display: "flex",
             }}
           />
           {imgPreview && (
             <button
-              type='button'
+              type="button"
               className="ui fluid button"
               onClick={() => setImgPreview(null)}
             >
