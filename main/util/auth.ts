@@ -19,6 +19,7 @@ export const authenticated =
     } catch (error) {
       // token이 없거나 유효하지 않은 경우
       // 401 status : 인증되지 않은 회원
+      console.log(error);
       res.status(401).json({ status: "no auth" });
     }
   };

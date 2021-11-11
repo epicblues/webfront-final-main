@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
 
-import { getUserOrRedirect } from './api/auth'
+import { getUserOrRedirect } from '../util/auth'
 
 import { Card, CardHeader, Container } from 'semantic-ui-react';
 

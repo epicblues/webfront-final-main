@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { getUserOrRedirect } from "../api/auth";
+import { getUserOrRedirect } from "../../util/auth";
 
 // Date
 import PickDate from "../../components/diary/PickDate";
@@ -92,7 +92,7 @@ const index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div>
-          <ReviewPage />
+          <ReviewPage diary={diary} setDiary={setDiary} />
         </div>
       ),
     },
@@ -144,12 +144,14 @@ const index = ({ user, fetchedDiary }) => {
 export const getServerSideProps = async (ctx) => {
   try {
     const user = await getUserOrRedirect(ctx);
+
     // 당일 다이어리를 가져오는 로직
     const client = await clientPromise;
     const loadedDiary = await client
       .db("webfront")
       .collection("diary")
       .findOne({ user_id: user.id, upload_date: getDateId(new Date()) });
+
     // 다이어리가 없을 경우 새로 만들고 그 초기화 값을 return
     if (loadedDiary === null) {
       const diaryId = await getNextSequence("diary", client);
@@ -165,7 +167,7 @@ export const getServerSideProps = async (ctx) => {
       return { props: { user, fetchedDiary: loadedDiary } };
     }
   } catch (error) {
-    ctx.req.json({ message: error });
+    ctx.res.json({ message: error });
   }
 };
 
