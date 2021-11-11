@@ -7,8 +7,6 @@ import { authenticated } from "../../../../util/auth";
 // 그냥 Date 형태로 저장해야 하는가? -> Date와 일 단위 포함 저장
 
 const handler: NextApiHandler = async (req, res) => {
-  console.log(req.query);
-  console.log(req.body);
   const client = await clientPromise;
   const diaryId = Number(req.query.id);
   const reviewId = req.body.id;
@@ -17,7 +15,7 @@ const handler: NextApiHandler = async (req, res) => {
     .db("webfront")
     .collection("diary")
     .updateOne({ _id: diaryId }, { $pull: { reviews: { id: reviewId } } });
-  console.log(result);
+
   res
     .status(result.acknowledged ? 200 : 500)
     .json({ message: result.acknowledged });
