@@ -82,6 +82,11 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
                 padding: "16px",
               }}
             >
+
+              <div style={{textAlign: 'left', marginBottom: '16px'}}>
+                  <i className='reply large icon'></i>취소
+              </div>
+
               <div>
                 <span>{mealType[type]}</span>
                 <a

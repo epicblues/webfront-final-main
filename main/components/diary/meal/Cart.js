@@ -79,7 +79,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
         className="ui fluid button blue"
         onClick={() => navigateTo(PAGE_PRODUCTS)}
       >
-        더 추가하기
+        음식 추가하기
       </button>
 
       {/* {page === PAGE_CART && <Cart cart={cart} setCart={setCart} />} */}

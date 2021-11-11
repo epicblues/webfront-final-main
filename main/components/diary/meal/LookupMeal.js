@@ -28,7 +28,11 @@ const LookupMeal = ({ diary, setDiary, type, user }) => {
   };
 
   return (
-    <div style={{ padding: "0 16px 16px" }}>
+    <div style={{ border: "solid 2px lightgray", borderRadius: "5px", padding: '16px'}}>
+      <div style={{textAlign: 'left', marginBottom: '16px'}}>
+        <i className='reply large icon'></i>뒤로가기
+      </div>
+      
       <div style={{ width: "100%", height: "40vh" }}>
         <img
           src={
