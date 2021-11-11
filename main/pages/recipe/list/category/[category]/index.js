@@ -1,15 +1,14 @@
-import { GetServerSidePropsContext } from 'next';
-import { getUserOrRedirect } from '../../../api/auth';
-import clientPromise from '../../../../util/mongodb';
+import { getUserOrRedirect } from '../../../../api/auth';
+import clientPromise from '../../../../../util/mongodb';
 import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
 
-import Categories from '../../../../components/recipe/main/Categories';
-import Search from '../../../../components/recipe/main/Search'
+import Categories from '../../../../../components/recipe/main/Categories';
+import Search from '../../../../../components/recipe/main/Search'
 
 //CSS
-import recipeListStyles from '../../../../styles/RecipeList.module.css'
+import recipeListStyles from '../../../../../styles/RecipeList.module.css'
 
 const index = ({user, filteredRecipes, category}) => {
     // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
