@@ -7,12 +7,13 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
   const [products] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
 
+  // Change Button 
   const [style, setStyle] = useState();
-
   const changeStyle = () => {
     return <i className="check circle icon"></i>;
   };
 
+  // Count Food
   const addToCart = (value) => {
     const prevMeal = diary.meals[type];
     const foodIndex = prevMeal.foods.findIndex(
@@ -36,7 +37,7 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
     });
   };
 
-  // 검색필터
+  // Search Filter
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
   const handleSearch = async (event) => {
@@ -46,8 +47,18 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
     setFilteredData(data);
   };
 
-  const [open, setOpen] = React.useState(false);
-
+  // Modal
+  const modalInitialState = [];
+  for(let i = 0; i < 20; i++) {
+    modalInitialState.push(false);
+  }
+  const [open, setOpen] = React.useState(modalInitialState);
+  const handleModal = (index) => setOpen(state => {
+    const newState = [...state];
+    newState[index] = !newState[index];
+    return newState
+  })
+  
   return (
     <>
       <div className="ui fluid icon input" style={{ padding: "0 16px" }}>
@@ -73,9 +84,9 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
               >
                 <div>
                   <Modal
-                    onClose={() => setOpen(false)}
-                    onOpen={() => setOpen(true)}
-                    open={open}
+                    onClose={() => handleModal(index)}
+                    onOpen={() => handleModal(index)}
+                    open={open[index]}
                     trigger={
                       <div
                         className="content"
@@ -145,7 +156,7 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
                     </Modal.Content>
                     
                     <Modal.Actions>
-                        <Button color="black" onClick={() => setOpen(false)}>
+                        <Button color="black" onClick={() => handleModal(index)}>
                         취소
                         </Button>
                         <Button
@@ -153,7 +164,7 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
                             labelPosition="right"
                             icon="checkmark"
                             onClick={() => {
-                                setOpen(false);
+                                handleModal(index);
                                 addToCart(value);
                             }}
                             positive
