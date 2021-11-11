@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 import List from "./List";
 
 const PAGE_PRODUCTS = "products";
 
-const LookupMeal = ({ diary, setDiary, type }) => { 
+const LookupMeal = ({ diary, setDiary, type, user }) => {
   const navigateTo = (nextPage) => {
     setPage(nextPage);
   };
@@ -17,69 +17,79 @@ const LookupMeal = ({ diary, setDiary, type }) => {
   // 탄수화물 carbs total
   const carbsTotalSum = () => {
     return cart.reduce((sum, { carbs, quantity }) => sum + carbs * quantity, 0);
-  }
+  };
   // 단백질 protein total
-  const protTotalSum =  () => {
+  const protTotalSum = () => {
     return cart.reduce((sum, { prot, quantity }) => sum + prot * quantity, 0);
-  }
+  };
   // 지방 fat total
   const fatTotalSum = () => {
     return cart.reduce((sum, { fat, quantity }) => sum + fat * quantity, 0);
-  }
-  
+  };
+
   return (
     <div style={{ padding: "0 16px 16px" }}>
-        
-        <div>
-          <img src={diary.meals[type].imageBuffer} width={100} height={100}
-                className='ui rounded image'/>
-        </div>
+      <div>
+        <img
+          src={
+            diary.meals[type].imageBuffer || user.url + diary.meals[type].image
+          }
+          width={100}
+          height={100}
+          className="ui rounded image"
+        />
+      </div>
 
-        <div
-              className="ui large horizontal divided list"
-              style={{display: 'flex'}}
-        >
-          <div className="item" style={{width: '25%'}}>
-              <div className='content' style={{marginBottom: '8px'}}>칼로리</div>
-              <div className="header">{getTotalSum()}kcal</div>
+      <div
+        className="ui large horizontal divided list"
+        style={{ display: "flex" }}
+      >
+        <div className="item" style={{ width: "25%" }}>
+          <div className="content" style={{ marginBottom: "8px" }}>
+            칼로리
           </div>
-          <div className="item" style={{width: '25%'}}>
-              <div className='content' style={{marginBottom: '8px'}}>탄수화물</div>
-              <div className="header">{carbsTotalSum()}g</div>
-          </div>
-          <div className="item" style={{width: '25%'}}>
-              <div className='content' style={{marginBottom: '8px'}}>단백질</div>
-              <div className="header">{protTotalSum()}g</div>
-          </div>
-          <div class="item" style={{width: '25%'}}>
-              <div className='content' style={{marginBottom: '8px'}}>지방</div>
-              <div className="header">{fatTotalSum()}g</div>
-          </div>
+          <div className="header">{getTotalSum()}kcal</div>
         </div>
+        <div className="item" style={{ width: "25%" }}>
+          <div className="content" style={{ marginBottom: "8px" }}>
+            탄수화물
+          </div>
+          <div className="header">{carbsTotalSum()}g</div>
+        </div>
+        <div className="item" style={{ width: "25%" }}>
+          <div className="content" style={{ marginBottom: "8px" }}>
+            단백질
+          </div>
+          <div className="header">{protTotalSum()}g</div>
+        </div>
+        <div class="item" style={{ width: "25%" }}>
+          <div className="content" style={{ marginBottom: "8px" }}>
+            지방
+          </div>
+          <div className="header">{fatTotalSum()}g</div>
+        </div>
+      </div>
 
-        <div className="ui middle aligned divided list">
+      <div className="ui middle aligned divided list">
         {cart.map((product, index) => (
-          <List
-            product={product}
-            index={index}
-            
-          />
+          <List product={product} index={index} key={index} />
         ))}
-        </div>
+      </div>
 
-        <button
-          className="ui fluid button blue"
-          onClick={() => setDiary(diary => {
-            const newDiary = {...diary}
+      <button
+        className="ui fluid button blue"
+        onClick={() =>
+          setDiary((diary) => {
+            const newDiary = { ...diary };
             newDiary.meals[type].written = false;
             return newDiary;
-          })}
-        >
-          편집 및 추가하기
-        </button>
-
+          })
+        }
+      >
+        편집 및 추가하기
+      </button>
     </div>
-  )
-}
+  );
+};
 
-export default LookupMeal
+export default LookupMeal;

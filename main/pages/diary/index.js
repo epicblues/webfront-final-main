@@ -14,8 +14,8 @@ import AddFood from "../../components/diary/meal/AddFood";
 import LookupMeal from "../../components/diary/meal/LookupMeal";
 import Meal from "../../components/diary/meal/Meal";
 import { getDateId } from "../../util/date";
-// import clientPromise from "../../util/mongodb";
-// import { getDateId } from "../../util/date";
+import clientPromise, { getNextSequence } from "../../util/mongodb";
+import { Diary } from "../../models";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -25,62 +25,10 @@ export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   "DEFAULT",
 ]; // Diary용 상수 설정
 
-const index = ({ user }) => {
+const index = ({ user, fetchedDiary }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [writingMode, setWritingMode] = useState("DEFAULT");
-  const [diary, setDiary] = useState({
-    user_id: user.id,
-    upload_date: getDateId(new Date()),
-    reviews: [],
-    meals: [
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-        imageBuffer: null,
-        written: false,
-      },
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-        imageBuffer: null,
-        written: false,
-      },
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-        imageBuffer: null,
-        written: false,
-      },
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-        imageBuffer: null,
-        written: false,
-      },
-    ],
-    total: {
-      calories: 0,
-      fat: 0,
-      protein: 0,
-      carbs: 0,
-    },
-  });
+  const [diary, setDiary] = useState(fetchedDiary);
 
   const tabClickHandler = (index) => {
     setActiveIndex(index);
@@ -117,7 +65,13 @@ const index = ({ user }) => {
             }}
           >
             {[0, 1, 2, 3].map((type) => (
-              <Meal diary={diary} setWritingMode={setWritingMode} type={type} />
+              <Meal
+                diary={diary}
+                setWritingMode={setWritingMode}
+                type={type}
+                key={type}
+                user={user}
+              />
             ))}
           </div>
         </div>
@@ -188,12 +142,31 @@ const index = ({ user }) => {
 };
 
 export const getServerSideProps = async (ctx) => {
-  const user = await getUserOrRedirect(ctx);
-  // 당일 다이어리를 가져오는 로직
-  // const client = await clientPromise;
-  // const initialDiary = await client.db('webfront').collection('diary').findOne({user_id : user.id, upload_date :getDateId(new Date())})
-  console.log("user:", user);
-  return { props: { user } };
+  try {
+    const user = await getUserOrRedirect(ctx);
+    // 당일 다이어리를 가져오는 로직
+    const client = await clientPromise;
+    const loadedDiary = await client
+      .db("webfront")
+      .collection("diary")
+      .findOne({ user_id: user.id, upload_date: getDateId(new Date()) });
+    // 다이어리가 없을 경우 새로 만들고 그 초기화 값을 return
+    if (loadedDiary === null) {
+      const diaryId = await getNextSequence("diary", client);
+      const initialDiary = new Diary(user.id);
+      await client
+        .db("webfront")
+        .collection("diary")
+        .insertOne({ ...initialDiary, _id: diaryId });
+      return {
+        props: { user, fetchedDiary: { ...initialDiary, _id: diaryId } },
+      };
+    } else {
+      return { props: { user, fetchedDiary: loadedDiary } };
+    }
+  } catch (error) {
+    ctx.req.json({ message: error });
+  }
 };
 
 export default index;

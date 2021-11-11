@@ -19,18 +19,26 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   const saveMeal = async () => {
     const formData = new FormData();
     const mealToUpdate = diary.meals[type];
+
     formData.append("type", type);
-    for (let key in mealToUpdate) {
-      formData.append(key, mealToUpdate[key]);
-      formData.delete(imageBuffer);
+
+    for (const key in mealToUpdate) {
+      formData.set(
+        key,
+        key === "foods" ? JSON.stringify(mealToUpdate[key]) : mealToUpdate[key]
+      );
+      formData.delete("imageBuffer");
     }
+
     formData.append("upload_date", diary.upload_date);
 
     const result = await postStaticAxios(
-      user.url + "/api/diary/create",
+      user.url + "/api/diary/update",
       user.token,
       formData
     );
+
+    // 수정해야함 diary의 state를 비동기적으로 변경하는 함수로
     setWritingMode("DEFAULT");
     setDiary((diary) => {
       const newDiary = { ...diary };
@@ -56,7 +64,12 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
     <>
       {writingMode === type ? (
         diary.meals[type].written ? (
-          <LookupMeal type={type} diary={diary} setDiary={setDiary} />
+          <LookupMeal
+            type={type}
+            diary={diary}
+            setDiary={setDiary}
+            user={user}
+          />
         ) : (
           <div
             className="AddFood"

@@ -70,6 +70,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
             index={index}
             setQuantity={setQuantity}
             removeFromCart={removeFromCart}
+            key={index}
           />
         ))}
       </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Meal = ({ diary, type, setWritingMode }: any) => {
+const Meal = ({ diary, type, setWritingMode, user }: any) => {
   const typeName = ["아침", "점심", "저녁", "간식"]
   return (
     <div
@@ -17,7 +17,7 @@ const Meal = ({ diary, type, setWritingMode }: any) => {
         >
           +
         </a>
-        <img src={diary.meals[type].imageBuffer} width={100} height={100} />
+        <img src={diary.meals[type].imageBuffer || user.url + diary.meals[type].image} width={100} height={100} />
       </div>
       {typeName[type]}
     </div>

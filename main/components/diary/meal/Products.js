@@ -63,7 +63,7 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
         {filteredData.map((value, index) => {
           return (
             // 검색 리스트 출력
-            <div className="item" key={value.id} style={{ padding: "8px" }}>
+            <div className="item" key={index} style={{ padding: "8px" }}>
               <div
                 style={{
                   textAlign: "left",

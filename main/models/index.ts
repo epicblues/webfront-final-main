@@ -1,3 +1,5 @@
+import { getDateId } from "../util/date";
+
 export interface Recipe {
   post_no: number;
   user_id: string;
@@ -28,43 +30,82 @@ export interface ImageFile {
   size: number;
 }
 
-export interface Diary {
+export class Diary {
   user_id: number;
-  upload_date: Date;
+  upload_date: string;
   reviews: [];
-  meals: [
-    {
-      foods: [];
-      calories: 0;
-      fat: 0;
-      protein: 0;
-      carbs: 0;
-      image: null;
-    },
-    {
-      foods: [];
-      calories: 0;
-      fat: 0;
-      protein: 0;
-      carbs: 0;
-      image: null;
-    },
-    {
-      foods: [];
-      calories: 0;
-      fat: 0;
-      protein: 0;
-      carbs: 0;
-      image: null;
-    },
-    { foods: []; calories: 0; fat: 0; protein: 0; carbs: 0; image: null }
-  ];
+  meals: Array<{
+    foods: any[];
+    calories: number;
+    fat: number;
+    protein: number;
+    carbs: number;
+    image: File | null;
+    imageBuffer: string | null;
+    written: boolean;
+  }>;
   total: {
-    calories: 0;
-    fat: 0;
-    protein: 0;
-    carbs: 0;
+    calories: number;
+    fat: number;
+    protein: number;
+    carbs: number;
   };
+
+  constructor(userId: number) {
+    this.user_id = userId;
+    this.upload_date = getDateId(new Date());
+    this.reviews = [];
+    this.meals = [
+      {
+        foods: [],
+        calories: 0,
+        fat: 0,
+        protein: 0,
+        carbs: 0,
+        image: null,
+        imageBuffer: null,
+        written: false,
+      },
+      {
+        foods: [],
+        calories: 0,
+        fat: 0,
+        protein: 0,
+        carbs: 0,
+        image: null,
+        imageBuffer: null,
+        written: false,
+      },
+
+      {
+        foods: [],
+        calories: 0,
+        fat: 0,
+        protein: 0,
+        carbs: 0,
+        image: null,
+        imageBuffer: null,
+        written: false,
+      },
+
+      {
+        foods: [],
+        calories: 0,
+        fat: 0,
+        protein: 0,
+        carbs: 0,
+        image: null,
+        imageBuffer: null,
+        written: false,
+      },
+    ];
+    this.total = {
+      calories: 0,
+      fat: 0,
+      protein: 0,
+      carbs: 0,
+    };
+  }
 }
 export interface Ingredient {
   food_id: number;
