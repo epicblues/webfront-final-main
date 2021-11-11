@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Meal = ({ diary, type, setWritingMode }: { diary: any, type: any, setWritingMode: any }) => {
+const Meal = ({ diary, type, setWritingMode }: any) => {
   const typeName = ["아침", "점심", "저녁", "간식"]
   return (
     <div

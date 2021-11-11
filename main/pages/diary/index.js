@@ -13,6 +13,9 @@ import AddFood from "../../components/diary/meal/AddFood";
 // 음식 조회
 import LookupMeal from "../../components/diary/meal/LookupMeal";
 import Meal from "../../components/diary/meal/Meal";
+import { getDateId } from "../../util/date";
+// import clientPromise from "../../util/mongodb";
+// import { getDateId } from "../../util/date";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -27,7 +30,7 @@ const index = ({ user }) => {
   const [writingMode, setWritingMode] = useState("DEFAULT");
   const [diary, setDiary] = useState({
     user_id: user.id,
-    upload_date: new Date(),
+    upload_date: getDateId(new Date()),
     reviews: [],
     meals: [
       {
@@ -38,7 +41,7 @@ const index = ({ user }) => {
         carbs: 0,
         image: null,
         imageBuffer: null,
-        written: false
+        written: false,
       },
       {
         foods: [],
@@ -48,7 +51,7 @@ const index = ({ user }) => {
         carbs: 0,
         image: null,
         imageBuffer: null,
-        written: false
+        written: false,
       },
       {
         foods: [],
@@ -58,7 +61,7 @@ const index = ({ user }) => {
         carbs: 0,
         image: null,
         imageBuffer: null,
-        written: false
+        written: false,
       },
       {
         foods: [],
@@ -68,7 +71,7 @@ const index = ({ user }) => {
         carbs: 0,
         image: null,
         imageBuffer: null,
-        written: false
+        written: false,
       },
     ],
     total: {
@@ -113,14 +116,9 @@ const index = ({ user }) => {
               padding: "0 16px 16px",
             }}
           >
-            <Meal
-              diary={diary}
-              setWritingMode={setWritingMode}
-              type={BREAKFAST}
-            />
-            <Meal diary={diary} setWritingMode={setWritingMode} type={LUNCH} />
-            <Meal diary={diary} setWritingMode={setWritingMode} type={DINNER} />
-            <Meal diary={diary} setWritingMode={setWritingMode} type={SNACK} />
+            {[0, 1, 2, 3].map((type) => (
+              <Meal diary={diary} setWritingMode={setWritingMode} type={type} />
+            ))}
           </div>
         </div>
       ),
@@ -149,30 +147,17 @@ const index = ({ user }) => {
   return (
     // Wrapper
     <>
-      <AddFood
-          writingMode = {writingMode}
-           diary={diary}
-           setDiary={setDiary}
-           type={BREAKFAST}
-           setWritingMode={setWritingMode} />
-      <AddFood
-       writingMode = {writingMode}
-           diary={diary}
-           setDiary={setDiary}
-           type={LUNCH}
-           setWritingMode={setWritingMode} />
-      <AddFood
-       writingMode = {writingMode}
-           diary={diary}
-           setDiary={setDiary}
-           type={DINNER}
-           setWritingMode={setWritingMode} />
-      <AddFood
-       writingMode = {writingMode}
-           diary={diary}
-           setDiary={setDiary}
-           type={SNACK}
-           setWritingMode={setWritingMode} />
+      {[0, 1, 2, 3].map((type) => (
+        <AddFood
+          writingMode={writingMode}
+          diary={diary}
+          setDiary={setDiary}
+          type={type}
+          setWritingMode={setWritingMode}
+          user={user}
+          key={type}
+        />
+      ))}
 
       {writingMode === DEFAULT && (
         <div className="ui center aligned container">
@@ -204,6 +189,9 @@ const index = ({ user }) => {
 
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
+  // 당일 다이어리를 가져오는 로직
+  // const client = await clientPromise;
+  // const initialDiary = await client.db('webfront').collection('diary').findOne({user_id : user.id, upload_date :getDateId(new Date())})
   console.log("user:", user);
   return { props: { user } };
 };
