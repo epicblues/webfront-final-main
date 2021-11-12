@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
+import { getDateId } from "../../util/date";
+import clientPromise, { getNextSequence } from "../../util/mongodb";
+import { Diary } from "../../models";
 
 // Date
 import PickDate from "../../components/diary/PickDate";
@@ -10,12 +13,7 @@ import ReviewPage from "../../components/diary/review/ReviewPage";
 import Bmr from "../../components/diary/Bmr";
 // 음식 작성
 import AddFood from "../../components/diary/meal/AddFood";
-// 음식 조회
-import LookupMeal from "../../components/diary/meal/LookupMeal";
 import Meal from "../../components/diary/meal/Meal";
-import { getDateId } from "../../util/date";
-import clientPromise, { getNextSequence } from "../../util/mongodb";
-import { Diary } from "../../models";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -110,6 +108,7 @@ const index = ({ user, fetchedDiary }) => {
           setWritingMode={setWritingMode}
           user={user}
           key={type}
+          
         />
       ))}
 

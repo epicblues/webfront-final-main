@@ -1,10 +1,11 @@
 import React from "react";
+import { PAGE_CART } from "./AddFood";
 
 import List from "./List";
 
 const PAGE_PRODUCTS = "products";
 
-const LookupMeal = ({ diary, setDiary, type, user }) => {
+const LookupMeal = ({ diary, setDiary, type, user, setWritingMode, setPage }) => {
   const navigateTo = (nextPage) => {
     setPage(nextPage);
   };
@@ -30,7 +31,12 @@ const LookupMeal = ({ diary, setDiary, type, user }) => {
   return (
     <div style={{ border: "solid 2px lightgray", borderRadius: "5px", padding: '16px'}}>
       <div style={{textAlign: 'left', marginBottom: '16px'}}>
-        <i className='reply large icon'></i>뒤로가기
+        <i className='reply large icon'
+            onClick={(e) => {
+              setWritingMode("DEFAULT");
+            }}
+        >
+        </i>뒤로가기
       </div>
       
       <div style={{ width: "100%", height: "40vh" }}>
@@ -80,6 +86,7 @@ const LookupMeal = ({ diary, setDiary, type, user }) => {
           setDiary((diary) => {
             const newDiary = { ...diary };
             newDiary.meals[type].written = false;
+            setPage(PAGE_CART)
             return newDiary;
           })
         }
