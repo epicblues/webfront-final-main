@@ -61,7 +61,7 @@ const index = ({ user, fetchedDiary }) => {
               gridTemplateColumns: "5fr 5fr",
               gridAutoRows: "200px",
               gridGap: "1rem",
-              padding: "0 16px 16px"
+              padding: "0 16px 16px",
             }}
           >
             {[0, 1, 2, 3].map((type) => (
@@ -116,7 +116,7 @@ const index = ({ user, fetchedDiary }) => {
       {writingMode === DEFAULT && (
         <div className="ui center aligned container">
           <div className="DatePart">
-            <PickDate />
+            <PickDate diary={diary} setDiary={setDiary} />
           </div>
 
           <div className="content">
@@ -167,7 +167,7 @@ export const getServerSideProps = async (ctx) => {
       return { props: { user, fetchedDiary: loadedDiary } };
     }
   } catch (error) {
-    ctx.res.json({ message: error });
+    ctx.res.status(500).json({ message: error });
   }
 };
 

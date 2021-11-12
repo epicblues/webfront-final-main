@@ -1,6 +1,6 @@
 import React from "react";
 import ChallengeWrite from "../../components/challenge/Write/ChallengeWrite";
-import { getUserOrRedirect } from "../api/auth";
+import { getUserOrRedirect } from "../../util/auth";
 const write = () => {
   return <ChallengeWrite></ChallengeWrite>;
 };
