@@ -110,6 +110,7 @@ const index = ({ user, fetchedDiary }) => {
           setWritingMode={setWritingMode}
           user={user}
           key={type}
+          
         />
       ))}
 

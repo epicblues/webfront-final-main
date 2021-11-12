@@ -8,14 +8,27 @@ import { postStaticAxios } from "../../../util/axios";
 import { getDateId } from "../../../util/date";
 
 const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
-
+export const [PAGE_PRODUCTS, PAGE_CART] = ["products","cart"]
 function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
-  const PAGE_PRODUCTS = "products";
-  const PAGE_CART = "cart";
+ 
   // Page 이동
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState(PAGE_PRODUCTS);
 
+  const clearCart = () => {
+    const fixedMeals = diary.meals;
+    fixedMeals[type] = {
+      ...fixedMeals[type],
+      foods: [],
+      calories: 0,
+      carbs: 0,
+      fat: 0,
+      protein: 0,
+    };
+    setDiary({ ...diary, meals: fixedMeals });
+  }
+
+  // 추가 완료 Button
   const saveMeal = async () => {
     const formData = new FormData();
     const mealToUpdate = diary.meals[type];
@@ -69,6 +82,8 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
             diary={diary}
             setDiary={setDiary}
             user={user}
+            setWritingMode={setWritingMode}
+            setPage={setPage}
           />
         ) : (
           <div
@@ -83,9 +98,15 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
               }}
             >
 
-              <div style={{textAlign: 'left', marginBottom: '16px'}}>
-                  <i className='reply large icon'></i>취소
-              </div>
+              <button className='ui red button'
+                      onClick={(e) => {
+                        setWritingMode("DEFAULT");
+                        clearCart()
+                      }}
+              >
+                취소
+              </button>
+              
 
               <div>
                 <span>{mealType[type]}</span>
@@ -96,10 +117,14 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
                   {getCartTotal()}
                 </a>
               </div>
-
-              <button className="yellow ui button" onClick={saveMeal}>
-                추가 완료
+              
+              <button className="yellow ui button"
+              onClick={ () => { saveMeal(); }}
+              disabled = {!(diary.meals[type].foods.length !== 0)}
+              >
+                완료
               </button>
+              
             </div>
 
             {page === PAGE_PRODUCTS && (
