@@ -16,7 +16,7 @@ const handler: NextApiHandler = async (req, res) => {
     .collection("diary")
     .findOneAndUpdate({ _id }, { $push: { reviews: newReview } });
   console.log(result);
-  res.status(result.ok ? 200 : 500).json({ message: result.ok });
+  res.status(result.ok ? 200 : 404).json({ message: result.ok });
 };
 
 export default authenticated(handler);

@@ -12,6 +12,7 @@ export const postStaticAxios = async (
     headers: {
       Authorization: "Bearer " + token,
     },
+    
   });
   return await axiosInstance.post(url, formData);
 };
