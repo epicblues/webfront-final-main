@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, FunctionComponent, useRef } from "react";
 import { Icon, Popup } from 'semantic-ui-react';
 
-interface UserBmr {
+export interface UserBmr {
   gender: string;
   heightFeet: number;
   weight: number;
