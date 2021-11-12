@@ -1,20 +1,47 @@
 import React from "react";
 import { useState } from "react";
+import { postStaticAxios } from "../../../util/axios";
+import { getDateId } from "../../../util/date";
 
 import Products from "./Products";
 import Cart from "./Cart";
 import LookupMeal from "./LookupMeal";
-import { postStaticAxios } from "../../../util/axios";
-import { getDateId } from "../../../util/date";
+import MultiBtn from "../meal/MultiBtn";
 
 const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
 export const [PAGE_PRODUCTS, PAGE_CART] = ["products","cart"]
+
 function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
- 
   // Page 이동
   const [cart, setCart] = useState([]);
   const [page, setPage] = useState(PAGE_PRODUCTS);
 
+  const navigateTo = (nextPage) => {
+    setPage(nextPage);
+  };
+  
+  // Count
+  const getCartTotal = () => {
+    return (
+      diary.meals[type].foods.reduce((prev, current) => {
+        return prev + current.quantity;
+      }, 0) || 0
+    );
+  };
+
+  // 취소<->완료 멀티 버튼
+  const showAdd =(diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer)
+  const multiBtn = (e) => {
+
+    if (!(diary.meals[type].foods.length !== 0)) {
+      return setWritingMode("DEFAULT");
+      
+    } else {
+      return saveMeal()
+    }
+  };
+
+  // 취소버튼 - Count 0으로
   const clearCart = () => {
     const fixedMeals = diary.meals;
     fixedMeals[type] = {
@@ -28,7 +55,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
     setDiary({ ...diary, meals: fixedMeals });
   }
 
-  // 추가 완료 Button
+  // 완료 버튼
   const saveMeal = async () => {
     const formData = new FormData();
     const mealToUpdate = diary.meals[type];
@@ -60,19 +87,6 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
     });
   };
 
-  const navigateTo = (nextPage) => {
-    setPage(nextPage);
-  };
-
-  // Count
-  const getCartTotal = () => {
-    return (
-      diary.meals[type].foods.reduce((prev, current) => {
-        return prev + current.quantity;
-      }, 0) || 0
-    );
-  };
-
   return (
     <>
       {writingMode === type ? (
@@ -96,17 +110,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
                 justifyContent: "space-between",
                 padding: "16px",
               }}
-            >
-
-              <button className='ui red button'
-                      onClick={(e) => {
-                        setWritingMode("DEFAULT");
-                        clearCart()
-                      }}
-              >
-                취소
-              </button>
-              
+            > 
 
               <div>
                 <span>{mealType[type]}</span>
@@ -118,13 +122,12 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
                 </a>
               </div>
               
-              <button className="yellow ui button"
-              onClick={ () => { saveMeal(); }}
-              disabled = {!(diary.meals[type].foods.length !== 0)}
-              >
-                완료
-              </button>
-              
+              <MultiBtn
+                color={showAdd ? 'red' : 'yellow'}
+                text={showAdd ? '취소' : '완료'}
+                onClick={multiBtn}
+              />
+
             </div>
 
             {page === PAGE_PRODUCTS && (
