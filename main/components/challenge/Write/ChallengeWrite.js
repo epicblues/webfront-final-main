@@ -14,6 +14,7 @@ const ChallengeWrite = () => {
     title: "",
     startDate: "",
     endDate: "",
+    Id: 0,
 
     challengeType: "",
     diet: {
@@ -44,13 +45,15 @@ const ChallengeWrite = () => {
       onClick();
     }
   };
+
   const onSubmit = (event) => {
     event.preventDefault();
+
     setChallenge({
       title: "",
       startDate: "",
       endDate: "",
-
+      Id: challenge.Id + 1,
       challengeType: "",
       diet: {
         type: "",

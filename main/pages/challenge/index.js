@@ -16,11 +16,11 @@ const index = () => {
         <Button>챌린지 리스트 보기 </Button>
       </Link>
       <br />
-      <div className="SamllList">
-        <SmallList> </SmallList>
-      </div>
       <div className="myChallenge">
         <MyChallenge></MyChallenge>
+      </div>
+      <div className="SamllList">
+        <SmallList> </SmallList>
       </div>
     </>
   );

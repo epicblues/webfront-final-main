@@ -72,7 +72,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
                   setCheckInputs2(e.currentTarget.value), handleChange();
                 }}
               />
-              <label>살 찌우는 다이어트</label>
+              <label>체중증가 다이어트</label>
               <input
                 type="radio"
                 id="4"
@@ -83,7 +83,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
                   setCheckInputs2(e.currentTarget.value), handleChange();
                 }}
               />
-              <label>살 빼는 다이어트</label>
+              <label>체중감량 다이어트</label>
             </div>
           </>
         ) : (
