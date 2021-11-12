@@ -1,13 +1,14 @@
 import React, { LegacyRef, MutableRefObject, useRef } from 'react'
 import Link from 'next/link';
-import { checkValid } from '../api/auth';
+import { checkValid } from '../../util/auth';
+import { useRouter } from 'next/dist/client/router';
 
 const login = () => {
 
   const email = useRef() as MutableRefObject<HTMLInputElement>;
   const password = useRef() as MutableRefObject<HTMLInputElement>;
   const head = useRef() as MutableRefObject<HTMLHeadingElement>;
-
+  const router = useRouter()
 
 
   const handleClick = async () => {
@@ -30,7 +31,7 @@ const login = () => {
       })
     })
     const result = await res.json();
-    if (result.status === "OK") location.href = "/";
+    if (result.status === "OK") router.push('/');
     else {
       head.current.innerHTML = "이메일 혹은 비밀번호를 잘못 입력하셨습니다."
       email.current.value = '';

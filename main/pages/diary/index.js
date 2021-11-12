@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { getUserOrRedirect } from "../api/auth";
+import { getUserOrRedirect } from "../../util/auth";
 
 // Date
 import PickDate from "../../components/diary/PickDate";
@@ -12,6 +12,10 @@ import Bmr from "../../components/diary/Bmr";
 import AddFood from "../../components/diary/meal/AddFood";
 // 음식 조회
 import LookupMeal from "../../components/diary/meal/LookupMeal";
+import Meal from "../../components/diary/meal/Meal";
+import { getDateId } from "../../util/date";
+import clientPromise, { getNextSequence } from "../../util/mongodb";
+import { Diary } from "../../models";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -21,54 +25,10 @@ export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   "DEFAULT",
 ]; // Diary용 상수 설정
 
-const index = ({ user }) => {
+const index = ({ user, fetchedDiary }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [writingMode, setWritingMode] = useState("DEFAULT");
-  const [diary, setDiary] = useState({
-    user_id: user.id,
-    upload_date: new Date(),
-    reviews: [],
-    meals: [
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-      },
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-      },
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-      },
-      {
-        foods: [],
-        calories: 0,
-        fat: 0,
-        protein: 0,
-        carbs: 0,
-        image: null,
-      },
-    ],
-    total: {
-      calories: 0,
-      fat: 0,
-      protein: 0,
-      carbs: 0,
-    },
-  });
+  const [diary, setDiary] = useState(fetchedDiary);
 
   const tabClickHandler = (index) => {
     setActiveIndex(index);
@@ -99,82 +59,20 @@ const index = ({ user }) => {
             style={{
               display: "grid",
               gridTemplateColumns: "5fr 5fr",
-              gridGap: "1rem",
               gridAutoRows: "200px",
-              padding: "0 16px 16px",
+              gridGap: "1rem",
+              padding: "0 16px 16px"
             }}
           >
-            <div
-              className="item"
-              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-            >
-              <div>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setWritingMode(BREAKFAST);
-                  }}
-                  className="ui teal circular label"
-                >
-                  +
-                </a>
-              </div>
-              아침
-            </div>
-
-            <div
-              className="item"
-              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-            >
-              <div>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setWritingMode(LUNCH);
-                  }}
-                  className="ui teal circular label"
-                >
-                  +
-                </a>
-              </div>
-              점심
-            </div>
-
-            <div
-              className="item"
-              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-            >
-              <div>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setWritingMode(DINNER);
-                  }}
-                  className="ui teal circular label"
-                >
-                  +
-                </a>
-              </div>
-              저녁
-            </div>
-
-            <div
-              className="item"
-              style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-            >
-              <div>
-                <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setWritingMode(SNACK);
-                  }}
-                  className="ui teal circular label"
-                >
-                  +
-                </a>
-              </div>
-              간식
-            </div>
+            {[0, 1, 2, 3].map((type) => (
+              <Meal
+                diary={diary}
+                setWritingMode={setWritingMode}
+                type={type}
+                key={type}
+                user={user}
+              />
+            ))}
           </div>
         </div>
       ),
@@ -194,7 +92,7 @@ const index = ({ user }) => {
       ),
       tabCont: (
         <div>
-          <ReviewPage />
+          <ReviewPage diary={diary} setDiary={setDiary} />
         </div>
       ),
     },
@@ -203,38 +101,17 @@ const index = ({ user }) => {
   return (
     // Wrapper
     <>
-      {writingMode === BREAKFAST && (
+      {[0, 1, 2, 3].map((type) => (
         <AddFood
+          writingMode={writingMode}
           diary={diary}
           setDiary={setDiary}
-          type={BREAKFAST}
+          type={type}
           setWritingMode={setWritingMode}
+          user={user}
+          key={type}
         />
-      )}
-      {writingMode === LUNCH ? (
-        <AddFood
-          diary={diary}
-          setDiary={setDiary}
-          type={LUNCH}
-          setWritingMode={setWritingMode}
-        />
-      ) : null}
-      {writingMode === DINNER ? (
-        <AddFood
-          diary={diary}
-          setDiary={setDiary}
-          type={DINNER}
-          setWritingMode={setWritingMode}
-        />
-      ) : null}
-      {writingMode === SNACK ? (
-        <AddFood
-          diary={diary}
-          setDiary={setDiary}
-          type={SNACK}
-          setWritingMode={setWritingMode}
-        />
-      ) : null}
+      ))}
 
       {writingMode === DEFAULT && (
         <div className="ui center aligned container">
@@ -254,12 +131,9 @@ const index = ({ user }) => {
             <div>{tabContArr[activeIndex].tabCont}</div>
           </div>
 
-
           <div>
             <Bmr />
           </div>
-          
-          
         </div>
       )}
     </>
@@ -268,9 +142,33 @@ const index = ({ user }) => {
 };
 
 export const getServerSideProps = async (ctx) => {
-  const user = await getUserOrRedirect(ctx);
-  console.log("user:", user);
-  return { props: { user } };
+  try {
+    const user = await getUserOrRedirect(ctx);
+
+    // 당일 다이어리를 가져오는 로직
+    const client = await clientPromise;
+    const loadedDiary = await client
+      .db("webfront")
+      .collection("diary")
+      .findOne({ user_id: user.id, upload_date: getDateId(new Date()) });
+
+    // 다이어리가 없을 경우 새로 만들고 그 초기화 값을 return
+    if (loadedDiary === null) {
+      const diaryId = await getNextSequence("diary", client);
+      const initialDiary = new Diary(user.id);
+      await client
+        .db("webfront")
+        .collection("diary")
+        .insertOne({ ...initialDiary, _id: diaryId });
+      return {
+        props: { user, fetchedDiary: { ...initialDiary, _id: diaryId } },
+      };
+    } else {
+      return { props: { user, fetchedDiary: loadedDiary } };
+    }
+  } catch (error) {
+    ctx.res.json({ message: error });
+  }
 };
 
 export default index;

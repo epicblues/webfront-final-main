@@ -7,12 +7,13 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
   const [products] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
 
+  // Change Button 
   const [style, setStyle] = useState();
-
   const changeStyle = () => {
     return <i className="check circle icon"></i>;
   };
 
+  // Count Food
   const addToCart = (value) => {
     const prevMeal = diary.meals[type];
     const foodIndex = prevMeal.foods.findIndex(
@@ -36,7 +37,7 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
     });
   };
 
-  // 검색필터
+  // Search Filter
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
   const handleSearch = async (event) => {
@@ -46,8 +47,18 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
     setFilteredData(data);
   };
 
-  const [open, setOpen] = React.useState(false);
-
+  // Modal
+  const modalInitialState = [];
+  for(let i = 0; i < 20; i++) {
+    modalInitialState.push(false);
+  }
+  const [open, setOpen] = React.useState(modalInitialState);
+  const handleModal = (index) => setOpen(state => {
+    const newState = [...state];
+    newState[index] = !newState[index];
+    return newState
+  })
+  
   return (
     <>
       <div className="ui fluid icon input" style={{ padding: "0 16px" }}>
@@ -59,11 +70,11 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
         <i className="search icon" style={{ right: 16 }}></i>
       </div>
 
-      <div className="ui middle aligned divided list" style={{ padding: 10 }}>
+      <div className="ui middle aligned selection list" style={{ padding: 10 }}>
         {filteredData.map((value, index) => {
           return (
             // 검색 리스트 출력
-            <div className="item" key={value.id} style={{ padding: "8px" }}>
+            <div className="item" key={index} style={{ padding: "8px" }}>
               <div
                 style={{
                   textAlign: "left",
@@ -73,9 +84,9 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
               >
                 <div>
                   <Modal
-                    onClose={() => setOpen(false)}
-                    onOpen={() => setOpen(true)}
-                    open={open}
+                    onClose={() => handleModal(index)}
+                    onOpen={() => handleModal(index)}
+                    open={open[index]}
                     trigger={
                       <div
                         className="content"
@@ -100,50 +111,64 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
                       </div>
                     }
                   >
-                    <Modal.Header>선택한 음식</Modal.Header>
+                    <Modal.Header><i class="info circle icon"></i>영양 성분</Modal.Header>
                     <Modal.Content>
                       <Modal.Description>
-                        <Header>영양정보</Header>
-                        {/* {selectedData.map((value, index) => {
-                                return (
-                                    <>
-                                    <div key={index}>
-                                        <span>
-                                            {value.name}
-                                        </span>
-                                        /
-                                        <span>
-                                            {value.mfr}
-                                        </span>
-                                        <br />
-                                        <input
-                                            ref={inputRef}
-                                            type='text'
-                                            placeholder='선택한 음식의 양'
-                                        />
-                                        <span>
-                                            단위:({value.unit})
-                                        </span>
-                                    </div>
-                                    </>
-                                );
-                            })} */}
+                          <ul className='ui middle aligned animated list'>
+                              <li className='item'>
+                                  이름:{value.name}
+                              </li>
+                              <li className='item'>
+                                  제조사: {value.mfr}
+                              </li>
+                              <li className='item'>
+                                  양: {value.serve}{value.unit}
+                              </li>
+                              <li className='item'>
+                                  열량: {value.kcal}kcal
+                              </li>
+                              <li className='item'>
+                                  탄수화물: {value.carbs}g
+                              </li>
+                              <li className='item'>
+                                  단백질: {value.prot}g
+                              </li>
+                              <li className='item'>
+                                  당류: {value.sugars}g
+                              </li>
+                              <li className='item'>
+                                  지방: {value.fat}g
+                              </li>
+                              <li className='item'>
+                                  트랜스지방: {value.trnfat}g
+                              </li>
+                              <li className='item'>
+                                  포화지방: {value.stdfat}g
+                              </li>
+                              <li className='item'>
+                                  콜레스테롤: {value.chole}mg
+                              </li>
+                              <li className='item'>
+                                  나트륨: {value.sodium}mg
+                              </li>
+                          </ul>
                       </Modal.Description>
                     </Modal.Content>
+                    
                     <Modal.Actions>
-                      <Button color="black" onClick={() => setOpen(false)}>
+                        <Button color="black" onClick={() => handleModal(index)}>
                         취소
-                      </Button>
-                      <Button
-                        content="확인"
-                        labelPosition="right"
-                        icon="checkmark"
-                        onClick={() => {
-                          setOpen(false);
-                          addToCart(value);
-                        }}
-                        positive
-                      />
+                        </Button>
+                        <Button
+                            content="확인"
+                            labelPosition="right"
+                            icon="checkmark"
+                            onClick={() => {
+                                handleModal(index);
+                                addToCart(value);
+                            }}
+                            positive
+                        />
                     </Modal.Actions>
                   </Modal>
                 </div>

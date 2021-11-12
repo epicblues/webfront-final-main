@@ -1,5 +1,5 @@
 import React, { LegacyRef, MutableRefObject, useRef } from 'react'
-import { checkValid } from '../api/auth';
+import { checkValid } from '../../util/auth';
 
 
 

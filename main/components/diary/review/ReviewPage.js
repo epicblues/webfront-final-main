@@ -1,66 +1,55 @@
 // import React from 'react'
-import { useState } from 'react';
+import { useState } from "react";
 
 // components
 import ReviewHeader from "./ReviewHeader";
 import Reviews from "./Reviews";
-import AddReview from './AddReview';
+import AddReview from "./AddReview";
 
 // CSS
-import 'semantic-ui-css/semantic.min.css';
+import "semantic-ui-css/semantic.min.css";
+import axios from "axios";
 
-const ReviewPage = () => {
-  const [showAddReview, setShowAddReview] = useState(false)
-  const [reviews, setReviews] = useState ([
-    {
-      id: 1,
-      text: "오늘은 너무 많이 먹었다. 반성하자",
-      reminder: true
-    },
-    {
-      id: 2,
-      text: "하루 섭취 칼로리를 잘 지켰다. 개뿌듯^___^",
-      reminder: true
-    }
-  ])
+const ReviewPage = ({ diary, setDiary }) => {
+  const [showAddReview, setShowAddReview] = useState(false);
+  const reviews = diary.reviews;
   // Update Review
 
   // Add Review
-  const addReview = (review) => {
-    const id = Math.floor(Math.random() * 10000) + 1
-    const newReview = { id, ...review }
-    setReviews([...reviews, newReview])
-  }
+  const addReview = async (review) => {
+    const id = Math.floor(Math.random() * 10000) + 1;
+    const newReview = { id, ...review };
+    await axios.post("/api/diary/review/create?id=" + diary._id, newReview);
+    const copiedReviews = [...reviews, newReview];
+    setDiary({ ...diary, reviews: copiedReviews });
+  };
 
   // Delete Review
   const deleteReview = async (id) => {
-    setReviews(reviews.filter((review) => review.id !== id))
-  }
-
-  // Toggle Reminder
-  const toggleReminder = (id) => {
-    setReviews(reviews.map((review) =>
-      review.id === id ? {...review, reminder:
-      !review.reminder } : review
-      )
-    )
-  }
+    await axios.post("/api/diary/review/delete?id=" + diary._id, { id });
+    setDiary({
+      ...diary,
+      reviews: reviews.filter((review) => review.id !== id),
+    });
+  };
 
   return (
-    <div className="ui content"
-        style={{border: 'solid 2px lightgray',
-                borderRadius: '5px'
-        }}
+    <div
+      className="ui content"
+      style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
     >
-      <ReviewHeader onAdd={() => setShowAddReview(!showAddReview)}
-              showAdd={showAddReview} />
+      <ReviewHeader
+        onAdd={() => setShowAddReview(!showAddReview)}
+        showAdd={showAddReview}
+      />
       {showAddReview && <AddReview onAdd={addReview} />}
-      {reviews.length > 0 ?
-        (<Reviews reviews={reviews}
-                onDelete={deleteReview}
-                onToggle={toggleReminder} />) : ('No Reviews To Show')}
+      {reviews.length > 0 ? (
+        <Reviews reviews={reviews} onDelete={deleteReview} />
+      ) : (
+        "No Reviews To Show"
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default ReviewPage;
