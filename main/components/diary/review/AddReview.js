@@ -22,7 +22,7 @@ const AddReview = ({ onAdd }) => {
       <div className="field">
         <label style={{ textAlign: "left" }}>
           오늘의 일기
-          <i className="edit icon"></i>
+          <i className="edit outline icon"></i>
         </label>
         <textarea
           type="text"
@@ -31,15 +31,6 @@ const AddReview = ({ onAdd }) => {
           onChange={(e) => setText(e.target.value)}
         />
       </div>
-
-      <div
-        className="ui checkbox"
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "10px",
-        }}
-      ></div>
 
       <button
         type="submit"
