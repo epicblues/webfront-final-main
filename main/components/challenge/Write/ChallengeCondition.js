@@ -12,7 +12,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
         dailyCalorie: checkedInputs3,
         condition: checkedInputs4,
       },
-      receipe: {
+      recipe: {
         kind: dropdown,
         uploadCount: checkedInputs5,
       },
@@ -39,7 +39,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           id="1"
           name="challenge"
           value="diet"
-          checked={checkedInputs === "diet"}
+          checked={challenge.challengeType === "diet"}
           onChange={(e) => {
             setCheckInputs(e.currentTarget.value), handleChange();
           }}
@@ -49,13 +49,13 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           type="radio"
           id="2"
           name="challenge"
-          value="receipe"
-          checked={checkedInputs === "receipe"}
+          value="recipe"
+          checked={challenge.challengeType === "recipe"}
           onChange={(e) => {
             setCheckInputs(e.currentTarget.value), handleChange();
           }}
         />
-        <label>receipe</label>
+        <label>recipe</label>
         {checkedInputs === "diet" ? (
           <>
             <Header as="h4" inverted color="blue">
@@ -67,23 +67,23 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
                 id="3"
                 name="type"
                 value="plusKcal"
-                checked={checkedInputs2 === "plusKcal"}
+                checked={challenge.diet.type === "plusKcal"}
                 onChange={(e) => {
                   setCheckInputs2(e.currentTarget.value), handleChange();
                 }}
               />
-              <label>살 찌우는 다이어트</label>
+              <label>체중증가 다이어트</label>
               <input
                 type="radio"
                 id="4"
                 name="type"
                 value="minusKcal"
-                checked={checkedInputs2 === "minusKcal"}
+                checked={challenge.diet.type === "minusKcal"}
                 onChange={(e) => {
                   setCheckInputs2(e.currentTarget.value), handleChange();
                 }}
               />
-              <label>살 빼는 다이어트</label>
+              <label>체중감량 다이어트</label>
             </div>
           </>
         ) : (
@@ -91,10 +91,10 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
             <Header as="h4" inverted color="blue">
               레시피 종류
             </Header>
-            <div className="receipeKind">
+            <div className="recipeKind">
               <select
                 name="kind"
-                value={dropdown}
+                value={challenge.recipe.kind}
                 onChange={(e) => {
                   setDropDown(e.currentTarget.value), handleChange();
                 }}
@@ -136,7 +136,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="5"
               name="dailyCalorie"
               value="1500kcal"
-              checked={checkedInputs3 === "1500kcal"}
+              checked={challenge.diet.dailyCalorie === "1500kcal"}
               onChange={(e) => {
                 setCheckInputs3(e.currentTarget.value), handleChange();
               }}
@@ -147,7 +147,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="6"
               name="dailyCalorie"
               value="2000kcal"
-              checked={checkedInputs3 === "2000kcal"}
+              checked={challenge.diet.dailyCalorie === "2000kcal"}
               onChange={(e) => {
                 setCheckInputs3(e.currentTarget.value), handleChange();
               }}
@@ -158,7 +158,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="7"
               name="dailyCalorie"
               value="2500kcal"
-              checked={checkedInputs3 === "2500kcal"}
+              checked={challenge.diet.dailyCalorie === "2500kcal"}
               onChange={(e) => {
                 setCheckInputs3(e.currentTarget.value), handleChange();
               }}
@@ -169,7 +169,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="8"
               name="dailyCalorie"
               value="3000kcal"
-              checked={checkedInputs3 === "3000kcal"}
+              checked={challenge.diet.dailyCalorie === "3000kcal"}
               onChange={(e) => {
                 setCheckInputs3(e.currentTarget.value), handleChange();
               }}
@@ -190,7 +190,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="9"
               name="condition"
               value="7days"
-              checked={checkedInputs4 === "7days"}
+              checked={challenge.diet.condition === "7days"}
               onChange={(e) => {
                 setCheckInputs4(e.currentTarget.value), handleChange();
               }}
@@ -201,7 +201,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="10"
               name="condition"
               value="15days"
-              checked={checkedInputs4 === "15days"}
+              checked={challenge.diet.condition === "15days"}
               onChange={(e) => {
                 setCheckInputs4(e.currentTarget.value), handleChange();
               }}
@@ -212,7 +212,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="11"
               name="condition"
               value="30days"
-              checked={checkedInputs4 === "30days"}
+              checked={challenge.diet.condition === "30days"}
               onChange={(e) => {
                 setCheckInputs4(e.currentTarget.value), handleChange();
               }}
@@ -225,13 +225,13 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           <Header as="h4" inverted color="blue">
             레시피 업로드 횟수
           </Header>
-          <div className="receipeUploadCount">
+          <div className="recipeUploadCount">
             <input
               type="radio"
               id="12"
-              name="receipeCount"
+              name="recipeCount"
               value="3times"
-              checked={checkedInputs5 === "3times"}
+              checked={challenge.recipe.uploadCount === "3times"}
               onChange={(e) => {
                 setCheckInputs5(e.currentTarget.value), handleChange();
               }}
@@ -242,7 +242,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="13"
               name="receipeCount"
               value="5times"
-              checked={checkedInputs5 === "5times"}
+              checked={challenge.recipe.uploadCount === "5times"}
               onChange={(e) => {
                 setCheckInputs5(e.currentTarget.value), handleChange();
               }}
@@ -253,7 +253,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="14"
               name="receipeCount"
               value="7times"
-              checked={checkedInputs5 === "7times"}
+              checked={challenge.recipe.uploadCount === "7times"}
               onChange={(e) => {
                 setCheckInputs5(e.currentTarget.value), handleChange();
               }}
@@ -264,7 +264,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               id="15"
               name="receipeCount"
               value="9times"
-              checked={checkedInputs5 === "9times"}
+              checked={challenge.recipe.uploadCount === "9times"}
               onChange={(e) => {
                 setCheckInputs5(e.currentTarget.value), handleChange();
               }}

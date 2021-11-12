@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
 
-const Button = ({ color, text, onClick }) => {
+const Button = ({ text, color, onClick }) => {
   return (
-    <i
+    <button
       onClick={onClick}
-      style={{ backgroundColor: color, marginLeft: 4 }}
-      className="pencil alternate icon"
+      style={{ backgroundColor: color }}
+      className="ui button"
     >
       {text}
-    </i>
+    </button>
   );
 };
 

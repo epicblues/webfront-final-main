@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ko from "date-fns/locale/ko";
 import { Button, Header, Container } from "semantic-ui-react";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
+import axios from "axios";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 registerLocale("ko", ko);
@@ -14,6 +14,7 @@ const ChallengeWrite = () => {
     title: "",
     startDate: "",
     endDate: "",
+    Id: 0,
 
     challengeType: "",
     diet: {
@@ -21,15 +22,17 @@ const ChallengeWrite = () => {
       dailyCalorie: "",
       condition: "",
     },
-    receipe: {
+    recipe: {
       kind: "",
       uploadCount: "",
     },
   });
 
-  {
-    /*챌린지 명 기능*/
-  }
+  const handleWrite = async () => {
+    axios.post("/api/write", challenge).then((response) => {
+      console.log(response);
+    }, {});
+  };
 
   const onClick = (e) => {
     alert(challenge.title);
@@ -42,20 +45,22 @@ const ChallengeWrite = () => {
       onClick();
     }
   };
+
   const onSubmit = (event) => {
     event.preventDefault();
+
     setChallenge({
       title: "",
       startDate: "",
       endDate: "",
-
+      Id: challenge.Id + 1,
       challengeType: "",
       diet: {
         type: "",
         dailyCalorie: "",
         condition: "",
       },
-      receipe: {
+      recipe: {
         kind: "",
         uploadCount: "",
       },

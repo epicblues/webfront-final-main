@@ -47,10 +47,10 @@ const index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
-          <h2 style={{ textAlign: "left", padding: "16px" }}>
+          <h3 style={{ textAlign: "left", padding: "16px 16px 0 16px"}}>
             오늘의 식단
-            <i className="utensils icon" style={{ marginLeft: 4 }}></i>
-          </h2>
+            {/* <i className="utensils icon" style={{ marginLeft: 4 }}></i> */}
+          </h3>
 
           <div
             className="container"
