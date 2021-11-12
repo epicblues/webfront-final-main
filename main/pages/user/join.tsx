@@ -1,5 +1,6 @@
-import React, { LegacyRef, MutableRefObject, useRef } from 'react'
+import React, { LegacyRef, MutableRefObject, useRef, useState } from 'react'
 import { checkValid } from '../../util/auth';
+import Bmr from '../../components/user/Bmr'
 
 
 
@@ -9,7 +10,17 @@ const join = () => {
   const password = useRef() as MutableRefObject<HTMLInputElement>;
   const name = useRef() as MutableRefObject<HTMLInputElement>;
   const message = useRef() as MutableRefObject<HTMLHeadingElement>;
-
+  const [userBmr, setUserBmr] = useState({
+    gender: "1",
+    weight: 0,
+    age: 0,
+    activity: 0,
+    bmr: 0,
+    error: "",
+    flag: false,
+    system: "",
+    heightFeet: 0
+  })
 
   const handleClick = async () => {
 
@@ -52,7 +63,7 @@ const join = () => {
         password : <input type="password" ref={password} /> <br />
         <button onClick={handleClick}>제출</button>
       </div>
-
+      <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
     </div>
 
   )

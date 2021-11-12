@@ -67,7 +67,7 @@ class Bmr extends Component {
   }
 
   calculateAct() {
-    let ActCalc;
+    let ActCalc = 0;
 
     if (this.state.activity == "1.2") {
       ActCalc = this.state.bmr * 1.2;

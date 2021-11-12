@@ -18,7 +18,6 @@ const PickDate = ({ diary, setDiary }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const dateChangeHandler = async (date) => {
-    if (date.getTime > new Date().getTime) return alert("선택할 수 없습니다.");
     const dateId = getDateId(date);
     try {
       const { data } = await axios.get("/api/diary/" + dateId);

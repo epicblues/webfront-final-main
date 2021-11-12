@@ -130,10 +130,6 @@ const index = ({ user, fetchedDiary }) => {
             </ul>
             <div>{tabContArr[activeIndex].tabCont}</div>
           </div>
-
-          <div>
-            <Bmr />
-          </div>
         </div>
       )}
     </>
