@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,19 +8,40 @@ import clientPromise from "../../../../util/mongodb";
 
 //  CSS
 import recipeListStyles from "../../../../styles/RecipeList.module.css";
+import axios from "axios";
 
 const index = ({ user, filteredRecipes }) => {
-  // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
-  const onUpdateBtn = () => {};
+  const [recipes, setRecipes] = useState([...filteredRecipes]);
 
-  const onDeleteBtn = () => {
+  const onUpdateBtn = async (data) => {};
+
+  const onDeleteBtn = async (data) => {
+    console.log(data._id);
+
     if (confirm("정말 삭제하시겠습니까? \n\n확인 (예)  /  취소 (아니오)")) {
+      const res = await axios.post(
+        process.env.NEXT_PUBLIC_STATIC_SERVER_URL + "/api/recipe/delete",
+        { recipe_id: data._id },
+        {
+          headers: {
+            authorization: "Bearer " + user.token,
+          },
+        }
+      );
+      console.log(res.data.message);
+
       alert("삭제하였습니다.");
+      setRecipes(
+        recipes.filter((recipe) => {
+          return recipe._id !== data._id;
+        })
+      );
     } else {
       alert("취소하였습니다.");
     }
   };
 
+  // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
   function renderSwitchCategory(param) {
     switch (param) {
       case "soup":
@@ -47,7 +68,7 @@ const index = ({ user, filteredRecipes }) => {
     <div>
       <h1>내 레시피</h1>
       <ul className={recipeListStyles.cards}>
-        {filteredRecipes.map((card, index) => {
+        {recipes.map((card, index) => {
           return (
             <li key={card._id}>
               <Link
@@ -71,8 +92,10 @@ const index = ({ user, filteredRecipes }) => {
                   <p>조회수: {card.hit}</p>
                 </a>
               </Link>
-              <button type="button">수정하기</button>
-              <button type="button" onClick={onDeleteBtn}>
+              <button type="button" onClick={() => onUpdateBtn(card)}>
+                수정하기
+              </button>
+              <button type="button" onClick={() => onDeleteBtn(card)}>
                 삭제하기
               </button>
             </li>
