@@ -22,7 +22,7 @@ const AddReview = ({ onAdd }) => {
       <div className="field">
         <label style={{ textAlign: "left" }}>
           오늘의 일기
-          <i className="edit outline icon"></i>
+          <i className="eraser icon"></i>
         </label>
         <textarea
           type="text"
