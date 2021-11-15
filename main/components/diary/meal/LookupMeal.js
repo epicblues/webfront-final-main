@@ -13,19 +13,19 @@ const LookupMeal = ({ diary, setDiary, type, user, setWritingMode, setPage }) =>
   const cart = diary.meals[type].foods;
   // 열량 kcal total
   const getTotalSum = () => {
-    return cart.reduce((sum, { kcal, quantity }) => sum + kcal * quantity, 0);
+    return cart.reduce((sum, { kcal, quantity }) => sum + kcal * quantity, 0).toFixed(2);
   };
   // 탄수화물 carbs total
   const carbsTotalSum = () => {
-    return cart.reduce((sum, { carbs, quantity }) => sum + carbs * quantity, 0);
+    return cart.reduce((sum, { carbs, quantity }) => sum + carbs * quantity, 0).toFixed(2);
   };
   // 단백질 protein total
   const protTotalSum = () => {
-    return cart.reduce((sum, { prot, quantity }) => sum + prot * quantity, 0);
+    return cart.reduce((sum, { prot, quantity }) => sum + prot * quantity, 0).toFixed(2);
   };
   // 지방 fat total
   const fatTotalSum = () => {
-    return cart.reduce((sum, { fat, quantity }) => sum + fat * quantity, 0);
+    return cart.reduce((sum, { fat, quantity }) => sum + fat * quantity, 0).toFixed(2);
   };
 
   return (
