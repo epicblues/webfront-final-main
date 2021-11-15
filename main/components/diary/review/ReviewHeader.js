@@ -7,16 +7,16 @@ const ReviewHeader = ({ title, onAdd, showAdd }) => {
   return (
     <header
       className="ui header"
-      style={{ display: "flex", justifyContent: "left" }}
+      style={{ display: "flex", justifyContent: 'space-between' }}
     >
-      <h2 style={{ textAlign: "left", padding: 16 }}>
+      <h2 style={{ padding: '16px 16px 0 16px' }}>
         {title}
-        <Button
-          //color={showAdd ? 'red' : 'green'}
-          //text={showAdd ? '취소' : '작성'}
+      </h2>
+      <Button
+          //color={showAdd ? 'red' : 'yellow'}
+          text={showAdd ? '취소' : '작성'}
           onClick={onAdd}
         />
-      </h2>
     </header>
   );
 };

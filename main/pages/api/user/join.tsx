@@ -8,6 +8,7 @@ import { hash } from 'bcrypt';
 
 const join: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const userForm = req.body;
+  console.log(userForm);
   const password = await hash(userForm.password, 10);
 
 

@@ -1,13 +1,11 @@
 import React from "react";
 import ChallengeWrite from "../../components/challenge/Write/ChallengeWrite";
-import { getUserOrRedirect } from "../api/auth";
-const write = () => {
-  return <ChallengeWrite></ChallengeWrite>;
-};
+import { getUserOrRedirect } from "../../util/auth";
+const Write = ({ user }) => <ChallengeWrite user={user} />;
 
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
   return { props: { user } };
 };
 
-export default write;
+export default Write;

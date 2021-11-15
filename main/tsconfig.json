@@ -35,7 +35,8 @@
     "pages/recipe/card/[post_no]/index.js",
     "components/diary/meal/Cart.js",
     "components/diary/meal/AddFood.js",
-    "components/diary/meal/AddFood.js"
+    "components/diary/meal/AddFood.js",
+    "components/challenge/Write/ChallengeCondition.js"
   ],
   "exclude": ["node_modules"]
 }

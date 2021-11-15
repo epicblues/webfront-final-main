@@ -2,28 +2,38 @@ import { React, useState } from "react";
 import { Header } from "semantic-ui-react";
 
 import ChallengeWrite from "./ChallengeWrite";
+import DietCondition from "./DietCondition";
 const ChallengeCondition = ({ challenge, setChallenge }) => {
   const handleChange = (e) => {
     setChallenge({
       ...challenge,
-      challengeType: checkedInputs,
-      diet: {
-        type: checkedInputs2,
-        dailyCalorie: checkedInputs3,
-        condition: checkedInputs4,
-      },
-      receipe: {
-        kind: dropdown,
-        uploadCount: checkedInputs5,
-      },
+      [e.currentTarget.name]: e.currentTarget.value,
     });
   };
-  const [checkedInputs, setCheckInputs] = useState(false);
-  const [checkedInputs2, setCheckInputs2] = useState(false);
-  const [checkedInputs3, setCheckInputs3] = useState(false);
-  const [checkedInputs4, setCheckInputs4] = useState(false);
-  const [checkedInputs5, setCheckInputs5] = useState(false);
-  const [dropdown, setDropDown] = useState("");
+
+  const handleDiet = (e) => {
+    const newDiet = {
+      ...challenge.diet,
+      [e.currentTarget.name]: e.currentTarget.value,
+    };
+
+    setChallenge({
+      ...challenge,
+      diet: newDiet,
+    });
+  };
+
+  const handleRecipe = (e) => {
+    const newRecipe = {
+      ...challenge.recipe,
+      [e.currentTarget.name]: e.currentTarget.value,
+    };
+
+    setChallenge({
+      ...challenge,
+      recipe: newRecipe,
+    });
+  };
 
   return (
     <div className="challengeCondition" style={{ backgroundColor: "#EAEAEA" }}>
@@ -37,26 +47,22 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
         <input
           type="radio"
           id="1"
-          name="challenge"
+          name="challengeType"
           value="diet"
-          checked={checkedInputs === "diet"}
-          onChange={(e) => {
-            setCheckInputs(e.currentTarget.value), handleChange();
-          }}
+          checked={challenge.challengeType === "diet"}
+          onChange={handleChange}
         />
         <label> diet</label>
         <input
           type="radio"
           id="2"
-          name="challenge"
-          value="receipe"
-          checked={checkedInputs === "receipe"}
-          onChange={(e) => {
-            setCheckInputs(e.currentTarget.value), handleChange();
-          }}
+          name="challengeType"
+          value="recipe"
+          checked={challenge.challengeType === "recipe"}
+          onChange={handleChange}
         />
-        <label>receipe</label>
-        {checkedInputs === "diet" ? (
+        <label>recipe</label>
+        {challenge.challengeType === "diet" && (
           <>
             <Header as="h4" inverted color="blue">
               다이어트 종류
@@ -67,37 +73,32 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
                 id="3"
                 name="type"
                 value="plusKcal"
-                checked={checkedInputs2 === "plusKcal"}
-                onChange={(e) => {
-                  setCheckInputs2(e.currentTarget.value), handleChange();
-                }}
+                checked={challenge.diet.type === "plusKcal"}
+                onChange={handleDiet}
               />
-              <label>살 찌우는 다이어트</label>
+              <label>체중증가 다이어트</label>
               <input
                 type="radio"
                 id="4"
                 name="type"
                 value="minusKcal"
-                checked={checkedInputs2 === "minusKcal"}
-                onChange={(e) => {
-                  setCheckInputs2(e.currentTarget.value), handleChange();
-                }}
+                checked={challenge.diet.type === "minusKcal"}
+                onChange={handleDiet}
               />
-              <label>살 빼는 다이어트</label>
+              <label>체중감량 다이어트</label>
             </div>
           </>
-        ) : (
+        )}{" "}
+        {challenge.challengeType === "recipe" && (
           <>
             <Header as="h4" inverted color="blue">
               레시피 종류
             </Header>
-            <div className="receipeKind">
+            <div className="recipeKind">
               <select
                 name="kind"
-                value={dropdown}
-                onChange={(e) => {
-                  setDropDown(e.currentTarget.value), handleChange();
-                }}
+                value={challenge.recipe.kind}
+                onChange={handleRecipe}
               >
                 <option key="so" value="soup">
                   Soup
@@ -125,61 +126,27 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           </>
         )}
       </div>
-      {checkedInputs === "diet" ? (
+      {challenge.challengeType === "diet" ? (
         <>
           <Header as="h4" inverted color="blue">
             다이어트 조건 ( 기준: 하루 섭취량)
           </Header>
           <div className="dietCondition1">
-            <input
-              type="radio"
-              id="5"
-              name="dailyCalorie"
-              value="1500kcal"
-              checked={checkedInputs3 === "1500kcal"}
-              onChange={(e) => {
-                setCheckInputs3(e.currentTarget.value), handleChange();
-              }}
-            />
-            <label>1500kcal</label>
-            <input
-              type="radio"
-              id="6"
-              name="dailyCalorie"
-              value="2000kcal"
-              checked={checkedInputs3 === "2000kcal"}
-              onChange={(e) => {
-                setCheckInputs3(e.currentTarget.value), handleChange();
-              }}
-            />
-            <label>2000kcal</label>
-            <input
-              type="radio"
-              id="7"
-              name="dailyCalorie"
-              value="2500kcal"
-              checked={checkedInputs3 === "2500kcal"}
-              onChange={(e) => {
-                setCheckInputs3(e.currentTarget.value), handleChange();
-              }}
-            />
-            <label>2500kcal</label>
-            <input
-              type="radio"
-              id="8"
-              name="dailyCalorie"
-              value="3000kcal"
-              checked={checkedInputs3 === "3000kcal"}
-              onChange={(e) => {
-                setCheckInputs3(e.currentTarget.value), handleChange();
-              }}
-            />
-            <label>3000kcal</label>
+            {["1500", "2000", "2500", "3000"].map((value) => {
+              console.log(challenge);
+              return (
+                <DietCondition
+                  key={value}
+                  value={value}
+                  checked={challenge.diet.dailyCalorie === value}
+                  onChange={handleDiet}
+                />
+              );
+            })}
           </div>
         </>
       ) : null}
-
-      {checkedInputs === "diet" ? (
+      {challenge.challengeType === "diet" && (
         <>
           <Header as="h4" inverted color="blue">
             다이어트 완료 일수
@@ -189,85 +156,72 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               type="radio"
               id="9"
               name="condition"
-              value="7days"
-              checked={checkedInputs4 === "7days"}
-              onChange={(e) => {
-                setCheckInputs4(e.currentTarget.value), handleChange();
-              }}
+              value="3"
+              checked={challenge.diet.condition === "3"}
+              onChange={handleDiet}
             />
-            <label>7일</label>
+            <label>3일</label>
             <input
               type="radio"
               id="10"
               name="condition"
-              value="15days"
-              checked={checkedInputs4 === "15days"}
-              onChange={(e) => {
-                setCheckInputs4(e.currentTarget.value), handleChange();
-              }}
+              value="5"
+              checked={challenge.diet.condition === "5"}
+              onChange={handleDiet}
             />
-            <label>15일</label>
+            <label>5일</label>
             <input
               type="radio"
               id="11"
               name="condition"
-              value="30days"
-              checked={checkedInputs4 === "30days"}
-              onChange={(e) => {
-                setCheckInputs4(e.currentTarget.value), handleChange();
-              }}
+              value="10"
+              checked={challenge.diet.condition === "10"}
+              onChange={handleDiet}
             />
-            <label>30일</label>
+            <label>10일</label>
           </div>
         </>
-      ) : (
+      )}
+      {challenge.challengeType === "recipe" && (
         <>
           <Header as="h4" inverted color="blue">
             레시피 업로드 횟수
           </Header>
-          <div className="receipeUploadCount">
+          <div className="recipeUploadCount">
             <input
               type="radio"
               id="12"
-              name="receipeCount"
-              value="3times"
-              checked={checkedInputs5 === "3times"}
-              onChange={(e) => {
-                setCheckInputs5(e.currentTarget.value), handleChange();
-              }}
+              name="uploadCount"
+              value="3"
+              checked={challenge.recipe.uploadCount === "3"}
+              onChange={handleRecipe}
             />
             <label>3회</label>
             <input
               type="radio"
               id="13"
-              name="receipeCount"
-              value="5times"
-              checked={checkedInputs5 === "5times"}
-              onChange={(e) => {
-                setCheckInputs5(e.currentTarget.value), handleChange();
-              }}
+              name="uploadCount"
+              value="5"
+              checked={challenge.recipe.uploadCount === "5"}
+              onChange={handleRecipe}
             />
             <label>5회</label>
             <input
               type="radio"
               id="14"
-              name="receipeCount"
-              value="7times"
-              checked={checkedInputs5 === "7times"}
-              onChange={(e) => {
-                setCheckInputs5(e.currentTarget.value), handleChange();
-              }}
+              name="uploadCount"
+              value="7"
+              checked={challenge.recipe.uploadCount === "7"}
+              onChange={handleRecipe}
             />
             <label>7회</label>
             <input
               type="radio"
               id="15"
-              name="receipeCount"
-              value="9times"
-              checked={checkedInputs5 === "9times"}
-              onChange={(e) => {
-                setCheckInputs5(e.currentTarget.value), handleChange();
-              }}
+              name="uploadCount"
+              value="9"
+              checked={challenge.recipe.uploadCount === "9"}
+              onChange={handleRecipe}
             />
             <label>9회</label>
           </div>

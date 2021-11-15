@@ -46,7 +46,7 @@ const ImageUpload = ({ diary, setDiary, type }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
-        {imgPreview && (
+        {(imgPreview || diary.meals[type].image) && (
           <div style={{ textAlign: "right", marginBottom: "16px" }}>
             <i
               className="red large trash alternate icon"
