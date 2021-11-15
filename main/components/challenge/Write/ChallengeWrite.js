@@ -5,17 +5,19 @@ import ko from "date-fns/locale/ko";
 import { Button, Header, Container } from "semantic-ui-react";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
 import axios from "axios";
+import { useRouter } from "next/dist/client/router";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 registerLocale("ko", ko);
 
-const ChallengeWrite = () => {
+const ChallengeWrite = ({ user }) => {
+  const router = useRouter();
   const [challenge, setChallenge] = useState({
     title: "",
     startDate: "",
     endDate: "",
-    Id: 0,
 
+    userId: user.id,
     challengeType: "",
     diet: {
       type: "",
@@ -28,15 +30,27 @@ const ChallengeWrite = () => {
     },
   });
 
-  const handleWrite = async () => {
-    axios.post("/api/write", challenge).then((response) => {
-      console.log(response);
-    }, {});
+  const handleSubmit = async () => {
+    try {
+      const challengeForm = { ...challenge };
+      if (challenge.challengeType === "diet") {
+        delete challengeForm.recipe;
+      } else {
+        delete challengeForm.diet;
+      }
+      const { data } = await axios.post("/api/challenge/create", challengeForm);
+      console.log(data);
+
+      router.push("/challenge");
+    } catch (error) {
+      alert(error);
+    }
   };
 
   const onClick = (e) => {
     alert(challenge.title);
     e.preventDefault();
+
     console.log(challenge.title);
   };
 
@@ -46,32 +60,12 @@ const ChallengeWrite = () => {
     }
   };
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-
-    setChallenge({
-      title: "",
-      startDate: "",
-      endDate: "",
-      Id: challenge.Id + 1,
-      challengeType: "",
-      diet: {
-        type: "",
-        dailyCalorie: "",
-        condition: "",
-      },
-      recipe: {
-        kind: "",
-        uploadCount: "",
-      },
-    });
-    console.log(challenge);
-  };
-
   return (
     <form
       className="challengeform"
-      onSubmit={onSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
       style={{
         backgroundColor: "#F6F6F6",
       }}
@@ -91,7 +85,7 @@ const ChallengeWrite = () => {
             backgroundColor: "#EAEAEA",
           }}
         >
-          <Header as="h3" inverted inverted color="blue">
+          <Header as="h3" inverted color="blue">
             챌린지 이름
           </Header>
           <input
@@ -174,7 +168,7 @@ const ChallengeWrite = () => {
           />
         </section>
         <ChallengeCondition challenge={challenge} setChallenge={setChallenge} />
-        <Button type="submit" color="twitter">
+        <Button type="submit" color="twitter" onClick={handleSubmit}>
           작성
         </Button>
       </Container>
