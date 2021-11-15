@@ -19,7 +19,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         startDate: new Date(challengeForm.startDate),
         endDate: new Date(challengeForm.endDate),
         success: false,
-        participant: [challengeForm.userId],
+        participants: [challengeForm.userId],
       });
     res.status(200).json({ status: "ok" });
   } catch (error) {

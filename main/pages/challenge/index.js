@@ -4,8 +4,9 @@ import "semantic-ui-css/semantic.min.css";
 import { getUserOrRedirect } from "../../util/auth";
 import { Button } from "semantic-ui-react";
 import MyChallenge from "../../components/challenge/Main/MyChallenge";
+import clientPromise from "../../util/mongodb";
 
-const index = () => {
+const index = ({ challenges, user }) => {
   return (
     <>
       <Link passHref href="challenge/write">
@@ -17,7 +18,7 @@ const index = () => {
       </Link>
       <br />
       <div className="myChallenge">
-        <MyChallenge></MyChallenge>
+        <MyChallenge challenges={challenges}></MyChallenge>
       </div>
     </>
   );
@@ -25,7 +26,21 @@ const index = () => {
 
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
+
+  const client = await clientPromise;
+  const challenges = await client
+    .db("webfront")
+    .collection("challenge")
+    .find({
+      userId: user.id,
+    })
+    .toArray();
+
   console.log("user:", user);
-  return { props: { user } };
+  console.log(challenges);
+
+  return {
+    props: { user, challenges: JSON.parse(JSON.stringify(challenges)) },
+  };
 };
 export default index;
