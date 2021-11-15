@@ -38,7 +38,9 @@ const index = () => {
       <input type="button" value="찜한 레시피" />
 
       {/* 내 레시피 조회 */}
-      <input type="button" value="내 레시피" />
+      <Link href="recipe/list/my">
+        <button>내 레시피</button>
+      </Link>
 
       {/* 인기 레시피 */}
       <h3>인기 레시피</h3>
