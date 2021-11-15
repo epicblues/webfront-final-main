@@ -24,8 +24,17 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
         <a className="ui teal label" style={{position: 'absolute', top: '8px', right: '8px'}}>
             {typeName[type]}
         </a>
-        
-    </div>
+
+        <a className='ui teal circular label'
+            style={{position: 'absolute',
+                    top: '50%', left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    display: (!(diary.meals[type].foods.length !== 0)) ? 'block' : 'none'
+                  }}
+        >
+          +
+        </a>  
+      </div>
   )
 }
 

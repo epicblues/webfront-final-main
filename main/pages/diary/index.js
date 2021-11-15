@@ -9,8 +9,6 @@ import { Diary } from "../../models";
 import PickDate from "../../components/diary/PickDate";
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
-// Bmr
-import Bmr from "../../components/diary/Bmr";
 // 음식 작성
 import AddFood from "../../components/diary/meal/AddFood";
 import Meal from "../../components/diary/meal/Meal";
