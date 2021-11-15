@@ -37,7 +37,7 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
     });
   };
 
-  // Search Filter
+  // Search Filter food + recipe Data
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
   const handleSearch = async (event) => {
@@ -46,6 +46,22 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
     console.log(data);
     setFilteredData(data);
   };
+  
+  // const handleSearch = async (event) => {
+  //   const value = event.target.value;
+  //   const { data } = await
+  //   axios
+  //   .all([
+  //     axios.get("/api/food/" + value),
+  //     axios.get("/api/recipe/" + value)
+  //   ])
+  //   .then(
+  //     axios.spread((res1 , res2) => {
+  //       console.log(data);
+  //       setFilteredData(data);
+  //     })
+  //   )
+  // };
 
   // Modal
   const modalInitialState = [];
