@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 //  인증, db연결
 import { getUserOrRedirect } from "../../../../util/auth";
@@ -13,11 +13,7 @@ import axios from "axios";
 const index = ({ user, filteredRecipes }) => {
   const [recipes, setRecipes] = useState([...filteredRecipes]);
 
-  const onUpdateBtn = async (data) => {};
-
   const onDeleteBtn = async (data) => {
-    console.log(data._id);
-
     if (confirm("정말 삭제하시겠습니까? \n\n확인 (예)  /  취소 (아니오)")) {
       const res = await axios.post(
         process.env.NEXT_PUBLIC_STATIC_SERVER_URL + "/api/recipe/delete",
@@ -74,7 +70,6 @@ const index = ({ user, filteredRecipes }) => {
               <Link
                 href={{
                   pathname: `/recipe/card/${card._id}`,
-                  query: { props: { card } },
                 }}
                 as={`/recipe/card/${card._id}`}
                 passHref
@@ -92,9 +87,18 @@ const index = ({ user, filteredRecipes }) => {
                   <p>조회수: {card.hit}</p>
                 </a>
               </Link>
-              <button type="button" onClick={() => onUpdateBtn(card)}>
-                수정하기
-              </button>
+
+              <Link
+                href={{
+                  pathname: `/recipe/update/${card._id}`,
+                }}
+                as={`/recipe/update/${card._id}`}
+                passHref
+              >
+                <a>
+                  <button type="button">수정하기</button>
+                </a>
+              </Link>
               <button type="button" onClick={() => onDeleteBtn(card)}>
                 삭제하기
               </button>

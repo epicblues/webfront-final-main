@@ -48,7 +48,6 @@ const index = ({ user, filteredRecipes, category }) => {
                 <Link
                   href={{
                     pathname: `/recipe/card/${card._id}`,
-                    query: { props: { card } },
                   }}
                   as={`/recipe/card/${card._id}`}
                   passHref
