@@ -15,7 +15,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
   };
 
   const getTotalSum = () => {
-    return cart.reduce((sum, { kcal, quantity }) => sum + kcal * quantity, 0);
+    return cart.reduce((sum, { kcal, quantity }) => sum + kcal * quantity, 0).toFixed(2);
   };
 
   const clearCart = () => {
@@ -34,12 +34,12 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
 
   const setQuantity = (product, total) => {
     const newCart = [...diary.meals[type].foods];
-
+    
     setDiary((originalDiary) => {
       const newDiary = { ...originalDiary };
       newDiary.meals[type].foods = newCart.map((item) => {
         if (item.no === product.no) {
-          item.quantity = total;
+          item.quantity = isNaN(total) ? 0 : total;
         }
         return item;
       });

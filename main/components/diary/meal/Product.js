@@ -1,4 +1,8 @@
 const Product = ({ product, index, setQuantity, removeFromCart }) => {
+  // 값이 없어서 NaN이 나올 경우
+  if (isNaN(product.quantity)) {
+    product.quantity = 0;
+  }
   return (
     <div className="item" key={index} style={{ padding: "8px 0" }}>
       <div
@@ -33,7 +37,7 @@ const Product = ({ product, index, setQuantity, removeFromCart }) => {
             style={{ marginRight: 8 }}
             type="text"
             value={product.quantity}
-            onChange={(e) => setQuantity(product, parseInt(e.target.value))}
+            onChange={(e) => {setQuantity(product, parseInt(e.target.value))}}
           />
           <i
             className="red large minus circle icon"
