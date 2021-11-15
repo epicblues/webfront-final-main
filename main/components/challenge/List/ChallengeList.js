@@ -1,8 +1,12 @@
 import React from "react";
+import { useRouter } from "next/dist/client/router";
 
 const ChallengeList = ({ challenges }) => {
-  const GoogleFont = {};
+  const router = useRouter();
 
+  const onClick = () => {
+    router.push("/detail");
+  };
   return (
     <>
       <h2>챌린지 리스트</h2>
@@ -21,6 +25,9 @@ const ChallengeList = ({ challenges }) => {
         <div className="challenge-points">{challenges.points}</div>
 
         <hr />
+      </div>
+      <div>
+        <button onClick={onClick}>더보기</button>
       </div>
     </>
   );

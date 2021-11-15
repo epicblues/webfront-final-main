@@ -1,8 +1,9 @@
 import { React, useState } from "react";
 import { Header } from "semantic-ui-react";
 
-import ChallengeWrite from "./ChallengeWrite";
+import RecipeUploadCount from "./RecipeUploadCount";
 import DietCondition from "./DietCondition";
+import DietCondition2 from "./DietCondition2";
 const ChallengeCondition = ({ challenge, setChallenge }) => {
   const handleChange = (e) => {
     setChallenge({
@@ -47,22 +48,22 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
         <input
           type="radio"
           id="1"
-          name="challengeType"
+          name="Type"
           value="diet"
-          checked={challenge.challengeType === "diet"}
+          checked={challenge.Type === "diet"}
           onChange={handleChange}
         />
-        <label> diet</label>
+        <label> 다이어트</label>
         <input
           type="radio"
           id="2"
-          name="challengeType"
+          name="Type"
           value="recipe"
-          checked={challenge.challengeType === "recipe"}
+          checked={challenge.Type === "recipe"}
           onChange={handleChange}
         />
-        <label>recipe</label>
-        {challenge.challengeType === "diet" && (
+        <label>레시피</label>
+        {challenge.Type === "diet" && (
           <>
             <Header as="h4" inverted color="blue">
               다이어트 종류
@@ -70,7 +71,6 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
             <div className="dietKind">
               <input
                 type="radio"
-                id="3"
                 name="type"
                 value="plusKcal"
                 checked={challenge.diet.type === "plusKcal"}
@@ -79,7 +79,6 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               <label>체중증가 다이어트</label>
               <input
                 type="radio"
-                id="4"
                 name="type"
                 value="minusKcal"
                 checked={challenge.diet.type === "minusKcal"}
@@ -89,7 +88,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
             </div>
           </>
         )}{" "}
-        {challenge.challengeType === "recipe" && (
+        {challenge.Type === "recipe" && (
           <>
             <Header as="h4" inverted color="blue">
               레시피 종류
@@ -126,7 +125,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           </>
         )}
       </div>
-      {challenge.challengeType === "diet" ? (
+      {challenge.Type === "diet" ? (
         <>
           <Header as="h4" inverted color="blue">
             다이어트 조건 ( 기준: 하루 섭취량)
@@ -146,84 +145,41 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           </div>
         </>
       ) : null}
-      {challenge.challengeType === "diet" && (
+      {challenge.Type === "diet" && (
         <>
           <Header as="h4" inverted color="blue">
             다이어트 완료 일수
           </Header>
           <div className="dietCondition2">
-            <input
-              type="radio"
-              id="9"
-              name="condition"
-              value="3"
-              checked={challenge.diet.condition === "3"}
-              onChange={handleDiet}
-            />
-            <label>3일</label>
-            <input
-              type="radio"
-              id="10"
-              name="condition"
-              value="5"
-              checked={challenge.diet.condition === "5"}
-              onChange={handleDiet}
-            />
-            <label>5일</label>
-            <input
-              type="radio"
-              id="11"
-              name="condition"
-              value="10"
-              checked={challenge.diet.condition === "10"}
-              onChange={handleDiet}
-            />
-            <label>10일</label>
+            {["3", "5", "10"].map((value) => {
+              return (
+                <DietCondition2
+                  key={value}
+                  value={value}
+                  checked={challenge.diet.condition === value}
+                  onChange={handleDiet}
+                />
+              );
+            })}
           </div>
         </>
       )}
-      {challenge.challengeType === "recipe" && (
+      {challenge.Type === "recipe" && (
         <>
           <Header as="h4" inverted color="blue">
             레시피 업로드 횟수
           </Header>
           <div className="recipeUploadCount">
-            <input
-              type="radio"
-              id="12"
-              name="uploadCount"
-              value="3"
-              checked={challenge.recipe.uploadCount === "3"}
-              onChange={handleRecipe}
-            />
-            <label>3회</label>
-            <input
-              type="radio"
-              id="13"
-              name="uploadCount"
-              value="5"
-              checked={challenge.recipe.uploadCount === "5"}
-              onChange={handleRecipe}
-            />
-            <label>5회</label>
-            <input
-              type="radio"
-              id="14"
-              name="uploadCount"
-              value="7"
-              checked={challenge.recipe.uploadCount === "7"}
-              onChange={handleRecipe}
-            />
-            <label>7회</label>
-            <input
-              type="radio"
-              id="15"
-              name="uploadCount"
-              value="9"
-              checked={challenge.recipe.uploadCount === "9"}
-              onChange={handleRecipe}
-            />
-            <label>9회</label>
+            {["3", "5", "7", "9"].map((value) => {
+              return (
+                <RecipeUploadCount
+                  key={value}
+                  value={value}
+                  checked={challenge.recipe.uploadCount === value}
+                  onChange={handleRecipe}
+                />
+              );
+            })}
           </div>
         </>
       )}

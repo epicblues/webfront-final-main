@@ -4,7 +4,7 @@ import "semantic-ui-css/semantic.min.css";
 import { getUserOrRedirect } from "../../util/auth";
 import { Button } from "semantic-ui-react";
 import MyChallenge from "../../components/challenge/Main/MyChallenge";
-import SmallList from "../../components/challenge/Main/SmallList";
+
 const index = () => {
   return (
     <>
@@ -18,9 +18,6 @@ const index = () => {
       <br />
       <div className="myChallenge">
         <MyChallenge></MyChallenge>
-      </div>
-      <div className="SamllList">
-        <SmallList> </SmallList>
       </div>
     </>
   );
