@@ -84,7 +84,7 @@ export const index = ({ user }) => {
       });
       try {
         await postStaticAxios(
-          user.url + "/api/recipe/create",
+          process.env.NEXT_PUBLIC_STATIC_SERVER_URL + "/api/recipe/create",
           user.token,
           formData
         );
