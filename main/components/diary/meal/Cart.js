@@ -15,7 +15,16 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
   };
 
   const getTotalSum = () => {
-    return cart.reduce((sum, { kcal, quantity }) => sum + kcal * quantity, 0).toFixed(2);
+    const reducer = (sum, foodOrRecipe) => {
+      if (typeof foodOrRecipe._id === "number") {
+        // Recipe다!
+        return sum + foodOrRecipe.nutrition.kcal * foodOrRecipe.quantity;
+      } else {
+        // food다!
+        return sum + foodOrRecipe.kcal * foodOrRecipe.quantity;
+      }
+    };
+    return cart.reduce(reducer, 0).toFixed(2);
   };
 
   const clearCart = () => {
@@ -34,7 +43,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
 
   const setQuantity = (product, total) => {
     const newCart = [...diary.meals[type].foods];
-    
+
     setDiary((originalDiary) => {
       const newDiary = { ...originalDiary };
       newDiary.meals[type].foods = newCart.map((item) => {

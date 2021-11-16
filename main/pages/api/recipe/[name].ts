@@ -12,6 +12,7 @@ const handler: NextApiHandler = async (req, res) => {
       .find({ title: new RegExp(`${name}`) })
       .limit(20)
       .toArray();
+
     res.status(200).json(recipes);
   } catch (error) {
     console.log(error);

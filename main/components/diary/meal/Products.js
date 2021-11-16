@@ -3,7 +3,7 @@ import axios from "axios";
 import RecipeModal from "./RecipeModal";
 import FoodModal from "./FoodModal";
 
-export default function Products({ setCart, cart, diary, setDiary, type }) {
+export default function Products({ diary, setDiary, type }) {
   const inputRef = useRef();
   const [products] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
@@ -20,10 +20,12 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
       value.quantity = 1;
       prevMeal.foods.push(value);
     }
-    prevMeal.calories += value.kcal;
-    prevMeal.fat += value.fat;
-    prevMeal.carbs += value.carbs;
-    prevMeal.protein += value.prot;
+    const isRecipe = typeof value._id === "number";
+    // Recipe다!
+    prevMeal.calories += isRecipe ? value.nutrition.kcal : value.kcal;
+    prevMeal.fat += isRecipe ? value.nutrition.fat : value.fat;
+    prevMeal.carbs += isRecipe ? value.nutrition.carbs : value.carbs;
+    prevMeal.protein += isRecipe ? value.nutrition.prot : value.prot;
     const currentMeals = diary.meals;
     currentMeals.splice(type, 1, prevMeal);
     setDiary({
