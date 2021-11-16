@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Progress } from "semantic-ui-react";
 
-const MyChallenge = () => {
+const MyChallenge = ({ challenges, user }) => {
   const [percent, setPercent] = useState(55);
 
   const challengeProgress = () => {

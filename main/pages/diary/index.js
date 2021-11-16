@@ -7,6 +7,8 @@ import { Diary } from "../../models";
 
 // Date
 import PickDate from "../../components/diary/PickDate";
+// 영양 섭취 상태
+import TotalSum from "../../components/diary/TotalSum";
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
 // 음식 작성

@@ -28,7 +28,7 @@ const Index = ({ user, recipe }) => {
 
   const [imageCounter, setImageCounter] = useState(0); //  사진 개수 카운터
   const [foodData, setFoodData] = useState([]); //  재료 데이터
-  const [stepData, setStepData] = useState([]); //  요리순서 데이터
+  const [stepData, setStepData] = useState(recipe.steps); //  요리순서 데이터
   const [nutritionData, setNutritionData] = useState({
     //  영양정보 데이터
     kcal: 0,
