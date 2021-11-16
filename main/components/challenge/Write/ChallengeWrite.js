@@ -18,7 +18,7 @@ const ChallengeWrite = ({ user }) => {
     endDate: "",
 
     userId: user.id,
-    Type: "",
+    type: "",
     diet: {
       type: "",
       dailyCalorie: "",

@@ -1,21 +1,10 @@
 import React from "react";
-import ChallengeList from "../../components/challenge/List/ChallengeList";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
+import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
 
-const list = ({ user, challenges }) => {
-  console.log(user, challenges);
-  return (
-    <>
-      <span>
-        <h2>챌린지 리스트</h2>
-      </span>
-      <ChallengeList user={user} challenges={challenges}></ChallengeList>
-      <span>
-        <a href="/challenge/mainlist">더보기</a>
-      </span>
-    </>
-  );
+const mainlist = ({ challenges, user }) => {
+  return <ChallengeMainList challenges={challenges} user={user} />;
 };
 
 export const getServerSideProps = async (ctx) => {
@@ -45,4 +34,4 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-export default list;
+export default mainlist;
