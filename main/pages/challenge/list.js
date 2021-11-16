@@ -1,10 +1,7 @@
 import React from "react";
-<<<<<<< HEAD
-import { parseDocumentToObject } from "../../util/date";
-import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
-=======
 import ChallengeList from "../../components/challenge/List/ChallengeList";
->>>>>>> 330fd197fadd8750033bc360ac4f395e5e03350d
+import { parseDocumentToObject } from "../../util/date";
+
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 

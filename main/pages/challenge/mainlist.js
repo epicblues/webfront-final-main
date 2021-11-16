@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
 
 const mainlist = ({ challenges, user }) => {
-  return <ChallengeMainList challenges={challenges} user={user} />;
+  return (
+    <>
+      {challenges.length > 0 ? (
+        <ChallengeMainList challenges={challenges} user={user} />
+      ) : (
+        <h2>No Challenges</h2>
+      )}
+    </>
+  );
 };
 
 export const getServerSideProps = async (ctx) => {
