@@ -13,11 +13,11 @@ const Product = ({ product, index, setQuantity, removeFromCart }) => {
         }}
       >
         <div className="header">
-          {product.name}
           {product.title}
+          {product.name}
           <div className="description">
-            {product.serve}{product.unit}
             {product.qtt}{typeof product._id === "number" && `인분`}
+            {product.mfr}{typeof product._id !== "number" && ` / `}{product.serve}{product.unit}
           </div>
         </div>
         <div className="ui input">

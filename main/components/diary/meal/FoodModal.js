@@ -40,15 +40,14 @@ const FoodModal = ({value, index, handleModal, addToCart, open}) => {
                     </div>
                 }
                 >
-                <Modal.Header><i class="info circle icon"></i>영양 성분</Modal.Header>
+                <Modal.Header>
+                    <i class="info circle icon"></i>"{value.name}" 영양 성분
+                </Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
                         <ul className='ui middle aligned animated list'>
                             <li className='item'>
-                                이름:{value.name}
-                            </li>
-                            <li className='item'>
-                                제조사: {value.mfr}
+                                제조: {value.mfr}
                             </li>
                             <li className='item'>
                                 양: {value.serve}{value.unit}

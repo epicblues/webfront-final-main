@@ -39,13 +39,12 @@ const RecipeModal = ({value, index, handleModal, addToCart, open}) => {
                     </div>
                 }
                 >
-                <Modal.Header><i class="info circle icon"></i>영양 성분</Modal.Header>
+                <Modal.Header>
+                    <i class="info circle icon"></i>"{value.title}" 영양 성분
+                </Modal.Header>
                 <Modal.Content>
                     <Modal.Description>
                         <ul className='ui middle aligned animated list'>
-                            <li className='item'>
-                                이름:{value.title}
-                            </li>
                             <li className='item'>
                                 설명: {value.desc}
                             </li>
