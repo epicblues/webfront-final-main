@@ -9,21 +9,17 @@ import clientPromise from "../../../../util/mongodb";
 //  CSS
 import recipeListStyles from "../../../../styles/RecipeList.module.css";
 import axios from "axios";
+import { postStaticAxios } from "../../../../util/axios";
 
-const index = ({ user, filteredRecipes }) => {
+const Index = ({ user, filteredRecipes }) => {
   const [recipes, setRecipes] = useState([...filteredRecipes]);
 
   const onDeleteBtn = async (data) => {
     if (confirm("정말 삭제하시겠습니까? \n\n확인 (예)  /  취소 (아니오)")) {
-      const res = await axios.post(
-        process.env.NEXT_PUBLIC_STATIC_SERVER_URL + "/api/recipe/delete",
-        { recipe_id: data._id },
-        {
-          headers: {
-            authorization: "Bearer " + user.token,
-          },
-        }
-      );
+      const res = await postStaticAxios("/api/recipe/delete", user.token, {
+        recipe_id: data._id,
+      });
+
       console.log(res.data.message);
 
       alert("삭제하였습니다.");
@@ -137,4 +133,4 @@ export const getServerSideProps = async (ctx) => {
   return { props: { user, filteredRecipes } };
 };
 
-export default index;
+export default Index;

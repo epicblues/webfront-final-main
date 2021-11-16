@@ -18,7 +18,7 @@ const ChallengeWrite = ({ user }) => {
     endDate: "",
 
     userId: user.id,
-    Type: "",
+    type: "",
     diet: {
       type: "",
       dailyCalorie: "",
@@ -33,7 +33,7 @@ const ChallengeWrite = ({ user }) => {
   const handleSubmit = async () => {
     try {
       const challengeForm = { ...challenge };
-      if (challenge.Type === "diet") {
+      if (challenge.type === "diet") {
         delete challengeForm.recipe;
       } else {
         delete challengeForm.diet;

@@ -12,8 +12,9 @@ import Search from "../../../components/recipe/index/Search";
 
 //  CSS
 import recipeListStyles from "../../../styles/RecipeList.module.css";
+import { parseDocumentToObject } from "../../../util/date";
 
-const index = ({ user, recipes }) => {
+const Index = ({ user, recipes }) => {
   //  카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
   function renderSwitchCategory(param) {
     switch (param) {
@@ -97,9 +98,9 @@ export const getServerSideProps = async (ctx) => {
     ])
     .limit(9)
     .toArray();
-  const recipes = JSON.parse(JSON.stringify(data));
+  const recipes = parseDocumentToObject(data);
 
   return { props: { user, recipes } };
 };
 
-export default index;
+export default Index;

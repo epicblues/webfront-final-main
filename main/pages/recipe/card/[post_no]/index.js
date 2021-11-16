@@ -5,7 +5,7 @@ import { getUserOrRedirect } from "../../../../util/auth";
 
 import ModalNutrition from "../../../../components/recipe/card/ModalNutrition";
 
-const index = ({ user, recipe }) => {
+const Index = ({ user, recipe }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleSetIsModalVisible = (val) => {
@@ -150,4 +150,4 @@ export const getServerSideProps = async (ctx) => {
   });
   return { props: { user, recipe: newRecipe } };
 };
-export default index;
+export default Index;

@@ -48,22 +48,22 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
         <input
           type="radio"
           id="1"
-          name="Type"
+          name="type"
           value="diet"
-          checked={challenge.Type === "diet"}
+          checked={challenge.type === "diet"}
           onChange={handleChange}
         />
         <label> 다이어트</label>
         <input
           type="radio"
           id="2"
-          name="Type"
+          name="type"
           value="recipe"
-          checked={challenge.Type === "recipe"}
+          checked={challenge.type === "recipe"}
           onChange={handleChange}
         />
         <label>레시피</label>
-        {challenge.Type === "diet" && (
+        {challenge.type === "diet" && (
           <>
             <Header as="h4" inverted color="blue">
               다이어트 종류
@@ -88,7 +88,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
             </div>
           </>
         )}{" "}
-        {challenge.Type === "recipe" && (
+        {challenge.type === "recipe" && (
           <>
             <Header as="h4" inverted color="blue">
               레시피 종류
@@ -125,7 +125,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           </>
         )}
       </div>
-      {challenge.Type === "diet" ? (
+      {challenge.type === "diet" ? (
         <>
           <Header as="h4" inverted color="blue">
             다이어트 조건 ( 기준: 하루 섭취량)
@@ -145,7 +145,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           </div>
         </>
       ) : null}
-      {challenge.Type === "diet" && (
+      {challenge.type === "diet" && (
         <>
           <Header as="h4" inverted color="blue">
             다이어트 완료 일수
@@ -164,7 +164,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           </div>
         </>
       )}
-      {challenge.Type === "recipe" && (
+      {challenge.type === "recipe" && (
         <>
           <Header as="h4" inverted color="blue">
             레시피 업로드 횟수

@@ -19,3 +19,6 @@ export const returnIdToDate = (dateId: string): Date => {
 
   return date;
 };
+
+export const parseDocumentToObject = (doc: Document | Document[]) =>
+  JSON.parse(JSON.stringify(doc));

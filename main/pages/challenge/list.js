@@ -1,5 +1,5 @@
 import React from "react";
-
+import { parseDocumentToObject } from "../../util/date";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
@@ -29,7 +29,7 @@ export const getServerSideProps = async (ctx) => {
   console.log(challenges);
 
   return {
-    props: { user, challenges: JSON.parse(JSON.stringify(challenges)) },
+    props: { user, challenges: parseDocumentToObject(challenges) },
   };
 };
 

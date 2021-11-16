@@ -10,7 +10,7 @@ import Search from "../../../../../components/recipe/index/Search";
 //CSS
 import recipeListStyles from "../../../../../styles/RecipeList.module.css";
 
-const index = ({ user, filteredRecipes, category }) => {
+const Index = ({ user, filteredRecipes, category }) => {
   // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
   function renderSwitchCategory(param) {
     switch (param) {
@@ -102,4 +102,4 @@ export const getServerSideProps = async (ctx) => {
   return { props: { user, filteredRecipes, category } };
 };
 
-export default index;
+export default Index;

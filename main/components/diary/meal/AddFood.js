@@ -9,7 +9,7 @@ import LookupMeal from "./LookupMeal";
 import MultiBtn from "../meal/MultiBtn";
 
 const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
-export const [PAGE_PRODUCTS, PAGE_CART] = ["products","cart"]
+export const [PAGE_PRODUCTS, PAGE_CART] = ["products", "cart"];
 
 function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   // Page 이동
@@ -19,7 +19,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   const navigateTo = (nextPage) => {
     setPage(nextPage);
   };
-  
+
   // Count
   const getCartTotal = () => {
     return (
@@ -30,14 +30,13 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   };
 
   // 취소<->완료 멀티 버튼
-  const showAdd =(diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer)
+  const showAdd =
+    diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer;
   const multiBtn = (e) => {
-
     if (!(diary.meals[type].foods.length !== 0)) {
       return setWritingMode("DEFAULT");
-      
     } else {
-      return saveMeal()
+      return saveMeal();
     }
   };
 
@@ -53,7 +52,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
       protein: 0,
     };
     setDiary({ ...diary, meals: fixedMeals });
-  }
+  };
 
   // 완료 버튼
   const saveMeal = async () => {
@@ -73,7 +72,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
     formData.append("upload_date", diary.upload_date);
 
     const result = await postStaticAxios(
-      user.url + "/api/diary/update",
+      "/api/diary/update",
       user.token,
       formData
     );
@@ -110,8 +109,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
                 justifyContent: "space-between",
                 padding: "16px",
               }}
-            > 
-
+            >
               <div>
                 <span>{mealType[type]}</span>
                 <a
@@ -121,13 +119,12 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
                   {getCartTotal()}
                 </a>
               </div>
-              
+
               <MultiBtn
-                color={showAdd ? 'red' : 'yellow'}
-                text={showAdd ? '취소' : '완료'}
+                color={showAdd ? "red" : "yellow"}
+                text={showAdd ? "취소" : "완료"}
                 onClick={multiBtn}
               />
-
             </div>
 
             {page === PAGE_PRODUCTS && (

@@ -12,7 +12,7 @@ import FoodForm from "../../../components/recipe/create/food/FoodForm";
 import StepForm from "../../../components/recipe/create/step/stepForm";
 
 //  작성폼
-export const index = ({ user }) => {
+export const Index = ({ user }) => {
   //  계량 팁 Modal, 렌더링 로직
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
   const handleSetIsMeasuringModalVisible = (active) => {
@@ -83,11 +83,7 @@ export const index = ({ user }) => {
         formData.append(`step_img_${index + 1}`, step.stepImageFile);
       });
       try {
-        await postStaticAxios(
-          process.env.NEXT_PUBLIC_STATIC_SERVER_URL + "/api/recipe/create",
-          user.token,
-          formData
-        );
+        await postStaticAxios("/api/recipe/create", user.token, formData);
 
         router.push("/recipe");
       } catch (error) {
@@ -212,4 +208,4 @@ export const getServerSideProps = async (ctx) => {
   return { props: { user } };
 };
 
-export default index;
+export default Index;

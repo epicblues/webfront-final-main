@@ -35,35 +35,33 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
   const [allData, setAllData] = useState([]);
   const [filteredData, setFilteredData] = useState(allData);
   const [filteredRecipeData, setFilteredRecipeData] = useState([]);
-  
+
   const handleSearch = async (event) => {
     const value = event.target.value;
     axios
-    .all([
-      axios.get("/api/food/" + value),
-      axios.get("/api/recipe/" + value)
-    ])
-    .then(
-      axios.spread((res1 , res2) => {
-        
-        setFilteredData(res1.data);
-        setFilteredRecipeData(res2.data);
-      })
-    )
+      .all([axios.get("/api/food/" + value), axios.get("/api/recipe/" + value)])
+      .then(
+        axios.spread((res1, res2) => {
+          setFilteredData(res1.data);
+          setFilteredRecipeData(res2.data);
+        })
+      )
+      .catch((error) => {});
   };
 
   // Modal
   const modalInitialState = [];
-  for(let i = 0; i < 20; i++) {
+  for (let i = 0; i < 20; i++) {
     modalInitialState.push(false);
   }
   const [open, setOpen] = React.useState(modalInitialState);
-  const handleModal = (index) => setOpen(state => {
-    const newState = [...state];
-    newState[index] = !newState[index];
-    return newState
-  })
-  
+  const handleModal = (index) =>
+    setOpen((state) => {
+      const newState = [...state];
+      newState[index] = !newState[index];
+      return newState;
+    });
+
   return (
     <>
       <div className="ui fluid icon input" style={{ padding: "0 16px" }}>
@@ -76,13 +74,14 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
       </div>
 
       <div className="ui middle aligned selection list" style={{ padding: 10 }}>
-        
-        
-        
         {filteredRecipeData.map((value, index) => {
           return (
             // 레시피 검색 리스트 출력
-            <div className="item" key={index} style={{ padding: "8px" , backgroundColor: 'skyblue' }}>
+            <div
+              className="item"
+              key={index}
+              style={{ padding: "8px", backgroundColor: "skyblue" }}
+            >
               <div
                 style={{
                   textAlign: "left",
@@ -118,64 +117,58 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
                       </div>
                     }
                   >
-                    <Modal.Header><i class="info circle icon"></i>영양 성분</Modal.Header>
+                    <Modal.Header>
+                      <i class="info circle icon"></i>영양 성분
+                    </Modal.Header>
                     <Modal.Content>
                       <Modal.Description>
-                          <ul className='ui middle aligned animated list'>
-                              <li className='item'>
-                                  이름:{value.title}
-                              </li>
-                              <li className='item'>
-                                  설명: {value.desc}
-                              </li>
-                              <li className='item'>
-                                  양: {value.qtt}인분
-                              </li>
-                              <li className='item'>
-                                  열량: {value.nutrition.kcal}kcal
-                              </li>
-                              <li className='item'>
-                                  탄수화물: {value.nutrition.carbs}g
-                              </li>
-                              <li className='item'>
-                                  단백질: {value.nutrition.prot}g
-                              </li>
-                              <li className='item'>
-                                  당류: {value.nutrition.sugars}g
-                              </li>
-                              <li className='item'>
-                                  지방: {value.nutrition.fat}g
-                              </li>
-                              <li className='item'>
-                                  트랜스지방: {value.nutrition.trnfat}g
-                              </li>
-                              <li className='item'>
-                                  포화지방: {value.nutrition.stdfat}g
-                              </li>
-                              <li className='item'>
-                                  콜레스테롤: {value.nutrition.chole}mg
-                              </li>
-                              <li className='item'>
-                                  나트륨: {value.nutrition.sodium}mg
-                              </li>
-                          </ul>
+                        <ul className="ui middle aligned animated list">
+                          <li className="item">이름:{value.title}</li>
+                          <li className="item">설명: {value.desc}</li>
+                          <li className="item">양: {value.qtt}인분</li>
+                          <li className="item">
+                            열량: {value.nutrition.kcal}kcal
+                          </li>
+                          <li className="item">
+                            탄수화물: {value.nutrition.carbs}g
+                          </li>
+                          <li className="item">
+                            단백질: {value.nutrition.prot}g
+                          </li>
+                          <li className="item">
+                            당류: {value.nutrition.sugars}g
+                          </li>
+                          <li className="item">지방: {value.nutrition.fat}g</li>
+                          <li className="item">
+                            트랜스지방: {value.nutrition.trnfat}g
+                          </li>
+                          <li className="item">
+                            포화지방: {value.nutrition.stdfat}g
+                          </li>
+                          <li className="item">
+                            콜레스테롤: {value.nutrition.chole}mg
+                          </li>
+                          <li className="item">
+                            나트륨: {value.nutrition.sodium}mg
+                          </li>
+                        </ul>
                       </Modal.Description>
                     </Modal.Content>
-                    
+
                     <Modal.Actions>
-                        <Button color="black" onClick={() => handleModal(index)}>
+                      <Button color="black" onClick={() => handleModal(index)}>
                         취소
-                        </Button>
-                        <Button
-                            content="확인"
-                            labelPosition="right"
-                            icon="checkmark"
-                            onClick={() => {
-                                handleModal(index);
-                                addToCart(value);
-                            }}
-                            positive
-                        />
+                      </Button>
+                      <Button
+                        content="확인"
+                        labelPosition="right"
+                        icon="checkmark"
+                        onClick={() => {
+                          handleModal(index);
+                          addToCart(value);
+                        }}
+                        positive
+                      />
                     </Modal.Actions>
                   </Modal>
                 </div>
@@ -198,17 +191,6 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
             </div>
           );
         })}
-
-
-
-
-
-
-
-
-
-
-
 
         {filteredData.map((value, index) => {
           return (
@@ -250,64 +232,45 @@ export default function Products({ setCart, cart, diary, setDiary, type }) {
                       </div>
                     }
                   >
-                    <Modal.Header><i class="info circle icon"></i>영양 성분</Modal.Header>
+                    <Modal.Header>
+                      <i class="info circle icon"></i>영양 성분
+                    </Modal.Header>
                     <Modal.Content>
                       <Modal.Description>
-                          <ul className='ui middle aligned animated list'>
-                              <li className='item'>
-                                  이름:{value.name}
-                              </li>
-                              <li className='item'>
-                                  제조사: {value.mfr}
-                              </li>
-                              <li className='item'>
-                                  양: {value.serve}{value.unit}
-                              </li>
-                              <li className='item'>
-                                  열량: {value.kcal}kcal
-                              </li>
-                              <li className='item'>
-                                  탄수화물: {value.carbs}g
-                              </li>
-                              <li className='item'>
-                                  단백질: {value.prot}g
-                              </li>
-                              <li className='item'>
-                                  당류: {value.sugars}g
-                              </li>
-                              <li className='item'>
-                                  지방: {value.fat}g
-                              </li>
-                              <li className='item'>
-                                  트랜스지방: {value.trnfat}g
-                              </li>
-                              <li className='item'>
-                                  포화지방: {value.stdfat}g
-                              </li>
-                              <li className='item'>
-                                  콜레스테롤: {value.chole}mg
-                              </li>
-                              <li className='item'>
-                                  나트륨: {value.sodium}mg
-                              </li>
-                          </ul>
+                        <ul className="ui middle aligned animated list">
+                          <li className="item">이름:{value.name}</li>
+                          <li className="item">제조사: {value.mfr}</li>
+                          <li className="item">
+                            양: {value.serve}
+                            {value.unit}
+                          </li>
+                          <li className="item">열량: {value.kcal}kcal</li>
+                          <li className="item">탄수화물: {value.carbs}g</li>
+                          <li className="item">단백질: {value.prot}g</li>
+                          <li className="item">당류: {value.sugars}g</li>
+                          <li className="item">지방: {value.fat}g</li>
+                          <li className="item">트랜스지방: {value.trnfat}g</li>
+                          <li className="item">포화지방: {value.stdfat}g</li>
+                          <li className="item">콜레스테롤: {value.chole}mg</li>
+                          <li className="item">나트륨: {value.sodium}mg</li>
+                        </ul>
                       </Modal.Description>
                     </Modal.Content>
-                    
+
                     <Modal.Actions>
-                        <Button color="black" onClick={() => handleModal(index)}>
+                      <Button color="black" onClick={() => handleModal(index)}>
                         취소
-                        </Button>
-                        <Button
-                            content="확인"
-                            labelPosition="right"
-                            icon="checkmark"
-                            onClick={() => {
-                                handleModal(index);
-                                addToCart(value);
-                            }}
-                            positive
-                        />
+                      </Button>
+                      <Button
+                        content="확인"
+                        labelPosition="right"
+                        icon="checkmark"
+                        onClick={() => {
+                          handleModal(index);
+                          addToCart(value);
+                        }}
+                        positive
+                      />
                     </Modal.Actions>
                   </Modal>
                 </div>

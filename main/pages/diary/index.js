@@ -21,7 +21,7 @@ export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   "DEFAULT",
 ]; // Diary용 상수 설정
 
-const index = ({ user, fetchedDiary }) => {
+const Index = ({ user, fetchedDiary }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [writingMode, setWritingMode] = useState("DEFAULT");
   const [diary, setDiary] = useState(fetchedDiary);
@@ -45,7 +45,7 @@ const index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
-          <h2 style={{ textAlign: "left", padding: "16px 16px 0 16px"}}>
+          <h2 style={{ textAlign: "left", padding: "16px 16px 0 16px" }}>
             오늘의 식단
             {/* <i className="utensils icon" style={{ marginLeft: 4 }}></i> */}
           </h2>
@@ -106,7 +106,6 @@ const index = ({ user, fetchedDiary }) => {
           setWritingMode={setWritingMode}
           user={user}
           key={type}
-          
         />
       ))}
 
@@ -164,4 +163,4 @@ export const getServerSideProps = async (ctx) => {
   }
 };
 
-export default index;
+export default Index;

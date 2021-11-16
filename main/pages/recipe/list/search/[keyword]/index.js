@@ -49,7 +49,7 @@ const index = ({ user, filteredRecipes, keyword }) => {
                   href={{
                     pathname: `/recipe/card/${card._id}`,
                   }}
-                  as={`/recipe/card/${card._id}`}
+                  as={`/recipe/card/I{card._id}`}
                   passHref
                 >
                   <a>
@@ -102,4 +102,4 @@ export const getServerSideProps = async (ctx) => {
   return { props: { user, filteredRecipes, keyword } };
 };
 
-export default index;
+export default Index;
