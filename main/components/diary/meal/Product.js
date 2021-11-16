@@ -14,14 +14,15 @@ const Product = ({ product, index, setQuantity, removeFromCart }) => {
       >
         <div className="header">
           {product.name}
+          {product.title}
           <div className="description">
-            {product.mfr} / {product.serve}
-            {product.unit}
+            {product.serve}{product.unit}
+            {product.qtt}{typeof product._id === "number" && `인분`}
           </div>
         </div>
         <div className="ui input">
           <p style={{ margin: "8px 10px 0 0" }}>
-            {product.kcal}Kcal
+          {typeof product._id === "number" ? product.nutrition.kcal : product.kcal}kcal
             <span
               style={{
                 fontWeight: 600,
