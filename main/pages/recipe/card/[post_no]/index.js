@@ -56,7 +56,10 @@ const Index = ({ user, recipe }) => {
     <div>
       <div>
         <Image
-          src={user.url + recipe.steps.slice(-1)[0].image_url}
+          src={
+            process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+            recipe.steps.slice(-1)[0].image_url
+          }
           width={500}
           height={300}
           alt="main image"
