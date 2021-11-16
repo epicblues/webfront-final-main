@@ -16,7 +16,7 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
         position: 'relative'
       }}
     >
-      <img src={diary.meals[type].imageBuffer || user.url + diary.meals[type].image}
+      <img src={diary.meals[type].imageBuffer || process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image}
         className='ui rounded image'
         style={{ objectFit: 'cover', width: '100%', height: '100%', boxSizing: 'border-box' }}
       />

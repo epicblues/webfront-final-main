@@ -102,7 +102,9 @@ const Index = ({ user, recipe }) => {
               <p>Step {index + 1}.</p>
               <p>{value.desc}</p>
               <Image
-                src={user.url + value.image_url}
+                src={
+                  process.env.NEXT_PUBLIC_STATIC_SERVER_URL + value.image_url
+                }
                 width={500}
                 height={300}
                 alt="main image"

@@ -72,7 +72,10 @@ const Index = ({ user, filteredRecipes }) => {
               >
                 <a>
                   <Image
-                    src={user.url + card.steps.slice(-1)[0].image_url}
+                    src={
+                      process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                      card.steps.slice(-1)[0].image_url
+                    }
                     width={100}
                     height={100}
                     alt="thumbnail image"
