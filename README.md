@@ -3,6 +3,7 @@
 - next.config.js 의 domain
 - env.local의 STATIC_SERVER_URL
 - env.local의 AWS_CONNECT SSH 주소
+- webfront-static-server github hook URL 수정
 
 # 사용 애플리케이션
 
