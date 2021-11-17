@@ -45,7 +45,10 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
-              <ChallengeCancel />
+              <ChallengeCancel
+                challenge={challenge}
+                setChallenge={setChallenge}
+              />
             </>
           ) : (
             <>

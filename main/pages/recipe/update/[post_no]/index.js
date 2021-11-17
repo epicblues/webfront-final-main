@@ -10,7 +10,7 @@ import MeasuringModalBlackout from "../../../../components/recipe/create/food/Me
 import AddFoodModalBlackout from "../../../../components/recipe/create/food/AddFoodModalBlackout";
 
 import FoodForm from "../../../../components/recipe/create/food/FoodForm";
-import StepForm from "../../../../components/recipe/create/step/stepForm";
+import StepForm from "../../../../components/recipe/update/step/stepForm";
 
 const Index = ({ user, recipe }) => {
   //  계량 팁 Modal, 렌더링 로직
@@ -108,7 +108,7 @@ const Index = ({ user, recipe }) => {
           handleSetIsModalVisible={handleSetIsModalVisible}
         />
       )}
-      <h2>레시피 등록하기</h2>
+      <h2>레시피 수정하기</h2>
       <h3>레시피 정보 입력</h3>
       <form onSubmit={handleSubmit(submitBtnClick)}>
         <label htmlFor="title">요리명</label>
@@ -116,7 +116,8 @@ const Index = ({ user, recipe }) => {
           autoFocus={true}
           id="title"
           type="text"
-          value={recipe.title}
+          placeholder=" ex) 소고기 미역국"
+          defaultValue={recipe.title}
           {...register("title", { required: true, maxLength: 15 })}
         />
         {errors.title && errors.title.type === "required" && (
@@ -133,6 +134,7 @@ const Index = ({ user, recipe }) => {
           type="text"
           cols="40"
           rows="5"
+          defaultValue={recipe.desc}
           placeholder=" 레시피에 대한 설명을 적어주세요.
                     ex) 어머니로부터 배운 미역국 레시피를
                     아내의 입맛에 맞게 고안했습니다."
@@ -147,7 +149,7 @@ const Index = ({ user, recipe }) => {
         <br />
 
         <label>카테고리</label>
-        <select {...register("category")}>
+        <select defaultValue={recipe.category} {...register("category")}>
           <option value="soup">국/탕/찌개</option>
           <option value="grill">구이</option>
           <option value="noodle">면/파스타</option>
@@ -160,7 +162,7 @@ const Index = ({ user, recipe }) => {
         <br />
 
         <label>인원</label>
-        <select {...register("qtt")}>
+        <select defaultValue={recipe.qtt} {...register("qtt")}>
           <option value="1">1인분</option>
           <option value="2">2인분</option>
           <option value="3">3인분</option>
@@ -170,7 +172,7 @@ const Index = ({ user, recipe }) => {
         <br />
 
         <label>시간</label>
-        <select {...register("duration")}>
+        <select defaultValue={recipe.duration} {...register("duration")}>
           <option value="1">10분 이내</option>
           <option value="2">10분 ~ 30분</option>
           <option value="3">30분 ~ 1시간</option>
