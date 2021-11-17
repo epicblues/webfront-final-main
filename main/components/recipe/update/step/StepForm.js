@@ -1,11 +1,17 @@
 import React from "react";
 import AddStep from "./AddStep";
 
-const StepForm = ({ stepData, setStepData, imageCounter, setImageCounter }) => {
+const StepForm = ({
+  stepData,
+  setStepData,
+  exStepData,
+  setExStepData,
+  imageCounter,
+  setImageCounter,
+}) => {
   const removeStep = (step) => {
     setStepData(stepData.filter((value) => value !== step));
   };
-  console.log(stepData);
   return (
     <div>
       <div>
@@ -21,8 +27,9 @@ const StepForm = ({ stepData, setStepData, imageCounter, setImageCounter }) => {
                   style={{
                     width: "100px",
                   }}
+                  alt="stepImage"
                 />
-                {value.desc}
+                {value.stepDesc}
                 <button type="button" onClick={() => removeStep(value)}>
                   삭제
                 </button>
@@ -36,6 +43,8 @@ const StepForm = ({ stepData, setStepData, imageCounter, setImageCounter }) => {
         <AddStep
           stepData={stepData}
           setStepData={setStepData}
+          exStepData={exStepData}
+          setExStepData={setExStepData}
           imageCounter={imageCounter}
           setImageCounter={setImageCounter}
         />

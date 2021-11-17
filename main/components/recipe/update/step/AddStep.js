@@ -1,6 +1,13 @@
 import React, { useState, useRef } from "react";
 
-const AddStep = ({ stepData, setStepData, imageCounter, setImageCounter }) => {
+const AddStep = ({
+  stepData,
+  setStepData,
+  exStepData,
+  setExStepData,
+  imageCounter,
+  setImageCounter,
+}) => {
   const [imgPreview, setImgPreview] = useState(null);
   const [error, setError] = useState(false);
   const [imageFile, setImageFile] = useState(null);
