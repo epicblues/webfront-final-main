@@ -42,8 +42,6 @@ const LookupMeal = ({
     return result;
   };
 
-  // 열량 kcal total
-
   const mealNutritionTotal = {
     kcal: getTotalSum("kcal"),
     prot: getTotalSum("prot"),

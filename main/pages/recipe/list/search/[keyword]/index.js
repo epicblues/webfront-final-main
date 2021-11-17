@@ -10,7 +10,7 @@ import Search from "../../../../../components/recipe/index/Search";
 //CSS
 import recipeListStyles from "../../../../../styles/RecipeList.module.css";
 
-const index = ({ user, filteredRecipes, keyword }) => {
+const Index = ({ user, filteredRecipes, keyword }) => {
   // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
   function renderSwitchCategory(param) {
     switch (param) {
@@ -54,7 +54,10 @@ const index = ({ user, filteredRecipes, keyword }) => {
                 >
                   <a>
                     <Image
-                      src={user.url + card.steps.slice(-1)[0].image_url}
+                      src={
+                        process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                        card.steps.slice(-1)[0].image_url
+                      }
                       width={100}
                       height={100}
                       alt="thumbnail image"

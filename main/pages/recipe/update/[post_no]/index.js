@@ -28,7 +28,25 @@ const Index = ({ user, recipe }) => {
 
   const [imageCounter, setImageCounter] = useState(0); //  사진 개수 카운터
   const [foodData, setFoodData] = useState([]); //  재료 데이터
-  const [stepData, setStepData] = useState(recipe.steps); //  요리순서 데이터
+
+  // 작동안되는 로직
+  const tempStepData = recipe.steps.map((value, index) => {
+    async function imgToFile() {
+      const res = await fetch(
+        process.env.NEXT_PUBLIC_STATIC_SERVER_URL + value.image_url
+      );
+      const blob = await res.blob();
+      return blob;
+    }
+    return {
+      stepDesc: value.desc,
+      stepImageFile: imgToFile(),
+    };
+  });
+  console.log(tempStepData);
+  const [exStepData, setExStepData] = useState(tempStepData);
+  const [stepData, setStepData] = useState([]); //  요리순서 데이터
+
   const [nutritionData, setNutritionData] = useState({
     //  영양정보 데이터
     kcal: 0,
@@ -195,6 +213,8 @@ const Index = ({ user, recipe }) => {
         <StepForm
           stepData={stepData}
           setStepData={setStepData}
+          exStepData={exStepData}
+          setExStepData={setExStepData}
           setImageCounter={setImageCounter}
           imageCounter={imageCounter}
         />
