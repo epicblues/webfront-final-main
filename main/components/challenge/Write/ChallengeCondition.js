@@ -71,17 +71,17 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
             <div className="dietKind">
               <input
                 type="radio"
-                name="type"
+                name="kind"
                 value="plusKcal"
-                checked={challenge.diet.type === "plusKcal"}
+                checked={challenge.diet.kind === "plusKcal"}
                 onChange={handleDiet}
               />
               <label>체중증가 다이어트</label>
               <input
                 type="radio"
-                name="type"
+                name="kind"
                 value="minusKcal"
-                checked={challenge.diet.type === "minusKcal"}
+                checked={challenge.diet.kind === "minusKcal"}
                 onChange={handleDiet}
               />
               <label>체중감량 다이어트</label>

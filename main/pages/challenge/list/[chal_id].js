@@ -23,7 +23,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                 <>
                   <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
-                  {challenge.diet.type === "pluskcal" ? (
+                  {challenge.diet.kind === "pluskcal" ? (
                     <>
                       <h3>다이어트 종류: 벌크업 </h3>
                     </>
@@ -53,7 +53,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                 <>
                   <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
-                  {challenge.diet.type === "pluskcal" ? (
+                  {challenge.diet.kind === "pluskcal" ? (
                     <>
                       <h3>다이어트 종류: 벌크업 </h3>
                     </>
