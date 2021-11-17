@@ -1,38 +1,46 @@
-import React, { LegacyRef, MutableRefObject, useRef, useState } from 'react'
-import { checkValid } from '../../util/auth';
+import React, { LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react'
+import { checkValid, getUserOrRedirect } from '../../util/auth';
 import Bmr, { UserBmr } from '../../components/user/Bmr'
 import axios from 'axios';
 import { Button, Form, Header, Input, Label } from 'semantic-ui-react';
+import { GetServerSideProps } from 'next';
+import clientPromise from '../../util/mongodb';
 
 
 
-const Join = () => {
+const Join = ({ user, bmr }: { user: any, bmr: UserBmr }) => {
 
-  const email = useRef() as MutableRefObject<HTMLInputElement>;
+
+  useEffect(() => {
+    name.current.value = user.name
+  }, [user.name])
+
   const password = useRef() as MutableRefObject<HTMLInputElement>;
   const confirmPassword = useRef() as MutableRefObject<HTMLInputElement>;
 
   const name = useRef() as MutableRefObject<HTMLInputElement>;
   const message = useRef() as MutableRefObject<HTMLHeadingElement>;
-  const [userBmr, setUserBmr] = useState({
-    gender: "1",
-    weight: 0,
-    age: 0,
-    activity: 0,
-    bmr: 0,
-    error: "",
-    flag: false,
-    system: "",
-    heightFeet: 0
-  })
+  const [userBmr, setUserBmr] = useState(
+    bmr ? bmr : {
+      gender: "1",
+      weight: 0,
+      age: 0,
+      activity: 0,
+      bmr: 0,
+      error: "",
+      flag: false,
+      system: "",
+      heightFeet: 0
+    }
+  )
 
   const handleClick = async () => {
     const bmrToSend: Partial<UserBmr> = { ...userBmr, error: '', flag: false, system: "" };
 
-    if (!(checkValid(email.current.value, password.current.value, name.current.value))) {
+    if (!(checkValid(password.current.value, name.current.value))) {
       message.current.textContent = "전부 입력해야 합니다."
       message.current.style.color = "red";
-      email.current.focus();
+
       return;
     }
 
@@ -48,10 +56,10 @@ const Join = () => {
       return
     }
 
-    const { data: result } = await axios.post("/api/user/join",
+    const { data: result } = await axios.post("/api/user/update",
 
       {
-        email: email.current?.value,
+        email: user.email,
         password: password.current?.value,
         name: name.current?.value,
         bmr: bmrToSend
@@ -60,8 +68,8 @@ const Join = () => {
     if (result.status === "OK") location.href = "login"
     else {
       const status = JSON.parse(result.status);
-      message.current.innerHTML = status.index === 0 ? "중복되는 이메일입니다" : "잘못 입력하셨습니다"
-      email.current.value = '';
+      message.current.innerHTML = "잘못 입력하셨습니다."
+
       password.current.value = '';
       name.current.value = '';
     }
@@ -76,18 +84,14 @@ const Join = () => {
       padding: "16px",
     }}>
       <Form  >
-        <h2 ref={message}>회원 가입</h2>
+        <h2 ref={message}>회원 정보 수정</h2>
         <Form.Field>
           <h3>이름</h3>
           <input type="text" ref={name} placeholder="이름" />
 
         </Form.Field>
 
-        <Form.Field>
 
-          <h3>이메일</h3>
-          <input type="email" ref={email} placeholder="이메일" />
-        </Form.Field>
         <Form.Field>
           <h3>비밀번호</h3>
           <input type="password" ref={password} placeholder="비밀번호" /></Form.Field>
@@ -103,5 +107,17 @@ const Join = () => {
 
   )
 }
+
+export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
+  // 유저 인증 로직
+  const user = await getUserOrRedirect(ctx);
+  const client = await clientPromise;
+  const extraUser = await client.db('webfront').collection('user').findOne({ _id: user.id })
+
+  console.log("user:", user);
+  return { props: { user, bmr: extraUser?.bmr ? extraUser.bmr : null } };
+
+}
+
 
 export default Join

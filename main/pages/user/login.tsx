@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { checkValid } from '../../util/auth';
 import { useRouter } from 'next/dist/client/router';
 
-const login = () => {
+const Login = () => {
 
   const email = useRef() as MutableRefObject<HTMLInputElement>;
   const password = useRef() as MutableRefObject<HTMLInputElement>;
@@ -48,7 +48,7 @@ const login = () => {
         Email : <input type="email" ref={email} /> <br />
         password : <input type="password" ref={password} /> <br />
         <button onClick={handleClick}>제출</button>
-        <Link href="join">
+        <Link passHref href="join">
           <button>회원가입</button>
         </Link>
       </div>
@@ -58,4 +58,4 @@ const login = () => {
   )
 }
 
-export default login
+export default Login

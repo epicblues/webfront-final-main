@@ -24,7 +24,7 @@ const login: NextApiHandler = async (req: NextApiRequest, res: NextApiResponse) 
     const isValidPW = await compare(password, result.password);
     // 로그인 성공 후에 유저 인증 관련 jwt를 쿠키에 저장
     if (isValidPW) {
-      const jwt = sign({ email: result.email, name: result.name, id: result._id }, secret, { expiresIn: '1h' });
+      const jwt = sign({ email: result.email, name: result.name, id: result._id, bmr: result.bmr?.bmr, activity: result.bmr?.activity }, secret, { expiresIn: '1h' });
       // 인증 토큰을 생성하고 쿠키에 저장
       res.setHeader("Set-Cookie", cookie.serialize('auth', jwt, { httpOnly: true, secure: process.env.NODE_ENV !== 'development', sameSite: true, maxAge: 3600, path: '/', }))
     }

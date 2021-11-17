@@ -1,26 +1,34 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
 
 import { getUserOrRedirect } from '../util/auth'
+import Link from 'next/link';
+import { Button, Card, CardHeader, CommentText, Container, TextArea } from 'semantic-ui-react';
+import homeStyle from '../styles/Home.module.css';
 
-import { Card, CardHeader, Container } from 'semantic-ui-react';
 
-
-
-const Home: NextPage<any> = ({ user: { name, email } }) => {
+const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
 
 
   return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <div className={homeStyle.card} style={{ textAlign: "center" }}>
+        <h2>{name} 님 안녕하세요</h2>
+        <p>Email : {email}</p>
 
-    <Container textAlign="center">
-      <Card centered >
-        <h3>Hello {name}</h3>
-        <h4>test</h4>
-        <p>This is Main Page</p>
-        <p>Your Email : {email}</p>
-      </Card>
+      </div>
+      {bmr && (
+        <div className={homeStyle.card} style={{ textAlign: "center" }}>
+          <p>기초 대사량 : {bmr}</p>
+          <p>일일 권장 칼로리 : {activity}</p>
+        </div>
+      )}
 
 
-    </Container>
+
+
+      <Link passHref href="/user/update">
+        <Button color="google plus">회원 정보 수정</Button>
+      </Link> </div>
 
 
   )
