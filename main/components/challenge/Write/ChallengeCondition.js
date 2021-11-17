@@ -128,20 +128,24 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
       {challenge.type === "diet" ? (
         <>
           <Header as="h4" inverted color="blue">
-            다이어트 조건 ( 기준: 하루 섭취량)
+            다이어트 조건 ( 기준: 하루, Kcal)
           </Header>
           <div className="dietCondition1">
-            {["1500", "2000", "2500", "3000"].map((value) => {
-              console.log(challenge);
-              return (
-                <DietCondition
-                  key={value}
-                  value={value}
-                  checked={challenge.diet.dailyCalorie === value}
-                  onChange={handleDiet}
-                />
-              );
-            })}
+            <input
+              style={{
+                color: "#5CD1E5",
+                fontWeight: "bold",
+                border: "3px solid",
+                width: "180px",
+                borderRadius: "5px",
+                borderColor: "#6B66FF",
+              }}
+              type="text"
+              name="kind"
+              placeholder="하루 섭취량을 적어주세요"
+              value={challenge.diet.kind}
+              onChange={handleDiet}
+            />
           </div>
         </>
       ) : null}
