@@ -161,7 +161,7 @@ export const getServerSideProps = async (ctx) => {
       },
     ])
     .sort({ upload_date: -1 })
-    .limit(3)
+    .limit(4)
     .toArray();
   const filteredLatestRecipes = JSON.parse(JSON.stringify(data1));
 
@@ -181,7 +181,7 @@ export const getServerSideProps = async (ctx) => {
       },
     ])
     .sort({ hit: -1 })
-    .limit(3)
+    .limit(4)
     .toArray();
   const filteredHitRecipes = JSON.parse(JSON.stringify(data2));
 
