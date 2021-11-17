@@ -1,16 +1,12 @@
 import React from "react";
 
-const DietCondition = ({ value, checked, onChange }) => {
+const DietCondition = ({ value, onChange }) => {
   return (
     <>
-      <input
-        type="radio"
-        name="dailyCalorie"
-        value={value}
-        checked={checked}
-        onChange={onChange}
-      />
-      <label>{`${value}kcal`}</label>
+      <select name="condition" value={value} onChange={onChange}>
+        const
+        <option>{`${value}`}`</option>
+      </select>
     </>
   );
 };

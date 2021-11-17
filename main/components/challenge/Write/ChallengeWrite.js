@@ -12,15 +12,17 @@ registerLocale("ko", ko);
 
 const ChallengeWrite = ({ user }) => {
   const router = useRouter();
+
   const [challenge, setChallenge] = useState({
     title: "",
-    startDate: "",
-    endDate: "",
+    startDate: null,
+    endDate: null,
+    dateDiff: 0,
 
     userId: user.id,
     type: "",
     diet: {
-      type: "",
+      kind: "",
       dailyCalorie: "",
       condition: "",
     },
@@ -54,12 +56,20 @@ const ChallengeWrite = ({ user }) => {
     console.log(challenge.title);
   };
 
-  const onKeyPress = (e) => {
+  const onKeyPress = () => {
     if (e.key === "Enter") {
       onClick();
     }
   };
+  const getDiffDate = (endDate) => {
+    console.log(endDate instanceof Date);
 
+    console.log(endDate.getTime(), challenge.startDate.getTime());
+    const newDateDiff =
+      (endDate.getTime() - challenge.startDate.getTime()) /
+      (1000 * 60 * 60 * 24);
+    return newDateDiff;
+  };
   return (
     <form
       className="challengeform"
@@ -134,7 +144,6 @@ const ChallengeWrite = ({ user }) => {
           </Header>
 
           <ReactDatePicker
-            name="startDate"
             locale="ko"
             dateFormat="yyyy년 MM월 dd일"
             selected={challenge.startDate}
@@ -145,7 +154,13 @@ const ChallengeWrite = ({ user }) => {
             startDate={challenge.startDate}
             endDate={challenge.endDate}
             withPortal
-            popperModifiers
+            popperModifier={{
+              //모바일 web환경에서 화면을 벗어나지 않도록 하는 설정
+              preventOverflow: {
+                enabled: true,
+              },
+            }}
+            popperPlacement="auto" // 화면 중앙에 팝업
           />
 
           <Header as="h4" inverted color="blue" className="challengeDateTitle">
@@ -153,12 +168,18 @@ const ChallengeWrite = ({ user }) => {
           </Header>
 
           <ReactDatePicker
-            name="endDate"
             locale="ko"
             dateFormat="yyyy년 MM월 dd일"
             selected={challenge.endDate}
             placeholderText="챌린지 종료일 선택"
-            onChange={(date) => setChallenge({ ...challenge, endDate: date })}
+            onChange={(date) => {
+              const newDateDiff = getDiffDate(date);
+              setChallenge({
+                ...challenge,
+                endDate: date,
+                dateDiff: newDateDiff,
+              });
+            }}
             selectsEnd
             endDate={challenge.endDate}
             minDate={challenge.startDate}

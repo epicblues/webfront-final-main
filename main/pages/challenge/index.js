@@ -18,7 +18,7 @@ const index = ({ challenges, user }) => {
       </Link>
       <br />
       <div className="myChallenge">
-        <MyChallenge challenges={challenges}></MyChallenge>
+        <MyChallenge challenges={challenges} user={user}></MyChallenge>
       </div>
     </>
   );
@@ -31,9 +31,16 @@ export const getServerSideProps = async (ctx) => {
   const challenges = await client
     .db("webfront")
     .collection("challenge")
-    .find({
-      userId: user.id,
-    })
+    .aggregate([
+      {
+        $lookup: {
+          from: "user",
+          localField: "userId",
+          foreignField: "_id",
+          as: "author",
+        },
+      },
+    ])
     .toArray();
 
   console.log("user:", user);

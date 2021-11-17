@@ -3,6 +3,7 @@ import { getUserOrRedirect } from "../../../util/auth";
 import clientPromise from "../../../util/mongodb";
 import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
+import ChallengeModify from "../../../components/challenge/List/ChallengeModify";
 
 const ChallengePage = ({ originalChallenge, user }) => {
   const [challenge, setChallenge] = useState(originalChallenge);
@@ -23,7 +24,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                 <>
                   <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
-                  {challenge.diet.type === "pluskcal" ? (
+                  {challenge.diet.kind === "plusKcal" ? (
                     <>
                       <h3>다이어트 종류: 벌크업 </h3>
                     </>
@@ -32,7 +33,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                       <h3>다이어트 종류: 컷팅 </h3>
                     </>
                   )}
-                  <h3>하루 섭취량:{challenge.diet.dailyCalorie}Kcal</h3>
+                  <h3>하루 섭취량:{challenge.diet.dailyCalorie}</h3>
                   <h3>다이어트 성공 일수:{challenge.diet.condition}</h3>
                   <h3>참가자 인원:{challenge.participants.length}</h3>
                 </>
@@ -41,14 +42,19 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
                   <h3>레시피 종류:{challenge.recipe.kind}</h3>
-                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}회</h3>
+                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
-              <ChallengeCancel
-                challenge={challenge}
-                setChallenge={setChallenge}
-              />
+              {challenge.author[0]._id === user.id ? (
+                <>
+                  <ChallengeModify />
+                </>
+              ) : (
+                <>
+                  <ChallengeCancel />
+                </>
+              )}
             </>
           ) : (
             <>
@@ -56,7 +62,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                 <>
                   <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
-                  {challenge.diet.type === "pluskcal" ? (
+                  {challenge.diet.kind === "plusKcal" ? (
                     <>
                       <h3>다이어트 종류: 벌크업 </h3>
                     </>
@@ -65,7 +71,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                       <h3>다이어트 종류: 컷팅 </h3>
                     </>
                   )}
-                  <h3>하루 섭취량:{challenge.diet.dailyCalorie}Kcal</h3>
+                  <h3>하루 섭취량:{challenge.diet.dailyCalorie}</h3>
                   <h3>다이어트 성공 일수:{challenge.diet.condition}</h3>
                   <h3>참가자 인원:{challenge.participants.length}</h3>
                 </>
@@ -74,7 +80,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
                   <h3>레시피 종류:{challenge.recipe.kind}</h3>
-                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}회</h3>
+                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
