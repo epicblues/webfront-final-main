@@ -13,7 +13,7 @@ const index = ({ challenges, user }) => {
         <Button>챌린지 작성</Button>
       </Link>
 
-      <Link passHref href="challenge/list">
+      <Link passHref href="challenge/mainlist">
         <Button>챌린지 리스트 보기 </Button>
       </Link>
       <br />

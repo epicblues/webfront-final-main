@@ -1,3 +1,4 @@
+import { FindOneAndUpdateOptions } from "mongodb";
 import { NextApiHandler } from "next";
 import { authenticated } from "../../../../util/auth";
 import clientPromise from "../../../../util/mongodb";
@@ -9,21 +10,24 @@ const handler: NextApiHandler = async (req, res) => {
   const challengeId = Number(req.query.id);
   try {
     const client = await clientPromise;
-    const result = client
+    const result = await client
       .db("webfront")
       .collection("challenge")
       .findOneAndUpdate(
         { _id: challengeId },
         {
-          $set: {
+          
             $push: {
               participants: userId,
             },
-          },
-        }
+          
+        },{
+          returnDocument:'after',
+          returnOriginal :'false'
+        } as FindOneAndUpdateOptions
       );
     console.log(result);
-    res.status(200).json({ result });
+    res.status(200).json({challenge : result.value});
   } catch (error) {
     res.status(404).json({ message: error });
   }

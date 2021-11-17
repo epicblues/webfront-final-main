@@ -50,7 +50,7 @@ const ChallengeWrite = ({ user }) => {
   const onClick = (e) => {
     alert(challenge.title);
     e.preventDefault();
-
+    e.currentTarget.disabled = true;
     console.log(challenge.title);
   };
 
@@ -107,7 +107,12 @@ const ChallengeWrite = ({ user }) => {
             onKeyPress={onKeyPress}
           />
           <div>
-            <Button type="button" onClick={onClick} color={"twitter"}>
+            <Button
+              disabled=""
+              type="button"
+              onClick={onClick}
+              color={"twitter"}
+            >
               완료
             </Button>
           </div>
