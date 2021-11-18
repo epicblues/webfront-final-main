@@ -175,7 +175,6 @@ class Bmr extends Component {
                 name="heightFeet"
                 className="heightFeet"
                 min="0"
-                max="8"
                 placeholder="Height"
               />
             </div>
@@ -227,7 +226,7 @@ class Bmr extends Component {
                   <option value="1.2">
                     운동을 거의 또는 전혀 하지 않고 사무직
                   </option>
-                  <option value="1.375">주 1~3일 가벼운 운동</option>
+                  <option value="1.375">주 1~2일 가벼운 운동</option>
                   <option value="1.55">주 3~5일 적당한 운동</option>
                   <option value="1.725">주 6~7일 과중한 운동</option>
                   <option value="1.9">
@@ -249,7 +248,7 @@ class Bmr extends Component {
                     trigger={
                       <Icon name="circle outline" size="large" color="teal" />
                     }
-                    header="하루 권장섭취량"
+                    header="하루 권장 섭취량"
                     content="일반적으로 성인의 경우 남자 2700kcal, 여자 2000kcal 정도로 개개인마다 활동량, 체중, 성별, 건강 상태 등에 따라 하루 권장 칼로리가 달라진다"
                   />
                   나의 하루에 필요한 에너지량은?

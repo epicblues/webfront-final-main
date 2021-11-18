@@ -9,7 +9,6 @@ import { Diary } from "../../models";
 import PickDate from "../../components/diary/PickDate";
 // 영양 섭취 상태
 import FinalTotalSum from "../../components/diary/FinalTotalSum";
-//import ProgressStyles from '../../styles/Progress.module.css';
 // Review
 import ReviewPage from "../../components/diary/review/ReviewPage";
 // 음식 작성
@@ -116,7 +115,7 @@ const Index = ({ user, fetchedDiary }) => {
         <div className="ui center aligned container">
           <div className="DatePart">
             <PickDate diary={diary} setDiary={setDiary} />
-            <FinalTotalSum diary={diary} />
+            <FinalTotalSum diary={diary} user={user}/>
           </div>
 
           <div className="content">
