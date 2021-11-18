@@ -26,7 +26,6 @@ export const Index = ({ user }) => {
   };
   const router = useRouter();
 
-  const [imageCounter, setImageCounter] = useState(0); //  사진 개수 카운터
   const [foodData, setFoodData] = useState([]); //  재료 데이터
   const [stepData, setStepData] = useState([]); //  요리순서 데이터
   const [nutritionData, setNutritionData] = useState({
@@ -51,8 +50,8 @@ export const Index = ({ user }) => {
   const submitBtnClick = async (data) => {
     if (foodData.length === 0) {
       alert("재료를 입력해주세요");
-    } else if (imageCounter === 0) {
-      alert("순서 사진을 최소 1개 이상 등록해주세요.");
+    } else if (stepData.length === 0) {
+      alert("조리 순서를 최소 1개 이상 등록해주세요.");
     } else {
       const date = new Date();
 
@@ -190,12 +189,7 @@ export const Index = ({ user }) => {
         />
 
         <h3>요리 순서</h3>
-        <StepForm
-          stepData={stepData}
-          setStepData={setStepData}
-          setImageCounter={setImageCounter}
-          imageCounter={imageCounter}
-        />
+        <StepForm stepData={stepData} setStepData={setStepData} />
         <button type="button">임시저장(미구현)</button>
         <button type="submit">글쓰기</button>
       </form>

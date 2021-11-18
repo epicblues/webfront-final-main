@@ -10,7 +10,7 @@ import MeasuringModalBlackout from "../../../../components/recipe/create/food/Me
 import AddFoodModalBlackout from "../../../../components/recipe/create/food/AddFoodModalBlackout";
 
 import FoodForm from "../../../../components/recipe/create/food/FoodForm";
-import StepForm from "../../../../components/recipe/update/step/stepForm";
+import StepForm from "../../../../components/recipe/create/step/StepForm";
 
 const Index = ({ user, recipe }) => {
   //  계량 팁 Modal, 렌더링 로직
@@ -26,26 +26,20 @@ const Index = ({ user, recipe }) => {
   };
   const router = useRouter();
 
-  const [imageCounter, setImageCounter] = useState(0); //  사진 개수 카운터
-  const [foodData, setFoodData] = useState([]); //  재료 데이터
-
-  // 작동안되는 로직
-  const tempStepData = recipe.steps.map((value, index) => {
-    async function imgToFile() {
-      const res = await fetch(
-        process.env.NEXT_PUBLIC_STATIC_SERVER_URL + value.image_url
-      );
-      const blob = await res.blob();
-      return blob;
-    }
-    return {
-      stepDesc: value.desc,
-      stepImageFile: imgToFile(),
-    };
-  });
-  console.log(tempStepData);
-  const [exStepData, setExStepData] = useState(tempStepData);
-  const [stepData, setStepData] = useState([]); //  요리순서 데이터
+  //  기존 데이터가 있다면 데이터 키를 변경 통일하여 정제 하는 로직
+  const exFoodData = recipe.ingredients;
+  const configuredExFoodData =
+    exFoodData.length == 0
+      ? []
+      : exFoodData.map((value) => {
+          return {
+            foodObj: value.food,
+            food_id: value.food_id,
+            quantity: value.quantity,
+          };
+        });
+  const [foodData, setFoodData] = useState(configuredExFoodData); //  재료 데이터
+  const [stepData, setStepData] = useState(recipe.steps); //  요리순서 데이터
 
   const [nutritionData, setNutritionData] = useState({
     //  영양정보 데이터
@@ -102,7 +96,7 @@ const Index = ({ user, recipe }) => {
       });
       try {
         await postStaticAxios("/api/recipe/create", user.token, formData);
-
+        console.log(formData);
         // router.push("/recipe");
       } catch (error) {
         alert(error);
@@ -210,14 +204,7 @@ const Index = ({ user, recipe }) => {
         />
 
         <h3>요리 순서</h3>
-        <StepForm
-          stepData={stepData}
-          setStepData={setStepData}
-          exStepData={exStepData}
-          setExStepData={setExStepData}
-          setImageCounter={setImageCounter}
-          imageCounter={imageCounter}
-        />
+        <StepForm stepData={stepData} setStepData={setStepData} />
         <button type="button">임시저장(미구현)</button>
         <button type="submit">글쓰기</button>
       </form>

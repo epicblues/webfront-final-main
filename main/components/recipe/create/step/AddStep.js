@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-const AddStep = ({ stepData, setStepData, imageCounter, setImageCounter }) => {
+const AddStep = ({ stepData, setStepData }) => {
   const [imgPreview, setImgPreview] = useState(null);
   const [error, setError] = useState(false);
   const [imageFile, setImageFile] = useState(null);
@@ -10,6 +10,8 @@ const AddStep = ({ stepData, setStepData, imageCounter, setImageCounter }) => {
   const handleSubmitStep = () => {
     if (inputRef.current.value.length === 0) {
       alert("순서 설명을 입력해주세요.");
+    } else if (!imgPreview) {
+      alert("순서 사진을 첨부해주세요");
     } else {
       if (stepData.length <= 10) {
         stepData = [
@@ -22,7 +24,6 @@ const AddStep = ({ stepData, setStepData, imageCounter, setImageCounter }) => {
         ];
         setStepData(stepData);
         setImgPreview(null);
-        imgPreview ? setImageCounter(imageCounter + 1) : null;
       } else {
         alert("순서를 더 이상 추가하실 수 없습니다.");
       }
