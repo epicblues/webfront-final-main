@@ -71,8 +71,8 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
         <button>내 레시피</button>
       </Link>
 
-      {/* 인기 레시피 */}
-      <h3>인기 레시피</h3>
+      {/* 최신 레시피 */}
+      <h3>최신 레시피</h3>
       <ul className={recipeListStyles.cards}>
         {filteredLatestRecipes.map((card, index) => {
           return (
@@ -105,8 +105,8 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
         })}
       </ul>
 
-      {/* 최신 레시피 */}
-      <h3>최신 레시피</h3>
+      {/* 인기 레시피 */}
+      <h3>인기 레시피</h3>
       <ul className={recipeListStyles.cards}>
         {filteredHitRecipes.map((card, index) => {
           return (
