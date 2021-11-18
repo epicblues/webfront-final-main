@@ -25,7 +25,7 @@ export const authenticated =
   };
 
 export const checkValid = (...strArray: string[]): boolean => {
-  return strArray.filter((str) => str.trim().length === 0).length === 0;
+  return strArray.every((str) => str.trim().length !== 0);
 };
 
 // ServerSideProps로 user데이터를 활용할 때

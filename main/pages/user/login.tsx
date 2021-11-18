@@ -2,6 +2,7 @@ import React, { LegacyRef, MutableRefObject, useRef } from 'react'
 import Link from 'next/link';
 import { checkValid } from '../../util/auth';
 import { useRouter } from 'next/dist/client/router';
+import axios from 'axios';
 
 const Login = () => {
 
@@ -19,18 +20,13 @@ const Login = () => {
       return;
     };
 
-    const res = await fetch("/api/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8"
-      },
-      body: JSON.stringify({
-        email: email.current.value,
-        password: password.current.value,
 
-      })
+    const { data } = await axios.post("/api/user/login", {
+      email: email.current.value,
+      password: password.current.value,
+
     })
-    const result = await res.json();
+    const result = await data
     if (result.status === "OK") router.push('/');
     else {
       head.current.innerHTML = "이메일 혹은 비밀번호를 잘못 입력하셨습니다."

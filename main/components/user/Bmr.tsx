@@ -14,6 +14,7 @@ export interface UserBmr {
 }
 
 
+
 const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ userBmr, setUserBmr }) => {
   const calculateBMR = () => {
     const { age, weight, heightFeet, gender, } = userBmr;
@@ -126,7 +127,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
               name="heightFeet"
               className="heightFeet"
               min="0"
-              max="8"
+              max="999"
               placeholder="Height"
             />
           </div>
