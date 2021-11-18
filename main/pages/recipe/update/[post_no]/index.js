@@ -58,6 +58,7 @@ const Index = ({ user, recipe }) => {
       const date = new Date();
 
       let finalRecipeData = {
+        recipe_id: recipe._id,
         upload_date: recipe.upload_date,
         update_date: date,
         title: data.title,
@@ -87,19 +88,19 @@ const Index = ({ user, recipe }) => {
           step.image_url ? step.image_url : step.stepImageFile
         );
       });
-      for (let key of formData.keys()) {
-        console.log(key);
-      }
-      for (let value of formData.values()) {
-        console.log(value);
-      }
-
-      // try {
-      //   await postStaticAxios("/api/recipe/update", user.token, formData);
-      //   router.push(`/recipe/card/${[post_no]}`);
-      // } catch (error) {
-      //   alert(error);
+      // for (let key of formData.keys()) {
+      //   console.log(key);
       // }
+      // for (let value of formData.values()) {
+      //   console.log(value);
+      // }
+
+      try {
+        await postStaticAxios("/api/recipe/update", user.token, formData);
+        router.push(`/recipe/card/${recipe._id}`);
+      } catch (error) {
+        alert(error);
+      }
     }
   };
   return (
@@ -204,8 +205,7 @@ const Index = ({ user, recipe }) => {
 
         <h3>요리 순서</h3>
         <StepForm stepData={stepData} setStepData={setStepData} />
-        <button type="button">임시저장(미구현)</button>
-        <button type="submit">글쓰기</button>
+        <button type="submit">수정하기</button>
       </form>
     </div>
   );

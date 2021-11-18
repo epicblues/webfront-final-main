@@ -191,7 +191,6 @@ export const Index = ({ user }) => {
 
         <h3>요리 순서</h3>
         <StepForm stepData={stepData} setStepData={setStepData} />
-        <button type="button">임시저장(미구현)</button>
         <button type="submit">글쓰기</button>
       </form>
     </div>
