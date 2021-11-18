@@ -9,7 +9,7 @@ import MeasuringModalBlackout from "../../../components/recipe/create/food/Measu
 import AddFoodModalBlackout from "../../../components/recipe/create/food/AddFoodModalBlackout";
 
 import FoodForm from "../../../components/recipe/create/food/FoodForm";
-import StepForm from "../../../components/recipe/create/step/stepForm";
+import StepForm from "../../../components/recipe/create/step/StepForm";
 
 //  작성폼
 export const Index = ({ user }) => {
@@ -57,6 +57,7 @@ export const Index = ({ user }) => {
 
       let finalRecipeData = {
         upload_date: date,
+        update_date: date,
         title: data.title,
         desc: data.desc,
         hit: 0,

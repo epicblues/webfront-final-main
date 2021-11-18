@@ -70,6 +70,7 @@ const Index = ({ user, recipe }) => {
         <p>기준: {recipe.qtt}인분</p>
         <p>소요시간: {renderSwitchDuration(recipe.duration)}</p>
         <p>등록일: {recipe.upload_date}</p>
+        <p>최종수정일: {refcipe.update_date}</p>
         {/* <p>작성자 : {recipe.</p> */}
         <p>조회수: {recipe.hit}</p>
       </div>

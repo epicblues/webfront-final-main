@@ -41,18 +41,7 @@ const Index = ({ user, recipe }) => {
   const [foodData, setFoodData] = useState(configuredExFoodData); //  재료 데이터
   const [stepData, setStepData] = useState(recipe.steps); //  요리순서 데이터
 
-  const [nutritionData, setNutritionData] = useState({
-    //  영양정보 데이터
-    kcal: 0,
-    carbs: 0,
-    sugars: 0,
-    prot: 0,
-    fat: 0,
-    stdfat: 0,
-    trnfat: 0,
-    chole: 0,
-    sodium: 0,
-  });
+  const [nutritionData, setNutritionData] = useState(recipe.nutrition);
 
   const {
     register,
@@ -63,16 +52,17 @@ const Index = ({ user, recipe }) => {
   const submitBtnClick = async (data) => {
     if (foodData.length === 0) {
       alert("재료를 입력해주세요");
-    } else if (imageCounter === 0) {
+    } else if (stepData.length === 0) {
       alert("순서 사진을 최소 1개 이상 등록해주세요.");
     } else {
       const date = new Date();
 
       let finalRecipeData = {
-        upload_date: date,
+        upload_date: recipe.upload_date,
+        update_date: date,
         title: data.title,
         desc: data.desc,
-        hit: 0,
+        hit: recipe.hit,
         category: data.category,
         qtt: Number(data.qtt),
         totalNutrition: JSON.stringify(nutritionData), //  레시피 칼로리 총합
@@ -82,7 +72,7 @@ const Index = ({ user, recipe }) => {
         }), //  음식(재료) 객체의 배열
         stepData: JSON.stringify(
           stepData.map((step) => {
-            return { desc: step.stepDesc };
+            return step.desc ? { desc: step.desc } : { desc: step.stepDesc };
           })
         ),
       };
@@ -92,15 +82,24 @@ const Index = ({ user, recipe }) => {
         formData.append(key, finalRecipeData[key]);
       }
       stepData.forEach((step, index) => {
-        formData.append(`step_img_${index + 1}`, step.stepImageFile);
+        formData.append(
+          `step_img_${index + 1}`,
+          step.image_url ? step.image_url : step.stepImageFile
+        );
       });
-      try {
-        await postStaticAxios("/api/recipe/create", user.token, formData);
-        console.log(formData);
-        // router.push("/recipe");
-      } catch (error) {
-        alert(error);
+      for (let key of formData.keys()) {
+        console.log(key);
       }
+      for (let value of formData.values()) {
+        console.log(value);
+      }
+
+      // try {
+      //   await postStaticAxios("/api/recipe/update", user.token, formData);
+      //   router.push(`/recipe/card/${[post_no]}`);
+      // } catch (error) {
+      //   alert(error);
+      // }
     }
   };
   return (

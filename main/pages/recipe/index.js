@@ -59,7 +59,7 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
       <p></p>
 
       {/* 레시피 등록하기 */}
-      <Link passHref href="recipe/create">
+      <Link passHref href="/recipe/create">
         <button>레시피 등록하기</button>
       </Link>
 
@@ -67,7 +67,7 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
       <input type="button" value="찜한 레시피" />
 
       {/* 내 레시피 조회 */}
-      <Link passHref href="recipe/list/my">
+      <Link passHref href="/recipe/list/my">
         <button>내 레시피</button>
       </Link>
 
