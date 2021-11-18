@@ -88,7 +88,7 @@ const FinalTotalSum = ({
     return (
         <div>
             <Dropdown selected={selected} setSelected={setSelected} />
-          
+
             <div className='ui segments' >    
                 <div className="ui segment">
                     <div>총 섭취 칼로리</div>
