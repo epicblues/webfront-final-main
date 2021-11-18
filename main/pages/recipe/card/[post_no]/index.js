@@ -58,7 +58,9 @@ const Index = ({ user, recipe }) => {
         <Image
           src={
             process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-            recipe.steps.slice(-1)[0].image_url
+            recipe.steps.slice(-1)[0].image_url +
+            "?date=" +
+            recipe.update_date
           }
           width={500}
           height={300}
@@ -107,7 +109,10 @@ const Index = ({ user, recipe }) => {
               <p>{value.desc}</p>
               <Image
                 src={
-                  process.env.NEXT_PUBLIC_STATIC_SERVER_URL + value.image_url
+                  process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                  value.image_url +
+                  "?date=" +
+                  recipe.update_date
                 }
                 width={500}
                 height={300}
