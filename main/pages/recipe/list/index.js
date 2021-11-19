@@ -12,8 +12,9 @@ import Search from "../../../components/recipe/index/Search";
 
 //  CSS
 import recipeListStyles from "../../../styles/RecipeList.module.css";
+import { parseDocumentToObject } from "../../../util/date";
 
-const index = ({ user, recipes }) => {
+const Index = ({ user, recipes }) => {
   //  카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
   function renderSwitchCategory(param) {
     switch (param) {
@@ -51,14 +52,16 @@ const index = ({ user, recipes }) => {
                 <Link
                   href={{
                     pathname: `/recipe/card/${card._id}`,
-                    query: { props: { card } },
                   }}
                   as={`/recipe/card/${card._id}`}
                   passHref
                 >
                   <a>
                     <Image
-                      src={user.url + card.steps.slice(-1)[0].image_url}
+                      src={
+                        process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                        card.steps.slice(-1)[0].image_url
+                      }
                       width={100}
                       height={100}
                       alt="thumbnail image"
@@ -98,9 +101,9 @@ export const getServerSideProps = async (ctx) => {
     ])
     .limit(9)
     .toArray();
-  const recipes = JSON.parse(JSON.stringify(data));
+  const recipes = parseDocumentToObject(data);
 
   return { props: { user, recipes } };
 };
 
-export default index;
+export default Index;

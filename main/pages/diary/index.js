@@ -1,21 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
-
-// Date
-import PickDate from "../../components/diary/PickDate";
-// Review
-import ReviewPage from "../../components/diary/review/ReviewPage";
-// Bmr
-import Bmr from "../../components/diary/Bmr";
-// 음식 작성
-import AddFood from "../../components/diary/meal/AddFood";
-// 음식 조회
-import LookupMeal from "../../components/diary/meal/LookupMeal";
-import Meal from "../../components/diary/meal/Meal";
 import { getDateId } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
+
+// Date
+import PickDate from "../../components/diary/PickDate";
+// 영양 섭취 상태
+import FinalTotalSum from "../../components/diary/FinalTotalSum";
+// Review
+import ReviewPage from "../../components/diary/review/ReviewPage";
+// 음식 작성
+import AddFood from "../../components/diary/meal/AddFood";
+import Meal from "../../components/diary/meal/Meal";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -25,7 +23,7 @@ export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   "DEFAULT",
 ]; // Diary용 상수 설정
 
-const index = ({ user, fetchedDiary }) => {
+const Index = ({ user, fetchedDiary }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [writingMode, setWritingMode] = useState("DEFAULT");
   const [diary, setDiary] = useState(fetchedDiary);
@@ -49,9 +47,9 @@ const index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
-          <h2 style={{ textAlign: "left", padding: "16px" }}>
+          <h2 style={{ textAlign: "left", padding: "16px 16px 0 16px" }}>
             오늘의 식단
-            <i className="utensils icon" style={{ marginLeft: 4 }}></i>
+            {/* <i className="utensils icon" style={{ marginLeft: 4 }}></i> */}
           </h2>
 
           <div
@@ -61,7 +59,7 @@ const index = ({ user, fetchedDiary }) => {
               gridTemplateColumns: "5fr 5fr",
               gridAutoRows: "200px",
               gridGap: "1rem",
-              padding: "0 16px 16px"
+              padding: "0 16px 16px",
             }}
           >
             {[0, 1, 2, 3].map((type) => (
@@ -116,7 +114,8 @@ const index = ({ user, fetchedDiary }) => {
       {writingMode === DEFAULT && (
         <div className="ui center aligned container">
           <div className="DatePart">
-            <PickDate />
+            <PickDate diary={diary} setDiary={setDiary} />
+            <FinalTotalSum diary={diary} user={user}/>
           </div>
 
           <div className="content">
@@ -129,10 +128,6 @@ const index = ({ user, fetchedDiary }) => {
               })}
             </ul>
             <div>{tabContArr[activeIndex].tabCont}</div>
-          </div>
-
-          <div>
-            <Bmr />
           </div>
         </div>
       )}
@@ -167,8 +162,8 @@ export const getServerSideProps = async (ctx) => {
       return { props: { user, fetchedDiary: loadedDiary } };
     }
   } catch (error) {
-    ctx.res.json({ message: error });
+    ctx.res.status(500).json({ message: error });
   }
 };
 
-export default index;
+export default Index;

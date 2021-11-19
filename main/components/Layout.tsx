@@ -26,20 +26,19 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
             <Grid.Row textAlign="center">
               <button className="ui button facebook" onClick={clickHandler}>{pageProps.user?.name}님 Logout</button>
 
-              <Link href="/challenge" >
+              <Link passHref href="/challenge" >
                 <button className="ui button">Challenge</button>
               </Link>
-              <Link href="/diary">
+              <Link passHref href="/diary">
                 <button className="ui button">Diary</button>
               </Link>
-              <Link href="/recipe">
+              <Link passHref href="/recipe">
                 <button className="ui button">Recipe</button>
               </Link>
             </Grid.Row>
           </Grid>)
           :
           <h1>요건 다 내꺼</h1>}
-
 
       </Container>
       <hr />

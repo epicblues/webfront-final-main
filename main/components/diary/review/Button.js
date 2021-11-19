@@ -1,14 +1,18 @@
 import PropTypes from "prop-types";
 
-const Button = ({ color, text, onClick }) => {
+const Button = ({ text, color, onClick }) => {
   return (
-    <i
-      onClick={onClick}
-      style={{ backgroundColor: color, marginLeft: 4 }}
-      className="pencil alternate icon"
-    >
-      {text}
-    </i>
+    <div style={{display: 'flex', justifyContent: 'space-around', padding: '16px 16px 16px 0'}}>
+      <i
+        onClick={onClick}
+        style={{ backgroundColor: color }}
+        className="edit large icon"
+      >
+      </i>
+      <div style={{marginTop: 4}}>
+        {text}
+      </div>
+    </div>
   );
 };
 

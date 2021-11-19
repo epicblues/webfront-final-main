@@ -1,66 +1,46 @@
-import React, { useState } from "react";
-import ChallengeJoin from "../../challenge/List/ChallengeJoin";
-import ChallengeList from "../../challenge/List/ChallengeList";
-const ChallengeMainList = () => {
-  const [challengeIds, setChallengeIds] = useState("");
-  const challenges = [
-    {
-      id: "1",
-      userId: "강호동",
-      challengeName: "10000kcal 챌린지",
-      challengeKind: "diet",
-      challengeContent: "1주일 동안 만칼로리 먹기",
-      joinCount: "50명",
-      points: "10만",
-      startDate: "2021.10.26",
-      endDate: "2021.11.26",
-    },
-    {
-      id: "2",
-      userId: "정준하",
-      challengeName: "100000kcal 챌린지",
-      challengeKind: "diet",
-      challengeContent: "10일 동안 10만칼로리 먹기",
-      joinCount: "50명",
-      points: "10만",
-      startDate: "2021.10.26",
-      endDate: "2021.11.5",
-    },
-    {
-      id: "3",
-      userId: "유재석",
-      challengeName: "20000kcal 챌린지",
-      challengeKind: "diet",
-      challengeContent: "1주일 동안 2만칼로리 먹기",
-      joinCount: "50명",
-      points: "10만",
-      startDate: "2021.10.26",
-      endDate: "2021.11.2",
-    },
-    {
-      id: "4",
-      userId: "백종원",
-      challengeName: "나만의 한식 레시피",
-      challengeKind: "receipe",
-      challengeContent: "2주 동안 한식 레피시 3개 업로드",
-      joinCount: "30명",
-      points: "10만",
-      startDate: "2021.10.26",
-      endDate: "2021.11.09",
-    },
-  ];
+import React from "react";
+import Link from "next/link";
+
+const DetailList = ({ challenges, user }) => {
   return (
-    <div className="challengeListMain">
-      {challenges.map((challenges) => {
+    <div className="DetailList">
+      {challenges.map((challenge) => {
         return (
           <>
-            <ChallengeList challenges={challenges} key={challenges.id} />
-            <div className="challengeJoin">
-              <ChallengeJoin
-                challenges={challenges}
-                key={challenges.id}
-              ></ChallengeJoin>
-            </div>
+            <table
+              className="challenge"
+              style={{
+                width: "800px",
+                textAlign: "center",
+                margin: "auto",
+                fontFamily: "fantasy",
+                fontSize: "15px",
+                fontWeight: "bold",
+              }}
+            >
+              <thead>
+                <tr>
+                  <th>작성자</th>
+                  <th>참가자수</th>
+                  <th>챌린지명</th>
+                  <th>시작일</th>
+                  <th>종료일</th>
+                </tr>
+              </thead>
+              <tbody>
+                <td>{challenge.author[0].name}</td>
+                <td>{challenge.participants.length}</td>
+                <Link passHref href={"/challenge/list/" + challenge._id}>
+                  <a>
+                    {" "}
+                    <td>{challenge.title}</td>
+                  </a>
+                </Link>
+                <td>{new Date(challenge.startDate).toLocaleDateString()}</td>
+                <td> {new Date(challenge.endDate).toLocaleDateString()}</td>
+              </tbody>
+            </table>
+            <hr />
           </>
         );
       })}
@@ -68,4 +48,4 @@ const ChallengeMainList = () => {
   );
 };
 
-export default ChallengeMainList;
+export default DetailList;

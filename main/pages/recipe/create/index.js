@@ -9,10 +9,10 @@ import MeasuringModalBlackout from "../../../components/recipe/create/food/Measu
 import AddFoodModalBlackout from "../../../components/recipe/create/food/AddFoodModalBlackout";
 
 import FoodForm from "../../../components/recipe/create/food/FoodForm";
-import StepForm from "../../../components/recipe/create/step/stepForm";
+import StepForm from "../../../components/recipe/create/step/StepForm";
 
 //  작성폼
-export const index = ({ user }) => {
+export const Index = ({ user }) => {
   //  계량 팁 Modal, 렌더링 로직
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
   const handleSetIsMeasuringModalVisible = (active) => {
@@ -26,7 +26,6 @@ export const index = ({ user }) => {
   };
   const router = useRouter();
 
-  const [imageCounter, setImageCounter] = useState(0); //  사진 개수 카운터
   const [foodData, setFoodData] = useState([]); //  재료 데이터
   const [stepData, setStepData] = useState([]); //  요리순서 데이터
   const [nutritionData, setNutritionData] = useState({
@@ -51,13 +50,14 @@ export const index = ({ user }) => {
   const submitBtnClick = async (data) => {
     if (foodData.length === 0) {
       alert("재료를 입력해주세요");
-    } else if (imageCounter === 0) {
-      alert("순서 사진을 최소 1개 이상 등록해주세요.");
+    } else if (stepData.length === 0) {
+      alert("조리 순서를 최소 1개 이상 등록해주세요.");
     } else {
       const date = new Date();
 
       let finalRecipeData = {
         upload_date: date,
+        update_date: date,
         title: data.title,
         desc: data.desc,
         hit: 0,
@@ -83,13 +83,13 @@ export const index = ({ user }) => {
         formData.append(`step_img_${index + 1}`, step.stepImageFile);
       });
       try {
-        await postStaticAxios(
-          user.url + "/api/recipe/create",
+        const { data } = await postStaticAxios(
+          "/api/recipe/create",
           user.token,
           formData
         );
-
-        router.push("/recipe");
+        console.log(data);
+        router.push(`/recipe/card/${data.status}`);
       } catch (error) {
         alert(error);
       }
@@ -194,13 +194,7 @@ export const index = ({ user }) => {
         />
 
         <h3>요리 순서</h3>
-        <StepForm
-          stepData={stepData}
-          setStepData={setStepData}
-          setImageCounter={setImageCounter}
-          imageCounter={imageCounter}
-        />
-        <button type="button">임시저장(미구현)</button>
+        <StepForm stepData={stepData} setStepData={setStepData} />
         <button type="submit">글쓰기</button>
       </form>
     </div>
@@ -212,4 +206,4 @@ export const getServerSideProps = async (ctx) => {
   return { props: { user } };
 };
 
-export default index;
+export default Index;

@@ -1,4 +1,8 @@
 const Product = ({ product, index, setQuantity, removeFromCart }) => {
+  // 값이 없어서 NaN이 나올 경우
+  if (isNaN(product.quantity)) {
+    product.quantity = 0;
+  }
   return (
     <div className="item" key={index} style={{ padding: "8px 0" }}>
       <div
@@ -9,15 +13,16 @@ const Product = ({ product, index, setQuantity, removeFromCart }) => {
         }}
       >
         <div className="header">
+          {product.title}
           {product.name}
           <div className="description">
-            {product.mfr} / {product.serve}
-            {product.unit}
+            {product.qtt}{typeof product._id === "number" && `인분`}
+            {product.mfr}{typeof product._id !== "number" && ` / `}{product.serve}{product.unit}
           </div>
         </div>
         <div className="ui input">
           <p style={{ margin: "8px 10px 0 0" }}>
-            {product.kcal}Kcal
+          {typeof product._id === "number" ? product.nutrition.kcal : product.kcal}kcal
             <span
               style={{
                 fontWeight: 600,
@@ -33,7 +38,7 @@ const Product = ({ product, index, setQuantity, removeFromCart }) => {
             style={{ marginRight: 8 }}
             type="text"
             value={product.quantity}
-            onChange={(e) => setQuantity(product, parseInt(e.target.value))}
+            onChange={(e) => {setQuantity(product, parseInt(e.target.value))}}
           />
           <i
             className="red large minus circle icon"
