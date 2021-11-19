@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/dist/client/link";
 import clientPromise from "../../../../util/mongodb";
 import { getUserOrRedirect } from "../../../../util/auth";
+import { postStaticAxios } from "../../../../util/axios";
 
 import ModalNutrition from "../../../../components/recipe/card/ModalNutrition";
+import GoBackward from "../../../../components/GoBackward";
+import { useRouter } from "next/router";
 
 const Index = ({ user, recipe }) => {
+  const router = useRouter();
+  //  영양정보 Modal 컨트롤
   const [isModalVisible, setIsModalVisible] = useState(false);
-
   const handleSetIsModalVisible = (val) => {
     setIsModalVisible(val);
   };
 
+  // recipe.category 필드 한글화
   function renderSwitchCategory(param) {
     switch (param) {
       case "soup":
@@ -35,6 +41,7 @@ const Index = ({ user, recipe }) => {
     }
   }
 
+  // recipe.duration 필드 한글화
   function renderSwitchDuration(param) {
     switch (param) {
       case "1":
@@ -52,9 +59,24 @@ const Index = ({ user, recipe }) => {
     }
   }
 
+  //  삭제버튼 로직
+  const onDeleteBtn = async (data) => {
+    if (confirm("정말 삭제하시겠습니까? \n\n확인 (예)  /  취소 (아니오)")) {
+      const res = await postStaticAxios("/api/recipe/delete", user.token, {
+        recipe_id: data._id,
+      });
+      console.log(res.data.message);
+      alert("삭제하였습니다.");
+      router.back();
+    } else {
+      alert("취소하였습니다.");
+    }
+  };
+
   return (
     <div>
       <div>
+        <GoBackward />
         <Image
           src={
             process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
@@ -71,6 +93,21 @@ const Index = ({ user, recipe }) => {
         <p>{recipe.desc}</p>
         <p>기준: {recipe.qtt}인분</p>
         <p>소요시간: {renderSwitchDuration(recipe.duration)}</p>
+        {/* 수정하기 링크 버튼 */}
+        <Link
+          href={{
+            pathname: `/recipe/update/${recipe._id}`,
+          }}
+          as={`/recipe/update/${recipe._id}`}
+          passHref
+        >
+          <a>
+            <button type="button">수정하기</button>
+          </a>
+        </Link>
+        <button type="button" onClick={() => onDeleteBtn(recipe)}>
+          삭제하기
+        </button>
         <p>등록일: {recipe.upload_date}</p>
         <p>최종수정일: {recipe.update_date}</p>
         {/* <p>작성자 : {recipe.</p> */}
@@ -127,6 +164,7 @@ const Index = ({ user, recipe }) => {
   );
 };
 
+// 유저 인증, recipe DB data 요청
 export const getServerSideProps = async (ctx) => {
   // 유저 인증 로직
   const client = await clientPromise;

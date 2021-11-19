@@ -8,12 +8,12 @@ import clientPromise from "../../../../util/mongodb";
 
 //  CSS
 import recipeListStyles from "../../../../styles/RecipeList.module.css";
-import axios from "axios";
 import { postStaticAxios } from "../../../../util/axios";
 
 const Index = ({ user, filteredRecipes }) => {
   const [recipes, setRecipes] = useState([...filteredRecipes]);
 
+  //  삭제버튼 로직
   const onDeleteBtn = async (data) => {
     if (confirm("정말 삭제하시겠습니까? \n\n확인 (예)  /  취소 (아니오)")) {
       const res = await postStaticAxios("/api/recipe/delete", user.token, {
@@ -33,7 +33,7 @@ const Index = ({ user, filteredRecipes }) => {
     }
   };
 
-  // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
+  // recipe.category 필드 한글화
   function renderSwitchCategory(param) {
     switch (param) {
       case "soup":
@@ -63,6 +63,7 @@ const Index = ({ user, filteredRecipes }) => {
         {recipes.map((card, index) => {
           return (
             <li key={card._id}>
+              {/* 상세피이지 들어가기 */}
               <Link
                 href={{
                   pathname: `/recipe/card/${card._id}`,
@@ -87,6 +88,7 @@ const Index = ({ user, filteredRecipes }) => {
                 </a>
               </Link>
 
+              {/* 수정하기 링크 버튼 */}
               <Link
                 href={{
                   pathname: `/recipe/update/${card._id}`,
