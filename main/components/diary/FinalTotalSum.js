@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Dropdown from './Dropdown';
+import Progress from './Progress';
 
 const FinalTotalSum = ({
   diary,
@@ -88,27 +89,38 @@ const FinalTotalSum = ({
     return (
         <div>
             <Dropdown selected={selected} setSelected={setSelected} />
-
             <div className='ui segments' >    
                 <div className="ui segment">
                     <div>총 섭취 칼로리</div>
-                    <div className="header">{finalTotalSum.kcal} / {managingDatas[selected].kcal}kcal</div>
+                    <div className="header">
+                        <Progress done={finalTotalSum.kcal} max={managingDatas[selected].kcal} />
+                        {finalTotalSum.kcal} / {managingDatas[selected].kcal} kcal
+                    </div>
                 </div>
 
                 <div className='ui horizontal segments'>
                     <div className="ui segment">
                         <div>탄수화물</div>
-                        <div className="header">{finalTotalSum.carbs} / {managingDatas[selected].carbs}g</div>
+                        <div className="header">
+                            <Progress done={finalTotalSum.carbs} max={managingDatas[selected].carbs} />
+                            {finalTotalSum.carbs} / {managingDatas[selected].carbs} g
+                        </div>
                     </div>
 
                     <div className="ui segment">
                         <div>단백질</div>
-                        <div className="header">{finalTotalSum.prot} / {managingDatas[selected].prot}g</div>
+                        <div className="header">
+                            <Progress done={finalTotalSum.prot} max={managingDatas[selected].prot}/>
+                            {finalTotalSum.prot} / {managingDatas[selected].prot} g
+                        </div>
                     </div>
 
                     <div className="ui segment">
                         <div>지방</div>
-                        <div className="header">{finalTotalSum.fat} / {managingDatas[selected].fat}g</div>
+                        <div className="header">
+                            <Progress done={finalTotalSum.fat} max={managingDatas[selected].fat} />
+                            {finalTotalSum.fat} / {managingDatas[selected].fat} g
+                        </div>
                     </div>
                 </div>    
             </div>
