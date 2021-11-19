@@ -2,8 +2,7 @@ import { React, useState } from "react";
 import { Header } from "semantic-ui-react";
 
 import RecipeUploadCount from "./RecipeUploadCount";
-import DietCondition from "./DietCondition";
-import DietCondition2 from "./DietCondition2";
+
 const ChallengeCondition = ({ challenge, setChallenge }) => {
   const handleChange = (e) => {
     setChallenge({
@@ -34,6 +33,17 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
       ...challenge,
       recipe: newRecipe,
     });
+  };
+  const repeatOption = () => {
+    const newDateDiff = [];
+    for (let i = 1; i <= challenge.dateDiff + 1; i++) {
+      newDateDiff.push(
+        <option key={i} value={i}>
+          {i}
+        </option>
+      );
+    }
+    return newDateDiff;
   };
 
   return (
@@ -141,9 +151,9 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
                 borderColor: "#6B66FF",
               }}
               type="text"
-              name="kind"
+              name="dailyCalorie"
               placeholder="하루 섭취량을 적어주세요"
-              value={challenge.diet.kind}
+              value={challenge.diet.dailyCalorie}
               onChange={handleDiet}
             />
           </div>
@@ -154,36 +164,38 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           <Header as="h4" inverted color="blue">
             다이어트 완료 일수
           </Header>
-          <div className="dietCondition2">
-            {["3", "5", "10"].map((value) => {
-              return (
-                <DietCondition2
-                  key={value}
-                  value={value}
-                  checked={challenge.diet.condition === value}
-                  onChange={handleDiet}
-                />
-              );
-            })}
+          <div className="dietCondition">
+            <select
+              name="condition"
+              value={challenge.diet.condition}
+              onChange={handleDiet}
+            >
+              {repeatOption()}
+            </select>
           </div>
         </>
       )}
       {challenge.type === "recipe" && (
         <>
           <Header as="h4" inverted color="blue">
-            레시피 업로드 횟수
+            레시피 업로드 횟수(단위: 회)
           </Header>
           <div className="recipeUploadCount">
-            {["3", "5", "7", "9"].map((value) => {
-              return (
-                <RecipeUploadCount
-                  key={value}
-                  value={value}
-                  checked={challenge.recipe.uploadCount === value}
-                  onChange={handleRecipe}
-                />
-              );
-            })}
+            <input
+              style={{
+                color: "#5CD1E5",
+                fontWeight: "bold",
+                border: "3px solid",
+                width: "180px",
+                borderRadius: "5px",
+                borderColor: "#6B66FF",
+              }}
+              type="text"
+              name="uploadCount"
+              placeholder="업로드 횟수를 적어주세요"
+              value={challenge.recipe.uploadCount}
+              onChange={handleRecipe}
+            />
           </div>
         </>
       )}

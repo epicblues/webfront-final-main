@@ -34,7 +34,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     </>
                   )}
                   <h3>하루 섭취량:{challenge.diet.dailyCalorie}</h3>
-                  <h3>다이어트 성공 일수:{challenge.diet.condition}</h3>
+                  <h3>다이어트 성공 일수:{challenge.dateDiff}</h3>
                   <h3>참가자 인원:{challenge.participants.length}</h3>
                 </>
               ) : (

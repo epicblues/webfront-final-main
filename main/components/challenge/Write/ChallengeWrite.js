@@ -24,7 +24,7 @@ const ChallengeWrite = ({ user }) => {
     diet: {
       kind: "",
       dailyCalorie: "",
-      condition: "",
+      condition: 0,
     },
     recipe: {
       kind: "",
@@ -56,17 +56,20 @@ const ChallengeWrite = ({ user }) => {
     console.log(challenge.title);
   };
 
-  const onKeyPress = () => {
+  const onKeyPress = (e) => {
     if (e.key === "Enter") {
       onClick();
     }
   };
   const getDiffDate = (endDate) => {
-    console.log(endDate instanceof Date);
-
-    console.log(endDate.getTime(), challenge.startDate.getTime());
     const newDateDiff =
       (endDate.getTime() - challenge.startDate.getTime()) /
+      (1000 * 60 * 60 * 24);
+    return newDateDiff;
+  };
+  const getDiffDate2 = (startDate) => {
+    const newDateDiff =
+      (challenge.endDate.getTime() - startDate.getTime()) /
       (1000 * 60 * 60 * 24);
     return newDateDiff;
   };
@@ -147,7 +150,14 @@ const ChallengeWrite = ({ user }) => {
             locale="ko"
             dateFormat="yyyy년 MM월 dd일"
             selected={challenge.startDate}
-            onChange={(date) => setChallenge({ ...challenge, startDate: date })}
+            onChange={(date) => {
+              const newDateDiff = getDiffDate2(date);
+              setChallenge({
+                ...challenge,
+                startDate: date,
+                dateDiff: newDateDiff,
+              });
+            }}
             selectsStart
             placeholderText="챌린지 시작일 선택"
             minDate={new Date()}
