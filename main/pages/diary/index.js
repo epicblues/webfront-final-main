@@ -35,22 +35,19 @@ const Index = ({ user, fetchedDiary }) => {
   const tabContArr = [
     {
       tabTitle: (
-        <li
+        <a
           key="uniqueId1"
-          className={activeIndex === 0 ? "is-active" : ""}
+          className='{activeIndex === 0 ? "is-active" : ""} item'
           onClick={() => tabClickHandler(0)}
         >
-          <a className="item">
-            식단<i className="utensils icon" style={{ marginLeft: 4 }}></i>
-          </a>
-        </li>
+          식단
+        </a>
       ),
       tabCont: (
-        <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
-          <h2 style={{ textAlign: "left", padding: "16px 16px 0 16px" }}>
+        <div>
+          <h3 style={{ textAlign: "left" }}>
             오늘의 식단
-            {/* <i className="utensils icon" style={{ marginLeft: 4 }}></i> */}
-          </h2>
+          </h3>
 
           <div
             className="container"
@@ -59,7 +56,6 @@ const Index = ({ user, fetchedDiary }) => {
               gridTemplateColumns: "5fr 5fr",
               gridAutoRows: "200px",
               gridGap: "1rem",
-              padding: "0 16px 16px",
             }}
           >
             {[0, 1, 2, 3].map((type) => (
@@ -77,16 +73,13 @@ const Index = ({ user, fetchedDiary }) => {
     },
     {
       tabTitle: (
-        <li
+        <a
           key="uniqueId2"
-          className={activeIndex === 1 ? "is-active" : ""}
+          className='{activeIndex === 1 ? "is-active" : ""} item'
           onClick={() => tabClickHandler(1)}
         >
-          <a className="item">
-            일기
-            <i className="pencil alternate icon" style={{ marginLeft: 4 }}></i>
-          </a>
-        </li>
+          일기
+        </a>
       ),
       tabCont: (
         <div>
@@ -119,14 +112,14 @@ const Index = ({ user, fetchedDiary }) => {
           </div>
 
           <div className="content">
-            <ul
-              className="ui secondary pointing menu"
+            <div
+              className="ui two item menu"
               style={{ listStyle: "none" }}
             >
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
-            </ul>
+            </div>
             <div>{tabContArr[activeIndex].tabCont}</div>
           </div>
         </div>

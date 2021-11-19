@@ -101,13 +101,12 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
         ) : (
           <div
             className="AddFood"
-            style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
           >
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: "16px",
+                paddingBottom: "16px"
               }}
             >
               <div>

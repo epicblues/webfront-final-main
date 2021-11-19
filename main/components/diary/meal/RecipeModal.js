@@ -3,12 +3,12 @@ import { Button, Header, Modal } from "semantic-ui-react";
 
 const RecipeModal = ({ value, index, handleModal, addToCart, open }) => {
   return (
-    <div className="item" key={index} style={{ padding: "8px" }}>
+    <div className="item" key={index} style={{ padding: "8px 0 8px 0" }}>
       <div
         style={{
           textAlign: "left",
           display: "grid",
-          gridTemplateColumns: "9.5fr 0.5fr",
+          gridTemplateColumns: "9.75fr 0.25fr",
         }}
       >
         <div>
@@ -81,14 +81,14 @@ const RecipeModal = ({ value, index, handleModal, addToCart, open }) => {
           </Modal>
         </div>
         <i
-          className="teal plus circle icon right floated"
+          className="teal plus circle icon"
           onClick={(e) => {
             console.log(value);
             addToCart(value);
 
-            e.currentTarget.className = "green check circle icon right floated";
+            e.currentTarget.className = "green check circle icon";
             const targetReverse = (target) => () => {
-              target.className = "teal plus circle icon right floated";
+              target.className = "teal plus circle icon";
             };
             setTimeout(targetReverse(e.currentTarget), 1000);
           }}

@@ -7,9 +7,9 @@ const Review = ({ review, onDelete, onToggle }) => {
       style={{
         display: "flex",
         justifyContent: "space-between",
-        backgroundColor: "#eef",
+        borderRadius: '5px',
+        backgroundColor: '#f0f0f0',
         padding: "20px",
-        margin: 16,
       }}
     >
       <p>

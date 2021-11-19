@@ -50,21 +50,14 @@ const LookupMeal = ({
   };
 
   return (
-    <div
-      style={{
-        border: "solid 2px lightgray",
-        borderRadius: "5px",
-        padding: "16px",
-      }}
-    >
+    <div>
       <div style={{ textAlign: "left", marginBottom: "16px" }}>
         <i
-          className="reply large icon"
+          className="large home icon"
           onClick={(e) => {
             setWritingMode("DEFAULT");
           }}
         ></i>
-        뒤로가기
       </div>
 
       <div style={{ width: "100%", height: "40vh" }}>
@@ -118,7 +111,7 @@ const LookupMeal = ({
       </div>
 
       <button
-        className="ui fluid button blue"
+        className="ui fluid button teal"
         onClick={() =>
           setDiary((diary) => {
             const newDiary = { ...diary };

@@ -5,7 +5,7 @@
   width: 140px;
   height: 30px;
   text-align: center;
-  font: normal bold 1.2rem/100% "Helvetica Neue";
+  font: normal bold 1.2rem/100% arial;
 }
 
 /* .react-datepicker__input-container input ::before {
@@ -56,17 +56,15 @@
 	background-color: #d8d8d8;
 	border-radius: 20px;
 	position: relative;
-	margin: 15px 0;
+	margin: 15px auto;
 	height:10px;
-	width: 100%;
-	color: red;
+	width: 90%;
 }
 
 .progress-done {
-	background: linear-gradient(to left, #F2709C, #FF9472);
-	box-shadow: 0 3px 3px -5px #F2709C, 0 2px 5px #F2709C;
+	background: linear-gradient(315deg , #7ee8fa, #80ff72);
+	box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #DCD1FF;
 	border-radius: 20px;
-	color: red;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -74,8 +72,7 @@
 	width: 0;
 	opacity: 0;
 	transition: 1s ease 0.3s;
-  
   position: absolute;
   top:0;
   left: 0;
-} 
+}

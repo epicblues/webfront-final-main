@@ -81,16 +81,16 @@ export default function Products({ diary, setDiary, type }) {
 
   return (
     <>
-      <div className="ui fluid icon input" style={{ padding: "0 16px" }}>
+      <div className="ui fluid icon input">
         <input
           type="text"
           placeholder="음식 검색하기"
           onChange={(event) => handleSearch(event)}
         />
-        <i className="search icon" style={{ right: 16 }}></i>
+        <i className="search icon" style={{ right: "8px" }}></i>
       </div>
 
-      <div style={{ padding: "10px" }}>
+      <div style={{ paddingTop: "1rem" }}>
         <div
           className="ui middle aligned selection list"
           style={{ textAlign: "left" }}

@@ -1,4 +1,5 @@
 import React from "react";
+import { FeedLabel } from "semantic-ui-react";
 
 import ImageUpload from "./ImageUpload";
 import Product from "./Product";
@@ -65,11 +66,12 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
   };
 
   return (
-    <div style={{ padding: "0 16px 16px" }}>
+    <div>
       <ImageUpload diary={diary} setDiary={setDiary} type={type} />
-      <div style={{ textAlign: "right" }}>
+      <div style={{ display: "flex", justifyContent:'space-between'}}>
+        <h4>추가한 리스트</h4>
         {cart.length > 0 && (
-          <i className="red large trash alternate icon" onClick={clearCart}></i>
+          <i className="large trash alternate icon red" onClick={clearCart}></i>
         )}
       </div>
       <div className="ui middle aligned divided list">
@@ -85,7 +87,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
       </div>
 
       <button
-        className="ui fluid button blue"
+        className="ui fluid button teal"
         onClick={() => navigateTo(PAGE_PRODUCTS)}
       >
         음식 추가하기
