@@ -93,21 +93,24 @@ const Index = ({ user, recipe }) => {
         <p>{recipe.desc}</p>
         <p>기준: {recipe.qtt}인분</p>
         <p>소요시간: {renderSwitchDuration(recipe.duration)}</p>
-        {/* 수정하기 링크 버튼 */}
-        <Link
-          href={{
-            pathname: `/recipe/update/${recipe._id}`,
-          }}
-          as={`/recipe/update/${recipe._id}`}
-          passHref
-        >
-          <a>
-            <button type="button">수정하기</button>
-          </a>
-        </Link>
-        <button type="button" onClick={() => onDeleteBtn(recipe)}>
-          삭제하기
-        </button>
+        {user.id === recipe.user_id && (
+          <>
+            <Link
+              href={{
+                pathname: `/recipe/update/${recipe._id}`,
+              }}
+              as={`/recipe/update/${recipe._id}`}
+              passHref
+            >
+              <a>
+                <button type="button">수정하기</button>
+              </a>
+            </Link>
+            <button type="button" onClick={() => onDeleteBtn(recipe)}>
+              삭제하기
+            </button>
+          </>
+        )}
         <p>등록일: {recipe.upload_date}</p>
         <p>최종수정일: {recipe.update_date}</p>
         {/* <p>작성자 : {recipe.</p> */}
