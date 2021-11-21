@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import RecipeModal from "./RecipeModal";
 import FoodModal from "./FoodModal";
+import { debounce } from "../../../util/axios";
 
 export default function Products({ diary, setDiary, type }) {
   const inputRef = useRef();
@@ -39,7 +40,7 @@ export default function Products({ diary, setDiary, type }) {
   const [filteredData, setFilteredData] = useState([]);
   const [filteredRecipeData, setFilteredRecipeData] = useState([]);
 
-  const handleSearch = async (event) => {
+  const handleSearch = debounce(async (event) => {
     const value = event.target.value;
     axios
       .all([axios.get("/api/food/" + value), axios.get("/api/recipe/" + value)])
@@ -50,7 +51,7 @@ export default function Products({ diary, setDiary, type }) {
           setFilteredRecipeData(res2.data);
         })
       );
-  };
+  }, 500);
 
   // Modal
   const modalInitialState = [];

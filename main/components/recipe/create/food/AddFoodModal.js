@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import modalStyles from "../../../../styles/Modal.module.css";
 import SelectedFoodMap from "./SelectedFoodMap";
+import { debounce } from "../../../../util/axios";
 
 const AddFoodModal = ({
   foodData,
@@ -14,11 +15,12 @@ const AddFoodModal = ({
   const [filteredData, setFilteredData] = useState([]);
   const [selectedData, setSelectedData] = useState([]);
   const [isDataSelected, setIsDataSelected] = useState(false);
-  const handleSearch = async (event) => {
+
+  const handleSearch = debounce(async (event) => {
     const value = event.target.value;
     const { data } = await axios.get("/api/food/" + value);
     setFilteredData(data);
-  };
+  }, 500);
   const onCancelBtn = () => {
     setIsModalVisible(false);
   };
