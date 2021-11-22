@@ -1,8 +1,6 @@
 import { React, useState } from "react";
 import { Header } from "semantic-ui-react";
 
-import RecipeUploadCount from "./RecipeUploadCount";
-
 const ChallengeCondition = ({ challenge, setChallenge }) => {
   const handleChange = (e) => {
     setChallenge({
@@ -150,7 +148,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
                 borderRadius: "5px",
                 borderColor: "#6B66FF",
               }}
-              type="text"
+              type="number"
               name="dailyCalorie"
               placeholder="하루 섭취량을 적어주세요"
               value={challenge.diet.dailyCalorie}
@@ -190,7 +188,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
                 borderRadius: "5px",
                 borderColor: "#6B66FF",
               }}
-              type="text"
+              type="number"
               name="uploadCount"
               placeholder="업로드 횟수를 적어주세요"
               value={challenge.recipe.uploadCount}
