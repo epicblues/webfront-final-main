@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
-import { getDateId } from "../../util/date";
+import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
 
@@ -45,9 +45,7 @@ const Index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div>
-          <h3 style={{ textAlign: "left" }}>
-            오늘의 식단
-          </h3>
+          <h3 style={{ textAlign: "left" }}>오늘의 식단</h3>
 
           <div
             className="container"
@@ -108,14 +106,11 @@ const Index = ({ user, fetchedDiary }) => {
         <div className="ui center aligned container">
           <div className="DatePart">
             <PickDate diary={diary} setDiary={setDiary} />
-            <FinalTotalSum diary={diary} user={user}/>
+            <FinalTotalSum diary={diary} user={user} />
           </div>
 
           <div className="content">
-            <div
-              className="ui two item menu"
-              style={{ listStyle: "none" }}
-            >
+            <div className="ui two item menu" style={{ listStyle: "none" }}>
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
@@ -152,7 +147,9 @@ export const getServerSideProps = async (ctx) => {
         props: { user, fetchedDiary: { ...initialDiary, _id: diaryId } },
       };
     } else {
-      return { props: { user, fetchedDiary: loadedDiary } };
+      return {
+        props: { user, fetchedDiary: parseDocumentToObject(loadedDiary) },
+      };
     }
   } catch (error) {
     ctx.res.status(500).json({ message: error });

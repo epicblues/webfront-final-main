@@ -26,8 +26,10 @@ export const postStaticAxios = async (
 export const debounce = (callback: Function, delay: number) => {
   let timerId: number;
   return (event: Event) => {
+    // WebApi에 등록된 작업이 있으면 그 작업을 취소하고 새로운 작업으로 갱신
     if (timerId) clearTimeout(timerId);
     // callback : 실질적인 비동기 작업(불필요하게 진행하는 것을 clearTimeout을 통해 막는다.)
+
     setTimeout(callback, delay, event);
   };
 };
