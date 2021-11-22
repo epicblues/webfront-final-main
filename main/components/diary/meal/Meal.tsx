@@ -30,7 +30,7 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
           position: 'absolute',
           top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',
-          display: (!(diary.meals[type].foods.length !== 0)) ? 'block' : 'none'
+          display: diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer ? 'block' : 'none'
         }}
       >
         +
