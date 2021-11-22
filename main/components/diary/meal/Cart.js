@@ -71,7 +71,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
       <div style={{ display: "flex", justifyContent:'space-between'}}>
         <h4>추가한 리스트</h4>
         {cart.length > 0 && (
-          <i className="large trash alternate icon red" onClick={clearCart}></i>
+          <i className="large trash alternate icon grey" onClick={clearCart}></i>
         )}
       </div>
       <div className="ui middle aligned divided list">

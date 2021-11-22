@@ -1,8 +1,8 @@
 /* datepicker custom */
 .react-datepicker__input-container input {
-  border: solid 2px lightgray;
-  border-radius: 5px;
-  width: 140px;
+  border: none;
+  border-bottom: solid 2px lightgray;
+  width: 120px;
   height: 30px;
   text-align: center;
   font: normal bold 1.2rem/100% arial;

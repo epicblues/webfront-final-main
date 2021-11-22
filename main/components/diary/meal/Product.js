@@ -41,7 +41,7 @@ const Product = ({ product, index, setQuantity, removeFromCart }) => {
             onChange={(e) => {setQuantity(product, parseInt(e.target.value))}}
           />
           <i
-            className='large close icon red'
+            className='large close icon grey'
             style={{ marginTop: 8 }}
             onClick={() => removeFromCart(product)}
           ></i>

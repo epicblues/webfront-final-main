@@ -29,7 +29,7 @@ const AddReview = ({ onAdd }) => {
 
       <button
         type="submit"
-        className="fluid ui button"
+        className="fluid ui button teal"
         style={{ margin: "1rem 0 1rem 0" }}
       >
         작성완료
