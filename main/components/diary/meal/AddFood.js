@@ -32,9 +32,9 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   // 취소<->완료 멀티 버튼
   const showAdd =
     diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer;
-  const multiBtn = (e) => {
-    if (!(diary.meals[type].foods.length !== 0)) {
-      return setWritingMode("DEFAULT");
+  const multiBtn = async (e) => {
+    if (!showAdd) {
+      await saveMeal();
     } else {
       return saveMeal();
     }
@@ -58,7 +58,8 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   const saveMeal = async () => {
     const formData = new FormData();
     const mealToUpdate = diary.meals[type];
-
+    const isWritten = !(mealToUpdate.foods.length === 0 && !mealToUpdate.imageBuffer)
+    mealToUpdate.written = isWritten;
     formData.append("type", type);
 
     for (const key in mealToUpdate) {
@@ -76,12 +77,13 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
       user.token,
       formData
     );
+    console.log(result);
 
     // 수정해야함 diary의 state를 비동기적으로 변경하는 함수로
     setWritingMode("DEFAULT");
     setDiary((diary) => {
       const newDiary = { ...diary };
-      newDiary.meals[type].written = true;
+      newDiary.meals[type].written = isWritten
       return newDiary;
     });
   };

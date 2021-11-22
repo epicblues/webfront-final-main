@@ -68,14 +68,6 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
             marginBottom: "16px",
           }}
         >
-          {(imgPreview || diary.meals[type].image) && (
-          <div style={{ textAlign: "right", marginBottom: "16px" }}>
-            <i
-              className="huge trash alternate icon"
-              onClick={handleImageChange}
-            ></i>
-          </div>
-          )}
           {!imgPreview && (
             <>
               <label
@@ -92,6 +84,14 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
                 onChange={handleImageChange}
               />
             </>
+            )}
+            {!diary.meals[type].image || (
+              <div style={{ textAlign: "right", marginBottom: "16px" }}>
+                <i
+                  className="huge trash alternate icon"
+                  onClick={handleImageChange}
+                ></i>
+              </div>
             )}
         </div>
       </div>

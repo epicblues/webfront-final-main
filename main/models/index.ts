@@ -64,9 +64,9 @@ export class Diary {
     carbs: number;
   };
 
-  constructor(userId: number) {
+  constructor(userId: number, uploadDate?: string) {
     this.user_id = userId;
-    this.upload_date = getDateId(new Date());
+    this.upload_date = uploadDate || getDateId(new Date());
     this.reviews = [];
     this.meals = [new Meal(), new Meal(), new Meal(), new Meal()];
     this.total = {
