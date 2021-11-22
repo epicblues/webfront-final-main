@@ -14,6 +14,12 @@ const Login = () => {
 
   const handleClick = async () => {
 
+    if (!/^[a-zA-Z0-9]+@[a-z]+(\.[a-z]{2,4})+$/.test(email.current.value)) {
+      head.current.innerHTML = "이메일 형식이 잘못되었습니다.";
+      email.current.focus();
+      return;
+    }
+
     if (!checkValid(email.current.value, password.current.value)) {
       head.current.innerHTML = "모든 항목을 작성하셔야 합니다."
       email.current.focus();

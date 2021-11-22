@@ -3,11 +3,44 @@ import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
 
-const mainlist = ({ challenges, user }) => {
+const MainList = ({ challenges, user }) => {
+  const challengeIndexes = [];
+  for (let i = 1; i <= Math.ceil(challenges.length / 10); i++) {
+    challengeIndexes.push(i);
+  }
+  const [challengeIndex, setChallengeIndex] = useState(1);
+
+  const selectChallenges = (index) => {
+    const pickedChallenges = [];
+    for (
+      let i = (index - 1) * 10;
+      i < index * 10 && i < challenges.length;
+      i++
+    ) {
+      pickedChallenges.push(challenges[i]);
+    }
+    return pickedChallenges;
+  };
+
   return (
     <>
+      {challengeIndexes.map((index) => {
+        return (
+          <button
+            key={index}
+            onClick={() => {
+              setChallengeIndex(index);
+            }}
+          >
+            {index}
+          </button>
+        );
+      })}
       {challenges.length > 0 ? (
-        <ChallengeMainList challenges={challenges} user={user} />
+        <ChallengeMainList
+          challenges={selectChallenges(challengeIndex)}
+          user={user}
+        />
       ) : (
         <h2>No Challenges</h2>
       )}
@@ -32,6 +65,7 @@ export const getServerSideProps = async (ctx) => {
         },
       },
     ])
+    .sort({ _id: 1 })
     .toArray();
 
   console.log("user:", user);
@@ -42,4 +76,4 @@ export const getServerSideProps = async (ctx) => {
   };
 };
 
-export default mainlist;
+export default MainList;
