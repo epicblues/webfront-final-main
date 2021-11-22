@@ -29,17 +29,28 @@ const Join = () => {
   const handleClick = async () => {
     const bmrToSend: Partial<UserBmr> = { ...userBmr, error: '', flag: false, system: "" };
 
-    if (!(checkValid(email.current.value, password.current.value, name.current.value))) {
-      message.current.textContent = "전부 입력해야 합니다."
+    if (!/^[A-Za-z0-9]{3,}@([a-z0-9]+\.)+[a-z]{2,4}$/.test(email.current.value)) {
+      message.current.textContent = "이메일 입력이 잘못되었습니다."
       message.current.style.color = "red";
       email.current.focus();
       return;
     }
 
-    if (bmrToSend.activity as number < 5) {
-      setUserBmr({ ...userBmr, error: "기초 대사량 작성 완료해주세요!" })
+
+    if (!(checkValid(email.current.value, password.current.value, name.current.value))) {
+      message.current.textContent = "전부 입력해야 합니다."
+      message.current.style.color = "red";
+      name.current.focus();
       return;
     }
+
+
+    if (!/.{4,}/.test(password.current.value)) {
+      message.current.textContent = "비밀번호는 최소 4글자 이상입니다."
+      message.current.style.color = "red";
+      return;
+    }
+
 
     if (password.current.value !== confirmPassword.current.value) {
       message.current.textContent = "비밀 번호가 일치하지 않습니다."
@@ -47,6 +58,12 @@ const Join = () => {
       password.current.focus();
       return
     }
+    if (bmrToSend.activity as number < 5) {
+      setUserBmr({ ...userBmr, error: "기초 대사량 작성 완료해주세요!" })
+      return;
+    }
+
+
 
     const { data: result } = await axios.post("/api/user/join",
 

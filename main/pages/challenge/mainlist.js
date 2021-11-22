@@ -65,6 +65,7 @@ export const getServerSideProps = async (ctx) => {
         },
       },
     ])
+    .match({ endDate: { $gte: new Date() }, userId: { $ne: user.id } })
     .sort({ _id: 1 })
     .toArray();
 

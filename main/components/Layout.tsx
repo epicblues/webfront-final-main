@@ -49,7 +49,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
       <Container textAlign="center">
 
         <Card centered>
-          <button onClick={() => { alert("강래헌, 김민성, 박지훈, 조은혜") }} className="ui button instagram animated" > &copy; Team 요건 다 내꺼</button>
+          <button onClick={(e) => { e.currentTarget.innerHTML = "&copy; 강래헌, 김민성, 조은혜, 박지훈"; e.currentTarget.classList.toggle("instagram"); }} className="ui button animated" > &copy; Team 요건 다 내꺼</button>
 
 
         </Card>

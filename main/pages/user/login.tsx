@@ -50,7 +50,7 @@ const Login = () => {
         Email : <input type="email" ref={email} /> <br />
         password : <input type="password" ref={password} /> <br />
         <button onClick={handleClick}>제출</button>
-        <Link passHref href="join">
+        <Link passHref href="/user/join">
           <button>회원가입</button>
         </Link>
       </div>
