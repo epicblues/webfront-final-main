@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ko from "date-fns/locale/ko";
@@ -12,6 +12,10 @@ registerLocale("ko", ko);
 
 const ChallengeWrite = ({ user }) => {
   const router = useRouter();
+  const title = useRef();
+  const startDate = useRef();
+  const endDate = useRef();
+  const titleError = useRef();
 
   const [challenge, setChallenge] = useState({
     title: "",
@@ -35,11 +39,18 @@ const ChallengeWrite = ({ user }) => {
   const handleSubmit = async () => {
     try {
       const challengeForm = { ...challenge };
+
       if (challenge.type === "diet") {
         delete challengeForm.recipe;
       } else {
         delete challengeForm.diet;
       }
+      if (vaildateTitle()) {
+        return;
+      } else {
+        vaildateTitle();
+      }
+
       const { data } = await axios.post("/api/challenge/create", challengeForm);
       console.log(data);
 
@@ -49,30 +60,29 @@ const ChallengeWrite = ({ user }) => {
     }
   };
 
-  const onClick = (e) => {
-    alert(challenge.title);
-    e.preventDefault();
-    e.currentTarget.disabled = true;
-    console.log(challenge.title);
-  };
-
-  const onKeyPress = (e) => {
-    if (e.key === "Enter") {
-      onClick();
-    }
-  };
   const getDiffDate = (endDate) => {
     const newDateDiff =
-      (endDate.getTime() - challenge.startDate.getTime()) /
+      (endDate.getTime() - new Date(challenge.startDate).getTime()) /
       (1000 * 60 * 60 * 24);
     return newDateDiff;
   };
   const getDiffDate2 = (startDate) => {
     const newDateDiff =
-      (challenge.endDate.getTime() - startDate.getTime()) /
+      (new Date(challenge.endDate).getTime() - startDate.getTime()) /
       (1000 * 60 * 60 * 24);
     return newDateDiff;
   };
+  const vaildateTitle = () => {
+    const titleRegex = /^([가-힣\w\d]+[\.\,]?\s?)+$/;
+
+    if (!titleRegex.test(title.current.value)) {
+      titleError.current.textContent = "챌린지 명을 다시 입력해주세요";
+      titleError.current.style.color = "red";
+    } else {
+      titleError.current.textContent = "";
+    }
+  };
+
   return (
     <form
       className="challengeform"
@@ -101,6 +111,7 @@ const ChallengeWrite = ({ user }) => {
           <Header as="h3" inverted color="blue">
             챌린지 이름
           </Header>
+          <p ref={titleError}></p>
           <input
             style={{
               color: "#5CD1E5",
@@ -117,18 +128,8 @@ const ChallengeWrite = ({ user }) => {
             onChange={(e) => {
               setChallenge({ ...challenge, title: e.currentTarget.value });
             }}
-            onKeyPress={onKeyPress}
+            ref={title}
           />
-          <div>
-            <Button
-              disabled=""
-              type="button"
-              onClick={onClick}
-              color={"twitter"}
-            >
-              완료
-            </Button>
-          </div>
         </div>
 
         <br />
@@ -171,6 +172,7 @@ const ChallengeWrite = ({ user }) => {
               },
             }}
             popperPlacement="auto" // 화면 중앙에 팝업
+            ref={startDate}
           />
 
           <Header as="h4" inverted color="blue" className="challengeDateTitle">
@@ -201,10 +203,17 @@ const ChallengeWrite = ({ user }) => {
               },
             }}
             popperPlacement="auto" // 화면 중앙에 팝업
+            ref={endDate}
           />
         </section>
         <ChallengeCondition challenge={challenge} setChallenge={setChallenge} />
-        <Button type="submit" color="twitter" onClick={handleSubmit}>
+        <Button
+          type="submit"
+          color="twitter"
+          onClick={(e) => {
+            handleSubmit(e);
+          }}
+        >
           작성
         </Button>
       </Container>
