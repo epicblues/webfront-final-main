@@ -9,6 +9,7 @@ import Search from "../../../../../components/recipe/index/Search";
 
 //CSS
 import recipeListStyles from "../../../../../styles/RecipeList.module.css";
+import GoBackward from "../../../../../components/GoBackward";
 
 const Index = ({ user, filteredRecipes, keyword }) => {
   // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
@@ -37,6 +38,7 @@ const Index = ({ user, filteredRecipes, keyword }) => {
 
   return (
     <div>
+      <GoBackward />
       <Search />
       <Categories />
       <h1>검색어 : {keyword}</h1>

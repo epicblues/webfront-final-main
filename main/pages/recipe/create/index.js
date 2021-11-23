@@ -8,6 +8,7 @@ import MeasuringModal from "../../../components/recipe/create/food/MeasuringModa
 import MeasuringModalBlackout from "../../../components/recipe/create/food/MeasuringModalBlackout";
 import AddFoodModalBlackout from "../../../components/recipe/create/food/AddFoodModalBlackout";
 
+import GoBackward from "../../../components/GoBackward";
 import FoodForm from "../../../components/recipe/create/food/FoodForm";
 import StepForm from "../../../components/recipe/create/step/StepForm";
 
@@ -112,6 +113,7 @@ export const Index = ({ user }) => {
           handleSetIsModalVisible={handleSetIsModalVisible}
         />
       )}
+      <GoBackward />
       <h2>레시피 등록하기</h2>
       <h3>레시피 정보 입력</h3>
       <form onSubmit={handleSubmit(submitBtnClick)}>

@@ -13,6 +13,7 @@ import Search from "../../../components/recipe/index/Search";
 //  CSS
 import recipeListStyles from "../../../styles/RecipeList.module.css";
 import { parseDocumentToObject } from "../../../util/date";
+import GoBackward from "../../../components/GoBackward";
 
 const Index = ({ user, recipes }) => {
   //  카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
@@ -41,6 +42,7 @@ const Index = ({ user, recipes }) => {
 
   return (
     <div>
+      <GoBackward />
       <Search />
       <Categories />
       <h1>카테고리 : 전체</h1>
