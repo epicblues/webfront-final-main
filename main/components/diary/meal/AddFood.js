@@ -87,7 +87,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   };
 
   return (
-    <div style={{padding: '1rem'}}>
+    <div>
       {writingMode === type ? (
         diary.meals[type].written ? (
           <LookupMeal
@@ -99,7 +99,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
             setPage={setPage}
           />
         ) : (
-          <div
+          <div style={{padding: '1rem'}}
             className="AddFood"
           >
             <div

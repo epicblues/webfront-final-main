@@ -50,7 +50,7 @@ const LookupMeal = ({
   };
 
   return (
-    <div>
+    <div style={{padding: '1rem'}}>
       <div style={{ textAlign: "left", marginBottom: "16px"}}>
         <i
           className="large home icon"
