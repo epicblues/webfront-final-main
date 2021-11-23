@@ -32,48 +32,46 @@ const MyChallenge = ({ challenges, user }) => {
           챌린지 달성율
         </Button>
       </div>
-      {challenges.map((challenge) => {
-        return (
-          <table
-            className="challenge"
-            style={{
-              width: "800px",
-              textAlign: "center",
-              margin: "auto",
-              fontFamily: "fantasy",
-              fontSize: "15px",
-              fontWeight: "bold",
-            }}
-          >
-            {challenge.author[0]._id === user.id ? (
-              <>
-                <thead>
-                  <tr>
-                    <th>작성자</th>
-                    <th>참가자수</th>
-                    <th>챌린지명</th>
-                    <th>시작일</th>
-                    <th>종료일</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <td>{challenge.author[0].name}</td>
-                  <td>{challenge.participants.length}</td>
+      <div>
+        {challenges.map((challenge) => {
+          return (
+            <>
+              {challenge.author[0]._id === user.id ? (
+                <ul
+                  style={{
+                    listStyle: "none",
+                    border: "solid 2px lightgray",
+                    borderRadius: "5px",
+                  }}
+                >
+                  <li>작성자:{challenge.author[0].name}</li>
+                  <li>참가인원:{challenge.participants.length}명</li>
                   <Link passHref href={"/challenge/list/" + challenge._id}>
                     <a>
                       {" "}
-                      <td>{challenge.title}</td>
+                      <li>챌린지명:{challenge.title}</li>
                     </a>
                   </Link>
-                  <td>{new Date(challenge.startDate).toLocaleDateString()}</td>
-                  <td> {new Date(challenge.endDate).toLocaleDateString()}</td>
-                </tbody>
-              </>
-            ) : null}
-          </table>
-        );
-      })}
+                  <li>
+                    챌린지 기한:
+                    {new Date(challenge.startDate).toLocaleDateString()}~
+                    {new Date(challenge.endDate).toLocaleDateString()}
+                  </li>
+                  <li>
+                    남은 일수:
+                    {Math.ceil(
+                      (new Date(challenge.endDate).getTime() -
+                        new Date().getTime()) /
+                        (1000 * 60 * 60 * 24)
+                    )}
+                    일
+                  </li>
+                </ul>
+              ) : null}
+            </>
+          );
+        })}
+      </div>
     </>
   );
 };

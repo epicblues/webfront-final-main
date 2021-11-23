@@ -115,25 +115,28 @@ const ChallengeCondition = ({
                 onChange={handleRecipe}
               >
                 <option key="so" value="soup">
-                  Soup
+                  국/탕/찌개
                 </option>
                 <option key="no" value="noodle">
-                  Noodle
+                  면/파스타
                 </option>
                 <option key="de" value="dessert">
-                  Dessert
+                  디저트
                 </option>
                 <option key="ri" value="rice">
-                  Rice
+                  밥/볶음밥
                 </option>
                 <option key="ki" value="kimchi">
-                  Kimchi
+                  김치
                 </option>
                 <option key="gr" value="grill">
-                  Grill
+                  구이
+                </option>
+                <option key="si" value="sideDish">
+                  반찬
                 </option>
                 <option key="et" value="etc">
-                  Etc
+                  기타
                 </option>
               </select>
             </div>

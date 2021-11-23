@@ -7,40 +7,34 @@ const DetailList = ({ challenges, user }) => {
       {challenges.map((challenge) => {
         return (
           <>
-            <table
-              className="challenge"
+            <ul
               style={{
-                width: "800px",
-                textAlign: "center",
-                margin: "auto",
-                fontFamily: "fantasy",
-                fontSize: "15px",
-                fontWeight: "bold",
+                listStyle: "none",
+                border: "solid 2px lightgray",
+                borderRadius: "5px",
               }}
             >
-              <thead>
-                <tr>
-                  <th>작성자</th>
-                  <th>참가자수</th>
-                  <th>챌린지명</th>
-                  <th>시작일</th>
-                  <th>종료일</th>
-                </tr>
-              </thead>
-              <tbody>
-                <td>{challenge.author[0].name}</td>
-                <td>{challenge.participants.length}</td>
+              <li>
+                <li>작성자:{challenge.author[0].name}</li>
+                <li>참가자 수:{challenge.participants.length}명</li>
                 <Link passHref href={"/challenge/list/" + challenge._id}>
                   <a>
                     {" "}
-                    <td>{challenge.title}</td>
+                    <li>챌린지 명:{challenge.title}</li>
                   </a>
                 </Link>
-                <td>{new Date(challenge.startDate).toLocaleDateString()}</td>
-                <td> {new Date(challenge.endDate).toLocaleDateString()}</td>
-              </tbody>
-            </table>
-            <hr />
+                <li>
+                  챌린지 기한:
+                  {new Date(challenge.startDate).toLocaleDateString()}~{" "}
+                  {new Date(challenge.endDate).toLocaleDateString()}
+                </li>
+                {challenge.type === "diet" ? (
+                  <li>챌린지 종류: 다이어트</li>
+                ) : (
+                  <li>챌린지 종류: 레시피</li>
+                )}
+              </li>
+            </ul>
           </>
         );
       })}
