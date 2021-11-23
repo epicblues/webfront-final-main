@@ -55,7 +55,7 @@ export const getServerSideProps = async (ctx) => {
         },
       },
     ])
-
+    .match({ endDate: { $gte: new Date() } })
     .toArray();
 
   console.log("user:", user);

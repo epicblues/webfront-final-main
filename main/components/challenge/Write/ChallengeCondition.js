@@ -1,7 +1,14 @@
-import { React, useState } from "react";
+import { React, useState, useRef } from "react";
 import { Header } from "semantic-ui-react";
 
-const ChallengeCondition = ({ challenge, setChallenge }) => {
+const ChallengeCondition = ({
+  challenge,
+  setChallenge,
+  dailyCalorie,
+  dailyCalorieError,
+  uploadCount,
+  uploadCountError,
+}) => {
   const handleChange = (e) => {
     setChallenge({
       ...challenge,
@@ -45,7 +52,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
   };
 
   return (
-    <div className="challengeCondition" style={{ backgroundColor: "#EAEAEA" }}>
+    <div className="challengeCondition">
       <Header as="h3" inverted color="blue" className="challengeContent">
         챌린지 조건
       </Header>
@@ -138,6 +145,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           <Header as="h4" inverted color="blue">
             다이어트 조건 ( 기준: 하루, Kcal)
           </Header>
+          <h3 ref={dailyCalorieError}></h3>
           <div className="dietCondition1">
             <input
               style={{
@@ -153,6 +161,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               placeholder="하루 섭취량을 적어주세요"
               value={challenge.diet.dailyCalorie}
               onChange={handleDiet}
+              ref={dailyCalorie}
             />
           </div>
         </>
@@ -178,6 +187,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
           <Header as="h4" inverted color="blue">
             레시피 업로드 횟수(단위: 회)
           </Header>
+          <h4 ref={uploadCountError}></h4>
           <div className="recipeUploadCount">
             <input
               style={{
@@ -193,6 +203,7 @@ const ChallengeCondition = ({ challenge, setChallenge }) => {
               placeholder="업로드 횟수를 적어주세요"
               value={challenge.recipe.uploadCount}
               onChange={handleRecipe}
+              ref={uploadCount}
             />
           </div>
         </>
