@@ -1,6 +1,4 @@
 import React from "react";
-import { FeedLabel } from "semantic-ui-react";
-
 import ImageUpload from "./ImageUpload";
 import Product from "./Product";
 
@@ -89,13 +87,14 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
       <button
         className="ui fluid button teal"
         onClick={() => navigateTo(PAGE_PRODUCTS)}
+        style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
       >
         음식 추가하기
       </button>
 
       {/* {page === PAGE_CART && <Cart cart={cart} setCart={setCart} />} */}
 
-      <div style={{ marginTop: "16px" }}>
+      <div style={{ marginTop: "16px", textAlign: 'center' }}>
         오늘 {mealType[type]}의 총 섭취 열량은 {getTotalSum()} kcal 입니다
       </div>
     </div>

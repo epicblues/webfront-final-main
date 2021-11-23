@@ -36,7 +36,7 @@
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
   border-radius: 50% !important;
-  background-color: orange !important;
+  background-color: #02b0b0 !important;
 }
 
 .react-datepicker__day:hover,

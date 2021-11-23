@@ -7,26 +7,26 @@ import { debounce } from "../../../util/axios";
 export default function Products({ diary, setDiary, type }) {
   const inputRef = useRef();
   const [products] = useState([]);
-  const [selectedData, setSelectedData] = useState([]);
 
   // Count Food
   const addToCart = (value) => {
+    console.log(value);
     const prevMeal = diary.meals[type];
     const foodIndex = prevMeal.foods.findIndex(
       (originalFood) => originalFood.no === value.no
     );
     if (foodIndex !== -1) {
-      prevMeal.foods[foodIndex].quantity += 1;
+      prevMeal.foods[foodIndex].quantity += value.quantity;
     } else {
-      value.quantity = 1;
+      
       prevMeal.foods.push(value);
     }
     const isRecipe = typeof value._id === "number";
     // Recipe다!
-    prevMeal.calories += isRecipe ? value.nutrition.kcal : value.kcal;
-    prevMeal.fat += isRecipe ? value.nutrition.fat : value.fat;
-    prevMeal.carbs += isRecipe ? value.nutrition.carbs : value.carbs;
-    prevMeal.protein += isRecipe ? value.nutrition.prot : value.prot;
+    prevMeal.calories += (isRecipe ? value.nutrition.kcal : value.kcal) * value.quantity;
+    prevMeal.fat += (isRecipe ? value.nutrition.fat : value.fat)*value.quantity;
+    prevMeal.carbs += (isRecipe ? value.nutrition.carbs : value.carbs)*value.quantity;
+    prevMeal.protein += (isRecipe ? value.nutrition.prot : value.prot)*value.quantity;
     const currentMeals = diary.meals;
     currentMeals.splice(type, 1, prevMeal);
     setDiary({
@@ -82,7 +82,7 @@ export default function Products({ diary, setDiary, type }) {
 
   return (
     <>
-      <div className="ui fluid icon input">
+      <div className="ui fluid icon input" style={{boxShadow:'1px 1px 3px 1px #dadce0', borderRadius: '5px'}}>
         <input
           type="text"
           placeholder="음식 검색하기"

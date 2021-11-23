@@ -4,6 +4,7 @@ import { getUserOrRedirect } from "../../util/auth";
 import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
+import "semantic-ui-css/semantic.min.css";
 
 // Date
 import PickDate from "../../components/diary/PickDate";
