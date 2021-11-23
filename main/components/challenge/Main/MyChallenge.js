@@ -35,6 +35,7 @@ const MyChallenge = ({ challenges, user }) => {
       {challenges.map((challenge) => {
         return (
           <table
+            key={challenge.id}
             className="challenge"
             style={{
               width: "800px",

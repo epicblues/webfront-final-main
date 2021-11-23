@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { checkValid } from '../../util/auth';
 import { useRouter } from 'next/dist/client/router';
 import axios from 'axios';
+import { Button, Form } from 'semantic-ui-react';
 
 const Login = () => {
 
@@ -26,36 +27,44 @@ const Login = () => {
       return;
     };
 
+    try {
+      const { data } = await axios.post("/api/user/login", {
+        email: email.current.value,
+        password: password.current.value,
 
-    const { data } = await axios.post("/api/user/login", {
-      email: email.current.value,
-      password: password.current.value,
+      })
+      const result = await data
+      if (result.status === "OK") router.push('/');
 
-    })
-    const result = await data
-    if (result.status === "OK") router.push('/');
-    else {
+    } catch (error) {
+
       head.current.innerHTML = "이메일 혹은 비밀번호를 잘못 입력하셨습니다."
       email.current.value = '';
       password.current.value = '';
 
     }
+
+
   }
 
   return (
 
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: "center" }}>
-      <div>
-        <h3 ref={head}>Login</h3>
-        Email : <input type="email" ref={email} /> <br />
-        password : <input type="password" ref={password} /> <br />
-        <button onClick={handleClick}>제출</button>
-        <Link passHref href="/user/join">
-          <button>회원가입</button>
-        </Link>
-      </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: "stretch", justifyContent: "space-evenly", height: "40vh", borderRadius: "5px", minHeight: "450px", padding: "20px", }}>
+
+      <h2 ref={head} style={{ alignSelf: "center" }}>Login</h2>
+      <Form>
+        <h3>Email</h3> <input type="email" ref={email} />
+        <h3>Password</h3> <input type="password" ref={password} />
+      </Form>
+      <br />
+      <Button onClick={handleClick}>제출</Button>
+      <Link passHref href="/user/join">
+        <Button>회원가입</Button>
+      </Link>
+
 
     </div>
+
 
   )
 }

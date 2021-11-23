@@ -5,8 +5,14 @@ import { getUserOrRedirect } from "../../util/auth";
 import { Button } from "semantic-ui-react";
 import MyChallenge from "../../components/challenge/Main/MyChallenge";
 import clientPromise from "../../util/mongodb";
+import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
 
 const index = ({ challenges, user }) => {
+  const participatedChallenges = challenges.filter(
+    (challenge) =>
+      challenge.userId !== user.id &&
+      challenge.participants.some((participant) => participant === user.id)
+  );
   return (
     <>
       <Link passHref href="challenge/write">
@@ -17,8 +23,16 @@ const index = ({ challenges, user }) => {
         <Button>챌린지 리스트 보기 </Button>
       </Link>
       <br />
+
+      <h2>내가 작성한 챌린지</h2>
+      <MyChallenge challenges={challenges} user={user}></MyChallenge>
+
       <div className="myChallenge">
-        <MyChallenge challenges={challenges} user={user}></MyChallenge>
+        <h2>내가 참여한 남의 챌린지</h2>
+        <ChallengeMainList
+          challenges={participatedChallenges}
+          user={user}
+        ></ChallengeMainList>
       </div>
     </>
   );
@@ -41,6 +55,7 @@ export const getServerSideProps = async (ctx) => {
         },
       },
     ])
+
     .toArray();
 
   console.log("user:", user);

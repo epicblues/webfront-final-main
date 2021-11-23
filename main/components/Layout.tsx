@@ -1,8 +1,10 @@
 import { useRouter } from 'next/dist/client/router'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, LegacyRef, UIEventHandler, useRef } from 'react'
 import 'semantic-ui-css/semantic.min.css'
-import { Container, Grid, Card } from 'semantic-ui-react'
-import Link from 'next/link'
+
+
+import MiniButton from './main/NavButton'
+
 
 
 
@@ -14,47 +16,76 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
       router.push('/user/login')
     }
   }
+
+
+
+
+
+
   return (
     // 모든 페이지에 적용될 레이아웃 디자인 (Header Or Footer)
-    <div>
-      <hr />
-      <Container textAlign="center">
+    <>
+
+
+      <div style={{ height: "40px", display: "flex", justifyContent: "space-between", background: "black", padding: "3px" }}>
         {pageProps.user
           ?
-          (<Grid centered>
+          (<>
 
-            <Grid.Row textAlign="center">
-              <button className="ui button facebook" onClick={clickHandler}>{pageProps.user?.name}님 Logout</button>
+            <button onClick={(e) => { e.currentTarget.innerHTML = "&copy; 강래헌, 김민성, 조은혜, 박지훈"; e.currentTarget.classList.toggle("instagram"); }} style={{ paddingLeft: "5px", paddingRight: "10px", backgroundColor: "#00b5ad", fontWeight: "bolder", borderRadius: "5px", color: "white", boxShadow: "none", border: "none" }} > &copy;요건 다 내꺼</button>
+            <button className="ui button facebook" onClick={clickHandler}>Logout</button>
 
-              <Link passHref href="/challenge" >
-                <button className="ui button">Challenge</button>
-              </Link>
-              <Link passHref href="/diary">
-                <button className="ui button">Diary</button>
-              </Link>
-              <Link passHref href="/recipe">
-                <button className="ui button">Recipe</button>
-              </Link>
-            </Grid.Row>
-          </Grid>)
+
+
+          </>)
           :
-          <h1>요건 다 내꺼</h1>}
+          <button onClick={(e) => { e.currentTarget.innerHTML = "강래헌, 김민성, 조은혜, 박지훈"; e.currentTarget.classList.toggle("instagram"); }} style={{ paddingLeft: "5px", paddingRight: "10px", backgroundColor: "#00b5ad", fontWeight: "bolder", borderRadius: "5px", color: "white", boxShadow: "none", border: "none" }} > &copy; 요건 다 내꺼</button>}
 
-      </Container>
-      <hr />
-      <Container textAlign="center">
+      </div>
+
+      <div style={{ marginTop: "10px" }} onScroll={e => console.log(e)}>
         {children}
-      </Container>
-      <hr />
-      <Container textAlign="center">
-
-        <Card centered>
-          <button onClick={(e) => { e.currentTarget.innerHTML = "&copy; 강래헌, 김민성, 조은혜, 박지훈"; e.currentTarget.classList.toggle("instagram"); }} className="ui button animated" > &copy; Team 요건 다 내꺼</button>
+      </div>
 
 
-        </Card>
-      </Container>
-    </div >
+
+      <div style={{ height: "5vh" }}></div>
+      <footer style={{
+        marginTop: "10px",
+        backgroundColor: "black",
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "flex",
+        alignItems: "stretch",
+        height: "5vh",
+        width: "100vw",
+        position: "fixed",
+        top: "94vh"
+      }} >
+
+        <MiniButton href="/recipe">
+          Recipe
+        </MiniButton>
+
+
+        <MiniButton href="diary">
+          Diary
+        </MiniButton>
+
+
+        <MiniButton href="recipe">
+          Challenge
+        </MiniButton>
+
+        <MiniButton href="/">
+          User
+        </MiniButton>
+
+
+      </footer>
+
+
+    </ >
   )
 }
 
