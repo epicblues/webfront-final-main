@@ -24,18 +24,16 @@ const MainList = ({ challenges, user }) => {
 
   return (
     <>
-      {challengeIndexes.map((index) => {
-        return (
-          <button
-            key={index}
-            onClick={() => {
-              setChallengeIndex(index);
-            }}
-          >
-            {index}
-          </button>
-        );
-      })}
+      {challengeIndexes.map((index) => (
+        <button
+          key={index}
+          onClick={() => {
+            setChallengeIndex(index);
+          }}
+        >
+          {index}
+        </button>
+      ))}
       {challenges.length > 0 ? (
         <ChallengeMainList
           challenges={selectChallenges(challengeIndex)}
@@ -65,7 +63,12 @@ export const getServerSideProps = async (ctx) => {
         },
       },
     ])
-    .match({ endDate: { $gte: new Date() }, userId: { $ne: user.id } })
+    .match({
+      endDate: { $gte: new Date() },
+      participants: {
+        $nin: [user.id],
+      },
+    })
     .sort({ _id: 1 })
     .toArray();
 
