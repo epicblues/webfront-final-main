@@ -9,6 +9,7 @@ import clientPromise from "../../../../util/mongodb";
 //  CSS
 import recipeListStyles from "../../../../styles/RecipeList.module.css";
 import { postStaticAxios } from "../../../../util/axios";
+import GoBackward from "../../../../components/GoBackward";
 
 const Index = ({ user, filteredRecipes }) => {
   const [recipes, setRecipes] = useState([...filteredRecipes]);
@@ -58,6 +59,7 @@ const Index = ({ user, filteredRecipes }) => {
   }
   return (
     <div>
+      <GoBackward />
       <h1>내 레시피</h1>
       <ul className={recipeListStyles.cards}>
         {recipes.map((card, index) => {
