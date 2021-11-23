@@ -18,7 +18,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     }
 
     // Recipe Type
-    if (challengeForm.recipe === "recipe") {
+    if (challengeForm.type === "recipe") {
+      challengeForm.recipe.checker = [];
     }
 
     await client
@@ -30,8 +31,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         uploadDate: new Date(),
         startDate: new Date(challengeForm.startDate),
         endDate: new Date(challengeForm.endDate),
-        success: false,
+
         participants: [challengeForm.userId],
+        winners: [],
       });
     res.status(200).json({ status: "ok" });
   } catch (error) {

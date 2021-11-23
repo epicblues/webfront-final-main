@@ -4,6 +4,7 @@ import clientPromise from "../../../util/mongodb";
 import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
 import ChallengeModify from "../../../components/challenge/List/ChallengeModify";
+import axios from "axios";
 
 const ChallengePage = ({ originalChallenge, user }) => {
   const [challenge, setChallenge] = useState(originalChallenge);
@@ -49,6 +50,17 @@ const ChallengePage = ({ originalChallenge, user }) => {
               {challenge.author[0]._id === user.id ? (
                 <>
                   <ChallengeModify />
+                  <button
+                    onClick={async () => {
+                      const { data } = await axios.post(
+                        "/api/challenge/validate",
+                        challenge
+                      );
+                      console.log(data);
+                    }}
+                  >
+                    챌린지 결과 확인
+                  </button>
                 </>
               ) : (
                 <>
