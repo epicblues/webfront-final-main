@@ -9,6 +9,18 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const client = await clientPromise;
     const challengeId = await getNextSequence("challenge", client);
 
+    // Diet Type
+    if (challengeForm.type === "diet") {
+      const dietChecker = [];
+      for (let i = 0; i < challengeForm.dateDiff + 1; i++)
+        dietChecker.push(false);
+      challengeForm.diet.checker = dietChecker;
+    }
+
+    // Recipe Type
+    if (challengeForm.recipe === "recipe") {
+    }
+
     await client
       .db("webfront")
       .collection("challenge")

@@ -49,18 +49,18 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
 
 
 
-      <div style={{ height: "5vh" }}></div>
+      <div style={{ height: "7vh" }}></div>
       <footer style={{
-        marginTop: "10px",
+
         backgroundColor: "black",
         display: "flex",
         justifyContent: "center",
         alignContent: "flex",
         alignItems: "stretch",
-        height: "5vh",
+        height: "6vh",
         width: "100vw",
         position: "fixed",
-        top: "94vh"
+        top: "94%"
       }} >
 
         <MiniButton href="/recipe">
@@ -68,12 +68,12 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         </MiniButton>
 
 
-        <MiniButton href="diary">
+        <MiniButton href="/diary">
           Diary
         </MiniButton>
 
 
-        <MiniButton href="recipe">
+        <MiniButton href="/challenge">
           Challenge
         </MiniButton>
 
