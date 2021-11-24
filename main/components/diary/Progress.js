@@ -1,12 +1,23 @@
-import React from 'react';
+import React from "react";
 
-const Progress = ({ done, max }) => {
-    const percent = `${(done/max * 100).toFixed(0)}%`
-    return (
-        <div className='progress'>
-            <div className='progress-done' style={{opacity:1, width: percent}}></div>
+const Progress = () => {
+  const example = {
+    name: "challenge",
+    value: 30,
+    color: "blue",
+  };
+  return (
+    <div className="progress-bar">
+      <div className="value">
+        <div style={{ color: "blue", width: "30+%" }}>
+          <span>{example.value}%</span>
         </div>
-    )
-}
+      </div>
+      <div className="scale"></div>
+      <div className="bar"></div>
+      <div className="legend"></div>
+    </div>
+  );
+};
 
-export default Progress
+export default Progress;
