@@ -26,9 +26,11 @@ const Join = () => {
     heightFeet: 0
   })
 
-  const handleClick = async () => {
-    const bmrToSend: Partial<UserBmr> = { ...userBmr, error: '', flag: false, system: "" };
 
+
+  const [bmrMode, setBmrMode] = useState(false);
+
+  const toggleJoinForm = () => {
     if (!/^[A-Za-z0-9]{3,}@([a-z0-9]+\.)+[a-z]{2,4}$/.test(email.current.value)) {
       message.current.textContent = "이메일 입력이 잘못되었습니다."
       message.current.style.color = "red";
@@ -58,6 +60,14 @@ const Join = () => {
       password.current.focus();
       return
     }
+
+    setBmrMode(true);
+  }
+
+  const handleClick = async () => {
+    const bmrToSend: Partial<UserBmr> = { ...userBmr, error: '', flag: false, system: "" };
+
+
     if (bmrToSend.activity as number < 5) {
       setUserBmr({ ...userBmr, error: "기초 대사량 작성 완료해주세요!" })
       return;
@@ -92,29 +102,32 @@ const Join = () => {
       borderRadius: "5px",
       padding: "16px",
     }}>
-      <Form  >
-        <h2 ref={message}>회원 가입</h2>
-        <Form.Field>
-          <h3>이름</h3>
-          <input type="text" ref={name} placeholder="이름" />
+      <div style={{ display: bmrMode ? "block" : "none" }}><Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
+        <button className="ui button" onClick={handleClick}>제출</button></div>
 
-        </Form.Field>
+      <div style={{ display: !bmrMode ? "block" : "none" }}>
+        <Form  >
+          <h2 ref={message}>회원 가입</h2>
+          <Form.Field>
+            <h3>이름</h3>
+            <input type="text" ref={name} placeholder="이름" />
 
-        <Form.Field>
+          </Form.Field>
 
-          <h3>이메일</h3>
-          <input type="email" ref={email} placeholder="이메일" />
-        </Form.Field>
-        <Form.Field>
-          <h3>비밀번호</h3>
-          <input type="password" ref={password} placeholder="비밀번호" /></Form.Field>
-        <Form.Field>
-          <h3>비밀번호 확인</h3>
-          <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" /></Form.Field>
-        <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-        <button className="ui button" onClick={handleClick}>제출</button>
-      </Form>
+          <Form.Field>
 
+            <h3>이메일</h3>
+            <input type="email" ref={email} placeholder="이메일" />
+          </Form.Field>
+          <Form.Field>
+            <h3>비밀번호</h3>
+            <input type="password" ref={password} placeholder="비밀번호" /></Form.Field>
+          <Form.Field>
+            <h3>비밀번호 확인</h3>
+            <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" /></Form.Field>
+          <button className="ui button" onClick={toggleJoinForm}>BMR 작성하기</button>
+        </Form>
+      </div>
 
     </div>
 

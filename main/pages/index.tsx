@@ -13,7 +13,8 @@ const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
     border: "solid 2px lightgray",
     borderRadius: "5px",
 
-    padding: "20px"
+    padding: "20px",
+    fontWeight: 700
 
 
   }
@@ -21,7 +22,7 @@ const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
 
   return (
     <div style={{
-      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh 1vh", justifyContent: "space-evenly", "minHeight": "50vh"
+      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh 1vh", justifyContent: "space-between", "minHeight": "70vh"
     }}>
       < div style={cardStyle} >
         <h3>{name} 님 안녕하세요</h3>

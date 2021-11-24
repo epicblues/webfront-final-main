@@ -51,19 +51,19 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         position: "fixed",
         top: "94%"
       }} >
-
-        <MiniButton href="/recipe">
+        {pageProps.user && <> <MiniButton href="/recipe">
           Recipe
         </MiniButton>
-        <MiniButton href="/diary">
-          Diary
-        </MiniButton>
-        <MiniButton href="/challenge">
-          Challenge
-        </MiniButton>
-        <MiniButton href="/">
-          User
-        </MiniButton>
+          <MiniButton href="/diary">
+            Diary
+          </MiniButton>
+          <MiniButton href="/challenge">
+            Challenge
+          </MiniButton>
+          <MiniButton href="/">
+            User
+          </MiniButton></>}
+
       </footer>
 
     </ >
