@@ -15,20 +15,27 @@ const index = ({ challenges, user }) => {
   );
   return (
     <>
-      <Link passHref href="challenge/write">
-        <Button>챌린지 작성</Button>
-      </Link>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <Link passHref href="challenge/write">
+          <Button>챌린지 작성</Button>
+        </Link>
 
-      <Link passHref href="challenge/mainlist">
-        <Button>챌린지 리스트 보기 </Button>
-      </Link>
+        <Link passHref href="challenge/mainlist">
+          <Button>챌린지 리스트 보기 </Button>
+        </Link>
+      </div>
       <br />
 
-      <h2>내가 작성한 챌린지</h2>
-      <MyChallenge challenges={challenges} user={user}></MyChallenge>
+      <h2>만든 챌린지</h2>
+      <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
+        <MyChallenge challenges={challenges} user={user}></MyChallenge>
+      </div>
 
-      <div className="myChallenge">
-        <h2>내가 참여한 남의 챌린지</h2>
+      <h2>참여한 챌린지</h2>
+      <div
+        className="myChallenge"
+        style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
+      >
         <ChallengeMainList
           challenges={participatedChallenges}
           user={user}

@@ -52,14 +52,15 @@ const ChallengeCondition = ({
   };
 
   return (
-    <div className="challengeCondition">
-      <Header as="h3" inverted color="blue" className="challengeContent">
+    <div
+      className="challengeCondition"
+      style={{ color: "black", fontWeight: "1rem", fontFamily: "fantasy" }}
+    >
+      <Header as="h3" className="challengeContent">
         챌린지 조건
       </Header>
       <div className="challengeKind">
-        <Header as="h4" inverted color="blue">
-          챌린지의 종류
-        </Header>
+        <Header as="h4">챌린지의 종류</Header>
         <input
           type="radio"
           id="1"
@@ -80,9 +81,7 @@ const ChallengeCondition = ({
         <label>레시피</label>
         {challenge.type === "diet" && (
           <>
-            <Header as="h4" inverted color="blue">
-              다이어트 종류
-            </Header>
+            <Header as="h4">다이어트 종류</Header>
             <div className="dietKind">
               <input
                 type="radio"
@@ -105,10 +104,8 @@ const ChallengeCondition = ({
         )}{" "}
         {challenge.type === "recipe" && (
           <>
-            <Header as="h4" inverted color="blue">
-              레시피 종류
-            </Header>
-            <div className="recipeKind">
+            <Header as="h4">레시피 종류</Header>
+            <div className="recipeCategory">
               <select
                 name="category"
                 value={challenge.recipe.category}
@@ -145,19 +142,16 @@ const ChallengeCondition = ({
       </div>
       {challenge.type === "diet" ? (
         <>
-          <Header as="h4" inverted color="blue">
-            다이어트 조건 ( 기준: 하루, Kcal)
-          </Header>
+          <Header as="h4">다이어트 조건 ( 기준: 하루, Kcal)</Header>
           <h3 ref={dailyCalorieError}></h3>
           <div className="dietCondition1">
             <input
               style={{
-                color: "#5CD1E5",
+                color: "black",
                 fontWeight: "bold",
                 border: "3px solid",
                 width: "180px",
                 borderRadius: "5px",
-                borderColor: "#6B66FF",
               }}
               type="number"
               name="dailyCalorie"
@@ -171,9 +165,7 @@ const ChallengeCondition = ({
       ) : null}
       {challenge.type === "diet" && (
         <>
-          <Header as="h4" inverted color="blue">
-            다이어트 완료 일수
-          </Header>
+          <Header as="h4">다이어트 완료 일수</Header>
           <div className="dietCondition">
             <select
               name="condition"
@@ -187,19 +179,16 @@ const ChallengeCondition = ({
       )}
       {challenge.type === "recipe" && (
         <>
-          <Header as="h4" inverted color="blue">
-            레시피 업로드 횟수(단위: 회)
-          </Header>
+          <Header as="h4">레시피 업로드 횟수(단위: 회)</Header>
           <h4 ref={uploadCountError}></h4>
           <div className="recipeUploadCount">
             <input
               style={{
-                color: "#5CD1E5",
+                color: "black",
                 fontWeight: "bold",
                 border: "3px solid",
                 width: "180px",
                 borderRadius: "5px",
-                borderColor: "#6B66FF",
               }}
               type="number"
               name="uploadCount"

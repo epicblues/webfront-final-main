@@ -10,7 +10,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
   const [challenge, setChallenge] = useState(originalChallenge);
 
   const changeRecipeName = () => {
-    switch (challenge.recipe.categorie) {
+    switch (challenge.recipe.category) {
       case "noodle":
         return <h3>레시피 종류: 면/파스타</h3>;
       case "soup":
@@ -63,7 +63,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     </>
                   )}
                   <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
-                  <h3>다이어트 완료 일수:{challenge.dateDiff}일</h3>
+                  <h3>다이어트 완료 일수:{challenge.diet.condition}일</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               ) : (
@@ -172,7 +172,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     </>
                   )}
                   <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
-                  <h3>다이어트 성공 일수:{challenge.diet.condition}일</h3>
+                  <h3>다이어트 완료 일수:{challenge.diet.condition}일</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               ) : (
