@@ -50,8 +50,8 @@ const LookupMeal = ({
   };
 
   return (
-    <div>
-      <div style={{ textAlign: "left", marginBottom: "16px" }}>
+    <div style={{padding: '1rem'}}>
+      <div style={{ textAlign: "left", marginBottom: "16px"}}>
         <i
           className="large home icon"
           onClick={(e) => {
@@ -60,7 +60,7 @@ const LookupMeal = ({
         ></i>
       </div>
 
-      <div style={{ width: "100%", height: "40vh" }}>
+      <div style={{ width: "100%", height: "40vh", boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '5px'}}>
         <img
           src={
             diary.meals[type].imageBuffer ||
@@ -73,7 +73,7 @@ const LookupMeal = ({
 
       <div
         className="ui large horizontal divided list"
-        style={{ display: "flex" }}
+        style={{ display: "flex", textAlign: 'center'}}
       >
         <div className="item" style={{ width: "25%" }}>
           <div className="content" style={{ marginBottom: "8px" }}>
@@ -112,6 +112,7 @@ const LookupMeal = ({
 
       <button
         className="ui fluid button teal"
+        style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
         onClick={() =>
           setDiary((diary) => {
             const newDiary = { ...diary };

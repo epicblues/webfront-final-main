@@ -11,9 +11,10 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
         setWritingMode(type);
       }}
       style={{
-        border: "solid 2px lightgray",
+        // border: "solid 2px lightgray",
         borderRadius: "5px",
-        position: 'relative'
+        position: 'relative',
+        boxShadow: '1px 1px 3px 1px #dadce0'
       }}
     >
       <img src={diary.meals[type].imageBuffer || process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image}
@@ -27,6 +28,7 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
 
       <a className='ui teal circular label'
         style={{
+          boxShadow: '1px 1px 3px 1px #dadce0',
           position: 'absolute',
           top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',

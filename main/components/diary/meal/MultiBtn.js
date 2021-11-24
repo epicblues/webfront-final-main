@@ -10,7 +10,7 @@ const MultiBtn = ({ text, color, onClick }) => {
   return (
     <Button
       className="ui Button"
-      style={{ backgroundColor: color}}
+      style={{ backgroundColor: color, boxShadow: '1px 1px 3px 1px #dadce0', color: '#fff'}}
       onClick={onClick}      
     >
       {text}

@@ -23,9 +23,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   // Count
   const getCartTotal = () => {
     return (
-      diary.meals[type].foods.reduce((prev, current) => {
-        return prev + current.quantity;
-      }, 0) || 0
+      diary.meals[type].foods.length
     );
   };
 
@@ -89,7 +87,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   };
 
   return (
-    <>
+    <div>
       {writingMode === type ? (
         diary.meals[type].written ? (
           <LookupMeal
@@ -101,7 +99,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
             setPage={setPage}
           />
         ) : (
-          <div
+          <div style={{padding: '1rem'}}
             className="AddFood"
           >
             <div
@@ -114,6 +112,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
               <div>
                 <span>{mealType[type]}</span>
                 <a
+                  style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
                   className="ui teal circular label"
                   onClick={() => navigateTo(PAGE_CART)}
                 >
@@ -122,7 +121,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
               </div>
 
               <MultiBtn
-                color={showAdd ? "red" : "yellow"}
+                color={showAdd ? "#a0a0a0" : "#02b0b0"}
                 text={showAdd ? "취소" : "완료"}
                 onClick={multiBtn}
               />
@@ -149,7 +148,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
           </div>
         )
       ) : null}
-    </>
+    </div>
   );
 }
 
