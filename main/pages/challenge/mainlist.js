@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
+import { Container } from "semantic-ui-react";
 
 const MainList = ({ challenges, user }) => {
   const challengeIndexes = [];
@@ -24,24 +25,37 @@ const MainList = ({ challenges, user }) => {
 
   return (
     <>
-      {challengeIndexes.map((index) => (
-        <button
-          key={index}
-          onClick={() => {
-            setChallengeIndex(index);
-          }}
-        >
-          {index}
-        </button>
-      ))}
-      {challenges.length > 0 ? (
-        <ChallengeMainList
-          challenges={selectChallenges(challengeIndex)}
-          user={user}
-        />
-      ) : (
-        <h2>No Challenges</h2>
-      )}
+      <container
+        style={{
+          display: "flex",
+          flexdirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div>
+          <h2>챌린지 리스트</h2>
+
+          {challenges.length > 0 ? (
+            <ChallengeMainList
+              challenges={selectChallenges(challengeIndex)}
+              user={user}
+            />
+          ) : (
+            <h2>No Challenges</h2>
+          )}
+          {challengeIndexes.map((index) => (
+            <button
+              key={index}
+              onClick={() => {
+                setChallengeIndex(index);
+              }}
+            >
+              {index}
+            </button>
+          ))}
+        </div>
+      </container>
     </>
   );
 };

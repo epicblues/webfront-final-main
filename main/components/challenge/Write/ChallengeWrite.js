@@ -139,13 +139,23 @@ const ChallengeWrite = ({ user }) => {
       <Container textAlign="center">
         <h1
           style={{
-            color: "#6B66FF",
+            color: "#fff",
+            backgroundColor: "black",
+            fontWeight: "1rem",
+            fontFamily: "fantasy",
           }}
         >
           챌린지 작성
         </h1>
         <div className="challengeName" style={{}}>
-          <Header as="h3" inverted color="blue">
+          <Header
+            as="h3"
+            style={{
+              color: "black",
+              fontWeight: "1rem",
+              fontFamily: "fantasy",
+            }}
+          >
             챌린지 이름
           </Header>
           <p ref={titleError}></p>
@@ -167,10 +177,16 @@ const ChallengeWrite = ({ user }) => {
             ref={title}
           />
         </div>
-        <hr />
+
         <br />
         <div className="description">
-          <h3 style={{ fontFamily: "fantasy", color: "#5CD1E5" }}>
+          <h3
+            style={{
+              color: "black",
+              fontWeight: "1rem",
+              fontFamily: "fantasy",
+            }}
+          >
             챌린지의 간략한 설명
           </h3>
           <textarea
@@ -193,18 +209,15 @@ const ChallengeWrite = ({ user }) => {
             }}
           ></textarea>
         </div>
-        <hr />
+
         <br />
-        <section className="challengDate">
-          <Header as="h3" inverted color="blue" className="sectionTitle">
-            챌린지 기간
-          </Header>
-          <Header as="h4" inverted color="blue" className="sectionInfo">
-            챌린지 진행 기간을 선택해주세요
-          </Header>
-          <Header as="h4" inverted color="blue" className="challengeDatetitle">
-            챌린지 시작일
-          </Header>
+        <section
+          className="challengDate"
+          style={{ color: "black", fontWeight: "1rem", fontFamily: "fantasy" }}
+        >
+          <Header as="h3">챌린지 기간</Header>
+          <Header as="h4">챌린지 진행 기간을 선택해주세요</Header>
+          <Header as="h4">챌린지 시작일</Header>
           <h4 ref={startDateError}></h4>
 
           <ReactDatePicker
@@ -220,8 +233,12 @@ const ChallengeWrite = ({ user }) => {
               });
             }}
             selectsStart
+<<<<<<< HEAD
             placeholderText="챌린지 시작일 선택"
             // minDate={new Date()}
+=======
+            minDate={new Date()}
+>>>>>>> 2f089a5182bbbd111686af4504b3be18f3bc8aec
             startDate={challenge.startDate}
             endDate={challenge.endDate}
             withPortal
@@ -234,7 +251,7 @@ const ChallengeWrite = ({ user }) => {
             popperPlacement="auto" // 화면 중앙에 팝업
           />
 
-          <Header as="h4" inverted color="blue" className="challengeDateTitle">
+          <Header as="h4" className="challengeDateTitle">
             챌린지 종료일
           </Header>
           <h4 ref={endDateError}></h4>
@@ -242,7 +259,6 @@ const ChallengeWrite = ({ user }) => {
             locale="ko"
             dateFormat="yyyy년 MM월 dd일"
             selected={challenge.endDate}
-            placeholderText="챌린지 종료일 선택"
             onChange={(date) => {
               const newDateDiff = getDiffDate(date);
               setChallenge({
@@ -264,7 +280,7 @@ const ChallengeWrite = ({ user }) => {
             popperPlacement="auto" // 화면 중앙에 팝업
           />
         </section>
-        <hr />
+
         <br />
         <ChallengeCondition
           challenge={challenge}
@@ -275,7 +291,7 @@ const ChallengeWrite = ({ user }) => {
           uploadCountError={uploadCountError}
         />
         <br />
-        <hr />
+
         <Button
           type="submit"
           color="twitter"
