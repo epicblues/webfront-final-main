@@ -18,15 +18,19 @@ export default function Products({ diary, setDiary, type }) {
     if (foodIndex !== -1) {
       prevMeal.foods[foodIndex].quantity += value.quantity;
     } else {
-      
       prevMeal.foods.push(value);
     }
     const isRecipe = typeof value._id === "number";
     // Recipe다!
-    prevMeal.calories += (isRecipe ? value.nutrition.kcal : value.kcal) * value.quantity;
-    prevMeal.fat += (isRecipe ? value.nutrition.fat : value.fat)*value.quantity;
-    prevMeal.carbs += (isRecipe ? value.nutrition.carbs : value.carbs)*value.quantity;
-    prevMeal.protein += (isRecipe ? value.nutrition.prot : value.prot)*value.quantity;
+    prevMeal.calories +=
+      (isRecipe ? value.nutrition.kcal : value.kcal) * value.quantity;
+    prevMeal.fat +=
+      (isRecipe ? value.nutrition.fat : value.fat) * value.quantity;
+    prevMeal.carbs +=
+      (isRecipe ? value.nutrition.carbs : value.carbs) * value.quantity;
+    prevMeal.protein +=
+      (isRecipe ? value.nutrition.prot : value.prot) * value.quantity;
+    console.log(prevMeal);
     const currentMeals = diary.meals;
     currentMeals.splice(type, 1, prevMeal);
     setDiary({
@@ -82,7 +86,10 @@ export default function Products({ diary, setDiary, type }) {
 
   return (
     <>
-      <div className="ui fluid icon input" style={{boxShadow:'1px 1px 3px 1px #dadce0', borderRadius: '5px'}}>
+      <div
+        className="ui fluid icon input"
+        style={{ boxShadow: "1px 1px 3px 1px #dadce0", borderRadius: "5px" }}
+      >
         <input
           type="text"
           placeholder="음식 검색하기"
