@@ -154,7 +154,8 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
           className="teal plus circle icon"
           onClick={(e) => {
             console.log(value);
-            addToCart(value);
+            const copiedValue = {...value , quantity : 1}
+            addToCart(copiedValue);
 
             e.currentTarget.className = "green check circle icon";
             const targetReverse = (target) => () => {
