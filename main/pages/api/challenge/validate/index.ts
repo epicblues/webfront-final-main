@@ -1,6 +1,7 @@
 import { NextApiHandler } from "next";
 
 import { authenticated } from "../../../../util/auth";
+import { parseDocumentToObject } from "../../../../util/date";
 import clientPromise from "../../../../util/mongodb";
 
 const handler: NextApiHandler = async (req, res) => {
@@ -45,9 +46,12 @@ const handler: NextApiHandler = async (req, res) => {
             }
           );
         console.log(updateResult);
-        res.status(200).json({ message: "success" });
+        res.status(200).json({
+          message: "success",
+          result: updateResult,
+        });
       } else {
-        res.status(200).json({ message: "챌린지 실패" });
+        res.status(200).json({ message: "challenge failed" });
       }
     }
   } catch (error) {

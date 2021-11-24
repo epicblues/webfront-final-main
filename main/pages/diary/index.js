@@ -145,7 +145,13 @@ export const getServerSideProps = async (ctx) => {
         .collection("diary")
         .insertOne({ ...initialDiary, _id: diaryId });
       return {
-        props: { user, fetchedDiary: { ...initialDiary, _id: diaryId } },
+        props: {
+          user,
+          fetchedDiary: parseDocumentToObject({
+            ...initialDiary,
+            _id: diaryId,
+          }),
+        },
       };
     } else {
       return {

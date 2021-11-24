@@ -1,4 +1,4 @@
-import { getDateId } from "../util/date";
+import { getDateId, returnIdToDate } from "../util/date";
 
 export interface Recipe {
   post_no: number;
@@ -63,10 +63,12 @@ export class Diary {
     protein: number;
     carbs: number;
   };
+  date: Date;
 
   constructor(userId: number, uploadDate?: string) {
     this.user_id = userId;
     this.upload_date = uploadDate || getDateId(new Date());
+    this.date = returnIdToDate(this.upload_date);
     this.reviews = [];
     this.meals = [new Meal(), new Meal(), new Meal(), new Meal()];
     this.total = {
