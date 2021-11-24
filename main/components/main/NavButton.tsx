@@ -1,14 +1,14 @@
 import React from 'react'
 
-const MiniButton = ({ children, href }: { children: string, href: string }) => {
+const MiniButton = ({ children, href }: { children: any, href: string }) => {
   return (
     <a href={href} style={{
-      color: "white",
+      color: "#333",
       alignSelf: "center",
       fontSize: "1.2em",
       fontWeight: "bolder",
       // border: "solid white",
-      borderWidth: "0px 1px",
+      // borderWidth: "0px 1px",
       padding: "3px 15px"
     }
     }>
