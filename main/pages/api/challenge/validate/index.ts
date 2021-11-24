@@ -18,7 +18,7 @@ const handler: NextApiHandler = async (req, res) => {
         .db("webfront")
         .collection("recipe")
         .find({
-          category: challenge.recipe.kind,
+          category: challenge.recipe.category,
           $and: [
             { upload_date: { $gte: new Date(challenge.startDate) } },
             { upload_date: { $lte: new Date(challenge.endDate) } },

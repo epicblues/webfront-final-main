@@ -35,7 +35,7 @@ const ChallengeWrite = ({ user }) => {
       condition: 0,
     },
     recipe: {
-      kind: "",
+      category: "",
       uploadCount: "",
     },
   });

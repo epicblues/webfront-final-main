@@ -110,8 +110,8 @@ const ChallengeCondition = ({
             </Header>
             <div className="recipeKind">
               <select
-                name="kind"
-                value={challenge.recipe.kind}
+                name="category"
+                value={challenge.recipe.category}
                 onChange={handleRecipe}
               >
                 <option key="so" value="soup">
