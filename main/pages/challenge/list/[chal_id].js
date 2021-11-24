@@ -8,23 +8,51 @@ import axios from "axios";
 
 const ChallengePage = ({ originalChallenge, user }) => {
   const [challenge, setChallenge] = useState(originalChallenge);
+
+  const changeRecipeName = () => {
+    switch (challenge.recipe.categorie) {
+      case "noodle":
+        return <h3>레시피 종류: 면/파스타</h3>;
+      case "soup":
+        return <h3>레시피 종류: 국/탕/찌개</h3>;
+      case "dessert":
+        return <h3>레시피 종류: 디저트</h3>;
+      case "rice":
+        return <h3>레시피 종류: 밥/볶음밥</h3>;
+      case "kimchi":
+        return <h3>레시피 종류: 김치</h3>;
+      case "grill":
+        return <h3>레시피 종류: 구이</h3>;
+      case "etc":
+        return <h3>레시피 종류: rlxk</h3>;
+      default:
+        return <h3>없음</h3>;
+    }
+  };
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ textAlign: "center" }}>
         <h2>{challenge.title}</h2>
-        <h4 style={{ textAlign: "right", margin: "0" }}>
+        <hr />
+        <h3 style={{ textAlign: "right", margin: "10px" }}>
+          작성자:{challenge.author[0].name}
+        </h3>
+        <h3 style={{ textAlign: "right", margin: "5px" }}>
           시작일: {new Date(challenge.startDate).toLocaleDateString()}
-        </h4>
-        <h4 style={{ textAlign: "right", margin: "0" }}>
-          종료일: {new Date(challenge.endDate).toLocaleDateString()}
-        </h4>
-        <div>
+          <br />
+          종료일:
+          {new Date(challenge.endDate).toLocaleDateString()}
+        </h3>
+        <br />
+
+        <div style={{ margin: "30px" }}>
           {!(challenge.participants.indexOf(user.id) === -1) ? (
             <>
               {challenge.type === "diet" ? (
                 <>
-                  <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
+                  <h3>챌린지 종류: 다이어트</h3>
+
                   {challenge.diet.kind === "plusKcal" ? (
                     <>
                       <h3>다이어트 종류: 벌크업 </h3>
@@ -34,23 +62,45 @@ const ChallengePage = ({ originalChallenge, user }) => {
                       <h3>다이어트 종류: 컷팅 </h3>
                     </>
                   )}
-                  <h3>하루 섭취량:{challenge.diet.dailyCalorie}</h3>
-                  <h3>다이어트 성공 일수:{challenge.dateDiff}</h3>
-                  <h3>참가자 인원:{challenge.participants.length}</h3>
+                  <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
+                  <h3>다이어트 완료 일수:{challenge.dateDiff}일</h3>
+                  <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               ) : (
                 <>
-                  <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
-                  <h3>레시피 종류:{challenge.recipe.kind}</h3>
-                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}</h3>
+                  <h3>챌린지 종류: 레시피</h3>
+                  <h3>{changeRecipeName()}</h3>
+                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}회</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
+              <hr />
               {challenge.author[0]._id === user.id ? (
                 <>
                   <ChallengeModify />
                   <button
+                    style={{
+                      backgroundColor: "#35a2f4",
+                      color: "#fff",
+                      textShadow: "none",
+                      display: "inline-block",
+                      cursor: "pointer",
+                      border: "none",
+                      verticalAlign: "baseline",
+                      fontFamily:
+                        "Lato,'Helvetica Neue',Arial,Helvetica,sans-serif",
+                      margin: "0 0.25em0 0",
+                      padding: "0.78571429em 1.5em 0.78571429m",
+                      fontWeight: "700",
+                      lineHeight: "1em",
+                      textAlign: "center",
+                      fontSize: "1rem",
+                      borderRadius: "0.3rem;",
+                      minHeight: "1em",
+                      height: "35px",
+                      width: "120px",
+                    }}
                     onClick={async () => {
                       const { data } = await axios.post(
                         "/api/challenge/validate",
@@ -64,11 +114,45 @@ const ChallengePage = ({ originalChallenge, user }) => {
                 </>
               ) : (
                 <>
-                  <ChallengeCancel
-                    user={user}
-                    challenge={challenge}
-                    setChallenge={setChallenge}
-                  />
+                  <>
+                    <ChallengeCancel
+                      user={user}
+                      challenge={challenge}
+                      setChallenge={setChallenge}
+                    />
+                    <button
+                      style={{
+                        backgroundColor: "#35a2f4",
+                        color: "#fff",
+                        textShadow: "none",
+                        display: "inline-block",
+                        cursor: "pointer",
+                        border: "none",
+                        verticalAlign: "baseline",
+                        fontFamily:
+                          "Lato,'Helvetica Neue',Arial,Helvetica,sans-serif",
+                        margin: "0 0.25em0 0",
+                        padding: "0.78571429em 1.5em 0.78571429m",
+                        fontWeight: "700",
+                        lineHeight: "1em",
+                        textAlign: "center",
+                        fontSize: "1rem",
+                        borderRadius: "0.3rem;",
+                        minHeight: "1em",
+                        height: "35px",
+                        width: "120px",
+                      }}
+                      onClick={async () => {
+                        const { data } = await axios.post(
+                          "/api/challenge/validate",
+                          challenge
+                        );
+                        console.log(data);
+                      }}
+                    >
+                      챌린지 결과 확인
+                    </button>
+                  </>
                 </>
               )}
             </>
@@ -76,8 +160,8 @@ const ChallengePage = ({ originalChallenge, user }) => {
             <>
               {challenge.type === "diet" ? (
                 <>
-                  <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
+                  <h3>챌린지 종류: 다이어트</h3>
                   {challenge.diet.kind === "plusKcal" ? (
                     <>
                       <h3>다이어트 종류: 벌크업 </h3>
@@ -87,19 +171,20 @@ const ChallengePage = ({ originalChallenge, user }) => {
                       <h3>다이어트 종류: 컷팅 </h3>
                     </>
                   )}
-                  <h3>하루 섭취량:{challenge.diet.dailyCalorie}</h3>
-                  <h3>다이어트 성공 일수:{challenge.diet.condition}</h3>
-                  <h3>참가자 인원:{challenge.participants.length}</h3>
+                  <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
+                  <h3>다이어트 성공 일수:{challenge.diet.condition}일</h3>
+                  <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               ) : (
                 <>
-                  <h3>작성자:{challenge.author[0].name}</h3>
                   <h3>챌린지 조건</h3>
-                  <h3>레시피 종류:{challenge.recipe.kind}</h3>
-                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}</h3>
+                  <h3>챌린지 종류: 레시피 </h3>
+                  <h3>{changeRecipeName()}</h3>
+                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}회</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
+              <hr />
               <ChallengeJoin
                 user={user}
                 challenge={challenge}

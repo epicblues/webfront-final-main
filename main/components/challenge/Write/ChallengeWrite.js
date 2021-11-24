@@ -35,7 +35,7 @@ const ChallengeWrite = ({ user }) => {
       condition: 0,
     },
     recipe: {
-      kind: "",
+      category: "",
       uploadCount: "",
     },
   });
@@ -77,7 +77,7 @@ const ChallengeWrite = ({ user }) => {
       alert(error);
     }
   };
-
+  //날짜 차이 계산
   const getDiffDate = (endDate) => {
     const newDateDiff =
       (endDate.getTime() - new Date(challenge.startDate).getTime()) /
@@ -90,6 +90,7 @@ const ChallengeWrite = ({ user }) => {
       (1000 * 60 * 60 * 24);
     return newDateDiff;
   };
+  //유효성 검사
   const vaildateTitle = () => {
     const titleRegex = /^([가-힣\w\d]+[\.\,]?\s?)+$/;
 
