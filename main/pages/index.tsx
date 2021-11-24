@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Button, Card, CardHeader, CommentText, Container, TextArea } from 'semantic-ui-react';
 import homeStyle from '../styles/Home.module.css';
 import { CSSProperties } from 'react';
+import { useRouter } from 'next/router';
 
 
 const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
@@ -17,6 +18,13 @@ const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
     fontWeight: 700
 
 
+  }
+  const router = useRouter()
+  const clickHandler = async () => {
+    const res = await fetch('/api/user/logout');
+    if (res.status === 200) {
+      router.push('/user/login')
+    }
   }
 
 
@@ -45,6 +53,7 @@ const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
       <div style={cardStyle}>
         Recipe
       </div>
+      <button className="ui button facebook" onClick={clickHandler}>Logout</button>
 
 
 

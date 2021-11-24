@@ -1,11 +1,18 @@
+/* google font: 'Nanum Gothic', 'Poppins' */
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap');
+
+/* reset */
 * {
+  margin: 0;
+  padding: 0;
 	box-sizing: border-box;
 }
 
-/*레이아웃 이동현상 방지 스크롤바 표시*/
 body {
-  overflow-y: scroll;
+  font-family: 'Nanum Gothic', sans-serif;
+  overflow-y: scroll; /*레이아웃 이동현상 방지 스크롤바 표시*/
 }
+
 body::-webkit-scrollbar {
   width: 6px; /*스크롤바의 너비*/
 }
@@ -18,22 +25,22 @@ body::-webkit-scrollbar-track {
   background-color: #d8d8d8; /*스크롤바 트랙 색상*/
 }
 
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
 /* datepicker custom */
 .react-datepicker__input-container input {
   border: none;
-  border-bottom: solid 2px lightgray;
-  width: 120px;
-  height: 30px;
-  text-align: center;
-  font: normal bold 1.2rem/100% arial;
 }
 
-/* .react-datepicker__input-container input ::before {
-  content: '';
-  position: absolute;
-  top: ;
-  left: ;
-} */
+.customInput {
+  font: normal bold 1.2rem/100% "Poppins";
+}
 
 .react-datepicker {
   padding: 10px;
@@ -66,7 +73,10 @@ body::-webkit-scrollbar-track {
   border-radius: 50% !important;
   background-color: #f0f0f0;
 }
-
+/* dropdown Menu */
+/* .dropdownMenu {
+  font-size: 1;
+} */
 /* Progress Bar */
 .progress {
 	background-color: #d8d8d8;

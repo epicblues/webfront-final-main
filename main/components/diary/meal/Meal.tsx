@@ -22,7 +22,7 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
         style={{ objectFit: 'cover', width: '100%', height: '100%', boxSizing: 'border-box' }}
       />
 
-      <a className="ui teal label" style={{ position: 'absolute', top: '8px', right: '8px' }}>
+      <a className="ui teal label" style={{ position: 'absolute', top: '8px', right: '8px', borderRadius: '20px'}}>
         {typeName[type]}
       </a>
 

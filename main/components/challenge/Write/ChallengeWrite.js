@@ -233,12 +233,8 @@ const ChallengeWrite = ({ user }) => {
               });
             }}
             selectsStart
-<<<<<<< HEAD
             placeholderText="챌린지 시작일 선택"
             // minDate={new Date()}
-=======
-            minDate={new Date()}
->>>>>>> 2f089a5182bbbd111686af4504b3be18f3bc8aec
             startDate={challenge.startDate}
             endDate={challenge.endDate}
             withPortal
