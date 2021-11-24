@@ -1,4 +1,5 @@
 import { NextApiHandler } from "next";
+import { Challenge } from "../../../../models/Challenge";
 
 import { authenticated } from "../../../../util/auth";
 import { parseDocumentToObject } from "../../../../util/date";
@@ -13,47 +14,13 @@ const handler: NextApiHandler = async (req, res) => {
   // challenge를 확인하고 type과 조건을 확인한다.
   // wjs
   try {
-    let result;
+    let result: object | null = null;
     if (challenge.type === "recipe") {
-      result = await client
-        .db("webfront")
-        .collection("recipe")
-        .find({
-          category: challenge.recipe.category,
-          $and: [
-            { upload_date: { $gte: new Date(challenge.startDate) } },
-            { upload_date: { $lte: new Date(challenge.endDate) } },
-          ],
-          user_id: userId,
-        })
-        .sort({ upload_date: 1 })
-        .toArray();
-      console.log(result);
-      if (result.length >= +challenge.recipe.uploadCount) {
-        // 레시피 챌린지 성공
-        const updateResult = await client
-          .db("webfront")
-          .collection("challenge")
-          .findOneAndUpdate(
-            {
-              _id: challenge._id,
-            },
-            {
-              $push: { winners: userId },
-            },
-            {
-              returnDocument: "after",
-            }
-          );
-        console.log(updateResult);
-        res.status(200).json({
-          message: "success",
-          result: updateResult,
-        });
-      } else {
-        res.status(200).json({ message: "challenge failed" });
-      }
+      result = await Challenge.validateRecipe(challenge, client, userId);
+    } else if (challenge.type === "diet") {
+      result = await Challenge.validateDiary(challenge, client, userId);
     }
+    res.status(200).json(result);
   } catch (error) {
     console.log(error);
     res.status(404).json({ message: error });

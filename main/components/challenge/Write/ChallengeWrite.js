@@ -221,7 +221,7 @@ const ChallengeWrite = ({ user }) => {
             }}
             selectsStart
             placeholderText="챌린지 시작일 선택"
-            minDate={new Date()}
+            // minDate={new Date()}
             startDate={challenge.startDate}
             endDate={challenge.endDate}
             withPortal
