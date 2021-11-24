@@ -3,12 +3,15 @@ import { Button, Header, Modal } from "semantic-ui-react";
 
 const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   const inputRef = useRef();
-  const [exampleQtt,setExampleQtt] = useState(1); 
+  const [exampleQtt,setExampleQtt] = useState(1);
+  const [error, setError] = useState(false);
+
   const onAddBtn = (food) => {
     const quantity = +(inputRef.current.value);
     if (!/^\d{1,3}$/.test(quantity)) {
-      alert("중량을 입력해주세요(세 자리수 까지)");
+      setError(true);
     } else {
+      setError(false);
       console.log(quantity + 1)
       console.log(food);
       const coefficient = quantity / food.serve; 
@@ -62,13 +65,19 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
               {value.name}
             </Modal.Header>
             <Modal.Content style={{textAlign: 'center'}}>
-              
+              {error && (
+                <p className="errorMsg" style={{ color: "red" }}>
+                  최대 세 자릿수까지 중량을 입력할 수 있어요
+                  <i className="frown outline icon"></i>
+                </p>
+              )}
               <div className='ui right labeled input'>
                 <input 
                       autoFocus={true}
                       ref={inputRef}
                       type="number"
                       placeholder="선택한 음식의 양"
+                      defaultValue={value.serve}
                 />
                 <div className="ui basic label">
                   {value.unit}
@@ -151,19 +160,19 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
           </Modal>
         </div>
         <i
-          className="teal plus circle icon"
+          className="teal large plus circle icon"
           onClick={(e) => {
             console.log(value);
             const copiedValue = {...value , quantity : 1}
             addToCart(copiedValue);
 
-            e.currentTarget.className = "green check circle icon";
+            e.currentTarget.className = "green large check circle icon";
             const targetReverse = (target) => () => {
-              target.className = "teal plus circle icon";
+              target.className = "teal large plus circle icon";
             };
             setTimeout(targetReverse(e.currentTarget), 500);
           }}
-          style={{ marginTop: '8px'}}
+          style={{ marginTop: '5px'}}
         ></i>
       </div>
     </div>
