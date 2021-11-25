@@ -7,7 +7,11 @@ const Search = () => {
   const searchBtnClick = async (data) => {
     const keyword = data.keyword;
     console.log(keyword);
-    Router.push("/recipe/list/search/" + keyword);
+    if (keyword) {
+      Router.push("/recipe/list/search/" + keyword);
+    } else if (keyword === "") {
+      alert("검색어를 입력해주세요!");
+    }
   };
   return (
     <form onSubmit={handleSubmit(searchBtnClick)} className="search">
