@@ -1,10 +1,10 @@
 import Link from "next/link";
-import categoriesStyles from "../../../styles/Categories.module.css";
+import categoriesStyles from "../../../styles/recipe/Categories.module.css";
 
 function showCategories() {
   return (
-    <div className={categoriesStyles.button}>
-      <ul>
+    <div className={categoriesStyles.container}>
+      <ul className={categoriesStyles.ul}>
         <li>
           <Link href="/recipe/list">
             <a>전체</a>
