@@ -47,17 +47,17 @@ const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
       )
       }
       <Link href="/recipe" passHref>
-        <a style={{ ...cardStyle, backgroundColor: "#00b5ad", fontSize: "1.7em", color: "whitesmoke" }}>
+        <a style={{ ...cardStyle, backgroundColor: "lightgrey", fontSize: "1.3em", color: "whitesmoke" }}>
           Recipe
         </a>
       </Link>
       <Link href="/diary" passHref>
-        <a style={{ ...cardStyle, background: "#00b5ad", fontSize: "1.7em", color: "whitesmoke" }}>
+        <a style={{ ...cardStyle, background: "lightgrey", fontSize: "1.3em", color: "whitesmoke" }}>
           Diary
         </a>
       </Link>
       <Link href="/challenge" passHref>
-        <a style={{ ...cardStyle, background: "#00b5ad", fontSize: "1.7em", color: "whitesmoke" }}>
+        <a style={{ ...cardStyle, background: "lightgrey", fontSize: "1.3em", color: "whitesmoke" }}>
           Challenge
         </a>
       </Link>
