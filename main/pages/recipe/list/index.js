@@ -46,11 +46,20 @@ const Index = ({ user, recipes }) => {
   const [recipeList, setRecipeList] = useState(recipes);
   const [recipeCounter, setRecipeCounter] = useState(4);
 
+  // 스크롤 내릴 때마다 api로 recipe data 4개씩 요청하는 로직
+  // api 응답이 빈 배열일 경우 setHasMore(false)로 endMessage 출력
   const getMoreRecipes = debounce(async () => {
-    const { data } = await axios.get("/api/recipe/more/" + recipeCounter);
-    setRecipeList([...recipeList, ...data]);
-    console.log("ONSCROLL!");
-    setRecipeCounter(recipeCounter + 4);
+    const { data } = await axios.get(
+      "/api/recipe/infiniteScroll/listAll/" + recipeCounter
+    );
+    console.log(data);
+    if (data.length === 0) {
+      setHasMore(false);
+    } else {
+      setRecipeList([...recipeList, ...data]);
+      console.log("ONSCROLL!");
+      setRecipeCounter(recipeCounter + 4);
+    }
   }, 500);
 
   return (
@@ -58,11 +67,11 @@ const Index = ({ user, recipes }) => {
       <Search />
       <Categories />
       <InfiniteScroll
-        dataLength={recipes.length}
+        dataLength={recipeList.length}
         next={getMoreRecipes}
         hasMore={hasMore}
-        loader={<h3> Loading... </h3>}
-        endMessage={<h4>Nothing more to show</h4>}
+        loader={<h3> 레시피 불러오는 중 ... </h3>}
+        endMessage={<h4>모든 레시피를 다 보여드렸어요!</h4>}
       >
         <h1>카테고리 : 전체</h1>
         <div>
