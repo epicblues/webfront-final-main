@@ -27,14 +27,14 @@ const index = ({ challenges, user }) => {
       <br />
 
       <h2>만든 챌린지</h2>
-      <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
+      <div style={{ border: "solid 2px lightgray", borderRadius: "2px" }}>
         <MyChallenge challenges={challenges} user={user}></MyChallenge>
       </div>
 
       <h2>참여한 챌린지</h2>
       <div
         className="myChallenge"
-        style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
+        style={{ border: "solid 2px lightgray", borderRadius: "2px" }}
       >
         <ChallengeMainList
           challenges={participatedChallenges}

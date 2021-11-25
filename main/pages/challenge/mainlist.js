@@ -35,7 +35,6 @@ const MainList = ({ challenges, user }) => {
       >
         <div>
           <h2>챌린지 리스트</h2>
-
           {challenges.length > 0 ? (
             <ChallengeMainList
               challenges={selectChallenges(challengeIndex)}
