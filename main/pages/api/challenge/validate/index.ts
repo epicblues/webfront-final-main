@@ -2,7 +2,7 @@ import { NextApiHandler } from "next";
 import { Challenge } from "../../../../models/Challenge";
 
 import { authenticated } from "../../../../util/auth";
-import { parseDocumentToObject } from "../../../../util/date";
+
 import clientPromise from "../../../../util/mongodb";
 
 const handler: NextApiHandler = async (req, res) => {

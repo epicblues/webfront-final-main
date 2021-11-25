@@ -93,16 +93,17 @@ const FinalTotalSum = ({ diary, user }) => {
 
   return (
     <div>
-      <Dropdown selected={selected} setSelected={setSelected} />
-      <div className="ui segments" style={{ marginBottom: "1rem" }}>
+      <Dropdown selected={selected} setSelected={setSelected}/>
+      <div className="ui segments" style={{ marginTop: '6px', marginBottom: "1rem" }}>
+
         <div className="ui segment">
-          <div>총 섭취 칼로리</div>
+          <div>칼로리</div>
           <div className="header">
             <Progress
               done={finalTotalSum.kcal}
               max={managingDatas[selected].kcal}
             />
-            {finalTotalSum.kcal} / {managingDatas[selected].kcal} kcal
+            <span style={{fontWeight: '600'}}>{finalTotalSum.kcal}</span> / {managingDatas[selected].kcal} kcal
           </div>
         </div>
 
@@ -114,7 +115,7 @@ const FinalTotalSum = ({ diary, user }) => {
                 done={finalTotalSum.carbs}
                 max={managingDatas[selected].carbs}
               />
-              {finalTotalSum.carbs} / {managingDatas[selected].carbs} g
+              <span style={{fontWeight: '600'}}>{finalTotalSum.carbs}</span> / {managingDatas[selected].carbs} g
             </div>
           </div>
 
@@ -125,7 +126,7 @@ const FinalTotalSum = ({ diary, user }) => {
                 done={finalTotalSum.prot}
                 max={managingDatas[selected].prot}
               />
-              {finalTotalSum.prot} / {managingDatas[selected].prot} g
+              <span style={{fontWeight: '600'}}>{finalTotalSum.prot}</span> / {managingDatas[selected].prot} g
             </div>
           </div>
 
@@ -136,7 +137,7 @@ const FinalTotalSum = ({ diary, user }) => {
                 done={finalTotalSum.fat}
                 max={managingDatas[selected].fat}
               />
-              {finalTotalSum.fat} / {managingDatas[selected].fat} g
+              <span style={{fontWeight: '600'}}>{finalTotalSum.fat}</span> / {managingDatas[selected].fat} g
             </div>
           </div>
         </div>
