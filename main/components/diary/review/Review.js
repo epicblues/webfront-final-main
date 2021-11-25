@@ -9,7 +9,7 @@ const Review = ({ review, onDelete, onToggle }) => {
               marginBottom: "1rem",
               display: "grid",
               gridTemplateColumns: "9.75fr 0.25fr",
-              gridAutoRows: "minmax(2rem, auto)",
+              gridAutoRows: "minmax(4rem, auto)",
               textAlign: 'left',
               boxShadow: '1px 1px 3px 1px #dadce0'
             }}

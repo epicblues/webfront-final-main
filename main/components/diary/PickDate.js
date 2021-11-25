@@ -75,7 +75,7 @@ const PickDate = ({ diary, setDiary }) => {
             <div onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
               <i className="large grey angle left icon"></i>
             </div>
-            <div style={{font: 'normal bold 1.2rem/100% "Poppins"'}}>
+            <div style={{font: 'normal bold 1.2rem/100% "Montserrat"'}}>
               {formatDate(date)}
             </div>
             <div onClick={increaseMonth} disabled={nextMonthButtonDisabled}>

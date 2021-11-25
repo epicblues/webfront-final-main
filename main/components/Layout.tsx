@@ -28,13 +28,14 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
 
       </div> */}
 
-      <div style={{ marginTop: "2vh", paddingBottom: '12vh' }} onScroll={e => console.log(e)}>
+      <div style={{ marginTop: '3vh', paddingBottom: '12vh' }} onScroll={e => console.log(e)}>
         {children}
       </div>
 
       <footer style={{
 
         backgroundColor: "#fff",
+        opacity: '0.9',
         display: "flex",
         justifyContent: "space-around",
         width: "100vw",
