@@ -1,5 +1,5 @@
 import { React, useState, useRef } from "react";
-import { Header } from "semantic-ui-react";
+import { Header, Icon, Popup } from "semantic-ui-react";
 
 const ChallengeCondition = ({
   challenge,
@@ -59,6 +59,7 @@ const ChallengeCondition = ({
       <Header as="h3" className="challengeContent">
         챌린지 조건
       </Header>
+
       <div className="challengeKind">
         <Header as="h4">챌린지의 종류</Header>
         <input

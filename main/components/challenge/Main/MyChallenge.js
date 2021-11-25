@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Link from "next/dist/client/link";
 import axios from "axios";
+import ProgressBar from "./ProgressBar";
 const MyChallenge = ({ challenges, user }) => {
   return (
     <>
@@ -82,8 +83,15 @@ const MyChallenge = ({ challenges, user }) => {
                         button.disabled = true;
                         if (Array.isArray(result)) {
                           // 실패했다.
-                          button.textContent = "실패";
-                          button.style.color = "red";
+                          button.textContent = "진행중!";
+                          button.style.color = "white";
+                          setInterval(
+                            (button) => {
+                              button.style.display = "none";
+                            },
+                            3000,
+                            button
+                          );
                           const progressBar = button.nextElementSibling;
                           progressBar.style.display = "block";
                         } else {
@@ -103,7 +111,9 @@ const MyChallenge = ({ challenges, user }) => {
                     >
                       챌린지 결과 확인
                     </button>
-                    <div style={{ display: "none" }}>ProgressBar</div>
+                    <div style={{ display: "none" }}>
+                      <ProgressBar value={20} max={100} />
+                    </div>
                   </div>
                 </>
               ) : null}

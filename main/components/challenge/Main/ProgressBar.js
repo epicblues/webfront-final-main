@@ -1,35 +1,16 @@
 import React from "react";
 
-const ProgressBar = () => {
-  const [percent, setPercent] = useState("");
-
-  const changeProgress = (e) => {
-    setPercent(e.currentTarget.value);
-  };
-
+const ProgressBar = ({ value, max }) => {
+  const percent = `${((value / max) * 100).toFixed(0)}%`;
   return (
-    <div className="progress-bar">
-      <div className="value">
-        <div>
-          <span></span>
-        </div>
+    <>
+      <div style={{ opacity: 1, width: percent }}>
+        <progress value={value} max={max} />
+        <span style={{ fontWeight: "600px", textAlign: "center" }}>
+          {(value / max) * 100}%
+        </span>
       </div>
-      <div className="scale">
-        <div>
-          <span></span>
-        </div>
-      </div>
-      <div className="bar">
-        <div></div>
-        <div></div>
-      </div>
-      <div className="legend">
-        <div>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

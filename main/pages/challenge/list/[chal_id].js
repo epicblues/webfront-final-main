@@ -79,38 +79,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
               {challenge.author[0]._id === user.id ? (
                 <>
                   <ChallengeModify />
-                  <button
-                    style={{
-                      backgroundColor: "#35a2f4",
-                      color: "#fff",
-                      textShadow: "none",
-                      display: "inline-block",
-                      cursor: "pointer",
-                      border: "none",
-                      verticalAlign: "baseline",
-                      fontFamily:
-                        "Lato,'Helvetica Neue',Arial,Helvetica,sans-serif",
-                      margin: "0 0.25em0 0",
-                      padding: "0.78571429em 1.5em 0.78571429m",
-                      fontWeight: "700",
-                      lineHeight: "1em",
-                      textAlign: "center",
-                      fontSize: "1rem",
-                      borderRadius: "0.3rem;",
-                      minHeight: "1em",
-                      height: "35px",
-                      width: "120px",
-                    }}
-                    onClick={async () => {
-                      const { data } = await axios.post(
-                        "/api/challenge/validate",
-                        challenge
-                      );
-                      console.log(data);
-                    }}
-                  >
-                    챌린지 결과 확인
-                  </button>
                 </>
               ) : (
                 <>
@@ -120,38 +88,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
                       challenge={challenge}
                       setChallenge={setChallenge}
                     />
-                    <button
-                      style={{
-                        backgroundColor: "#35a2f4",
-                        color: "#fff",
-                        textShadow: "none",
-                        display: "inline-block",
-                        cursor: "pointer",
-                        border: "none",
-                        verticalAlign: "baseline",
-                        fontFamily:
-                          "Lato,'Helvetica Neue',Arial,Helvetica,sans-serif",
-                        margin: "0 0.25em0 0",
-                        padding: "0.78571429em 1.5em 0.78571429m",
-                        fontWeight: "700",
-                        lineHeight: "1em",
-                        textAlign: "center",
-                        fontSize: "1rem",
-                        borderRadius: "0.3rem;",
-                        minHeight: "1em",
-                        height: "35px",
-                        width: "120px",
-                      }}
-                      onClick={async () => {
-                        const { data } = await axios.post(
-                          "/api/challenge/validate",
-                          challenge
-                        );
-                        console.log(data);
-                      }}
-                    >
-                      챌린지 결과 확인
-                    </button>
                   </>
                 </>
               )}

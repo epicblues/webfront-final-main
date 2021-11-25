@@ -264,6 +264,7 @@ const ChallengeWrite = ({ user }) => {
               });
             }}
             selectsEnd
+            placeholderText="챌린지 종료일 선택"
             endDate={challenge.endDate}
             minDate={challenge.startDate}
             withPortal
