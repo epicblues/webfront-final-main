@@ -15,7 +15,9 @@ const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
     borderRadius: "5px",
 
     padding: "20px",
-    fontWeight: 700
+    fontWeight: 700,
+    fontSize: "1.3em",
+    textAlign: "center"
 
 
   }
@@ -39,20 +41,28 @@ const Home: NextPage<any> = ({ user: { name, email, bmr, activity } }) => {
       </div >
       {bmr && (
         <div style={cardStyle} >
-          <p>기초 대사량 : {bmr}</p>
-          <p>일일 권장 칼로리 : {activity}</p>
+          <p>기초 대사량 : <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></p>
+          <p>일일 권장 칼로리 : <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></p>
         </div>
       )
       }
-      <div style={cardStyle}>
-        Challenge
-      </div>
-      <div style={cardStyle}>
-        Diary
-      </div>
-      <div style={cardStyle}>
-        Recipe
-      </div>
+      <Link href="/recipe" passHref>
+        <a style={{ ...cardStyle, backgroundColor: "#00b5ad", fontSize: "1.7em", color: "whitesmoke" }}>
+          Recipe
+        </a>
+      </Link>
+      <Link href="/diary" passHref>
+        <a style={{ ...cardStyle, background: "#00b5ad", fontSize: "1.7em", color: "whitesmoke" }}>
+          Diary
+        </a>
+      </Link>
+      <Link href="/challenge" passHref>
+        <a style={{ ...cardStyle, background: "#00b5ad", fontSize: "1.7em", color: "whitesmoke" }}>
+          Challenge
+        </a>
+      </Link>
+
+
       <button className="ui button facebook" onClick={clickHandler}>Logout</button>
 
 
