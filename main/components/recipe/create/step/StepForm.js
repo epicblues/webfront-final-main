@@ -1,5 +1,6 @@
 import React from "react";
 import AddStep from "./AddStep";
+import Image from "next/image";
 
 const StepForm = ({ stepData, setStepData }) => {
   const removeStep = (step) => {
@@ -15,14 +16,14 @@ const StepForm = ({ stepData, setStepData }) => {
             return (
               <div key={index}>
                 <div>Step. {index + 1}</div>
-                <img
+                <Image
                   src={
                     value.stepImageData ||
                     process.env.NEXT_PUBLIC_STATIC_SERVER_URL + value.image_url
                   }
-                  style={{
-                    width: "100px",
-                  }}
+                  width={100}
+                  height={100}
+                  alt={"Step Image" + (index + 1)}
                 />
                 <span>{value.desc || value.stepDesc}</span>
                 <button type="button" onClick={() => removeStep(value)}>
