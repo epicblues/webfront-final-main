@@ -4,6 +4,7 @@ import "semantic-ui-css/semantic.min.css";
 import { getUserOrRedirect } from "../../util/auth";
 import { Button } from "semantic-ui-react";
 import MyChallenge from "../../components/challenge/Main/MyChallenge";
+import ProgressBar from "../../components/challenge/Main/ProgressBar";
 import clientPromise from "../../util/mongodb";
 import axios from "axios";
 const index = ({ challenges, user }) => {
@@ -100,16 +101,48 @@ const index = ({ challenges, user }) => {
                         height: "35px",
                         width: "120px",
                       }}
-                      onClick={async () => {
-                        const { data } = await axios.post(
+                      onClick={async (event) => {
+                        const { data: result } = await axios.post(
                           "/api/challenge/validate",
                           challenge
                         );
-                        console.log(data);
+                        console.log(result);
+                        const button = event.target;
+
+                        button.disabled = true;
+                        if (Array.isArray(result)) {
+                          // 실패했다.
+                          button.textContent = "진행중!";
+                          button.style.color = "white";
+                          setInterval(
+                            (button) => {
+                              button.style.display = "none";
+                            },
+                            3000,
+                            button
+                          );
+                          const progressBar = button.nextElementSibling;
+                          progressBar.style.display = "block";
+                        } else {
+                          // 성공했다.
+                          button.textContent = "성공!";
+                          button.style.backgroundColor = "blue";
+
+                          setInterval(
+                            (button) => {
+                              button.style.display = "none";
+                            },
+                            3000,
+                            button
+                          );
+                        }
                       }}
                     >
                       챌린지 결과 확인
                     </button>
+                    <div style={{ display: "none" }}>
+                      <ProgressBar value={20} max={100} />
+                    </div>
                   </div>
                 </>
               ) : null}

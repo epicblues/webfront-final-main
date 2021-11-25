@@ -59,6 +59,15 @@ const ChallengeCondition = ({
       <Header as="h3" className="challengeContent">
         챌린지 조건
       </Header>
+      <div>
+        주의!
+        <Popup
+          header="챌린지 조건"
+          content="다이어트 챌린지 조건은 아침,점심,저녁,간식을 모두 작성해야만 조건이 성립합니다."
+          trigger={<Icon name="info circle" size="large" color="grey"></Icon>}
+        />
+      </div>
+      <br />
 
       <div className="challengeKind">
         <Header as="h4">챌린지의 종류</Header>

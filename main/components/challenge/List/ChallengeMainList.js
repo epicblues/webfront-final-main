@@ -14,6 +14,7 @@ const ChallengeMainList = ({ challenges, user }) => {
                 border: "solid 2px lightgray",
                 borderRadius: "5px",
                 textAlign: "left",
+                margin: "10px ",
               }}
             >
               <li>
