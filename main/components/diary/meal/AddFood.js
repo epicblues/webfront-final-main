@@ -99,32 +99,30 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
             setPage={setPage}
           />
         ) : (
-          <div style={{padding: '1rem'}}
+          <div style={{padding: '0 1rem 1rem 1rem'}}
             className="AddFood"
           >
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                paddingBottom: "16px"
+                marginBottom: "16px",
+                height: '24px'
               }}
             >
-              <div>
-                <span>{mealType[type]}</span>
-                <a
-                  style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
-                  className="ui teal circular label"
-                  onClick={() => navigateTo(PAGE_CART)}
-                >
-                  {getCartTotal()}
-                </a>
-              </div>
-
               <MultiBtn
                 color={showAdd ? "#a0a0a0" : "#02b0b0"}
                 text={showAdd ? "취소" : "완료"}
                 onClick={multiBtn}
               />
+              <span style={{font:"normal 600 1.2rem 'Noto Sans KR'"}}>{mealType[type]}</span>
+              <a
+                style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
+                className="ui teal circular label"
+                onClick={() => navigateTo(PAGE_CART)}
+              >
+                {getCartTotal()}
+              </a>
             </div>
 
             {page === PAGE_PRODUCTS && (

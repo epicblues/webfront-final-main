@@ -5,7 +5,6 @@ import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
 import "semantic-ui-css/semantic.min.css";
-
 // Date
 import PickDate from "../../components/diary/PickDate";
 // 영양 섭취 상태
@@ -107,6 +106,8 @@ const Index = ({ user, fetchedDiary }) => {
         <div className="ui center aligned container">
           <div className="DatePart">
             <PickDate diary={diary} setDiary={setDiary} />
+          </div>
+          <div className="TotalPart">
             <FinalTotalSum diary={diary} user={user} />
           </div>
 

@@ -66,8 +66,8 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
   return (
     <div>
       <ImageUpload diary={diary} setDiary={setDiary} type={type} />
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <h4>추가한 리스트</h4>
+      <div style={{ display: "flex", justifyContent: "space-between"}}>
+        <span style={{font:"normal 600 1rem/22.4px 'Noto Sans KR'"}}>추가한 리스트</span>
         {cart.length > 0 && (
           <i
             className="large trash alternate icon grey"
@@ -75,7 +75,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
           ></i>
         )}
       </div>
-      <div className="ui middle aligned divided list">
+      <div className="ui middle aligned divided list" style={{margin: '8px 0'}}>
         {cart.map((product, index) => (
           <Product
             product={product}
@@ -98,7 +98,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
       {/* {page === PAGE_CART && <Cart cart={cart} setCart={setCart} />} */}
 
       <div style={{ marginTop: "16px", textAlign: "center" }}>
-        오늘 {mealType[type]}의 총 섭취 열량은 {getTotalSum()} kcal 입니다
+        오늘 {mealType[type]}의 총 섭취 칼로리는 <span style={{fontWeight: '600'}}>{getTotalSum()}</span> 입니다
       </div>
     </div>
   );
