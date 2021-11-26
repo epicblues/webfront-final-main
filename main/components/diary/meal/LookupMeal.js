@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { PAGE_CART } from "./AddFood";
-
 import List from "./List";
 
 const PAGE_PRODUCTS = "products";
+const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
 
 const LookupMeal = ({
   diary,
@@ -50,24 +50,36 @@ const LookupMeal = ({
   };
 
   return (
-    <div
-      style={{
-        border: "solid 2px lightgray",
-        borderRadius: "5px",
-        padding: "16px",
-      }}
-    >
-      <div style={{ textAlign: "left", marginBottom: "16px" }}>
+    
+    <div style={{padding: '0 1rem 1rem 1rem'}}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: "16px"}}>
         <i
-          className="reply large icon"
+          className="large angle left icon"
           onClick={(e) => {
             setWritingMode("DEFAULT");
           }}
+          style={{verticalAlign: 'bottom'}}
         ></i>
-        뒤로가기
+
+        <span style={{font:"normal 600 1.2rem 'Noto Sans KR'"}}>
+          {mealType[type]}
+        </span>
+
+        <i
+          className="large edit icon"
+          onClick={() =>
+            setDiary((diary) => {
+              const newDiary = { ...diary };
+              newDiary.meals[type].written = false;
+              setPage(PAGE_CART);
+              return newDiary;
+            })
+          }
+        >
+        </i>
       </div>
 
-      <div style={{ width: "100%", height: "40vh" }}>
+      <div style={{ width: "100%", height: "40vh", boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '5px'}}>
         <img
           src={
             diary.meals[type].imageBuffer ||
@@ -80,7 +92,7 @@ const LookupMeal = ({
 
       <div
         className="ui large horizontal divided list"
-        style={{ display: "flex" }}
+        style={{ display: "flex", textAlign: 'center'}}
       >
         <div className="item" style={{ width: "25%" }}>
           <div className="content" style={{ marginBottom: "8px" }}>
@@ -118,17 +130,18 @@ const LookupMeal = ({
       </div>
 
       <button
-        className="ui fluid button blue"
+        className="ui fluid button teal"
+        style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
         onClick={() =>
           setDiary((diary) => {
             const newDiary = { ...diary };
             newDiary.meals[type].written = false;
-            setPage(PAGE_CART);
+            setPage(PAGE_PRODUCTS);
             return newDiary;
           })
         }
       >
-        편집 및 추가하기
+        더 추가하기
       </button>
     </div>
   );

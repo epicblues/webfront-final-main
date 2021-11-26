@@ -6,9 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "dev-temp": "next dev -p 3100"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "axios": "^0.24.0",
     "bcrypt": "^5.0.1",
     "cookie": "^0.4.1",
@@ -19,6 +25,7 @@
     "react-datepicker": "^4.3.0",
     "react-dom": "17.0.2",
     "react-hook-form": "^7.17.5",
+    "react-infinite-scroll-component": "^6.1.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.4"
   },

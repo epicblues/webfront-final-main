@@ -23,18 +23,16 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   // Count
   const getCartTotal = () => {
     return (
-      diary.meals[type].foods.reduce((prev, current) => {
-        return prev + current.quantity;
-      }, 0) || 0
+      diary.meals[type].foods.length
     );
   };
 
   // 취소<->완료 멀티 버튼
   const showAdd =
     diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer;
-  const multiBtn = (e) => {
-    if (!(diary.meals[type].foods.length !== 0)) {
-      return setWritingMode("DEFAULT");
+  const multiBtn = async (e) => {
+    if (!showAdd) {
+      await saveMeal();
     } else {
       return saveMeal();
     }
@@ -58,7 +56,8 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
   const saveMeal = async () => {
     const formData = new FormData();
     const mealToUpdate = diary.meals[type];
-
+    const isWritten = !(mealToUpdate.foods.length === 0 && !mealToUpdate.imageBuffer)
+    mealToUpdate.written = isWritten;
     formData.append("type", type);
 
     for (const key in mealToUpdate) {
@@ -76,18 +75,19 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
       user.token,
       formData
     );
+    console.log(result);
 
     // 수정해야함 diary의 state를 비동기적으로 변경하는 함수로
     setWritingMode("DEFAULT");
     setDiary((diary) => {
       const newDiary = { ...diary };
-      newDiary.meals[type].written = true;
+      newDiary.meals[type].written = isWritten
       return newDiary;
     });
   };
 
   return (
-    <>
+    <div>
       {writingMode === type ? (
         diary.meals[type].written ? (
           <LookupMeal
@@ -99,32 +99,30 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
             setPage={setPage}
           />
         ) : (
-          <div
+          <div style={{padding: '0 1rem 1rem 1rem'}}
             className="AddFood"
-            style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
           >
             <div
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: "16px",
+                marginBottom: "16px",
+                height: '24px'
               }}
             >
-              <div>
-                <span>{mealType[type]}</span>
-                <a
-                  className="ui teal circular label"
-                  onClick={() => navigateTo(PAGE_CART)}
-                >
-                  {getCartTotal()}
-                </a>
-              </div>
-
               <MultiBtn
-                color={showAdd ? "red" : "yellow"}
+                color={showAdd ? "#a0a0a0" : "#02b0b0"}
                 text={showAdd ? "취소" : "완료"}
                 onClick={multiBtn}
               />
+              <span style={{font:"normal 600 1.2rem 'Noto Sans KR'"}}>{mealType[type]}</span>
+              <a
+                style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
+                className="ui teal circular label"
+                onClick={() => navigateTo(PAGE_CART)}
+              >
+                {getCartTotal()}
+              </a>
             </div>
 
             {page === PAGE_PRODUCTS && (
@@ -148,7 +146,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
           </div>
         )
       ) : null}
-    </>
+    </div>
   );
 }
 

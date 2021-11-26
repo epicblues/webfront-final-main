@@ -9,6 +9,19 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
     const client = await clientPromise;
     const challengeId = await getNextSequence("challenge", client);
 
+    // Diet Type
+    if (challengeForm.type === "diet") {
+      const dietChecker = [];
+      for (let i = 0; i < challengeForm.dateDiff + 1; i++)
+        dietChecker.push(false);
+      challengeForm.diet.checker = dietChecker;
+    }
+
+    // Recipe Type
+    if (challengeForm.type === "recipe") {
+      challengeForm.recipe.checker = [];
+    }
+
     await client
       .db("webfront")
       .collection("challenge")
@@ -18,8 +31,9 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         uploadDate: new Date(),
         startDate: new Date(challengeForm.startDate),
         endDate: new Date(challengeForm.endDate),
-        success: false,
+
         participants: [challengeForm.userId],
+        winners: [],
       });
     res.status(200).json({ status: "ok" });
   } catch (error) {

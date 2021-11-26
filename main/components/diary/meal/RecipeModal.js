@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 
-const RecipeModal = ({ value, index, handleModal, addToCart, open }) => {
+const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
+  const inputRef = useRef();
+  const [exampleQtt, setExampleQtt] = useState(1);
+  const [error, setError] = useState(false);
+
+  const onAddBtn = (food) => {
+    const quantity = +inputRef.current.value;
+    if (!/^\d{1}$/.test(quantity)) {
+      setError(true);
+    } else {
+      setError(false);
+      console.log(food);
+      const coefficient = quantity / food.qtt;
+
+      setExampleQtt(coefficient);
+    }
+  };
+
   return (
-    <div className="item" key={index} style={{ padding: "8px" }}>
+    <div className="item" key={index} style={{ padding: "8px 0 8px 0" }}>
       <div
         style={{
           textAlign: "left",
           display: "grid",
-          gridTemplateColumns: "9.5fr 0.5fr",
+          gridTemplateColumns: "9.75fr 0.25fr",
         }}
       >
         <div>
@@ -38,29 +55,112 @@ const RecipeModal = ({ value, index, handleModal, addToCart, open }) => {
             }
           >
             <Modal.Header>
-              <i className="info circle icon"></i>
-              {value.title} 영양 성분
+              <i className="balance scale icon"></i>
+              {value.title}
             </Modal.Header>
-            <Modal.Content>
-              <Modal.Description>
-                <ul className="ui middle aligned animated list">
-                  <li className="item">설명: {value.desc}</li>
-                  <li className="item">양: {value.qtt}인분</li>
-                  <li className="item">열량: {value.nutrition.kcal}kcal</li>
-                  <li className="item">탄수화물: {value.nutrition.carbs}g</li>
-                  <li className="item">단백질: {value.nutrition.prot}g</li>
-                  <li className="item">당류: {value.nutrition.sugars}g</li>
-                  <li className="item">지방: {value.nutrition.fat}g</li>
-                  <li className="item">
-                    트랜스지방: {value.nutrition.trnfat}g
-                  </li>
-                  <li className="item">포화지방: {value.nutrition.stdfat}g</li>
-                  <li className="item">
-                    콜레스테롤: {value.nutrition.chole}mg
-                  </li>
-                  <li className="item">나트륨: {value.nutrition.sodium}mg</li>
-                </ul>
-              </Modal.Description>
+            <Modal.Content style={{ textAlign: "center" }}>
+              {error && (
+                <p className="errorMsg" style={{ color: "red" }}>
+                  최대 한 자릿수까지 인분을 입력할 수 있어요
+                  <i className="frown outline icon"></i>
+                </p>
+              )}
+              <div className="ui right labeled input">
+                <input
+                  autoFocus={true}
+                  ref={inputRef}
+                  type="number"
+                  placeholder="선택한 음식의 양"
+                  defaultValue={value.qtt}
+                />
+                <div className="ui basic label"> 인분</div>
+                <button
+                  className="ui button teal"
+                  onClick={() => onAddBtn(value)}
+                  style={{ marginLeft: "1rem" }}
+                >
+                  입력
+                </button>
+              </div>
+
+              <table
+                className="ui very basic collapsing celled table"
+                style={{ textAlign: "center", margin: "1.5rem auto 0" }}
+              >
+                <thead>
+                  <tr>
+                    <th>영양 성분</th>
+                    <th>열량</th>
+                    <th>탄수화물</th>
+                    <th>단백질</th>
+                    <th>지방</th>
+                    <th>당</th>
+                    <th>나트륨</th>
+                    <th>트랜스지방</th>
+                    <th>포화지방</th>
+                    <th>콜레스테롤</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>총 내용량당</td>
+                    <td>
+                      {isNaN(value.nutrition.kcal * exampleQtt)
+                        ? 0
+                        : value.nutrition.kcal * exampleQtt}
+                      kcal
+                    </td>
+                    <td>
+                      {isNaN(value.nutrition.carbs * exampleQtt)
+                        ? 0
+                        : value.nutrition.carbs * exampleQtt}
+                      g
+                    </td>
+                    <td>
+                      {isNaN(value.nutrition.prot * exampleQtt)
+                        ? 0
+                        : value.nutrition.prot * exampleQtt}
+                      g
+                    </td>
+                    <td>
+                      {isNaN(value.nutrition.fat * exampleQtt)
+                        ? 0
+                        : value.nutrition.fat * exampleQtt}
+                      g
+                    </td>
+                    <td>
+                      {isNaN(value.nutrition.sugars * exampleQtt)
+                        ? 0
+                        : value.nutrition.sugars * exampleQtt}
+                      g
+                    </td>
+                    <td>
+                      {isNaN(value.nutrition.sodium * exampleQtt)
+                        ? 0
+                        : value.nutrition.sodium * exampleQtt}
+                      mg
+                    </td>
+                    <td>
+                      {isNaN(value.nutrition.trnfat * exampleQtt)
+                        ? 0
+                        : value.nutrition.trnfat * exampleQtt}
+                      g
+                    </td>
+                    <td>
+                      {isNaN(value.nutrition.stdfat * exampleQtt)
+                        ? 0
+                        : value.nutrition.stdfat * exampleQtt}
+                      g
+                    </td>
+                    <td>
+                      {isNaN(value.nutrition.chole * exampleQtt)
+                        ? 0
+                        : value.nutrition.chole * exampleQtt}
+                      mg
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </Modal.Content>
 
             <Modal.Actions>
@@ -68,12 +168,13 @@ const RecipeModal = ({ value, index, handleModal, addToCart, open }) => {
                 취소
               </Button>
               <Button
-                content="확인"
+                content="추가하기"
                 labelPosition="right"
                 icon="checkmark"
                 onClick={() => {
                   handleModal(index);
-                  addToCart(value);
+                  const copiedValue = { ...value, quantity: exampleQtt };
+                  addToCart(copiedValue);
                 }}
                 positive
               />
@@ -81,22 +182,23 @@ const RecipeModal = ({ value, index, handleModal, addToCart, open }) => {
           </Modal>
         </div>
         <i
-          className="teal plus circle icon right floated"
+          className="teal large plus circle icon"
           onClick={(e) => {
             console.log(value);
-            addToCart(value);
+            const copiedValue = {...value, quantity : value.qtt}
+            addToCart(copiedValue);
 
-            e.currentTarget.className = "green check circle icon right floated";
+            e.currentTarget.className = "green large check circle icon";
             const targetReverse = (target) => () => {
-              target.className = "teal plus circle icon right floated";
+              target.className = "teal large plus circle icon";
             };
-            setTimeout(targetReverse(e.currentTarget), 1000);
+            setTimeout(targetReverse(e.currentTarget), 500);
           }}
-          style={{ marginTop: 8 }}
+          style={{ marginTop: "5px" }}
         ></i>
       </div>
     </div>
   );
 };
 
-export default RecipeModal;
+export default FoodModal;

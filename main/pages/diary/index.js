@@ -1,10 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
-import { getDateId } from "../../util/date";
+import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
-
+import "semantic-ui-css/semantic.min.css";
 // Date
 import PickDate from "../../components/diary/PickDate";
 // 영양 섭취 상태
@@ -35,22 +35,17 @@ const Index = ({ user, fetchedDiary }) => {
   const tabContArr = [
     {
       tabTitle: (
-        <li
+        <a
           key="uniqueId1"
-          className={activeIndex === 0 ? "is-active" : ""}
+          className='{activeIndex === 0 ? "is-active" : ""} item'
           onClick={() => tabClickHandler(0)}
         >
-          <a className="item">
-            식단<i className="utensils icon" style={{ marginLeft: 4 }}></i>
-          </a>
-        </li>
+          식단
+        </a>
       ),
       tabCont: (
-        <div style={{ border: "solid 2px lightgray", borderRadius: "5px" }}>
-          <h2 style={{ textAlign: "left", padding: "16px 16px 0 16px" }}>
-            오늘의 식단
-            {/* <i className="utensils icon" style={{ marginLeft: 4 }}></i> */}
-          </h2>
+        <div>
+          <h3 style={{ textAlign: "left" }}>오늘의 식단</h3>
 
           <div
             className="container"
@@ -59,7 +54,6 @@ const Index = ({ user, fetchedDiary }) => {
               gridTemplateColumns: "5fr 5fr",
               gridAutoRows: "200px",
               gridGap: "1rem",
-              padding: "0 16px 16px",
             }}
           >
             {[0, 1, 2, 3].map((type) => (
@@ -77,16 +71,13 @@ const Index = ({ user, fetchedDiary }) => {
     },
     {
       tabTitle: (
-        <li
+        <a
           key="uniqueId2"
-          className={activeIndex === 1 ? "is-active" : ""}
+          className='{activeIndex === 1 ? "is-active" : ""} item'
           onClick={() => tabClickHandler(1)}
         >
-          <a className="item">
-            일기
-            <i className="pencil alternate icon" style={{ marginLeft: 4 }}></i>
-          </a>
-        </li>
+          일기
+        </a>
       ),
       tabCont: (
         <div>
@@ -115,18 +106,17 @@ const Index = ({ user, fetchedDiary }) => {
         <div className="ui center aligned container">
           <div className="DatePart">
             <PickDate diary={diary} setDiary={setDiary} />
-            <FinalTotalSum diary={diary} user={user}/>
+          </div>
+          <div className="TotalPart">
+            <FinalTotalSum diary={diary} user={user} />
           </div>
 
           <div className="content">
-            <ul
-              className="ui secondary pointing menu"
-              style={{ listStyle: "none" }}
-            >
+            <div className="ui two item menu" style={{ listStyle: "none" }}>
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
-            </ul>
+            </div>
             <div>{tabContArr[activeIndex].tabCont}</div>
           </div>
         </div>
@@ -156,10 +146,18 @@ export const getServerSideProps = async (ctx) => {
         .collection("diary")
         .insertOne({ ...initialDiary, _id: diaryId });
       return {
-        props: { user, fetchedDiary: { ...initialDiary, _id: diaryId } },
+        props: {
+          user,
+          fetchedDiary: parseDocumentToObject({
+            ...initialDiary,
+            _id: diaryId,
+          }),
+        },
       };
     } else {
-      return { props: { user, fetchedDiary: loadedDiary } };
+      return {
+        props: { user, fetchedDiary: parseDocumentToObject(loadedDiary) },
+      };
     }
   } catch (error) {
     ctx.res.status(500).json({ message: error });

@@ -1,60 +1,74 @@
 import { useRouter } from 'next/dist/client/router'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, LegacyRef, UIEventHandler, useRef } from 'react'
 import 'semantic-ui-css/semantic.min.css'
-import { Container, Grid, Card } from 'semantic-ui-react'
-import Link from 'next/link'
+import { TextArea } from 'semantic-ui-react'
+
+
+import MiniButton from './main/NavButton'
+
 
 
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
-  const router = useRouter()
-  const clickHandler = async () => {
-    const res = await fetch('/api/user/logout');
-    if (res.status === 200) {
-      router.push('/user/login')
-    }
-  }
+
+
   return (
     // 모든 페이지에 적용될 레이아웃 디자인 (Header Or Footer)
-    <div>
-      <hr />
-      <Container textAlign="center">
+    <>
+
+      {/* <div style={{ height: "40px", display: "flex", justifyContent: "space-between", background: "#fff", padding: '0 0 6px 0', boxShadow: '1px 1px 3px 1px #dadce0' }}>
         {pageProps.user
           ?
-          (<Grid centered>
-
-            <Grid.Row textAlign="center">
-              <button className="ui button facebook" onClick={clickHandler}>{pageProps.user?.name}님 Logout</button>
-
-              <Link passHref href="/challenge" >
-                <button className="ui button">Challenge</button>
-              </Link>
-              <Link passHref href="/diary">
-                <button className="ui button">Diary</button>
-              </Link>
-              <Link passHref href="/recipe">
-                <button className="ui button">Recipe</button>
-              </Link>
-            </Grid.Row>
-          </Grid>)
+          (<>
+            <button onClick={(e) => { e.currentTarget.innerHTML = "&copy; 강래헌, 김민성, 조은혜, 박지훈"; e.currentTarget.classList.toggle("instagram"); }} style={{ paddingLeft: "5px", paddingRight: "10px", backgroundColor: "#00b5ad", fontWeight: "bolder", borderRadius: "5px", color: "white", boxShadow: "none", border: "none" }} > &copy;요건 다 내꺼</button>
+            <button className="ui button facebook" onClick={clickHandler}>Logout</button>
+          </>)
           :
-          <h1>요건 다 내꺼</h1>}
+          <button onClick={(e) => { e.currentTarget.innerHTML = "강래헌, 김민성, 조은혜, 박지훈"; e.currentTarget.classList.toggle("instagram"); }} style={{ paddingLeft: "5px", paddingRight: "10px", backgroundColor: "#00b5ad", fontWeight: "bolder", borderRadius: "5px", color: "white", boxShadow: "none", border: "none" }} > &copy; 요건 다 내꺼</button>}
 
-      </Container>
-      <hr />
-      <Container textAlign="center">
+      </div> */}
+
+      <div style={{ marginTop: '3vh', paddingBottom: '12vh' }} onScroll={e => console.log(e)}>
         {children}
-      </Container>
-      <hr />
-      <Container textAlign="center">
+      </div>
 
-        <Card centered>
-          <button onClick={() => { alert("강래헌, 김민성, 박지훈, 조은혜") }} className="ui button instagram animated" > &copy; Team 요건 다 내꺼</button>
+      <footer style={{
 
+        backgroundColor: "#fff",
+        opacity: '0.9',
+        display: "flex",
+        justifyContent: "space-around",
+        width: "100vw",
+        position: "fixed",
+        left: "0",
+        bottom: "0",
+        textAlign: 'center',
+        padding: '6px 0 0 0',
+        boxShadow: '1px 1px 3px 1px #dadce0'
+      }} >
+        {pageProps.user &&
+          <>
+            <MiniButton href="/recipe">
+              <i className='book icon'></i>
+              <p>Recipe</p>
+            </MiniButton>
+            <MiniButton href="/diary">
+              <i className='utensils icon'></i>
+              <p>Diary</p>
+            </MiniButton>
+            <MiniButton href="/challenge" >
+              <i className='thumbs up icon'></i>
+              <p>Challenge</p>
+            </MiniButton>
+            <MiniButton href="/">
+              <i className='user icon'></i>
+              <p>User</p>
+            </MiniButton>
+          </>
+        }
+      </footer>
 
-        </Card>
-      </Container>
-    </div >
+    </ >
   )
 }
 

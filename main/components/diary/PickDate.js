@@ -3,7 +3,6 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
 registerLocale("ko", { ...ko, options: { ...ko.options, weekStartsOn: 1 } }); // 주시작일 - 일요일:0 월요일:1
 import "react-datepicker/dist/react-datepicker.css";
-import "semantic-ui-css/semantic.min.css";
 
 import { getDateId, returnIdToDate } from "../../util/date";
 import axios from "axios";
@@ -15,6 +14,13 @@ const PickDate = ({ diary, setDiary }) => {
   const router = useRouter();
   const [startDate, setStartDate] = useState(returnIdToDate(dateId));
   const [isOpen, setIsOpen] = useState(false);
+
+  const CustomInput = ({ value, onClick }) => (
+    <div className='customInput' onClick={onClick}>
+      {value}
+      <i className='calendar alternate outline icon' style={{marginBottom: '3px'}}></i>
+    </div>
+  );
 
   const dateChangeHandler = async (date) => {
     const dateId = getDateId(date);
@@ -45,7 +51,7 @@ const PickDate = ({ diary, setDiary }) => {
     <div>
       <DatePicker
         withPortal
-        dateFormat="yyyy.MM.dd"
+        dateFormat="yyyy년 MM월 dd일"
         selected={startDate}
         onChange={dateChangeHandler}
         maxDate={new Date()}
@@ -56,6 +62,7 @@ const PickDate = ({ diary, setDiary }) => {
           preventOverflow: { enbled: true },
         }}
         popperPlacement="auto" // 화면 중앙에 팝업이 출현
+        customInput={<CustomInput />}
         renderCustomHeader={({
           // header 커스텀 설정
           date,
@@ -68,7 +75,9 @@ const PickDate = ({ diary, setDiary }) => {
             <div onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
               <i className="large grey angle left icon"></i>
             </div>
-            <div style={{font: 'normal bold 1.2rem/100% "Helvetica Neue"'}}>{formatDate(date)}</div>
+            <div style={{font: 'normal bold 1.2rem/100% "Montserrat"'}}>
+              {formatDate(date)}
+            </div>
             <div onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
               <i className="large grey angle right icon"></i>
             </div>

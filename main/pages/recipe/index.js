@@ -9,7 +9,13 @@ import Categories from "../../components/recipe/index/Categories";
 import Search from "../../components/recipe/index/Search";
 
 // CSS
+import containerStyles from "../../styles/recipe/Container.module.css";
+import headerStyles from "../../styles/recipe/Header.module.css";
 import recipeListStyles from "../../styles/RecipeList.module.css";
+
+// ICON
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faEllipsisV, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
   const [showCategories, setShowCategories] = useState(true);
@@ -39,12 +45,32 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
   }
 
   return (
-    <div>
-      {/* 홈 */}
-      <h1>Recipe Main</h1>
+    <div className={containerStyles.container}>
+      {/* header */}
+      <div className={headerStyles.header}>
+        {/* 로고옆에 글쓰기, 내 래시피 버튼 */}
+        {/* 검색창 */}
+        <Search />
 
-      {/* 검색창 */}
-      <Search />
+        {/* 레시피 등록하기 */}
+        <Link passHref href="/recipe/create">
+          <a>
+            <FontAwesomeIcon icon={faPen} color="black" size="2x" />
+            <p>
+              레시피
+              <br /> 등록하기
+            </p>
+          </a>
+        </Link>
+
+        {/* 내 레시피 조회 */}
+        <Link passHref href="/recipe/list/my">
+          <a>
+            <FontAwesomeIcon icon={faEllipsisV} color="black" size="2x" />
+            <p>내 레시피</p>
+          </a>
+        </Link>
+      </div>
 
       {/* 카테고리 검색 */}
       {showCategories ? <Categories /> : null}
@@ -58,25 +84,12 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
       <br />
       <p></p>
 
-      {/* 레시피 등록하기 */}
-      <Link passHref href="/recipe/create">
-        <button>레시피 등록하기</button>
-      </Link>
-
-      {/* 찜한 레시피 조회 */}
-      <input type="button" value="찜한 레시피" />
-
-      {/* 내 레시피 조회 */}
-      <Link passHref href="/recipe/list/my">
-        <button>내 레시피</button>
-      </Link>
-
       {/* 최신 레시피 */}
       <h3>최신 레시피</h3>
       <ul className={recipeListStyles.cards}>
         {filteredLatestRecipes.map((card, index) => {
           return (
-            <li key={card._id}>
+            <li key={card._id} className={recipeListStyles.card}>
               <Link
                 href={{
                   pathname: `/recipe/card/${card._id}`,
@@ -85,19 +98,53 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
                 passHref
               >
                 <a>
-                  <Image
-                    src={
-                      process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                      card.steps.slice(-1)[0].image_url
-                    }
-                    width={100}
-                    height={100}
-                    alt="thumbnail image"
-                  />
-                  <p>{card.title}</p>
-                  <p>카테고리: {renderSwitchCategory(card.category)}</p>
-                  <p>작성자: {card.author[0].name}</p>
-                  <p>조회수: {card.hit}</p>
+                  {/* 카드 헤더 (이미지) */}
+                  <div className={recipeListStyles.cardHeader}>
+                    <Image
+                      className={recipeListStyles.cardHeaderImage}
+                      src={
+                        process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                        card.steps.slice(-1)[0].image_url
+                      }
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="top"
+                      alt="thumbnail image"
+                    />
+                  </div>
+                  {/* 카드 바디 */}
+                  <div className={recipeListStyles.cardBodyMain}>
+                    {/* 카드 바디 헤더 */}
+                    <div className={recipeListStyles.cardBodyHeader}>
+                      <h1 className={recipeListStyles.h1}>{card.title}</h1>
+                      <p className={recipeListStyles.cardBodyCategory}>
+                        #{renderSwitchCategory(card.category)}
+                      </p>
+                      <p className={recipeListStyles.cardBodyAuthor}>
+                        작성자: {card.author[0].name}
+                      </p>
+                    </div>
+
+                    {/* 카드 바디 본문 */}
+                    <div className={recipeListStyles.cardBodyMain}>
+                      <p className={recipeListStyles.cardBodyDesc}>
+                        {card.desc}
+                      </p>
+                    </div>
+
+                    {/* 카드 바디 푸터 */}
+                    <div className={recipeListStyles.cardBodyFooter}>
+                      <hr className={recipeListStyles.hr} />
+                      <FontAwesomeIcon
+                        className={recipeListStyles.cardIconHit}
+                        icon={faEye}
+                      />
+                      <span>조회 {card.hit}회</span>
+                      <span className={recipeListStyles.cardUploadDate}>
+                        {card.upload_date.slice(0, -14)}
+                      </span>
+                    </div>
+                  </div>
                 </a>
               </Link>
             </li>
@@ -110,7 +157,7 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
       <ul className={recipeListStyles.cards}>
         {filteredHitRecipes.map((card, index) => {
           return (
-            <li key={card._id}>
+            <li key={card._id} className={recipeListStyles.card}>
               <Link
                 href={{
                   pathname: `/recipe/card/${card._id}`,
@@ -119,19 +166,53 @@ const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
                 passHref
               >
                 <a>
-                  <Image
-                    src={
-                      process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                      card.steps.slice(-1)[0].image_url
-                    }
-                    width={100}
-                    height={100}
-                    alt="thumbnail image"
-                  />
-                  <p>{card.title}</p>
-                  <p>카테고리: {renderSwitchCategory(card.category)}</p>
-                  <p>작성자: {card.author[0].name}</p>
-                  <p>조회수: {card.hit}</p>
+                  {/* 카드 헤더 (이미지) */}
+                  <div className={recipeListStyles.cardHeader}>
+                    <Image
+                      className={recipeListStyles.cardHeaderImage}
+                      src={
+                        process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                        card.steps.slice(-1)[0].image_url
+                      }
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="top"
+                      alt="thumbnail image"
+                    />
+                  </div>
+                  {/* 카드 바디 */}
+                  <div className={recipeListStyles.cardBodyMain}>
+                    {/* 카드 바디 헤더 */}
+                    <div className={recipeListStyles.cardBodyHeader}>
+                      <h1 className={recipeListStyles.h1}>{card.title}</h1>
+                      <p className={recipeListStyles.cardBodyCategory}>
+                        #{renderSwitchCategory(card.category)}
+                      </p>
+                      <p className={recipeListStyles.cardBodyAuthor}>
+                        작성자: {card.author[0].name}
+                      </p>
+                    </div>
+
+                    {/* 카드 바디 본문 */}
+                    <div className={recipeListStyles.cardBodyMain}>
+                      <p className={recipeListStyles.cardBodyDesc}>
+                        {card.desc}
+                      </p>
+                    </div>
+
+                    {/* 카드 바디 푸터 */}
+                    <div className={recipeListStyles.cardBodyFooter}>
+                      <hr className={recipeListStyles.hr} />
+                      <FontAwesomeIcon
+                        className={recipeListStyles.cardIconHit}
+                        icon={faEye}
+                      />
+                      <span>조회 {card.hit}회</span>
+                      <span className={recipeListStyles.cardUploadDate}>
+                        {card.upload_date.slice(0, -14)}
+                      </span>
+                    </div>
+                  </div>
                 </a>
               </Link>
             </li>

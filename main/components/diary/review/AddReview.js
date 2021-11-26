@@ -18,24 +18,19 @@ const AddReview = ({ onAdd }) => {
   };
 
   return (
-    <form className="ui form" onSubmit={onSubmit} style={{ padding: 16 }}>
-      <div className="field">
-        <label style={{ textAlign: "left" }}>
-          오늘의 일기
-          <i className="eraser icon"></i>
-        </label>
+    <form className="ui form" onSubmit={onSubmit}>
+      
         <textarea
           type="text"
           placeholder="Add Review"
           value={text}
           onChange={(e) => setText(e.target.value)}
         />
-      </div>
 
       <button
         type="submit"
-        className="fluid ui button"
-        style={{ marginBottom: "10px" }}
+        className="fluid ui button teal"
+        style={{ margin: "1rem 0 1rem 0" }}
       >
         작성완료
       </button>

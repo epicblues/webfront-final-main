@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const ImageUpload = ({ diary, setDiary, type }) => {
+const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
   const imgPreview = diary.meals[type].imageBuffer;
   const [error, setError] = useState(false);
 
@@ -46,14 +46,6 @@ const ImageUpload = ({ diary, setDiary, type }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
-        {(imgPreview || diary.meals[type].image) && (
-          <div style={{ textAlign: "right", marginBottom: "16px" }}>
-            <i
-              className="red large trash alternate icon"
-              onClick={handleImageChange}
-            ></i>
-          </div>
-        )}
         <div
           className="imgPreview ui rounded image"
           style={{
@@ -74,6 +66,7 @@ const ImageUpload = ({ diary, setDiary, type }) => {
             textAlign: "center",
             color: "white",
             marginBottom: "16px",
+            boxShadow: '1px 1px 3px 1px #dadce0'
           }}
         >
           {!imgPreview && (
@@ -83,7 +76,7 @@ const ImageUpload = ({ diary, setDiary, type }) => {
                 className="customFileUpload"
                 style={{ cursor: "pointer", marginBottom: 4 }}
               >
-                <i className="images outline huge icon"></i>
+                <i className="huge images outline icon"></i>
               </label>
               <input
                 type="file"
@@ -91,13 +84,16 @@ const ImageUpload = ({ diary, setDiary, type }) => {
                 style={{ display: "none" }}
                 onChange={handleImageChange}
               />
-              <span>
-                사진 추가
-                <br />
-                jpg / jpeg / png
-              </span>
             </>
-          )}
+            )}
+            {!diary.meals[type].image || (
+              <div style={{ textAlign: "right", marginBottom: "16px" }}>
+                <i
+                  className="huge trash alternate icon"
+                  onClick={handleImageChange}
+                ></i>
+              </div>
+            )}
         </div>
       </div>
     </div>

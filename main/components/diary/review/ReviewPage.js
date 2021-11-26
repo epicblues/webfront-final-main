@@ -34,10 +34,7 @@ const ReviewPage = ({ diary, setDiary }) => {
   };
 
   return (
-    <div
-      className="ui content"
-      style={{ border: "solid 2px lightgray", borderRadius: "5px" }}
-    >
+    <div className="ui content">
       <ReviewHeader
         onAdd={() => setShowAddReview(!showAddReview)}
         showAdd={showAddReview}

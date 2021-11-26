@@ -22,8 +22,7 @@ const handler: NextApiHandler = async (req, res) => {
         },
         {
           returnDocument: "after",
-          returnOriginal: "false",
-        } as FindOneAndUpdateOptions
+        }
       );
     console.log(result);
     res.status(200).json({ challenge: result.value });

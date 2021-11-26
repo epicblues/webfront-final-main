@@ -23,22 +23,16 @@ const options = [
 ]
 
 const DropdownMenu = ({selected, setSelected}) => (
-  <Header as='h4'>
-    <Icon name='utensil spoon' />
-    <Header.Content>
-      {' '}
+  <div style={{fontSize: '1rem', textAlign: 'left', padding: '1rem 0 0 2rem'}}>
+    {' '}
       <Dropdown
         inline
         header='Managing Diet'
         options={options}
         defaultValue={options[selected].value}
         onChange={(e) => { setSelected(['유지','감량','증량'].indexOf(e.target.innerText))}}
-        
-        
-        
       />
-    </Header.Content>
-  </Header>
+  </div>
 )
 
 export default DropdownMenu

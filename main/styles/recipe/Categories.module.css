@@ -1,0 +1,14 @@
+.container {
+  text-align: center;
+}
+
+.ul {
+  text-align: center;
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+.ul li {
+  text-align: center;
+  margin-right: 1rem;
+}
