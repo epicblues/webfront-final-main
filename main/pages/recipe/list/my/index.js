@@ -64,10 +64,10 @@ const Index = ({ user, filteredRecipes }) => {
     <div>
       <GoBackward />
       <h1>내 레시피</h1>
-      <ul className={recipeListStyles.cards}>
+      <div className={recipeListStyles.cards}>
         {recipes.map((card, index) => {
           return (
-            <li key={card._id} className={recipeListStyles.card}>
+            <div key={card._id} className={recipeListStyles.card}>
               <Link
                 href={{
                   pathname: `/recipe/card/${card._id}`,
@@ -140,10 +140,10 @@ const Index = ({ user, filteredRecipes }) => {
                   </div>
                 </a>
               </Link>
-            </li>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 };
