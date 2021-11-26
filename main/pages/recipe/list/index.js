@@ -19,7 +19,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faEllipsisV, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Index = ({ user, recipes }) => {
   //  카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수

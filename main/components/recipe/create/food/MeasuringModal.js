@@ -3,6 +3,7 @@ import Image from "next/dist/client/image";
 
 //  CSS
 import modalStyles from "../../../../styles/Modal.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const MeasuringModal = ({ setIsMeasuringModalVisible }) => {
   const onXBtn = () => {
@@ -10,9 +11,7 @@ const MeasuringModal = ({ setIsMeasuringModalVisible }) => {
   };
   return (
     <div className={modalStyles.modal}>
-      <button type="button" onClick={() => onXBtn(false)}>
-        X
-      </button>
+      <div className={modalStyles.close} onClick={() => onXBtn(false)}></div>
 
       <div>
         <h3>계량 팁</h3>
