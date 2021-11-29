@@ -1,7 +1,9 @@
 import { useRouter } from 'next/dist/client/router'
-import React, { FunctionComponent, LegacyRef, UIEventHandler, useRef } from 'react'
+import React, { FunctionComponent, LegacyRef, UIEventHandler, useRef, useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { TextArea } from 'semantic-ui-react'
+import MenuModal from './main/MenuModal'
+import ModalButton from './main/ModalButton'
 
 
 import MiniButton from './main/NavButton'
@@ -10,7 +12,7 @@ import MiniButton from './main/NavButton'
 
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
-
+  const [menuModal, setMenuModal] = useState(false)
 
   return (
     // 모든 페이지에 적용될 레이아웃 디자인 (Header Or Footer)
@@ -56,6 +58,10 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
               <i className='utensils icon'></i>
               <p>Diary</p>
             </MiniButton>
+            <ModalButton onClick={() => { setMenuModal(!menuModal) }}>
+              <i className='dot circle icon'></i>
+              <p>Menu</p>
+            </ModalButton>
             <MiniButton href="/challenge" >
               <i className='thumbs up icon'></i>
               <p>Challenge</p>
@@ -67,6 +73,9 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
           </>
         }
       </footer>
+      {menuModal &&
+        <MenuModal onExit={() => { setMenuModal(false) }} />
+      }
 
     </ >
   )

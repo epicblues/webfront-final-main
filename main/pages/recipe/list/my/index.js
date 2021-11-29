@@ -133,7 +133,13 @@ const Index = ({ user, filteredRecipes }) => {
                           <button type="button">수정하기</button>
                         </a>
                       </Link>
-                      <button type="button" onClick={() => onDeleteBtn(card)}>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onDeleteBtn(card);
+                        }}
+                      >
                         삭제하기
                       </button>
                     </div>
