@@ -8,11 +8,6 @@ import CardsSwiper from "../../components/recipe/list/CardsSwiper";
 
 // CSS
 import mainStyles from "../../styles/recipe/Main.module.css";
-import recipeListStyles from "../../styles/RecipeList.module.css";
-
-// ICON
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faEllipsisV, faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Index = ({ user, filteredHitRecipes }) => {
   // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수

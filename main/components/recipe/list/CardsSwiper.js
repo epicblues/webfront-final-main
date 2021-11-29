@@ -5,11 +5,9 @@ import Image from "next/dist/client/image";
 // swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
-import "swiper/components/navigation/navigation.min.css";
-import SwiperCore, { Navigation } from "swiper";
 
 // CSS
-import recipeListStyles from "../../../styles/RecipeList.module.css";
+import hitListStyles from "../../../styles/recipe/HitList.module.css";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,11 +39,8 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
         return "몰라용";
     }
   }
-
-  SwiperCore.use([Navigation]);
-
   const swiperParams = {
-    navigation: true,
+    slidesPerView: 1.3,
     onSwiper: setSwiper,
     onSlideChange: (e) => setMainImageIndex(e.activeIndex),
   };
@@ -54,11 +49,11 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
     <Swiper
       {...swiperParams}
       ref={setSwiper}
-      className={recipeListStyles.cards}
+      className={hitListStyles.container}
     >
       {filteredHitRecipes.map((card, index) => {
         return (
-          <SwiperSlide key={index} className={recipeListStyles.card}>
+          <SwiperSlide key={card._id} className={hitListStyles.card}>
             <Link
               href={{
                 pathname: `/recipe/card/${card._id}`,
@@ -68,9 +63,9 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
             >
               <a>
                 {/* 카드 헤더 (이미지) */}
-                <div className={recipeListStyles.cardHeader}>
+                <div className={hitListStyles.cardHeader}>
                   <Image
-                    className={recipeListStyles.cardHeaderImage}
+                    className={hitListStyles.cardHeaderImage}
                     src={
                       process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
                       card.steps.slice(-1)[0].image_url
@@ -82,32 +77,33 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
                   />
                 </div>
                 {/* 카드 바디 */}
-                <div className={recipeListStyles.cardBodyMain}>
+                <div className={hitListStyles.cardBodyMain}>
                   {/* 카드 바디 헤더 */}
-                  <div className={recipeListStyles.cardBodyHeader}>
-                    <h1 className={recipeListStyles.h1}>{card.title}</h1>
-                    <p className={recipeListStyles.cardBodyCategory}>
+                  <div className={hitListStyles.cardBodyHeader}>
+                    <div className={hitListStyles.hot}>/요즘 뜨는 레시피/</div>
+                    <h1 className={hitListStyles.h1}>{card.title}</h1>
+                    <p className={hitListStyles.cardBodyCategory}>
                       #{renderSwitchCategory(card.category)}
                     </p>
-                    <p className={recipeListStyles.cardBodyAuthor}>
+                    <p className={hitListStyles.cardBodyAuthor}>
                       작성자: {card.author[0].name}
                     </p>
                   </div>
 
                   {/* 카드 바디 본문 */}
-                  <div className={recipeListStyles.cardBodyMain}>
-                    <p className={recipeListStyles.cardBodyDesc}>{card.desc}</p>
+                  <div className={hitListStyles.cardBodyMain}>
+                    <p className={hitListStyles.cardBodyDesc}>{card.desc}</p>
                   </div>
 
                   {/* 카드 바디 푸터 */}
-                  <div className={recipeListStyles.cardBodyFooter}>
-                    <hr className={recipeListStyles.hr} />
+                  <div className={hitListStyles.cardBodyFooter}>
+                    <hr className={hitListStyles.hr} />
                     <FontAwesomeIcon
-                      className={recipeListStyles.cardIconHit}
+                      className={hitListStyles.cardIconHit}
                       icon={faEye}
                     />
                     <span>조회 {card.hit}회</span>
-                    <span className={recipeListStyles.cardUploadDate}>
+                    <span className={hitListStyles.cardUploadDate}>
                       {card.upload_date.slice(0, -14)}
                     </span>
                   </div>
