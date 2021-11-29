@@ -19,6 +19,7 @@
   float: right;
   margin: auto;
 }
+
 .close:after {
   display: inline-block;
   content: "\00d7";
