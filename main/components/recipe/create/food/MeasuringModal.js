@@ -4,16 +4,16 @@ import Image from "next/dist/client/image";
 //  CSS
 import modalStyles from "../../../../styles/Modal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUtensilSpoon } from "@fortawesome/free-solid-svg-icons";
 
 const MeasuringModal = ({ setIsMeasuringModalVisible }) => {
   const onXBtn = () => {
     setIsMeasuringModalVisible(false);
   };
   return (
-    <div className={modalStyles.modal}>
-      <div className={modalStyles.close} onClick={() => onXBtn(false)}></div>
-
-      <div>
+    <div className={modalStyles.container}>
+      <div className={modalStyles.close} onClick={() => onXBtn(false)} />
+      <div className={modalStyles.header}>
         <h3>계량 팁</h3>
         <p>
           한 눈으로 살펴보는 간단한 계량팁을 준비했어요~ <br />
@@ -24,31 +24,34 @@ const MeasuringModal = ({ setIsMeasuringModalVisible }) => {
         </p>
       </div>
 
-      <div>
-        <div>
+      <div className={modalStyles.body}>
+        <div className={modalStyles.bodyHeader}>
+          <FontAwesomeIcon icon={faUtensilSpoon} size="2x" />
           <h4>밥숟가락 계량</h4>
           <p>테이블스푼(T)과 티스푼(t)은 어느 정도일까요?</p>
           <p>- 성인용 밥숟가락으로 계량해 볼 수 있어요.</p>
         </div>
-        <div>
-          <Image
-            src="/static/recipe/images/components/measuringModal/tip01.jpg"
-            width={100}
-            height={100}
-            alt="image tip01"
-          />
-          <p>1 테이블스푼 (1T) = 15ml</p>
-          <p>밥숟가락 1 큰술 정도의 양</p>
-        </div>
-        <div>
-          <Image
-            src="/static/recipe/images/components/measuringModal/tip02.jpg"
-            width={100}
-            height={100}
-            alt="image tip02"
-          />
-          <p>1 티스푼 (1t) = 5ml</p>
-          <p>밥숟가락 1/3 큰술 정도의 양</p>
+        <div className={modalStyles.bodyMain}>
+          <div className={modalStyles.Content1}>
+            <Image
+              src="/static/recipe/images/components/measuringModal/tip01.jpg"
+              width={100}
+              height={100}
+              alt="image tip01"
+            />
+            <p>1 테이블스푼 (1T) = 15ml</p>
+            <p>밥숟가락 1 큰술 정도의 양</p>
+          </div>
+          <div className={modalStyles.Content2}>
+            <Image
+              src="/static/recipe/images/components/measuringModal/tip02.jpg"
+              width={100}
+              height={100}
+              alt="image tip02"
+            />
+            <p>1 티스푼 (1t) = 5ml</p>
+            <p>밥숟가락 1/3 큰술 정도의 양</p>
+          </div>
         </div>
       </div>
 
@@ -87,7 +90,7 @@ const MeasuringModal = ({ setIsMeasuringModalVisible }) => {
             - 사진에 담긴 재료의 양을 참고하여 눈대중으로 분량을 재어봅시다.
           </p>
         </div>
-        <div>
+        <div className={modalStyles.foodSample}>
           <div>
             <Image
               src="/static/recipe/images/components/measuringModal/tip05.jpg"
