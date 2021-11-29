@@ -117,7 +117,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
               />
               <span style={{font:"normal 600 1.2rem 'Noto Sans KR'"}}>{mealType[type]}</span>
               <a
-                style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
+                style={{boxShadow: '1px 1px 3px 1px #dadce0', marginLeft: '32px'}}
                 className="ui teal circular label"
                 onClick={() => navigateTo(PAGE_CART)}
               >

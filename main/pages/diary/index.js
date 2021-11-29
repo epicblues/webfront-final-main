@@ -4,7 +4,12 @@ import { getUserOrRedirect } from "../../util/auth";
 import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
+// CSS
 import "semantic-ui-css/semantic.min.css";
+import diaryStyles from "../../styles/diary/Diary.module.css";
+// ICON
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 // Date
 import PickDate from "../../components/diary/PickDate";
 // 영양 섭취 상태
@@ -14,6 +19,7 @@ import ReviewPage from "../../components/diary/review/ReviewPage";
 // 음식 작성
 import AddFood from "../../components/diary/meal/AddFood";
 import Meal from "../../components/diary/meal/Meal";
+import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -37,7 +43,7 @@ const Index = ({ user, fetchedDiary }) => {
       tabTitle: (
         <a
           key="uniqueId1"
-          className='{activeIndex === 0 ? "is-active" : ""} item'
+          className={activeIndex === 0 ? "is-active" : ""}
           onClick={() => tabClickHandler(0)}
         >
           식단
@@ -45,7 +51,7 @@ const Index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div>
-          <h3 style={{ textAlign: "left" }}>오늘의 식단</h3>
+          {/* <h3 style={{ textAlign: "left" }}>오늘의 식단</h3> */}
 
           <div
             className="container"
@@ -73,7 +79,7 @@ const Index = ({ user, fetchedDiary }) => {
       tabTitle: (
         <a
           key="uniqueId2"
-          className='{activeIndex === 1 ? "is-active" : ""} item'
+          className={activeIndex === 1 ? "is-active" : ""}
           onClick={() => tabClickHandler(1)}
         >
           일기
@@ -81,7 +87,7 @@ const Index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div>
-          <ReviewPage diary={diary} setDiary={setDiary} />
+          <ReviewPage diary={diary} setDiary={setDiary} writingMode={writingMode} />
         </div>
       ),
     },
@@ -92,6 +98,7 @@ const Index = ({ user, fetchedDiary }) => {
     <>
       {[0, 1, 2, 3].map((type) => (
         <AddFood
+          className='wrap-food'
           writingMode={writingMode}
           diary={diary}
           setDiary={setDiary}
@@ -103,22 +110,22 @@ const Index = ({ user, fetchedDiary }) => {
       ))}
 
       {writingMode === DEFAULT && (
-        <div className="ui center aligned container">
-          <div className="DatePart">
-            <PickDate diary={diary} setDiary={setDiary} />
-          </div>
-          <div className="TotalPart">
-            <FinalTotalSum diary={diary} user={user} />
-          </div>
-
-          <div className="content">
-            <div className="ui two item menu" style={{ listStyle: "none" }}>
+        <div className='wrap-default'>
+          
+          <div className="tabs is-boxed">
+            {/* <FinalTotalSum diary={diary} user={user} /> */}
+            <i className='weight icon' style={{fontSize: '1.4rem', marginTop: '6px'}}></i>
+            <div>
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
             </div>
-            <div>{tabContArr[activeIndex].tabCont}</div>
+            <PickDate diary={diary} setDiary={setDiary} />
           </div>
+
+          <div>{tabContArr[activeIndex].tabCont}</div>
+
+
         </div>
       )}
     </>

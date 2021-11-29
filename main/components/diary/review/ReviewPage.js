@@ -10,7 +10,7 @@ import AddReview from "./AddReview";
 import "semantic-ui-css/semantic.min.css";
 import axios from "axios";
 
-const ReviewPage = ({ diary, setDiary }) => {
+const ReviewPage = ({ diary, setDiary, writingMode, DEFAULT }) => {
   const [showAddReview, setShowAddReview] = useState(false);
   const reviews = diary.reviews;
   // Update Review
@@ -34,17 +34,31 @@ const ReviewPage = ({ diary, setDiary }) => {
   };
 
   return (
-    <div className="ui content">
+    <div>
+      {
       <ReviewHeader
-        onAdd={() => setShowAddReview(!showAddReview)}
-        showAdd={showAddReview}
+         onAdd={() => setShowAddReview(!showAddReview)}
+         showAdd={showAddReview}
       />
+      }
       {showAddReview && <AddReview onAdd={addReview} />}
       {reviews.length > 0 ? (
         <Reviews reviews={reviews} onDelete={deleteReview} />
       ) : (
         "No Reviews To Show"
       )}
+
+
+      {/* {writingMode === DEFAULT && (
+      <ReviewHeader />
+        {reviews.length > 0 ? (
+          <Reviews reviews={reviews} onDelete={deleteReview} />
+        ) : (
+          "No Reviews To Show"
+        )}
+      )}
+      {<AddReview />} */}
+
     </div>
   );
 };

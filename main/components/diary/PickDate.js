@@ -17,8 +17,8 @@ const PickDate = ({ diary, setDiary }) => {
 
   const CustomInput = ({ value, onClick }) => (
     <div className='customInput' onClick={onClick}>
-      {value}
-      <i className='calendar alternate outline icon' style={{marginBottom: '3px'}}></i>
+      {/* {value} */}
+      <i className='calendar alternate outline icon'></i>
     </div>
   );
 
@@ -48,7 +48,6 @@ const PickDate = ({ diary, setDiary }) => {
   };
 
   return (
-    <div>
       <DatePicker
         withPortal
         dateFormat="yyyy년 MM월 dd일"
@@ -85,7 +84,6 @@ const PickDate = ({ diary, setDiary }) => {
         )}
       >
       </DatePicker>
-    </div>
   );
 };
 

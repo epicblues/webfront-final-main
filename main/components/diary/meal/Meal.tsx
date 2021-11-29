@@ -11,16 +11,14 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
         setWritingMode(type);
       }}
       style={{
-        // border: "solid 2px lightgray",
-        borderRadius: "5px",
+        borderRadius: "20px",
         position: 'relative',
         boxShadow: '1px 1px 3px 1px #dadce0'
       }}
     >
       <img src={diary.meals[type].imageBuffer || ((diary.meals[type].image !== null && process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image) || '/empty.jpg')}
         alt=""
-        className='ui rounded image'
-        style={{ objectFit: 'cover', width: '100%', height: '100%', boxSizing: 'border-box' }}
+        style={{ objectFit: 'cover', width: '100%', height: '100%', boxSizing: 'border-box', borderRadius: '20px' }}
       />
 
       <a className="ui teal label" style={{ position: 'absolute', top: '8px', right: '8px', borderRadius: '20px' }}>
