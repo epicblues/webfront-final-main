@@ -6,6 +6,8 @@ import measuringModalStyles from "../../../../styles/MeasuringModal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUtensilSpoon } from "@fortawesome/free-solid-svg-icons";
 
+import tip00 from "../../../../public/static/recipe/images/components/measuringModal/tip00.jpg";
+
 const MeasuringModal = ({
   indexMeasuringModal,
   setIndexMeasuringModal,
@@ -15,37 +17,44 @@ const MeasuringModal = ({
     switch (param) {
       case 0:
         return (
-          <div>
-            <div>
-              <h1>계량이 어려우신가요?</h1>
+          <div className={measuringModalStyles.contentContainer}>
+            <div className={measuringModalStyles.contentHeader}>
+              <Image src={tip00} alt="image tip00" />
             </div>
-            <div>
-              <p>
-                한 눈으로 살펴보는 간단한 계량팁을 준비했어요~ <br />
-                요리를 하려는데 계량 기구가 없다면
-                <br />
-                다른 도구를 사용하거나 사진 속 분량을 보고 눈대중으로 헤아려서
-                할 수 있어요!
-              </p>
+            <div className={measuringModalStyles.contentBody}>
+              <div className={measuringModalStyles.contentBody1}>
+                <h1>계량을 도와드릴까요?</h1>
+                <p>
+                  계량 기구가 없다면
+                  <br /> 다른 도구를 사용하거나 사진 속 분량을 보고
+                  <br /> 눈대중으로 헤아려서 할 수 있어요!
+                </p>
+              </div>
             </div>
-            <div>
-              <button type="button" onClick={() => setIndexMeasuringModal(1)}>
+            <div className={measuringModalStyles.contentFooter0}>
+              <div
+                className={measuringModalStyles.buttonOk}
+                onClick={() => setIndexMeasuringModal(1)}
+              >
                 네, 좋아요!
-              </button>
-              <button type="button" onClick={() => onXBtn(false)}>
-                아뇨, 괜찮아요.
-              </button>
+              </div>
+              <div
+                className={measuringModalStyles.buttonNo}
+                onClick={() => onXBtn(false)}
+              >
+                괜찮아요.
+              </div>
             </div>
           </div>
         );
       case 1:
         return (
-          <div>
-            <div>
+          <div className={measuringModalStyles.contentContainer}>
+            <div className={measuringModalStyles.contentHeader}>
               <h1>계량팁 1</h1>
             </div>
-            <div>
-              <div>
+            <div className={measuringModalStyles.contentBody}>
+              <div className={measuringModalStyles.contentBody1}>
                 <FontAwesomeIcon icon={faUtensilSpoon} size="2x" />
                 <h4>밥숟가락 계량</h4>
                 <p>테이블스푼(T)과 티스푼(t)은 어느 정도일까요?</p>
@@ -72,10 +81,13 @@ const MeasuringModal = ({
                 <p>밥숟가락 1/3 큰술 정도의 양</p>
               </div>
             </div>
-            <div>
-              <button type="button" onClick={() => onXBtn(false)}>
-                이제 그만볼래요
-              </button>
+            <div className={measuringModalStyles.contentFooter1}>
+              <div
+                className={measuringModalStyles.buttonNo}
+                onClick={() => onXBtn(false)}
+              >
+                이제 그만볼래요.
+              </div>
               <button type="button" onClick={() => setIndexMeasuringModal(2)}>
                 다음
               </button>
@@ -84,12 +96,12 @@ const MeasuringModal = ({
         );
       case 2:
         return (
-          <div>
-            <div>
+          <div className={measuringModalStyles.contentContainer}>
+            <div className={measuringModalStyles.contentHeader}>
               <h1>계량팁 2</h1>
             </div>
-            <div>
-              <div>
+            <div className={measuringModalStyles.contentBody}>
+              <div className={measuringModalStyles.contentBody1}>
                 <h4>종이컵 계량</h4>
                 <p>밥숟가락 단위보다 더 많은 양은 어떻게 계량해야 할까요?</p>
                 <p>
@@ -97,26 +109,28 @@ const MeasuringModal = ({
                   있어요.
                 </p>
               </div>
+              <div className={measuringModalStyles.contentBody2}>
+                <div>
+                  <Image
+                    src="/static/recipe/images/components/measuringModal/tip03.jpg"
+                    width={100}
+                    height={100}
+                    alt="image tip03"
+                  />
+                  <p>액체 가득 1 컵 = 약 180ml</p>
+                </div>
+                <div>
+                  <Image
+                    src="/static/recipe/images/components/measuringModal/tip04.jpg"
+                    width={100}
+                    height={100}
+                    alt="image tip04"
+                  />
+                  <p>윗면을 깎아낸 밀가루 1 컵 = 약 100g</p>
+                </div>
+              </div>
             </div>
-            <div>
-              <Image
-                src="/static/recipe/images/components/measuringModal/tip03.jpg"
-                width={100}
-                height={100}
-                alt="image tip03"
-              />
-              <p>액체 가득 1 컵 = 약 180ml</p>
-            </div>
-            <div>
-              <Image
-                src="/static/recipe/images/components/measuringModal/tip04.jpg"
-                width={100}
-                height={100}
-                alt="image tip04"
-              />
-              <p>윗면을 깎아낸 밀가루 1 컵 = 약 100g</p>
-            </div>
-            <div>
+            <div className={measuringModalStyles.contentFooter}>
               <button type="button" onClick={() => setIndexMeasuringModal(1)}>
                 이전
               </button>
@@ -145,81 +159,89 @@ const MeasuringModal = ({
                 </p>
               </div>
               <div className={measuringModalStyles.contentBody2}>
-                <div className={measuringModalStyles.ItemDiv}>
+                <div className={measuringModalStyles.itemDiv}>
                   <Image
                     src="/static/recipe/images/components/measuringModal/tip05.jpg"
                     width={100}
                     height={100}
                     alt="image tip05"
                   />
-                  <p>양파(1/4개=50g),</p>
+                  <p>양파</p>
+                  <p>(1/4개=50g)</p>
                 </div>
-                <div className={measuringModalStyles.ItemDiv}>
+                <div className={measuringModalStyles.itemDiv}>
                   <Image
                     src="/static/recipe/images/components/measuringModal/tip06.jpg"
                     width={100}
                     height={100}
                     alt="image tip06"
                   />
-                  <p>마늘(1쪽=5g),</p>
+                  <p>마늘</p>
+                  <p>(1쪽=5g)</p>
                 </div>
-                <div className={measuringModalStyles.ItemDiv}>
+                <div className={measuringModalStyles.itemDiv}>
                   <Image
                     src="/static/recipe/images/components/measuringModal/tip07.jpg"
                     width={100}
                     height={100}
                     alt="image tip07"
                   />
-                  <p>생강(1톨 = 약 15g),</p>
+                  <p>생강</p>
+                  <p>(1톨=약15g)</p>
                 </div>
-                <div className={measuringModalStyles.ItemDiv}>
+                <div className={measuringModalStyles.itemDiv}>
                   <Image
                     src="/static/recipe/images/components/measuringModal/tip08.jpg"
                     width={100}
                     height={100}
                     alt="image tip08"
                   />
-                  <p>생강(1톨 = 약 15g),</p>
+                  <p>대파</p>
+                  <p>(1대=약15cm)</p>
                 </div>
-                <div className={measuringModalStyles.ItemDiv}>
+                <div className={measuringModalStyles.itemDiv}>
                   <Image
                     src="/static/recipe/images/components/measuringModal/tip09.jpg"
                     width={100}
                     height={100}
                     alt="image tip09"
                   />
-                  <p>당근(1/2개=약100g),</p>
+                  <p>당근</p>
+                  <p>(1/2개=약100g)</p>
                 </div>
-                <div className={measuringModalStyles.ItemDiv}>
+                <div className={measuringModalStyles.itemDiv}>
                   <Image
                     src="/static/recipe/images/components/measuringModal/tip10.jpg"
                     width={100}
                     height={100}
                     alt="image tip10"
                   />
-                  <p>무(1토막=약150g),</p>
+                  <p>무</p>
+                  <p>(1토막=약150g)</p>
                 </div>
-                <div className={measuringModalStyles.ItemDiv}>
+                <div className={measuringModalStyles.itemDiv}>
                   <Image
                     src="/static/recipe/images/components/measuringModal/tip11.jpg"
                     width={100}
                     height={100}
                     alt="image tip11"
                   />
-                  <p>애호박(1/2개=약150g),</p>
+                  <p>애호박</p>
+                  <p>(1/2개=약150g)</p>
                 </div>
-                <div className={measuringModalStyles.ItemDiv}>
+                <div className={measuringModalStyles.itemDiv}>
                   <Image
                     src="/static/recipe/images/components/measuringModal/tip12.jpg"
                     width={100}
                     height={100}
                     alt="image tip12"
                   />
-                  <p>돼지고기(1토막=약200g)</p>
+                  <p>돼지고기</p>
+                  <p>(1토막=약200g)</p>
                 </div>
               </div>
             </div>
-            <div>
+            <div className={measuringModalStyles.contentFooter}>
               <button type="button" onClick={() => setIndexMeasuringModal(2)}>
                 이전
               </button>
@@ -237,10 +259,6 @@ const MeasuringModal = ({
   };
   return (
     <div className={measuringModalStyles.container}>
-      <div
-        className={measuringModalStyles.close}
-        onClick={() => onXBtn(false)}
-      />
       <div>{switchMeasuringModal(indexMeasuringModal)}</div>
     </div>
   );
