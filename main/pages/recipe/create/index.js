@@ -12,10 +12,14 @@ import GoBackward from "../../../components/GoBackward";
 import FoodForm from "../../../components/recipe/create/food/FoodForm";
 import StepForm from "../../../components/recipe/create/step/StepForm";
 
+//CSS
+import createStyles from "../../../styles/recipe/Create.module.css";
+
 //  작성폼
 export const Index = ({ user }) => {
   //  계량 팁 Modal, 렌더링 로직
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
+  const [indexMeasuringModal, setIndexMeasuringModal] = useState(0);
   const handleSetIsMeasuringModalVisible = (active) => {
     setIsMeasuringModalVisible(active);
   };
@@ -97,10 +101,12 @@ export const Index = ({ user }) => {
     }
   };
   return (
-    <div>
+    <div className={createStyles.container}>
       {isMeasuringModalVisible && (
         <>
           <MeasuringModal
+            indexMeasuringModal={indexMeasuringModal}
+            setIndexMeasuringModal={setIndexMeasuringModal}
             setIsMeasuringModalVisible={setIsMeasuringModalVisible}
           />
           <MeasuringModalBlackout
@@ -113,7 +119,6 @@ export const Index = ({ user }) => {
           handleSetIsModalVisible={handleSetIsModalVisible}
         />
       )}
-      <GoBackward />
       <h2>레시피 등록하기</h2>
       <h3>레시피 정보 입력</h3>
       <form onSubmit={handleSubmit(submitBtnClick)}>
@@ -197,7 +202,11 @@ export const Index = ({ user }) => {
 
         <h3>요리 순서</h3>
         <StepForm stepData={stepData} setStepData={setStepData} />
-        <button type="submit">글쓰기</button>
+
+        <div className={createStyles.submits}>
+          <button type="submit">글쓰기</button>
+          <GoBackward />
+        </div>
       </form>
     </div>
   );

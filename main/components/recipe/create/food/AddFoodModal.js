@@ -30,7 +30,7 @@ const AddFoodModal = ({
   };
 
   return (
-    <div className={modalStyles.modal}>
+    <div className={modalStyles.container}>
       <div>
         <h3>재료 검색하기</h3>
         <input

@@ -1,0 +1,151 @@
+@media screen and (min-width: 1200px) {
+  .container {
+    background-color: white;
+    width: 80%;
+    min-width: 300px;
+    max-width: 800px;
+    height: 70vh;
+    position: fixed;
+    overflow-y: auto;
+    left: 50%;
+    top: 50%;
+    padding: 5px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .close {
+    display: inline-block;
+    *display: inline;
+    float: right;
+    margin: auto;
+  }
+
+  .close:after {
+    display: inline-block;
+    content: "\00d7";
+    font-size: 50pt;
+    float: right;
+    margin: auto;
+  }
+
+  .contentBody2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    background-color: white;
+    width: 80%;
+    min-width: 300px;
+    max-width: 800px;
+    height: 70vh;
+    position: fixed;
+    overflow-y: auto;
+    left: 50%;
+    top: 50%;
+    padding: 5px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .close {
+    display: inline-block;
+    *display: inline;
+    float: right;
+    margin: auto;
+  }
+
+  .close:after {
+    display: inline-block;
+    content: "\00d7";
+    font-size: 50pt;
+    float: right;
+    margin: auto;
+  }
+
+  .contentBody2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .container {
+    background-color: white;
+    width: 80%;
+    min-width: 300px;
+    max-width: 800px;
+    height: 70vh;
+    position: fixed;
+    overflow-y: auto;
+    left: 50%;
+    top: 50%;
+    padding: 5px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .close {
+    display: inline-block;
+    *display: inline;
+    float: right;
+    margin: auto;
+  }
+
+  .close:after {
+    display: inline-block;
+    content: "\00d7";
+    font-size: 50pt;
+    float: right;
+    margin: auto;
+  }
+
+  .contentBody2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 599px) {
+  .container {
+    background-color: white;
+    width: 80%;
+    min-width: 300px;
+    max-width: 800px;
+    height: 70vh;
+    position: fixed;
+    overflow-y: auto;
+    left: 50%;
+    top: 50%;
+    padding: 5px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  .close {
+    display: inline-block;
+    *display: inline;
+    float: right;
+    margin: auto;
+  }
+
+  .close:after {
+    display: inline-block;
+    content: "\00d7";
+    font-size: 50pt;
+    float: right;
+    margin: auto;
+  }
+
+  .contentBody2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}

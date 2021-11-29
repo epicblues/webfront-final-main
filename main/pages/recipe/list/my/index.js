@@ -12,7 +12,7 @@ import { postStaticAxios } from "../../../../util/axios";
 import GoBackward from "../../../../components/GoBackward";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faEllipsisV, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Index = ({ user, filteredRecipes }) => {
   const [recipes, setRecipes] = useState([...filteredRecipes]);
