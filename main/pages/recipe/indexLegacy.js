@@ -17,7 +17,7 @@ import recipeListStyles from "../../styles/RecipeList.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faEllipsisV, faEye } from "@fortawesome/free-solid-svg-icons";
 
-const Index2 = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
+const Index = ({ user, filteredLatestRecipes, filteredHitRecipes }) => {
   const [showCategories, setShowCategories] = useState(true);
 
   // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
@@ -268,4 +268,4 @@ export const getServerSideProps = async (ctx) => {
 
   return { props: { user, filteredLatestRecipes, filteredHitRecipes } };
 };
-export default Index2;
+export default Index;

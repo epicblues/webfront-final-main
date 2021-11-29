@@ -19,6 +19,7 @@ import createStyles from "../../../styles/recipe/Create.module.css";
 export const Index = ({ user }) => {
   //  계량 팁 Modal, 렌더링 로직
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
+  const [indexMeasuringModal, setIndexMeasuringModal] = useState(0);
   const handleSetIsMeasuringModalVisible = (active) => {
     setIsMeasuringModalVisible(active);
   };
@@ -104,6 +105,8 @@ export const Index = ({ user }) => {
       {isMeasuringModalVisible && (
         <>
           <MeasuringModal
+            indexMeasuringModal={indexMeasuringModal}
+            setIndexMeasuringModal={setIndexMeasuringModal}
             setIsMeasuringModalVisible={setIsMeasuringModalVisible}
           />
           <MeasuringModalBlackout

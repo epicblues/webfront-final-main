@@ -7,7 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
 
 // CSS
-import hitListStyles from "../../../styles/recipe/HitList.module.css";
+import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -49,11 +49,11 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
     <Swiper
       {...swiperParams}
       ref={setSwiper}
-      className={hitListStyles.container}
+      className={cardsSwiperStyles.container}
     >
       {filteredHitRecipes.map((card, index) => {
         return (
-          <SwiperSlide key={card._id} className={hitListStyles.card}>
+          <SwiperSlide key={card._id} className={cardsSwiperStyles.card}>
             <Link
               href={{
                 pathname: `/recipe/card/${card._id}`,
@@ -63,9 +63,9 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
             >
               <a>
                 {/* 카드 헤더 (이미지) */}
-                <div className={hitListStyles.cardHeader}>
+                <div className={cardsSwiperStyles.cardHeader}>
                   <Image
-                    className={hitListStyles.cardHeaderImage}
+                    className={cardsSwiperStyles.cardHeaderImage}
                     src={
                       process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
                       card.steps.slice(-1)[0].image_url
@@ -77,33 +77,37 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
                   />
                 </div>
                 {/* 카드 바디 */}
-                <div className={hitListStyles.cardBodyMain}>
+                <div className={cardsSwiperStyles.cardBodyMain}>
                   {/* 카드 바디 헤더 */}
-                  <div className={hitListStyles.cardBodyHeader}>
-                    <div className={hitListStyles.hot}>/요즘 뜨는 레시피/</div>
-                    <h1 className={hitListStyles.h1}>{card.title}</h1>
-                    <p className={hitListStyles.cardBodyCategory}>
+                  <div className={cardsSwiperStyles.cardBodyHeader}>
+                    <div className={cardsSwiperStyles.hot}>
+                      /요즘 뜨는 레시피/
+                    </div>
+                    <h1 className={cardsSwiperStyles.h1}>{card.title}</h1>
+                    <p className={cardsSwiperStyles.cardBodyCategory}>
                       #{renderSwitchCategory(card.category)}
                     </p>
-                    <p className={hitListStyles.cardBodyAuthor}>
+                    <p className={cardsSwiperStyles.cardBodyAuthor}>
                       작성자: {card.author[0].name}
                     </p>
                   </div>
 
                   {/* 카드 바디 본문 */}
-                  <div className={hitListStyles.cardBodyMain}>
-                    <p className={hitListStyles.cardBodyDesc}>{card.desc}</p>
+                  <div className={cardsSwiperStyles.cardBodyMain}>
+                    <p className={cardsSwiperStyles.cardBodyDesc}>
+                      {card.desc}
+                    </p>
                   </div>
 
                   {/* 카드 바디 푸터 */}
-                  <div className={hitListStyles.cardBodyFooter}>
-                    <hr className={hitListStyles.hr} />
+                  <div className={cardsSwiperStyles.cardBodyFooter}>
+                    <hr className={cardsSwiperStyles.hr} />
                     <FontAwesomeIcon
-                      className={hitListStyles.cardIconHit}
+                      className={cardsSwiperStyles.cardIconHit}
                       icon={faEye}
                     />
                     <span>조회 {card.hit}회</span>
-                    <span className={hitListStyles.cardUploadDate}>
+                    <span className={cardsSwiperStyles.cardUploadDate}>
                       {card.upload_date.slice(0, -14)}
                     </span>
                   </div>

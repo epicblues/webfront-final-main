@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/dist/client/image";
+import React from "react";
 
 import clientPromise from "../../util/mongodb";
 import { getUserOrRedirect } from "../../util/auth";
@@ -10,30 +8,6 @@ import CardsSwiper from "../../components/recipe/list/CardsSwiper";
 import mainStyles from "../../styles/recipe/Main.module.css";
 
 const Index = ({ user, filteredHitRecipes }) => {
-  // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
-  function renderSwitchCategory(param) {
-    switch (param) {
-      case "soup":
-        return "국/탕/찌개";
-      case "grill":
-        return "구이";
-      case "noodle":
-        return "면/파스타";
-      case "rice":
-        return "밥/볶음밥";
-      case "side":
-        return "반찬";
-      case "kimchi":
-        return "김치";
-      case "dessert":
-        return "디저트";
-      case "etc":
-        return "기타";
-      default:
-        return "몰라용";
-    }
-  }
-
   return (
     <div className={mainStyles.container}>
       <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
