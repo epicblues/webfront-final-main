@@ -27,7 +27,10 @@ const index = ({ challenges, user }) => {
       <br />
 
       <h2>만든 챌린지</h2>
-      <div style={{ border: "solid 2px lightgray", borderRadius: "2px" }}>
+      <div
+        className="madeChallenge"
+        style={{ border: "solid 2px lightgray", borderRadius: "2px" }}
+      >
         <MyChallenge challenges={challenges} user={user}></MyChallenge>
       </div>
 
@@ -118,11 +121,33 @@ const index = ({ challenges, user }) => {
                             (button) => {
                               button.style.display = "none";
                             },
-                            3000,
+                            2000,
                             button
                           );
                           const progressBar = button.nextElementSibling;
-                          progressBar.style.display = "block";
+                          if (progressBar instanceof HTMLElement) {
+                            progressBar.style.display = "block";
+                            const realProgressBar =
+                              progressBar.firstElementChild.firstElementChild;
+                            if (challenge.type === "diet") {
+                              realProgressBar.value = result.length;
+                              realProgressBar.max = challenge.diet.condition;
+                              const span = realProgressBar.nextElementSibling;
+                              span.innerText =
+                                (result.length / challenge.diet.condition) *
+                                  100 +
+                                " %";
+                            } else {
+                              realProgressBar.value = result.length;
+                              realProgressBar.max =
+                                challenge.recipe.uploadCount;
+                              const span = realProgressBar.nextElementSibling;
+                              span.innerText =
+                                (result.length / challenge.recipe.uploadCount) *
+                                  100 +
+                                " %";
+                            }
+                          }
                         } else {
                           // 성공했다.
                           button.textContent = "성공!";
@@ -132,7 +157,7 @@ const index = ({ challenges, user }) => {
                             (button) => {
                               button.style.display = "none";
                             },
-                            3000,
+                            2000,
                             button
                           );
                         }
@@ -141,7 +166,7 @@ const index = ({ challenges, user }) => {
                       챌린지 결과 확인
                     </button>
                     <div style={{ display: "none" }}>
-                      <ProgressBar value={20} max={100} />
+                      <ProgressBar />
                     </div>
                   </div>
                 </>
