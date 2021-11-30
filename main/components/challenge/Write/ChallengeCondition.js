@@ -1,4 +1,4 @@
-import { React, useState, useRef } from "react";
+import { React } from "react";
 import { Header, Icon, Popup } from "semantic-ui-react";
 
 const ChallengeCondition = ({
