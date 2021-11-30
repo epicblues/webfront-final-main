@@ -1,31 +1,30 @@
-import React from "react";
-import { useState } from "react";
+import { React, useState } from "react";
 
-const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
-  const imgPreview = diary.meals[type].imageBuffer;
+const ChallengeAddImage = ({ challenge, setChallenge, imageError, image }) => {
   const [error, setError] = useState(false);
-
-  const handleImageChange = (e) => {
+  //이미지 업로드
+  const handleImageUpload = (e) => {
     setError(false);
     if (!e.target.files) {
-      setDiary((diary) => {
-        const newDiary = { ...diary };
-        newDiary.meals[type].image = null;
-        newDiary.meals[type].imageBuffer = null;
-        return newDiary;
+      setChallenge((challenge) => {
+        const newChallenge = { ...challenge };
+        newChallenge.image = null;
+        newChallenge.image = null;
+        return newChallenge;
       });
       return;
     }
-    const selected = e.target.files[0];
+    // 이미지 파일 미리보기
+    const selected = e.currentTarget.files[0];
     const ALLOWED_TYPES = ["image/png", "image/jpeg", "image/jpg"];
     if (selected && ALLOWED_TYPES.includes(selected.type)) {
       let reader = new FileReader();
       reader.onloadend = () => {
-        setDiary((diary) => {
-          const newDiary = { ...diary };
-          newDiary.meals[type].image = selected;
-          newDiary.meals[type].imageBuffer = reader.result;
-          return newDiary;
+        setChallenge((challenge) => {
+          const newChallenge = { ...challenge };
+          newChallenge.image = selected;
+          newChallenge.imageBuffer = reader.result;
+          return newChallenge;
         });
       };
       reader.readAsDataURL(selected);
@@ -33,12 +32,8 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
       setError(true);
     }
   };
-
   return (
-    <div
-      className="ui rounded image"
-      style={{ display: "flex", height: "auto" }}
-    >
+    <div className="ui rounded image" style={{ height: "auto" }}>
       <div className="container" style={{ width: "100%" }}>
         {error && (
           <p className="errorMsg" style={{ color: "red" }}>
@@ -46,15 +41,15 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
+
         <div
-          className="imgPreview ui rounded image"
+          className="imagePreview ui rounded image"
           style={{
             background:
-              imgPreview || diary.meals[type].image
+              challenge.imageBuffer || challenge.image
                 ? `url("${
-                    imgPreview ||
-                    process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                      diary.meals[type].image
+                    challenge.imageBuffer ||
+                    process.env.NEXT_PUBLIC_STATIC_SERVER_URL + challenge.image
                   }") no-repeat center/cover`
                 : 'url("/empty.jpg") no-repeat center/cover',
             width: "100%",
@@ -69,28 +64,27 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
             boxShadow: "1px 1px 3px 1px #dadce0",
           }}
         >
-          {!imgPreview && (
+          {challenge.image === null && (
             <>
-              <label
-                htmlFor="fileUpload"
-                className="customFileUpload"
-                style={{ cursor: "pointer", marginBottom: 4 }}
-              >
-                <i className="huge images outline icon"></i>
+              <label htmlFor="fileUpload" className="fileUpload">
+                <i className="large images outline icon"></i>
               </label>
               <input
                 type="file"
-                id="fileUpload"
+                id="fileupload"
                 style={{ display: "none" }}
-                onChange={handleImageChange}
+                onChange={handleImageUpload}
+                ref={image}
               />
+              <span>챌린지를 설명할 사진 추가</span>
+              <h4 ref={imageError}></h4>
             </>
           )}
-          {!diary.meals[type].image || (
+          {!challenge.image || (
             <div style={{ textAlign: "right", marginBottom: "16px" }}>
               <i
                 className="huge trash alternate icon"
-                onClick={handleImageChange}
+                onClick={handleImageUpload}
               ></i>
             </div>
           )}
@@ -100,4 +94,4 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
   );
 };
 
-export default ImageUpload;
+export default ChallengeAddImage;
