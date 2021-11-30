@@ -3,8 +3,6 @@ import Image from "next/dist/client/image";
 
 //  CSS
 import measuringModalStyles from "../../../../styles/MeasuringModal.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUtensilSpoon } from "@fortawesome/free-solid-svg-icons";
 
 import tip00 from "../../../../public/static/recipe/images/components/measuringModal/tip00.png";
 import tip01 from "../../../../public/static/recipe/images/components/measuringModal/tip01.jpg";
@@ -159,7 +157,7 @@ const MeasuringModal = ({
                   <p>(1/4개=50g)</p>
                 </div>
                 <div className={measuringModalStyles.itemDiv}>
-                  <Image src={tip06} alt="image tip10" />
+                  <Image src={tip10} alt="image tip10" />
                   <p>무</p>
                   <p>(1토막=약150g)</p>
                 </div>
