@@ -178,8 +178,8 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    row-gap: 2em;
   }
-
   .content3 p {
     margin: 0px;
   }
@@ -189,38 +189,41 @@
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
   }
-
   .contentFooter0 .button1 {
     background: #e4685d;
-    height: 2.5em;
+    width: 8.5em;
+    height: 3em;
     border-radius: 6px;
-    border: 1px solid #dcdcdc;
-    display: inline-block;
+    border: 1px solid #e4685d;
     cursor: pointer;
     color: #ffffff;
     font-size: 20px;
     font-weight: bold;
     padding: 6px 24px;
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .contentFooter0 .button1:active {
     position: relative;
     top: 1px;
   }
   .contentFooter0 .button2 {
-    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-    background-color: #f9f9f9;
+    background: #ffffff;
+    width: 8.5em;
+    height: 3em;
     border-radius: 6px;
-    border: 1px solid #dcdcdc;
-    display: inline-block;
+    border: 1px solid #666666;
     cursor: pointer;
     color: #666666;
-    font-family: Arial;
     font-size: 20px;
     font-weight: bold;
     padding: 6px 24px;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .contentFooter0 .button2:active {
     position: relative;
@@ -229,29 +232,117 @@
 
   .contentFooter1 {
     display: grid;
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
   }
-  .contentFooter1 .buttonNo {
-    box-shadow: inset 0px 1px 0px 0px #ffffff;
-    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-    background-color: #f9f9f9;
+  .contentFooter1 .button1 {
+    background: #e4685d;
+    width: 8.5em;
+    height: 3em;
     border-radius: 6px;
-    border: 1px solid #dcdcdc;
-    display: inline-block;
+    border: 1px solid #e4685d;
     cursor: pointer;
-    color: #666666;
-    font-family: Arial;
+    color: #ffffff;
     font-size: 20px;
     font-weight: bold;
     padding: 6px 24px;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .contentFooter1 .buttonNo:hover {
-    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-    background-color: #e9e9e9;
+  .contentFooter1 .button1:active {
+    position: relative;
+    top: 1px;
   }
-  .contentFooter1 .buttonNo:active {
+  .contentFooter1 .button2 {
+    background: #ffffff;
+    width: 8.5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentFooter1 .button2:active {
+    position: relative;
+    top: 1px;
+  }
+
+  .contentFooter2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
+  .contentFooter2 .button1 {
+    background: #e4685d;
+    width: 8.5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #e4685d;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentFooter2 .button1:active {
+    position: relative;
+    top: 1px;
+  }
+  .contentFooter2 .button2 {
+    background: #ffffff;
+    width: 8.5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentFooter2 .button2:active {
+    position: relative;
+    top: 1px;
+  }
+
+  .contentFooter3 {
+    display: grid;
+    place-items: center;
+  }
+  .contentFooter3 .button1 {
+    background: #e4685d;
+    width: 8.5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #e4685d;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentFooter3 .button1:active {
     position: relative;
     top: 1px;
   }
