@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import ko from "date-fns/locale/ko";
 import { Button, Header, Container } from "semantic-ui-react";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
-import axios from "axios";
+import { postStaticAxios } from "../../../util/axios";
 import { useRouter } from "next/dist/client/router";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -72,11 +72,24 @@ const ChallengeWrite = ({ user }) => {
         if (!vaildateUploadCount()) return;
         delete challengeForm.diet;
       }
+      const formData = new FormData();
+      Object.keys(challengeForm).forEach((key) => {
+        formData.append(
+          key,
+          ["recipe", "diet"].includes(key)
+            ? JSON.stringify(challengeForm[key])
+            : challengeForm[key]
+        );
+      });
 
-      const { data } = await axios.post("/api/challenge/create", challengeForm);
+      const { data } = await postStaticAxios(
+        "/api/challenge/create",
+        user.token,
+        formData
+      );
       console.log(data);
 
-      router.push("/challenge");
+      // router.push("/challenge");
     } catch (error) {
       alert(error);
     }

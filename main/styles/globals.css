@@ -1,17 +1,16 @@
 /* google font: 'Noto Sans KR', 'Montserrat' */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 /* reset */
 * {
   margin: 0;
   padding: 0;
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   overflow-y: scroll; /*레이아웃 이동현상 방지 스크롤바 표시*/
 }
-
 
 body::-webkit-scrollbar {
   width: 6px; /*스크롤바의 너비*/
@@ -25,12 +24,67 @@ body::-webkit-scrollbar-track {
   background-color: #d8d8d8; /*스크롤바 트랙 색상*/
 }
 
-ul, ol, li {
+ul,
+ol,
+li {
   list-style: none;
 }
 
 a {
   text-decoration: none;
+}
+
+/* Tab Menu */
+.wrap-default {
+  padding: 0 1.6rem;
+}
+
+.is-boxed {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.6rem;
+}
+
+.tabs a {
+  font: normal 600 1.2rem 'Noto Sans KR';
+  color: #999;
+  margin: 0 10px;
+}
+
+.tabs a:hover {
+  color: unset !important;
+}
+
+a.is-active {
+  color: #333;
+  border-bottom: solid 3px #333;
+}
+
+ /* Progress Bar */
+ .progress {
+  background-color: #d8d8d8;
+  border-radius: 20px;
+  position: relative;
+  margin: 15px auto;
+  height:10px;
+  width: 90%;
+overflow: hidden;
+}
+
+.progress-done {
+  background: linear-gradient(315deg , #7ee8fa, #80ff72);
+  box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #DCD1FF;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease 0.3s;
+position: absolute;
+top:0;
+left: 0;
 }
 
 /* datepicker custom */
@@ -39,7 +93,8 @@ a {
 }
 
 .customInput {
-  font: normal bold 1.2rem/100% "Noto Sans KR";
+  font-size: 1.4rem;
+  margin-top: 6px;
 }
 
 .react-datepicker {
@@ -52,7 +107,9 @@ a {
   border-bottom: none !important;
 }
 
-.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range,
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
 .react-datepicker__month-text--selected,
 .react-datepicker__month-text--in-selecting-range,
 .react-datepicker__month-text--in-range,
@@ -73,33 +130,30 @@ a {
   border-radius: 50% !important;
   background-color: #f0f0f0;
 }
-/* dropdown Menu */
-/* .dropdownMenu {
-  font-size: 1;
-} */
+
 /* Progress Bar */
 .progress {
-	background-color: #d8d8d8;
-	border-radius: 20px;
-	position: relative;
-	margin: 15px auto;
-	height:10px;
-	width: 90%;
+  background-color: #d8d8d8;
+  border-radius: 20px;
+  position: relative;
+  margin: 15px auto;
+  height: 10px;
+  width: 90%;
   overflow: hidden;
 }
 
 .progress-done {
-	background: linear-gradient(315deg , #7ee8fa, #80ff72);
-	box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #DCD1FF;
-	border-radius: 20px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	width: 0;
-	opacity: 0;
-	transition: 1s ease 0.3s;
+  background: linear-gradient(315deg, #7ee8fa, #80ff72);
+  box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #dcd1ff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease 0.3s;
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
 }

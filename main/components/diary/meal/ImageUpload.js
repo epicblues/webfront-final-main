@@ -50,13 +50,13 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
           className="imgPreview ui rounded image"
           style={{
             background:
-              imgPreview || diary.meals[type].image
+              (imgPreview || diary.meals[type].image)
                 ? `url("${
                     imgPreview ||
                     process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
                       diary.meals[type].image
                   }") no-repeat center/cover`
-                : "#9e9e9e",
+                : 'url("/empty.jpg") no-repeat center/cover',
             width: "100%",
             height: "40vh",
             display: "flex",

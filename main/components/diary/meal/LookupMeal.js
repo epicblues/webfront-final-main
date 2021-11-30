@@ -37,7 +37,7 @@ const LookupMeal = ({
         );
       }
     };
-    const result = cart.reduce(reducer, 0).toFixed(2);
+    const result = cart.reduce(reducer, 0).toFixed(0);
 
     return result;
   };
@@ -54,11 +54,11 @@ const LookupMeal = ({
     <div style={{padding: '0 1rem 1rem 1rem'}}>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: "16px"}}>
         <i
-          className="large angle left icon"
+          className="angle left icon"
           onClick={(e) => {
             setWritingMode("DEFAULT");
           }}
-          style={{verticalAlign: 'bottom'}}
+          style={{fontSize: '1.6rem', marginTop: 6}}
         ></i>
 
         <span style={{font:"normal 600 1.2rem 'Noto Sans KR'"}}>
@@ -66,7 +66,8 @@ const LookupMeal = ({
         </span>
 
         <i
-          className="large edit icon"
+          className="edit icon"
+          style={{fontSize: '1.4rem', marginTop: 6}}
           onClick={() =>
             setDiary((diary) => {
               const newDiary = { ...diary };
@@ -79,20 +80,19 @@ const LookupMeal = ({
         </i>
       </div>
 
-      <div style={{ width: "100%", height: "40vh", boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '5px'}}>
+      <div style={{ width: "100%", height: "40vh", boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '20px'}}>
         <img
           src={
             diary.meals[type].imageBuffer ||
             process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image
           }
-          className="ui rounded image"
-          style={{ objectFit: "cover", width: "100%", height: "100%" }}
+          style={{ objectFit: "cover", width: "100%", height: "100%", borderRadius: '20px' }}
         />
       </div>
 
       <div
         className="ui large horizontal divided list"
-        style={{ display: "flex", textAlign: 'center'}}
+        style={{ display: "flex", textAlign: 'center', boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '20px', padding: '1.6rem 0'}}
       >
         <div className="item" style={{ width: "25%" }}>
           <div className="content" style={{ marginBottom: "8px" }}>
@@ -131,7 +131,7 @@ const LookupMeal = ({
 
       <button
         className="ui fluid button teal"
-        style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
+        style={{boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '20px'}}
         onClick={() =>
           setDiary((diary) => {
             const newDiary = { ...diary };

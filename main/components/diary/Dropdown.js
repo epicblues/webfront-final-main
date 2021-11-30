@@ -1,5 +1,8 @@
 import React from 'react'
 import { Dropdown, Header, Icon } from 'semantic-ui-react'
+// ICON
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 
 const options = [
   {
@@ -25,14 +28,27 @@ const options = [
 const DropdownMenu = ({selected, setSelected}) => (
   <div style={{fontSize: '1rem', textAlign: 'left', padding: '1rem 0 0 2rem'}}>
     {' '}
+    <FontAwesomeIcon icon={faEllipsisV} />
       <Dropdown
         inline
-        header='Managing Diet'
         options={options}
         defaultValue={options[selected].value}
         onChange={(e) => { setSelected(['유지','감량','증량'].indexOf(e.target.innerText))}}
       />
   </div>
+
+  // <div class="container">
+  //   <a class="dropdownBtn js-click-modal">Open Modal</a>
+  //   <div class="dropdownModal">
+  //     <div class="header">This is a full-width modal with a title</div>
+  //     <div class="body">
+  //       <p>And here is all its contents.</p>
+  //       <a class="dropdownBtn js-close-modal">Close</a>
+  //     </div>
+  //   </div>
+  // </div>
+
+
 )
 
 export default DropdownMenu
