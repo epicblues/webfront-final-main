@@ -8,12 +8,11 @@ import { getDateId, returnIdToDate } from "../../util/date";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const PickDate = ({ diary, setDiary }) => {
+const PickDate = ({ diary, setDiary, isOpen, setIsOpen }) => {
   // Portal Version
   const dateId = diary.upload_date;
   const router = useRouter();
   const [startDate, setStartDate] = useState(returnIdToDate(dateId));
-  const [isOpen, setIsOpen] = useState(false);
 
   const CustomInput = ({ value, onClick }) => (
     <div className='customInput' onClick={onClick}>
@@ -48,15 +47,9 @@ const PickDate = ({ diary, setDiary }) => {
   };
 
   return (
-    <div className='date-open'
-        onClick={() => {setIsOpen(!isOpen)}}
-        style = {{
-          transform : isOpen ? "translateY(100%)" : "none"
-        }}
-    >
-      <div className='date-modal'>
+    <div>
         <DatePicker
-          // withPortal
+          withPortal
           dateFormat="MM/yyyy"
           selected={startDate}
           onChange={dateChangeHandler}
@@ -66,7 +59,7 @@ const PickDate = ({ diary, setDiary }) => {
           popperModifiers={{
             preventOverflow: { enbled: true } // 화면을 벗어나지 않도록 하는 설정
           }}
-          inline
+          //inline
           popperPlacement="auto" // 화면 중앙에 팝업이 출현
           customInput={<CustomInput />}
           renderCustomHeader={({
@@ -90,7 +83,6 @@ const PickDate = ({ diary, setDiary }) => {
             </div>
           )}
         />
-      </div>
     </div>
   );
 };

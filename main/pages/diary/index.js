@@ -29,7 +29,7 @@ export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   "DEFAULT",
 ]; // Diary용 상수 설정
 
-const Index = ({ user, fetchedDiary, mode }) => {
+const Index = ({ user, fetchedDiary, mode, }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [writingMode, setWritingMode] = useState(
     mode !== null ? mode : "DEFAULT"
@@ -42,6 +42,7 @@ const Index = ({ user, fetchedDiary, mode }) => {
   const tabClickHandler = (index) => {
     setActiveIndex(index);
   };
+  const [isOpen, setIsOpen] = useState(false);
 
   const tabContArr = [
     {
@@ -63,7 +64,7 @@ const Index = ({ user, fetchedDiary, mode }) => {
             style={{
               display: "grid",
               gridTemplateColumns: "5fr 5fr",
-              gridAutoRows: "200px",
+              gridAutoRows: "160px",
               gridGap: "1rem",
             }}
           >
@@ -121,16 +122,22 @@ const Index = ({ user, fetchedDiary, mode }) => {
       {writingMode === DEFAULT && (
         <div className="wrap-default">
           <div className="tabs is-boxed">
-            {/* <FinalTotalSum diary={diary} user={user} /> */}
             <i
               className="weight icon"
-              style={{ fontSize: "1.4rem", marginTop: "6px" }}
-            ></i>
+              style={{ fontSize: "1.4rem", marginTop: "4px" }}
+              onClick={() => {setIsOpen(!isOpen)}}
+            >
+            </i>
+            <FinalTotalSum diary={diary} user={user} isOpen={isOpen} setIsOpen={setIsOpen}/>
             <div>
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
-            </div>     
+            </div>
+            {/* <i className='calendar alternate outline icon'
+               style={{ fontSize: "1.4rem", marginTop: "4px" }}
+               onClick={() => {setIsOpen(!isOpen)}}
+            ></i>      */}
             <PickDate diary={diary} setDiary={setDiary} />
           </div>
 
