@@ -114,137 +114,238 @@
 
 @media screen and (max-width: 599px) {
   .container {
+    color: #111111;
     background-color: white;
-    width: 80%;
+    width: 80vw;
+    height: 70vh;
     min-width: 300px;
     max-width: 800px;
-    height: 70vh;
     position: fixed;
-    overflow-y: auto;
+    overflow-y: unset;
     left: 50%;
     top: 50%;
     padding: 5px;
     transform: translate(-50%, -50%);
     z-index: 2;
-  }
 
-  .contentContainer {
-    justify-content: center;
+    display: grid;
+    grid-template-rows: 55% 30% 15%;
     text-align: center;
   }
 
-  .close {
-    display: inline-block;
-    *display: inline;
-    float: right;
-    margin: auto;
-    position: initial;
+  .contentHeader {
+    display: grid;
+    place-items: center;
+  }
+  .headerImg {
+    display: grid;
+    place-items: center;
+    width: 40vw;
+    height: 40vh;
+  }
+  .itemDiv {
+    margin: 0px;
   }
 
-  .close:after {
-    display: inline-block;
-    content: "\00d7";
-    font-size: 50pt;
-    float: right;
-    margin: auto;
+  .contentBody {
+    display: grid;
+    place-items: center;
+  }
+  .contentBody h1 {
+    margin: 0;
+    line-height: 0.5em;
+  }
+  .contentBody p {
+    margin-top: -20px;
+    color: #444444;
+    font-size: 1.1em;
+    line-height: 1.8em;
   }
 
-  .contentBody1 h1 {
-    margin: 20px 20px;
-    font-size: 30px;
+  .content1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    column-gap: 1em;
   }
 
-  .contentBody1 p {
-    margin: 20px 20px;
-    font-size: 1em;
-    line-height: 2em;
+  .content2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    column-gap: 1em;
   }
 
-  .contentBody2 {
+  .content3 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    row-gap: 2em;
+    column-gap: 0.5em;
+  }
+  .content3 p {
+    margin: 0px;
   }
 
   .contentFooter0 {
     display: grid;
-    justify-content: center;
-    grid-template-columns: 0.5fr;
-    grid-template-rows: 0.5fr;
-    grid-row-gap: 1em;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
   }
-
-  .contentFooter0 .buttonOk {
-    box-shadow: inset 0px 1px 0px 0px #f7c5c0;
-    background: linear-gradient(to bottom, #fc8d83 5%, #e4685d 100%);
-    background-color: #fc8d83;
+  .contentFooter0 .button1 {
+    background: #e4685d;
+    width: 8.5em;
+    height: 3em;
     border-radius: 6px;
-    border: 1px solid #d83526;
-    display: inline-block;
+    border: 1px solid #e4685d;
     cursor: pointer;
     color: #ffffff;
-    font-family: Arial;
     font-size: 20px;
     font-weight: bold;
     padding: 6px 24px;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #b23e35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .contentFooter0 .buttonOkhover {
-    background: linear-gradient(to bottom, #e4685d 5%, #fc8d83 100%);
-    background-color: #e4685d;
+  .contentFooter0 .button1:active {
+    position: relative;
+    top: 1px;
   }
-  .contentFooter0.buttonOkactive {
+  .contentFooter0 .button2 {
+    background: #ffffff;
+    width: 8.5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentFooter0 .button2:active {
     position: relative;
     top: 1px;
   }
 
-  .contentFooter0 .buttonNo {
-    box-shadow: inset 0px 1px 0px 0px #ffffff;
-    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-    background-color: #f9f9f9;
+  .contentFooter1 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
+  .contentFooter1 .button1 {
+    background: #e4685d;
+    width: 8.5em;
+    height: 3em;
     border-radius: 6px;
-    border: 1px solid #dcdcdc;
-    display: inline-block;
+    border: 1px solid #e4685d;
     cursor: pointer;
-    color: #666666;
-    font-family: Arial;
+    color: #ffffff;
     font-size: 20px;
     font-weight: bold;
     padding: 6px 24px;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .contentFooter0 .buttonNo:hover {
-    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-    background-color: #e9e9e9;
+  .contentFooter1 .button1:active {
+    position: relative;
+    top: 1px;
   }
-  .contentFooter0 .buttonNo:active {
+  .contentFooter1 .button2 {
+    background: #ffffff;
+    width: 8.5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentFooter1 .button2:active {
     position: relative;
     top: 1px;
   }
 
-  .contentFooter1 .buttonNo {
-    box-shadow: inset 0px 1px 0px 0px #ffffff;
-    background: linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
-    background-color: #f9f9f9;
+  .contentFooter2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+  }
+  .contentFooter2 .button1 {
+    background: #e4685d;
+    width: 8.5em;
+    height: 3em;
     border-radius: 6px;
-    border: 1px solid #dcdcdc;
-    display: inline-block;
+    border: 1px solid #e4685d;
     cursor: pointer;
-    color: #666666;
-    font-family: Arial;
+    color: #ffffff;
     font-size: 20px;
     font-weight: bold;
     padding: 6px 24px;
     text-decoration: none;
-    text-shadow: 0px 1px 0px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .contentFooter1 .buttonNo:hover {
-    background: linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
-    background-color: #e9e9e9;
+  .contentFooter2 .button1:active {
+    position: relative;
+    top: 1px;
   }
-  .contentFooter1 .buttonNo:active {
+  .contentFooter2 .button2 {
+    background: #ffffff;
+    width: 8.5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    color: #666666;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentFooter2 .button2:active {
+    position: relative;
+    top: 1px;
+  }
+
+  .contentFooter3 {
+    display: grid;
+    place-items: center;
+  }
+  .contentFooter3 .button1 {
+    background: #e4685d;
+    width: 8.5em;
+    height: 3em;
+    border-radius: 6px;
+    border: 1px solid #e4685d;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .contentFooter3 .button1:active {
     position: relative;
     top: 1px;
   }
