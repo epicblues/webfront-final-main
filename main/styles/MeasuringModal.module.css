@@ -166,12 +166,14 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
+    column-gap: 1em;
   }
 
   .content2 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
+    column-gap: 1em;
   }
 
   .content3 {
@@ -179,6 +181,7 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
     row-gap: 2em;
+    column-gap: 0.5em;
   }
   .content3 p {
     margin: 0px;

@@ -161,7 +161,7 @@ const MeasuringModal = ({
                 <div className={measuringModalStyles.itemDiv}>
                   <Image src={tip06} alt="image tip10" />
                   <p>무</p>
-                  <p>(1/8개=약150g)</p>
+                  <p>(1토막=약150g)</p>
                 </div>
                 <div className={measuringModalStyles.itemDiv}>
                   <Image src={tip07} alt="image tip07" />
@@ -191,7 +191,7 @@ const MeasuringModal = ({
                 <div className={measuringModalStyles.itemDiv}>
                   <Image src={tip12} alt="image tip12" />
                   <p>돼지고기</p>
-                  <p>(1개=약200g)</p>
+                  <p>(1토막=약200g)</p>
                 </div>
               </div>
             </div>
