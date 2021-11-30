@@ -5,13 +5,12 @@ import ko from "date-fns/locale/ko";
 import { Button, Header, Container } from "semantic-ui-react";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
 import { postStaticAxios } from "../../../util/axios";
-import { useRouter } from "next/dist/client/router";
+import ChallengeAddImage from "./ChallengeAddImage";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 registerLocale("ko", ko);
 
 const ChallengeWrite = ({ user }) => {
-  const router = useRouter();
   const title = useRef();
   const titleError = useRef();
   const dailyCalorie = useRef();
@@ -22,7 +21,7 @@ const ChallengeWrite = ({ user }) => {
   const endDateError = useRef();
   const image = useRef();
   const imageError = useRef();
-  const [error, setError] = useState(false);
+
   const [challenge, setChallenge] = useState({
     title: "",
     startDate: null,
@@ -301,23 +300,12 @@ const ChallengeWrite = ({ user }) => {
           />
         </section>
         <br />
-
-        <div>
-          <label htmlFor="fileUpload" className="fileUpload">
-            <i className="large images outline icon"></i>
-          </label>
-          <input
-            type="file"
-            id="fileUpload"
-            style={{ display: "none" }}
-            onChange={(e) => {
-              setChallenge({ ...challenge, image: e.currentTarget.files[0] });
-            }}
-            ref={image}
-          />
-          <span>챌린지를 설명할 사진 추가</span>
-          <h4 ref={imageError}></h4>
-        </div>
+        <ChallengeAddImage
+          challenge={challenge}
+          setChallenge={setChallenge}
+          image={image}
+          imageError={imageError}
+        />
         <br />
         <ChallengeCondition
           challenge={challenge}
