@@ -41,7 +41,7 @@ const ChallengeAddImage = ({ challenge, setChallenge, imageError, image }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
-
+        <h4>챌린지를 설명할 사진 추가</h4>
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -66,17 +66,20 @@ const ChallengeAddImage = ({ challenge, setChallenge, imageError, image }) => {
         >
           {challenge.image === null && (
             <>
-              <label htmlFor="fileUpload" className="fileUpload">
+              <label
+                htmlFor="fileUpload"
+                className="customfileUpload"
+                style={{ cursor: "pointer", marginBottom: 4 }}
+              >
                 <i className="large images outline icon"></i>
               </label>
               <input
                 type="file"
                 id="fileupload"
-                style={{ display: "none" }}
+                style={{ display: "block" }}
                 onChange={handleImageUpload}
                 ref={image}
               />
-              <span>챌린지를 설명할 사진 추가</span>
               <h4 ref={imageError}></h4>
             </>
           )}
