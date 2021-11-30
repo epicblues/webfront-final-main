@@ -119,7 +119,7 @@ const Index = ({ user, fetchedDiary }) => {
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
-            </div>
+            </div>     
             <PickDate diary={diary} setDiary={setDiary} />
           </div>
 

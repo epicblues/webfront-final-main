@@ -48,42 +48,50 @@ const PickDate = ({ diary, setDiary }) => {
   };
 
   return (
-      <DatePicker
-        withPortal
-        dateFormat="yyyy년 MM월 dd일"
-        selected={startDate}
-        onChange={dateChangeHandler}
-        maxDate={new Date()}
-        disabledKeyboardNavigation // 다른 월의 같은 날짜시 자동 selected되는 현상 방지
-        locale="ko" // 한국어로 설정
-        popperModifiers={{
-          // 화면을 벗어나지 않도록 하는 설정
-          preventOverflow: { enbled: true },
+    <div className='date-open'
+        onClick={() => {setIsOpen(!isOpen)}}
+        style = {{
+          transform : isOpen ? "translateY(100%)" : "none"
         }}
-        popperPlacement="auto" // 화면 중앙에 팝업이 출현
-        customInput={<CustomInput />}
-        renderCustomHeader={({
-          // header 커스텀 설정
-          date,
-          decreaseMonth,
-          increaseMonth,
-          prevMonthButtonDisabled,
-          nextMonthButtonDisabled,
-        }) => (
-          <div style={{ margin: "10px", display: "flex", justifyContent: "space-between" }}>
-            <div onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-              <i className="large grey angle left icon"></i>
+    >
+      <div className='date-modal'>
+        <DatePicker
+          // withPortal
+          dateFormat="MM/yyyy"
+          selected={startDate}
+          onChange={dateChangeHandler}
+          maxDate={new Date()}
+          disabledKeyboardNavigation // 다른 월의 같은 날짜시 자동 selected되는 현상 방지
+          locale="ko" // 한국어로 설정
+          popperModifiers={{
+            preventOverflow: { enbled: true } // 화면을 벗어나지 않도록 하는 설정
+          }}
+          inline
+          popperPlacement="auto" // 화면 중앙에 팝업이 출현
+          customInput={<CustomInput />}
+          renderCustomHeader={({
+            // header 커스텀 설정
+            date,
+            decreaseMonth,
+            increaseMonth,
+            prevMonthButtonDisabled,
+            nextMonthButtonDisabled,
+          }) => (
+            <div style={{ margin: "10px", display: "flex", justifyContent: "space-between" }}>
+              <div onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+                <i className="large grey angle left icon"></i>
+              </div>
+              <div style={{font: 'normal bold 1.2rem/100% "Montserrat"'}}>
+                {formatDate(date)}
+              </div>
+              <div onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                <i className="large grey angle right icon"></i>
+              </div>
             </div>
-            <div style={{font: 'normal bold 1.2rem/100% "Montserrat"'}}>
-              {formatDate(date)}
-            </div>
-            <div onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-              <i className="large grey angle right icon"></i>
-            </div>
-          </div>
-        )}
-      >
-      </DatePicker>
+          )}
+        />
+      </div>
+    </div>
   );
 };
 
