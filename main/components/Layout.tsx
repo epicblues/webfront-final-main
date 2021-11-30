@@ -37,7 +37,6 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
       <footer style={{
 
         backgroundColor: "#fff",
-        opacity: '0.9',
         display: "flex",
         justifyContent: "space-around",
         width: "100vw",
@@ -46,7 +45,10 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         bottom: "0",
         textAlign: 'center',
         padding: '6px 0 0 0',
-        boxShadow: '1px 1px 3px 1px #dadce0'
+        boxShadow: '1px 1px 3px 1px #dadce0',
+        borderTopLeftRadius: '20px',
+        borderTopRightRadius: '20px',
+        zIndex: 20
       }} >
         {pageProps.user &&
           <>

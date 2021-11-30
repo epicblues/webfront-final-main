@@ -17,7 +17,7 @@ const index = ({ challenges, user }) => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link passHref href="challenge/write">
+        <Link passHref href="challenge/create">
           <Button>챌린지 작성</Button>
         </Link>
 

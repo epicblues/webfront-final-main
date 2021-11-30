@@ -1,10 +1,3 @@
 .container {
-  display: grid;
   place-items: center;
-  min-width: 375;
-}
-
-.submits {
-  display: grid;
-  grid-auto-columns: 1fr 1fr;
 }
