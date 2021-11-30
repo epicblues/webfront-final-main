@@ -2,10 +2,11 @@ import React from "react";
 import Link from "next/link";
 import "semantic-ui-css/semantic.min.css";
 import { getUserOrRedirect } from "../../util/auth";
-import { Button } from "semantic-ui-react";
+import { Button, List } from "semantic-ui-react";
 import MyChallenge from "../../components/challenge/Main/MyChallenge";
 import ProgressBar from "../../components/challenge/Main/ProgressBar";
 import clientPromise from "../../util/mongodb";
+import ListStyle from "../../styles/challenge/List.module.css";
 import axios from "axios";
 const index = ({ challenges, user }) => {
   const participatedChallenges = challenges.filter(
@@ -44,15 +45,8 @@ const index = ({ challenges, user }) => {
             <>
               {challenge.participants.indexOf(user.id) === -1 ? (
                 <>
-                  <ul
-                    style={{
-                      listStyle: "none",
-                      border: "solid 2px lightgray",
-                      borderRadius: "5px",
-                      textAlign: "left",
-                    }}
-                  >
-                    <li>
+                  <ul className={ListStyle.ul}>
+                    <li className={ListStyle}>
                       <Link passHref href={"/challenge/list/" + challenge._id}>
                         <a>
                           {" "}

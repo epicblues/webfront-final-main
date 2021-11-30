@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:900|Raleway:400,400i,700,700i);
+/* List */
+.ul {
+  counter-reset: index;
+  padding: 0;
+  max-width: 300px;
+}
+
+/* List element */
+.li {
+  counter-increment: index;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  box-sizing: border-box;
+}
+
+.li {
+}

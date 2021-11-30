@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import Link from "next/dist/client/link";
 import axios from "axios";
 import ProgressBar from "./ProgressBar";
+import ListStyle from "../../../styles/challenge/List.module.css";
 const MyChallenge = ({ challenges, user }) => {
   return (
     <>
@@ -12,13 +13,7 @@ const MyChallenge = ({ challenges, user }) => {
               <>
                 {challenge.author[0]._id === user.id ? (
                   <>
-                    <ul
-                      style={{
-                        listStyle: "none",
-                        border: "solid 2px lightgray",
-                        borderRadius: "5px",
-                      }}
-                    >
+                    <ul className={ListStyle.ul}>
                       <Link passHref href={"/challenge/list/" + challenge._id}>
                         <a>
                           {" "}

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
 
-const ChallengeJoin = ({ user, challenge, setChallenge }) => {
+const ChallengeJoin = ({ challenge, setChallenge }) => {
   const handleJoin = async (e) => {
     if (confirm("참가하시겠습니까?")) {
       try {

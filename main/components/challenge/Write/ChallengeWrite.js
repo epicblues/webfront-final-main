@@ -20,6 +20,8 @@ const ChallengeWrite = ({ user }) => {
   const uploadCountError = useRef();
   const startDateError = useRef();
   const endDateError = useRef();
+  const image = useRef();
+  const imageError = useRef();
 
   const [challenge, setChallenge] = useState({
     title: "",
@@ -29,6 +31,8 @@ const ChallengeWrite = ({ user }) => {
     description: "",
     userId: user.id,
     type: "",
+    image: null,
+    imageBuffer: null,
     diet: {
       kind: "",
       dailyCalorie: "",
@@ -57,7 +61,7 @@ const ChallengeWrite = ({ user }) => {
       startDateError.current.textContent = "";
       endDateError.current.textContent = "";
     }
-
+    if (vaildateImageUpload()) return;
     try {
       const challengeForm = { ...challenge };
 
@@ -127,6 +131,16 @@ const ChallengeWrite = ({ user }) => {
       return true;
     }
   };
+  const vaildateImageUpload = () => {
+    if (challenge.image === null) {
+      imageError.current.textContent = "이미지를 업로드 해주세요";
+      imageError.current.style.color = "red";
+      return true;
+    } else {
+      imageError.current.textContent = "";
+      return false;
+    }
+  };
 
   return (
     <form
@@ -177,7 +191,6 @@ const ChallengeWrite = ({ user }) => {
             ref={title}
           />
         </div>
-
         <br />
         <div className="description">
           <h3
@@ -209,7 +222,6 @@ const ChallengeWrite = ({ user }) => {
             }}
           ></textarea>
         </div>
-
         <br />
         <section
           className="challengDate"
@@ -219,7 +231,6 @@ const ChallengeWrite = ({ user }) => {
           <Header as="h4">챌린지 진행 기간을 선택해주세요</Header>
           <Header as="h4">챌린지 시작일</Header>
           <h4 ref={startDateError}></h4>
-
           <ReactDatePicker
             locale="ko"
             dateFormat="yyyy년 MM월 dd일"
@@ -246,7 +257,6 @@ const ChallengeWrite = ({ user }) => {
             }}
             popperPlacement="auto" // 화면 중앙에 팝업
           />
-
           <Header as="h4" className="challengeDateTitle">
             챌린지 종료일
           </Header>
@@ -277,7 +287,23 @@ const ChallengeWrite = ({ user }) => {
             popperPlacement="auto" // 화면 중앙에 팝업
           />
         </section>
-
+        <br />
+        <div>
+          <label htmlFor="fileUpload" className="fileUpload">
+            <i className="large images outline icon"></i>
+          </label>
+          <input
+            type="file"
+            id="fileUpload"
+            style={{ display: "none" }}
+            onChange={(e) => {
+              setChallenge({ ...challenge, image: e.currentTarget.files[0] });
+            }}
+            ref={image}
+          />
+          <span>챌린지를 설명할 사진 추가</span>
+          <h4 ref={imageError}></h4>
+        </div>
         <br />
         <ChallengeCondition
           challenge={challenge}
@@ -288,7 +314,6 @@ const ChallengeWrite = ({ user }) => {
           uploadCountError={uploadCountError}
         />
         <br />
-
         <Button
           type="submit"
           color="twitter"
