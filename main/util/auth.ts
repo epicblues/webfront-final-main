@@ -1,7 +1,6 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import { JwtPayload, verify } from "jsonwebtoken";
 import { GetServerSidePropsContext } from "next";
-
 // Api 요청에 대한 인증확인 미들웨어
 // Api 전용. getServerSideProps와는 상관 없음
 export const authenticated =
@@ -37,7 +36,6 @@ export const getUserOrRedirect = async (
     const user = verify(jwt, process.env.UUID_SECRET as string) as JwtPayload;
     // 토큰 인증이 성공할 경우 토큰의 user 데이터를 return
     user.token = jwt;
-
     return user;
   } catch (error) {
     // 토큰 인증이 실패할 경우 redirect
