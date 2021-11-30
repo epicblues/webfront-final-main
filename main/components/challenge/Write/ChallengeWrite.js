@@ -22,7 +22,7 @@ const ChallengeWrite = ({ user }) => {
   const endDateError = useRef();
   const image = useRef();
   const imageError = useRef();
-
+  const [error, setError] = useState(false);
   const [challenge, setChallenge] = useState({
     title: "",
     startDate: null,
@@ -301,6 +301,7 @@ const ChallengeWrite = ({ user }) => {
           />
         </section>
         <br />
+
         <div>
           <label htmlFor="fileUpload" className="fileUpload">
             <i className="large images outline icon"></i>
