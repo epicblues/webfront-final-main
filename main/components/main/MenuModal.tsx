@@ -25,8 +25,10 @@ const MenuModal = ({ onExit }: { onExit: Function }) => {
     flexDirection: "column",
     alignContent: "center",
     alignItems: "center",
-    height: "190px",
-    border: "2px solid gray"
+    height: "40vh",
+    border: "2px solid gray",
+    justifyContent: "space-around",
+    fontSize: "1.3em"
 
   }
 
@@ -45,9 +47,7 @@ const MenuModal = ({ onExit }: { onExit: Function }) => {
 
   }
 
-  const menuStyle: CSSProperties = {
 
-  }
   const router = useRouter()
 
 
@@ -55,30 +55,27 @@ const MenuModal = ({ onExit }: { onExit: Function }) => {
   return (
     <div style={backgroundStyle}>
       <div style={contentAreaStyle}>
-        <Link href={"/recipe/list/my"} passHref>
-          <div onClick={() => { onExit() }}>내 레시피</div>
+        <Link href={"/recipe/create"} passHref>
+          <div onClick={() => { onExit() }}>레시피 작성</div>
+        </Link>
+        <Link href={"/challenge/create"} passHref>
+          <div onClick={() => { onExit() }}>챌린지 작성</div>
         </Link>
         {["아침", "점심", "저녁", "간식"].map((value, index) => (
-
-          // <div key={index} onClick={() => {
-          //   onExit(); location.href =
-          //     `/diary?mode=${index}`
-
-          // }}>{value} 다이어리 작성</div>
           <div key={index} onClick={() => {
             onExit(); router.push(
-              `/diary?mode=${index}#`
-              , undefined, { shallow: false })
+              `/diary?mode=${index}`
+            )
           }}
           >
-            {value} 다이어리 작성
+            {value}
           </div>
 
         ))}
+        <span style={buttonStyle} onClick={() => { onExit() }}></span>
 
-        <div>내 레시피</div>
-        <span style={buttonStyle} onClick={() => { onExit() }} />
       </div>
+
     </div>
   )
 }

@@ -28,7 +28,7 @@ const options = [
 const DropdownMenu = ({selected, setSelected}) => (
   <div style={{fontSize: '1rem', textAlign: 'left', padding: '1rem 0 0 2rem'}}>
     {' '}
-    <FontAwesomeIcon icon={faEllipsisV} />
+    {/* <FontAwesomeIcon icon={faEllipsisV} /> */}
       <Dropdown
         inline
         options={options}

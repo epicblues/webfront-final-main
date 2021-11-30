@@ -3,7 +3,7 @@ import { useState } from "react";
 import Dropdown from "./Dropdown";
 import Progress from "./Progress";
 
-const FinalTotalSum = ({ diary, user }) => {
+const FinalTotalSum = ({ diary, user, isOpen, setIsOpen}) => {
   function getTotalNutrients() {
     const result = { kcal: 0, carbs: 0, fat: 0, prot: 0 };
     const toNumberCheck = (input) => {
@@ -92,8 +92,21 @@ const FinalTotalSum = ({ diary, user }) => {
   });
 
   return (
-    <div style={{margin: '1rem 0 1rem 0', padding: '0.5rem 0', borderRadius: '5px', boxShadow: '1px 1px 3px 1px #dadce0'}}>
-      <Dropdown selected={selected} setSelected={setSelected}/>
+    <div className='total-open'
+          style = {{
+                    transform : isOpen ? "none" : "translateX(100%)"
+                  }}
+    >
+    <div className='total-modal' style={{margin: '1rem 0 1rem 0'}}>
+      <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <i className="large angle left icon"
+            style={{ fontSize: "1.4rem", marginTop: "4px" }}
+            onClick={() => !(setIsOpen(!isOpen))}
+        >
+        </i>
+        <Dropdown selected={selected} setSelected={setSelected}/>
+      </div>
+      
       <div style={{ marginTop: 0, marginBottom: "1rem", display: 'flex', flexDirection: 'column'}}>
 
         <div style={{marginBottom: "1rem"}}>
@@ -142,6 +155,7 @@ const FinalTotalSum = ({ diary, user }) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

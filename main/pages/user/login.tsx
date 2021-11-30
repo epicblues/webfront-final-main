@@ -35,12 +35,17 @@ const Login = () => {
         password: password.current.value,
 
       })
-      const result = await data
-      if (result.status === "OK") router.push('/');
+      if (data.status !== "OK") throw new Error(data.status)
+      router.push('/');
 
-    } catch (error) {
+    } catch (error: any) {
+      if (error.message === "이메일 인증") {
+        await axios.post("/api/user/verify", { email: email.current.value })
+        head.current.innerHTML = "이메일 인증을 완료하셔야 합니다. 메일함을 확인해보세요!"
+      } else {
+        head.current.innerHTML = error.message
+      }
 
-      head.current.innerHTML = "이메일 혹은 비밀번호를 잘못 입력하셨습니다."
       email.current.value = '';
       password.current.value = '';
 
