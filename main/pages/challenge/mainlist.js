@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
+import ButtonStyle from "../../styles/challenge/Button.module.css";
 import { Container } from "semantic-ui-react";
 
 const MainList = ({ challenges, user }) => {
@@ -45,6 +46,7 @@ const MainList = ({ challenges, user }) => {
           )}
           {challengeIndexes.map((index) => (
             <button
+              className={ButtonStyle.button}
               key={index}
               onClick={() => {
                 setChallengeIndex(index);

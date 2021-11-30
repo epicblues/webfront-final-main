@@ -6,6 +6,7 @@ import { Button, Header, Container } from "semantic-ui-react";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
 import { postStaticAxios } from "../../../util/axios";
 import ChallengeAddImage from "./ChallengeAddImage";
+import { router } from "next/dist/client/router";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 registerLocale("ko", ko);
@@ -63,7 +64,7 @@ const ChallengeWrite = ({ user }) => {
     if (vaildateImageUpload()) return;
     try {
       const challengeForm = { ...challenge };
-
+      delete challengeForm.imageBuffer;
       if (challenge.type === "diet") {
         if (!vaildateDailyCalorie()) return;
         delete challengeForm.recipe;
@@ -88,11 +89,10 @@ const ChallengeWrite = ({ user }) => {
       );
       console.log(data);
 
-      // router.push("/challenge");
-    } catch (error) {
-      alert(error);
-    }
+      router.push("/challenge");
+    } catch (error) {}
   };
+
   //날짜 차이 계산
   const getDiffDate = (endDate) => {
     const newDateDiff =
@@ -329,5 +329,4 @@ const ChallengeWrite = ({ user }) => {
     </form>
   );
 };
-
 export default ChallengeWrite;

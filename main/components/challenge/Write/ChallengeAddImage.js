@@ -42,6 +42,7 @@ const ChallengeAddImage = ({ challenge, setChallenge, imageError, image }) => {
           </p>
         )}
         <h4>챌린지를 설명할 사진 추가</h4>
+        <h4 ref={imageError}></h4>
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -80,7 +81,6 @@ const ChallengeAddImage = ({ challenge, setChallenge, imageError, image }) => {
                 onChange={handleImageUpload}
                 ref={image}
               />
-              <h4 ref={imageError}></h4>
             </>
           )}
           {!challenge.image || (

@@ -5,6 +5,7 @@ import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
 import ChallengeModify from "../../../components/challenge/List/ChallengeModify";
 import axios from "axios";
+import { Image } from "semantic-ui-react";
 
 const ChallengePage = ({ originalChallenge, user }) => {
   const [challenge, setChallenge] = useState(originalChallenge);
@@ -43,6 +44,15 @@ const ChallengePage = ({ originalChallenge, user }) => {
           종료일:
           {new Date(challenge.endDate).toLocaleDateString()}
         </h3>
+        <div></div>
+        <div className="image">
+          <Image
+            className="challengeImage"
+            src={process.env.NEXT_PUBLIC_STATIC_SERVER_URL + challenge.image}
+            layout="fill"
+            objectPosition="top"
+          />
+        </div>
         <br />
 
         <div style={{ margin: "30px" }}>

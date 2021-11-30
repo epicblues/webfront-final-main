@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import axios from "axios";
+import { Image } from "semantic-ui-react";
 
 const ChallengeMainList = ({ challenges, user }) => {
   return (

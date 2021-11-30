@@ -1,18 +1,34 @@
 import React, { useEffect } from "react";
 import Link from "next/dist/client/link";
 import axios from "axios";
+import { Button, Image } from "semantic-ui-react";
 import ProgressBar from "./ProgressBar";
+import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 import ListStyle from "../../../styles/challenge/List.module.css";
+import ButtonStyle from "../../../styles/challenge/Button.module.css";
+import ImageStyle from "../../../styles/challenge/Image.module.css";
 const MyChallenge = ({ challenges, user }) => {
   return (
     <>
-      <div className="container">
-        <div className="card">
+      <div className={ChallengeStyle.container}>
+        <div className={ChallengeStyle.card}>
           {challenges.map((challenge) => {
             return (
               <>
                 {challenge.author[0]._id === user.id ? (
                   <>
+                    <div className="image">
+                      <Image
+                        className={ImageStyle.image}
+                        src={
+                          process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                          challenge.image
+                        }
+                        layout="fill"
+                        objectPosition="top"
+                        size="small"
+                      />
+                    </div>
                     <ul className={ListStyle.ul}>
                       <Link passHref href={"/challenge/list/" + challenge._id}>
                         <a>
@@ -21,16 +37,7 @@ const MyChallenge = ({ challenges, user }) => {
                         </a>
                       </Link>
                       <li key={challenge.id}>
-                        작성자:{challenge.author[0].name}
-                      </li>
-                      <li key={challenge.id}>
                         참가인원:{challenge.participants.length}명
-                      </li>
-
-                      <li key={challenge.id}>
-                        챌린지 기한:
-                        {new Date(challenge.startDate).toLocaleDateString()}~
-                        {new Date(challenge.endDate).toLocaleDateString()}
                       </li>
                       <li key={challenge.id}>
                         남은 일수:
@@ -53,27 +60,7 @@ const MyChallenge = ({ challenges, user }) => {
                     </ul>
                     <div style={{ display: "flex", justifyContent: "center" }}>
                       <button
-                        style={{
-                          backgroundColor: "#35a2f4",
-                          color: "#fff",
-                          textShadow: "none",
-                          display: "inline-block",
-                          cursor: "pointer",
-                          border: "none",
-                          verticalAlign: "baseline",
-                          fontFamily:
-                            "Lato,'Helvetica Neue',Arial,Helvetica,sans-serif",
-                          margin: "0 0.25em0 0",
-                          padding: "0.78571429em 1.5em 0.78571429m",
-                          fontWeight: "700",
-                          lineHeight: "1em",
-                          textAlign: "center",
-                          fontSize: "1rem",
-                          borderRadius: "0.3rem;",
-                          minHeight: "1em",
-                          height: "35px",
-                          width: "120px",
-                        }}
+                        className={ButtonStyle.button}
                         onClick={async (event) => {
                           const {
                             data: { result },
