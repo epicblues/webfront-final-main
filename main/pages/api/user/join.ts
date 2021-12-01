@@ -3,6 +3,7 @@ import clientPromise, { getNextSequence } from "../../../util/mongodb";
 import { hash } from "bcrypt";
 import { sendAuthEmail } from "../../../util/email";
 
+// 이메일 중복 체크 api
 const join: NextApiHandler = async (
   req: NextApiRequest,
   res: NextApiResponse
