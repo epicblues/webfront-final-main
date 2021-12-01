@@ -1,137 +1,55 @@
 import React from "react";
 import cn from "classnames";
+import Image from "next/dist/client/image";
 
 //  CSS
 import formNavigatorStyles from "../../../styles/recipe/FormNavigator.module.css";
 
+//  ICON
+import Icon from "../../../public/static/logos/App_Icon_144x144.png";
+
 const FormNavigator = ({ wizardIndex, setWizardIndex }) => {
-  function switchNavigation(param) {
+  const completed = wizardIndex;
+  function switchFilter(param) {
     switch (param) {
       case 1:
-        return (
-          <div
-            className={cn({
-              [formNavigatorStyles.stepState]: true,
-              [formNavigatorStyles.step1]: true,
-            })}
-          >
-            <ul>
-              <li>
-                <p>
-                  1단계<span>기본정보</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  2단계<span>재료추가</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  3단계<span>조리방법</span>
-                </p>
-              </li>
-              <li>
-                <p>완료</p>
-              </li>
-            </ul>
-          </div>
-        );
+        return <div className={formNavigatorStyles.filter1}></div>;
       case 2:
-        return (
-          <div
-            className={cn({
-              [formNavigatorStyles.stepState]: true,
-              [formNavigatorStyles.step2]: true,
-            })}
-          >
-            <ul>
-              <li>
-                <p>
-                  1단계<span>기본정보</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  2단계<span>재료추가</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  3단계<span>조리방법</span>
-                </p>
-              </li>
-              <li>
-                <p>완료</p>
-              </li>
-            </ul>
-          </div>
-        );
+        return <div className={formNavigatorStyles.filter2}></div>;
       case 3:
-        return (
-          <div
-            className={cn({
-              [formNavigatorStyles.stepState]: true,
-              [formNavigatorStyles.step3]: true,
-            })}
-          >
-            <ul>
-              <li>
-                <p>
-                  1단계<span>기본정보</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  2단계<span>재료추가</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  3단계<span>조리방법</span>
-                </p>
-              </li>
-              <li>
-                <p>완료</p>
-              </li>
-            </ul>
-          </div>
-        );
+        return <div className={formNavigatorStyles.filter3}></div>;
       case 4:
-        return (
-          <div
-            className={cn({
-              [formNavigatorStyles.stepState]: true,
-              [formNavigatorStyles.step4]: true,
-            })}
-          >
-            <ul>
-              <li>
-                <p>
-                  1단계<span>기본정보</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  2단계<span>재료추가</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  3단계<span>조리방법</span>
-                </p>
-              </li>
-              <li>
-                <p>완료</p>
-              </li>
-            </ul>
-          </div>
-        );
+        return <div className={formNavigatorStyles.filter4}></div>;
     }
   }
+
   return (
-    <div className={formNavigatorStyles.stepBox}>
-      {switchNavigation(wizardIndex)}
+    <div className={formNavigatorStyles.container}>
+      <div className={formNavigatorStyles.bar}>{switchFilter(wizardIndex)}</div>
+      <div className={formNavigatorStyles.labelContainer}>
+        <p>
+          1<br />
+          요리정보
+        </p>
+      </div>
+      <div className={formNavigatorStyles.labelContainer}>
+        <p>
+          2<br />
+          재료추가
+        </p>
+      </div>
+      <div className={formNavigatorStyles.labelContainer}>
+        <p>
+          3<br />
+          요리순서
+        </p>
+      </div>
+      <div className={formNavigatorStyles.labelContainer}>
+        <p>
+          4<br />
+          완료
+        </p>
+      </div>
     </div>
   );
 };

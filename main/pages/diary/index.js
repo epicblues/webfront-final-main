@@ -7,9 +7,6 @@ import { Diary } from "../../models";
 // CSS
 import "semantic-ui-css/semantic.min.css";
 import diaryStyles from "../../styles/diary/Diary.module.css";
-// ICON
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 // Date
 import PickDate from "../../components/diary/PickDate";
 // 영양 섭취 상태
@@ -57,7 +54,16 @@ const Index = ({ user, fetchedDiary, mode, }) => {
       ),
       tabCont: (
         <div>
-          {/* <h3 style={{ textAlign: "left" }}>오늘의 식단</h3> */}
+          <FinalTotalSum diary={diary} user={user} />
+          <div className='is-desc'>
+            <p>
+              오늘 무엇을 드셨나요?<br />
+              <span>
+                식단을 기록하세요
+              </span>
+            </p>
+            <div className='is-desc-img'></div>
+          </div>
 
           <div
             className="container"
@@ -67,7 +73,7 @@ const Index = ({ user, fetchedDiary, mode, }) => {
               gridAutoRows: "160px",
               gridGap: "1rem",
             }}
-          >
+          > 
             {[0, 1, 2, 3].map((type) => (
               <Meal
                 diary={diary}
@@ -122,23 +128,14 @@ const Index = ({ user, fetchedDiary, mode, }) => {
       {writingMode === DEFAULT && (
         <div className="wrap-default">
           <div className="tabs is-boxed">
-            <i
-              className="weight icon"
-              style={{ fontSize: "1.4rem", marginTop: "4px" }}
-              onClick={() => {setIsOpen(!isOpen)}}
-            >
-            </i>
-            <FinalTotalSum diary={diary} user={user} isOpen={isOpen} setIsOpen={setIsOpen}/>
+
             <div>
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
             </div>
-            {/* <i className='calendar alternate outline icon'
-               style={{ fontSize: "1.4rem", marginTop: "4px" }}
-               onClick={() => {setIsOpen(!isOpen)}}
-            ></i>      */}
             <PickDate diary={diary} setDiary={setDiary} />
+
           </div>
 
           <div>{tabContArr[activeIndex].tabCont}</div>

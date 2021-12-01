@@ -350,6 +350,7 @@
 @media screen and (max-width: 599px) {
   /* 모바일 세로*/
   .container {
+    display: grid;
     width: 100vw;
     height: 58vh;
   }

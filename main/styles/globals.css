@@ -1,10 +1,24 @@
 /* google font: 'Noto Sans KR', 'Montserrat' */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 /* reset */
+/* 폰트는 rem으로 통일
+16px = 1rem
+24px = 1.5rem
+25px = 1.6rem
+28px = 1.8rem
+32px = 2rem
+*/
+/* 콘텐츠간 간격은 1rem (margin, padding) */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body {
@@ -34,9 +48,21 @@ a {
   text-decoration: none;
 }
 
+textarea:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
 /* Tab Menu */
 .wrap-default {
-  padding: 0 1.6rem;
+  padding: 0 1rem;
 }
 
 .is-boxed {
@@ -46,7 +72,7 @@ a {
 }
 
 .tabs a {
-  font: normal 600 1.2rem 'Noto Sans KR';
+  font: normal 600 1.2rem "Noto Sans KR";
   color: #999;
   margin: 0 10px;
 }
@@ -60,20 +86,20 @@ a.is-active {
   border-bottom: solid 3px #333;
 }
 
- /* Progress Bar */
- .progress {
+/* Progress Bar */
+.progress {
   background-color: #d8d8d8;
   border-radius: 20px;
   position: relative;
   margin: 15px auto;
-  height:10px;
+  height: 10px;
   width: 90%;
-overflow: hidden;
+  overflow: hidden;
 }
 
 .progress-done {
-  background: linear-gradient(315deg , #7ee8fa, #80ff72);
-  box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #DCD1FF;
+  background: linear-gradient(315deg, #7ee8fa, #80ff72);
+  box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #dcd1ff;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -83,7 +109,7 @@ overflow: hidden;
   opacity: 0;
   transition: 1s ease 0.3s;
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
 }
 
@@ -97,13 +123,16 @@ overflow: hidden;
   margin-top: 6px;
 }
 
-
 .react-datepicker {
   transform: scale(1.2);
   padding: 1rem;
   font-size: 1rem !important;
   border: none !important;
   border-radius: 20px !important;
+}
+
+.react-datepicker__portal {
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
 .react-datepicker__triangle {
@@ -166,7 +195,39 @@ overflow: hidden;
   left: 0;
 }
 
-.total-open {
+.is-desc {
+  text-align: left;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 100px;
+}
+
+.is-desc p {
+  font: normal 500 1.2rem/22px 'Noto Sans KR';
+}
+
+.is-desc span {
+  font-size: 1rem;
+}
+
+.is-desc button {
+  background-color: rgba(66, 30, 30, 0.1);
+  border-radius: 20px;
+  border: none;
+  padding: 4px 8px;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  font-size: 0.6rem;
+  margin-top: 1rem;
+  display: block;
+}
+
+.is-desc-img {
+  background: url(../public/empty.jpg) no-repeat center top / 100%;
+}
+
+.review-open {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -174,7 +235,7 @@ overflow: hidden;
   height: 100%;
   /* flex-shrink: 0; */
   margin: 0;
-  padding: 0;
+  padding: 0 1rem;
   text-align: left;
   box-shadow: 1px 1px 3px 1px #dadce0;
   background-color: #fff;
@@ -183,6 +244,20 @@ overflow: hidden;
   z-index: 30;
 }
 
-.total-modal {
+.review-modal {
+  margin-top: 3vh;
   position: relative;
+}
+
+.review-modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  height: 24px;
+}
+
+.review-modal-form > textarea {
+  border: none;
+  width: 375px;
+  height: 100vh;
 }

@@ -2,70 +2,42 @@ import { useState } from "react";
 import PickDate from "../PickDate";
 import MultiBtn from "../meal/MultiBtn";
 
-const AddReview = ({ onAdd, showAdd, multiBtn, setWritingMode }) => {
+const AddReview = ({ onAdd, setShow, show, diary, setDiary }) => {
   const [text, setText] = useState("");
-  const [reminder, setReminder] = useState(false);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    if (!text) {
-      alert("Please add a review");
-      return;
+  const onSubmit = () => {
+    if(text.length === 0) {
+      setShow(false); return;
     }
-    onAdd({ text, reminder });
-
-    setText("");
-    setReminder(false);
+    onAdd({ text });
   };
 
   return (
-    <>
-      <div
-          style={{padding: '0 1rem 1rem 1rem'}}
-          className="AddReview"
-          onClick={(e) => {
-            e.preventDefault();
-            setWritingMode();
-          }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            marginBottom: "16px",
-            height: '24px'
-          }}
-        >
+    <div className='review-open'
+          style = {{
+                    transform : show ? "none" : "translateX(100%)"
+                  }}
+    >
+      <div className="review-modal">
+        <div className='review-modal-header'>
           <MultiBtn
-            color={showAdd ? "#a0a0a0" : "#02b0b0"}
-            text={showAdd ? "취소" : "완료"}
-            onClick={multiBtn}
-            type="submit"
+            color={text.length === 0 ? "#a0a0a0" : "#02b0b0"}
+            text={text.length === 0 ? "취소" : "완료"}
+            onClick={onSubmit}
           />
-          날짜 데이터
-          {/* <PickDate /> */}
+          <PickDate diary={diary} setDiary={setDiary}/>
         </div>
 
-        <form className="ui form" onSubmit={onSubmit}>
-        
+        <form className="review-modal-form" onSubmit={onSubmit}>        
           <textarea
             type="text"
-            placeholder="Add Review"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            autoFocus
           />
-
-          <button
-            type="submit"
-            className="fluid ui button teal"
-            style={{ margin: "1rem 0 1rem 0" }}
-          >
-            작성완료
-          </button>
         </form>
       </div>
-     </>
+     </div>
   );
 };
 

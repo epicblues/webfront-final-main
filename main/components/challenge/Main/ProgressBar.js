@@ -6,7 +6,7 @@ const ProgressBar = ({ value, max }) => {
 
   return (
     <div>
-      <progress className={ProgressStyle.div} value={value} max={max} />
+      <progress className={ProgressStyle.progress} value={value} max={max} />
       <span style={{ fontWeight: "600px", textAlign: "center" }}>
         {(value / max) * 100}%
       </span>

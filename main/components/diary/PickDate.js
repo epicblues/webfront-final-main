@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
 registerLocale("ko", { ...ko, options: { ...ko.options, weekStartsOn: 1 } }); // 주시작일 - 일요일:0 월요일:1
 import "react-datepicker/dist/react-datepicker.css";
+// ICON
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarCheck } from "@fortawesome/free-regular-svg-icons";
 
 import { getDateId, returnIdToDate } from "../../util/date";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-const PickDate = ({ diary, setDiary, isOpen, setIsOpen }) => {
+const PickDate = ({ diary, setDiary }) => {
   // Portal Version
   const dateId = diary.upload_date;
   const router = useRouter();
@@ -17,7 +20,8 @@ const PickDate = ({ diary, setDiary, isOpen, setIsOpen }) => {
   const CustomInput = ({ value, onClick }) => (
     <div className='customInput' onClick={onClick}>
       {/* {value} */}
-      <i className='calendar alternate outline icon'></i>
+      {/* <i className='calendar alternate outline icon'></i> */}
+      <FontAwesomeIcon icon={faCalendarCheck} />
     </div>
   );
 

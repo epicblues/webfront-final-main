@@ -30,7 +30,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
 
       </div> */}
 
-      <div style={{ marginTop: '3vh', paddingBottom: '12vh' }} onScroll={e => console.log(e)}>
+      <div style={{ marginTop: '3vh', paddingBottom: '70px' }} onScroll={e => console.log(e)}>
         {children}
       </div>
 

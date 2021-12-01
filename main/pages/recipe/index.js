@@ -10,7 +10,9 @@ import mainStyles from "../../styles/recipe/Main.module.css";
 const Index = ({ user, filteredHitRecipes }) => {
   return (
     <div className={mainStyles.container}>
+      <div>상단내비</div>
       <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
+      <div className={mainStyles.content}>asd</div>
     </div>
   );
 };
