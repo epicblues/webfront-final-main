@@ -94,10 +94,10 @@ const FinalTotalSum = ({ diary, user, isOpen, setIsOpen}) => {
   return (
     <div className='total-open'
           style = {{
-                    transform : isOpen ? "none" : "translateX(100%)"
+                    transform : isOpen ? "none" : "translateX(100%)",
                   }}
     >
-    <div className='total-modal' style={{margin: '1rem 0 1rem 0'}}>
+    <div className='total-modal' style={{marginTop: '3vh', textAlign: 'center'}}>
       <div style={{display: 'flex', justifyContent: 'space-between'}}>
         <i className="large angle left icon"
             style={{ fontSize: "1.4rem", marginTop: "4px" }}
