@@ -133,17 +133,20 @@ export const Index = ({ user }) => {
         );
       case 3:
         return (
+          <>
+            <form onSubmit={handleSubmit(submitBtnClick)}>
+              <h3>요리 순서</h3>
+              <StepForm stepData={stepData} setStepData={setStepData} />
+            </form>
+          </>
+        );
+      case 4:
+        return (
           <div>
-            <>
-              <form onSubmit={handleSubmit(submitBtnClick)}>
-                <h3>요리 순서</h3>
-                <StepForm stepData={stepData} setStepData={setStepData} />
-
-                <div className={createStyles.submits}>
-                  <button type="submit">글쓰기</button>
-                </div>
-              </form>
-            </>
+            <div className={createStyles.submits}>
+              {/* 카드 미리보기 */}
+              <button type="submit">글쓰기</button>
+            </div>
           </div>
         );
     }
@@ -240,7 +243,6 @@ export const Index = ({ user }) => {
       <h1>레시피 등록하기</h1>
 
       <FormNavigator
-        className={createStyles.navigationContainer}
         wizardIndex={wizardIndex}
         setWizardIndex={setWizardIndex}
       />
