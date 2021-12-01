@@ -36,7 +36,7 @@ const Login = () => {
 
       })
       if (data.status !== "OK") throw new Error(data.status)
-      router.push('/');
+      router.push('/')
 
     } catch (error: any) {
       if (error.message === "이메일 인증") {
