@@ -3,6 +3,7 @@ import React from "react";
 import clientPromise from "../../util/mongodb";
 import { getUserOrRedirect } from "../../util/auth";
 import CardsSwiper from "../../components/recipe/list/CardsSwiper";
+import Head from "next/head";
 
 // CSS
 import mainStyles from "../../styles/recipe/Main.module.css";
@@ -10,6 +11,9 @@ import mainStyles from "../../styles/recipe/Main.module.css";
 const Index = ({ user, filteredHitRecipes }) => {
   return (
     <div className={mainStyles.container}>
+      <Head>
+        <title>요건 다 내꺼! - 레시피</title>
+      </Head>
       <div>상단내비</div>
       <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
       <div className={mainStyles.content}>asd</div>
