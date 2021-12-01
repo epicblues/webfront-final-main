@@ -19,31 +19,31 @@ const index = ({ challenges, user }) => {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link passHref href="challenge/create">
+        <Link passHref href="/challenge/create">
           <Button>챌린지 작성</Button>
         </Link>
 
-        <Link passHref href="challenge/mainlist">
+        <Link passHref href="/challenge/mainlist">
           <Button>챌린지 리스트 보기 </Button>
         </Link>
       </div>
       <br />
 
-      <h2>만든 챌린지</h2>
-      <div className="container">
-        <MyChallenge challenges={challenges} user={user}></MyChallenge>
-      </div>
-
-      <h2>참여한 챌린지</h2>
-      <div className={ChallengeStyle.container}>
+      <div className={ChallengeStyle.container2}>
+        <h2>참여한 챌린지</h2>
+        <MyChallenge
+          challenges={challenges}
+          user={user}
+          key={challenges.id}
+        ></MyChallenge>
         {challenges.map((challenge) => {
           return (
             <>
-              {challenge.participants.indexOf(user.id) === -1 ? (
+              {!challenge.participants.indexOf(user.id) === -1 ? (
                 <>
-                  <div className={ChallengeStyle.card}>
+                  <div className={ChallengeStyle.item}>
                     <ul className={ListStyle.ul}>
-                      <li className={ListStyle}>
+                      <li className={ListStyle.li}>
                         <Link
                           passHref
                           href={"/challenge/list/" + challenge._id}

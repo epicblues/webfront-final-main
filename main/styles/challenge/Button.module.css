@@ -18,3 +18,24 @@
   height: "35px";
   width: "120px";
 }
+
+.listButton {
+  background-color: #fff;
+  color: black;
+  text-shadow: "none";
+  display: "inline-block";
+  cursor: "pointer";
+  border: "1px";
+  vertical-align: "baseline";
+  font-family: "Lato,'Helvetica Neue',Arial,Helvetica,sans-serif";
+  margin: "0 0.25em0 0";
+  padding: "0.78571429em 1.5em 0.78571429m";
+  font-weight: "700";
+  line-height: "1em";
+  text-align: "center";
+  font-size: "1rem";
+  border-radius: "0.5rem;";
+  min-height: "1em";
+  height: "35px";
+  width: "120px";
+}

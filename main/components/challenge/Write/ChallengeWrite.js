@@ -6,7 +6,7 @@ import { Button, Header, Container } from "semantic-ui-react";
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
 import { postStaticAxios } from "../../../util/axios";
 import ChallengeAddImage from "./ChallengeAddImage";
-import { router } from "next/dist/client/router";
+import { Router, router } from "next/dist/client/router";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 registerLocale("ko", ko);
@@ -300,6 +300,7 @@ const ChallengeWrite = ({ user }) => {
           />
         </section>
         <br />
+        <h4 ref={imageError}></h4>
         <ChallengeAddImage
           challenge={challenge}
           setChallenge={setChallenge}

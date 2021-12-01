@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 
-const ChallengeAddImage = ({ challenge, setChallenge, imageError, image }) => {
+const ChallengeAddImage = ({ challenge, setChallenge, image }) => {
   const [error, setError] = useState(false);
   //이미지 업로드
   const handleImageUpload = (e) => {
@@ -42,7 +42,7 @@ const ChallengeAddImage = ({ challenge, setChallenge, imageError, image }) => {
           </p>
         )}
         <h4>챌린지를 설명할 사진 추가</h4>
-        <h4 ref={imageError}></h4>
+
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -77,7 +77,7 @@ const ChallengeAddImage = ({ challenge, setChallenge, imageError, image }) => {
               <input
                 type="file"
                 id="fileupload"
-                style={{ display: "block" }}
+                style={{ display: "none" }}
                 onChange={handleImageUpload}
                 ref={image}
               />

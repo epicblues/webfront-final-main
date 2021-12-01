@@ -32,19 +32,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
   };
   return (
     <>
-      <div className="container" style={{ textAlign: "center" }}>
-        <h2>{challenge.title}</h2>
-        <hr />
-        <h3 style={{ textAlign: "right", margin: "10px" }}>
-          작성자:{challenge.author[0].name}
-        </h3>
-        <h3 style={{ textAlign: "right", margin: "5px" }}>
-          시작일: {new Date(challenge.startDate).toLocaleDateString()}
-          <br />
-          종료일:
-          {new Date(challenge.endDate).toLocaleDateString()}
-        </h3>
-        <div></div>
+      <div className="container">
         <div className="image">
           <Image
             className="challengeImage"
@@ -54,8 +42,17 @@ const ChallengePage = ({ originalChallenge, user }) => {
           />
         </div>
         <br />
+        <h2>{challenge.title}</h2>
 
-        <div style={{ margin: "30px" }}>
+        <h3>작성자:{challenge.author[0].name}</h3>
+        <h3>
+          시작일: {new Date(challenge.startDate).toLocaleDateString()}
+          <br />
+          종료일:
+          {new Date(challenge.endDate).toLocaleDateString()}
+        </h3>
+
+        <div>
           {!(challenge.participants.indexOf(user.id) === -1) ? (
             <>
               {challenge.type === "diet" ? (
@@ -73,7 +70,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     </>
                   )}
                   <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
-                  <h3>다이어트 완료 일수:{challenge.diet.condition}일</h3>
+                  <h3>다이어트 완료 조건:{challenge.diet.condition}일</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               ) : (
@@ -81,23 +78,59 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <h3>챌린지 조건</h3>
                   <h3>챌린지 종류: 레시피</h3>
                   <h3>{changeRecipeName()}</h3>
-                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}회</h3>
+                  <h3>레시피 완료 조건:{challenge.recipe.uploadCount}회</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
               <hr />
               {challenge.author[0]._id === user.id ? (
                 <>
-                  <ChallengeModify />
-                </>
-              ) : (
-                <>
-                  <>
-                    <ChallengeCancel
+                  <footer
+                    style={{
+                      position: "fixed",
+                      left: 0,
+                      bottom: "7vh",
+                      width: "100vw",
+                      height: "10vh",
+                      display: "flex",
+                      alignItems: "center",
+                      backgroundColor: "white",
+                      justifyContent: "space-around",
+                      border: "2px solid gray",
+                    }}
+                  >
+                    Menu
+                    <ChallengeModify
                       user={user}
                       challenge={challenge}
                       setChallenge={setChallenge}
                     />
+                  </footer>
+                </>
+              ) : (
+                <>
+                  <>
+                    <footer
+                      style={{
+                        position: "fixed",
+                        left: 0,
+                        bottom: "7vh",
+                        width: "100vw",
+                        height: "10vh",
+                        display: "flex",
+                        alignItems: "center",
+                        backgroundColor: "white",
+                        justifyContent: "space-around",
+                        border: "2px solid gray",
+                      }}
+                    >
+                      Menu
+                      <ChallengeCancel
+                        user={user}
+                        challenge={challenge}
+                        setChallenge={setChallenge}
+                      />
+                    </footer>
                   </>
                 </>
               )}
@@ -118,7 +151,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     </>
                   )}
                   <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
-                  <h3>다이어트 완료 일수:{challenge.diet.condition}일</h3>
+                  <h3>다이어트 완료 조건:{challenge.diet.condition}일</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               ) : (
@@ -126,16 +159,32 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <h3>챌린지 조건</h3>
                   <h3>챌린지 종류: 레시피 </h3>
                   <h3>{changeRecipeName()}</h3>
-                  <h3>레시피 업로드 횟수:{challenge.recipe.uploadCount}회</h3>
+                  <h3>레시피 완료 조건:{challenge.recipe.uploadCount}회</h3>
                   <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
               <hr />
-              <ChallengeJoin
-                user={user}
-                challenge={challenge}
-                setChallenge={setChallenge}
-              />
+              <footer
+                style={{
+                  position: "fixed",
+                  left: 0,
+                  bottom: "7vh",
+                  width: "100vw",
+                  height: "10vh",
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "white",
+                  justifyContent: "space-around",
+                  border: "2px solid gray",
+                }}
+              >
+                Menu
+                <ChallengeJoin
+                  user={user}
+                  challenge={challenge}
+                  setChallenge={setChallenge}
+                />
+              </footer>
             </>
           )}
         </div>

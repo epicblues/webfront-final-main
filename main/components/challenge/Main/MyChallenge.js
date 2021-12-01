@@ -10,32 +10,24 @@ import ImageStyle from "../../../styles/challenge/Image.module.css";
 const MyChallenge = ({ challenges, user }) => {
   return (
     <>
-      <div className={ChallengeStyle.container}>
-        <div className={ChallengeStyle.card}>
+      <div className="MyChallnege">
+        <div className={ChallengeStyle.item}>
           {challenges.map((challenge) => {
             return (
               <>
                 {challenge.author[0]._id === user.id ? (
                   <>
-                    <div className="image">
-                      <Image
-                        className={ImageStyle.image}
-                        src={
-                          process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                          challenge.image
-                        }
-                        layout="fill"
-                        objectPosition="top"
-                        size="small"
-                      />
-                    </div>
                     <ul className={ListStyle.ul}>
                       <Link passHref href={"/challenge/list/" + challenge._id}>
                         <a>
                           {" "}
-                          <li key={challenge.id}>챌린지명:{challenge.title}</li>
+                          <li key={challenge.id}>{challenge.title}</li>
                         </a>
                       </Link>
+                      <li key={challenge.id}>
+                        {new Date(challenge.startDate).toLocaleDateString()}~{" "}
+                        {new Date(challenge.endDate).toLocaleDateString()}
+                      </li>
                       <li key={challenge.id}>
                         참가인원:{challenge.participants.length}명
                       </li>
