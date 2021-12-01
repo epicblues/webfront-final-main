@@ -724,7 +724,7 @@
     position: fixed;
     overflow-y: unset;
     left: 50%;
-    top: 50%;
+    top: 45%;
     padding: 1em;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -767,7 +767,7 @@
   .content1 {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    place-items: center;
+    align-items: center;
     column-gap: 1em;
   }
 
@@ -842,15 +842,15 @@
   }
   .contentFooter1 .button1 {
     background: #e4685d;
-    width: 8.5em;
-    height: 3em;
-    border-radius: 6px;
+    width: 6em;
+    height: 2.5em;
+    border-radius: 0.6em;
     border: 1px solid #e4685d;
     cursor: pointer;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 1.4em;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 1em 0.5em;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -862,15 +862,15 @@
   }
   .contentFooter1 .button2 {
     background: #ffffff;
-    width: 8.5em;
-    height: 3em;
-    border-radius: 6px;
+    width: 6em;
+    height: 2.5em;
+    border-radius: 0.6em;
     border: 1px solid #666666;
     cursor: pointer;
     color: #666666;
-    font-size: 20px;
+    font-size: 1.4em;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 1em 0.5em;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -888,15 +888,15 @@
   }
   .contentFooter2 .button1 {
     background: #e4685d;
-    width: 8.5em;
-    height: 3em;
-    border-radius: 6px;
+    width: 6em;
+    height: 2.5em;
+    border-radius: 0.6em;
     border: 1px solid #e4685d;
     cursor: pointer;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 1.4em;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 1em 0.5em;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -908,15 +908,15 @@
   }
   .contentFooter2 .button2 {
     background: #ffffff;
-    width: 8.5em;
-    height: 3em;
-    border-radius: 6px;
+    width: 6em;
+    height: 2.5em;
+    border-radius: 0.6em;
     border: 1px solid #666666;
     cursor: pointer;
     color: #666666;
-    font-size: 20px;
+    font-size: 1.4em;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 1em 0.5em;
     text-decoration: none;
     display: flex;
     justify-content: center;
@@ -933,15 +933,15 @@
   }
   .contentFooter3 .button1 {
     background: #e4685d;
-    width: 8.5em;
-    height: 3em;
-    border-radius: 6px;
+    width: 6em;
+    height: 2.5em;
+    border-radius: 0.6em;
     border: 1px solid #e4685d;
     cursor: pointer;
     color: #ffffff;
-    font-size: 20px;
+    font-size: 1.4em;
     font-weight: bold;
-    padding: 6px 24px;
+    padding: 1em 0.5em;
     text-decoration: none;
     display: flex;
     justify-content: center;

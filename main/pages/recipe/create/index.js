@@ -44,7 +44,7 @@ export const Index = ({ user }) => {
       case 1:
         return (
           <>
-            <div className={createStyles.body}>
+            <div className={createStyles.wizard1}>
               <label htmlFor="title">요리명</label>
               <input
                 autoFocus={true}
@@ -240,21 +240,27 @@ export const Index = ({ user }) => {
           handleSetIsModalVisible={handleSetIsModalVisible}
         />
       )}
-      <h1>레시피 등록하기</h1>
+      <div className={createStyles.header}>
+        <h1>레시피 등록하기</h1>
+      </div>
 
       <FormNavigator
         wizardIndex={wizardIndex}
         setWizardIndex={setWizardIndex}
       />
+
       <div className={createStyles.wizardContainer}>
         {switchWizardForm(wizardIndex)}
       </div>
-      <button type="button" onClick={button2}>
-        이전
-      </button>
-      <button type="button" onClick={button1}>
-        다음
-      </button>
+
+      <div className={createStyles.footer}>
+        <button type="button" onClick={button2}>
+          이전
+        </button>
+        <button type="button" onClick={button1}>
+          다음
+        </button>
+      </div>
     </div>
   );
 };
