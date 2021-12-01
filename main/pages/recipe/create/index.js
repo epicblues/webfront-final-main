@@ -33,6 +33,12 @@ export const Index = ({ user }) => {
 
   //  레시피 등록 마법사 페이지 카운터
   const [wizardIndex, setWizardIndex] = useState(1);
+  const button1 = () => {
+    setWizardIndex(wizardIndex + 1);
+  };
+  const button2 = () => {
+    setWizardIndex(wizardIndex - 1);
+  };
   function switchWizardForm(param) {
     switch (param) {
       case 1:
@@ -232,6 +238,7 @@ export const Index = ({ user }) => {
         />
       )}
       <h1>레시피 등록하기</h1>
+
       <FormNavigator
         className={createStyles.navigationContainer}
         wizardIndex={wizardIndex}
@@ -240,6 +247,12 @@ export const Index = ({ user }) => {
       <div className={createStyles.wizardContainer}>
         {switchWizardForm(wizardIndex)}
       </div>
+      <button type="button" onClick={button2}>
+        이전
+      </button>
+      <button type="button" onClick={button1}>
+        다음
+      </button>
     </div>
   );
 };

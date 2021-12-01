@@ -5,133 +5,47 @@ import cn from "classnames";
 import formNavigatorStyles from "../../../styles/recipe/FormNavigator.module.css";
 
 const FormNavigator = ({ wizardIndex, setWizardIndex }) => {
-  function switchNavigation(param) {
+  const completed = wizardIndex;
+  function switchFilter(param) {
     switch (param) {
       case 1:
         return (
-          <div
-            className={cn({
-              [formNavigatorStyles.stepState]: true,
-              [formNavigatorStyles.step1]: true,
-            })}
-          >
-            <ul>
-              <li>
-                <p>
-                  1단계<span>기본정보</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  2단계<span>재료추가</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  3단계<span>조리방법</span>
-                </p>
-              </li>
-              <li>
-                <p>완료</p>
-              </li>
-            </ul>
+          <div className={formNavigatorStyles.filter1}>
+            <span
+              className={formNavigatorStyles.label}
+            >{`${completed}단계`}</span>
           </div>
         );
       case 2:
         return (
-          <div
-            className={cn({
-              [formNavigatorStyles.stepState]: true,
-              [formNavigatorStyles.step2]: true,
-            })}
-          >
-            <ul>
-              <li>
-                <p>
-                  1단계<span>기본정보</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  2단계<span>재료추가</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  3단계<span>조리방법</span>
-                </p>
-              </li>
-              <li>
-                <p>완료</p>
-              </li>
-            </ul>
+          <div className={formNavigatorStyles.filter2}>
+            <span
+              className={formNavigatorStyles.label}
+            >{`${completed}단계`}</span>
           </div>
         );
       case 3:
         return (
-          <div
-            className={cn({
-              [formNavigatorStyles.stepState]: true,
-              [formNavigatorStyles.step3]: true,
-            })}
-          >
-            <ul>
-              <li>
-                <p>
-                  1단계<span>기본정보</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  2단계<span>재료추가</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  3단계<span>조리방법</span>
-                </p>
-              </li>
-              <li>
-                <p>완료</p>
-              </li>
-            </ul>
+          <div className={formNavigatorStyles.filter3}>
+            <span
+              className={formNavigatorStyles.label}
+            >{`${completed}단계`}</span>
           </div>
         );
       case 4:
         return (
-          <div
-            className={cn({
-              [formNavigatorStyles.stepState]: true,
-              [formNavigatorStyles.step4]: true,
-            })}
-          >
-            <ul>
-              <li>
-                <p>
-                  1단계<span>기본정보</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  2단계<span>재료추가</span>
-                </p>
-              </li>
-              <li>
-                <p>
-                  3단계<span>조리방법</span>
-                </p>
-              </li>
-              <li>
-                <p>완료</p>
-              </li>
-            </ul>
+          <div className={formNavigatorStyles.filter4}>
+            <span
+              className={formNavigatorStyles.label}
+            >{`${completed}단계`}</span>
           </div>
         );
     }
   }
+
   return (
-    <div className={formNavigatorStyles.stepBox}>
-      {switchNavigation(wizardIndex)}
+    <div className={formNavigatorStyles.container}>
+      {switchFilter(wizardIndex)}
     </div>
   );
 };
