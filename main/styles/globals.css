@@ -9,6 +9,12 @@
   box-sizing: border-box;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 body {
   font-family: "Noto Sans KR", sans-serif;
   overflow-y: scroll; /*레이아웃 이동현상 방지 스크롤바 표시*/
@@ -60,7 +66,7 @@ input:focus {
 }
 
 .tabs a {
-  font: normal 600 1.2rem 'Noto Sans KR';
+  font: normal 600 1.2rem "Noto Sans KR";
   color: #999;
   margin: 0 10px;
 }
@@ -74,20 +80,20 @@ a.is-active {
   border-bottom: solid 3px #333;
 }
 
- /* Progress Bar */
- .progress {
+/* Progress Bar */
+.progress {
   background-color: #d8d8d8;
   border-radius: 20px;
   position: relative;
   margin: 15px auto;
-  height:10px;
+  height: 10px;
   width: 90%;
-overflow: hidden;
+  overflow: hidden;
 }
 
 .progress-done {
-  background: linear-gradient(315deg , #7ee8fa, #80ff72);
-  box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #DCD1FF;
+  background: linear-gradient(315deg, #7ee8fa, #80ff72);
+  box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #dcd1ff;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -97,7 +103,7 @@ overflow: hidden;
   opacity: 0;
   transition: 1s ease 0.3s;
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
 }
 

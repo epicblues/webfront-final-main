@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/dist/client/router";
 import { getUserOrRedirect } from "../../../util/auth";
@@ -17,6 +17,11 @@ import createStyles from "../../../styles/recipe/Create.module.css";
 
 //  작성폼
 export const Index = ({ user }) => {
+  //  Y스크롤 막기
+  useEffect(() => {
+    console.log("스크롤X!!!");
+    document.body.style.overflow = "hidden";
+  });
   //  계량 팁 Modal, 렌더링 로직
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
   const [indexMeasuringModal, setIndexMeasuringModal] = useState(0);
@@ -34,84 +39,99 @@ export const Index = ({ user }) => {
   //  레시피 등록 마법사 페이지 카운터
   const [wizardIndex, setWizardIndex] = useState(1);
   const button1 = () => {
-    setWizardIndex(wizardIndex + 1);
+    wizardIndex < 4 ? setWizardIndex(wizardIndex + 1) : null;
   };
   const button2 = () => {
-    setWizardIndex(wizardIndex - 1);
+    wizardIndex > 1 ? setWizardIndex(wizardIndex - 1) : null;
   };
   function switchWizardForm(param) {
     switch (param) {
       case 1:
         return (
           <>
-            <div className={createStyles.body}>
-              <label htmlFor="title">요리명</label>
-              <input
-                autoFocus={true}
-                id="title"
-                type="text"
-                placeholder=" ex) 소고기 미역국"
-                {...register("title", { required: true, maxLength: 15 })}
-              />
-              {errors.title && errors.title.type === "required" && (
-                <span>제목을 입력해주세요.</span>
-              )}
-              {errors.title && errors.title.type === "maxLength" && (
-                <span>제목은 15글자 이내로 입력해주세요.</span>
-              )}
-              <br />
-
-              <label>요리소개</label>
-              <textarea
-                id="desc"
-                type="text"
-                cols="40"
-                rows="5"
-                placeholder=" 레시피에 대한 설명을 적어주세요.
+            <div className={createStyles.wizard1}>
+              <div>
+                <label htmlFor="title">요리명</label>
+              </div>
+              <div>
+                <input
+                  id="title"
+                  type="text"
+                  placeholder=" ex) 소고기 미역국"
+                  {...register("title", { required: true, maxLength: 15 })}
+                />
+                {errors.title && errors.title.type === "required" && (
+                  <span>제목을 입력해주세요.</span>
+                )}
+                {errors.title && errors.title.type === "maxLength" && (
+                  <span>제목은 15글자 이내로 입력해주세요.</span>
+                )}
+                <br />
+              </div>
+              <div>
+                <label>요리소개</label>
+              </div>
+              <div>
+                <textarea
+                  id="desc"
+                  type="text"
+                  cols="40"
+                  rows="5"
+                  placeholder=" 레시피에 대한 설명을 적어주세요.
                     ex) 어머니로부터 배운 미역국 레시피를
                     아내의 입맛에 맞게 고안했습니다."
-                {...register("desc", { required: true, maxLength: 200 })}
-              />
-              {errors.desc && errors.desc.type === "required" && (
-                <span>요리소개를 입력해주세요.</span>
-              )}
-              {errors.desc && errors.desc.type === "maxLength" && (
-                <span>제목은 200글자 이내로 입력해주세요.</span>
-              )}
-              <br />
-
-              <label>카테고리</label>
-              <select {...register("category")}>
-                <option value="soup">국/탕/찌개</option>
-                <option value="grill">구이</option>
-                <option value="noodle">면/파스타</option>
-                <option value="rice">밥/볶음밥</option>
-                <option value="side">반찬</option>
-                <option value="kimchi">김치</option>
-                <option value="dessert">디저트</option>
-                <option value="etc">기타</option>
-              </select>
-              <br />
-
-              <label>인원</label>
-              <select {...register("qtt")}>
-                <option value="1">1인분</option>
-                <option value="2">2인분</option>
-                <option value="3">3인분</option>
-                <option value="4">4인분</option>
-                <option value="5">5인분 이상</option>
-              </select>
-              <br />
-
-              <label>시간</label>
-              <select {...register("duration")}>
-                <option value="1">10분 이내</option>
-                <option value="2">10분 ~ 30분</option>
-                <option value="3">30분 ~ 1시간</option>
-                <option value="4">1시간 ~ 2시간</option>
-                <option value="5">2시간 이상</option>
-              </select>
-              <br />
+                  {...register("desc", { required: true, maxLength: 200 })}
+                />
+                {errors.desc && errors.desc.type === "required" && (
+                  <span>요리소개를 입력해주세요.</span>
+                )}
+                {errors.desc && errors.desc.type === "maxLength" && (
+                  <span>제목은 200글자 이내로 입력해주세요.</span>
+                )}
+                <br />
+              </div>
+              <div>
+                <label>카테고리</label>
+              </div>
+              <div>
+                <select {...register("category")}>
+                  <option value="soup">국/탕/찌개</option>
+                  <option value="grill">구이</option>
+                  <option value="noodle">면/파스타</option>
+                  <option value="rice">밥/볶음밥</option>
+                  <option value="side">반찬</option>
+                  <option value="kimchi">김치</option>
+                  <option value="dessert">디저트</option>
+                  <option value="etc">기타</option>
+                </select>
+                <br />
+              </div>
+              <div>
+                <label>인원</label>
+              </div>
+              <div>
+                <select {...register("qtt")}>
+                  <option value="1">1인분</option>
+                  <option value="2">2인분</option>
+                  <option value="3">3인분</option>
+                  <option value="4">4인분</option>
+                  <option value="5">5인분 이상</option>
+                </select>
+                <br />
+              </div>
+              <div>
+                <label>시간</label>
+              </div>
+              <div>
+                <select {...register("duration")}>
+                  <option value="1">10분 이내</option>
+                  <option value="2">10분 ~ 30분</option>
+                  <option value="3">30분 ~ 1시간</option>
+                  <option value="4">1시간 ~ 2시간</option>
+                  <option value="5">2시간 이상</option>
+                </select>
+                <br />
+              </div>
             </div>
           </>
         );
@@ -133,17 +153,15 @@ export const Index = ({ user }) => {
         );
       case 3:
         return (
+          <>
+            <h3>요리 순서</h3>
+            <StepForm stepData={stepData} setStepData={setStepData} />
+          </>
+        );
+      case 4:
+        return (
           <div>
-            <>
-              <form onSubmit={handleSubmit(submitBtnClick)}>
-                <h3>요리 순서</h3>
-                <StepForm stepData={stepData} setStepData={setStepData} />
-
-                <div className={createStyles.submits}>
-                  <button type="submit">글쓰기</button>
-                </div>
-              </form>
-            </>
+            <div className={createStyles.submits}>{/* 카드 미리보기 */}</div>
           </div>
         );
     }
@@ -237,22 +255,49 @@ export const Index = ({ user }) => {
           handleSetIsModalVisible={handleSetIsModalVisible}
         />
       )}
-      <h1>레시피 등록하기</h1>
+      <div className={createStyles.header}>
+        <h1>레시피 등록하기</h1>
+      </div>
 
       <FormNavigator
-        className={createStyles.navigationContainer}
         wizardIndex={wizardIndex}
         setWizardIndex={setWizardIndex}
       />
+
       <div className={createStyles.wizardContainer}>
-        {switchWizardForm(wizardIndex)}
+        <form onSubmit={handleSubmit(submitBtnClick)}>
+          {switchWizardForm(wizardIndex)}
+        </form>
       </div>
-      <button type="button" onClick={button2}>
-        이전
-      </button>
-      <button type="button" onClick={button1}>
-        다음
-      </button>
+
+      <div className={createStyles.footer}>
+        <button
+          className={createStyles.button2}
+          type="button"
+          onClick={button2}
+        >
+          이전
+        </button>
+        {wizardIndex !== 4 && (
+          <>
+            <button
+              className={createStyles.button1}
+              type="button"
+              onClick={button1}
+            >
+              다음
+            </button>
+          </>
+        )}{" "}
+        {wizardIndex == 4 && (
+          <button
+            className={createStyles.button1}
+            onClick={handleSubmit(submitBtnClick)}
+          >
+            글쓰기
+          </button>
+        )}
+      </div>
     </div>
   );
 };
