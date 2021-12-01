@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/dist/client/router";
 import { getUserOrRedirect } from "../../../util/auth";
@@ -17,11 +17,6 @@ import createStyles from "../../../styles/recipe/Create.module.css";
 
 //  작성폼
 export const Index = ({ user }) => {
-  //  Y스크롤 막기
-  useEffect(() => {
-    console.log("스크롤X!!!");
-    document.body.style.overflow = "hidden";
-  });
   //  계량 팁 Modal, 렌더링 로직
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
   const [indexMeasuringModal, setIndexMeasuringModal] = useState(0);
