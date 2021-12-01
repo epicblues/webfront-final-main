@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/dist/client/router";
 import { getUserOrRedirect } from "../../../util/auth";
 import { postStaticAxios } from "../../../util/axios";
+import Head from "next/head";
 
 import MeasuringModal from "../../../components/recipe/create/food/MeasuringModal";
 import MeasuringModalBlackout from "../../../components/recipe/create/food/MeasuringModalBlackout";
@@ -233,6 +234,9 @@ export const Index = ({ user }) => {
   };
   return (
     <div className={createStyles.container}>
+      <Head>
+        <title>요건 다 내꺼! - 레시피 작성하기</title>
+      </Head>
       {isMeasuringModalVisible && (
         <>
           <MeasuringModal

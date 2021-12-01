@@ -9,7 +9,7 @@ const MiniButton = ({ children, href }: { children: any, href: string }) => {
       fontWeight: "bolder",
       // border: "solid white",
       // borderWidth: "0px 1px",
-      padding: "3px 15px"
+      // padding: "3px 15px"
     }
     }>
       {children}
