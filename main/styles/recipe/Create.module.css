@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-rows: 4em 8em 25em 3em;
+  grid-template-rows: 4rem 8rem 23rem 3rem;
 }
 
 .wizard1 {
@@ -16,15 +16,15 @@
 }
 .footer .button1 {
   background: #e4685d;
-  width: 6em;
-  height: 2.5em;
-  border-radius: 0.6em;
+  width: 9.5rem;
+  height: 3.5rem;
+  border-radius: 0.6rem;
   border: 1px solid #e4685d;
   cursor: pointer;
   color: #ffffff;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   font-weight: bold;
-  padding: 1em 0.5em;
+  padding: 1rem 0.5rem;
   text-decoration: none;
   display: flex;
   justify-content: center;
@@ -36,15 +36,15 @@
 }
 .footer .button2 {
   background: #ffffff;
-  width: 6em;
-  height: 2.5em;
-  border-radius: 0.6em;
+  width: 9.5rem;
+  height: 3.5rem;
+  border-radius: 0.6rem;
   border: 1px solid #666666;
   cursor: pointer;
   color: #666666;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   font-weight: bold;
-  padding: 1em 0.5em;
+  padding: 1rem 0.5rem;
   text-decoration: none;
   display: flex;
   justify-content: center;

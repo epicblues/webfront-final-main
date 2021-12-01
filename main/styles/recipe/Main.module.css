@@ -1,1 +1,8 @@
+.container {
+  display: grid;
+  grid-template-rows: 30rem 10rem;
+}
 
+.content {
+  background-color: lightgray;
+}
