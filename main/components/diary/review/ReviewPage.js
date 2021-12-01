@@ -10,9 +10,10 @@ import AddReview from "./AddReview";
 import "semantic-ui-css/semantic.min.css";
 import axios from "axios";
 
-const ReviewPage = ({ diary, setDiary, writingMode, DEFAULT }) => {
+const ReviewPage = ({ diary, setDiary }) => {
   const [showAddReview, setShowAddReview] = useState(false);
   const reviews = diary.reviews;
+
   // Update Review
 
   // Add Review
@@ -21,7 +22,9 @@ const ReviewPage = ({ diary, setDiary, writingMode, DEFAULT }) => {
     const newReview = { id, ...review };
     await axios.post("/api/diary/review/create?id=" + diary._id, newReview);
     const copiedReviews = [...reviews, newReview];
+    
     setDiary({ ...diary, reviews: copiedReviews });
+    setShowAddReview(false);
   };
 
   // Delete Review
@@ -35,30 +38,13 @@ const ReviewPage = ({ diary, setDiary, writingMode, DEFAULT }) => {
 
   return (
     <div>
-      {
-      <ReviewHeader
-         onAdd={() => setShowAddReview(!showAddReview)}
-         showAdd={showAddReview}
-      />
-      }
-      {showAddReview && <AddReview onAdd={addReview} />}
+      {<ReviewHeader onAdd={() => setShowAddReview(!showAddReview)} />}
+      {showAddReview && <AddReview onAdd={addReview} show={showAddReview} setShow={setShowAddReview} />}
       {reviews.length > 0 ? (
         <Reviews reviews={reviews} onDelete={deleteReview} />
       ) : (
         "No Reviews To Show"
       )}
-
-
-      {/* {writingMode === DEFAULT && (
-      <ReviewHeader />
-        {reviews.length > 0 ? (
-          <Reviews reviews={reviews} onDelete={deleteReview} />
-        ) : (
-          "No Reviews To Show"
-        )}
-      )}
-      {<AddReview />} */}
-
     </div>
   );
 };

@@ -92,20 +92,8 @@ const FinalTotalSum = ({ diary, user, isOpen, setIsOpen}) => {
   });
 
   return (
-    <div className='total-open'
-          style = {{
-                    transform : isOpen ? "none" : "translateX(100%)",
-                  }}
-    >
-    <div className='total-modal' style={{marginTop: '3vh', textAlign: 'center'}}>
-      <div style={{display: 'flex', justifyContent: 'space-between'}}>
-        <i className="large angle left icon"
-            style={{ fontSize: "1.4rem", marginTop: "4px" }}
-            onClick={() => !(setIsOpen(!isOpen))}
-        >
-        </i>
-        <Dropdown selected={selected} setSelected={setSelected}/>
-      </div>
+    <div style={{textAlign: 'center', borderRadius: '20px', boxShadow: '1px 1px 3px 1px #dadce0' }}>
+      <Dropdown selected={selected} setSelected={setSelected}/>
       
       <div style={{ marginTop: 0, marginBottom: "1rem", display: 'flex', flexDirection: 'column'}}>
 
@@ -155,7 +143,6 @@ const FinalTotalSum = ({ diary, user, isOpen, setIsOpen}) => {
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
