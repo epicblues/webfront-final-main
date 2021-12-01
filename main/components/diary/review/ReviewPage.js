@@ -39,7 +39,7 @@ const ReviewPage = ({ diary, setDiary }) => {
   return (
     <div>
       {<ReviewHeader onAdd={() => setShowAddReview(!showAddReview)} />}
-      {showAddReview && <AddReview onAdd={addReview} show={showAddReview} setShow={setShowAddReview} />}
+      {showAddReview && <AddReview onAdd={addReview} show={showAddReview} setShow={setShowAddReview} diary={diary} setDiary={setDiary} />}
       {reviews.length > 0 ? (
         <Reviews reviews={reviews} onDelete={deleteReview} />
       ) : (

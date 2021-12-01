@@ -1,7 +1,13 @@
 /* google font: 'Noto Sans KR', 'Montserrat' */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 /* reset */
-/* 폰트는 rem으로 통일, 1rem = 16px (본문 사이즈) */
+/* 폰트는 rem으로 통일
+16px = 1rem
+24px = 1.5rem
+25px = 1.6rem
+28px = 1.8rem
+32px = 2rem
+*/
 /* 콘텐츠간 간격은 1rem (margin, padding) */
 * {
   margin: 0;
@@ -229,7 +235,7 @@ a.is-active {
   height: 100%;
   /* flex-shrink: 0; */
   margin: 0;
-  padding: 0;
+  padding: 0 1rem;
   text-align: left;
   box-shadow: 1px 1px 3px 1px #dadce0;
   background-color: #fff;
@@ -254,5 +260,4 @@ a.is-active {
   border: none;
   width: 375px;
   height: 100vh;
-  padding: 0 1rem;
 }

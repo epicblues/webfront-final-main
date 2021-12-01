@@ -19,7 +19,7 @@ const MenuModal = ({ onExit }: { onExit: Function }) => {
     position: "fixed",
     bottom: "10px",
     // border: "2px solid white",
-
+    marginBottom: "6vh",
     width: "100vw",
     display: 'flex',
     flexDirection: "column",
@@ -72,7 +72,7 @@ const MenuModal = ({ onExit }: { onExit: Function }) => {
           </div>
 
         ))}
-        <span style={buttonStyle} onClick={() => { onExit() }}></span>
+
 
       </div>
 

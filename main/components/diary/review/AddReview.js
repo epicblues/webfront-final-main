@@ -2,7 +2,7 @@ import { useState } from "react";
 import PickDate from "../PickDate";
 import MultiBtn from "../meal/MultiBtn";
 
-const AddReview = ({ onAdd, setShow, show, }) => {
+const AddReview = ({ onAdd, setShow, show, diary, setDiary }) => {
   const [text, setText] = useState("");
 
   const onSubmit = () => {
@@ -25,7 +25,7 @@ const AddReview = ({ onAdd, setShow, show, }) => {
             text={text.length === 0 ? "취소" : "완료"}
             onClick={onSubmit}
           />
-          {/* <PickDate /> */}
+          <PickDate diary={diary} setDiary={setDiary}/>
         </div>
 
         <form className="review-modal-form" onSubmit={onSubmit}>        

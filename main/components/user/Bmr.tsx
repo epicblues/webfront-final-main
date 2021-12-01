@@ -3,11 +3,11 @@ import { Icon, Popup } from 'semantic-ui-react';
 
 export interface UserBmr {
   gender: string;
-  heightFeet: number;
-  weight: number;
-  age: number;
-  bmr: number;
-  activity: number;
+  heightFeet: number | "";
+  weight: number | "";
+  age: number | "";
+  bmr: number | "";
+  activity: number | "";
   error: string,
   flag: boolean,
   system: string,
@@ -38,7 +38,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
   const calculateAct = () => {
     const { bmr, activity } = userBmr
 
-    setUserBmr({ ...userBmr, activity: Math.round(bmr * activity) })
+    setUserBmr({ ...userBmr, activity: Math.round(+bmr * +activity) })
 
   }
 
@@ -64,10 +64,11 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
         border: "solid 2px lightgray",
         borderRadius: "5px",
         padding: "16px",
+        backgroundColor: "whitesmoke"
       }}
     >
       <div className="ui form">
-        <h2>기초대사량 &amp; 일일 권장 칼로리</h2>
+        <h3>기초대사량 &amp; 일일 권장 칼로리</h3>
         {userBmr.error && error}
         <div className="inputwrap inline fields">
           <label className="label">성별</label>

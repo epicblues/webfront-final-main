@@ -1,6 +1,7 @@
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 import clientPromise, { getNextSequence } from "../../../util/mongodb";
 import { hash } from "bcrypt";
+import { authenticated } from "../../../util/auth";
 
 const Update: NextApiHandler = async (
   req: NextApiRequest,
@@ -27,4 +28,4 @@ const Update: NextApiHandler = async (
   }
 };
 
-export default Update;
+export default authenticated(Update);
