@@ -1,18 +1,17 @@
 import nodemailer from "nodemailer";
 
 export async function sendAuthEmail(email: string, key: string) {
-  // create reusable transporter object using the default SMTP transport
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
-    secure: true, // true for 465, false for other ports
+    secure: true, // 465 포트일 때만 true
     auth: {
-      user: process.env.NEXT_PUBLIC_ADMIN_EMAIL, // generated ethereal user
-      pass: process.env.NEXT_PUBLIC_ADMIN_EMAIL_PW, // generated ethereal password
+      user: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
+      pass: process.env.NEXT_PUBLIC_ADMIN_EMAIL_PW,
     },
   });
 
-  // send mail with defined transport object
+  // 설정한 transporter 인스턴스를 통해 메일을 보낸다.
   let info = await transporter.sendMail({
     from: '"요건 다 내꺼" <webfrontyogeun@gmail.com>', // sender address
     to: email, // list of receivers
