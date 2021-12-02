@@ -38,10 +38,9 @@ const MainList = ({ challenges, user }) => {
             <h2>No Challenges</h2>
           )}
           {challengeIndexes.map((index) => (
-            <div className={ChallengeStyle.item2}>
+            <div className={ChallengeStyle.item2} key={index}>
               <button
                 className={ButtonStyle.listButton}
-                key={index}
                 onClick={() => {
                   setChallengeIndex(index);
                 }}

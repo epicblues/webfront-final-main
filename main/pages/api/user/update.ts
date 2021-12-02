@@ -9,7 +9,12 @@ const Update: NextApiHandler = async (
 ) => {
   const userForm = req.body;
   console.log(userForm);
-  const password = await hash(userForm.password, 10);
+  const query = { ...userForm };
+  delete query.password;
+  if (userForm.password !== "") {
+    const password = await hash(userForm.password, 10);
+    query.password = password;
+  }
 
   try {
     const client = await clientPromise;
@@ -17,10 +22,7 @@ const Update: NextApiHandler = async (
     const result = await client
       .db("webfront")
       .collection("user")
-      .updateOne(
-        { email: userForm.email },
-        { $set: { ...userForm, password } }
-      );
+      .updateOne({ email: userForm.email }, { $set: query });
     res.status(200).json(result ? { status: "OK" } : { status: "Failed" });
   } catch (err) {
     console.log(err);
