@@ -1,0 +1,10 @@
+.text {
+  font-weight: bold;
+  width: 70vw;
+  border: solid 2px lightgray;
+  border-radius: 6px;
+}
+.image {
+  width: 40px;
+  height: 40px;
+}

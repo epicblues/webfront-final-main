@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-
+import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
   //이미지 업로드
@@ -33,7 +33,10 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
     }
   };
   return (
-    <div className="ui rounded image" style={{ height: "auto" }}>
+    <div
+      className="ui rounded image"
+      style={{ height: "auto", marginTop: "5px", marginBottom: "0px" }}
+    >
       <div className="container" style={{ width: "100%" }}>
         {error && (
           <p className="errorMsg" style={{ color: "red" }}>
@@ -41,8 +44,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
-        <h4>챌린지를 설명할 사진 추가</h4>
-
+        <h3 className={ChallengeStyle.h3}>챌린지를 설명할 사진 추가</h3>
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -54,7 +56,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                   }") no-repeat center/cover`
                 : 'url("/empty.jpg") no-repeat center/cover',
             width: "100%",
-            height: "40vh",
+            height: "10vh",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",

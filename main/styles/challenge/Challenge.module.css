@@ -44,3 +44,29 @@
   justify-items: center;
   align-items: center;
 }
+.writeContainer {
+}
+.h1 {
+  text-align: center;
+  margin-bottom: 0;
+}
+.hr {
+  height: 10px;
+  border: 0;
+  background: #333;
+  background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+.h3 {
+  text-align: left;
+  margin-bottom: 5px;
+}
+.h4 {
+  text-align: left;
+  margin: 0px;
+  height: 20px;
+}
+.causion {
+  font-size: medium;
+  font-weight: 900;
+  color: red;
+}
