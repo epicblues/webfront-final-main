@@ -1,6 +1,6 @@
 import { React } from "react";
 import { Header, Icon, Popup } from "semantic-ui-react";
-
+import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 const ChallengeCondition = ({
   challenge,
   setChallenge,
@@ -59,9 +59,10 @@ const ChallengeCondition = ({
       <Header as="h3" className="challengeContent">
         챌린지 조건
       </Header>
-      <div>
+      <div className={ChallengeStyle.causion}>
         주의!
         <Popup
+          style={{ display: "flex", justifyContent: "space-around" }}
           header="챌린지 조건"
           content="다이어트 챌린지 조건은 아침,점심,저녁,간식을 모두 작성해야만 조건이 성립합니다."
           trigger={<Icon name="info circle" size="large" color="grey"></Icon>}
@@ -70,7 +71,7 @@ const ChallengeCondition = ({
       <br />
 
       <div className="challengeKind">
-        <Header as="h4">챌린지의 종류</Header>
+        <h4 className={ChallengeStyle.h4}>챌린지의 종류</h4>
         <input
           type="radio"
           id="1"

@@ -1,0 +1,19 @@
+.container {
+  background-color: #fff0f0;
+  height: 25vh;
+}
+
+.wrapper {
+  margin: 1rem 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  background-color: white;
+  height: 16vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.innerWrapper {
+  border-radius: 15px;
+}

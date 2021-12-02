@@ -25,7 +25,7 @@ const AddReview = ({ onAdd, setShow, show, diary, setDiary }) => {
             text={text.length === 0 ? "취소" : "완료"}
             onClick={onSubmit}
           />
-          <PickDate diary={diary} setDiary={setDiary}/>
+          <PickDate diary={diary} setDiary={setDiary} />
         </div>
 
         <form className="review-modal-form" onSubmit={onSubmit}>        

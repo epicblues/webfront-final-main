@@ -18,11 +18,7 @@ const index = ({ challenges, user }) => {
   );
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Link passHref href="/challenge/create">
-          <Button>챌린지 작성</Button>
-        </Link>
-
+      <div>
         <Link passHref href="/challenge/mainlist">
           <Button>챌린지 리스트 보기 </Button>
         </Link>
