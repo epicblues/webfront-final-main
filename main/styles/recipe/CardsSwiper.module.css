@@ -168,7 +168,7 @@
     position: absolute;
     width: 100%;
     height: 1px;
-    border-top: 1px solid black;
+    border-top: 1px solid #ff5656;
   }
   .textWrapper {
     display: flex;
@@ -322,7 +322,7 @@
     position: absolute;
     width: 100%;
     height: 1px;
-    border-top: 1px solid black;
+    border-top: 1px solid #ff5656;
   }
   .textWrapper {
     display: flex;
@@ -476,7 +476,7 @@
     position: absolute;
     width: 100%;
     height: 1px;
-    border-top: 1px solid black;
+    border-top: 1px solid #ff5656;
   }
   .textWrapper {
     display: flex;
@@ -632,7 +632,7 @@
     position: absolute;
     width: 100%;
     height: 1px;
-    border-top: 1px solid black;
+    border-top: 1px solid #ff5656;
   }
   .textWrapper {
     display: flex;
