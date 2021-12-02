@@ -20,8 +20,7 @@ const PickDate = ({ diary, setDiary }) => {
   const CustomInput = ({ value, onClick }) => (
     <div className='customInput' onClick={onClick}>
       {/* {value} */}
-      {/* <i className='calendar alternate outline icon'></i> */}
-      <FontAwesomeIcon icon={faCalendarCheck} />
+      <FontAwesomeIcon icon={faCalendarCheck} className='icon'/>
     </div>
   );
 

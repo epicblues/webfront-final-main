@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
 // CSS
 import "semantic-ui-css/semantic.min.css";
-import diaryStyles from "../../styles/diary/Diary.module.css";
 // Date
 import PickDate from "../../components/diary/PickDate";
 // 영양 섭취 상태
@@ -16,7 +14,6 @@ import ReviewPage from "../../components/diary/review/ReviewPage";
 // 음식 작성
 import AddFood from "../../components/diary/meal/AddFood";
 import Meal from "../../components/diary/meal/Meal";
-import { faLeaf } from "@fortawesome/free-solid-svg-icons";
 
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
@@ -64,16 +61,7 @@ const Index = ({ user, fetchedDiary, mode, }) => {
             </p>
             <div className='is-desc-img'></div>
           </div>
-
-          <div
-            className="container"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "5fr 5fr",
-              gridAutoRows: "160px",
-              gridGap: "1rem",
-            }}
-          > 
+          <div className="meal-container"> 
             {[0, 1, 2, 3].map((type) => (
               <Meal
                 diary={diary}
@@ -128,16 +116,13 @@ const Index = ({ user, fetchedDiary, mode, }) => {
       {writingMode === DEFAULT && (
         <div className="wrap-default">
           <div className="tabs is-boxed">
-
             <div>
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
             </div>
             <PickDate diary={diary} setDiary={setDiary} />
-
           </div>
-
           <div>{tabContArr[activeIndex].tabCont}</div>
         </div>
       )}
