@@ -1,8 +1,7 @@
 .container {
-  display: grid;
-  grid-template-rows: auto auto;
+  background-color: #fff0f0;
 }
 
 .content {
-  background-color: lightgray;
+  padding: 0 1rem;
 }

@@ -1,9 +1,12 @@
 import React from "react";
+import Head from "next/head";
 
 import clientPromise from "../../util/mongodb";
 import { getUserOrRedirect } from "../../util/auth";
+
+// Component
 import CardsSwiper from "../../components/recipe/list/CardsSwiper";
-import Head from "next/head";
+import Navigation from "../../components/recipe/index/Navigation";
 
 // CSS
 import mainStyles from "../../styles/recipe/Main.module.css";
@@ -14,8 +17,10 @@ const Index = ({ user, filteredHitRecipes }) => {
       <Head>
         <title>요건 다 내꺼! - 레시피</title>
       </Head>
-      <div>상단내비</div>
-      <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
+      <Navigation></Navigation>
+      <div className={mainStyles.hitWrapper}>
+        <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
+      </div>
       <div className={mainStyles.content}>asd</div>
     </div>
   );
