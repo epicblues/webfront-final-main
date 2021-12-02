@@ -9,7 +9,6 @@ import Search from "../../../../../components/recipe/index/Search";
 
 //CSS
 import recipeListStyles from "../../../../../styles/RecipeList.module.css";
-import GoBackward from "../../../../../components/GoBackward";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,7 +41,6 @@ const Index = ({ user, filteredRecipes, keyword }) => {
 
   return (
     <div>
-      <GoBackward />
       <Search />
       <Categories />
       <h1>검색어 : {keyword}</h1>

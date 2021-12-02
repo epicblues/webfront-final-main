@@ -1,0 +1,9 @@
+.footerWrapper {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.imgContainer {
+  width: 3rem;
+}

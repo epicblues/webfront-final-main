@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
+import Head from "next/head";
 
 import clientPromise from "../../util/mongodb";
 import { getUserOrRedirect } from "../../util/auth";
+
+// Component
 import CardsSwiper from "../../components/recipe/list/CardsSwiper";
-import Head from "next/head";
+import Navigation from "../../components/recipe/index/Navigation";
+import MyDashboard from "../../components/recipe/index/MyDashboard";
 
 // CSS
 import mainStyles from "../../styles/recipe/Main.module.css";
@@ -14,9 +18,9 @@ const Index = ({ user, filteredHitRecipes }) => {
       <Head>
         <title>요건 다 내꺼! - 레시피</title>
       </Head>
-      <div>상단내비</div>
+      <Navigation></Navigation>
       <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
-      <div className={mainStyles.content}>asd</div>
+      <MyDashboard></MyDashboard>
     </div>
   );
 };

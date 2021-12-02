@@ -5,8 +5,12 @@ import { TextArea } from 'semantic-ui-react'
 import MenuModal from './main/MenuModal'
 import ModalButton from './main/ModalButton'
 
+import Image from "next/dist/client/image";
+import AppIcon from '../public/static/logos/transLogo.png'
 
 import MiniButton from './main/NavButton'
+
+import footerNavStyles from '../styles/main/FooterNav.module.css';
 
 
 
@@ -51,28 +55,34 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         zIndex: 20
       }} >
         {pageProps.user &&
-          <>
+          <div className={footerNavStyles.footerWrapper}>
             <MiniButton href="/recipe">
-              <i className='book icon'></i>
-              <p>Recipe</p>
+              <i className='utensils icon'></i>
+              <p>레시피</p>
             </MiniButton>
             <MiniButton href="/diary">
-              <i className='utensils icon'></i>
-              <p>Diary</p>
+              <i className='book icon'></i>
+              <p>다이어리</p>
             </MiniButton>
+
             <ModalButton onClick={() => { setMenuModal(!menuModal) }}>
-              <i className='dot circle icon'></i>
-              <p>Menu</p>
+              <div className={footerNavStyles.menuBtn}>
+                <div className={footerNavStyles.imgContainer}>
+                  <Image src={AppIcon} layout="fill" objectFit="contain"></Image>
+                </div>
+              </div>
+
             </ModalButton>
+
             <MiniButton href="/challenge" >
               <i className='thumbs up icon'></i>
-              <p>Challenge</p>
+              <p>챌린지</p>
             </MiniButton>
             <MiniButton href="/">
               <i className='user icon'></i>
-              <p>User</p>
+              <p>USER</p>
             </MiniButton>
-          </>
+          </div>
         }
       </footer>
       {menuModal &&

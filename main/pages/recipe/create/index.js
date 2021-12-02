@@ -287,7 +287,7 @@ export const Index = ({ user }) => {
               다음
             </button>
           </>
-        )}{" "}
+        )}
         {wizardIndex == 4 && (
           <button
             className={createStyles.button1}
