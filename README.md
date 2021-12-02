@@ -4,6 +4,7 @@
 - env.local의 STATIC_SERVER_URL
 - env.local의 AWS_CONNECT SSH 주소
 - webfront-static-server github hook URL 수정
+- 내도메인.한국에서 도메인과 연결된 AWS IP 주소 변경
 
 # 사용 애플리케이션
 
