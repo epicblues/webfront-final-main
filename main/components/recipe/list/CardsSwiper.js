@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/dist/client/image";
 
 // swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper.min.css";
+import "swiper/components/navigation/navigation.min.css";
+import SwiperCore, { Navigation } from "swiper/core";
+SwiperCore.use([Navigation]);
 
 // CSS
 import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
@@ -40,11 +43,27 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
         return "몰라용";
     }
   }
+
+  const navigationPrevRef = useRef(null);
+  const navigationNextRef = useRef(null);
+
   const swiperParams = {
+    navigation: {
+      prevEl: navigationPrevRef.current,
+      nextEl: navigationNextRef.current,
+    },
+    onbeforeprint: (swiper) => {
+      swiper.params.navigation.prevEl = navigationPrevRef.current;
+      swiper.params.navigation.nextEl = navigationNextRef.current;
+      swiper.activeIndex = mainImageIndex;
+      swiper.navigation.update();
+    },
+    // allowTouchMove: false,
     speed: 200,
     slidesPerView: 1.3,
     centeredSlides: true,
     loop: true,
+    preventInteractionOnTransition: true,
     spaceBetween: 30,
     onSwiper: setSwiper,
     onSlideChange: (e) => setMainImageIndex(e.activeIndex),
@@ -56,6 +75,14 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
       ref={setSwiper}
       className={cardsSwiperStyles.container}
     >
+      <div className={cardsSwiperStyles.nvWrapper}>
+        <div className={cardsSwiperStyles.btnWrapper} ref={navigationPrevRef}>
+          <div className={cardsSwiperStyles.btnPrev}></div>
+        </div>
+        <div className={cardsSwiperStyles.btnWrapper} ref={navigationNextRef}>
+          <div className={cardsSwiperStyles.btnNext}></div>
+        </div>
+      </div>
       {filteredHitRecipes.map((card, index) => {
         return (
           <SwiperSlide key={card._id} className={cardsSwiperStyles.card}>
@@ -94,17 +121,19 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
 
               {/* 카드 바디 본문 */}
               <div className={cardsSwiperStyles.cardBodyMain}>
-                <p className={cardsSwiperStyles.cardBodyDesc}>
-                  <Link
-                    href={{
-                      pathname: `/recipe/card/${card._id}`,
-                    }}
-                    as={`/recipe/card/${card._id}`}
-                    passHref
-                  >
-                    <a>{card.desc}</a>
-                  </Link>
-                </p>
+                <Link
+                  href={{
+                    pathname: `/recipe/card/${card._id}`,
+                  }}
+                  as={`/recipe/card/${card._id}`}
+                  passHref
+                >
+                  <a>
+                    <p className={cardsSwiperStyles.cardBodyDesc}>
+                      {card.desc}
+                    </p>
+                  </a>
+                </Link>
               </div>
               {/* 카드 바디 푸터 */}
               <div className={cardsSwiperStyles.cardBodyFooter}>

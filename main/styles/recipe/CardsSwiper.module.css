@@ -1,18 +1,200 @@
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
 
-@media screen and (min-width: 1200px) {
+@media screen and (max-width: 1920px) {
+  .container {
+    font-family: "NanumSquare";
+    display: grid;
+    width: 100vw;
+    height: 48vh;
+  }
+
+  .nvWrapper {
+    display: flex;
+    width: 100%;
+    height: 48vh;
+    justify-content: space-between;
+    position: absolute;
+  }
+  .btnWrapper {
+    display: flex;
+    width: 12vw;
+    z-index: 50;
+    backdrop-filter: blur(3px);
+    justify-content: center;
+    align-items: center;
+  }
+  .btnPrev {
+    position: relative;
+    content: "";
+    display: inline-block;
+    /* By using an em scale, the arrows will size with the font */
+    width: 2rem;
+    height: 2rem;
+    border-left: 0.4rem solid black;
+    border-top: 0.4rem solid black;
+    transform: rotate(-45deg);
+    margin-left: 1rem;
+  }
+  .btnNext {
+    position: relative;
+    content: "";
+    display: inline-block;
+    /* By using an em scale, the arrows will size with the font */
+    width: 2rem;
+    height: 2rem;
+    border-right: 0.4rem solid black;
+    border-top: 0.4rem solid black;
+    transform: rotate(45deg);
+    margin-right: 1rem;
+  }
+
+  .card {
+    background-color: white;
+    height: 45vh;
+    border-radius: 15px;
+    display: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+  }
+
+  .cardHeader {
+    -webkit-transition: 0.5s; /*사파리 & 크롬*/
+    -moz-transition: 0.5s; /*파이어폭스*/
+    -ms-transition: 0.5s; /*인터넷 익스플로러*/
+    -o-transition: 0.5s; /*오페라*/
+    transition: 0.5s;
+    width: 78vw;
+    height: 20vh;
+    border-radius: 15px 15px 0 0;
+    background-size: 100% 230vw;
+    background-repeat: no-repeat;
+    position: sticky;
+  }
+
+  .card:hover .cardHeader {
+    position: relative;
+    opacity: 0.7;
+    height: 10vh;
+  }
+
+  .cardBodyWrapper {
+    padding: 1rem 1rem;
+  }
+
+  .hot {
+    display: flex;
+    align-content: center;
+    justify-content: left;
+    height: 1.2rem;
+  }
+  .iWrapper {
+    margin-right: 0.5rem;
+    width: 1.3rem;
+  }
+  .hot strong {
+    color: #ff5656;
+  }
+
+  .cardBodyHeader {
+    line-height: 1.2rem;
+  }
+
+  .h1 {
+    font-family: "NanumSquare";
+    max-height: 2.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.5rem 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #111111;
+  }
+  .cardBodyAuthor {
+    font-family: "NanumSquare";
+    font-size: 1rem;
+    color: #444444;
+    margin-bottom: 0.5rem;
+  }
+  .cardBodyCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 2rem;
+    font-family: "NanumSquare";
+    color: #c36868;
+    background-color: #eddddd;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .cardBodyDesc {
+    opacity: 0;
+    color: #333333;
+    line-height: 25px;
+    -webkit-transition: 0.2s ease-in-out; /*사파리&크롬*/
+    -moz-transition: 0.2s ease-in-out; /*파이어폭스*/
+    -ms-transition: 0.2s ease-in-out; /*익스플로러*/
+    -o-transition: 0.2s ease-in-out; /*오페라*/
+    transition: 0.2s ease-in-out;
+    overflow: hidden;
+    height: 180px;
+  }
+
+  .card:hover .cardBodyDesc {
+    opacity: 1;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -ms-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cardBodyFooter {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 75vw;
+    height: 3rem;
+    color: #9fa5a8;
+    transform: translate(-1rem, 0);
+  }
+  .hr {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid black;
+  }
+  .textWrapper {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    justify-content: space-between;
+  }
+  .cardIconHit {
+    height: 1rem;
+    padding-left: 1rem;
+    padding-right: 0.2rem;
+    transform: translate(0, 0.15rem);
+  }
+  .hitSpan {
+    color: #ff5656;
+  }
+  .cardUploadDate {
+    padding-right: 1rem;
+    vertical-align: auto;
+    margin-right: 2px;
+    float: right;
+  }
 }
 
 @media screen and (max-width: 1199px) {
   /* 타블렛 가로 */
-}
-
-@media screen and (max-width: 899px) {
-  /* 모바일 가로 */
-}
-
-@media screen and (max-width: 599px) {
-  /* 모바일 세로*/
   .container {
     font-family: "NanumSquare";
     display: grid;
@@ -117,6 +299,316 @@
   }
 
   .card:hover .cardBodyDesc {
+    opacity: 1;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -ms-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cardBodyFooter {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 75vw;
+    height: 3rem;
+    color: #9fa5a8;
+    transform: translate(-1rem, 0);
+  }
+  .hr {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid black;
+  }
+  .textWrapper {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    justify-content: space-between;
+  }
+  .cardIconHit {
+    height: 1rem;
+    padding-left: 1rem;
+    padding-right: 0.2rem;
+    transform: translate(0, 0.15rem);
+  }
+  .hitSpan {
+    color: #ff5656;
+  }
+  .cardUploadDate {
+    padding-right: 1rem;
+    vertical-align: auto;
+    margin-right: 2px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  /* 모바일 가로 */
+  .container {
+    font-family: "NanumSquare";
+    display: grid;
+    width: 100vw;
+    height: 48vh;
+  }
+
+  .card {
+    background-color: white;
+    height: 45vh;
+    border-radius: 15px;
+    display: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+  }
+
+  .cardHeader {
+    -webkit-transition: 0.5s; /*사파리 & 크롬*/
+    -moz-transition: 0.5s; /*파이어폭스*/
+    -ms-transition: 0.5s; /*인터넷 익스플로러*/
+    -o-transition: 0.5s; /*오페라*/
+    transition: 0.5s;
+    width: 78vw;
+    height: 20vh;
+    border-radius: 15px 15px 0 0;
+    background-size: 100% 230vw;
+    background-repeat: no-repeat;
+    position: sticky;
+  }
+
+  .card:hover .cardHeader {
+    position: relative;
+    opacity: 0.7;
+    height: 10vh;
+  }
+
+  .cardBodyWrapper {
+    padding: 1rem 1rem;
+  }
+
+  .hot {
+    display: flex;
+    align-content: center;
+    justify-content: left;
+    height: 1.2rem;
+  }
+  .iWrapper {
+    margin-right: 0.5rem;
+    width: 1.3rem;
+  }
+  .hot strong {
+    color: #ff5656;
+  }
+
+  .cardBodyHeader {
+    line-height: 1.2rem;
+  }
+
+  .h1 {
+    font-family: "NanumSquare";
+    max-height: 2.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.5rem 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #111111;
+  }
+  .cardBodyAuthor {
+    font-family: "NanumSquare";
+    font-size: 1rem;
+    color: #444444;
+    margin-bottom: 0.5rem;
+  }
+  .cardBodyCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 2rem;
+    font-family: "NanumSquare";
+    color: #c36868;
+    background-color: #eddddd;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .cardBodyDesc {
+    opacity: 0;
+    color: #333333;
+    line-height: 25px;
+    -webkit-transition: 0.2s ease-in-out; /*사파리&크롬*/
+    -moz-transition: 0.2s ease-in-out; /*파이어폭스*/
+    -ms-transition: 0.2s ease-in-out; /*익스플로러*/
+    -o-transition: 0.2s ease-in-out; /*오페라*/
+    transition: 0.2s ease-in-out;
+    overflow: hidden;
+    height: 180px;
+  }
+
+  .card:hover .cardBodyDesc {
+    opacity: 1;
+    -webkit-transition: 0.5s ease-in-out;
+    -moz-transition: 0.5s ease-in-out;
+    -ms-transition: 0.5s ease-in-out;
+    -o-transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cardBodyFooter {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 75vw;
+    height: 3rem;
+    color: #9fa5a8;
+    transform: translate(-1rem, 0);
+  }
+  .hr {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid black;
+  }
+  .textWrapper {
+    display: flex;
+    align-items: center;
+    height: 3rem;
+    justify-content: space-between;
+  }
+  .cardIconHit {
+    height: 1rem;
+    padding-left: 1rem;
+    padding-right: 0.2rem;
+    transform: translate(0, 0.15rem);
+  }
+  .hitSpan {
+    color: #ff5656;
+  }
+  .cardUploadDate {
+    padding-right: 1rem;
+    vertical-align: auto;
+    margin-right: 2px;
+    float: right;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  /* 모바일 세로*/
+  .container {
+    font-family: "NanumSquare";
+    display: grid;
+    width: 100vw;
+    height: 48vh;
+  }
+
+  .card {
+    background-color: white;
+    height: 45vh;
+    border-radius: 15px;
+    display: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+  }
+
+  .cardHeader {
+    -webkit-transition: 0.5s; /*사파리 & 크롬*/
+    -moz-transition: 0.5s; /*파이어폭스*/
+    -ms-transition: 0.5s; /*인터넷 익스플로러*/
+    -o-transition: 0.5s; /*오페라*/
+    transition: 0.5s;
+    width: 78vw;
+    height: 20vh;
+    border-radius: 15px 15px 0 0;
+    background-size: 100% 230vw;
+    background-repeat: no-repeat;
+    position: sticky;
+  }
+
+  .card:hover .cardHeader {
+    position: relative;
+    opacity: 0.7;
+    height: 10vh;
+  }
+
+  .cardBodyWrapper {
+    padding: 1rem 1rem;
+  }
+
+  .hot {
+    display: flex;
+    align-content: center;
+    justify-content: left;
+    height: 1.2rem;
+  }
+  .iWrapper {
+    margin-right: 0.5rem;
+    width: 1.3rem;
+  }
+  .hot strong {
+    color: #ff5656;
+  }
+
+  .cardBodyHeader {
+    line-height: 1.2rem;
+  }
+
+  .h1 {
+    font-family: "NanumSquare";
+    max-height: 2.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0.5rem 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #111111;
+  }
+  .cardBodyAuthor {
+    font-family: "NanumSquare";
+    font-size: 1rem;
+    color: #444444;
+    margin-bottom: 0.5rem;
+  }
+  .cardBodyCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 2rem;
+    font-family: "NanumSquare";
+    color: #c36868;
+    background-color: #eddddd;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+  }
+
+  .cardBodyDesc {
+    display: none;
+    opacity: 0;
+    color: #333333;
+    line-height: 25px;
+    -webkit-transition: 0.2s ease-in-out; /*사파리&크롬*/
+    -moz-transition: 0.2s ease-in-out; /*파이어폭스*/
+    -ms-transition: 0.2s ease-in-out; /*익스플로러*/
+    -o-transition: 0.2s ease-in-out; /*오페라*/
+    transition: 0.2s ease-in-out;
+    overflow: hidden;
+    height: 180px;
+  }
+
+  .card:hover .cardBodyDesc {
+    display: unset;
     opacity: 1;
     -webkit-transition: 0.5s ease-in-out;
     -moz-transition: 0.5s ease-in-out;
