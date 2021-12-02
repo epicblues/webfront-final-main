@@ -20,7 +20,6 @@ const ChallengeWrite = ({ user }) => {
   const uploadCountError = useRef();
   const startDateError = useRef();
   const endDateError = useRef();
-  const image = useRef();
   const imageError = useRef();
 
   const [challenge, setChallenge] = useState({
@@ -304,7 +303,6 @@ const ChallengeWrite = ({ user }) => {
         <ChallengeAddImage
           challenge={challenge}
           setChallenge={setChallenge}
-          image={image}
           imageError={imageError}
         />
         <br />

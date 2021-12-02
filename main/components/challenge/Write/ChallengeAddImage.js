@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 
-const ChallengeAddImage = ({ challenge, setChallenge, image }) => {
+const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
   //이미지 업로드
   const handleImageUpload = (e) => {
@@ -9,7 +9,7 @@ const ChallengeAddImage = ({ challenge, setChallenge, image }) => {
       setChallenge((challenge) => {
         const newChallenge = { ...challenge };
         newChallenge.image = null;
-        newChallenge.image = null;
+        newChallenge.imageBuffer = null;
         return newChallenge;
       });
       return;
@@ -72,14 +72,12 @@ const ChallengeAddImage = ({ challenge, setChallenge, image }) => {
                 className="customfileUpload"
                 style={{ cursor: "pointer", marginBottom: 4 }}
               >
-                <i className="large images outline icon"></i>
+                <i className="huge images outline icon"></i>
               </label>
               <input
                 type="file"
-                id="fileupload"
                 style={{ display: "none" }}
                 onChange={handleImageUpload}
-                ref={image}
               />
             </>
           )}
