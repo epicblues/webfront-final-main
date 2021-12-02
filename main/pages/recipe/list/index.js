@@ -9,8 +9,9 @@ import clientPromise from "../../../util/mongodb";
 import axios from "axios";
 import { debounce } from "../../../util/axios";
 
+//  Component
+import Navigation from "../../../components/recipe/index/Navigation";
 import Categories from "../../../components/recipe/index/Categories";
-import Search from "../../../components/recipe/index/Search";
 
 //  CSS
 import recipeListStyles from "../../../styles/RecipeList.module.css";
@@ -68,7 +69,7 @@ const Index = ({ user, recipes }) => {
 
   return (
     <div>
-      <Search />
+      <Navigation></Navigation>
       <Categories />
       <InfiniteScroll
         dataLength={recipeList.length}
