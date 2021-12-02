@@ -58,7 +58,7 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
       swiper.activeIndex = mainImageIndex;
       swiper.navigation.update();
     },
-    // allowTouchMove: false,
+    allowTouchMove: false,
     speed: 200,
     slidesPerView: 1.3,
     centeredSlides: true,

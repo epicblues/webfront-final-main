@@ -7,7 +7,7 @@ import { getUserOrRedirect } from "../../util/auth";
 // Component
 import CardsSwiper from "../../components/recipe/list/CardsSwiper";
 import Navigation from "../../components/recipe/index/Navigation";
-import Search from "../../components/recipe/index/Search";
+import MyDashboard from "../../components/recipe/index/MyDashboard";
 
 // CSS
 import mainStyles from "../../styles/recipe/Main.module.css";
@@ -20,7 +20,7 @@ const Index = ({ user, filteredHitRecipes }) => {
       </Head>
       <Navigation></Navigation>
       <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
-      <div className={mainStyles.content}>asd</div>
+      <MyDashboard></MyDashboard>
     </div>
   );
 };
