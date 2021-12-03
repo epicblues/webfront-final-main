@@ -1,43 +1,34 @@
 import React from 'react'
+// ICON
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 const Meal = ({ diary, type, setWritingMode, user }: any) => {
   const typeName = ["아침", "점심", "저녁", "간식"]
   return (
-
     <div
-      className="item"
-      onClick={(e) => {
-        e.preventDefault();
-        setWritingMode(type);
-      }}
-      style={{
-        // border: "solid 2px lightgray",
-        borderRadius: "5px",
-        position: 'relative',
-        boxShadow: '1px 1px 3px 1px #dadce0'
-      }}
+        className="meal item"
+        onClick={(e) => {
+          e.preventDefault();
+          setWritingMode(type);
+        }}
     >
-      <img src={diary.meals[type].imageBuffer || ((diary.meals[type].image !== null && process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image) || '/empty.jpg')}
-        alt=""
-        className='ui rounded image'
-        style={{ objectFit: 'cover', width: '100%', height: '100%', boxSizing: 'border-box' }}
+      <img
+          src={diary.meals[type].imageBuffer || ((diary.meals[type].image !== null && process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image) || '/empty.jpg')}
+          alt=""
       />
 
-      <a className="ui teal label" style={{ position: 'absolute', top: '8px', right: '8px', borderRadius: '20px' }}>
+      <span className="meal-type-label">
         {typeName[type]}
-      </a>
+      </span>
 
-      <a className='ui teal circular label'
-        style={{
-          boxShadow: '1px 1px 3px 1px #dadce0',
-          position: 'absolute',
-          top: '50%', left: '50%',
-          transform: 'translate(-50%, -50%)',
-          display: diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer ? 'block' : 'none'
-        }}
-      >
-        +
-      </a>
+      <FontAwesomeIcon
+                      icon={faPlusCircle}
+                      className='icon'
+                      style={{
+                        display: diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer ? 'block' : 'none'
+                      }}
+      />
     </div>
   )
 }

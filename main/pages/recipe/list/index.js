@@ -9,8 +9,9 @@ import clientPromise from "../../../util/mongodb";
 import axios from "axios";
 import { debounce } from "../../../util/axios";
 
+//  Component
+import Navigation from "../../../components/recipe/index/Navigation";
 import Categories from "../../../components/recipe/index/Categories";
-import Search from "../../../components/recipe/index/Search";
 
 //  CSS
 import recipeListStyles from "../../../styles/RecipeList.module.css";
@@ -19,7 +20,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faEllipsisV, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Index = ({ user, recipes }) => {
   //  카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
@@ -68,7 +69,7 @@ const Index = ({ user, recipes }) => {
 
   return (
     <div>
-      <Search />
+      <Navigation></Navigation>
       <Categories />
       <InfiniteScroll
         dataLength={recipeList.length}

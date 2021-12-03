@@ -1,9 +1,9 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
+// CSS
 import "semantic-ui-css/semantic.min.css";
 // Date
 import PickDate from "../../components/diary/PickDate";
@@ -23,21 +23,27 @@ export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   "DEFAULT",
 ]; // Diary용 상수 설정
 
-const Index = ({ user, fetchedDiary }) => {
+const Index = ({ user, fetchedDiary, mode, }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [writingMode, setWritingMode] = useState("DEFAULT");
+  const [writingMode, setWritingMode] = useState(
+    mode !== null ? mode : "DEFAULT"
+  );
   const [diary, setDiary] = useState(fetchedDiary);
-
+  useEffect(() => {
+    setWritingMode(mode !== null ? mode : "DEFAULT");
+    return () => {};
+  }, [mode]);
   const tabClickHandler = (index) => {
     setActiveIndex(index);
   };
+  const [isOpen, setIsOpen] = useState(false);
 
   const tabContArr = [
     {
       tabTitle: (
         <a
           key="uniqueId1"
-          className='{activeIndex === 0 ? "is-active" : ""} item'
+          className={activeIndex === 0 ? "is-active" : ""}
           onClick={() => tabClickHandler(0)}
         >
           식단
@@ -45,17 +51,17 @@ const Index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div>
-          <h3 style={{ textAlign: "left" }}>오늘의 식단</h3>
-
-          <div
-            className="container"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "5fr 5fr",
-              gridAutoRows: "200px",
-              gridGap: "1rem",
-            }}
-          >
+          <FinalTotalSum diary={diary} user={user} />
+          <div className='is-desc'>
+            <p>
+              오늘 무엇을 드셨나요?<br />
+              <span>
+                식단을 기록하세요
+              </span>
+            </p>
+            <div className='is-desc-img'></div>
+          </div>
+          <div className="meal-container"> 
             {[0, 1, 2, 3].map((type) => (
               <Meal
                 diary={diary}
@@ -73,7 +79,7 @@ const Index = ({ user, fetchedDiary }) => {
       tabTitle: (
         <a
           key="uniqueId2"
-          className='{activeIndex === 1 ? "is-active" : ""} item'
+          className={activeIndex === 1 ? "is-active" : ""}
           onClick={() => tabClickHandler(1)}
         >
           일기
@@ -81,7 +87,11 @@ const Index = ({ user, fetchedDiary }) => {
       ),
       tabCont: (
         <div>
-          <ReviewPage diary={diary} setDiary={setDiary} />
+          <ReviewPage
+            diary={diary}
+            setDiary={setDiary}
+            writingMode={writingMode}
+          />
         </div>
       ),
     },
@@ -92,6 +102,7 @@ const Index = ({ user, fetchedDiary }) => {
     <>
       {[0, 1, 2, 3].map((type) => (
         <AddFood
+          className="wrap-food"
           writingMode={writingMode}
           diary={diary}
           setDiary={setDiary}
@@ -103,22 +114,16 @@ const Index = ({ user, fetchedDiary }) => {
       ))}
 
       {writingMode === DEFAULT && (
-        <div className="ui center aligned container">
-          <div className="DatePart">
-            <PickDate diary={diary} setDiary={setDiary} />
-          </div>
-          <div className="TotalPart">
-            <FinalTotalSum diary={diary} user={user} />
-          </div>
-
-          <div className="content">
-            <div className="ui two item menu" style={{ listStyle: "none" }}>
+        <div className="wrap-default">
+          <div className="tabs is-boxed">
+            <div>
               {tabContArr.map((section, index) => {
                 return section.tabTitle;
               })}
             </div>
-            <div>{tabContArr[activeIndex].tabCont}</div>
+            <PickDate diary={diary} setDiary={setDiary} />
           </div>
+          <div>{tabContArr[activeIndex].tabCont}</div>
         </div>
       )}
     </>
@@ -132,6 +137,7 @@ export const getServerSideProps = async (ctx) => {
 
     // 당일 다이어리를 가져오는 로직
     const client = await clientPromise;
+    console.log(ctx.query);
     const loadedDiary = await client
       .db("webfront")
       .collection("diary")
@@ -152,11 +158,16 @@ export const getServerSideProps = async (ctx) => {
             ...initialDiary,
             _id: diaryId,
           }),
+          mode: ctx.query.mode ? +ctx.query.mode : null,
         },
       };
     } else {
       return {
-        props: { user, fetchedDiary: parseDocumentToObject(loadedDiary) },
+        props: {
+          user,
+          fetchedDiary: parseDocumentToObject(loadedDiary),
+          mode: ctx.query.mode ? +ctx.query.mode : null,
+        },
       };
     }
   } catch (error) {

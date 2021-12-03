@@ -13,6 +13,7 @@ import axios from "axios";
 const ReviewPage = ({ diary, setDiary }) => {
   const [showAddReview, setShowAddReview] = useState(false);
   const reviews = diary.reviews;
+
   // Update Review
 
   // Add Review
@@ -21,7 +22,9 @@ const ReviewPage = ({ diary, setDiary }) => {
     const newReview = { id, ...review };
     await axios.post("/api/diary/review/create?id=" + diary._id, newReview);
     const copiedReviews = [...reviews, newReview];
+    
     setDiary({ ...diary, reviews: copiedReviews });
+    setShowAddReview(false);
   };
 
   // Delete Review
@@ -34,12 +37,9 @@ const ReviewPage = ({ diary, setDiary }) => {
   };
 
   return (
-    <div className="ui content">
-      <ReviewHeader
-        onAdd={() => setShowAddReview(!showAddReview)}
-        showAdd={showAddReview}
-      />
-      {showAddReview && <AddReview onAdd={addReview} />}
+    <div>
+      {<ReviewHeader onAdd={() => setShowAddReview(!showAddReview)} />}
+      <AddReview onAdd={addReview} show={showAddReview} setShow={setShowAddReview} diary={diary} setDiary={setDiary} />
       {reviews.length > 0 ? (
         <Reviews reviews={reviews} onDelete={deleteReview} />
       ) : (

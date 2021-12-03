@@ -1,0 +1,39 @@
+.container {
+  font-family: "NanumSquare";
+  background-color: #fff0f0;
+  height: 26vh;
+  text-align: center;
+}
+
+.wrapper {
+  margin: 1rem 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  background-color: white;
+  height: 18vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.innerWrapper {
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  border: 5px #fff0f0 solid;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0.5rem;
+  padding: 0.2rem 0.2rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  color: #333333;
+}
+
+.number {
+  font-size: 1.5rem;
+  color: #ff5656;
+  font: bold;
+}

@@ -3,7 +3,7 @@ import { useState } from "react";
 import Dropdown from "./Dropdown";
 import Progress from "./Progress";
 
-const FinalTotalSum = ({ diary, user }) => {
+const FinalTotalSum = ({ diary, user, }) => {
   function getTotalNutrients() {
     const result = { kcal: 0, carbs: 0, fat: 0, prot: 0 };
     const toNumberCheck = (input) => {
@@ -92,13 +92,14 @@ const FinalTotalSum = ({ diary, user }) => {
   });
 
   return (
-    <div style={{margin: '1rem 0 1rem 0', padding: '0.5rem 0', borderRadius: '5px', boxShadow: '1px 1px 3px 1px #dadce0'}}>
+    <div className='final-total-sum-wrap'>
       <Dropdown selected={selected} setSelected={setSelected}/>
+      
       <div style={{ marginTop: 0, marginBottom: "1rem", display: 'flex', flexDirection: 'column'}}>
 
         <div style={{marginBottom: "1rem"}}>
           <div>칼로리</div>
-          <div>
+          <div className='progress-wrap'>
             <Progress
               done={finalTotalSum.kcal}
               max={managingDatas[selected].kcal}
@@ -111,10 +112,10 @@ const FinalTotalSum = ({ diary, user }) => {
           <div style={{minWidth: '25.3%'}}>
             <div>탄수화물</div>
             <div>
-              <Progress
+              {/* <Progress
                 done={finalTotalSum.carbs}
                 max={managingDatas[selected].carbs}
-              />
+              /> */}
               <span style={{fontWeight: '600'}}>{finalTotalSum.carbs}</span> / {managingDatas[selected].carbs} g
             </div>
           </div>
@@ -122,10 +123,10 @@ const FinalTotalSum = ({ diary, user }) => {
           <div style={{minWidth: '25.3%'}}>
             <div>단백질</div>
             <div>
-              <Progress
+              {/* <Progress
                 done={finalTotalSum.prot}
                 max={managingDatas[selected].prot}
-              />
+              /> */}
               <span style={{fontWeight: '600'}}>{finalTotalSum.prot}</span> / {managingDatas[selected].prot} g
             </div>
           </div>
@@ -133,10 +134,10 @@ const FinalTotalSum = ({ diary, user }) => {
           <div style={{minWidth: '25.3%'}}>
             <div>지방</div>
             <div>
-              <Progress
+              {/* <Progress
                 done={finalTotalSum.fat}
                 max={managingDatas[selected].fat}
-              />
+              /> */}
               <span style={{fontWeight: '600'}}>{finalTotalSum.fat}</span> / {managingDatas[selected].fat} g
             </div>
           </div>

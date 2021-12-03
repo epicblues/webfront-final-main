@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
-import { Container } from "semantic-ui-react";
+import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
+import ButtonStyle from "../../styles/challenge/Button.module.css";
 
 const MainList = ({ challenges, user }) => {
   const challengeIndexes = [];
@@ -25,14 +26,7 @@ const MainList = ({ challenges, user }) => {
 
   return (
     <>
-      <container
-        style={{
-          display: "flex",
-          flexdirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div className="container">
         <div>
           <h2>챌린지 리스트</h2>
           {challenges.length > 0 ? (
@@ -44,17 +38,19 @@ const MainList = ({ challenges, user }) => {
             <h2>No Challenges</h2>
           )}
           {challengeIndexes.map((index) => (
-            <button
-              key={index}
-              onClick={() => {
-                setChallengeIndex(index);
-              }}
-            >
-              {index}
-            </button>
+            <div className={ChallengeStyle.item2} key={index}>
+              <button
+                className={ButtonStyle.listButton}
+                onClick={() => {
+                  setChallengeIndex(index);
+                }}
+              >
+                {index}
+              </button>
+            </div>
           ))}
         </div>
-      </container>
+      </div>
     </>
   );
 };

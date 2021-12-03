@@ -1,0 +1,56 @@
+.container {
+  display: grid;
+  grid-template-rows: 4rem 8rem 23rem 3rem;
+}
+
+.wizard1 {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 1fr 2fr 1fr 1fr 1fr;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+}
+.footer .button1 {
+  background: #e4685d;
+  width: 9.5rem;
+  height: 3.5rem;
+  border-radius: 0.6rem;
+  border: 1px solid #e4685d;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem 0.5rem;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .button1:active {
+  position: relative;
+  top: 2px;
+}
+.footer .button2 {
+  background: #ffffff;
+  width: 9.5rem;
+  height: 3.5rem;
+  border-radius: 0.6rem;
+  border: 1px solid #666666;
+  cursor: pointer;
+  color: #666666;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1rem 0.5rem;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer .button2:active {
+  position: relative;
+  top: 2px;
+}

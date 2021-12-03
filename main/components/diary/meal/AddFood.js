@@ -8,6 +8,10 @@ import Cart from "./Cart";
 import LookupMeal from "./LookupMeal";
 import MultiBtn from "../meal/MultiBtn";
 
+// ICON
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
+
 const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
 export const [PAGE_PRODUCTS, PAGE_CART] = ["products", "cart"];
 
@@ -99,30 +103,20 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
             setPage={setPage}
           />
         ) : (
-          <div style={{padding: '0 1rem 1rem 1rem'}}
-            className="AddFood"
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                marginBottom: "16px",
-                height: '24px'
-              }}
-            >
+          <div className="add-food-wrap">
+            <div className='add-food-header'>
               <MultiBtn
-                color={showAdd ? "#a0a0a0" : "#02b0b0"}
-                text={showAdd ? "취소" : "완료"}
-                onClick={multiBtn}
+                        color={showAdd ? "#a0a0a0" : "#02b0b0"}
+                        text={showAdd ? "취소" : "완료"}
+                        onClick={multiBtn}
               />
-              <span style={{font:"normal 600 1.2rem 'Noto Sans KR'"}}>{mealType[type]}</span>
-              <a
-                style={{boxShadow: '1px 1px 3px 1px #dadce0'}}
-                className="ui teal circular label"
-                onClick={() => navigateTo(PAGE_CART)}
-              >
-                {getCartTotal()}
-              </a>
+              <span>{mealType[type]}</span>
+              <FontAwesomeIcon
+                              icon={faList}
+                              className='icon'
+                              onClick={() => navigateTo(PAGE_CART)}
+              />
+              <a>{getCartTotal()}</a>
             </div>
 
             {page === PAGE_PRODUCTS && (

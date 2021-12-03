@@ -35,12 +35,17 @@ const Login = () => {
         password: password.current.value,
 
       })
-      const result = await data
-      if (result.status === "OK") router.push('/');
+      if (data.status !== "OK") throw new Error(data.status)
+      router.push('/')
 
-    } catch (error) {
+    } catch (error: any) {
+      if (error.message === "이메일 인증") {
+        await axios.post("/api/user/verify", { email: email.current.value })
+        head.current.innerHTML = "이메일 인증을 완료하셔야 합니다. 메일함을 확인해보세요!"
+      } else {
+        head.current.innerHTML = error.message
+      }
 
-      head.current.innerHTML = "이메일 혹은 비밀번호를 잘못 입력하셨습니다."
       email.current.value = '';
       password.current.value = '';
 
@@ -51,21 +56,21 @@ const Login = () => {
 
   return (
     <>
-      {loginMode ? <div style={{ display: 'flex', flexDirection: 'column', alignItems: "stretch", justifyContent: "space-evenly", height: "40vh", borderRadius: "5px", minHeight: "450px", padding: "20px", }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: "stretch", justifyContent: "space-between", height: "60vh", borderRadius: "5px", minHeight: "450px", padding: "20px", transition: "all 0.3s", transform: loginMode ? "translateX(0%)" : "translateX(100%)" }}>
 
-        <h2 ref={head} style={{ alignSelf: "center" }}>Login</h2>
+        <div ref={head} style={{ alignSelf: "center", fontSize: "2em", fontWeight: 700 }}>Login</div>
         <Form>
           <h3>Email</h3> <input type="email" ref={email} />
           <h3>Password</h3> <input type="password" ref={password} />
         </Form>
         <br />
-        <Button onClick={handleClick}>제출</Button>
+        <button className="ui button facebook" onClick={handleClick}>제출</button>
         <Link passHref href="/user/join">
-          <Button>회원가입</Button>
+          <button className="ui button teal">회원가입</button>
         </Link>
 
 
-      </div> : <Intro handleClick={() => { setLoginMode(true) }} />}
+      </div>  <Intro handleClick={() => { setLoginMode(true) }} loginMode={loginMode} />
     </>
 
   )

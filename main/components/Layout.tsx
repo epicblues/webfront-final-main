@@ -1,16 +1,25 @@
 import { useRouter } from 'next/dist/client/router'
-import React, { FunctionComponent, LegacyRef, UIEventHandler, useRef } from 'react'
+import React, { FunctionComponent, LegacyRef, UIEventHandler, useRef, useState } from 'react'
 import 'semantic-ui-css/semantic.min.css'
 import { TextArea } from 'semantic-ui-react'
+import MenuModal from './main/MenuModal'
+import ModalButton from './main/ModalButton'
 
+import Image from "next/dist/client/image";
+import AppIcon from '../public/static/logos/logo04.png'
 
 import MiniButton from './main/NavButton'
 
+import footerNavStyles from '../styles/main/FooterNav.module.css';
+
+// ICON
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faUser, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 
 
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
-
+  const [menuModal, setMenuModal] = useState(false)
 
   return (
     // 모든 페이지에 적용될 레이아웃 디자인 (Header Or Footer)
@@ -28,14 +37,13 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
 
       </div> */}
 
-      <div style={{ marginTop: '3vh', paddingBottom: '12vh' }} onScroll={e => console.log(e)}>
+      <div style={{ marginTop: '3vh', paddingBottom: '70px' }} onScroll={e => console.log(e)}>
         {children}
       </div>
 
       <footer style={{
 
         backgroundColor: "#fff",
-        opacity: '0.9',
         display: "flex",
         justifyContent: "space-around",
         width: "100vw",
@@ -44,29 +52,54 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         bottom: "0",
         textAlign: 'center',
         padding: '6px 0 0 0',
-        boxShadow: '1px 1px 3px 1px #dadce0'
+        boxShadow: '1px 1px 3px 1px #dadce0',
+        borderTopLeftRadius: '20px',
+        borderTopRightRadius: '20px',
+        zIndex: 20
       }} >
-        {pageProps.user &&
-          <>
+        {pageProps.user ?
+          <div className={footerNavStyles.footerWrapper}>
             <MiniButton href="/recipe">
-              <i className='book icon'></i>
-              <p>Recipe</p>
-            </MiniButton>
-            <MiniButton href="/diary">
               <i className='utensils icon'></i>
-              <p>Diary</p>
+              {/* <FontAwesomeIcon icon={} className='icon' /> */}
+              <p>레시피</p>
             </MiniButton>
+
+            <MiniButton href="/diary">
+              <i className='edit outline icon'></i>
+              {/* <FontAwesomeIcon icon={} className='icon' /> */}
+              <p>다이어리</p>
+            </MiniButton>
+
+            <ModalButton onClick={() => { setMenuModal(!menuModal) }}>
+              <div className={footerNavStyles.menuBtn}>
+                <div className={footerNavStyles.imgContainer}>
+                  <Image src={AppIcon} layout="responsive" objectFit="contain"></Image>
+                </div>
+                {/* <p>메뉴</p> */}
+              </div>
+            </ModalButton>
+
             <MiniButton href="/challenge" >
-              <i className='thumbs up icon'></i>
-              <p>Challenge</p>
+              <i className='thumbs up outline icon'></i>
+              {/* <FontAwesomeIcon icon={faThumbsUp} className='icon' /> */}
+              <p>챌린지</p>
             </MiniButton>
+
             <MiniButton href="/">
-              <i className='user icon'></i>
-              <p>User</p>
+              <i className='user outline icon'></i>
+              {/* <FontAwesomeIcon icon={faUser} className='icon' /> */}
+              <p>리포트</p>
             </MiniButton>
-          </>
-        }
+          </div>
+          : (<div className={footerNavStyles.footerWrapper} style={{ background: "white", height: "6vh" }}>
+
+          </div>
+          )}
       </footer>
+
+      <MenuModal hidden={!menuModal} onExit={() => { setMenuModal(false) }} />
+
 
     </ >
   )

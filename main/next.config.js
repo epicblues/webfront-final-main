@@ -2,6 +2,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["localhost", "3.36.55.14"],
+    domains: ["localhost", "yogeun-webfront.p-e.kr"],
   },
 };

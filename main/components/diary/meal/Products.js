@@ -4,7 +4,7 @@ import RecipeModal from "./RecipeModal";
 import FoodModal from "./FoodModal";
 import { debounce } from "../../../util/axios";
 
-export default function Products({ diary, setDiary, type }) {
+export default function Products({ diary, setDiary, type, }) {
   const inputRef = useRef();
   const [products] = useState([]);
 
@@ -88,12 +88,13 @@ export default function Products({ diary, setDiary, type }) {
     <>
       <div
         className="ui fluid icon input"
-        style={{ boxShadow: "1px 1px 3px 1px #dadce0", borderRadius: "5px" }}
+        style={{ boxShadow: "1px 1px 3px 1px #dadce0", borderRadius: "10px" }}
       >
         <input
           type="text"
           placeholder="음식 검색하기"
           onChange={(event) => handleSearch(event)}
+          style={{borderRadius: '10px'}}
         />
         <i className="search icon" style={{ right: "8px" }}></i>
       </div>

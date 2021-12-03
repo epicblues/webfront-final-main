@@ -1,5 +1,5 @@
 .container {
-  text-align: center;
+  place-items: center;
 }
 
 .ul {

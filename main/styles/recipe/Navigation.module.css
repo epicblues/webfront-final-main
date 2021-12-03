@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  font: normal 600 1.2rem "Noto Sans KR";
+  padding: 0 1rem;
+  padding-bottom: 1.6rem;
+}
+
+.tab {
+  text-align: center;
+  width: 5rem;
+}

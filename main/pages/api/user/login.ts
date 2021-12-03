@@ -13,18 +13,20 @@ const login: NextApiHandler = async (
   const userForm = req.body;
   const password = req.body.password;
   const secret = process.env.UUID_SECRET as string;
+  try {
+    const result = (await (await clientPromise)
+      .db("webfront")
+      .collection("user")
+      .findOne({ email: userForm.email })) as Document;
 
-  const result = (await (await clientPromise)
-    .db("webfront")
-    .collection("user")
-    .findOne({ email: userForm.email })) as Document;
-
-  if (!result) {
-    res.status(400).json({ status: "Invalid email" });
-  } else {
-    const isValidPW = await compare(password, result.password);
-    // 로그인 성공 후에 유저 인증 관련 jwt를 쿠키에 저장
-    if (isValidPW) {
+    if (!result) {
+      throw new Error("이메일이 유효하지 않습니다.");
+    } else {
+      console.log(result);
+      if (!result.verified) throw new Error("이메일 인증");
+      const isValidPW = await compare(password, result.password);
+      // 로그인 성공 후에 유저 인증 관련 jwt를 쿠키에 저장
+      if (!isValidPW) throw new Error("비밀번호 불일치");
       const jwt = sign(
         {
           email: result.email,
@@ -47,11 +49,11 @@ const login: NextApiHandler = async (
           path: "/",
         })
       );
-    }
 
-    res
-      .status(isValidPW ? 200 : 404)
-      .json(isValidPW ? { status: "OK" } : { status: "Failed" });
+      res.status(200).json({ status: "OK" });
+    }
+  } catch (error: any) {
+    res.status(200).json({ status: error.message });
   }
 };
 

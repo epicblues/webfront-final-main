@@ -1,17 +1,30 @@
 /* google font: 'Noto Sans KR', 'Montserrat' */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 /* reset */
+/* 폰트는 rem으로 통일
+16px = 1rem
+24px = 1.5rem
+25px = 1.6rem
+28px = 1.8rem
+32px = 2rem
+*/
+/* 콘텐츠간 간격은 1rem (margin, padding) */
 * {
   margin: 0;
   padding: 0;
-	box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.stop-scrolling {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body {
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   overflow-y: scroll; /*레이아웃 이동현상 방지 스크롤바 표시*/
 }
-
 
 body::-webkit-scrollbar {
   width: 6px; /*스크롤바의 너비*/
@@ -25,7 +38,9 @@ body::-webkit-scrollbar-track {
   background-color: #d8d8d8; /*스크롤바 트랙 색상*/
 }
 
-ul, ol, li {
+ul,
+ol,
+li {
   list-style: none;
 }
 
@@ -33,18 +48,79 @@ a {
   text-decoration: none;
 }
 
-/* datepicker custom */
+textarea:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.ui.dimmer {
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* Tab Menu */
+.wrap-default {
+  padding: 0 1rem;
+}
+
+.is-boxed {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.6rem;
+}
+
+.tabs a {
+  font: normal 600 1.2rem "Noto Sans KR";
+  color: #999;
+  margin: 0 10px;
+}
+
+.tabs a:hover {
+  color: unset !important;
+}
+
+a.is-active {
+  color: #333;
+  border-bottom: solid 3px #333;
+}
+
+/* Datepicker Custom */
+.react-datepicker__input-container {
+  width: 1.5rem !important;
+}
+
 .react-datepicker__input-container input {
   border: none;
 }
 
 .customInput {
-  font: normal bold 1.2rem/100% "Noto Sans KR";
+  font-size: 1.4rem;
+}
+
+.customInput .icon {
+  vertical-align: middle;
 }
 
 .react-datepicker {
-  padding: 10px;
+  transform: scale(1.2);
+  padding: 1rem;
   font-size: 1rem !important;
+  border: none !important;
+  border-radius: 20px !important;
+}
+
+.react-datepicker__portal {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.react-datepicker__triangle {
+  display: none;
 }
 
 .react-datepicker__header {
@@ -52,7 +128,9 @@ a {
   border-bottom: none !important;
 }
 
-.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range,
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
 .react-datepicker__month-text--selected,
 .react-datepicker__month-text--in-selecting-range,
 .react-datepicker__month-text--in-range,
@@ -63,7 +141,7 @@ a {
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
   border-radius: 50% !important;
-  background-color: #02b0b0 !important;
+  background-color: #ff5656 !important;
 }
 
 .react-datepicker__day:hover,
@@ -73,33 +151,248 @@ a {
   border-radius: 50% !important;
   background-color: #f0f0f0;
 }
-/* dropdown Menu */
-/* .dropdownMenu {
-  font-size: 1;
-} */
+
+/* dropDown */
+.dropdown-modal {
+  background-color: rgba(0,0,0,0) !important;
+  box-shadow: none !important;
+  width: 90% !important;
+  bottom: 0; 
+}
+
+.dropdown-modal-content {
+  border-radius: 10px !important;
+  background-color: #fff !important;
+}
+
+.dropdown-modal-content > .managing-option {
+  display: flex;
+  justify-content: space-between;
+  font: normal 500 1.2rem 'Noto Sans KR';
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: solid 1px #d8d8d8;
+}
+
+.managing-option:nth-child(3) {
+ border-bottom: none;
+}
+
+.managing-option .icon {
+  width: 1.5rem;
+}
+
+.dropdown-modal-action {
+  border-radius: 10px !important;
+  margin: 1rem auto 5rem !important;
+  width: 100%;
+  font: normal 500 1.2rem/22px'Noto Sans KR' !important;
+}
+
+/* Final Total Sum */
+.final-total-sum-wrap {
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
 /* Progress Bar */
 .progress {
-	background-color: #d8d8d8;
-	border-radius: 20px;
-	position: relative;
-	margin: 15px auto;
-	height:10px;
-	width: 90%;
-  overflow: hidden;
+  /* background-color: #d8d8d8;
+  border-radius: 20px;
+  position: relative;
+  margin: 0.5rem auto;
+  height: 5px;
+  width: 90%;
+  overflow: hidden; */
+
+  background-color: #d8d8d8;
+  border-radius: 50%;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
 }
 
 .progress-done {
-	background: linear-gradient(315deg , #7ee8fa, #80ff72);
-	box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #DCD1FF;
-	border-radius: 20px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100%;
-	width: 0;
-	opacity: 0;
-	transition: 1s ease 0.3s;
+  /* background: linear-gradient(315deg, #ff5656, #ffa886);
+  box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease 0.3s;
   position: absolute;
-  top:0;
+  top: 0;
+  left: 0; */
+  
+  background: linear-gradient(315deg, #ff5656, #ffa886);
+  box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0.8rem;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease 0.3s;
+  position: absolute;
+  top: 0;
   left: 0;
+}
+
+/* Description + Image */
+.is-desc {
+  text-align: left;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 100px;
+}
+
+.is-desc p {
+  font: normal 500 1.2rem/22px 'Noto Sans KR';
+  margin: 0;
+}
+
+.is-desc span {
+  font-size: 1rem;
+}
+
+.is-desc button {
+  background-color: rgba(66, 30, 30, 0.1);
+  border-radius: 20px;
+  border: none;
+  padding: 4px 8px;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.is-desc .icon {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+}
+
+.is-desc-img {
+  background: url(../public/empty.jpg) no-repeat center top / 100%;
+}
+
+/* Meal */
+.meal-container {
+  display: grid;
+  grid-template-columns: 5fr 5fr;
+  grid-auto-rows: 160px;
+  grid-gap: 1rem;
+}
+
+.meal {
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+}
+
+.meal-type-label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font: normal 500 1.2rem/22px 'Noto Sans KR';
+}
+
+.meal .icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.meal img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 20px;
+}
+/* Add food*/
+.add-food-wrap {
+  padding: 0 1rem 1rem 1rem;
+}
+
+.add-food-wrap .add-food-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  height: 1.5rem;
+  position: relative;
+}
+
+.add-food-header > span {
+  font: normal 600 1.2rem 'Noto Sans KR';
+}
+
+.add-food-header .icon {
+  margin-right: 0.5rem;
+}
+
+.add-food-header > a {
+  background-color: #ff5656;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  text-align: center;
+  color: #fff;
+  position: absolute;
+  top: -12px;
+  right: -4px;
+}
+
+/* Review */
+.review-open {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /* flex-shrink: 0; */
+  margin: 0;
+  padding: 0 1rem;
+  text-align: left;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  background-color: #fff;
+  transition: all;
+  transition-duration: 300ms;
+  z-index: 30;
+}
+
+.review-modal {
+  margin-top: 3vh;
+  position: relative;
+}
+
+.review-modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  height: 24px;
+}
+.review-modal-form {
+  width: 100%;
+}
+
+.review-modal-form > textarea {
+  border: none;
+  width: 100%;
+  height: 100vh;
 }

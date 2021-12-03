@@ -9,10 +9,10 @@ import clientPromise from "../../../../util/mongodb";
 //  CSS
 import recipeListStyles from "../../../../styles/RecipeList.module.css";
 import { postStaticAxios } from "../../../../util/axios";
-import GoBackward from "../../../../components/GoBackward";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faEllipsisV, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import MyNavigation from "../../../../components/recipe/list/MyNavigation";
 
 const Index = ({ user, filteredRecipes }) => {
   const [recipes, setRecipes] = useState([...filteredRecipes]);
@@ -62,12 +62,11 @@ const Index = ({ user, filteredRecipes }) => {
   }
   return (
     <div>
-      <GoBackward />
-      <h1>내 레시피</h1>
-      <ul className={recipeListStyles.cards}>
+      <MyNavigation></MyNavigation>
+      <div className={recipeListStyles.cards}>
         {recipes.map((card, index) => {
           return (
-            <li key={card._id} className={recipeListStyles.card}>
+            <div key={card._id} className={recipeListStyles.card}>
               <Link
                 href={{
                   pathname: `/recipe/card/${card._id}`,
@@ -133,17 +132,23 @@ const Index = ({ user, filteredRecipes }) => {
                           <button type="button">수정하기</button>
                         </a>
                       </Link>
-                      <button type="button" onClick={() => onDeleteBtn(card)}>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onDeleteBtn(card);
+                        }}
+                      >
                         삭제하기
                       </button>
                     </div>
                   </div>
                 </a>
               </Link>
-            </li>
+            </div>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 };

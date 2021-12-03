@@ -56,7 +56,7 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
                     process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
                       diary.meals[type].image
                   }") no-repeat center/cover`
-                : "#9e9e9e",
+                : 'url("/empty.jpg") no-repeat center/cover',
             width: "100%",
             height: "40vh",
             display: "flex",
@@ -66,7 +66,7 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
             textAlign: "center",
             color: "white",
             marginBottom: "16px",
-            boxShadow: '1px 1px 3px 1px #dadce0'
+            boxShadow: "1px 1px 3px 1px #dadce0",
           }}
         >
           {!imgPreview && (
@@ -85,15 +85,15 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
                 onChange={handleImageChange}
               />
             </>
-            )}
-            {!diary.meals[type].image || (
-              <div style={{ textAlign: "right", marginBottom: "16px" }}>
-                <i
-                  className="huge trash alternate icon"
-                  onClick={handleImageChange}
-                ></i>
-              </div>
-            )}
+          )}
+          {!diary.meals[type].image || (
+            <div style={{ textAlign: "right", marginBottom: "16px" }}>
+              <i
+                className="huge trash alternate icon"
+                onClick={handleImageChange}
+              ></i>
+            </div>
+          )}
         </div>
       </div>
     </div>
