@@ -141,7 +141,7 @@ a.is-active {
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
   border-radius: 50% !important;
-  background-color: #02b0b0 !important;
+  background-color: #ff5656 !important;
 }
 
 .react-datepicker__day:hover,
@@ -201,23 +201,44 @@ a.is-active {
 
 /* Progress Bar */
 .progress {
-  background-color: #d8d8d8;
+  /* background-color: #d8d8d8;
   border-radius: 20px;
   position: relative;
   margin: 0.5rem auto;
   height: 5px;
   width: 90%;
-  overflow: hidden;
+  overflow: hidden; */
+
+  background-color: #d8d8d8;
+  border-radius: 50%;
+  position: relative;
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
 }
 
 .progress-done {
-  background: linear-gradient(315deg, #7ee8fa, #80ff72);
-  box-shadow: 0 3px 3px -5px #7ee8fa, 0 1px 0.4px #dcd1ff;
+  /* background: linear-gradient(315deg, #ff5656, #ffa886);
+  box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 0;
+  opacity: 0;
+  transition: 1s ease 0.3s;
+  position: absolute;
+  top: 0;
+  left: 0; */
+  
+  background: linear-gradient(315deg, #ff5656, #ffa886);
+  box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0.8rem;
   width: 0;
   opacity: 0;
   transition: 1s ease 0.3s;
@@ -326,7 +347,7 @@ a.is-active {
 }
 
 .add-food-header > a {
-  background-color: #02b0b0;
+  background-color: #ff5656;
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 50%;
