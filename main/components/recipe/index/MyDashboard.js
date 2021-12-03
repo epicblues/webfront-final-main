@@ -19,16 +19,18 @@ const MyDashBoard = ({ countMyRecipes, totalHit }) => {
           </a>
         </Link>
         <div className={myDashboardStyles.innerWrapper}>
-          <p>작성글</p>
+          <p className={myDashboardStyles.title}>작성글</p>
           <br />
-          <p>{countMyRecipes}</p>
+          <p div className={myDashboardStyles.number}>
+            {countMyRecipes}
+          </p>
         </div>
         <div className={myDashboardStyles.innerWrapper}>
-          <p>
+          <p className={myDashboardStyles.title}>
             누적 <br />
             조회수
           </p>
-          <p>{totalHit}</p>
+          <p className={myDashboardStyles.number}>{totalHit}</p>
         </div>
       </div>
     </div>

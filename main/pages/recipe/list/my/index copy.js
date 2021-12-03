@@ -12,7 +12,6 @@ import { postStaticAxios } from "../../../../util/axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import MyNavigation from "../../../../components/recipe/list/MyNavigation";
 
 const Index = ({ user, filteredRecipes }) => {
   const [recipes, setRecipes] = useState([...filteredRecipes]);
@@ -62,7 +61,7 @@ const Index = ({ user, filteredRecipes }) => {
   }
   return (
     <div>
-      <MyNavigation></MyNavigation>
+      <h1>내 레시피</h1>
       <div className={recipeListStyles.cards}>
         {recipes.map((card, index) => {
           return (
