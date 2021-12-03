@@ -7,3 +7,10 @@
 .imgContainer {
   width: 3rem;
 }
+
+.footerWrapper p {
+  font: normal 400 1rem 'Noto Sans KR';
+  color: #333
+}
+
+

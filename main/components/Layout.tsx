@@ -12,9 +12,6 @@ import MiniButton from './main/NavButton'
 
 import footerNavStyles from '../styles/main/FooterNav.module.css';
 
-
-
-
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
   const [menuModal, setMenuModal] = useState(false)
 
@@ -80,7 +77,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
             </MiniButton>
             <MiniButton href="/">
               <i className='user icon'></i>
-              <p>USER</p>
+              <p>리포트</p>
             </MiniButton>
           </div>
         }
@@ -88,7 +85,6 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
       {menuModal &&
         <MenuModal onExit={() => { setMenuModal(false) }} />
       }
-
     </ >
   )
 }

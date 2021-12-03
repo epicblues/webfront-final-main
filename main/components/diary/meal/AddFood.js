@@ -10,7 +10,7 @@ import MultiBtn from "../meal/MultiBtn";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilRuler } from "@fortawesome/free-solid-svg-icons";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 
 const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
 export const [PAGE_PRODUCTS, PAGE_CART] = ["products", "cart"];
@@ -112,7 +112,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
               />
               <span>{mealType[type]}</span>
               <FontAwesomeIcon
-                              icon={faPencilRuler}
+                              icon={faList}
                               className='icon'
                               onClick={() => navigateTo(PAGE_CART)}
               />
