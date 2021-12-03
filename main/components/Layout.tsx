@@ -54,7 +54,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         borderTopRightRadius: '20px',
         zIndex: 20
       }} >
-        {pageProps.user &&
+        {pageProps.user ?
           <div className={footerNavStyles.footerWrapper}>
             <MiniButton href="/recipe">
               <i className='utensils icon'></i>
@@ -83,11 +83,14 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
               <p>USER</p>
             </MiniButton>
           </div>
-        }
+          : (<div className={footerNavStyles.footerWrapper} style={{ background: "white", height: "6vh" }}>
+
+          </div>
+          )}
       </footer>
-      {menuModal &&
-        <MenuModal onExit={() => { setMenuModal(false) }} />
-      }
+
+      <MenuModal hidden={!menuModal} onExit={() => { setMenuModal(false) }} />
+
 
     </ >
   )

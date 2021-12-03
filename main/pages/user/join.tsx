@@ -69,7 +69,7 @@ const Join = () => {
 
     setBmrMode(true);
   }
-  const buttonStyle: CSSProperties = { alignSelf: "stretch", marginTop: "10px", border: "0", background: "#00b5ad", padding: "10px", borderRadius: "10px", fontWeight: 700, color: "whitesmoke" }
+  const buttonStyle: CSSProperties = { alignSelf: "stretch", marginTop: "10px", border: "0", background: "#00b5ad", padding: "10px", borderRadius: "10px", fontWeight: 700, color: "whitesmoke", transition: "all 300ms" }
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
 
@@ -128,7 +128,7 @@ const Join = () => {
     const $button = event.currentTarget
 
     if (!/^[가-힣a-zA-Z]{2,12}$/.test(name.current.value)) {
-      changeButtonStyle($button, "닉네임을 잘못 입력하셨습니다. 숫자, 특수문자 입력 불가(12자 이내)")
+      changeButtonStyle($button, "숫자, 특수문자 입력 불가(12자 이내)")
       name.current.focus();
       return;
     }
@@ -149,16 +149,15 @@ const Join = () => {
   return (
 
     <div style={{
-      display: 'flex', flexDirection: 'column', alignItems: "stretch",
+      display: 'flex', flexDirection: 'row', alignItems: "stretch", width: "300vw",
       // border: "solid 2px lightgray",
       // borderRadius: "5px",
-      padding: "16px",
-      fontFamily: "-moz-initial"
-    }}>
-      <div style={{ display: bmrMode ? "flex" : "none", flexDirection: 'column' }}><Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-        <button style={buttonStyle} onClick={handleClick}>제출</button></div>
 
-      <div style={{ display: !bmrMode ? "flex" : "none", flexDirection: 'column' }}>
+      fontFamily: "-moz-initial",
+
+
+    }}>
+      <div style={{ display: "flex", flexDirection: 'column', transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none", width: "100vw", padding: "5vw" }}>
         <Form  >
           <h2 ref={message} style={{ textAlign: "center" }}>회원 가입</h2>
           <Form.Field>
@@ -185,7 +184,14 @@ const Join = () => {
         </Form>
         <button style={buttonStyle} onClick={toggleJoinForm}>BMR 작성하기</button>
       </div>
-      {joinFinished && <FinishPage email={email.current.value} />}
+      <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
+        <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
+        <button style={buttonStyle} onClick={handleClick}>제출</button>
+      </div>
+      <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>
+
+        <FinishPage email={email.current?.value || ""} />
+      </div>
     </div>
 
   )

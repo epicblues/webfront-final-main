@@ -10,7 +10,7 @@ const Intro = ({ handleClick, loginMode }: { handleClick: Function, loginMode: b
     alignItems: "center",
     margin: "20px",
     height: "70vh",
-    transition: "all 0.5s",
+    transition: "all 0.3s",
     transform: loginMode ? "translate(-110%,-60vh)" : 'translate(0%,-60vh)'
 
   }
