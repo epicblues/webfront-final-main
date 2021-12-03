@@ -6,11 +6,17 @@ import MenuModal from './main/MenuModal'
 import ModalButton from './main/ModalButton'
 
 import Image from "next/dist/client/image";
-import AppIcon from '../public/static/logos/transLogo.png'
+import AppIcon from '../public/static/logos/logo04.png'
 
 import MiniButton from './main/NavButton'
 
 import footerNavStyles from '../styles/main/FooterNav.module.css';
+
+// ICON
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faUser, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+
+
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
   const [menuModal, setMenuModal] = useState(false)
@@ -35,30 +41,18 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         {children}
       </div>
 
-      <footer style={{
-
-        backgroundColor: "#fff",
-        display: "flex",
-        justifyContent: "space-around",
-        width: "100vw",
-        position: "fixed",
-        left: "0",
-        bottom: "0",
-        textAlign: 'center',
-        padding: '6px 0 0 0',
-        boxShadow: '1px 1px 3px 1px #dadce0',
-        borderTopLeftRadius: '20px',
-        borderTopRightRadius: '20px',
-        zIndex: 20
-      }} >
+      <footer className={footerNavStyles.footerWrap}>
         {pageProps.user &&
-          <div className={footerNavStyles.footerWrapper}>
+          <div className={footerNavStyles.navWrap}>
             <MiniButton href="/recipe">
               <i className='utensils icon'></i>
+              {/* <FontAwesomeIcon icon={} className='icon' /> */}
               <p>레시피</p>
             </MiniButton>
+
             <MiniButton href="/diary">
-              <i className='book icon'></i>
+              <i className='edit outline icon'></i>
+              {/* <FontAwesomeIcon icon={} className='icon' /> */}
               <p>다이어리</p>
             </MiniButton>
 
@@ -67,16 +61,19 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
                 <div className={footerNavStyles.imgContainer}>
                   <Image src={AppIcon} layout="responsive" objectFit="contain"></Image>
                 </div>
+                {/* <p>메뉴</p> */}
               </div>
-
             </ModalButton>
 
             <MiniButton href="/challenge" >
-              <i className='thumbs up icon'></i>
+              <i className='thumbs up outline icon'></i>
+              {/* <FontAwesomeIcon icon={faThumbsUp} className='icon' /> */}
               <p>챌린지</p>
             </MiniButton>
+
             <MiniButton href="/">
-              <i className='user icon'></i>
+              <i className='user outline icon'></i>
+              {/* <FontAwesomeIcon icon={faUser} className='icon' /> */}
               <p>리포트</p>
             </MiniButton>
           </div>
