@@ -65,7 +65,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
             <ModalButton onClick={() => { setMenuModal(!menuModal) }}>
               <div className={footerNavStyles.menuBtn}>
                 <div className={footerNavStyles.imgContainer}>
-                  <Image src={AppIcon} layout="fill" objectFit="contain"></Image>
+                  <Image src={AppIcon} layout="responsive" objectFit="contain"></Image>
                 </div>
               </div>
 

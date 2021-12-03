@@ -1,3 +1,4 @@
+import { urlObjectKeys } from 'next/dist/shared/lib/utils'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { CSSProperties } from 'react'
@@ -12,7 +13,10 @@ const MenuModal = ({ onExit }: { onExit: Function }) => {
     zIndex: 2,
     width: "100%",
     height: "100%",
-    color: "white"
+    color: "white",
+    // WebkitTransition: 'background ease-in-out 1s',
+    // transition: 'background ease-in-out 1s'
+    opacity: '0.7',
   }
 
   const contentAreaStyle: CSSProperties = {
@@ -28,8 +32,7 @@ const MenuModal = ({ onExit }: { onExit: Function }) => {
     height: "40vh",
     border: "2px solid gray",
     justifyContent: "space-around",
-    fontSize: "1.3em"
-
+    fontSize: "1.3em",
   }
 
   const buttonStyle: CSSProperties = {
