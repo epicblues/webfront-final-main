@@ -10,7 +10,7 @@ import ChallengeAddImage from "./ChallengeAddImage";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 import InputStyle from "../../../styles/challenge/Input.module.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button, Header } from "semantic-ui-react";
+import { Button, GridRow, Header } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 
@@ -106,7 +106,7 @@ const ChallengeWrite = ({ user }) => {
           size="2x"
           className={InputStyle.image}
         />
-        <h4 className={ChallengeStyle.h4}>{value}</h4>
+        <h4 style={{ whiteSpace: "nowrap" }}>{value}</h4>
       </div>
     );
   };
@@ -178,9 +178,9 @@ const ChallengeWrite = ({ user }) => {
         e.preventDefault();
       }}
     >
-      <div className="container">
-        <h1 className={ChallengeStyle.h1}>챌린지 작성</h1>
-        <hr />
+      <h1 className={ChallengeStyle.h1}>챌린지 작성</h1>
+      <hr />
+      <div className="container" style={{ marginLeft: "25px" }}>
         <ChallengeAddImage challenge={challenge} setChallenge={setChallenge} />
         <h4 className={ChallengeStyle.h4} ref={imageError}></h4>
         <div className={ChallengeStyle.h3}>
@@ -200,15 +200,7 @@ const ChallengeWrite = ({ user }) => {
         </div>
         <br />
         <div className="description">
-          <h3
-            style={{
-              color: "black",
-              fontWeight: "1rem",
-              fontFamily: "fantasy",
-            }}
-          >
-            챌린지의 간략한 설명
-          </h3>
+          <h3 className={ChallengeStyle.h3}>챌린지의 간략한 설명</h3>
           <textarea
             name="description"
             style={{
@@ -229,12 +221,9 @@ const ChallengeWrite = ({ user }) => {
           ></textarea>
         </div>
         <br />
-        <section
-          className="challengDate"
-          style={{ color: "black", fontWeight: "1rem", fontFamily: "fantasy" }}
-        >
+        <section className="challengDate">
           <h3 className={ChallengeStyle.h3}>챌린지 기간</h3>
-          <h3>챌린지 진행 기간을 선택해주세요</h3>
+          <h3 className={ChallengeStyle.h3}>챌린지 진행 기간을 선택해주세요</h3>
           <h4 className={ChallengeStyle.h4}>챌린지 시작일</h4>
           <h4 className={ChallengeStyle.h4} ref={startDateError}></h4>
           <label>
@@ -265,7 +254,7 @@ const ChallengeWrite = ({ user }) => {
               popperPlacement="auto" // 화면 중앙에 팝업
             />
           </label>
-          <h4>챌린지 종료일</h4>
+          <h4 className={ChallengeStyle.h4Mt}>챌린지 종료일</h4>
           <h4 className={ChallengeStyle.h4} ref={endDateError}></h4>
           <ReactDatePicker
             locale="ko"
