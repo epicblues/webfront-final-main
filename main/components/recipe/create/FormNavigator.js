@@ -6,7 +6,7 @@ import Image from "next/dist/client/image";
 import formNavigatorStyles from "../../../styles/recipe/FormNavigator.module.css";
 
 //  ICON
-import Icon from "../../../public/static/logos/App_Icon_144x144.png";
+// import Icon from "../../../public/static/logos/App_Icon_144x144.png";
 
 const FormNavigator = ({ wizardIndex, setWizardIndex }) => {
   const completed = wizardIndex;

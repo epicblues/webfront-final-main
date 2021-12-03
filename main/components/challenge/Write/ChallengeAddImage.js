@@ -1,5 +1,6 @@
 import { React, useState } from "react";
-import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
+//css
+
 const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
   //이미지 업로드
@@ -35,7 +36,11 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
   return (
     <div
       className="ui rounded image"
-      style={{ height: "auto", marginTop: "5px", marginBottom: "0px" }}
+      style={{
+        height: "auto",
+        marginTop: "5px",
+        marginBottom: "0px",
+      }}
     >
       <div className="container" style={{ width: "100%" }}>
         {error && (
@@ -44,7 +49,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
-        <h3 className={ChallengeStyle.h3}>챌린지를 설명할 사진 추가</h3>
+        <h3 style={{ textAlign: "left" }}>챌린지를 설명할 사진 추가</h3>
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -70,17 +75,16 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
           {challenge.image === null && (
             <>
               <label
-                htmlFor="fileUpload"
                 className="customfileUpload"
                 style={{ cursor: "pointer", marginBottom: 4 }}
               >
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  onChange={handleImageUpload}
+                />
                 <i className="huge images outline icon"></i>
               </label>
-              <input
-                type="file"
-                style={{ display: "none" }}
-                onChange={handleImageUpload}
-              />
             </>
           )}
           {!challenge.image || (

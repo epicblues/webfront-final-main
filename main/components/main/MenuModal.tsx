@@ -6,21 +6,19 @@ import menuButton from '../../styles/main/MenuButton.module.css'
 
 const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) => {
   const backgroundStyle: CSSProperties = {
-    display: 'block',
     position: "fixed",
-    background: "black",
     left: "0",
     bottom: "0",
     zIndex: 2,
     width: "100%",
     height: "100%",
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
     color: "white",
     // WebkitTransition: 'background ease-in-out 1s',
     // transition: 'background ease-in-out 1s'
     opacity: '1',
     transition: "all 0.3s"
   }
-
 
 
 

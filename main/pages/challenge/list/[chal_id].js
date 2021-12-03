@@ -25,7 +25,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
       case "grill":
         return <h3>레시피 종류: 구이</h3>;
       case "etc":
-        return <h3>레시피 종류: rlxk</h3>;
+        return <h3>레시피 종류: 기타</h3>;
       default:
         return <h3>없음</h3>;
     }

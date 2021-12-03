@@ -6,7 +6,6 @@ import ProgressBar from "./ProgressBar";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 import ListStyle from "../../../styles/challenge/List.module.css";
 import ButtonStyle from "../../../styles/challenge/Button.module.css";
-import ImageStyle from "../../../styles/challenge/Image.module.css";
 const MyChallenge = ({ challenges, user }) => {
   return (
     <>
