@@ -12,7 +12,13 @@ import MyDashboard from "../../components/recipe/index/MyDashboard";
 // CSS
 import mainStyles from "../../styles/recipe/Main.module.css";
 
-const Index = ({ user, filteredHitRecipes }) => {
+const Index = ({ user, filteredHitRecipes, myRecipes }) => {
+  let tempData = 0;
+  for (let key in myRecipes) {
+    tempData += myRecipes[key].hit;
+  }
+  const [totalHit, setTotalHit] = useState(tempData);
+
   return (
     <div className={mainStyles.container}>
       <Head>
@@ -20,17 +26,19 @@ const Index = ({ user, filteredHitRecipes }) => {
       </Head>
       <Navigation></Navigation>
       <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
-      <MyDashboard></MyDashboard>
+      <MyDashboard
+        countMyRecipes={myRecipes.length}
+        totalHit={totalHit}
+      ></MyDashboard>
     </div>
   );
 };
 
 export const getServerSideProps = async (ctx) => {
   // 유저 인증 로직
+  const client = await clientPromise;
   const user = await getUserOrRedirect(ctx);
-  const data = await (
-    await clientPromise
-  )
+  const data1 = await client
     .db("webfront")
     .collection("recipe")
     .aggregate([
@@ -46,8 +54,26 @@ export const getServerSideProps = async (ctx) => {
     .sort({ hit: -1 })
     .limit(5)
     .toArray();
-  const filteredHitRecipes = JSON.parse(JSON.stringify(data));
 
-  return { props: { user, filteredHitRecipes } };
+  const data2 = await client
+    .db("webfront")
+    .collection("recipe")
+    .aggregate([
+      {
+        $lookup: {
+          from: "user",
+          localField: "user_id",
+          foreignField: "_id",
+          as: "author",
+        },
+      },
+    ])
+    .match({ user_id: user.id })
+    .toArray();
+
+  const filteredHitRecipes = JSON.parse(JSON.stringify(data1));
+  const myRecipes = JSON.parse(JSON.stringify(data2));
+
+  return { props: { user, filteredHitRecipes, myRecipes } };
 };
 export default Index;

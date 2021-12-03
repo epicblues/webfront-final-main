@@ -99,7 +99,7 @@ const FinalTotalSum = ({ diary, user, }) => {
 
         <div style={{marginBottom: "1rem"}}>
           <div>칼로리</div>
-          <div>
+          <div className='progress-wrap'>
             <Progress
               done={finalTotalSum.kcal}
               max={managingDatas[selected].kcal}

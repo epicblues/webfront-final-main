@@ -1,35 +1,34 @@
+import { urlObjectKeys } from 'next/dist/shared/lib/utils'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { CSSProperties } from 'react'
 
 const MenuModal = ({ onExit }: { onExit: Function }) => {
   const backgroundStyle: CSSProperties = {
-    display: 'block',
     position: "fixed",
-    background: "black",
     left: "0",
     bottom: "0",
     zIndex: 2,
     width: "100%",
     height: "100%",
-    color: "white"
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    color: "white",
+    // WebkitTransition: 'background ease-in-out 1s',
+    // transition: 'background ease-in-out 1s'
   }
 
   const contentAreaStyle: CSSProperties = {
     position: "fixed",
-    bottom: "10px",
-    // border: "2px solid white",
+    bottom: "6px",
     marginBottom: "6vh",
-    width: "100vw",
     display: 'flex',
     flexDirection: "column",
     alignContent: "center",
     alignItems: "center",
+    width: "100vw",
     height: "40vh",
-    border: "2px solid gray",
     justifyContent: "space-around",
-    fontSize: "1.3em"
-
+    fontSize: "1.3em",
   }
 
   const buttonStyle: CSSProperties = {
@@ -44,9 +43,7 @@ const MenuModal = ({ onExit }: { onExit: Function }) => {
     borderRadius: "50%",
     display: 'inline-block',
     margin: "30px",
-
   }
-
 
   const router = useRouter()
 

@@ -578,7 +578,7 @@
     font-family: "NanumSquare";
     font-size: 1rem;
     color: #444444;
-    margin-bottom: 0.5rem;
+    margin: 1rem 0;
   }
   .cardBodyCategory {
     display: flex;
@@ -590,7 +590,7 @@
     color: #c36868;
     background-color: #eddddd;
     border-radius: 5px;
-    margin-bottom: 0.5rem;
+    margin: 1rem 0;
   }
 
   .cardBodyDesc {
