@@ -41,24 +41,9 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         {children}
       </div>
 
-      <footer style={{
-
-        backgroundColor: "#fff",
-        display: "flex",
-        justifyContent: "space-around",
-        width: "100vw",
-        position: "fixed",
-        left: "0",
-        bottom: "0",
-        textAlign: 'center',
-        padding: '6px 0 0 0',
-        boxShadow: '1px 1px 3px 1px #dadce0',
-        borderTopLeftRadius: '20px',
-        borderTopRightRadius: '20px',
-        zIndex: 20
-      }} >
+      <footer className={footerNavStyles.footerWrap}>
         {pageProps.user ?
-          <div className={footerNavStyles.footerWrapper}>
+          <div className={footerNavStyles.navWrap}>
             <MiniButton href="/recipe">
               <i className='utensils icon'></i>
               {/* <FontAwesomeIcon icon={} className='icon' /> */}
@@ -75,6 +60,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
               <div className={footerNavStyles.menuBtn}>
                 <div className={footerNavStyles.imgContainer}>
                   <Image src={AppIcon} layout="responsive" objectFit="contain"></Image>
+
                 </div>
                 {/* <p>메뉴</p> */}
               </div>
@@ -92,13 +78,14 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
               <p>리포트</p>
             </MiniButton>
           </div>
-          : (<div className={footerNavStyles.footerWrapper} style={{ background: "white", height: "6vh" }}>
+          : (<div className={footerNavStyles.navWrap} style={{ background: "white", height: "6vh" }}>
 
           </div>
           )}
-      </footer>
 
+      </footer>
       <MenuModal hidden={!menuModal} onExit={() => { setMenuModal(false) }} />
+
 
 
     </ >

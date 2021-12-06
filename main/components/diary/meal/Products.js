@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import RecipeModal from "./RecipeModal";
 import FoodModal from "./FoodModal";
+import MealStyles from '../../../styles/diary/Meal.module.css';
+
 import { debounce } from "../../../util/axios";
 
 export default function Products({ diary, setDiary, type, }) {
@@ -99,11 +101,8 @@ export default function Products({ diary, setDiary, type, }) {
         <i className="search icon" style={{ right: "8px" }}></i>
       </div>
 
-      <div style={{ paddingTop: "1rem" }}>
-        <div
-          className="ui middle aligned selection list"
-          style={{ textAlign: "left" }}
-        >
+      <div className={MealStyles.ProductWrap}>
+        <div className="ui middle aligned selection list">
           <i className="book icon"></i>레시피
           {filteredRecipeData.length !== 0 &&
             filteredRecipeData.map((value, index) => {
@@ -120,10 +119,7 @@ export default function Products({ diary, setDiary, type, }) {
               );
             })}
         </div>
-        <div
-          className="ui middle aligned selection list"
-          style={{ textAlign: "left" }}
-        >
+        <div className="ui middle aligned selection list">
           <i className="lemon icon"></i>음식 &amp; 재료
           {filteredData.length !== 0 &&
             filteredData.map((value, index) => {
