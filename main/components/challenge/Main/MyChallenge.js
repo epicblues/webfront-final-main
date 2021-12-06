@@ -17,12 +17,7 @@ const MyChallenge = ({ challenges, user }) => {
                 {challenge.author[0]._id === user.id ? (
                   <>
                     <ul className={ListStyle.ul}>
-                      <Link passHref href={"/challenge/list/" + challenge._id}>
-                        <a>
-                          {" "}
-                          <li key={challenge.id}>{challenge.title}</li>
-                        </a>
-                      </Link>
+                      <li key={challenge.id}>{challenge.title}</li>
                       <li key={challenge.id}>
                         {new Date(challenge.startDate).toLocaleDateString()}~{" "}
                         {new Date(challenge.endDate).toLocaleDateString()}
