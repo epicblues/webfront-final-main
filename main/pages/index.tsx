@@ -48,10 +48,14 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
     const newSocket = io(process.env.NEXT_PUBLIC_STATIC_SERVER_URL as string, {
       path: "/chat"
     })
-    newSocket.on('message', (message: LiveData) => {
-      setLiveData(originalData => {
-        return [...originalData, message]
-      })
+    newSocket.on('message', (message: LiveData | LiveData[]) => {
+      if (Array.isArray(message)) {
+        setLiveData(message)
+      } else {
+        setLiveData(originalData => {
+          return [...originalData, message]
+        })
+      }
 
     })
     setSocket(newSocket);
@@ -65,7 +69,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
   return (
     <div style={{
 
-      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "80vh", backgroundColor: BACKGROUND_COLOR
+      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "85vh", backgroundColor: BACKGROUND_COLOR
     }}>
       <div style={FLEXBOX_NORMAL}>
         < div style={{ ...cardStyle, alignItems: "center", justifyContent: "center" }} >
