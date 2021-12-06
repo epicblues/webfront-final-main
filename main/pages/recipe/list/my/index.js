@@ -103,7 +103,46 @@ const Index = ({ user, filteredRecipes }) => {
           </div>
         );
       case 1:
-        return <div></div>;
+        return (
+          <div className={myRecipeStyles.containerList}>
+            <table className={myRecipeStyles.tableContainer}>
+              <tr className={myRecipeStyles.itemWrapper}>
+                <th>번호</th>
+                <th>카테고리</th>
+                <th>제목</th>
+                <th>조회수</th>
+                <th>작성일</th>
+                <th>수정</th>
+                <th>삭제</th>
+              </tr>
+              {recipes.map((card, index) => {
+                return (
+                  <tr key={card._id} className={myRecipeStyles.itemWrapper}>
+                    <td>{card._id}</td>
+                    <td>{renderSwitchCategory(card.category)}</td>
+                    <td>{card.title}</td>
+                    <td>{card.hit}</td>
+                    <td>{card.upload_date.slice(0, -14)}</td>
+                    <td>
+                      <div className={myRecipeStyles.btnUpdate}>수정</div>
+                    </td>
+                    <td>
+                      <div
+                        className={myRecipeStyles.btnDel}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onDeleteBtn(card);
+                        }}
+                      >
+                        삭제
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
+        );
     }
   }
 
@@ -155,7 +194,7 @@ const Index = ({ user, filteredRecipes }) => {
     }
   }
   return (
-    <div>
+    <div className={myRecipeStyles.main}>
       <MyNavigation
         onTabBtn={onTabBtn}
         activeIndex={activeIndex}
