@@ -8,12 +8,6 @@ import { faFire} from "@fortawesome/free-solid-svg-icons";
 const Progress = ({ done, max }) => {
   const percent = `${((done / max) * 100).toFixed(0)}`;
   return (
-    // <div className="progress">
-    //   <div
-    //     className="progress-done"
-    //     style={{ opacity: 1, width: percent }}
-    //   ></div>
-    // </div>
     <div className='progress'>
     <FontAwesomeIcon icon={faFire} className='icon' />
     <PieChart
