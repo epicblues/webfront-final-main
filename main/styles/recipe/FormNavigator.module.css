@@ -21,6 +21,7 @@
 
 .activated {
   background-color: #e4685d;
+  color: white;
   border-radius: 15px;
   margin: 0.5rem;
   padding: 0.5rem;
