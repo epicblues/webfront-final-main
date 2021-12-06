@@ -72,9 +72,21 @@
 
   height: 20px;
 }
+.h4Mb {
+  text-align: right;
+  margin: 0px;
+  margin-bottom: 5px;
+}
 
 .causion {
   font-size: medium;
   font-weight: 900;
   color: red;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+  align-items: center;
 }
