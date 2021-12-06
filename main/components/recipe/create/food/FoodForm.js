@@ -1,6 +1,13 @@
 import React from "react";
 import AddFoodModal from "./AddFoodModal";
 
+import Image from "next/image";
+import doge from "../../../../public/static/logos/doge.gif";
+import createStyles from "../../../../styles/recipe/Create.module.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+
 const FoodForm = ({
   foodData,
   setFoodData,
@@ -33,29 +40,43 @@ const FoodForm = ({
     setFoodData(foodData.filter((value) => value !== food));
   };
   return (
-    <div>
-      <div>
+    <>
+      <div className={createStyles.selectedFoodMapContainer}>
         {foodData.length === 0 ? (
-          <p>재료를 추가해주세요</p>
+          <>
+            <Image objectFit="contain" src={doge}></Image>
+            <p className={createStyles.emptyP}>🥕재료를 추가해주세요🥕</p>
+          </>
         ) : (
-          foodData.map((value, index) => {
-            return (
-              <div key={index}>
-                <span>{value.foodObj.name} </span>
-                <span>(제조사: {value.foodObj.mfr}) </span>
-                <span>{value.quantity}</span>
-                <span>{value.foodObj.unit}</span>
-                <button type="button" onClick={() => removeFood(value)}>
-                  삭제
-                </button>
-              </div>
-            );
-          })
+          <>
+            <div className={createStyles.selectedFoodMapHeader}>
+              <span>이름</span>
+              <span>제조사</span>
+              <span>양</span>
+              <span>단위</span>
+            </div>
+            {foodData.map((value, index) => {
+              return (
+                <div className={createStyles.selectedFoodMapItems} key={index}>
+                  <span>{value.foodObj.name} </span>
+                  <span>{value.foodObj.mfr} </span>
+                  <span>{value.quantity}</span>
+                  <span>{value.foodObj.unit}</span>
+                  <div
+                    className={createStyles.btnAdd}
+                    onClick={() => removeFood(value)}
+                  >
+                    <FontAwesomeIcon icon={faMinusCircle} />
+                  </div>
+                </div>
+              );
+            })}
+          </>
         )}
       </div>
-      <button type="button" onClick={() => onModalBtn(true)}>
-        재료추가하기
-      </button>
+      <div className={createStyles.onModalBtn}>
+        <p onClick={() => onModalBtn(true)}>재료추가하기</p>
+      </div>
       <div>
         {isModalVisible && (
           <AddFoodModal
@@ -67,7 +88,7 @@ const FoodForm = ({
           />
         )}
       </div>
-    </div>
+    </>
   );
 };
 

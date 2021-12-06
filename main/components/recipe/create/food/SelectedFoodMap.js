@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import modalAddFoodStyles from "../../../../styles/recipe/ModalAddFood.module.css";
 
 const SelectedFoodMap = ({
   foodData,
@@ -33,27 +34,36 @@ const SelectedFoodMap = ({
   return (
     <>
       {isDataSelected && (
-        <div>
-          <h4>선택한 음식</h4>
+        <>
+          <div className={modalAddFoodStyles.resultHeader}>
+            <span>이름</span>
+            <span>제조사</span>
+          </div>
           {selectedData.map((value, index) => {
             return (
-              <div key={Math.random()}>
-                <span>{value.name}</span>/<span>{value.mfr}</span>
-                <br />
-                <input //  음식 중량 입력
-                  autoFocus={true}
-                  ref={inputRef}
-                  type="number"
-                  placeholder="선택한 음식의 양"
-                />
-                <span>단위:({value.unit})</span>
-                <button type="button" onClick={() => onAddBtn(value)}>
-                  확인
-                </button>
-              </div>
+              <>
+                <div
+                  className={modalAddFoodStyles.itemWrapper}
+                  key={Math.random()}
+                >
+                  <span className={modalAddFoodStyles.name}>{value.name}</span>
+                  <span className={modalAddFoodStyles.mfr}>{value.mfr}</span>
+                </div>
+                <div className={modalAddFoodStyles.inputWrapper}>
+                  <input //  음식 중량 입력
+                    autoFocus={true}
+                    ref={inputRef}
+                    type="number"
+                    placeholder={`음식의 양, 단위(${value.unit})`}
+                  />
+                  <div onClick={() => onAddBtn(value)}>
+                    <p>확인</p>
+                  </div>
+                </div>
+              </>
             );
           })}
-        </div>
+        </>
       )}
     </>
   );
