@@ -20,7 +20,12 @@ const index = ({ challenges, user }) => {
     <>
       <div>
         <Link passHref href="/challenge/mainlist">
-          <Button>챌린지 리스트 보기 </Button>
+          <p>전체</p>
+        </Link>
+      </div>
+      <div>
+        <Link passHref href="/challenge/mainlist">
+          <p></p>
         </Link>
       </div>
       <br />
@@ -35,7 +40,7 @@ const index = ({ challenges, user }) => {
         {challenges.map((challenge) => {
           return (
             <>
-              {!challenge.participants.indexOf(user.id) === -1 ? (
+              {!(challenge.participants.indexOf(user.id) === -1) ? (
                 <>
                   <div className={ChallengeStyle.item}>
                     <ul className={ListStyle.ul}>
@@ -104,19 +109,21 @@ const index = ({ challenges, user }) => {
                                 realProgressBar.max = challenge.diet.condition;
                                 const span = realProgressBar.nextElementSibling;
                                 span.innerText =
-                                  (result.length / challenge.diet.condition) *
-                                    100 +
-                                  " %";
+                                  Math.round(
+                                    (result.length / challenge.diet.condition) *
+                                      100
+                                  ) + " %";
                               } else {
                                 realProgressBar.value = result.length;
                                 realProgressBar.max =
                                   challenge.recipe.uploadCount;
                                 const span = realProgressBar.nextElementSibling;
                                 span.innerText =
-                                  (result.length /
-                                    challenge.recipe.uploadCount) *
-                                    100 +
-                                  " %";
+                                  Math.round(
+                                    (result.length /
+                                      challenge.recipe.uploadCount) *
+                                      100
+                                  ) + " %";
                               }
                             }
                           } else {

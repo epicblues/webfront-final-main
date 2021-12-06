@@ -3,7 +3,6 @@ import { getUserOrRedirect } from "../../../util/auth";
 import clientPromise from "../../../util/mongodb";
 import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
-import ChallengeModify from "../../../components/challenge/List/ChallengeModify";
 import axios from "axios";
 import { Image } from "semantic-ui-react";
 
@@ -100,7 +99,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     }}
                   >
                     Menu
-                    <ChallengeModify
+                    <ChallengeCancel
                       user={user}
                       challenge={challenge}
                       setChallenge={setChallenge}

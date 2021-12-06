@@ -17,12 +17,7 @@ const MyChallenge = ({ challenges, user }) => {
                 {challenge.author[0]._id === user.id ? (
                   <>
                     <ul className={ListStyle.ul}>
-                      <Link passHref href={"/challenge/list/" + challenge._id}>
-                        <a>
-                          {" "}
-                          <li key={challenge.id}>{challenge.title}</li>
-                        </a>
-                      </Link>
+                      <li key={challenge.id}>{challenge.title}</li>
                       <li key={challenge.id}>
                         {new Date(challenge.startDate).toLocaleDateString()}~{" "}
                         {new Date(challenge.endDate).toLocaleDateString()}
@@ -85,17 +80,19 @@ const MyChallenge = ({ challenges, user }) => {
                                 realProgressBar.max = challenge.diet.condition;
                                 const span = realProgressBar.nextElementSibling;
                                 span.innerText =
-                                  (result.length / challenge.diet.condition) *
-                                    100 +
-                                  " %";
+                                  Math.round(
+                                    (result.length / challenge.diet.condition) *
+                                      100
+                                  ) + " %";
                               } else {
                                 realProgressBar.value = result.length;
                                 realProgressBar.max =
                                   challenge.recipe.uploadCount;
                                 const span = realProgressBar.nextElementSibling;
                                 span.innerText =
-                                  (result.length /
-                                    challenge.recipe.uploadCount) *
+                                  Math.round(
+                                    result.length / challenge.recipe.uploadCount
+                                  ) *
                                     100 +
                                   " %";
                               }

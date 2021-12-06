@@ -44,106 +44,101 @@ export const Index = ({ user }) => {
     switch (param) {
       case 1:
         return (
-          <>
-            <div className={createStyles.wizard1}>
-              <div className={createStyles.label}>
-                <label htmlFor="title">요리명</label>
-              </div>
-              <div className={createStyles.input}>
-                <input
-                  id="title"
-                  type="text"
-                  placeholder=" ex) 소고기 미역국"
-                  {...register("title", { required: true, maxLength: 15 })}
-                />
-                {errors.title && errors.title.type === "required" && (
-                  <span>제목을 입력해주세요.</span>
-                )}
-                {errors.title && errors.title.type === "maxLength" && (
-                  <span>제목은 15글자 이내로 입력해주세요.</span>
-                )}
-                <br />
-              </div>
-              <div className={createStyles.label}>
-                <label>요리소개</label>
-              </div>
-              <div className={createStyles.input}>
-                <textarea
-                  id="desc"
-                  type="text"
-                  cols="40"
-                  rows="5"
-                  placeholder="레시피에 대한 설명을 적어주세요. &#13;&#10;ex) 어머니로부터 배운 미역국 레시피를아내의 입맛에 맞게 고안했습니다."
-                  {...register("desc", { required: true, maxLength: 200 })}
-                />
-                {errors.desc && errors.desc.type === "required" && (
-                  <span>요리소개를 입력해주세요.</span>
-                )}
-                {errors.desc && errors.desc.type === "maxLength" && (
-                  <span>제목은 200글자 이내로 입력해주세요.</span>
-                )}
-                <br />
-              </div>
-              <div className={createStyles.label}>
-                <label>카테고리</label>
-              </div>
-              <div className={createStyles.input}>
-                <select {...register("category")}>
-                  <option value="soup">국/탕/찌개</option>
-                  <option value="grill">구이</option>
-                  <option value="noodle">면/파스타</option>
-                  <option value="rice">밥/볶음밥</option>
-                  <option value="side">반찬</option>
-                  <option value="kimchi">김치</option>
-                  <option value="dessert">디저트</option>
-                  <option value="etc">기타</option>
-                </select>
-                <br />
-              </div>
-              <div className={createStyles.label}>
-                <label>인원</label>
-              </div>
-              <div className={createStyles.input}>
-                <select {...register("qtt")}>
-                  <option value="1">1인분</option>
-                  <option value="2">2인분</option>
-                  <option value="3">3인분</option>
-                  <option value="4">4인분</option>
-                  <option value="5">5인분 이상</option>
-                </select>
-                <br />
-              </div>
-              <div className={createStyles.label}>
-                <label>시간</label>
-              </div>
-              <div className={createStyles.input}>
-                <select {...register("duration")}>
-                  <option value="1">10분 이내</option>
-                  <option value="2">10분 ~ 30분</option>
-                  <option value="3">30분 ~ 1시간</option>
-                  <option value="4">1시간 ~ 2시간</option>
-                  <option value="5">2시간 이상</option>
-                </select>
-                <br />
-              </div>
+          <div className={createStyles.wizard1}>
+            <div className={createStyles.label}>
+              <label htmlFor="title">요리명</label>
             </div>
-          </>
+            <div className={createStyles.input}>
+              <input
+                id="title"
+                type="text"
+                placeholder=" ex) 소고기 미역국"
+                {...register("title", { required: true, maxLength: 15 })}
+              />
+              {errors.title && errors.title.type === "required" && (
+                <span>제목을 입력해주세요.</span>
+              )}
+              {errors.title && errors.title.type === "maxLength" && (
+                <span>제목은 15글자 이내로 입력해주세요.</span>
+              )}
+              <br />
+            </div>
+            <div className={createStyles.label}>
+              <label>요리소개</label>
+            </div>
+            <div className={createStyles.input}>
+              <textarea
+                id="desc"
+                type="text"
+                cols="40"
+                rows="5"
+                placeholder="레시피에 대한 설명을 적어주세요. &#13;&#10;ex) 어머니로부터 배운 미역국 레시피를아내의 입맛에 맞게 고안했습니다."
+                {...register("desc", { required: true, maxLength: 200 })}
+              />
+              {errors.desc && errors.desc.type === "required" && (
+                <span>요리소개를 입력해주세요.</span>
+              )}
+              {errors.desc && errors.desc.type === "maxLength" && (
+                <span>제목은 200글자 이내로 입력해주세요.</span>
+              )}
+              <br />
+            </div>
+            <div className={createStyles.label}>
+              <label>카테고리</label>
+            </div>
+            <div className={createStyles.input}>
+              <select {...register("category")}>
+                <option value="soup">국/탕/찌개</option>
+                <option value="grill">구이</option>
+                <option value="noodle">면/파스타</option>
+                <option value="rice">밥/볶음밥</option>
+                <option value="side">반찬</option>
+                <option value="kimchi">김치</option>
+                <option value="dessert">디저트</option>
+                <option value="etc">기타</option>
+              </select>
+              <br />
+            </div>
+            <div className={createStyles.label}>
+              <label>인원</label>
+            </div>
+            <div className={createStyles.input}>
+              <select {...register("qtt")}>
+                <option value="1">1인분</option>
+                <option value="2">2인분</option>
+                <option value="3">3인분</option>
+                <option value="4">4인분</option>
+                <option value="5">5인분 이상</option>
+              </select>
+              <br />
+            </div>
+            <div className={createStyles.label}>
+              <label>시간</label>
+            </div>
+            <div className={createStyles.input}>
+              <select {...register("duration")}>
+                <option value="1">10분 이내</option>
+                <option value="2">10분 ~ 30분</option>
+                <option value="3">30분 ~ 1시간</option>
+                <option value="4">1시간 ~ 2시간</option>
+                <option value="5">2시간 이상</option>
+              </select>
+              <br />
+            </div>
+          </div>
         );
       case 2:
         return (
-          <>
-            <div>
-              <h3>재료</h3>
-              <FoodForm
-                foodData={foodData}
-                setFoodData={setFoodData}
-                isModalVisible={isModalVisible}
-                setIsModalVisible={setIsModalVisible}
-                nutritionData={nutritionData}
-                setNutritionData={setNutritionData}
-              />
-            </div>
-          </>
+          <div className={createStyles.wizard2}>
+            <FoodForm
+              foodData={foodData}
+              setFoodData={setFoodData}
+              isModalVisible={isModalVisible}
+              setIsModalVisible={setIsModalVisible}
+              nutritionData={nutritionData}
+              setNutritionData={setNutritionData}
+            />
+          </div>
         );
       case 3:
         return (
