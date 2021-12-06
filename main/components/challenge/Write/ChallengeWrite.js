@@ -324,27 +324,27 @@ const ChallengeWrite = ({ user }) => {
       <header>
         {wizardIndex > 1 ? (
           <>
-            <div>
-              <Link passHref href="/challenge">
-                <p>취소</p>
-              </Link>
+            <div className={ChallengeStyle.header}>
               <div onClick={button2}>
                 <FontAwesomeIcon
                   className={InputStyle.image}
                   icon={faAngleDoubleLeft}
+                  size="2x"
                 />
               </div>
+              <Link passHref href="/challenge">
+                <h4 className={ChallengeStyle.h4Mb}>취소</h4>
+              </Link>
             </div>
           </>
         ) : (
-          <div>
+          <div className={ChallengeStyle.h4Mb}>
             <Link passHref href="/challenge">
-              <p>취소</p>
+              <h4>취소</h4>
             </Link>
           </div>
         )}
       </header>
-
       {switchWizardForm(wizardIndex)}
       {wizardIndex !== 4 && (
         <Button type="submit" color="twitter" onClick={button1}>
