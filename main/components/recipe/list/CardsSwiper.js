@@ -106,7 +106,7 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
               <div className={cardsSwiperStyles.cardBodyHeader}>
                 <div className={cardsSwiperStyles.hot}>
                   <div className={cardsSwiperStyles.iWrapper}>
-                    <Image objectFit="fill" objectFit="contain" src={ci} />
+                    <Image objectFit="contain" src={ci} />
                   </div>
                   <strong>요즘 뜨는 레시피</strong>
                 </div>

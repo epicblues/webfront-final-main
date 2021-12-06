@@ -3,16 +3,13 @@ import React, { CSSProperties } from 'react'
 
 const FinishPage = ({ email }: { email: string }) => {
   const container: CSSProperties = {
-    position: 'fixed',
-    left: 0,
-    top: 0,
+
     display: 'flex',
     flexDirection: "column",
     justifyContent: "space-evenly",
     alignItems: "center",
-    height: "100vh",
-    width: "100vw",
-    background: "white"
+    background: "white",
+    height: "80vh"
   }
 
   const item: CSSProperties = {

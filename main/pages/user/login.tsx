@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: "stretch", justifyContent: "space-between", height: "60vh", borderRadius: "5px", minHeight: "450px", padding: "20px", transition: "all 0.7s", transform: loginMode ? "translateX(0%)" : "translateX(100%)" }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: "stretch", justifyContent: "space-between", height: "60vh", borderRadius: "5px", minHeight: "450px", padding: "20px", transition: "all 0.3s", transform: loginMode ? "translateX(0%)" : "translateX(100%)" }}>
 
         <div ref={head} style={{ alignSelf: "center", fontSize: "2em", fontWeight: 700 }}>Login</div>
         <Form>

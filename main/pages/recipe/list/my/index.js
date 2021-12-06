@@ -7,15 +7,148 @@ import { getUserOrRedirect } from "../../../../util/auth";
 import clientPromise from "../../../../util/mongodb";
 
 //  CSS
-import recipeListStyles from "../../../../styles/RecipeList.module.css";
+import myRecipeStyles from "../../../../styles/recipe/MyRecipe.module.css";
 import { postStaticAxios } from "../../../../util/axios";
-import GoBackward from "../../../../components/GoBackward";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import MyNavigation from "../../../../components/recipe/list/MyNavigation";
 
 const Index = ({ user, filteredRecipes }) => {
   const [recipes, setRecipes] = useState([...filteredRecipes]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  function switchViewByIndex(param) {
+    switch (param) {
+      case 0:
+        return (
+          <div className={myRecipeStyles.container}>
+            {recipes.map((card, index) => {
+              return (
+                <div key={card._id} className={myRecipeStyles.card}>
+                  {/* 카드 헤더 (이미지) */}
+                  <Link
+                    href={{
+                      pathname: `/recipe/card/${card._id}`,
+                    }}
+                    as={`/recipe/card/${card._id}`}
+                    passHref
+                  >
+                    <a>
+                      <div className={myRecipeStyles.cardHeader}>
+                        <Image
+                          className={myRecipeStyles.cardHeaderImage}
+                          src={
+                            process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                            card.steps.slice(-1)[0].image_url
+                          }
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="top"
+                          alt="thumbnail image"
+                        />
+                      </div>
+                    </a>
+                  </Link>
+
+                  {/* 카드 바디 */}
+                  <div className={myRecipeStyles.cardBodyMain}>
+                    {/* 카드 바디 헤더 */}
+                    <div className={myRecipeStyles.cardBodyHeader}>
+                      <Link
+                        href={{
+                          pathname: `/recipe/card/${card._id}`,
+                        }}
+                        as={`/recipe/card/${card._id}`}
+                        passHref
+                      >
+                        <a>
+                          <p className={myRecipeStyles.h1}>{card.title}</p>
+                          <p className={myRecipeStyles.cardBodyCategory}>
+                            #{renderSwitchCategory(card.category)}
+                          </p>
+                        </a>
+                      </Link>
+                      {/* 수정하기 링크 버튼 */}
+                      <div className={myRecipeStyles.btnUpdate}>수정</div>
+                      <div
+                        className={myRecipeStyles.btnDel}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onDeleteBtn(card);
+                        }}
+                      >
+                        삭제
+                      </div>
+                    </div>
+
+                    {/* 카드 바디 푸터 */}
+                    <div className={myRecipeStyles.cardBodyFooter}>
+                      <div className={myRecipeStyles.hr} />
+                      <p className={myRecipeStyles.hitCount}>
+                        <FontAwesomeIcon
+                          className={myRecipeStyles.cardIconHit}
+                          icon={faEye}
+                        />
+                        조회 {card.hit}회
+                      </p>
+                      <p className={myRecipeStyles.cardUploadDate}>
+                        {card.upload_date.slice(0, -14)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        );
+      case 1:
+        return (
+          <div className={myRecipeStyles.containerList}>
+            <table className={myRecipeStyles.tableContainer}>
+              <tr className={myRecipeStyles.itemWrapper}>
+                <th>번호</th>
+                <th>카테고리</th>
+                <th>제목</th>
+                <th>조회수</th>
+                <th>작성일</th>
+                <th>수정</th>
+                <th>삭제</th>
+              </tr>
+              {recipes.map((card, index) => {
+                return (
+                  <tr key={card._id} className={myRecipeStyles.itemWrapper}>
+                    <td>{card._id}</td>
+                    <td>{renderSwitchCategory(card.category)}</td>
+                    <td>{card.title}</td>
+                    <td>{card.hit}</td>
+                    <td>{card.upload_date.slice(0, -14)}</td>
+                    <td>
+                      <div className={myRecipeStyles.btnUpdate}>수정</div>
+                    </td>
+                    <td>
+                      <div
+                        className={myRecipeStyles.btnDel}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          onDeleteBtn(card);
+                        }}
+                      >
+                        삭제
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </table>
+          </div>
+        );
+    }
+  }
+
+  const onTabBtn = (param) => {
+    setActiveIndex(param);
+  };
 
   //  삭제버튼 로직
   const onDeleteBtn = async (data) => {
@@ -61,95 +194,12 @@ const Index = ({ user, filteredRecipes }) => {
     }
   }
   return (
-    <div>
-      <GoBackward />
-      <h1>내 레시피</h1>
-      <div className={recipeListStyles.cards}>
-        {recipes.map((card, index) => {
-          return (
-            <div key={card._id} className={recipeListStyles.card}>
-              <Link
-                href={{
-                  pathname: `/recipe/card/${card._id}`,
-                }}
-                as={`/recipe/card/${card._id}`}
-                passHref
-              >
-                <a>
-                  {/* 카드 헤더 (이미지) */}
-                  <div className={recipeListStyles.cardHeader}>
-                    <Image
-                      className={recipeListStyles.cardHeaderImage}
-                      src={
-                        process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                        card.steps.slice(-1)[0].image_url
-                      }
-                      layout="fill"
-                      objectFit="cover"
-                      objectPosition="top"
-                      alt="thumbnail image"
-                    />
-                  </div>
-                  {/* 카드 바디 */}
-                  <div className={recipeListStyles.cardBodyMain}>
-                    {/* 카드 바디 헤더 */}
-                    <div className={recipeListStyles.cardBodyHeader}>
-                      <h1 className={recipeListStyles.h1}>{card.title}</h1>
-                      <p className={recipeListStyles.cardBodyCategory}>
-                        #{renderSwitchCategory(card.category)}
-                      </p>
-                      <p className={recipeListStyles.cardBodyAuthor}>
-                        작성자: {card.author[0].name}
-                      </p>
-                    </div>
-
-                    {/* 카드 바디 본문 */}
-                    <div className={recipeListStyles.cardBodyMain}>
-                      <p className={recipeListStyles.cardBodyDesc}>
-                        {card.desc}
-                      </p>
-                    </div>
-
-                    {/* 카드 바디 푸터 */}
-                    <div className={recipeListStyles.cardBodyFooter}>
-                      <hr className={recipeListStyles.hr} />
-                      <FontAwesomeIcon
-                        className={recipeListStyles.cardIconHit}
-                        icon={faEye}
-                      />
-                      <span>조회 {card.hit}회</span>
-                      <span className={recipeListStyles.cardUploadDate}>
-                        {card.upload_date.slice(0, -14)}
-                      </span>
-                      {/* 수정하기 링크 버튼 */}
-                      <Link
-                        href={{
-                          pathname: `/recipe/update/${card._id}`,
-                        }}
-                        as={`/recipe/update/${card._id}`}
-                        passHref
-                      >
-                        <a>
-                          <button type="button">수정하기</button>
-                        </a>
-                      </Link>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          onDeleteBtn(card);
-                        }}
-                      >
-                        삭제하기
-                      </button>
-                    </div>
-                  </div>
-                </a>
-              </Link>
-            </div>
-          );
-        })}
-      </div>
+    <div className={myRecipeStyles.main}>
+      <MyNavigation
+        onTabBtn={onTabBtn}
+        activeIndex={activeIndex}
+      ></MyNavigation>
+      {switchViewByIndex(activeIndex)}
     </div>
   );
 };
