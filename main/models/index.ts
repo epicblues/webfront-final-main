@@ -83,3 +83,9 @@ export interface Ingredient {
   food_id: number;
   quantity: number;
 }
+
+export type LiveData = {
+  name: string;
+  message: string;
+  date?: Date;
+};

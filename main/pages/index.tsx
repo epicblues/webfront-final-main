@@ -4,21 +4,32 @@ import { getUserOrRedirect } from '../util/auth'
 import Link from 'next/link';
 import { Button, Card, CardHeader, CommentText, Container, TextArea } from 'semantic-ui-react';
 import homeStyle from '../styles/Home.module.css';
-import { CSSProperties } from 'react';
+import { CSSProperties, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import clientPromise from '../util/mongodb';
+import { io, Socket } from 'socket.io-client';
+import Chat from '../components/main/Chat';
+import { LiveData } from '../models';
+import { BACKGROUND_COLOR, FLEXBOX_NORMAL, MAIN_COLOR, MIDDLE_COLOR } from '../constants';
+import Image from 'next/dist/client/image';
+import AppIcon from '../public/static/logos/logo04.png'
+
+
 
 
 const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
 
   const cardStyle: CSSProperties = {
-    border: "solid 2px lightgray",
-    borderRadius: "5px",
+    display: "flex",
+    flexDirection: "column",
+    border: "solid 2px",
+    borderColor: MAIN_COLOR,
+    borderRadius: "30px",
 
     padding: "20px",
     fontWeight: 700,
-    fontSize: "1.3em",
-    textAlign: "center"
+    // fontSize: "1.1em",
+    // textAlign: "center"
 
 
   }
@@ -30,54 +41,79 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
     }
   }
 
+  const [socket, setSocket] = useState<null | Socket>(null);
+  const [liveData, setLiveData] = useState<LiveData[]>([]);
+
+  useEffect(() => {
+    const newSocket = io(process.env.NEXT_PUBLIC_STATIC_SERVER_URL as string, {
+      path: "/chat"
+    })
+    newSocket.on('message', (message: LiveData) => {
+      setLiveData(originalData => {
+        return [...originalData, message]
+      })
+
+    })
+    setSocket(newSocket);
+    return () => {
+      // cleanup function
+      newSocket.close();
+      console.log("socket closed");
+    }
+  }, [])
 
   return (
     <div style={{
-      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh 1vh", justifyContent: "space-between", "minHeight": "70vh"
-    }}>
-      < div style={cardStyle} >
-        <h3>{name} 님 안녕하세요</h3>
-        <p>Email : {email}</p>
 
-      </div >
-      {bmr && (
-        <div style={cardStyle} >
-          <p>기초 대사량 : <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></p>
-          <p>일일 권장 칼로리 : <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></p>
-        </div>
-      )
-      }
-      <div style={{ ...cardStyle, background: "lightgreen", fontSize: "1.3em", color: "whitesmoke" }}>
+      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "80vh", backgroundColor: BACKGROUND_COLOR
+    }}>
+      <div style={FLEXBOX_NORMAL}>
+        < div style={{ ...cardStyle, alignItems: "center", justifyContent: "center" }} >
+          <Image src={AppIcon} width="60em" height="60em"></Image>
+          <span>{name} 님 </span>
+          <span>안녕하세요!</span>
+        </div >
+        {bmr && (
+          <div style={cardStyle} >
+            <div style={FLEXBOX_NORMAL}>기초 대사량  <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></div>
+            <div>일일 권장 칼로리  <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></div>
+          </div>
+        )
+        }
+      </div>
+
+      <div style={{ ...cardStyle, background: MAIN_COLOR, fontSize: "1.3em", color: "whitesmoke" }}>
         한 달 동안 많이 먹은 음식 Top 3
       </div>
-      {foodRank.length !== 0 ? foodRank.map(({ name, count }) => (
-        <div key={name}>
-          {name} : {count}
-        </div>
-      )) : <div>일지를 더 작성해주세요!</div>}
-      <Link href="/recipe" passHref>
-        <a style={{ ...cardStyle, backgroundColor: "lightgrey", fontSize: "1.3em", color: "whitesmoke" }}>
-          레시피
-        </a>
-      </Link>
+      <div style={{ ...FLEXBOX_NORMAL, background: MIDDLE_COLOR, padding: "6px", borderRadius: "20px", justifyContent: "space-around", fontWeight: 700, fontSize: "1.1em" }}>
+        {foodRank.length !== 0 ? foodRank.map(({ name, count }) => (
+          <div style={{ color: "whitesmoke", textAlign: "center" }} key={name}>
+            <p>{name.split(',')[0]}</p>  <p>{count}</p>
+          </div>
+        )) : <div>일지를 더 작성해주세요!</div>}
+      </div>
 
 
 
+      <a style={{ ...cardStyle, backgroundColor: MAIN_COLOR, fontSize: "1.3em", color: "whitesmoke" }}>
+        채팅 / 실시간 현황
+      </a>
 
-
-      <Link href="/challenge" passHref>
-        <a style={{ ...cardStyle, background: "lightgrey", fontSize: "1.3em", color: "whitesmoke" }}>
+      <Chat liveData={liveData} socket={socket as Socket} name={name} />
+      {/* <Link href="/challenge" passHref>
+        <a style={{ ...cardStyle, background: MAIN_COLOR, fontSize: "1.3em", color: "whitesmoke" }}>
           Challenge
         </a>
-      </Link>
+      </Link> */}
+      <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around" }}>
 
-      <button className="ui button facebook" onClick={clickHandler}>Logout</button>
+        <button className="ui button facebook" onClick={clickHandler}>Logout</button>
 
-      <Link passHref href="/user/update">
-        <Button color="google plus">회원 정보 수정</Button>
-      </Link> </div >
-
-
+        <Link passHref href="/user/update">
+          <Button color="google plus">회원 정보 수정</Button>
+        </Link>
+      </div>
+    </div >
   )
 }
 
@@ -144,9 +180,6 @@ export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
   }
 
   return { props: { user, foodRank: [] } }
-
-
-
 
 }
 

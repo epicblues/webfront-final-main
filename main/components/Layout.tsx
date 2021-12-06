@@ -58,6 +58,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         zIndex: 20
       }} >
         {pageProps.user ?
+
           <div className={footerNavStyles.footerWrapper}>
             <MiniButton href="/recipe">
               <i className='utensils icon'></i>
@@ -75,6 +76,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
               <div className={footerNavStyles.menuBtn}>
                 <div className={footerNavStyles.imgContainer}>
                   <Image src={AppIcon} layout="responsive" objectFit="contain"></Image>
+
                 </div>
                 {/* <p>메뉴</p> */}
               </div>
@@ -92,13 +94,16 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
               <p>리포트</p>
             </MiniButton>
           </div>
+
+
           : (<div className={footerNavStyles.footerWrapper} style={{ background: "white", height: "6vh" }}>
 
           </div>
           )}
-      </footer>
 
+      </footer>
       <MenuModal hidden={!menuModal} onExit={() => { setMenuModal(false) }} />
+
 
 
     </ >
