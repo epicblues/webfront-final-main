@@ -5,14 +5,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faListUl } from "@fortawesome/free-solid-svg-icons";
 import { faImages } from "@fortawesome/free-regular-svg-icons";
 
-const MyNavigation = () => {
+const MyNavigation = ({ activeIndex, onTabBtn }) => {
   return (
     <div className={navigationStyles.container}>
       <div className={navigationStyles.tab}>
-        <p>카드</p>
+        <p
+          className={activeIndex === 0 ? "activated" : ""}
+          onClick={() => onTabBtn(0)}
+        >
+          카드
+        </p>
       </div>
-      <div className={navigationStyles.tab}>
-        <p>리스트</p>
+      <div
+        className={activeIndex === 1 ? "activated" : ""}
+        className={navigationStyles.tab}
+      >
+        <p onClick={() => onTabBtn(1)}>리스트</p>
       </div>
     </div>
   );
