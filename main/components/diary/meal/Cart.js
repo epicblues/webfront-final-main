@@ -1,6 +1,7 @@
 import React from "react";
 import ImageUpload from "./ImageUpload";
 import Product from "./Product";
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const PAGE_PRODUCTS = "products";
 const PAGE_CART = "cart";
@@ -23,7 +24,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
         return sum + foodOrRecipe.kcal * foodOrRecipe.quantity;
       }
     };
-    return cart.reduce(reducer, 0).toFixed(2);
+    return cart.reduce(reducer, 0).toFixed(0);
   };
 
   const clearCart = () => {
@@ -64,13 +65,13 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
   };
 
   return (
-    <div>
+    <div className={MealStyles.CartWrap}>
       <ImageUpload diary={diary} setDiary={setDiary} type={type} />
-      <div style={{ display: "flex", justifyContent: "space-between"}}>
-        <span style={{font:"normal 600 1rem/22.4px 'Noto Sans KR'"}}>추가한 리스트</span>
+      <div className={MealStyles.CartList}>
+        <span>추가한 리스트</span>
         {cart.length > 0 && (
           <i
-            className="large trash alternate icon grey"
+            className="trash alternate icon"
             onClick={clearCart}
           ></i>
         )}
@@ -87,18 +88,12 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
         ))}
       </div>
 
-      <button
-        className="ui fluid button teal"
-        onClick={() => navigateTo(PAGE_PRODUCTS)}
-        style={{ boxShadow: "1px 1px 3px 1px #dadce0" }}
-      >
+      <button onClick={() => navigateTo(PAGE_PRODUCTS)}>
         음식 추가하기
       </button>
 
-      {/* {page === PAGE_CART && <Cart cart={cart} setCart={setCart} />} */}
-
-      <div style={{ marginTop: "16px", textAlign: "center" }}>
-        오늘 {mealType[type]}의 총 섭취 칼로리는 <span style={{fontWeight: '600'}}>{getTotalSum()}</span> 입니다
+      <div className={MealStyles.CartSum}>
+        오늘 {mealType[type]}의 총 섭취 칼로리는 <span>{getTotalSum()}</span> 입니다
       </div>
     </div>
   );

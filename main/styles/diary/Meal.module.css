@@ -1,0 +1,205 @@
+/* LookupMeal*/
+.lookupMealWrap {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.lookupMealHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.lookupMealHeader i {
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.lookupMealHeader > span {
+    font: normal 600 1.2rem 'Noto Sans KR';
+}
+
+.lookupMealImg {
+    width: 100%;
+    height: 40vh;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    border-radius: 20px;
+}
+
+.lookupMealImg > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.lookupMealList {
+    margin: 1rem 0 0.5rem 0;
+    display: flex;
+    text-align: center;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    border-radius: 20px;
+    padding: 1rem 0;
+}
+
+.lookupMealList > div {
+    width: 25%;
+    border-right: solid 1px lightgray;
+}
+
+.lookupMealList > div :last-child {
+    border-right: none;
+}
+
+.lookupMealWrap button {
+    width: 100%;
+    border-radius: 10px;
+    font: normal 500 1rem/22px 'Noto Sans KR';
+
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2 none;
+    color: rgba(0,0,0,.6);
+    text-align: center;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem 0.8rem;
+    text-transform: none;
+    text-shadow: none;
+}
+
+/* AddFood */
+.MultiBtn {
+    display: flex;
+    justify-content: left;
+}
+
+.MultiBtn i {
+    margin: 0;
+    width: 1rem;
+}
+
+.MultiBtn P {
+    font: normal 400 1.2rem 'Noto Sans KR';
+}
+
+.AddFoodWrap {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.AddFoodHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.AddFoodHeader > span {
+  font: normal 600 1.2rem 'Noto Sans KR';
+}
+
+.AddFoodHeader i {
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.AddFoodHeader > a {
+    background-color: #ff5656;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: -12px;
+    right: -4px;
+}
+/* Product */
+.ProductWrap {
+    padding-top: 1rem;
+
+}
+
+.ProductWrap > div {
+    text-align: left; 
+    margin: 0;
+}
+
+.ProductItem {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.ProductItem p {
+    margin: 8px 10px 0 0;
+}
+
+.ProductItem span {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0 0 0 8px;
+}
+
+.ProductItem input {
+    width: 5rem;
+}
+
+.ProductItem i {
+    font-size: 1.6rem;
+    margin: 0.8rem 0 0 0.8rem;
+}
+
+/* Cart */
+.CartWrap {
+
+}
+
+.CartList {
+    display: flex;
+    justify-content: space-between;
+}
+
+.CartList span {
+    font : normal 600 1.2rem 'Noto Sans KR';
+}
+
+.CartList i {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.CartWrap button {
+    width: 100%;
+    border-radius: 10px;
+    font: normal 500 1rem/22px 'Noto Sans KR';
+
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2 none;
+    color: rgba(0,0,0,.6);
+    text-align: center;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem 0.8rem;
+    text-transform: none;
+    text-shadow: none;
+}
+
+.CartSum {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.CartSum > span {
+    font-weight: 600;
+}

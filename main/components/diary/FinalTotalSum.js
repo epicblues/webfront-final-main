@@ -92,57 +92,38 @@ const FinalTotalSum = ({ diary, user, }) => {
   });
 
   return (
-    <div className='final-total-sum-wrap'>
-      <Dropdown selected={selected} setSelected={setSelected}/>
-      
-      <div style={{ marginTop: 0, marginBottom: "1rem", display: 'flex', flexDirection: 'column'}}>
+    <div className='final-total-wrap'>
+        <Dropdown
+                  selected={selected}
+                  setSelected={setSelected}
+        />
+        <Progress
+                  done={finalTotalSum.kcal}
+                  max={managingDatas[selected].kcal}
+        />
 
-        <div style={{marginBottom: "1rem"}}>
-          {/* <div>칼로리</div> */}
-          <div className='progress-wrap'>
-            <Progress
-              done={finalTotalSum.kcal}
-              max={managingDatas[selected].kcal}
-            />
-            {/* <span style={{fontWeight: '600'}}>{finalTotalSum.kcal}</span> / {managingDatas[selected].kcal} kcal */}
-          </div>
-        </div>
-
-        <div style={{display: 'flex', justifyContent: 'space-around'}}>
-          <div style={{minWidth: '25.3%'}}>
+        <div className='final-nutrition-total'>
+          <div>
             <div>탄수화물</div>
             <div>
-              {/* <Progress
-                done={finalTotalSum.carbs}
-                max={managingDatas[selected].carbs}
-              /> */}
-              <span style={{fontWeight: '600'}}>{finalTotalSum.carbs}</span> / {managingDatas[selected].carbs} g
+              <span>{finalTotalSum.carbs}</span> / {managingDatas[selected].carbs} g
             </div>
           </div>
 
-          <div style={{minWidth: '25.3%'}}>
+          <div>
             <div>단백질</div>
             <div>
-              {/* <Progress
-                done={finalTotalSum.prot}
-                max={managingDatas[selected].prot}
-              /> */}
-              <span style={{fontWeight: '600'}}>{finalTotalSum.prot}</span> / {managingDatas[selected].prot} g
+              <span>{finalTotalSum.prot}</span> / {managingDatas[selected].prot} g
             </div>
           </div>
 
-          <div style={{minWidth: '25.3%'}}>
+          <div>
             <div>지방</div>
             <div>
-              {/* <Progress
-                done={finalTotalSum.fat}
-                max={managingDatas[selected].fat}
-              /> */}
-              <span style={{fontWeight: '600'}}>{finalTotalSum.fat}</span> / {managingDatas[selected].fat} g
+              <span>{finalTotalSum.fat}</span> / {managingDatas[selected].fat} g
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };

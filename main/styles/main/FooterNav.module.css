@@ -1,9 +1,40 @@
-.footerWrapper {
-  width: 90%;
+.footerWrap {
+  width: 100vw;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 20;
+  padding: 0.5rem 0;
+  text-align: center;
+  background-color: #fff;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.navWrap {
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
 }
 
+.menuBtn {
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  transform: translateX(-50%);
+}
+
 .imgContainer {
-  width: 3rem;
+  width: 4rem;
+}
+
+.navWrap i {
+  margin: 0;
+}
+
+.navWrap p {
+  font: normal 400 0.8rem 'Noto Sans KR';
+  margin-top: 2px;
+  color: #333
 }

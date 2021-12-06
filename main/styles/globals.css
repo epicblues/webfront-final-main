@@ -78,7 +78,7 @@ input:focus {
 .tabs a {
   font: normal 600 1.2rem "Noto Sans KR";
   color: #999;
-  margin: 0 10px;
+  margin: 0 0.5rem;
 }
 
 .tabs a:hover {
@@ -93,14 +93,11 @@ a.is-active {
 /* Datepicker Custom */
 .react-datepicker__input-container {
   width: 1.5rem !important;
+  margin-right: 0.5rem;
 }
 
 .react-datepicker__input-container input {
   border: none;
-}
-
-.customInput {
-  font-size: 1.4rem;
 }
 
 .customInput .icon {
@@ -153,6 +150,21 @@ a.is-active {
 }
 
 /* dropDown */
+/* .ui.dropdown .menu {
+  position: fixed !important;
+  top: 80% !important;
+  width: 100vw !important;
+} */
+
+.dropdown-option {
+  display: flex;
+  justify-content: end;
+}
+
+.dropdown-option i {
+  margin: 0 1rem 0 0;
+}
+  
 .dropdown-modal {
   background-color: rgba(0,0,0,0) !important;
   box-shadow: none !important;
@@ -180,7 +192,8 @@ a.is-active {
 }
 
 .managing-option .icon {
-  width: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .dropdown-modal-action {
@@ -191,56 +204,47 @@ a.is-active {
 }
 
 /* Final Total Sum */
-.final-total-sum-wrap {
+.final-total-wrap {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   border-radius: 20px;
   box-shadow: 1px 1px 3px 1px #dadce0;
   padding: 1rem 0;
   margin-bottom: 1rem;
-  background: linear-gradient(to bottom, #f3ad52, #f59127);
+  background: linear-gradient(to bottom, #7ec4df, #6e87dc);
   color: #fff;
 }
 
-/* Progress Bar */
-/* .progress {
-  background-color: #d8d8d8;
-  border-radius: 20px;
-  position: relative;
-  margin: 0.5rem auto;
-  height: 5px;
-  width: 90%;
-  overflow: hidden;
+.final-nutrition-total {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.5rem;
 }
 
-.mask .progress-done {
-  background: linear-gradient(315deg, #ff5656, #ffa886);
-  box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 0;
-  opacity: 0;
-  transition: 1s ease 0.3s;
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
+.final-nutrition-total > div {
+  min-width: 25.3%;
+}
+
+.final-nutrition-total span {
+  font-weight: 600;
+}
+
+/* Progress */
 .progress {
   position: relative;
 }
 
 .donut-chart {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
 }
 
 .progress .icon {
-  width: 1rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
   position: absolute;
-  top: 25%;
+  top: 23%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -329,38 +333,6 @@ a.is-active {
   height: 100%;
   box-sizing: border-box;
   border-radius: 20px;
-}
-/* Add food*/
-.add-food-wrap {
-  padding: 0 1rem 1rem 1rem;
-}
-
-.add-food-wrap .add-food-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  height: 1.5rem;
-  position: relative;
-}
-
-.add-food-header > span {
-  font: normal 600 1.2rem 'Noto Sans KR';
-}
-
-.add-food-header .icon {
-  margin-right: 0.5rem;
-}
-
-.add-food-header > a {
-  background-color: #ff5656;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  text-align: center;
-  color: #fff;
-  position: absolute;
-  top: -12px;
-  right: -4px;
 }
 
 /* Review */

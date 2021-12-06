@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
+import MealStyles from '../../../styles/diary/Meal.module.css';
+
 
 const MultiBtn = ({ text, color, onClick }) => {
   Button.propTypes = {
@@ -8,9 +10,9 @@ const MultiBtn = ({ text, color, onClick }) => {
     onClick: PropTypes.func,
   };
   return (
-    <div onClick={onClick}>
-      <i className="large angle left icon" style={{verticalAlign: 'bottom', margin: '0'}}></i>
-      <span style={{color: color, font:"normal 400 1.2rem 'Noto Sans KR'"}}>{text}</span>
+    <div className={MealStyles.MultiBtn} onClick={onClick}>
+      <i className="angle left icon" style={{fontSize:'1.8rem'}}></i>
+      <p style={{color: color}}>{text}</p>
     </div>
   );
 };

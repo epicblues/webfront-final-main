@@ -5,5 +5,5 @@ export const BACKGROUND_COLOR = "#fff0f0";
 export const MIDDLE_COLOR = "#ff9393";
 export const FLEXBOX_NORMAL: CSSProperties = {
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "space-around",
 };
