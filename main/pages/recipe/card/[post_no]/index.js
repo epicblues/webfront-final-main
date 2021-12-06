@@ -6,7 +6,6 @@ import { getUserOrRedirect } from "../../../../util/auth";
 import { postStaticAxios } from "../../../../util/axios";
 
 import ModalNutrition from "../../../../components/recipe/card/ModalNutrition";
-import GoBackward from "../../../../components/GoBackward";
 import { useRouter } from "next/router";
 
 const Index = ({ user, recipe }) => {
@@ -76,7 +75,6 @@ const Index = ({ user, recipe }) => {
   return (
     <div>
       <div>
-        <GoBackward />
         <Image
           src={
             process.env.NEXT_PUBLIC_STATIC_SERVER_URL +

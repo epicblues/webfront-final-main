@@ -46,10 +46,10 @@ export const Index = ({ user }) => {
         return (
           <>
             <div className={createStyles.wizard1}>
-              <div>
+              <div className={createStyles.label}>
                 <label htmlFor="title">요리명</label>
               </div>
-              <div>
+              <div className={createStyles.input}>
                 <input
                   id="title"
                   type="text"
@@ -64,18 +64,16 @@ export const Index = ({ user }) => {
                 )}
                 <br />
               </div>
-              <div>
+              <div className={createStyles.label}>
                 <label>요리소개</label>
               </div>
-              <div>
+              <div className={createStyles.input}>
                 <textarea
                   id="desc"
                   type="text"
                   cols="40"
                   rows="5"
-                  placeholder=" 레시피에 대한 설명을 적어주세요.
-                    ex) 어머니로부터 배운 미역국 레시피를
-                    아내의 입맛에 맞게 고안했습니다."
+                  placeholder="레시피에 대한 설명을 적어주세요. &#13;&#10;ex) 어머니로부터 배운 미역국 레시피를아내의 입맛에 맞게 고안했습니다."
                   {...register("desc", { required: true, maxLength: 200 })}
                 />
                 {errors.desc && errors.desc.type === "required" && (
@@ -86,10 +84,10 @@ export const Index = ({ user }) => {
                 )}
                 <br />
               </div>
-              <div>
+              <div className={createStyles.label}>
                 <label>카테고리</label>
               </div>
-              <div>
+              <div className={createStyles.input}>
                 <select {...register("category")}>
                   <option value="soup">국/탕/찌개</option>
                   <option value="grill">구이</option>
@@ -102,10 +100,10 @@ export const Index = ({ user }) => {
                 </select>
                 <br />
               </div>
-              <div>
+              <div className={createStyles.label}>
                 <label>인원</label>
               </div>
-              <div>
+              <div className={createStyles.input}>
                 <select {...register("qtt")}>
                   <option value="1">1인분</option>
                   <option value="2">2인분</option>
@@ -115,10 +113,10 @@ export const Index = ({ user }) => {
                 </select>
                 <br />
               </div>
-              <div>
+              <div className={createStyles.label}>
                 <label>시간</label>
               </div>
-              <div>
+              <div className={createStyles.input}>
                 <select {...register("duration")}>
                   <option value="1">10분 이내</option>
                   <option value="2">10분 ~ 30분</option>
@@ -157,7 +155,9 @@ export const Index = ({ user }) => {
       case 4:
         return (
           <div>
-            <div className={createStyles.submits}>{/* 카드 미리보기 */}</div>
+            <div className={createStyles.submits}>
+              <p>작성 완료! 아래의 글쓰기 버튼을 눌러주세요.</p>
+            </div>
           </div>
         );
     }
@@ -255,7 +255,7 @@ export const Index = ({ user }) => {
         />
       )}
       <div className={createStyles.header}>
-        <h1>레시피 등록하기</h1>
+        <h1 className={createStyles.h1}>레시피 등록하기</h1>
       </div>
 
       <FormNavigator

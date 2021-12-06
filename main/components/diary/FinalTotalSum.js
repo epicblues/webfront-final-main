@@ -98,13 +98,13 @@ const FinalTotalSum = ({ diary, user, }) => {
       <div style={{ marginTop: 0, marginBottom: "1rem", display: 'flex', flexDirection: 'column'}}>
 
         <div style={{marginBottom: "1rem"}}>
-          <div>칼로리</div>
+          {/* <div>칼로리</div> */}
           <div className='progress-wrap'>
             <Progress
               done={finalTotalSum.kcal}
               max={managingDatas[selected].kcal}
             />
-            <span style={{fontWeight: '600'}}>{finalTotalSum.kcal}</span> / {managingDatas[selected].kcal} kcal
+            {/* <span style={{fontWeight: '600'}}>{finalTotalSum.kcal}</span> / {managingDatas[selected].kcal} kcal */}
           </div>
         </div>
 

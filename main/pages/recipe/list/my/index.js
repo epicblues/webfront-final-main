@@ -70,7 +70,17 @@ const Index = ({ user, filteredRecipes }) => {
                         </a>
                       </Link>
                       {/* 수정하기 링크 버튼 */}
-                      <div className={myRecipeStyles.btnUpdate}>수정</div>
+                      <Link
+                        href={{
+                          pathname: `/recipe/update/${card._id}`,
+                        }}
+                        as={`/recipe/update/${card._id}`}
+                        passHref
+                      >
+                        <a>
+                          <div className={myRecipeStyles.btnUpdate}>수정</div>
+                        </a>
+                      </Link>
                       <div
                         className={myRecipeStyles.btnDel}
                         onClick={(e) => {
@@ -124,7 +134,17 @@ const Index = ({ user, filteredRecipes }) => {
                     <td>{card.hit}</td>
                     <td>{card.upload_date.slice(0, -14)}</td>
                     <td>
-                      <div className={myRecipeStyles.btnUpdate}>수정</div>
+                      <Link
+                        href={{
+                          pathname: `/recipe/update/${card._id}`,
+                        }}
+                        as={`/recipe/update/${card._id}`}
+                        passHref
+                      >
+                        <a>
+                          <div className={myRecipeStyles.btnUpdate}>수정</div>
+                        </a>
+                      </Link>
                     </td>
                     <td>
                       <div
@@ -224,7 +244,6 @@ export const getServerSideProps = async (ctx) => {
       },
     ])
     .match({ user_id: user.id })
-    .limit(9)
     .toArray();
   const filteredRecipes = JSON.parse(JSON.stringify(data));
 

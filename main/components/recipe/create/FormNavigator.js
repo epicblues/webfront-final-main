@@ -26,25 +26,49 @@ const FormNavigator = ({ wizardIndex, setWizardIndex }) => {
   return (
     <div className={formNavigatorStyles.container}>
       <div className={formNavigatorStyles.bar}>{switchFilter(wizardIndex)}</div>
-      <div className={formNavigatorStyles.labelContainer}>
+      <div
+        className={
+          wizardIndex === 1
+            ? formNavigatorStyles.activated
+            : formNavigatorStyles.labelContainer
+        }
+      >
         <p>
           1<br />
           요리정보
         </p>
       </div>
-      <div className={formNavigatorStyles.labelContainer}>
+      <div
+        className={
+          wizardIndex === 2
+            ? formNavigatorStyles.activated
+            : formNavigatorStyles.labelContainer
+        }
+      >
         <p>
           2<br />
           재료추가
         </p>
       </div>
-      <div className={formNavigatorStyles.labelContainer}>
+      <div
+        className={
+          wizardIndex === 3
+            ? formNavigatorStyles.activated
+            : formNavigatorStyles.labelContainer
+        }
+      >
         <p>
           3<br />
           요리순서
         </p>
       </div>
-      <div className={formNavigatorStyles.labelContainer}>
+      <div
+        className={
+          wizardIndex === 4
+            ? formNavigatorStyles.activated
+            : formNavigatorStyles.labelContainer
+        }
+      >
         <p>
           4<br />
           완료

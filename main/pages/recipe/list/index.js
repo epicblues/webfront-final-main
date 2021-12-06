@@ -14,7 +14,7 @@ import Navigation from "../../../components/recipe/index/Navigation";
 import Categories from "../../../components/recipe/index/Categories";
 
 //  CSS
-import recipeListStyles from "../../../styles/RecipeList.module.css";
+import recipeListStyles from "../../../styles/recipe/RecipeList.module.css";
 import { parseDocumentToObject } from "../../../util/date";
 import InfiniteScroll from "react-infinite-scroll-component";
 
