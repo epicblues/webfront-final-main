@@ -356,21 +356,12 @@ const ChallengeWrite = ({ user }) => {
           <Button
             type="submit"
             color="twitter"
-            onClick={
-              ((e) => {
-                handleSubmit(e);
-              },
-              openModal)
-            }
+            onClick={(e) => {
+              handleSubmit(e);
+            }}
           >
             작성
           </Button>
-          <Modal
-            class
-            open={modalOpen}
-            close={closeModal}
-            header="경고창"
-          ></Modal>
         </>
       )}
     </form>
