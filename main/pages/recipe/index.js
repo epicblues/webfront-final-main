@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import clientPromise from "../../util/mongodb";
 import { getUserOrRedirect } from "../../util/auth";
@@ -18,13 +19,20 @@ const Index = ({ user, filteredHitRecipes, myRecipes }) => {
     tempData += myRecipes[key].hit;
   }
   const [totalHit, setTotalHit] = useState(tempData);
+  const [currentURL, setCurrentURL] = useState("/recipe");
+
+  // 현재 URL 참조하기 위한 useRouter
+  const router = useRouter();
+  useEffect(() => {
+    setCurrentURL(router.pathname);
+  });
 
   return (
     <div className={mainStyles.container}>
       <Head>
         <title>요건 다 내꺼! - 레시피</title>
       </Head>
-      <Navigation></Navigation>
+      <Navigation currentURL={currentURL}></Navigation>
       <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
       <MyDashboard
         countMyRecipes={myRecipes.length}

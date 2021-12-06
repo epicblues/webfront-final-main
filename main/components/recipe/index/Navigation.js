@@ -2,13 +2,19 @@ import React from "react";
 import Link from "next/link";
 import navigationStyles from "../../../styles/recipe/Navigation.module.css";
 
-const Navigation = () => {
+const Navigation = ({ currentURL }) => {
   return (
     <div className={navigationStyles.container}>
       <Link href="/recipe/">
         <a>
           <div className={navigationStyles.tab}>
-            <p>메인</p>
+            <p
+              className={
+                currentURL === "/recipe" ? navigationStyles.activated : ""
+              }
+            >
+              메인
+            </p>
           </div>
         </a>
       </Link>

@@ -224,7 +224,6 @@ export const getServerSideProps = async (ctx) => {
       },
     ])
     .match({ user_id: user.id })
-    .limit(9)
     .toArray();
   const filteredRecipes = JSON.parse(JSON.stringify(data));
 
