@@ -100,7 +100,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     }}
                   >
                     Menu
-                    <ChallengeModify
+                    <ChallengeCancel
                       user={user}
                       challenge={challenge}
                       setChallenge={setChallenge}

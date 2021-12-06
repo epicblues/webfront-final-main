@@ -104,19 +104,21 @@ const index = ({ challenges, user }) => {
                                 realProgressBar.max = challenge.diet.condition;
                                 const span = realProgressBar.nextElementSibling;
                                 span.innerText =
-                                  (result.length / challenge.diet.condition) *
-                                    100 +
-                                  " %";
+                                  Math.round(
+                                    (result.length / challenge.diet.condition) *
+                                      100
+                                  ) + " %%%%%%";
                               } else {
                                 realProgressBar.value = result.length;
                                 realProgressBar.max =
                                   challenge.recipe.uploadCount;
                                 const span = realProgressBar.nextElementSibling;
                                 span.innerText =
-                                  (result.length /
-                                    challenge.recipe.uploadCount) *
-                                    100 +
-                                  " %";
+                                  Math.round(
+                                    (result.length /
+                                      challenge.recipe.uploadCount) *
+                                      100
+                                  ) + " %%%%%%%%%%%";
                               }
                             }
                           } else {
