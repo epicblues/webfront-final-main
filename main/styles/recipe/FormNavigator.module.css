@@ -1,18 +1,39 @@
 .container {
-  width: 100%;
+  border-radius: 15px;
+  margin: 0 1rem;
   height: 8rem;
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  background-color: khaki;
   place-items: center;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.labelContainer {
+  background-color: #e9ecef;
+  border-radius: 15px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  min-width: 5rem;
+  text-align: center;
+}
+
+.activated {
+  background-color: #e4685d;
+  border-radius: 15px;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  min-width: 5rem;
+  text-align: center;
+  transition: ease-in-out 0.5s;
 }
 
 .bar {
   height: 1rem;
   width: 90%;
-  background-color: #e0e0de;
-  border-radius: 0;
+  background-color: #e9ecef;
+  border-radius: 15px;
   grid-row: 1 / 2;
   grid-column: 1 / 5;
 }
@@ -51,8 +72,4 @@
   border-radius: inherit;
   text-align: right;
   transition: all 1s ease-in-out;
-}
-
-.labelContainer {
-  text-align: center;
 }

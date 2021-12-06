@@ -157,7 +157,9 @@ export const Index = ({ user }) => {
       case 4:
         return (
           <div>
-            <div className={createStyles.submits}>{/* 카드 미리보기 */}</div>
+            <div className={createStyles.submits}>
+              <p>작성 완료! 아래의 글쓰기 버튼을 눌러주세요.</p>
+            </div>
           </div>
         );
     }

@@ -1,6 +1,12 @@
 .container {
+  background-color: #fff0f0;
+  min-height: 100vh;
   display: grid;
   grid-template-rows: 4rem 8rem 23rem 3rem;
+}
+
+.wizardContainer {
+  padding: 1rem;
 }
 
 .wizard1 {
