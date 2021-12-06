@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import modalStyles from "../../../../styles/Modal.module.css";
+import modalStyles from "../../../../styles/recipe/Modal.module.css";
 import SelectedFoodMap from "./SelectedFoodMap";
 import { debounce } from "../../../../util/axios";
 
