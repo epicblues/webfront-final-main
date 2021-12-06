@@ -5,9 +5,6 @@ import Image from "next/image";
 import doge from "../../../../public/static/logos/doge.gif";
 import createStyles from "../../../../styles/recipe/Create.module.css";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
-
 const FoodForm = ({
   foodData,
   setFoodData,
@@ -54,6 +51,7 @@ const FoodForm = ({
               <span>제조사</span>
               <span>양</span>
               <span>단위</span>
+              <span>-</span>
             </div>
             {foodData.map((value, index) => {
               return (
@@ -66,7 +64,7 @@ const FoodForm = ({
                     className={createStyles.btnAdd}
                     onClick={() => removeFood(value)}
                   >
-                    <FontAwesomeIcon icon={faMinusCircle} />
+                    <i class="minus circle icon"></i>
                   </div>
                 </div>
               );

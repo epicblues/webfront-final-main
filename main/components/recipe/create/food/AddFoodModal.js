@@ -4,9 +4,6 @@ import modalAddFoodStyles from "../../../../styles/recipe/ModalAddFood.module.cs
 import SelectedFoodMap from "./SelectedFoodMap";
 import { debounce } from "../../../../util/axios";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-
 const AddFoodModal = ({
   foodData,
   setFoodData,
@@ -71,7 +68,7 @@ const AddFoodModal = ({
                         className={modalAddFoodStyles.btnAdd}
                         onClick={() => onSelectBtn(value)}
                       >
-                        <FontAwesomeIcon icon={faPlusCircle}></FontAwesomeIcon>
+                        <i class="plus circle icon"></i>
                       </div>
                     </div>
                   );

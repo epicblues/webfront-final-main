@@ -86,6 +86,7 @@
 }
 .selectedFoodMapItems {
   display: grid;
+  width: 85vw;
   text-align: center;
   align-items: center;
   grid-template-columns: 35% 35% 10% 10% 10%;
