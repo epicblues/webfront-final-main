@@ -197,28 +197,23 @@ a.is-active {
   box-shadow: 1px 1px 3px 1px #dadce0;
   padding: 1rem 0;
   margin-bottom: 1rem;
+  background: linear-gradient(to bottom, #f3ad52, #f59127);
+  color: #fff;
 }
 
 /* Progress Bar */
-.progress {
-  /* background-color: #d8d8d8;
+/* .progress {
+  background-color: #d8d8d8;
   border-radius: 20px;
   position: relative;
   margin: 0.5rem auto;
   height: 5px;
   width: 90%;
-  overflow: hidden; */
-
-  background-color: #d8d8d8;
-  border-radius: 50%;
-  position: relative;
-  height: 100px;
-  width: 100px;
-  margin: 0 auto;
+  overflow: hidden;
 }
 
-.progress-done {
-  /* background: linear-gradient(315deg, #ff5656, #ffa886);
+.mask .progress-done {
+  background: linear-gradient(315deg, #ff5656, #ffa886);
   box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
   border-radius: 20px;
   display: flex;
@@ -230,21 +225,31 @@ a.is-active {
   transition: 1s ease 0.3s;
   position: absolute;
   top: 0;
-  left: 0; */
-  
-  background: linear-gradient(315deg, #ff5656, #ffa886);
-  box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 0.8rem;
-  width: 0;
-  opacity: 0;
-  transition: 1s ease 0.3s;
-  position: absolute;
-  top: 0;
   left: 0;
+} */
+.progress {
+  position: relative;
+}
+
+.donut-chart {
+  width: 150px;
+  height: 150px;
+}
+
+.progress .icon {
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.progress p {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Description + Image */
