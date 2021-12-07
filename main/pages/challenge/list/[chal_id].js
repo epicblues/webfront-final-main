@@ -22,21 +22,27 @@ const ChallengePage = ({ originalChallenge, user }) => {
     }
   };
   const changeDateStr = () => {
-    const startDateStr =
-      new Date(challenge.startDate).getFullYear +
+    const newStartDateStr =
+      new Date(challenge.startDate).getFullYear() +
       "년" +
       (new Date(challenge.startDate).getMonth() + 1) +
       "월" +
-      new Date(challenge.startDate).getDate +
+      new Date(challenge.startDate).getDate() +
       "일";
-    const endDateStr =
-      new Date(challenge.endDate).getFullYear +
+    const newEndDateStr =
+      new Date(challenge.endDate).getFullYear() +
       "년" +
       (new Date(challenge.endDate).getMonth() + 1) +
       "월" +
-      new Date(challenge.endDate).getDate +
+      new Date(challenge.endDate).getDate() +
       "일";
+    return (
+      <div>
+        {newStartDateStr}~{newEndDateStr}
+      </div>
+    );
   };
+
   const changeRecipeName = () => {
     switch (challenge.recipe.category) {
       case "noodle":
@@ -88,10 +94,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
         <hr style={{ marginBottom: "10px", marginTop: "10px" }} />
         <div>
           <h3 className={ChallengeStyles.h3Mt}>챌린지 기간</h3>
-          <h3>
-            {new Date(challenge.startDate).toLocaleDateString()}~
-            {new Date(challenge.endDate).toLocaleDateString()}
-          </h3>
+          <h3>{changeDateStr(challenge.startDate, challenge.endDate)}</h3>
         </div>
         <h3>작성자:{challenge.author[0].name}</h3>
         <div>
