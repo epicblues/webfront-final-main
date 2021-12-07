@@ -1,5 +1,7 @@
 import { React, useState } from "react";
 //css
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
@@ -33,6 +35,8 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
       setError(true);
     }
   };
+  // FontAwesome 아이콘
+
   return (
     <div
       className="ui rounded image"
@@ -49,7 +53,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
-        <h3 style={{ textAlign: "left" }}>챌린지를 설명할 사진 추가</h3>
+        <h3>챌린지를 설명할 사진 추가</h3>
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -61,7 +65,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                   }") no-repeat center/cover`
                 : 'url("/empty.jpg") no-repeat center/cover',
             width: "100%",
-            height: "10vh",
+            height: "20vh",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -83,7 +87,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                   style={{ display: "none" }}
                   onChange={handleImageUpload}
                 />
-                <i className="huge images outline icon"></i>
+                <FontAwesomeIcon icon={faPlus} size="2x" color="black" />
               </label>
             </>
           )}

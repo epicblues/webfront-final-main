@@ -16,7 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/dist/client/router";
-
+import ButtonStyles from "../../../styles/challenge/Button.module.css";
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 registerLocale("ko", ko);
 
@@ -74,7 +74,7 @@ const ChallengeWrite = ({ user }) => {
       case 1:
         return (
           <>
-            <div>
+            <div className={ChallengeStyle.form}>
               <ChallengeAddImage
                 challenge={challenge}
                 setChallenge={setChallenge}
@@ -85,54 +85,83 @@ const ChallengeWrite = ({ user }) => {
       case 2:
         return (
           <>
-            <div className={ChallengeStyle.h3}>
-              <h3>챌린지 이름</h3>
-              <input
-                className={InputStyle.text}
-                type="text"
-                name="title"
-                placeholder="      챌린지의 이름을 입력해주세요"
-                value={challenge.title}
-                onChange={(e) => {
-                  setChallenge({ ...challenge, title: e.currentTarget.value });
-                }}
-                ref={title}
-              />
+            <div style={{ height: "10vh" }}>
+              <h3 className={ChallengeStyle.h3}>챌린지 이름</h3>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <input
+                  className={InputStyle.text}
+                  type="text"
+                  name="title"
+                  placeholder="  챌린지의 이름을 입력해주세요"
+                  value={challenge.title}
+                  onChange={(e) => {
+                    setChallenge({
+                      ...challenge,
+                      title: e.currentTarget.value,
+                    });
+                  }}
+                  ref={title}
+                />
+              </div>
             </div>
             <br />
-            <div className="description">
-              <h3 className={ChallengeStyle.h3}>챌린지의 간략한 설명</h3>
-              <textarea
-                name="description"
-                style={{
-                  width: "300px",
-                  height: "75px",
-                  fontWeight: "bold",
-                  border: "solid 2px lightgray",
-                  borderRadius: "5px",
-                }}
-                placeholder="나만의 챌린지에 대한 설명을 적어주세요!"
-                value={challenge.description}
-                onChange={(e) => {
-                  setChallenge({
-                    ...challenge,
-                    description: e.currentTarget.value,
-                  });
-                }}
-              ></textarea>
+            <div style={{ height: "30vh" }}>
+              <div>
+                <h3
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    textAlign: "center",
+                  }}
+                >
+                  챌린지의 간략한 설명
+                </h3>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <textarea
+                  style={{
+                    width: "300px",
+                    height: "100px",
+                    border: "solid 2px lightgray",
+                    borderRadius: " 6px",
+                    fontSize: " 16px",
+                  }}
+                  name="description"
+                  placeholder="나만의 챌린지에 대한 설명을 적어주세요!"
+                  value={challenge.description}
+                  onChange={(e) => {
+                    setChallenge({
+                      ...challenge,
+                      description: e.currentTarget.value,
+                    });
+                  }}
+                ></textarea>
+              </div>
             </div>
           </>
         );
       case 3:
         return (
           <>
-            <section className="challengDate">
-              <h3 className={ChallengeStyle.h3}>챌린지 기간</h3>
-              <h3 className={ChallengeStyle.h3}>
-                챌린지 진행 기간을 선택해주세요
-              </h3>
+            <section>
+              <div style={{ height: "5vh" }}>
+                <h3 className={ChallengeStyle.h3}>챌린지 기간</h3>
+              </div>
+              <div style={{ height: "10vh" }}>
+                <h3 className={ChallengeStyle.h3}>
+                  챌린지 진행 기간을 선택해주세요
+                </h3>
+              </div>
               <h4 className={ChallengeStyle.h4}>챌린지 시작일</h4>
-              <label>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  height: "10vh",
+                  marginTop: "10px",
+                }}
+              >
                 <ReactDatePicker
                   locale="ko"
                   dateFormat="yyyy년 MM월 dd일"
@@ -159,33 +188,43 @@ const ChallengeWrite = ({ user }) => {
                   }}
                   popperPlacement="auto" // 화면 중앙에 팝업
                 />
-              </label>
+              </div>
               <h4 className={ChallengeStyle.h4Mt}>챌린지 종료일</h4>
-              <ReactDatePicker
-                locale="ko"
-                dateFormat="yyyy년 MM월 dd일"
-                selected={challenge.endDate}
-                onChange={(date) => {
-                  const newDateDiff = getDiffDate(date);
-                  setChallenge({
-                    ...challenge,
-                    endDate: date,
-                    dateDiff: newDateDiff,
-                  });
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  height: "10vh",
+                  marginTop: "10px",
                 }}
-                selectsEnd
-                customInput={<DateCustomImage />}
-                endDate={challenge.endDate}
-                minDate={challenge.startDate}
-                withPortal
-                popperModifier={{
-                  //모바일 web환경에서 화면을 벗어나지 않도록 하는 설정
-                  preventOverflow: {
-                    enabled: true,
-                  },
-                }}
-                popperPlacement="auto" // 화면 중앙에 팝업
-              />
+              >
+                <ReactDatePicker
+                  locale="ko"
+                  dateFormat="yyyy년 MM월 dd일"
+                  selected={challenge.endDate}
+                  onChange={(date) => {
+                    const newDateDiff = getDiffDate(date);
+                    setChallenge({
+                      ...challenge,
+                      endDate: date,
+                      dateDiff: newDateDiff,
+                    });
+                  }}
+                  selectsEnd
+                  customInput={<DateCustomImage />}
+                  endDate={challenge.endDate}
+                  minDate={challenge.startDate}
+                  withPortal
+                  popperModifier={{
+                    //모바일 web환경에서 화면을 벗어나지 않도록 하는 설정
+                    preventOverflow: {
+                      enabled: true,
+                    },
+                  }}
+                  popperPlacement="auto" // 화면 중앙에 팝업
+                />
+              </div>
             </section>
           </>
         );
@@ -199,6 +238,7 @@ const ChallengeWrite = ({ user }) => {
               dailyCalorieError={dailyCalorieError}
               uploadCount={uploadCount}
               uploadCountError={uploadCountError}
+              className={ChallengeStyle.form}
             />
           </>
         );
@@ -254,7 +294,7 @@ const ChallengeWrite = ({ user }) => {
       <div className="customImage" onClick={onClick} value={value}>
         <FontAwesomeIcon
           icon={faCalendarAlt}
-          size="2x"
+          size="3x"
           className={InputStyle.image}
         />
         <h4 style={{ whiteSpace: "nowrap" }}>{value}</h4>
@@ -344,26 +384,35 @@ const ChallengeWrite = ({ user }) => {
             </Link>
           </div>
         )}
+        <hr />
       </header>
       {switchWizardForm(wizardIndex)}
-      {wizardIndex !== 4 && (
-        <Button type="submit" color="twitter" onClick={button1}>
-          다음 ({wizardIndex}/4)
-        </Button>
-      )}
-      {wizardIndex == 4 && (
-        <>
-          <Button
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        {wizardIndex !== 4 && (
+          <button
+            className={ButtonStyles.button}
             type="submit"
             color="twitter"
-            onClick={(e) => {
-              handleSubmit(e);
-            }}
+            onClick={button1}
           >
-            작성
-          </Button>
-        </>
-      )}
+            다음 ({wizardIndex}/4)
+          </button>
+        )}
+        {wizardIndex == 4 && (
+          <>
+            <button
+              className={ButtonStyles.button}
+              type="submit"
+              color="twitter"
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
+            >
+              작성
+            </button>
+          </>
+        )}
+      </div>
     </form>
   );
 };

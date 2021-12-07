@@ -5,6 +5,12 @@
   border-radius: 6px;
   font-size: 16px;
 }
+.textarea {
+  width: 300px;
+  border: solid 2px lightgray;
+  border-radius: 6px;
+  font-size: 16px;
+}
 .image {
   width: 40px;
   height: 40px;
