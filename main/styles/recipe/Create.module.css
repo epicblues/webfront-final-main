@@ -102,6 +102,115 @@
   justify-content: center;
 }
 
+/* 마법사 3 */
+.wizard3 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 마법사 3 - 스텝목록 */
+.stepsWrapper {
+  border: 2px solid #dedede;
+  min-height: 24vh;
+  max-height: 24vh;
+  overflow-y: scroll;
+}
+.stepEmpty {
+  text-align: center;
+}
+.stepItem {
+  display: grid;
+  grid-template-columns: 1fr 5fr 5fr 1fr;
+  height: 15vh;
+  border: solid 1px #dedede;
+  align-items: center;
+  margin: 0.5rem;
+}
+.stepIndex {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: tomato;
+}
+.stepDesc {
+  height: 13vh;
+  overflow-y: hidden;
+  background-color: white;
+}
+.stepDel {
+  text-align: center;
+}
+
+/* 마법사 3 - 스텝 추가 */
+.addContainer {
+  display: flex;
+  height: auto;
+}
+.errorMsg {
+  color: red;
+  position: absolute;
+  transform: translate(10vw, -2rem);
+}
+
+.addFormContainer {
+  display: grid;
+  grid-template-columns: 25vw 50vw 10vw;
+}
+
+.imgPreview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  max-width: 25vw;
+}
+.imgPreview span {
+  font-size: 0.8rem;
+}
+
+.customFileUpload {
+  margin: 0;
+  text-align: center;
+}
+
+.btnContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  text-align: center;
+}
+
+.btnWrapperAdd {
+  border: 2px solid #dedede;
+  background-color: #fff0f0;
+  color: tomato;
+}
+
+.btnWrapperDel {
+  border: 2px solid #dedede;
+  color: #333333;
+}
+
+/* 마법사 4 - 완료 페이지 */
+.submits {
+  display: grid;
+  grid-template-rows: 3rem 25vh 3rem;
+  text-align: center;
+  color: tomato;
+}
+.repImgWrapper {
+  position: relative;
+}
+.repImg {
+  width: 100%;
+  height: 100%;
+  position: relative !important;
+  object-fit: cover;
+}
+
 /* 하단 버튼 */
 .footer {
   display: grid;

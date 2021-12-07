@@ -68,7 +68,7 @@ const AddFoodModal = ({
                         className={modalAddFoodStyles.btnAdd}
                         onClick={() => onSelectBtn(value)}
                       >
-                        <i class="plus circle icon"></i>
+                        <i className="plus circle icon"></i>
                       </div>
                     </div>
                   );
