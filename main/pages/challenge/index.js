@@ -22,7 +22,7 @@ const index = ({ challenges, user }) => {
   );
   return (
     <>
-      <div style={{ backgroundColor: "#fff0f0" }}>
+      <div>
         <div>
           <Link passHref href="/challenge/mainlist">
             <p>전체</p>
@@ -83,7 +83,6 @@ const index = ({ challenges, user }) => {
                         style={{
                           display: "flex",
                           justifyContent: "center",
-                          backgroundColor: "rgb(255,147,147)",
                         }}
                       >
                         <button

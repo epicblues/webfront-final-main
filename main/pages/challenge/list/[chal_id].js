@@ -1,14 +1,42 @@
 import React, { useState } from "react";
 import { getUserOrRedirect } from "../../../util/auth";
 import clientPromise from "../../../util/mongodb";
+//component
 import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
 import axios from "axios";
+//css
 import { Image } from "semantic-ui-react";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import ChallengeStyles from "../../../styles/challenge/Challenge.module.css";
 const ChallengePage = ({ originalChallenge, user }) => {
   const [challenge, setChallenge] = useState(originalChallenge);
 
+  const countChallengeDate = () => {
+    const weeks = Math.round(challenge.dateDiff / 7);
+    if (challenge.dateDiff < 7) {
+      return <div>{challenge.dateDiff}일</div>;
+    } else {
+      return <div>{weeks}주</div>;
+    }
+  };
+  const changeDateStr = () => {
+    const startDateStr =
+      new Date(challenge.startDate).getFullYear +
+      "년" +
+      (new Date(challenge.startDate).getMonth() + 1) +
+      "월" +
+      new Date(challenge.startDate).getDate +
+      "일";
+    const endDateStr =
+      new Date(challenge.endDate).getFullYear +
+      "년" +
+      (new Date(challenge.endDate).getMonth() + 1) +
+      "월" +
+      new Date(challenge.endDate).getDate +
+      "일";
+  };
   const changeRecipeName = () => {
     switch (challenge.recipe.category) {
       case "noodle":
@@ -42,15 +70,30 @@ const ChallengePage = ({ originalChallenge, user }) => {
         </div>
         <br />
         <h2>{challenge.title}</h2>
-
+        <div
+          style={{
+            fontSize: "16px",
+            fontWeight: "bold",
+            width: "36px",
+            borderRadius: "0.3rem",
+            textAlign: "center",
+            backgroundColor: "lightgrey",
+          }}
+        >
+          {countChallengeDate()}
+        </div>
+        <div>
+          <FontAwesomeIcon Icon={faUsers} size="2x" color="black" />
+        </div>
+        <hr style={{ marginBottom: "10px", marginTop: "10px" }} />
+        <div>
+          <h3 className={ChallengeStyles.h3Mt}>챌린지 기간</h3>
+          <h3>
+            {new Date(challenge.startDate).toLocaleDateString()}~
+            {new Date(challenge.endDate).toLocaleDateString()}
+          </h3>
+        </div>
         <h3>작성자:{challenge.author[0].name}</h3>
-        <h3>
-          시작일: {new Date(challenge.startDate).toLocaleDateString()}
-          <br />
-          종료일:
-          {new Date(challenge.endDate).toLocaleDateString()}
-        </h3>
-
         <div>
           {!(challenge.participants.indexOf(user.id) === -1) ? (
             <>
@@ -167,7 +210,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                 style={{
                   position: "fixed",
                   left: 0,
-                  bottom: "7vh",
+                  bottom: "6.5vh",
                   width: "100vw",
                   height: "10vh",
                   display: "flex",
