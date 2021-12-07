@@ -17,7 +17,7 @@ const login: NextApiHandler = async (
     const result = (await (await clientPromise)
       .db("webfront")
       .collection("user")
-      .findOne({ email: userForm.email })) as Document;
+      .findOne({ email: userForm.email, type: "normal" })) as Document;
 
     if (!result) {
       throw new Error("이메일이 유효하지 않습니다.");

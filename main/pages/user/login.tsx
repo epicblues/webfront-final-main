@@ -5,6 +5,7 @@ import { useRouter } from 'next/dist/client/router';
 import axios from 'axios';
 import { Button, Form } from 'semantic-ui-react';
 import Intro from '../../components/user/Intro';
+import { GetServerSideProps } from 'next';
 
 const Login = () => {
 
@@ -68,7 +69,9 @@ const Login = () => {
         <Link passHref href="/user/join">
           <button className="ui button teal">회원가입</button>
         </Link>
-
+        <Link passHref href="/user/google/login">
+          <button className="ui button google">Google Login</button>
+        </Link>
 
       </div>  <Intro handleClick={() => { setLoginMode(true) }} loginMode={loginMode} />
     </>
@@ -76,6 +79,12 @@ const Login = () => {
   )
 
 }
+
+// export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
+//   console.log(ctx.req);
+//   return { props: {} }
+// }
+
 
 
 export default Login

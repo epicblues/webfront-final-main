@@ -84,7 +84,8 @@ const Join = () => {
         email: email.current?.value,
         password: password.current?.value,
         name: name.current?.value,
-        bmr: bmrToSend
+        bmr: bmrToSend,
+        type: 'normal'
       }
     )
     if (result.status === "OK") {

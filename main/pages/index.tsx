@@ -73,7 +73,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
     }}>
       <div style={FLEXBOX_NORMAL}>
         < div style={{ ...cardStyle, alignItems: "center", justifyContent: "center" }} >
-          <Image src={AppIcon} width="60em" height="60em"></Image>
+          <Image src={AppIcon} width="60em" height="60em" alt="요건 다 내꺼 마크"></Image>
           <span>{name} 님 </span>
           <span>안녕하세요!</span>
         </div >

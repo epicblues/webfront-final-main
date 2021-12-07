@@ -10,29 +10,46 @@ const join: NextApiHandler = async (
 ) => {
   const userForm = req.body;
   console.log(userForm);
-  const password = await hash(userForm.password, 10);
-  const key = Math.floor(Math.random() * 1000000).toString();
-  await sendAuthEmail(userForm.email, key);
-  try {
+
+  if (userForm.type === "normal") {
+    const password = await hash(userForm.password, 10);
+    const key = Math.floor(Math.random() * 1000000).toString();
+    await sendAuthEmail(userForm.email, key);
+    try {
+      const client = await clientPromise;
+      const nextSequence = await getNextSequence("user", client);
+
+      const result = await client
+        .db("webfront")
+        .collection("user")
+        .insertOne({
+          _id: nextSequence,
+          ...userForm,
+          password,
+          verified: false,
+          key,
+        });
+      res
+        .status(200)
+        .json(result.insertedId ? { status: "OK" } : { status: "Failed" });
+    } catch (err) {
+      console.log(err);
+      res.status(400).json({ status: JSON.stringify(err) });
+    }
+  } else {
     const client = await clientPromise;
     const nextSequence = await getNextSequence("user", client);
-
     const result = await client
       .db("webfront")
       .collection("user")
       .insertOne({
         _id: nextSequence,
         ...userForm,
-        password,
-        verified: false,
-        key,
+        verified: true,
       });
     res
       .status(200)
       .json(result.insertedId ? { status: "OK" } : { status: "Failed" });
-  } catch (err) {
-    console.log(err);
-    res.status(400).json({ status: JSON.stringify(err) });
   }
 };
 
