@@ -1,3 +1,6 @@
+# 최종 배포 때 고려해야 할 사항
+- 각 OAuth에 할당된 redirect uri
+
 # 이미지 서버 재부팅으로 도메인 주소 변경 시 바꾸어야 할 설정들
 
 - next.config.js 의 domain
