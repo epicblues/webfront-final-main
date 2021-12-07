@@ -10,7 +10,7 @@ const MultiBtn = ({ text, color, onClick }) => {
     onClick: PropTypes.func,
   };
   return (
-    <div className={MealStyles.MultiBtn} onClick={onClick}>
+    <div className={MealStyles.multiBtn} onClick={onClick}>
       <i className="angle left icon" style={{fontSize:'1.8rem'}}></i>
       <p style={{color: color}}>{text}</p>
     </div>

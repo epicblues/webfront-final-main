@@ -17,7 +17,7 @@ const ReviewHeader = ({ onAdd }) => {
             <FontAwesomeIcon icon={faPen} className='icon' />
           </button>
         </p>
-        <div className='is-desc-img'></div>
+        <div className='is-desc-review-img'></div>
       </div>
     </header>
   );

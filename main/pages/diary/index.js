@@ -59,7 +59,7 @@ const Index = ({ user, fetchedDiary, mode, }) => {
                 식단을 기록하세요
               </span>
             </p>
-            <div className='is-desc-img'></div>
+            <div className='is-desc-food-img'></div>
           </div>
           <div className="meal-container"> 
             {[0, 1, 2, 3].map((type) => (
