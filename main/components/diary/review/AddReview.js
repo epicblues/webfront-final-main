@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PickDate from "../PickDate";
 import MultiBtn from "../meal/MultiBtn";
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const AddReview = ({ onAdd, setShow, show, diary, setDiary }) => {
   const [text, setText] = useState("");
@@ -13,13 +14,13 @@ const AddReview = ({ onAdd, setShow, show, diary, setDiary }) => {
   };
 
   return (
-    <div className='review-open'
+    <div className={MealStyles.reviewOpen}
           style = {{
                     transform : show ? "none" : "translateX(100%)"
                   }}
     >
-      <div className="review-modal">
-        <div className='review-modal-header'>
+      <div className={MealStyles.reviewModal}>
+        <div className={MealStyles.reviewModalHeader}>
           <MultiBtn
             color={text.length === 0 ? "#a0a0a0" : "#02b0b0"}
             text={text.length === 0 ? "취소" : "완료"}
@@ -28,7 +29,7 @@ const AddReview = ({ onAdd, setShow, show, diary, setDiary }) => {
           <PickDate diary={diary} setDiary={setDiary} />
         </div>
 
-        <form className="review-modal-form" onSubmit={onSubmit}>        
+        <form className={MealStyles.reviewModalForm} onSubmit={onSubmit}>        
           <textarea
             type="text"
             value={text}

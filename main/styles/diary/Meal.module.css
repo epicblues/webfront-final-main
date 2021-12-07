@@ -73,17 +73,17 @@
 }
 
 /* AddFood */
-.MultiBtn {
+.multiBtn {
     display: flex;
     justify-content: left;
 }
 
-.MultiBtn i {
+.multiBtn i {
     margin: 0;
     width: 1rem;
 }
 
-.MultiBtn P {
+.multiBtn P {
     font: normal 400 1.2rem 'Noto Sans KR';
 }
 
@@ -202,4 +202,42 @@
 
 .CartSum > span {
     font-weight: 600;
+}
+
+/* review */
+.reviewOpen {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 1rem;
+    text-align: left;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    background-color: #fff;
+    transition: all;
+    transition-duration: 300ms;
+    z-index: 30;
+}
+
+.reviewModal {
+    margin-top: 3vh;
+    position: relative;
+}
+
+.reviewModalHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.reviewModalForm {
+    width: 100%;
+}
+
+.reviewModalForm > textarea {
+    border: none;
+    width: 100%;
+    height: 100vh;
 }
