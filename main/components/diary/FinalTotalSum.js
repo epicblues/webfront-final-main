@@ -93,6 +93,7 @@ const FinalTotalSum = ({ diary, user, }) => {
 
   return (
     <div className='final-total-wrap'>
+        <div className='left-side'>
         <Dropdown
                   selected={selected}
                   setSelected={setSelected}
@@ -101,27 +102,28 @@ const FinalTotalSum = ({ diary, user, }) => {
                   done={finalTotalSum.kcal}
                   max={managingDatas[selected].kcal}
         />
+        </div>
 
         <div className='final-nutrition-total'>
           <div>
-            <div>탄수화물</div>
-            <div>
+            <img alt='탄수화물' src='/carbs.png' />
+            <p>
               <span>{finalTotalSum.carbs}</span> / {managingDatas[selected].carbs} g
-            </div>
+            </p>
           </div>
 
           <div>
-            <div>단백질</div>
-            <div>
+            <img alt='단백질' src='/protein.png' />
+            <p>
               <span>{finalTotalSum.prot}</span> / {managingDatas[selected].prot} g
-            </div>
+            </p>
           </div>
 
           <div>
-            <div>지방</div>
-            <div>
+            <img alt='지방' src='/fats.png' />
+            <p>
               <span>{finalTotalSum.fat}</span> / {managingDatas[selected].fat} g
-            </div>
+            </p>
           </div>
         </div>
     </div>
