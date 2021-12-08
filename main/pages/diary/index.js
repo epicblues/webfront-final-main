@@ -60,7 +60,7 @@ const Index = ({ user, fetchedDiary, mode, }) => {
             </p>
             <div>
               <div className='is-desc-food-img
-                    animate__animated animate__pulse'
+                        animate__animated animate__pulse'
               >
               </div>
               <div className='shadow-img'></div>

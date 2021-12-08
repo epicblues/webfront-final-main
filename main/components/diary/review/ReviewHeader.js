@@ -8,10 +8,17 @@ const ReviewHeader = ({ onAdd }) => {
           오늘 하루 어떠셨나요?<br />
           건강과 감정을 기록하세요
           <button  onClick={() => {onAdd()}}>
-            일기 작성 &gt;
+            일기 작성
+            <i className='right angle icon'></i>
           </button>
         </p>
-        <div className='is-desc-review-img'></div>
+        <div>
+          <div className='is-desc-review-img
+                    animate__animated animate__pulse'
+          >
+          </div>
+          <div className='shadow-img'></div>
+        </div>
       </div>
     </header>
   );
