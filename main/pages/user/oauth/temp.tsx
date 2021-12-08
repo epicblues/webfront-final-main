@@ -11,7 +11,7 @@ const Temp = () => {
     setTimeout(() => {
       router.push("/")
     })
-  })
+  }, [router])
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "70vh", background: BACKGROUND_COLOR, justifyContent: "center", alignItems: "stretch" }}>
       <div style={{ alignSelf: "center", transition: "all 2s", transform: rotate ? "rotate(359deg)" : undefined }} >

@@ -69,8 +69,12 @@ const Login = () => {
         <Link passHref href="/user/join">
           <button className="ui button teal">회원가입</button>
         </Link>
-        <Link passHref href="/user/google/login">
-          <button className="ui button google">Google Login</button>
+        <Link passHref href="/user/oauth/login/google">
+          <button className="ui button google">구글 로그인</button>
+        </Link>
+
+        <Link passHref href="/user/oauth/login/kakao">
+          <button className="ui button yellow">카카오 로그인</button>
         </Link>
 
       </div>  <Intro handleClick={() => { setLoginMode(true) }} loginMode={loginMode} />
