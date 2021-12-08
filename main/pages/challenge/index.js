@@ -11,8 +11,8 @@ import "semantic-ui-css/semantic.min.css";
 import ListStyle from "../../styles/challenge/List.module.css";
 import ButtonStyle from "../../styles/challenge/Button.module.css";
 import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import UserStyle from "../../styles/challenge/Input.module.css";
+import { BACKGROUND_COLOR, MIDDLE_COLOR } from "../../constants";
 
 const index = ({ challenges, user }) => {
   const participatedChallenges = challenges.filter(
@@ -23,20 +23,28 @@ const index = ({ challenges, user }) => {
   return (
     <>
       <div>
-        <div>
-          <Link passHref href="/challenge/mainlist">
-            <p>전체</p>
-          </Link>
+        <div
+          style={{
+            display: "flex",
+            font: " normal 600 1.2rem",
+            padding: "0 1rem",
+            paddingBottom: "1.6rem",
+          }}
+        >
+          <div style={{ textAlign: "center", margin: "0 10px", color: "#999" }}>
+            <Link passHref href="/challenge/mainlist">
+              <p>전체</p>
+            </Link>
+          </div>
+          <div style={{ textAlign: "center", margin: "0 10px", color: "#999" }}>
+            <Link passHref href="/challenge/mainlist">
+              <p>신규</p>
+            </Link>
+          </div>
         </div>
-        <div>
-          <Link passHref href="/challenge/mainlist">
-            <p></p>
-          </Link>
-        </div>
-        <br />
-
+        <hr />
         <div className={ChallengeStyle.container2}>
-          <h2>참여한 챌린지</h2>
+          <h2 className={ChallengeStyle.h2}>참여중인 챌린지</h2>
           <MyChallenge
             challenges={challenges}
             user={user}
@@ -65,18 +73,20 @@ const index = ({ challenges, user }) => {
                             </a>
                           </Link>
                           <li key={challenge.id}>
-                            작성자:{challenge.author[0].name}
+                            {new Date(challenge.startDate).getFullYear() +
+                              "년" +
+                              (new Date(challenge.startDate).getMonth() + 1) +
+                              "월" +
+                              new Date(challenge.startDate).getDate() +
+                              "일" +
+                              "~" +
+                              new Date(challenge.endDate).getFullYear() +
+                              "년" +
+                              (new Date(challenge.endDate).getMonth() + 1) +
+                              "월" +
+                              new Date(challenge.endDate).getDate() +
+                              "일"}
                           </li>
-                          <li key={challenge.id}>
-                            챌린지 기한:
-                            {new Date(challenge.startDate).toLocaleDateString()}
-                            ~ {new Date(challenge.endDate).toLocaleDateString()}
-                          </li>
-                          {challenge.type === "diet" ? (
-                            <li key={challenge.id}>챌린지 종류: 다이어트</li>
-                          ) : (
-                            <li key={challenge.id}>챌린지 종류: 레시피</li>
-                          )}
                         </li>
                       </ul>
                       <div
