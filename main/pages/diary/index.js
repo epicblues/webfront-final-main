@@ -5,6 +5,7 @@ import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
 // CSS
 import "semantic-ui-css/semantic.min.css";
+import 'animate.css';
 // Date
 import PickDate from "../../components/diary/PickDate";
 // 영양 섭취 상태
@@ -55,11 +56,15 @@ const Index = ({ user, fetchedDiary, mode, }) => {
           <div className='is-desc'>
             <p>
               오늘 무엇을 드셨나요?<br />
-              <span>
-                식단을 기록하세요
-              </span>
+              식단을 기록하세요
             </p>
-            <div className='is-desc-food-img'></div>
+            <div>
+              <div className='is-desc-food-img
+                        animate__animated animate__pulse'
+              >
+              </div>
+              <div className='shadow-img'></div>
+            </div>
           </div>
           <div className="meal-container"> 
             {[0, 1, 2, 3].map((type) => (
