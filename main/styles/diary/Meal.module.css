@@ -133,7 +133,11 @@
 }
 
 .ProductWrap > div i {
-    color: #ff5656;
+    font-size: 1.2rem;
+}
+
+.ProductWrap > div span {
+    font-size: 1rem;
 }
 
 .ProductItem {
@@ -200,7 +204,7 @@
     align-items: center;
     font-size: 1.6rem;
     height: auto;
-    margin: 0;
+    margin: 0 0 0 1rem;
 }
 
 .modalItem .content {
@@ -223,7 +227,6 @@
     float: right;
     display: flex;
     align-items: center;
-    margin-right: 1rem;
 }
 
 /* Cart */

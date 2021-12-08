@@ -96,14 +96,15 @@ export default function Products({ diary, setDiary, type, }) {
           type="text"
           placeholder="음식을 검색하세요"
           onChange={(event) => handleSearch(event)}
-          style={{borderRadius: '10px', height: '3rem'}}
+    style={{borderRadius: '10px', height: '3rem', font: 'normal 400 1.2rem "Noto Sans KR"'}}
         />
-        <i className="search icon" style={{ right: "8px" }}></i>
+        <i className="search icon" style={{ fontSize:'1.6rem' }}></i>
       </div>
 
       <div className={MealStyles.ProductWrap}>
         <div className="ui middle aligned selection list">
-          <i className="book icon"></i>레시피
+          <i className="book icon" style={{ fontSize:'1.2rem' }}></i>
+          <span>레시피</span>
           {filteredRecipeData.length !== 0 &&
             filteredRecipeData.map((value, index) => {
               return (
@@ -120,7 +121,8 @@ export default function Products({ diary, setDiary, type, }) {
             })}
         </div>
         <div className="ui middle aligned selection list">
-          <i className="lemon icon"></i>음식 &amp; 재료
+          <i className="lemon icon" style={{ fontSize:'1.2rem' }}></i>
+          <span>음식 &amp; 재료</span>
           {filteredData.length !== 0 &&
             filteredData.map((value, index) => {
               return (

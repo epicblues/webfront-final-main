@@ -1,43 +1,37 @@
 import React from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const List = ({ product, index }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div key={index} className="item">
+    <div key={index} className={MealStyles.modalItem}>
       <Modal
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
         trigger={
-          <div
-            className="content"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              textAlign: "left",
-            }}
-          >
-            <div className="header">
-              {product.title}
-              {product.name}
-              <div className="description">
-                {product.qtt}
-                {typeof product._id === "number" && `인분`}
-                {product.mfr}
-                {typeof product._id !== "number" && ` / `}
-                {product.serve}
-                {product.unit}
-              </div>
-            </div>
-            <div className="right floated" style={{ margin: "8px 10px 0 0" }}>
-              {typeof product._id === "number"
-                ? product.nutrition.kcal
-                : product.kcal}
-              kcal
-            </div>
-          </div>
+                  <div className={MealStyles.content}>
+                    <div className={MealStyles.header}>
+                      {product.title}
+                      {product.name}
+                      <div className={MealStyles.description}>
+                        {product.qtt}
+                        {typeof product._id === "number" && `인분`}
+                        {product.mfr}
+                        {typeof product._id !== "number" && ` / `}
+                        {product.serve}
+                        {product.unit}
+                      </div>
+                    </div>
+                    <div className={MealStyles.calorie}>
+                      {typeof product._id === "number"
+                        ? product.nutrition.kcal
+                        : product.kcal}
+                      kcal
+                    </div>
+                  </div>
         }
       >
         <Modal.Header>

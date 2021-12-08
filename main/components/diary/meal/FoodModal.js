@@ -2,10 +2,6 @@ import React, { useRef, useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 import MealStyles from '../../../styles/diary/Meal.module.css';
 
-// ICON
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { fa } from "@fortawesome/free-regular-svg-icons";
-
 const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   const inputRef = useRef();
   const [exampleQtt,setExampleQtt] = useState(1);
@@ -22,8 +18,6 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
       const coefficient = quantity / food.serve; 
       
       setExampleQtt(coefficient);
-      
-      
     }
   };
 
