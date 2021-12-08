@@ -1,18 +1,9 @@
 import React, { ChangeEventHandler, FunctionComponent, useRef } from "react";
 import { Icon, Popup } from 'semantic-ui-react';
-import { BACKGROUND_COLOR, MIDDLE_COLOR } from '../../constants';
+import { BACKGROUND_COLOR, MAIN_COLOR, MIDDLE_COLOR } from '../../constants';
+import { UserBmr } from '../../models';
 
-export interface UserBmr {
-  gender: string;
-  heightFeet: number | "";
-  weight: number | "";
-  age: number | "";
-  bmr: number | "";
-  activity: number | "";
-  error: string,
-  flag: boolean,
-  system: string,
-}
+
 
 
 
@@ -55,7 +46,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
   </div>)
 
   const result = <div className="result">{userBmr.bmr}</div>
-  const resultAct = <div className="result">{userBmr.activity}</div>;
+  const resultAct = <div className="result">{userBmr.activity < 5 ? 0 : userBmr.activity}</div>;
   const activityButton = useRef<HTMLButtonElement>() as React.MutableRefObject<HTMLButtonElement>;
 
   return (
@@ -70,7 +61,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
       }}
     >
       <div className="ui form">
-        <h2>기초대사량 &amp; 일일 권장 칼로리</h2>
+        <h2 style={{ textAlign: 'center', marginBottom: "20px" }}>기초대사량 &amp; 일일 권장 칼로리</h2>
         {userBmr.error && error}
         <div className="inputwrap inline fields">
           <label className="label">성별</label>
@@ -123,7 +114,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
             />
           </div>
           <div className="inputwrap field">
-            <label className="label">신장</label>
+            <label className="label">신장(cm)</label>
             <input
               type="number"
               value={userBmr.heightFeet}
@@ -136,7 +127,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
             />
           </div>
           <div className="inputwrap field">
-            <label className="label">체중</label>
+            <label className="label">체중(kg)</label>
             <input
               type="number"
               value={userBmr.weight}
@@ -154,7 +145,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
           type="button"
           onClick={calculateBMR}
           className="ui teal fluid button"
-          style={{ marginBottom: 16, backgroundColor: MIDDLE_COLOR }}
+          style={{ marginBottom: 16, backgroundColor: MAIN_COLOR }}
         >
           기초 대사량 계산하기
         </button>
@@ -169,7 +160,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
             />
             나의 기초대사량은?
           </div>
-          <div style={{ color: "red" }}>{result}</div>
+          <div style={{ color: "whitesmoke", fontSize: "1.2em", fontWeight: 700, background: MAIN_COLOR, padding: "5px", borderRadius: "10px" }}>{result}</div>
         </div>
         {userBmr.flag && (
           <div className="workout">
@@ -179,6 +170,9 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
                 value={userBmr.activity}
                 onChange={(event) => { handleChange(event); activityButton.current.disabled = false }}
                 name="activity"
+                style={
+                  { fontSize: "1em", fontWeight: 700, padding: "5px", borderRadius: "10px" }
+                }
               >
                 <option value="">활동 수준을 선택하세요</option>
                 <option value="1.2">
@@ -197,7 +191,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
               ref={activityButton}
               onClick={(event) => { calculateAct(); event.currentTarget.disabled = true }}
               className="ui teal fluid button"
-              style={{ margin: "16px 0 16px 0", background: MIDDLE_COLOR }}
+              style={{ margin: "16px 0 16px 0", background: MAIN_COLOR }}
             >
               하루 권장 섭취량 계산하기
             </button>
@@ -212,7 +206,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
                 />
                 나의 하루에 필요한 에너지량은?
               </div>
-              <div style={{ color: "pink" }}>{resultAct}</div>
+              <div style={{ color: "whitesmoke", fontSize: "1.2em", fontWeight: 700, background: MAIN_COLOR, padding: "5px", borderRadius: "10px" }}>{resultAct}</div>
             </div>
           </div>
         )}
