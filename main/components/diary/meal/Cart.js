@@ -68,15 +68,15 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
     <div className={MealStyles.CartWrap}>
       <ImageUpload diary={diary} setDiary={setDiary} type={type} />
       <div className={MealStyles.CartList}>
-        <span>추가한 리스트</span>
+        <span>추가한 음식</span>
         {cart.length > 0 && (
           <i
-            className="trash alternate icon"
+            className="trash alternate outline icon"
             onClick={clearCart}
           ></i>
         )}
       </div>
-      <div className="ui middle aligned divided list" style={{margin: '8px 0'}}>
+      <div className="ui middle aligned divided list">
         {cart.map((product, index) => (
           <Product
             product={product}

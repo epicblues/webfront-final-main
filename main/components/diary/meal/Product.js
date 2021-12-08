@@ -6,24 +6,23 @@ const Product = ({ product, index, setQuantity, removeFromCart }) => {
     product.quantity = 0;
   }
   return (
-    <div className="item" key={index} style={{ padding: "8px 0" }}>
-      <div className={MealStyles.ProductItem}>
-        <div className="header">
+      <div className={MealStyles.ProductItem} key={index}>
+        <div className={MealStyles.header}>
           {product.title}
           {product.name}
-          <div className="description">
+          <div className={MealStyles.description}>
             {product.qtt}{typeof product._id === "number" && `인분`}
             {product.mfr}{typeof product._id !== "number" && ` / `}{product.serve}{product.unit}
           </div>
         </div>
         <div className="ui input">
-          <p>
+          <div className={MealStyles.calorie}>
           {typeof product._id === "number" ? product.nutrition.kcal : product.kcal}kcal
             <span>
               {" "}
-              x
+              *
             </span>
-          </p>
+          </div>
           <input
             type="text"
             value={product.quantity}
@@ -35,7 +34,6 @@ const Product = ({ product, index, setQuantity, removeFromCart }) => {
           ></i>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -120,40 +120,110 @@
     top: -12px;
     right: -4px;
 }
+
 /* Product */
 .ProductWrap {
     padding-top: 1rem;
-
 }
 
 .ProductWrap > div {
     text-align: left; 
     margin: 0;
+    color: #ff5656;
+}
+
+.ProductWrap > div i {
+    color: #ff5656;
 }
 
 .ProductItem {
     display: flex;
     justify-content: space-between;
     text-align: left;
+    padding: 0.5rem 0;
+    border-bottom: solid 1px #9f9f9f;
 }
 
-.ProductItem p {
-    margin: 8px 10px 0 0;
+.ProductItem .header {
+    font: normal 500 1.2rem 'Noto Sans KR';
 }
 
-.ProductItem span {
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 0 0 0 8px;
+.ProductItem .description {
+    font: normal 400 1rem 'Noto Sans KR';
+    color: #888;
+}
+
+.ProductItem .calorie {
+    font: normal 400 1.2rem 'Noto Sans KR';
+    color: #888;
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
 }
 
 .ProductItem input {
     width: 5rem;
 }
 
+.ProductItem span {
+    color: #333;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
 .ProductItem i {
     font-size: 1.6rem;
-    margin: 0.8rem 0 0 0.8rem;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 1rem;
+}
+
+/* FoodModal & RecipeModal */
+.modalItem {
+    padding: 0.5rem 0;
+    border-bottom: solid 1px #9f9f9f;
+}
+
+.modalItem > div {
+    text-align: left;
+    display: grid;
+    grid-template-columns: 9.75fr 0.25fr;
+    color: #333;
+}
+
+.modalItem > div i {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    height: auto;
+    margin: 0;
+}
+
+.modalItem .content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalItem .header {
+    font: normal 500 1.2rem 'Noto Sans KR';
+}
+
+.modalItem .description {
+    font: normal 400 1rem 'Noto Sans KR';
+    color: #888;
+}
+
+.modalItem .calorie {
+    font: normal 400 1.2rem 'Noto Sans KR';
+    color: #888;
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
 }
 
 /* Cart */

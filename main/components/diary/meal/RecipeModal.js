@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   const inputRef = useRef();
@@ -20,38 +21,23 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   };
 
   return (
-    <div className="item" key={index} style={{ padding: "8px 0 8px 0" }}>
-      <div
-        style={{
-          textAlign: "left",
-          display: "grid",
-          gridTemplateColumns: "9.75fr 0.25fr",
-        }}
-      >
-        <div>
+    <div className={MealStyles.modalItem} key={index}>
+      <div>
           <Modal
             onClose={() => handleModal(index)}
             onOpen={() => handleModal(index)}
             open={open[index]}
             trigger={
-              <div
-                className="content"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div className="header">
-                  {value.title}
-                  <div className="description">{value.qtt}인분</div>
-                </div>
-                <div
-                  className="right floated"
-                  style={{ margin: "8px 10px 0 0" }}
-                >
-                  {value.nutrition.kcal}Kcal
-                </div>
-              </div>
+                      <div className={MealStyles.content}>
+                        <div className={MealStyles.header}>
+                          {value.title}
+                          <div className={MealStyles.description}>
+                            {value.qtt}인분</div>
+                        </div>
+                        <div className={MealStyles.calorie}>
+                          {value.nutrition.kcal}Kcal
+                        </div>
+                      </div>
             }
           >
             <Modal.Header>
@@ -180,22 +166,21 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
               />
             </Modal.Actions>
           </Modal>
-        </div>
-        <i
-          className="teal large plus circle icon"
-          onClick={(e) => {
-            console.log(value);
-            const copiedValue = {...value, quantity : value.qtt}
-            addToCart(copiedValue);
+          <i
+            className="#ff5656 plus circle icon"
+            onClick={(e) => {
+              console.log(value);
+              const copiedValue = {...value, quantity : value.qtt}
+              addToCart(copiedValue);
 
-            e.currentTarget.className = "green large check circle icon";
-            const targetReverse = (target) => () => {
-              target.className = "teal large plus circle icon";
-            };
-            setTimeout(targetReverse(e.currentTarget), 500);
-          }}
-          style={{ marginTop: "5px" }}
-        ></i>
+              e.currentTarget.className = "green check circle icon";
+              const targetReverse = (target) => () => {
+                target.className = "#ff5656 plus circle icon";
+              };
+              setTimeout(targetReverse(e.currentTarget), 500);
+            }}
+          >
+          </i>
       </div>
     </div>
   );

@@ -94,9 +94,9 @@ export default function Products({ diary, setDiary, type, }) {
       >
         <input
           type="text"
-          placeholder="음식 검색하기"
+          placeholder="음식을 검색하세요"
           onChange={(event) => handleSearch(event)}
-          style={{borderRadius: '10px'}}
+          style={{borderRadius: '10px', height: '3rem'}}
         />
         <i className="search icon" style={{ right: "8px" }}></i>
       </div>

@@ -276,12 +276,8 @@ a.is-active {
 }
 
 .is-desc p {
-  font: normal 500 1.2rem/22px 'Noto Sans KR';
+  font: normal 600 1.3rem 'Noto Sans KR';
   margin: 0;
-}
-
-.is-desc span {
-  font-size: 1rem;
 }
 
 .is-desc button {
@@ -301,7 +297,7 @@ a.is-active {
 
 .is-desc-food-img {
   height: 82%;
-  background: url(../public/burger.png) no-repeat -200% 54% / 106%;
+  background: url(../public/burger.png) no-repeat -100% 54% / 106%;
 }
 
 .is-desc-review-img {
@@ -310,10 +306,11 @@ a.is-active {
 }
 
 .shadow-img {
-  width: 70%;
+  width: 60%;
   height: 18%;
   float: right;
-  background: url(../public/shadow.png) no-repeat right 54% / 100%;
+  margin-right: 1rem;
+  background: url(../public/shadow.png) no-repeat center 54% / 100%;
 }
 
 /* Meal */

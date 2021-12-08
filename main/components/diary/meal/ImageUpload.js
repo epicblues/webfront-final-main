@@ -65,7 +65,7 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
             alignItems: "center",
             textAlign: "center",
             color: "white",
-            marginBottom: "16px",
+            marginBottom: "1rem",
             boxShadow: "1px 1px 3px 1px #dadce0",
           }}
         >
