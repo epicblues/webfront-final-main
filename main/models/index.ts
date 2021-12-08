@@ -89,3 +89,27 @@ export type LiveData = {
   message: string;
   date?: Date;
 };
+
+export class UserBmr {
+  gender: string;
+  heightFeet: number | "";
+  weight: number | "";
+  age: number | "";
+  bmr: number | "";
+  activity: number | "";
+  error: string;
+  flag: boolean;
+  system: string;
+
+  constructor() {
+    this.gender = "1";
+    (this.weight = ""),
+      (this.age = ""),
+      (this.activity = ""),
+      (this.error = ""),
+      (this.flag = false),
+      (this.system = ""),
+      (this.heightFeet = ""),
+      (this.bmr = "");
+  }
+}

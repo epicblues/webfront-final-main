@@ -2,24 +2,15 @@ import axios from 'axios';
 import { GetServerSideProps } from 'next'
 import { NextRouter, useRouter } from 'next/router';
 import React, { CSSProperties, MouseEventHandler, MutableRefObject, useRef, useState } from 'react'
-import Bmr, { UserBmr } from '../../../components/user/Bmr'
+import Bmr from '../../../components/user/Bmr'
 import { FLEXBOX_NORMAL, MAIN_COLOR, MIDDLE_COLOR } from '../../../constants';
+import { UserBmr } from '../../../models';
 
 const Join = ({ email, type }: { email: string, type: string }) => {
   const router = useRouter()
   const name = useRef<HTMLInputElement>() as MutableRefObject<HTMLInputElement>
   const [bmrMode, setBmrMode] = useState(false);
-  const [userBmr, setUserBmr] = useState<UserBmr>({
-    gender: "1",
-    weight: "",
-    age: "",
-    activity: "",
-    bmr: "",
-    error: "",
-    flag: false,
-    system: "",
-    heightFeet: ""
-  })
+  const [userBmr, setUserBmr] = useState<UserBmr>(new UserBmr())
   const handleClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
     const $button = event.currentTarget
     const bmrToSend: Partial<UserBmr> = { ...userBmr, error: '', flag: false, system: "" };
@@ -37,10 +28,8 @@ const Join = ({ email, type }: { email: string, type: string }) => {
       }
     )
     if (result.status === "OK") {
-      changeButtonStyle($button, "성공! 로그인 페이지로 이동합니다!");
-      setTimeout((router: NextRouter) => {
-        router.push('/user/login')
-      }, 5000, router)
+      changeButtonStyle($button, "성공! 메인 페이지로 이동합니다!");
+      router.push('/user/oauth/temp')
 
     }
 
@@ -64,7 +53,7 @@ const Join = ({ email, type }: { email: string, type: string }) => {
     const $button = event.currentTarget
 
     if (!/^[가-힣a-zA-Z]{2,12}$/.test(name.current.value)) {
-      changeButtonStyle($button, "숫자, 특수문자 입력 불가")
+      changeButtonStyle($button, "숫자 특수문자 공백 X")
       name.current.focus();
       return;
     }

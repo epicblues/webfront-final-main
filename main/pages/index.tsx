@@ -22,10 +22,10 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
   const cardStyle: CSSProperties = {
     display: "flex",
     flexDirection: "column",
-    border: "solid 2px",
+    // border: "solid 1px",
     borderColor: MAIN_COLOR,
-    borderRadius: "30px",
-
+    borderRadius: "10px",
+    background: "whitesmoke",
     padding: "20px",
     fontWeight: 700,
     // fontSize: "1.1em",
@@ -69,7 +69,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
   return (
     <div style={{
 
-      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "85vh", backgroundColor: BACKGROUND_COLOR
+      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "85vh",
     }}>
       <div style={FLEXBOX_NORMAL}>
         < div style={{ ...cardStyle, alignItems: "center", justifyContent: "center" }} >
@@ -86,12 +86,12 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
         }
       </div>
 
-      <div style={{ ...cardStyle, background: MAIN_COLOR, fontSize: "1.3em", color: "whitesmoke" }}>
+      <div style={{ ...cardStyle, fontSize: "1.3em", }}>
         한 달 동안 많이 먹은 음식 Top 3
       </div>
-      <div style={{ ...FLEXBOX_NORMAL, background: MIDDLE_COLOR, padding: "6px", borderRadius: "20px", justifyContent: "space-around", fontWeight: 700, fontSize: "1.1em" }}>
+      <div style={{ ...FLEXBOX_NORMAL, padding: "6px", borderRadius: "20px", justifyContent: "space-around", fontWeight: 700, fontSize: "1.1em" }}>
         {foodRank.length !== 0 ? foodRank.map(({ name, count }) => (
-          <div style={{ color: "whitesmoke", textAlign: "center" }} key={name}>
+          <div style={{ textAlign: "center" }} key={name}>
             <p>{name.split(',')[0]}</p>  <p>{count}</p>
           </div>
         )) : <div>일지를 더 작성해주세요!</div>}
@@ -99,16 +99,11 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
 
 
 
-      <a style={{ ...cardStyle, backgroundColor: MAIN_COLOR, fontSize: "1.3em", color: "whitesmoke" }}>
+      <div style={{ ...cardStyle, fontSize: "1.3em", }}>
         채팅 / 실시간 현황
-      </a>
-
+      </div>
       <Chat liveData={liveData} socket={socket as Socket} name={name} />
-      {/* <Link href="/challenge" passHref>
-        <a style={{ ...cardStyle, background: MAIN_COLOR, fontSize: "1.3em", color: "whitesmoke" }}>
-          Challenge
-        </a>
-      </Link> */}
+
       <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around" }}>
 
         <button className="ui button facebook" onClick={clickHandler}>Logout</button>

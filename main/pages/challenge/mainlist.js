@@ -29,6 +29,7 @@ const MainList = ({ challenges, user }) => {
       <div className="container">
         <div>
           <h2>챌린지 리스트</h2>
+          <hr className={ChallengeStyle.hr2} />
           {challenges.length > 0 ? (
             <ChallengeMainList
               challenges={selectChallenges(challengeIndex)}
@@ -38,7 +39,7 @@ const MainList = ({ challenges, user }) => {
             <h2>No Challenges</h2>
           )}
           {challengeIndexes.map((index) => (
-            <div className={ChallengeStyle.item2} key={index}>
+            <div className={ButtonStyle.buttonDiv} key={index}>
               <button
                 className={ButtonStyle.listButton}
                 onClick={() => {

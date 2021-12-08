@@ -8,8 +8,10 @@ import axios from "axios";
 //css
 import { Image } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import ChallengeStyles from "../../../styles/challenge/Challenge.module.css";
+import ImageStyle from "../../../styles/challenge/Input.module.css";
+
 const ChallengePage = ({ originalChallenge, user }) => {
   const [challenge, setChallenge] = useState(originalChallenge);
 
@@ -76,27 +78,32 @@ const ChallengePage = ({ originalChallenge, user }) => {
         </div>
         <br />
         <h2>{challenge.title}</h2>
-        <div
-          style={{
-            fontSize: "16px",
-            fontWeight: "bold",
-            width: "36px",
-            borderRadius: "0.3rem",
-            textAlign: "center",
-            backgroundColor: "lightgrey",
-          }}
-        >
-          {countChallengeDate()}
+        <div style={{ display: "flex" }}>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              width: "36px",
+              borderRadius: "0.3rem",
+              textAlign: "center",
+              backgroundColor: "lightgrey",
+              margin: "0 10px",
+            }}
+          >
+            {countChallengeDate()}
+          </div>
+          <div style={{ fontSize: "16px", fontWeight: "bold" }}>
+            <FontAwesomeIcon icon={faUser} className={ImageStyle.image3} />
+            {challenge.participants.length}명
+          </div>
         </div>
-        <div>
-          <FontAwesomeIcon Icon={faUsers} size="2x" color="black" />
-        </div>
-        <hr style={{ marginBottom: "10px", marginTop: "10px" }} />
-        <div>
+
+        <hr className={ChallengeStyles.hr2} />
+        <div style={{ margin: "10px 0" }}>
           <h3 className={ChallengeStyles.h3Mt}>챌린지 기간</h3>
           <h3>{changeDateStr(challenge.startDate, challenge.endDate)}</h3>
         </div>
-        <h3>작성자:{challenge.author[0].name}</h3>
+        <hr className={ChallengeStyles.hr2} />
         <div>
           {!(challenge.participants.indexOf(user.id) === -1) ? (
             <>

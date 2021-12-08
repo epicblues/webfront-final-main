@@ -7,13 +7,13 @@ import { Button, Form } from 'semantic-ui-react';
 import Intro from '../../components/user/Intro';
 import { GetServerSideProps } from 'next';
 
-const Login = () => {
+const Login = ({ introSkip }: { introSkip: boolean }) => {
 
   const email = useRef() as MutableRefObject<HTMLInputElement>;
   const password = useRef() as MutableRefObject<HTMLInputElement>;
   const head = useRef() as MutableRefObject<HTMLHeadingElement>;
   const router = useRouter();
-  const [loginMode, setLoginMode] = useState(false)
+  const [loginMode, setLoginMode] = useState(introSkip)
 
 
   const handleClick = async () => {
@@ -84,10 +84,11 @@ const Login = () => {
 
 }
 
-// export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
-//   console.log(ctx.req);
-//   return { props: {} }
-// }
+export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
+  const introSkip = ctx.query.skip
+
+  return { props: { introSkip: introSkip ? true : false } }
+}
 
 
 
