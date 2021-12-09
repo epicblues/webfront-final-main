@@ -52,6 +52,7 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
       prevEl: navigationPrevRef.current,
       nextEl: navigationNextRef.current,
     },
+    // IE, Edge, Firefox(>5) 이벤트 처리용 핸들러
     onbeforeprint: (swiper) => {
       swiper.params.navigation.prevEl = navigationPrevRef.current;
       swiper.params.navigation.nextEl = navigationNextRef.current;

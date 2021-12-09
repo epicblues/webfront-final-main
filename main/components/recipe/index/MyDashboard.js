@@ -10,14 +10,14 @@ const MyDashBoard = ({ countMyRecipes, totalHit }) => {
   return (
     <div className={myDashboardStyles.container}>
       <div className={myDashboardStyles.wrapper}>
-        <Link href="/recipe/list/my">
-          <a>
-            <div className={myDashboardStyles.innerWrapper}>
-              <Image src={ottogiBoy} />
+        <div className={myDashboardStyles.innerWrapper}>
+          <Link href="/recipe/list/my">
+            <a>
+              <Image src={ottogiBoy} alt="ottogiBoy"></Image>
               <p>내 레시피</p>
-            </div>
-          </a>
-        </Link>
+            </a>
+          </Link>
+        </div>
         <div className={myDashboardStyles.innerWrapper}>
           <p className={myDashboardStyles.title}>작성글</p>
           <br />

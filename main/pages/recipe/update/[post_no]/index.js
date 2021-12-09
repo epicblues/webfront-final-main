@@ -11,7 +11,6 @@ import AddFoodModalBlackout from "../../../../components/recipe/create/food/AddF
 
 import FoodForm from "../../../../components/recipe/create/food/FoodForm";
 import StepForm from "../../../../components/recipe/create/step/StepForm";
-import GoBackward from "../../../../components/GoBackward";
 
 const Index = ({ user, recipe }) => {
   //  계량 팁 Modal, 렌더링 로직
@@ -106,7 +105,6 @@ const Index = ({ user, recipe }) => {
   };
   return (
     <div>
-      <GoBackward />
       {isMeasuringModalVisible && (
         <>
           <MeasuringModal

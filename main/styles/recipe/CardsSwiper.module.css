@@ -533,7 +533,7 @@
     border-radius: 15px 15px 0 0;
     background-size: 100% 230vw;
     background-repeat: no-repeat;
-    position: sticky;
+    position: relative;
   }
 
   .card:hover .cardHeader {
