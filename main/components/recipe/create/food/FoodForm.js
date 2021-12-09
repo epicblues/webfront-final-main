@@ -64,7 +64,7 @@ const FoodForm = ({
                     className={createStyles.btnAdd}
                     onClick={() => removeFood(value)}
                   >
-                    <i class="minus circle icon"></i>
+                    <i className="minus circle icon"></i>
                   </div>
                 </div>
               );

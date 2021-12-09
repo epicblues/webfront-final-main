@@ -14,7 +14,7 @@ const MyDashBoard = ({ countMyRecipes, totalHit }) => {
           <Link href="/recipe/list/my">
             <a>
               <Image src={ottogiBoy} alt="ottogiBoy"></Image>
-              <p>내 레시피</p>
+              <p>: 내 레시피 :</p>
             </a>
           </Link>
         </div>

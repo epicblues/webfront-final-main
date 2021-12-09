@@ -5,7 +5,6 @@ import { postStaticAxios } from "../../../../util/axios";
 import clientPromise from "../../../../util/mongodb";
 import { getUserOrRedirect } from "../../../../util/auth";
 import Head from "next/head";
-import Image from "next/image";
 
 import AddFoodModalBlackout from "../../../../components/recipe/create/food/AddFoodModalBlackout";
 
@@ -150,17 +149,11 @@ const Index = ({ user, recipe }) => {
           <div>
             <div className={createStyles.submits}>
               <p>대표이미지</p>
-              {/* 대표이미지 수정 필요, 서버에 요청하거나, 변경된 스텝 데이터 마지막 이미지로 변경해야 함 */}
               <div className={createStyles.repImgWrapper}>
                 {stepData.length > 0 ? (
                   <Image
                     className={createStyles.repImg}
-                    src={
-                      process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                      recipe.steps.slice(-1)[0].image_url +
-                      "?date=" +
-                      recipe.update_date
-                    }
+                    src={stepData[stepData.length - 1].stepImageData}
                     translate="yes"
                     layout="fill"
                     objectFit="contain"

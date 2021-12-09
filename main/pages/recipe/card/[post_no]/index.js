@@ -149,7 +149,7 @@ const Index = ({ user, recipe }) => {
         <div className={cardStyles.infoWrapper}>
           <div className={cardStyles.infoTitle}>분량</div>
           <div className={cardStyles.infoTitle}>조리시간</div>
-          <div className={cardStyles.infoTitle}>
+          <div>
             좋아요
             <br />
             (Click!)
