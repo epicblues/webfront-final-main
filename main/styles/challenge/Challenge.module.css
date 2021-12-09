@@ -5,6 +5,7 @@
   grid-auto-rows: auto;
   justify-items: center;
   align-items: center;
+  margin-top: 20px;
 }
 .item {
   width: 250px;
@@ -54,12 +55,25 @@
   background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 .hr2 {
+  position: relative;
   margin: 10px 0;
   height: 0.1px;
   border: 0;
   background-color: lightgray;
 }
-.h2 {
+.hr3 {
+  margin: 20px;
+  height: 0.1px;
+  border: 0;
+  background-color: lightgray;
+}
+.h2,
+.title {
+  font: normal 500 1.2rem/22px "Noto Sans KR";
+}
+.h2C {
+  text-align: center;
+  margin: 20px, 0;
   font: normal 500 1.2rem/22px "Noto Sans KR";
 }
 .h3 {
@@ -109,6 +123,26 @@
   width: 100vw;
   text-align: center;
 }
-.title {
-  font: normal 500 1.2rem/22px "Noto Sans KR";
+
+.header {
+  position: absolute;
+  left: 0;
+  justify-content: left;
+  align-content: center;
+  height: 1rem;
+}
+.li {
+  font: normal normal normal 1.1rem/22px "Noto Sans KR";
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 6vh;
+  width: 100vw;
+  height: 8vh;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  justify-content: space-around;
+  border: 1px bold lightgray;
 }

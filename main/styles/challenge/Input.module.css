@@ -5,10 +5,14 @@
   border-radius: 6px;
   font-size: 16px;
 }
-
+.mImage {
+  width: 100vw;
+  height: 30vh;
+  position: absolute;
+}
 .image {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   color: #4f4f4f;
 }
 .image2 {
@@ -21,6 +25,11 @@
 .image3 {
   width: 20px;
   height: 20px;
+}
+.image4 {
+  width: 24px;
+  height: 28px;
+  margin: 0;
 }
 .modal {
   display: none;

@@ -11,7 +11,6 @@ import Modal from "../Write/Modal";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 import InputStyle from "../../../styles/challenge/Input.module.css";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button, GridRow, Header } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalendarAlt } from "@fortawesome/free-regular-svg-icons";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
@@ -22,14 +21,10 @@ registerLocale("ko", ko);
 
 const ChallengeWrite = ({ user }) => {
   const title = useRef();
-  const titleError = useRef();
   const dailyCalorie = useRef();
   const dailyCalorieError = useRef();
   const uploadCount = useRef();
   const uploadCountError = useRef();
-  const startDateError = useRef();
-  const endDateError = useRef();
-  const imageError = useRef();
   const router = useRouter();
   const [challenge, setChallenge] = useState({
     title: "",
@@ -297,7 +292,11 @@ const ChallengeWrite = ({ user }) => {
           size="3x"
           className={InputStyle.image}
         />
-        <h4 style={{ whiteSpace: "nowrap" }}>{value}</h4>
+        <h4
+          style={{ whiteSpace: "nowrap", position: "relative", right: "40px" }}
+        >
+          {value}
+        </h4>
       </div>
     );
   };
@@ -380,7 +379,7 @@ const ChallengeWrite = ({ user }) => {
         ) : (
           <div className={ChallengeStyle.h4Mb}>
             <Link passHref href="/challenge">
-              <h4>취소</h4>
+              <h4 className={ChallengeStyle.h4Mb}>취소</h4>
             </Link>
           </div>
         )}
@@ -390,7 +389,7 @@ const ChallengeWrite = ({ user }) => {
       <div style={{ display: "flex", justifyContent: "center" }}>
         {wizardIndex !== 4 && (
           <button
-            className={ButtonStyles.button}
+            className={ButtonStyles.button2}
             type="submit"
             color="twitter"
             onClick={button1}
@@ -401,9 +400,8 @@ const ChallengeWrite = ({ user }) => {
         {wizardIndex == 4 && (
           <>
             <button
-              className={ButtonStyles.button}
+              className={ButtonStyles.button2}
               type="submit"
-              color="twitter"
               onClick={(e) => {
                 handleSubmit(e);
               }}

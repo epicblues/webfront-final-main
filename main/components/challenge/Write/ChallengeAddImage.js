@@ -2,6 +2,7 @@ import { React, useState } from "react";
 //css
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 
 const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
@@ -53,7 +54,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
-        <h3>챌린지를 설명할 사진 추가</h3>
+        <h3 className={ChallengeStyle.h2}>챌린지를 설명할 사진 추가</h3>
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -72,7 +73,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             alignItems: "center",
             textAlign: "center",
             color: "white",
-            marginBottom: "16px",
+            margin: "20px 0",
             boxShadow: "1px 1px 3px 1px #dadce0",
           }}
         >
@@ -87,6 +88,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                   style={{ display: "none" }}
                   onChange={handleImageUpload}
                 />
+
                 <FontAwesomeIcon icon={faPlus} size="2x" color="black" />
               </label>
             </>

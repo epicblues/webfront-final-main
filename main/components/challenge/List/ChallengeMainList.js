@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import ImageStyle from "../../../styles/challenge/Input.module.css";
 
-const ChallengeMainList = ({ challenges, user }) => {
+const ChallengeMainList = ({ challenges }) => {
   return (
     <div className={ChallengeStyle.container}>
       {challenges.map((challenge) => {

@@ -1,8 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:900|Raleway:400,400i,700,700i);
 /* List */
 .ul {
-  border: 1px solid;
-  border-radius: 0.8rem;
   text-align: center;
   background-color: #fff;
 }

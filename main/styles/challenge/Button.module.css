@@ -12,6 +12,22 @@
   margin-top: 10px;
   position: absolute;
 }
+.button2 {
+  background-color: #35a2f4;
+  color: #fff;
+  border: 1px;
+  border-radius: 0.3rem;
+  text-align: center;
+  padding: 10px;
+  font: normal 500 1.2rem/22px "Noto Sans KR";
+  width: 100vw;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 10px;
+  position: fixed;
+}
 .button1 {
   background-color: #35a2f4;
   color: #fff;
@@ -27,6 +43,7 @@
 
 .listButton {
   display: inline-block;
+  border: ;
 }
 
 .radioFont {
