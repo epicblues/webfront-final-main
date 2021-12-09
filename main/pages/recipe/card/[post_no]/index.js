@@ -8,6 +8,10 @@ import { postStaticAxios } from "../../../../util/axios";
 import ModalNutrition from "../../../../components/recipe/card/ModalNutrition";
 import { useRouter } from "next/router";
 
+import cardStyles from "../../../../styles/recipe/Card.module.css";
+import LikeButtonSmall from "../../../../components/recipe/card/LikeButtonSmall";
+import DislikeButtonSmall from "../../../../components/recipe/card/DislikeButtonSmall";
+
 const Index = ({ user, recipe }) => {
   const router = useRouter();
   //  영양정보 Modal 컨트롤
@@ -15,6 +19,16 @@ const Index = ({ user, recipe }) => {
   const handleSetIsModalVisible = (val) => {
     setIsModalVisible(val);
   };
+  const [recipeData, setRecipeData] = useState(recipe);
+
+  const totalQtt = recipe.ingredients.reduce(function (prev, next) {
+    return prev + next.quantity;
+  }, 0);
+  console.log(totalQtt);
+
+  // Slice()를 위한 데이터 할당
+  const uploadDate = recipe.upload_date;
+  const updateDate = recipe.update_date;
 
   // recipe.category 필드 한글화
   function renderSwitchCategory(param) {
@@ -73,8 +87,8 @@ const Index = ({ user, recipe }) => {
   };
 
   return (
-    <div>
-      <div>
+    <div className={cardStyles.container}>
+      <div className={cardStyles.thumbnail}>
         <Image
           src={
             process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
@@ -82,17 +96,14 @@ const Index = ({ user, recipe }) => {
             "?date=" +
             recipe.update_date
           }
-          width={500}
-          height={300}
+          layout="fill"
           alt="main image"
+          objectFit="cover"
         />
-        <p>카테고리: {renderSwitchCategory(recipe.category)}</p>
-        <h2>{recipe.title}</h2>
-        <p>{recipe.desc}</p>
-        <p>기준: {recipe.qtt}인분</p>
-        <p>소요시간: {renderSwitchDuration(recipe.duration)}</p>
+      </div>
+      <div className={cardStyles.header}>
         {user.id === recipe.user_id && (
-          <>
+          <div className={cardStyles.btnUpdateAndDelete}>
             <Link
               href={{
                 pathname: `/recipe/update/${recipe._id}`,
@@ -101,61 +112,133 @@ const Index = ({ user, recipe }) => {
               passHref
             >
               <a>
-                <button type="button">수정하기</button>
+                <div className={cardStyles.btn} type="button">
+                  <span>수정</span>
+                </div>
               </a>
             </Link>
-            <button type="button" onClick={() => onDeleteBtn(recipe)}>
-              삭제하기
-            </button>
-          </>
+            <div className={cardStyles.btn} onClick={() => onDeleteBtn(recipe)}>
+              <span>삭제</span>
+            </div>
+          </div>
         )}
-        <p>등록일: {recipe.upload_date}</p>
-        <p>최종수정일: {recipe.update_date}</p>
-        {/* <p>작성자 : {recipe.</p> */}
-        <p>조회수: {recipe.hit}</p>
+        <p className={cardStyles.author}>
+          <i className="pencil alternate icon"></i>작성자:{" "}
+          {recipe.author[0].name}
+        </p>
+        <div className={cardStyles.bodyHeader}>
+          <p className={cardStyles.category}>
+            #{renderSwitchCategory(recipe.category)}
+          </p>
+          <p className={cardStyles.hit}>
+            <i className="eye icon"></i>조회수: {recipe.hit}
+          </p>
+        </div>
+        <h2 className={cardStyles.title}>{recipe.title}</h2>
+        <p className={cardStyles.desc}>{recipe.desc}</p>
+        <div className={cardStyles.date}>
+          <p className={cardStyles.uploadDate}>
+            <i className="calendar alternate outline icon"></i>
+            등록일: {uploadDate.slice(0, -14)}
+          </p>
+          <p className={cardStyles.updateDate}>
+            {updateDate ? `최종수정일: ${updateDate.slice(0, -14)}` : ""}
+          </p>
+        </div>
+        <div className={cardStyles.hr}></div>
+        <div className={cardStyles.infoWrapper}>
+          <div className={cardStyles.infoTitle}>분량</div>
+          <div className={cardStyles.infoTitle}>조리시간</div>
+          <div className={cardStyles.infoTitle}>
+            좋아요
+            <br />
+            (Click!)
+          </div>
+          <div className={cardStyles.qtt}>{recipe.qtt}인분</div>
+          <div className={cardStyles.duration}>
+            {renderSwitchDuration(recipe.duration)}
+          </div>
+          <div className={cardStyles.likesWrapper}>
+            {recipeData.likes.includes(user.id) === true ? (
+              <DislikeButtonSmall
+                setRecipeData={setRecipeData}
+                token={user.token}
+                user={user}
+                recipe={recipeData}
+              />
+            ) : (
+              <LikeButtonSmall
+                setRecipeData={setRecipeData}
+                token={user.token}
+                user={user}
+                recipe={recipeData}
+              />
+            )}
+            <div className={cardStyles.likesCount}>
+              {recipeData.likes.length}개
+            </div>
+          </div>
+        </div>
       </div>
-      <div>
+      <div className={cardStyles.igrContainer}>
         <h3>레시피 재료</h3>
         {recipe.ingredients.map((value, index) => {
           return (
-            <div key={Math.random()}>
-              <span>{value.food.name} </span>
-              <span>(제조사: {value.food.mfr}) </span>
+            <div className={cardStyles.igrWrapper} key={Math.random()}>
+              <span>
+                {index + 1}. {value.food.name}{" "}
+              </span>
               <span>{value.quantity}</span>
               <span>{value.food.unit}</span>
+              <span>
+                {" "}
+                / {value.food.mfr === "전국(대표)" ? "일반" : value.food.mfr}
+              </span>
             </div>
           );
         })}
       </div>
-      <div>
-        <button type="button" onClick={() => handleSetIsModalVisible(true)}>
-          영양정보 보기
-        </button>
-        {isModalVisible && (
-          <ModalNutrition
-            setIsModalVisible={setIsModalVisible}
-            nutritionData={recipe.nutrition}
-          />
-        )}
+      <div
+        className={cardStyles.modalBtn}
+        onClick={() => handleSetIsModalVisible(!isModalVisible)}
+      >
+        <div>영양정보 보기</div>
+        <div>
+          {isModalVisible ? (
+            <i className="big caret up icon"></i>
+          ) : (
+            <i className="big caret down icon"></i>
+          )}
+        </div>
       </div>
-      <div>
+      {isModalVisible && (
+        <ModalNutrition
+          totalQtt={totalQtt}
+          setIsModalVisible={setIsModalVisible}
+          nutritionData={recipe.nutrition}
+        />
+      )}
+      <div className={cardStyles.stepsContainer}>
         <h3>만드는 방법</h3>
         {recipe.steps.map((value, index) => {
           return (
-            <div key={Math.random()}>
-              <p>Step {index + 1}.</p>
+            <div className={cardStyles.stepWrapper} key={Math.random()}>
+              <div className={cardStyles.stepNo}>Step {index + 1}</div>
               <p>{value.desc}</p>
-              <Image
-                src={
-                  process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                  value.image_url +
-                  "?date=" +
-                  recipe.update_date
-                }
-                width={500}
-                height={300}
-                alt="main image"
-              />
+              <div className={cardStyles.stepImg}>
+                <Image
+                  src={
+                    process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                    value.image_url +
+                    "?date=" +
+                    recipe.update_date
+                  }
+                  layout="fill"
+                  alt="main image"
+                  objectFit="cover"
+                  alt="main image"
+                />
+              </div>
               <hr />
             </div>
           );
@@ -185,6 +268,14 @@ export const getServerSideProps = async (ctx) => {
           localField: "ingredients.food_id",
           foreignField: "no",
           as: "ingredients_data",
+        },
+      },
+      {
+        $lookup: {
+          from: "user",
+          localField: "user_id",
+          foreignField: "_id",
+          as: "author",
         },
       },
     ])
