@@ -138,7 +138,7 @@ const Index = ({ user, recipe }) => {
         <p className={cardStyles.desc}>{recipe.desc}</p>
         <div className={cardStyles.date}>
           <p className={cardStyles.uploadDate}>
-            <i class="calendar alternate outline icon"></i>
+            <i className="calendar alternate outline icon"></i>
             등록일: {uploadDate.slice(0, -14)}
           </p>
           <p className={cardStyles.updateDate}>
@@ -147,9 +147,13 @@ const Index = ({ user, recipe }) => {
         </div>
         <div className={cardStyles.hr}></div>
         <div className={cardStyles.infoWrapper}>
-          <div>분량</div>
-          <div>조리시간</div>
-          <div>좋아요</div>
+          <div className={cardStyles.infoTitle}>분량</div>
+          <div className={cardStyles.infoTitle}>조리시간</div>
+          <div className={cardStyles.infoTitle}>
+            좋아요
+            <br />
+            (Click!)
+          </div>
           <div className={cardStyles.qtt}>{recipe.qtt}인분</div>
           <div className={cardStyles.duration}>
             {renderSwitchDuration(recipe.duration)}
