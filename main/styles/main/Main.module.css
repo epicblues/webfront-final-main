@@ -1,0 +1,35 @@
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  /* border: solid 1px; */
+  border-radius: 10px;
+  background: whitesmoke;
+  padding: 20px;
+  font-weight: 700;
+}
+
+.sideBar {
+  height: 70vh;
+  background-color: whitesmoke;
+  width: 50vw;
+  position: fixed;
+  left: 100vw;
+  top: 3vh;
+  transition: all 500ms;
+  background-color: #eceaea;
+  border: 2px solid palevioletred;
+  border-radius: 20px 0 0 20px;
+  padding: 0px 20px;
+}
+
+.sideBar > :nth-child(1) {
+  font-size: 2em;
+}
+.sideBar > * {
+  margin-top: 20px;
+}

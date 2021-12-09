@@ -50,26 +50,17 @@ export const getUserOrRedirect = async (
 };
 
 export const getGoogleUserInfo = async (code: string) => {
-  const data: any = {
-    client_id: process.env.GOOGLE_OAUTH_CLIENT_ID,
-    client_secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+  const oauthBuffer = createOAuthBuffer(
+    process.env.GOOGLE_OAUTH_CLIENT_ID as string,
+    process.env.GOOGLE_OAUTH_CLIENT_SECRET as string,
     code,
-    grant_type: "authorization_code",
-    redirect_uri: `${process.env.NEXT_HOSTNAME}/api/user/oauth/google`, // 반드시 처음에 요청한 url과 같아야 한다.
-  };
-
-  const dataBuffer: string[] = [];
-  Object.keys(data).forEach((key) => {
-    dataBuffer.push(encodeURI(key) + "=" + encodeURI(data[key]) + "&");
-  });
-
-  const bufferedString = dataBuffer.join("");
-  const splittedBuffer = bufferedString.substr(0, bufferedString.length - 1); // 끝의 & 문자 제거
+    "google"
+  );
 
   try {
     const { data } = await axios.post(
       "https://oauth2.googleapis.com/token",
-      splittedBuffer,
+      oauthBuffer,
       {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -87,26 +78,17 @@ export const getGoogleUserInfo = async (code: string) => {
 };
 
 export const getKakaoUserInfo = async (code: string) => {
-  const data: any = {
-    client_id: process.env.KAKAO_OAUTH_CLIENT_ID,
-    client_secret: process.env.KAKAO_OAUTH_CLIENT_SECRET,
+  const oauthBuffer = createOAuthBuffer(
+    process.env.KAKAO_OAUTH_CLIENT_ID as string,
+    process.env.KAKAO_OAUTH_CLIENT_SECRET as string,
     code,
-    grant_type: "authorization_code",
-    redirect_uri: `${process.env.NEXT_HOSTNAME}/api/user/oauth/kakao`, // 반드시 처음에 요청한 url과 같아야 한다.
-  };
-
-  const dataBuffer: string[] = [];
-  Object.keys(data).forEach((key) => {
-    dataBuffer.push(encodeURI(key) + "=" + encodeURI(data[key]) + "&");
-  });
-
-  const bufferedString = dataBuffer.join("");
-  const splittedBuffer = bufferedString.substr(0, bufferedString.length - 1); // 끝의 & 문자 제거
+    "kakao"
+  );
 
   try {
     const { data } = await axios.post(
       "https://kauth.kakao.com/oauth/token",
-      splittedBuffer,
+      oauthBuffer,
       {
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
@@ -137,4 +119,28 @@ export const getKakaoUserInfo = async (code: string) => {
   } catch (error) {
     throw error;
   }
+};
+
+const createOAuthBuffer = (
+  clientId: string,
+  clientSecret: string,
+  code: string,
+  type: string
+) => {
+  const data: any = {
+    client_id: clientId,
+    client_secret: clientSecret,
+    code,
+    grant_type: "authorization_code",
+    redirect_uri: `${process.env.NEXT_HOSTNAME}/api/user/oauth/${type}`, // 반드시 처음에 요청한 url과 같아야 한다.
+  };
+
+  const dataBuffer: string[] = [];
+  Object.keys(data).forEach((key) => {
+    dataBuffer.push(encodeURI(key) + "=" + encodeURI(data[key]) + "&");
+  });
+
+  const bufferedString = dataBuffer.join("");
+  const splittedBuffer = bufferedString.substr(0, bufferedString.length - 1); // 끝의 & 문자 제거
+  return splittedBuffer;
 };

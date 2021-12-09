@@ -14,8 +14,8 @@ const Temp = () => {
   }, [router])
   return (
     <div style={{ display: "flex", flexDirection: "column", height: "70vh", background: BACKGROUND_COLOR, justifyContent: "center", alignItems: "stretch" }}>
-      <div style={{ alignSelf: "center", transition: "all 2s", transform: rotate ? "rotate(359deg)" : undefined }} >
-        <Image src={AppIcon} alt="메인 아이콘" width='250px' height="250px" />
+      <div style={{ alignSelf: "center", transition: "all 3s", transform: rotate ? "rotate(359deg)" : undefined }} >
+        <Image src={AppIcon} alt="메인 아이콘" width='200px' height="200px" />
       </div>
 
     </div>

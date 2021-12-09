@@ -1,5 +1,4 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
-
 import { getUserOrRedirect } from '../util/auth'
 import Link from 'next/link';
 import { Button, Card, CardHeader, CommentText, Container, TextArea } from 'semantic-ui-react';
@@ -13,26 +12,16 @@ import { LiveData } from '../models';
 import { BACKGROUND_COLOR, FLEXBOX_NORMAL, MAIN_COLOR, MIDDLE_COLOR } from '../constants';
 import Image from 'next/dist/client/image';
 import AppIcon from '../public/static/logos/logo04.png'
-
-
+import FoodRank from '../components/user/FoodRank';
+import LikeChallenge from '../components/user/likes/LikeChallenge';
+import LikeRecipe from '../components/user/likes/LikeRecipe';
+import mainStyle from '../styles/main/Main.module.css';
 
 
 const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
+  const [largeMode, setLargeMode] = useState(false);
+  const [showLikes, setShowLikes] = useState(false)
 
-  const cardStyle: CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    // border: "solid 1px",
-    borderColor: MAIN_COLOR,
-    borderRadius: "10px",
-    background: "whitesmoke",
-    padding: "20px",
-    fontWeight: 700,
-    // fontSize: "1.1em",
-    // textAlign: "center"
-
-
-  }
   const router = useRouter()
   const clickHandler = async () => {
     const res = await fetch('/api/user/logout');
@@ -67,51 +56,58 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
   }, [])
 
   return (
-    <div style={{
-
-      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "85vh",
-    }}>
-      <div style={FLEXBOX_NORMAL}>
-        < div style={{ ...cardStyle, alignItems: "center", justifyContent: "center" }} >
-          <Image src={AppIcon} width="60em" height="60em" alt="요건 다 내꺼 마크"></Image>
-          <span>{name} 님 </span>
-          <span>안녕하세요!</span>
-        </div >
-        {bmr && (
-          <div style={cardStyle} >
-            <div style={FLEXBOX_NORMAL}>기초 대사량  <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></div>
-            <div>일일 권장 칼로리  <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></div>
+    <div>
+      <div style={{
+        display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "75vh",
+      }}>
+        <div style={FLEXBOX_NORMAL}>
+          < div className={mainStyle.card} style={{ alignItems: "center", justifyContent: "center" }} >
+            <Image src={AppIcon} width="60em" height="60em" alt="요건 다 내꺼 마크" />
+            <span>{name} 님 </span>
+            <span>안녕하세요!</span>
+          </div >
+          {bmr && (
+            <div className={mainStyle.card} >
+              <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-between" }}>기초 대사량  <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></div>
+              <div>일일 권장 칼로리  <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></div>
+            </div>
+          )
+          }
+        </div>
+        <div className={mainStyle.flex}>
+          <FoodRank foodRank={foodRank} />
+          <div className={mainStyle.card} style={{ justifyContent: "space-between", textAlign: "center", alignItems: "center", fontSize: "1.25em" }}>
+            <span>내가 좋아하는 컨텐츠</span>
+            <button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.8em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikes(true) }}><i className=
+              "icon hand point left outline" /></button>
           </div>
-        )
-        }
+        </div>
+
+        <div className={mainStyle.card} style={{ fontSize: "1em", }}>
+          <span style={{ fontSize: "1.2em", ...FLEXBOX_NORMAL }}>채팅 / 실시간 현황<button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", width: "30px", height: "30px", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setLargeMode(!largeMode) }}>+</button></span>
+          <br />
+          <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
+        </div>
+
+        <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around" }}>
+          <button className="ui button facebook" onClick={clickHandler}>Logout</button>
+          <Link passHref href="/user/update">
+            <Button color="google plus">회원 정보 수정</Button>
+          </Link>
+        </div>
+
+      </div>
+      <div className={mainStyle.sideBar} style={{ left: showLikes ? "50vw" : "100vw" }}>
+        <div onClick={() => { setShowLikes(false) }}>
+          <button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikes(true) }}><i className=
+            "icon hand point left outline" /></button>
+
+        </div>
+        <LikeChallenge />
+        <LikeRecipe />
+
       </div>
 
-      <div style={{ ...cardStyle, fontSize: "1.3em", }}>
-        한 달 동안 많이 먹은 음식 Top 3
-      </div>
-      <div style={{ ...FLEXBOX_NORMAL, padding: "6px", borderRadius: "20px", justifyContent: "space-around", fontWeight: 700, fontSize: "1.1em" }}>
-        {foodRank.length !== 0 ? foodRank.map(({ name, count }) => (
-          <div style={{ textAlign: "center" }} key={name}>
-            <p>{name.split(',')[0]}</p>  <p>{count}</p>
-          </div>
-        )) : <div>일지를 더 작성해주세요!</div>}
-      </div>
-
-
-
-      <div style={{ ...cardStyle, fontSize: "1.3em", }}>
-        채팅 / 실시간 현황
-      </div>
-      <Chat liveData={liveData} socket={socket as Socket} name={name} />
-
-      <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around" }}>
-
-        <button className="ui button facebook" onClick={clickHandler}>Logout</button>
-
-        <Link passHref href="/user/update">
-          <Button color="google plus">회원 정보 수정</Button>
-        </Link>
-      </div>
     </div >
   )
 }

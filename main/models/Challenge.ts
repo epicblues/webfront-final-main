@@ -1,6 +1,11 @@
 import { MongoClient, Document, Db } from "mongodb";
 
 export class Challenge {
+  _id?: number;
+  title?: string;
+
+  constructor() {}
+
   static async validateRecipe(
     challenge: any,
     client: MongoClient,
