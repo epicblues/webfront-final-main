@@ -9,6 +9,8 @@ import ModalNutrition from "../../../../components/recipe/card/ModalNutrition";
 import { useRouter } from "next/router";
 
 import cardStyles from "../../../../styles/recipe/Card.module.css";
+import LikeButtonSmall from "../../../../components/recipe/card/LikeButtonSmall";
+import DislikeButtonSmall from "../../../../components/recipe/card/DislikeButtonSmall";
 
 const Index = ({ user, recipe }) => {
   const router = useRouter();
@@ -17,6 +19,7 @@ const Index = ({ user, recipe }) => {
   const handleSetIsModalVisible = (val) => {
     setIsModalVisible(val);
   };
+  const [recipeData, setRecipeData] = useState(recipe);
 
   const totalQtt = recipe.ingredients.reduce(function (prev, next) {
     return prev + next.quantity;
@@ -151,8 +154,25 @@ const Index = ({ user, recipe }) => {
           <div className={cardStyles.duration}>
             {renderSwitchDuration(recipe.duration)}
           </div>
-          <div>
-            <i className="heart outline icon"></i>
+          <div className={cardStyles.likesWrapper}>
+            {recipeData.likes.includes(user.id) === true ? (
+              <DislikeButtonSmall
+                setRecipeData={setRecipeData}
+                token={user.token}
+                user={user}
+                recipe={recipeData}
+              />
+            ) : (
+              <LikeButtonSmall
+                setRecipeData={setRecipeData}
+                token={user.token}
+                user={user}
+                recipe={recipeData}
+              />
+            )}
+            <div className={cardStyles.likesCount}>
+              {recipeData.likes.length}개
+            </div>
           </div>
         </div>
       </div>
@@ -181,9 +201,9 @@ const Index = ({ user, recipe }) => {
         <div>영양정보 보기</div>
         <div>
           {isModalVisible ? (
-            <i class="big caret up icon"></i>
+            <i className="big caret up icon"></i>
           ) : (
-            <i class="big caret down icon"></i>
+            <i className="big caret down icon"></i>
           )}
         </div>
       </div>

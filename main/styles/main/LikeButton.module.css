@@ -1,26 +1,42 @@
 .like {
   text-align: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   background-color: transparent;
   border: 0;
   color: tomato;
   position: absolute;
   right: 6vw;
   top: 2vh;
-  background-color: rgb(255, 240, 240, 0.8);
+  background-color: rgb(255, 255, 255, 0.7);
   border-radius: 100px;
   padding: 0.5rem;
 }
 
+.likeSmall {
+  text-align: center;
+  font-size: 2.5rem;
+  border: 0;
+  color: tomato;
+  background-color: white;
+}
+
 .dislike {
-  font-size: 3rem;
+  font-size: 2.5rem;
   background-color: transparent;
   border: 0;
   color: tomato;
   position: absolute;
   right: 6vw;
   top: 2vh;
-  background-color: rgb(255, 240, 240, 0.8);
+  background-color: rgb(255, 255, 255, 0.7);
   border-radius: 100px;
   padding: 0.5rem;
+}
+
+.dislikeSmall {
+  text-align: center;
+  font-size: 2.5rem;
+  border: 0;
+  color: tomato;
+  background-color: white;
 }

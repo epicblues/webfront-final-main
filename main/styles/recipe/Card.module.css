@@ -100,6 +100,24 @@
   place-items: center;
 }
 
+.likesWrapper {
+  display: grid;
+  grid-auto-rows: max-content;
+  place-items: center;
+}
+
+.likesCount {
+  display: flex;
+  color: white;
+  text-align: center;
+  justify-content: center;
+  border-radius: 15px;
+  background-color: tomato;
+  width: max-content;
+  padding: 0.4rem 0.5rem;
+  transform: translateX(-0.1rem);
+}
+
 /* 레시피 재료 */
 .igrContainer {
   background-color: white;
