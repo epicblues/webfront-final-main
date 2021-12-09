@@ -135,6 +135,7 @@ const Index = ({ user, recipe }) => {
         <p className={cardStyles.desc}>{recipe.desc}</p>
         <div className={cardStyles.date}>
           <p className={cardStyles.uploadDate}>
+            <i class="calendar alternate outline icon"></i>
             등록일: {uploadDate.slice(0, -14)}
           </p>
           <p className={cardStyles.updateDate}>
@@ -193,24 +194,27 @@ const Index = ({ user, recipe }) => {
           nutritionData={recipe.nutrition}
         />
       )}
-      <div>
+      <div className={cardStyles.stepsContainer}>
         <h3>만드는 방법</h3>
         {recipe.steps.map((value, index) => {
           return (
-            <div key={Math.random()}>
-              <p>Step {index + 1}.</p>
+            <div className={cardStyles.stepWrapper} key={Math.random()}>
+              <div className={cardStyles.stepNo}>Step {index + 1}</div>
               <p>{value.desc}</p>
-              <Image
-                src={
-                  process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                  value.image_url +
-                  "?date=" +
-                  recipe.update_date
-                }
-                width={500}
-                height={300}
-                alt="main image"
-              />
+              <div className={cardStyles.stepImg}>
+                <Image
+                  src={
+                    process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                    value.image_url +
+                    "?date=" +
+                    recipe.update_date
+                  }
+                  layout="fill"
+                  alt="main image"
+                  objectFit="contain"
+                  alt="main image"
+                />
+              </div>
               <hr />
             </div>
           );
