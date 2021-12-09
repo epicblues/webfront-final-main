@@ -1,0 +1,26 @@
+.like {
+  text-align: center;
+  font-size: 3rem;
+  background-color: transparent;
+  border: 0;
+  color: tomato;
+  position: absolute;
+  right: 6vw;
+  top: 2vh;
+  background-color: rgb(255, 240, 240, 0.8);
+  border-radius: 100px;
+  padding: 0.5rem;
+}
+
+.dislike {
+  font-size: 3rem;
+  background-color: transparent;
+  border: 0;
+  color: tomato;
+  position: absolute;
+  right: 6vw;
+  top: 2vh;
+  background-color: rgb(255, 240, 240, 0.8);
+  border-radius: 100px;
+  padding: 0.5rem;
+}

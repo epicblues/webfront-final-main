@@ -95,7 +95,7 @@ const Index = ({ user, recipe }) => {
           }
           layout="fill"
           alt="main image"
-          objectFit="contain"
+          objectFit="cover"
         />
       </div>
       <div className={cardStyles.header}>
@@ -211,7 +211,7 @@ const Index = ({ user, recipe }) => {
                   }
                   layout="fill"
                   alt="main image"
-                  objectFit="contain"
+                  objectFit="cover"
                   alt="main image"
                 />
               </div>

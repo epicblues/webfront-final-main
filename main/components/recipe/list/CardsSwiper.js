@@ -3,11 +3,15 @@ import Link from "next/link";
 import Image from "next/dist/client/image";
 
 // swiper
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide, user } from "swiper/react";
 import "swiper/swiper.min.css";
 import "swiper/components/navigation/navigation.min.css";
 import SwiperCore, { Navigation } from "swiper/core";
 SwiperCore.use([Navigation]);
+
+// LikeButton
+import LikeButton from "../../recipe/LikeButton";
+import DislikeButton from "../../recipe/DislikeButton";
 
 // CSS
 import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
@@ -16,11 +20,14 @@ import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
 import ci from "../../../public/static/logos/icon_check.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { UserBmr } from "../../../models";
 
-const CardsSwiper = ({ filteredHitRecipes }) => {
+const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
   const [swiper, setSwiper] = useState(null);
   const [mainImageIndex, setMainImageIndex] = useState(0);
-
+  const [filteredHitRecipes, setFilteredHitRecipes] = useState(
+    filteredHitRecipesProps
+  );
   function renderSwitchCategory(param) {
     switch (param) {
       case "soup":
@@ -100,17 +107,37 @@ const CardsSwiper = ({ filteredHitRecipes }) => {
                 objectPosition="top"
                 alt="thumbnail image"
               />
+              <div className={cardsSwiperStyles.like}>
+                {card.likes.includes(user.id) === true ? (
+                  <DislikeButton
+                    filterData={setFilteredHitRecipes}
+                    index={index}
+                    token={user.token}
+                    recipeId={card._id}
+                  />
+                ) : (
+                  <LikeButton
+                    recipeId={card._id}
+                    token={user.token}
+                    filterData={setFilteredHitRecipes}
+                    index={index}
+                  />
+                )}
+              </div>
             </div>
             {/* 카드 바디 */}
             <div className={cardsSwiperStyles.cardBodyWrapper}>
               {/* 카드 바디 헤더 */}
               <div className={cardsSwiperStyles.cardBodyHeader}>
-                <div className={cardsSwiperStyles.hot}>
-                  <div className={cardsSwiperStyles.iWrapper}>
-                    <Image objectFit="contain" src={ci} />
+                <div className={cardsSwiperStyles.headerFlex}>
+                  <div className={cardsSwiperStyles.hot}>
+                    <div className={cardsSwiperStyles.iWrapper}>
+                      <Image objectFit="contain" src={ci} />
+                    </div>
+                    <strong>요즘 뜨는 레시피</strong>
                   </div>
-                  <strong>요즘 뜨는 레시피</strong>
                 </div>
+
                 <h1 className={cardsSwiperStyles.h1}>{card.title}</h1>
                 <p className={cardsSwiperStyles.cardBodyAuthor}>
                   <strong>작성자</strong> | {card.author[0].name}

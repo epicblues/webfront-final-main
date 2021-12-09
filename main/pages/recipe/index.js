@@ -33,7 +33,10 @@ const Index = ({ user, filteredHitRecipes, myRecipes }) => {
         <title>요건 다 내꺼! - 레시피</title>
       </Head>
       <Navigation currentURL={currentURL}></Navigation>
-      <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
+      <CardsSwiper
+        user={user}
+        filteredHitRecipesProps={filteredHitRecipes}
+      ></CardsSwiper>
       <MyDashboard
         countMyRecipes={myRecipes.length}
         totalHit={totalHit}

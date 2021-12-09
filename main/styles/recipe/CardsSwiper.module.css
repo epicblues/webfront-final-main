@@ -84,6 +84,15 @@
     padding: 1rem 1rem;
   }
 
+  .cardBodyHeader {
+    line-height: 1.2rem;
+  }
+
+  .headerFlex {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .hot {
     display: flex;
     align-content: center;
@@ -92,14 +101,10 @@
   }
   .iWrapper {
     margin-right: 0.5rem;
-    width: 1.3rem;
+    width: 1rem;
   }
   .hot strong {
     color: #ff5656;
-  }
-
-  .cardBodyHeader {
-    line-height: 1.2rem;
   }
 
   .h1 {
