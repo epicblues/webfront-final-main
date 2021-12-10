@@ -6,7 +6,12 @@ import Link from "next/link";
 import axios from "axios";
 import { debounce } from "../../../../../util/axios";
 
+// Component
+import Navigation from "../../../../../components/recipe/index/Navigation";
 import Categories from "../../../../../components/recipe/index/Categories";
+// LikeButton
+import LikeButton from "../../../../../components/recipe/LikeButton";
+import DislikeButton from "../../../../../components/recipe/DislikeButton";
 
 //CSS
 import searchListStyles from "../../../../../styles/recipe/SearchList.module.css";
@@ -16,7 +21,7 @@ import { parseDocumentToObject } from "../../../../../util/date";
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import Navigation from "../../../../../components/recipe/index/Navigation";
+
 import loader from "../../../../../public/static/logos/logo04.png";
 
 const Index = ({ user, filteredRecipes, category }) => {
@@ -45,6 +50,7 @@ const Index = ({ user, filteredRecipes, category }) => {
   }
   useEffect(() => {
     setRecipeList(filteredRecipes);
+    setHasMore(true);
   }, [filteredRecipes]);
   const [hasMore, setHasMore] = useState(true);
   const [recipeList, setRecipeList] = useState(filteredRecipes);
@@ -87,68 +93,92 @@ const Index = ({ user, filteredRecipes, category }) => {
         }
       >
         <div>
-          <ul className={searchListStyles.cards}>
+          <ul className={searchListStyles.container}>
             {recipeList.map((card, index) => {
               return (
-                <li key={card._id} className={searchListStyles.card}>
-                  <Link
-                    href={{
-                      pathname: `/recipe/card/${card._id}`,
-                    }}
-                    as={`/recipe/card/${card._id}`}
-                    passHref
-                  >
-                    <a>
-                      {/* 카드 헤더 (이미지) */}
-                      <div className={searchListStyles.cardHeader}>
-                        <Image
-                          className={searchListStyles.cardHeaderImage}
-                          src={
-                            process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                            card.steps.slice(-1)[0].image_url
-                          }
-                          layout="fill"
-                          objectFit="cover"
-                          objectPosition="top"
-                          alt="thumbnail image"
+                <div key={card._id} className={searchListStyles.card}>
+                  {/* 카드 헤더 (이미지) */}
+                  <div className={searchListStyles.cardHeader}>
+                    <Image
+                      className={searchListStyles.cardHeaderImage}
+                      src={
+                        process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                        card.steps.slice(-1)[0].image_url
+                      }
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="top"
+                      alt="thumbnail image"
+                    />
+                    <div className={searchListStyles.like}>
+                      {card.likes.includes(user.id) === true ? (
+                        <DislikeButton
+                          filterData={setRecipeList}
+                          index={index}
+                          token={user.token}
+                          recipeId={card._id}
                         />
+                      ) : (
+                        <LikeButton
+                          recipeId={card._id}
+                          token={user.token}
+                          filterData={setRecipeList}
+                          index={index}
+                        />
+                      )}
+                    </div>
+                  </div>
+                  {/* 카드 바디 */}
+                  <div className={searchListStyles.cardBodyWrapper}>
+                    {/* 카드 바디 헤더 */}
+                    <div className={searchListStyles.cardBodyHeader}>
+                      <h1 className={searchListStyles.h1}>{card.title}</h1>
+                      <p className={searchListStyles.cardBodyAuthor}>
+                        <strong>작성자</strong> | {card.author[0].name}
+                      </p>
+                      <div className={searchListStyles.cardBodyCategory}>
+                        <p>#{renderSwitchCategory(card.category)}</p>
                       </div>
-                      {/* 카드 바디 */}
-                      <div className={searchListStyles.cardBodyMain}>
-                        {/* 카드 바디 헤더 */}
-                        <div className={searchListStyles.cardBodyHeader}>
-                          <h1 className={searchListStyles.h1}>{card.title}</h1>
-                          <p className={searchListStyles.cardBodyCategory}>
-                            #{renderSwitchCategory(card.category)}
-                          </p>
-                          <p className={searchListStyles.cardBodyAuthor}>
-                            작성자: {card.author[0].name}
-                          </p>
-                        </div>
+                    </div>
 
-                        {/* 카드 바디 본문 */}
-                        <div className={searchListStyles.cardBodyMain}>
+                    {/* 카드 바디 본문 */}
+                    <div className={searchListStyles.cardBodyMain}>
+                      <Link
+                        href={{
+                          pathname: `/recipe/card/${card._id}`,
+                        }}
+                        as={`/recipe/card/${card._id}`}
+                        passHref
+                      >
+                        <a>
                           <p className={searchListStyles.cardBodyDesc}>
                             {card.desc}
                           </p>
-                        </div>
-
-                        {/* 카드 바디 푸터 */}
-                        <div className={searchListStyles.cardBodyFooter}>
-                          <hr className={searchListStyles.hr} />
+                        </a>
+                      </Link>
+                    </div>
+                    {/* 카드 바디 푸터 */}
+                    <div className={searchListStyles.cardBodyFooter}>
+                      <div className={searchListStyles.hr}></div>
+                      <div className={searchListStyles.textWrapper}>
+                        <span>
                           <FontAwesomeIcon
                             className={searchListStyles.cardIconHit}
                             icon={faEye}
                           />
-                          <span>조회 {card.hit}회</span>
-                          <span className={searchListStyles.cardUploadDate}>
-                            {card.upload_date.slice(0, -14)}
-                          </span>
-                        </div>
+                          조회{" "}
+                          <strong className={searchListStyles.hitSpan}>
+                            {card.hit}
+                          </strong>
+                          회
+                        </span>
+                        <span className={searchListStyles.cardUploadDate}>
+                          {card.upload_date.slice(0, -14)}
+                        </span>
                       </div>
-                    </a>
-                  </Link>
-                </li>
+                    </div>
+                  </div>
+                </div>
               );
             })}
           </ul>
