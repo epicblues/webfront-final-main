@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { PAGE_CART } from "./AddFood";
 import List from "./List";
 import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiChevronLeft, BiEdit } from "react-icons/bi";
 
 const PAGE_PRODUCTS = "products";
-const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
+const mealType = ["아침", "점심", "저녁", "간식"];
 
 const LookupMeal = ({
   diary,
@@ -53,18 +54,17 @@ const LookupMeal = ({
   return (
     <div className={MealStyles.lookupMealWrap}>
       <div className={MealStyles.lookupMealHeader}>
-        <i
-          className="angle left icon"
+        <BiChevronLeft
+          size='2rem'
           onClick={(e) => {setWritingMode("DEFAULT")}}
-          style={{ fontSize:'1.8rem'}}
-        ></i>
+        />
 
         <span>
           {mealType[type]}
         </span>
 
-        <i
-          className="edit icon"
+        <BiEdit
+          size='2rem'
           onClick={() =>
             setDiary((diary) => {
               const newDiary = { ...diary };
@@ -73,8 +73,7 @@ const LookupMeal = ({
               return newDiary;
             })
           }
-        >
-        </i>
+        />
       </div>
 
       <div className={MealStyles.lookupMealImg}>

@@ -50,10 +50,6 @@
   animation-iteration-count: infinite;
 }
 
-.navWrap i {
-  margin: 0;
-}
-
 .navWrap p {
   font: normal 400 0.8rem "Noto Sans KR";
   margin-top: 2px;

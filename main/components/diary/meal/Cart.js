@@ -5,7 +5,7 @@ import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const PAGE_PRODUCTS = "products";
 const PAGE_CART = "cart";
-const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
+const mealType = ["아침", "점심", "저녁", "간식"];
 
 export default function Cart({ diary, setDiary, page, setPage, type }) {
   const cart = diary.meals[type].foods;
@@ -93,7 +93,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
       </button>
 
       <div className={MealStyles.CartSum}>
-        오늘 {mealType[type]}의 총 섭취 칼로리는 <span>{getTotalSum()}</span> 입니다
+        오늘 <span>{mealType[type]}</span>의 총 섭취 칼로리는 <span>{getTotalSum()}</span> 입니다
       </div>
     </div>
   );

@@ -35,7 +35,7 @@ const Navigation = ({ currentURL }) => {
                 currentURL === "/recipe/list" ? navigationStyles.activated : ""
               }
             >
-              종류
+              카테고리
             </p>
           </div>
         </a>

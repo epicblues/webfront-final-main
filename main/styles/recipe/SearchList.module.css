@@ -1,6 +1,8 @@
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
 /* 모바일 세로*/
 .main {
+  min-height: 100vh;
+  height: auto;
   background-color: #fff0f0;
 }
 
@@ -16,6 +18,14 @@
 .container {
   font-family: "NanumSquare";
   padding: 0 11vw;
+}
+
+.noLikes {
+  height: 40vh;
+  text-align: center;
+}
+.sadDoge {
+  position: relative;
 }
 
 .card {

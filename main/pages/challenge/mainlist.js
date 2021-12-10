@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import Link from "next/dist/client/link";
@@ -15,6 +15,28 @@ const MainList = ({ challenges, user }) => {
     challengeIndexes.push(i);
   }
   const [challengeIndex, setChallengeIndex] = useState(1);
+   
+  const useInfiniteScroll = ()=>{
+    const [page, setPage]= useState(1);
+    const handleScroll = ()=>{
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop= document.documentElement.scrollTop;
+      const innerHeight = window.innerHeight;
+      if( scrollHeight <= scrollTop + innerHeight){
+        setPage(page => page+1);
+      }
+      return;
+    }
+  }
+  useEffect(()=>{
+    window.addEventListener("scroll", handleScroll);
+    return()=>{
+           window.removeEventListener("scroll", handleScroll);
+    };
+
+  },[]);
+  return page;
+};
 
   const selectChallenges = (index) => {
     const pickedChallenges = [];

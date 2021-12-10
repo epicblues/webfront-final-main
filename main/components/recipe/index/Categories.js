@@ -6,7 +6,7 @@ function showCategories({ currentURL }) {
     <div className={categoriesStyles.container}>
       <div className={categoriesStyles.containerTitle}>분류 |</div>
       <ul className={categoriesStyles.ul}>
-        <Link href="/recipe/list">
+        <Link href="/recipe/list" prefetch={false}>
           <a>
             <li className={categoriesStyles.tab}>
               <p

@@ -16,14 +16,14 @@ const MyChallenge = ({ challenges, user }) => {
   return (
     <>
       <div>
-        <div className={ChallengeStyle.item}>
-          {challenges.map((challenge) => {
-            return (
-              <>
-                {challenge.author[0]._id === user.id ? (
-                  <>
-                    <Link passHref href={"/challenge/list/" + challenge._id}>
-                      <div style={{ marginTop: "30px" }}>
+        {challenges.map((challenge) => {
+          return (
+            <>
+              {challenge.author[0]._id === user.id ? (
+                <>
+                  <Link passHref href={"/challenge/list/" + challenge._id}>
+                    <div className={ChallengeStyle.container2}>
+                      <div>
                         <div
                           className="image-wrap"
                           style={{
@@ -96,94 +96,94 @@ const MyChallenge = ({ challenges, user }) => {
                           </li>
                         </ul>
                       </div>
-                    </Link>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
+                    </div>
+                  </Link>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <button
+                      className={ButtonStyle.button1}
+                      onClick={async (event) => {
+                        const {
+                          data: { result },
+                        } = await axios.post(
+                          "/api/challenge/validate",
+                          challenge
+                        );
+                        console.log(result);
+                        console.log(event);
+                        const button = event.target;
+
+                        button.disabled = true;
+                        if (Array.isArray(result)) {
+                          // 실패했다.
+                          button.textContent = "진행중!";
+                          button.style.color = "white";
+                          setInterval(
+                            (button) => {
+                              button.style.display = "none";
+                            },
+                            2000,
+                            button
+                          );
+                          const progressBar = button.nextElementSibling;
+                          if (progressBar instanceof HTMLElement) {
+                            progressBar.style.display = "block";
+                            const realProgressBar =
+                              progressBar.firstElementChild.firstElementChild;
+                            if (challenge.type === "diet") {
+                              realProgressBar.value = result.length;
+                              realProgressBar.max = challenge.diet.condition;
+                              const span = realProgressBar.nextElementSibling;
+                              span.innerText =
+                                Math.round(
+                                  (result.length / challenge.diet.condition) *
+                                    100
+                                ) + " %";
+                            } else {
+                              realProgressBar.value = result.length;
+                              realProgressBar.max =
+                                challenge.recipe.uploadCount;
+                              const span = realProgressBar.nextElementSibling;
+                              span.innerText =
+                                Math.round(
+                                  result.length / challenge.recipe.uploadCount
+                                ) *
+                                  100 +
+                                " %";
+                            }
+                          }
+                        } else {
+                          // 성공했다.
+                          button.textContent = "성공!";
+                          button.style.backgroundColor = "blue";
+
+                          setInterval(
+                            (button) => {
+                              button.style.display = "none";
+                            },
+                            2000,
+                            button
+                          );
+                        }
                       }}
                     >
-                      <button
-                        className={ButtonStyle.button1}
-                        onClick={async (event) => {
-                          const {
-                            data: { result },
-                          } = await axios.post(
-                            "/api/challenge/validate",
-                            challenge
-                          );
-                          console.log(result);
-                          console.log(event);
-                          const button = event.target;
-
-                          button.disabled = true;
-                          if (Array.isArray(result)) {
-                            // 실패했다.
-                            button.textContent = "진행중!";
-                            button.style.color = "white";
-                            setInterval(
-                              (button) => {
-                                button.style.display = "none";
-                              },
-                              2000,
-                              button
-                            );
-                            const progressBar = button.nextElementSibling;
-                            if (progressBar instanceof HTMLElement) {
-                              progressBar.style.display = "block";
-                              const realProgressBar =
-                                progressBar.firstElementChild.firstElementChild;
-                              if (challenge.type === "diet") {
-                                realProgressBar.value = result.length;
-                                realProgressBar.max = challenge.diet.condition;
-                                const span = realProgressBar.nextElementSibling;
-                                span.innerText =
-                                  Math.round(
-                                    (result.length / challenge.diet.condition) *
-                                      100
-                                  ) + " %";
-                              } else {
-                                realProgressBar.value = result.length;
-                                realProgressBar.max =
-                                  challenge.recipe.uploadCount;
-                                const span = realProgressBar.nextElementSibling;
-                                span.innerText =
-                                  Math.round(
-                                    result.length / challenge.recipe.uploadCount
-                                  ) *
-                                    100 +
-                                  " %";
-                              }
-                            }
-                          } else {
-                            // 성공했다.
-                            button.textContent = "성공!";
-                            button.style.backgroundColor = "blue";
-
-                            setInterval(
-                              (button) => {
-                                button.style.display = "none";
-                              },
-                              2000,
-                              button
-                            );
-                          }
-                        }}
-                      >
-                        결과 확인
-                      </button>
-                      <div style={{ display: "none" }}>
-                        <ProgressBar />
-                      </div>
+                      결과 확인
+                    </button>
+                    <div style={{ display: "none" }}>
+                      <ProgressBar />
                     </div>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </>
-            );
-          })}
-        </div>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
+            </>
+          );
+        })}
       </div>
     </>
   );

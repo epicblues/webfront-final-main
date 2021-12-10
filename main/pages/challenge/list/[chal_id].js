@@ -10,7 +10,7 @@ import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel"
 import { Image } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft, faUser } from "@fortawesome/free-solid-svg-icons";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "semantic-ui-react";
 import ChallengeStyles from "../../../styles/challenge/Challenge.module.css";
 import ImageStyle from "../../../styles/challenge/Input.module.css";
 import { useRouter } from "next/dist/client/router";
@@ -142,21 +142,20 @@ const ChallengePage = ({ originalChallenge, user }) => {
           </div>
           {challenge.likes.indexOf(user.id) === -1 ? (
             <div style={{ fontSize: "16px" }}>
-              <FontAwesomeIcon
-                icon={faHeart}
-                className={ImageStyle.image3}
+              <Icon
+                className="heart outline"
+                size="large"
                 onClick={handleClick}
-                color="black"
               />
               {challenge.likes.length}
             </div>
           ) : (
             <div style={{ fontSize: "16px" }}>
-              <FontAwesomeIcon
-                icon={faHeart}
-                className={ImageStyle.image3}
-                onClick={handleDislike}
+              <Icon
+                className="heart"
                 color="red"
+                size="large"
+                onClick={handleDislike}
               />
               {challenge.likes.length}
             </div>
@@ -203,20 +202,19 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <footer className={ChallengeStyles.footer}>
                     {challenge.likes.indexOf(user.id) === -1 ? (
                       <div>
-                        <FontAwesomeIcon
-                          icon={faHeart}
-                          className={ImageStyle.image3}
+                        <Icon
+                          className="heart outline"
+                          size="large"
                           onClick={handleClick}
-                          color="black"
                         />
                       </div>
                     ) : (
                       <div>
-                        <FontAwesomeIcon
-                          icon={faHeart}
-                          className={ImageStyle.image3}
-                          onClick={handleDislike}
+                        <Icon
+                          className="heart"
                           color="red"
+                          size="large"
+                          onClick={handleDislike}
                         />
                       </div>
                     )}
@@ -230,8 +228,27 @@ const ChallengePage = ({ originalChallenge, user }) => {
               ) : (
                 <>
                   <>
-                    <footer classNam={ChallengeStyles.footer}>
-                      Menu
+                    <footer className={ChallengeStyles.footer}>
+                      {challenge.likes.indexOf(user.id) === -1 ? (
+                        <div style={{ fontSize: "16px" }}>
+                          <Icon
+                            className="heart outline"
+                            size="large"
+                            onClick={handleClick}
+                          />
+                          {challenge.likes.length}
+                        </div>
+                      ) : (
+                        <div style={{ fontSize: "16px" }}>
+                          <Icon
+                            className="heart"
+                            color="red"
+                            size="large"
+                            onClick={handleDislike}
+                          />
+                          {challenge.likes.length}
+                        </div>
+                      )}
                       <ChallengeCancel
                         user={user}
                         challenge={challenge}
@@ -271,7 +288,26 @@ const ChallengePage = ({ originalChallenge, user }) => {
               )}
               <hr />
               <footer className={ChallengeStyles.footer}>
-                Menu
+                {challenge.likes.indexOf(user.id) === -1 ? (
+                  <div style={{ fontSize: "16px" }}>
+                    <Icon
+                      className="heart outline"
+                      size="large"
+                      onClick={handleClick}
+                    />
+                    {challenge.likes.length}
+                  </div>
+                ) : (
+                  <div style={{ fontSize: "16px" }}>
+                    <Icon
+                      className="heart"
+                      color="red"
+                      size="large"
+                      onClick={handleDislike}
+                    />
+                    {challenge.likes.length}
+                  </div>
+                )}
                 <ChallengeJoin
                   user={user}
                   challenge={challenge}
