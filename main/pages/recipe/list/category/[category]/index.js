@@ -1,6 +1,6 @@
 import { getUserOrRedirect } from "../../../../../util/auth";
 import clientPromise from "../../../../../util/mongodb";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
@@ -43,10 +43,12 @@ const Index = ({ user, filteredRecipes, category }) => {
         return "몰라용";
     }
   }
-
+  useEffect(() => {
+    setRecipeList(filteredRecipes);
+  }, [filteredRecipes]);
   const [hasMore, setHasMore] = useState(true);
   const [recipeList, setRecipeList] = useState(filteredRecipes);
-  const [recipeCounter, setRecipeCounter] = useState(4);
+  const [recipeCounter, setRecipeCounter] = useState(recipeList.length);
 
   const getMoreRecipes = debounce(async () => {
     const { data } = await axios.get(
