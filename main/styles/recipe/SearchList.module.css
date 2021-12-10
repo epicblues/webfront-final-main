@@ -1,6 +1,8 @@
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
 /* 모바일 세로*/
 .main {
+  min-height: 100vh;
+  height: auto;
   background-color: #fff0f0;
 }
 
