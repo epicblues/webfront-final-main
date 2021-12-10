@@ -41,7 +41,6 @@ const Index = ({ user, filteredRecipes, category }) => {
 
   return (
     <div>
-      <GoBackward />
       <Search />
       <Categories />
       <h1>카테고리 : {renderSwitchCategory(category)}</h1>

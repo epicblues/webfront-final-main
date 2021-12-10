@@ -5,13 +5,13 @@
     font-family: "NanumSquare";
     display: grid;
     width: 100vw;
-    height: 48vh;
+    height: 49vh;
   }
 
   .nvWrapper {
     display: flex;
     width: 100%;
-    height: 48vh;
+    height: 49vh;
     justify-content: space-between;
     position: absolute;
   }
@@ -512,7 +512,7 @@
     font-family: "NanumSquare";
     display: grid;
     width: 100vw;
-    height: 48vh;
+    height: 49vh;
   }
 
   .card {
