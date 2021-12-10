@@ -17,6 +17,9 @@ import DislikeButton from "../../../../components/recipe/DislikeButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
+// Sad Doge
+import sd from "../../../../public/static/logos/dogeSad.jpg";
+
 const Index = ({ user, filteredRecipes }) => {
   const [currentURL, setCurrentURL] = useState("/recipe/list/like");
   const [recipeList, setRecipeList] = useState(filteredRecipes);
@@ -49,7 +52,12 @@ const Index = ({ user, filteredRecipes }) => {
       <Navigation currentURL={currentURL}></Navigation>
       <div className={searchListStyles.container}>
         {recipeList.length === 0 ? (
-          <div>아직 좋아요를 누른 게시물이 없습니다!!!ㅎ</div>
+          <div className={searchListStyles.noLikes}>
+            아직 좋아요를 누른 게시물이 없습니다 :(
+            <div className={searchListStyles.sadDoge}>
+              <Image src={sd} width="479" height="266" />
+            </div>
+          </div>
         ) : (
           <>
             {recipeList.map((card, index) => {
