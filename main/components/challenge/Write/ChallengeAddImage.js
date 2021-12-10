@@ -1,9 +1,8 @@
 import { React, useState } from "react";
 //css
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "semantic-ui-react";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
-
+import ImageStyle from "../../../styles/challenge/Input.module.css";
 const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
   //이미지 업로드
@@ -88,8 +87,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                   style={{ display: "none" }}
                   onChange={handleImageUpload}
                 />
-
-                <FontAwesomeIcon icon={faPlus} size="2x" color="black" />
+                <Icon name="plus" size="big" color="black" />
               </label>
             </>
           )}
