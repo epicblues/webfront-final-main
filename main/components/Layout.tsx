@@ -12,11 +12,7 @@ import MiniButton from './main/NavButton'
 
 import footerNavStyles from '../styles/main/FooterNav.module.css';
 
-// ICON
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faUser, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-
-
+import { BiDish, BiEditAlt, BiTrophy, BiUser } from "react-icons/bi";
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
   const [menuModal, setMenuModal] = useState(false)
@@ -45,14 +41,12 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         {pageProps.user ?
           <div className={footerNavStyles.navWrap}>
             <MiniButton href="/recipe">
-              <i className='utensils icon'></i>
-              {/* <FontAwesomeIcon icon={} className='icon' /> */}
+              <BiDish size='1.5rem' />
               <p>레시피</p>
             </MiniButton>
 
             <MiniButton href="/diary">
-              <i className='edit outline icon'></i>
-              {/* <FontAwesomeIcon icon={} className='icon' /> */}
+              <BiEditAlt size='1.5rem' />
               <p>다이어리</p>
             </MiniButton>
 
@@ -67,14 +61,12 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
             </ModalButton>
 
             <MiniButton href="/challenge" >
-              <i className='thumbs up outline icon'></i>
-              {/* <FontAwesomeIcon icon={faThumbsUp} className='icon' /> */}
+              <BiTrophy size='1.5rem' />
               <p>챌린지</p>
             </MiniButton>
 
             <MiniButton href="/">
-              <i className='user outline icon'></i>
-              {/* <FontAwesomeIcon icon={faUser} className='icon' /> */}
+              <BiUser size='1.5rem' />
               <p>리포트</p>
             </MiniButton>
           </div>

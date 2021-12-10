@@ -7,9 +7,11 @@ import Products from "./Products";
 import Cart from "./Cart";
 import LookupMeal from "./LookupMeal";
 import MultiBtn from "../meal/MultiBtn";
-import MealStyles from '../../../styles/diary/Meal.module.css';
 
-const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
+import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiListUl } from "react-icons/bi";
+
+const mealType = ["아침", "점심", "저녁", "간식"];
 export const [PAGE_PRODUCTS, PAGE_CART] = ["products", "cart"];
 
 function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
@@ -103,15 +105,15 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
           <div className={MealStyles.AddFoodWrap}>
             <div className={MealStyles.AddFoodHeader}>
               <MultiBtn
-                        color={showAdd ? "#a0a0a0" : "#02b0b0"}
-                        text={showAdd ? "취소" : "완료"}
+                        color={showAdd ? "#a0a0a0" : "#333"}
+                        // text={showAdd ? "취소" : "완료"}
                         onClick={multiBtn}
               />
               <span>{mealType[type]}</span>
-              <i            
-                  className='list ul icon'
-                  onClick={() => navigateTo(PAGE_CART)}
-              ></i>
+              <BiListUl            
+                size='2rem'
+                onClick={() => navigateTo(PAGE_CART)}
+              />
               <a>{getCartTotal()}</a>
             </div>
 
