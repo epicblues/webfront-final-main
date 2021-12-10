@@ -6,7 +6,6 @@ import ko from "date-fns/locale/ko";
 // component
 import ChallengeCondition from "../../challenge/Write/ChallengeCondition";
 import ChallengeAddImage from "./ChallengeAddImage";
-import Modal from "../Write/Modal";
 //css
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 import InputStyle from "../../../styles/challenge/Input.module.css";
@@ -46,15 +45,6 @@ const ChallengeWrite = ({ user }) => {
       uploadCount: "",
     },
   });
-  //모달 상태 변경
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   // 챌린지 작성 마법사 페이지
   const [wizardIndex, setWizardIndex] = useState(1);
@@ -80,7 +70,7 @@ const ChallengeWrite = ({ user }) => {
       case 2:
         return (
           <>
-            <div style={{ height: "10vh" }}>
+            <div style={{ height: "10vh", marginTop: "10px" }}>
               <h3 className={ChallengeStyle.h3}>챌린지 이름</h3>
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <input
@@ -139,7 +129,7 @@ const ChallengeWrite = ({ user }) => {
         return (
           <>
             <section>
-              <div style={{ height: "5vh" }}>
+              <div style={{ height: "5vh", marginTop: "10px" }}>
                 <h3 className={ChallengeStyle.h3}>챌린지 기간</h3>
               </div>
               <div style={{ height: "10vh" }}>
@@ -360,7 +350,7 @@ const ChallengeWrite = ({ user }) => {
         e.preventDefault();
       }}
     >
-      <header>
+      <header style={{ height: "30px" }}>
         {wizardIndex > 1 ? (
           <>
             <div className={ChallengeStyle.header}>
@@ -383,8 +373,8 @@ const ChallengeWrite = ({ user }) => {
             </Link>
           </div>
         )}
-        <hr />
       </header>
+      <hr />
       {switchWizardForm(wizardIndex)}
       <div style={{ display: "flex", justifyContent: "center" }}>
         {wizardIndex !== 4 && (

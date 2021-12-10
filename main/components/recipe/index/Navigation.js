@@ -27,7 +27,7 @@ const Navigation = ({ currentURL }) => {
         <p>검색</p>
       </div>
       {/* 종류 */}
-      <Link href="/recipe/list">
+      <Link href="/recipe/list/">
         <a>
           <div className={navigationStyles.tab}>
             <p
@@ -35,7 +35,7 @@ const Navigation = ({ currentURL }) => {
                 currentURL === "/recipe/list" ? navigationStyles.activated : ""
               }
             >
-              종류
+              카테고리
             </p>
           </div>
         </a>

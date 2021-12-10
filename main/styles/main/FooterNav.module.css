@@ -11,6 +11,22 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+    /* transform: translateY(0px); */
+  }
+
+  50% {
+    /* transform: translateY(20px); */
+    transform: rotate(180deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+    /* transform: translateY(0px); */
+  }
+}
 
 .navWrap {
   width: 100%;
@@ -29,8 +45,13 @@
   width: 4rem;
 }
 
+.imgContainer > :nth-child(1) {
+  animation: spinner 3s;
+  animation-iteration-count: infinite;
+}
+
 .navWrap p {
-  font: normal 400 0.8rem 'Noto Sans KR';
+  font: normal 400 0.8rem "Noto Sans KR";
   margin-top: 2px;
-  color: #333
+  color: #333;
 }

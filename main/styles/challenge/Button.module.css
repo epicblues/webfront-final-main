@@ -63,3 +63,11 @@
   position: absolute;
   left: 175px;
 }
+.nav {
+  text-align: center;
+  margin: 0 10px;
+  color: "#999";
+}
+.nav:current {
+  text-decoration: underline;
+}

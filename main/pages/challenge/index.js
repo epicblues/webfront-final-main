@@ -26,28 +26,23 @@ const index = ({ challenges, user }) => {
   return (
     <>
       <div>
-        <div
-          style={{
-            display: "flex",
-            font: "normal 600 1.2rem",
-            padding: "0 1rem",
-            paddingBottom: "1.6rem",
-          }}
-        >
-          <div style={{ textAlign: "center", margin: "0 10px", color: "#999" }}>
-            <Link passHref href="/challenge/mainlist">
-              <p>전체</p>
-            </Link>
-          </div>
-          <div style={{ textAlign: "center", margin: "0 10px", color: "#999" }}>
-            <Link passHref href="/challenge/newlist">
-              <p>신규</p>
-            </Link>
+        <div className={ChallengeStyle.header2}>
+          <div className={ChallengeStyle.h2L}>참여중인 챌린지</div>
+
+          <div className={ImageStyle.navDiv}>
+            <div className={ImageStyle.nav}>
+              <Link passHref href="/challenge/mainlist">
+                <p>전체</p>
+              </Link>
+            </div>
+            <div className={ImageStyle.nav}>
+              <Link passHref href="/challenge/newlist">
+                <p>신규</p>
+              </Link>
+            </div>
           </div>
         </div>
-        <hr />
         <div className={ChallengeStyle.container2}>
-          <h2 className={ChallengeStyle.h2C}>참여중인 챌린지</h2>
           <MyChallenge
             challenges={challenges}
             user={user}
