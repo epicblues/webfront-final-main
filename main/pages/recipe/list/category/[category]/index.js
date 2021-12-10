@@ -8,8 +8,7 @@ import Categories from "../../../../../components/recipe/index/Categories";
 import Search from "../../../../../components/recipe/index/Search";
 
 //CSS
-import recipeListStyles from "../../../../../styles/RecipeList.module.css";
-import GoBackward from "../../../../../components/GoBackward";
+import recipeListStyles from "../../../../../styles/recipe/RecipeList.module.css";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

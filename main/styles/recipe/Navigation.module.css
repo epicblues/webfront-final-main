@@ -5,6 +5,11 @@
   padding-bottom: 1.6rem;
 }
 
+.url {
+  text-align: center;
+  color: tomato;
+}
+
 .tab {
   text-align: center;
   margin: 0 10px;

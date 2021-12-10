@@ -23,6 +23,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Index = ({ user, recipes }) => {
+  const [currentURL, setCurrentURL] = useState("/recipe/list");
+
   //  카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
   function renderSwitchCategory(param) {
     switch (param) {
@@ -69,7 +71,7 @@ const Index = ({ user, recipes }) => {
 
   return (
     <div>
-      <Navigation></Navigation>
+      <Navigation currentURL={currentURL}></Navigation>
       <Categories />
       <InfiniteScroll
         dataLength={recipeList.length}
