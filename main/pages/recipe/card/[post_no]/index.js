@@ -236,7 +236,6 @@ const Index = ({ user, recipe }) => {
                   layout="fill"
                   alt="main image"
                   objectFit="cover"
-                  alt="main image"
                 />
               </div>
               <hr />

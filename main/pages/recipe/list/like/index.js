@@ -1,31 +1,27 @@
-import { getUserOrRedirect } from "../../../../../util/auth";
-import clientPromise from "../../../../../util/mongodb";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
-import { debounce } from "../../../../../util/axios";
+import { getUserOrRedirect } from "../../../../util/auth";
+import clientPromise from "../../../../util/mongodb";
+
+import searchListStyles from "../../../../styles/recipe/SearchList.module.css";
 
 // Component
-import Navigation from "../../../../../components/recipe/index/Navigation";
-import Categories from "../../../../../components/recipe/index/Categories";
-// LikeButton
-import LikeButton from "../../../../../components/recipe/LikeButton";
-import DislikeButton from "../../../../../components/recipe/DislikeButton";
+import Navigation from "../../../../components/recipe/index/Navigation";
 
-//CSS
-import searchListStyles from "../../../../../styles/recipe/SearchList.module.css";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { parseDocumentToObject } from "../../../../../util/date";
+// LikeButton
+import LikeButton from "../../../../components/recipe/LikeButton";
+import DislikeButton from "../../../../components/recipe/DislikeButton";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-import loader from "../../../../../public/static/logos/logo04.png";
+const Index = ({ user, filteredRecipes }) => {
+  const [currentURL, setCurrentURL] = useState("/recipe/list/like");
+  const [recipeList, setRecipeList] = useState(filteredRecipes);
 
-const Index = ({ user, filteredRecipes, category }) => {
-  // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
+  //  카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
   function renderSwitchCategory(param) {
     switch (param) {
       case "soup":
@@ -48,52 +44,14 @@ const Index = ({ user, filteredRecipes, category }) => {
         return "몰라용";
     }
   }
-  useEffect(() => {
-    setRecipeList(filteredRecipes);
-    setHasMore(true);
-  }, [filteredRecipes]);
-  const [hasMore, setHasMore] = useState(true);
-  const [recipeList, setRecipeList] = useState(filteredRecipes);
-  const [recipeCounter, setRecipeCounter] = useState(recipeList.length);
-
-  const getMoreRecipes = debounce(async () => {
-    const { data } = await axios.get(
-      `/api/recipe/infiniteScroll/counter?category=${category}&recipeCounter=` +
-        recipeCounter
-    );
-    console.log(data);
-    if (data.length === 0) {
-      setHasMore(false);
-    } else {
-      setRecipeList([...recipeList, ...data]);
-      console.log("ONSCROLL!");
-      setRecipeCounter(recipeCounter + 4);
-    }
-  }, 500);
-
   return (
     <div className={searchListStyles.main}>
-      <Navigation currentURL={"/recipe/list"}></Navigation>
-      <Categories currentURL={`/recipe/list/category/${category}`} />
-      <h1>분류 : {renderSwitchCategory(category)}</h1>
-      <InfiniteScroll
-        dataLength={recipeList.length}
-        next={getMoreRecipes}
-        hasMore={hasMore}
-        loader={
-          <div className={searchListStyles.loader}>
-            <p>불러오는 중.....⏳</p>
-            <Image width="50px" height="50px" src={loader} alt="logo03" />
-          </div>
-        }
-        endMessage={
-          <div className={searchListStyles.loader}>
-            <h4>✔모든 레시피를 다 보여드렸어요✔</h4>
-          </div>
-        }
-      >
-        <div>
-          <ul className={searchListStyles.container}>
+      <Navigation currentURL={currentURL}></Navigation>
+      <div className={searchListStyles.container}>
+        {recipeList.length === 0 ? (
+          <div>아직 좋아요를 누른 게시물이 없습니다!!!ㅎ</div>
+        ) : (
+          <>
             {recipeList.map((card, index) => {
               return (
                 <div key={card._id} className={searchListStyles.card}>
@@ -181,18 +139,17 @@ const Index = ({ user, filteredRecipes, category }) => {
                 </div>
               );
             })}
-          </ul>
-        </div>
-      </InfiniteScroll>
+          </>
+        )}
+      </div>
     </div>
   );
 };
 
 export const getServerSideProps = async (ctx) => {
-  const category = ctx.query.category;
-
   // 유저 인증 로직
   const user = await getUserOrRedirect(ctx);
+  console.log(user);
   const data = await (
     await clientPromise
   )
@@ -208,13 +165,12 @@ export const getServerSideProps = async (ctx) => {
         },
       },
     ])
-    .match({ category })
+    .match({ likes: user.id })
     .sort({ upload_date: -1 })
-    .limit(4)
     .toArray();
-  const filteredRecipes = parseDocumentToObject(data);
+  const filteredRecipes = JSON.parse(JSON.stringify(data));
 
-  return { props: { user, filteredRecipes, category } };
+  return { props: { user, filteredRecipes } };
 };
 
 export default Index;

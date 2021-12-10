@@ -11,6 +11,7 @@ import AppIcon from '../public/static/logos/logo04.png'
 import MiniButton from './main/NavButton'
 
 import footerNavStyles from '../styles/main/FooterNav.module.css';
+import mainStyles from '../styles/main/Main.module.css'
 
 // ICON
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
