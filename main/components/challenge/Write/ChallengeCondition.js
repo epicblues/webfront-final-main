@@ -8,9 +8,8 @@ const ChallengeCondition = ({
   challenge,
   setChallenge,
   dailyCalorie,
-  dailyCalorieError,
+
   uploadCount,
-  uploadCountError,
 }) => {
   const handleChange = (e) => {
     setChallenge({
@@ -55,7 +54,7 @@ const ChallengeCondition = ({
   };
 
   return (
-    <div className="challengeCondition">
+    <div className="challengeCondition" style={{ marginTop: "10px" }}>
       <h3 className={ChallengeStyle.h3}>챌린지 조건</h3>
       <div className={ChallengeStyle.causion}>
         주의!
