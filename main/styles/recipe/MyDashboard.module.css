@@ -26,8 +26,10 @@
   margin: 0.5rem 0.5rem;
   padding: 0.2rem 0.2rem;
 }
-.innerWrapper p {
-  color: #ff5656;
+
+.imgWrapper {
+  height: 7vh;
+  position: relative;
 }
 
 .title {
