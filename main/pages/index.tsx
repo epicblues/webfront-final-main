@@ -20,7 +20,8 @@ import mainStyle from '../styles/main/Main.module.css';
 
 const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
   const [largeMode, setLargeMode] = useState(false);
-  const [showLikes, setShowLikes] = useState(false)
+  const [showLikesChallenge, setShowLikesChallenge] = useState(false)
+  const [showLikesRecipe, setShowLikesRecipe] = useState(false)
 
   const router = useRouter()
   const clickHandler = async () => {
@@ -58,11 +59,14 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
   return (
     <div>
       <div style={{
-        display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "75vh",
+        display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "80vh",
       }}>
         <div style={FLEXBOX_NORMAL}>
           < div className={mainStyle.card} style={{ alignItems: "center", justifyContent: "center" }} >
-            <Image src={AppIcon} width="60em" height="60em" alt="요건 다 내꺼 마크" />
+            <div className={mainStyle.rotate}>
+              <Image src={AppIcon} width="60em" height="60em" alt="요건 다 내꺼 마크" />
+
+            </div>
             <span>{name} 님 </span>
             <span>안녕하세요!</span>
           </div >
@@ -76,10 +80,15 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
         </div>
         <div className={mainStyle.flex}>
           <FoodRank foodRank={foodRank} />
-          <div className={mainStyle.card} style={{ justifyContent: "space-between", textAlign: "center", alignItems: "center", fontSize: "1.25em" }}>
-            <span>내가 좋아하는 컨텐츠</span>
-            <button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.8em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikes(true) }}><i className=
-              "icon hand point left outline" /></button>
+          <div className={mainStyle.card} style={{ justifyContent: "space-around", textAlign: "center", alignItems: "center", fontSize: "1.20em" }}>
+            <span>내가 좋아하는</span>
+            <div className={mainStyle.buttonContainer}>
+              <button onClick={() => { setShowLikesChallenge(true) }}><i className=
+                "thumbs up outline icon" /><span>챌린지</span></button>
+              <button onClick={() => { setShowLikesRecipe(true) }}><i className=
+                "utensils icon" /><span>레시피</span></button>
+
+            </div>
           </div>
         </div>
 
@@ -97,13 +106,21 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
         </div>
 
       </div>
-      <div className={mainStyle.sideBar} style={{ left: showLikes ? "50vw" : "100vw" }}>
-        <div onClick={() => { setShowLikes(false) }}>
-          <button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikes(true) }}><i className=
+      <div className={mainStyle.sideBar} style={{ left: showLikesChallenge ? "50vw" : "100vw" }}>
+        <div onClick={() => { setShowLikesChallenge(false) }}>
+          <button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesChallenge(false) }}><i className=
             "icon hand point left outline" /></button>
 
         </div>
         <LikeChallenge />
+
+      </div>
+      <div className={mainStyle.sideBar} style={{ left: showLikesRecipe ? "50vw" : "100vw" }}>
+        <div onClick={() => { setShowLikesRecipe(false) }}>
+          <button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesRecipe(false) }}><i className=
+            "icon hand point left outline" /></button>
+
+        </div>
         <LikeRecipe />
 
       </div>

@@ -50,7 +50,8 @@ const Index = ({ user, filteredRecipes, category }) => {
 
   const getMoreRecipes = debounce(async () => {
     const { data } = await axios.get(
-      `/api/recipe/infiniteScroll/${category}/` + recipeCounter
+      `/api/recipe/infiniteScroll/counter?category=${category}&recipeCounter=` +
+        recipeCounter
     );
     console.log(data);
     if (data.length === 0) {
