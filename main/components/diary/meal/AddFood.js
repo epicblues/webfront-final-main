@@ -8,11 +8,10 @@ import Cart from "./Cart";
 import LookupMeal from "./LookupMeal";
 import MultiBtn from "../meal/MultiBtn";
 
-// ICON
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faList } from "@fortawesome/free-solid-svg-icons";
+import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiListUl } from "react-icons/bi";
 
-const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
+const mealType = ["아침", "점심", "저녁", "간식"];
 export const [PAGE_PRODUCTS, PAGE_CART] = ["products", "cart"];
 
 function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
@@ -103,18 +102,17 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
             setPage={setPage}
           />
         ) : (
-          <div className="add-food-wrap">
-            <div className='add-food-header'>
+          <div className={MealStyles.AddFoodWrap}>
+            <div className={MealStyles.AddFoodHeader}>
               <MultiBtn
-                        color={showAdd ? "#a0a0a0" : "#02b0b0"}
-                        text={showAdd ? "취소" : "완료"}
+                        color={showAdd ? "#a0a0a0" : "#333"}
+                        // text={showAdd ? "취소" : "완료"}
                         onClick={multiBtn}
               />
               <span>{mealType[type]}</span>
-              <FontAwesomeIcon
-                              icon={faList}
-                              className='icon'
-                              onClick={() => navigateTo(PAGE_CART)}
+              <BiListUl            
+                size='2rem'
+                onClick={() => navigateTo(PAGE_CART)}
               />
               <a>{getCartTotal()}</a>
             </div>

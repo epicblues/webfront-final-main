@@ -5,14 +5,15 @@ import { useRouter } from 'next/dist/client/router';
 import axios from 'axios';
 import { Button, Form } from 'semantic-ui-react';
 import Intro from '../../components/user/Intro';
+import { GetServerSideProps } from 'next';
 
-const Login = () => {
+const Login = ({ introSkip }: { introSkip: boolean }) => {
 
   const email = useRef() as MutableRefObject<HTMLInputElement>;
   const password = useRef() as MutableRefObject<HTMLInputElement>;
   const head = useRef() as MutableRefObject<HTMLHeadingElement>;
   const router = useRouter();
-  const [loginMode, setLoginMode] = useState(false)
+  const [loginMode, setLoginMode] = useState(introSkip)
 
 
   const handleClick = async () => {
@@ -68,7 +69,13 @@ const Login = () => {
         <Link passHref href="/user/join">
           <button className="ui button teal">회원가입</button>
         </Link>
+        <Link passHref href="/user/oauth/login/google">
+          <button className="ui button google">구글 로그인</button>
+        </Link>
 
+        <Link passHref href="/user/oauth/login/kakao">
+          <button className="ui button yellow">카카오 로그인</button>
+        </Link>
 
       </div>  <Intro handleClick={() => { setLoginMode(true) }} loginMode={loginMode} />
     </>
@@ -76,6 +83,13 @@ const Login = () => {
   )
 
 }
+
+export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
+  const introSkip = ctx.query.skip
+
+  return { props: { introSkip: introSkip ? true : false } }
+}
+
 
 
 export default Login

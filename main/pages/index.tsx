@@ -1,27 +1,28 @@
 import { GetServerSideProps, GetServerSidePropsContext, NextPage } from 'next'
-
 import { getUserOrRedirect } from '../util/auth'
 import Link from 'next/link';
 import { Button, Card, CardHeader, CommentText, Container, TextArea } from 'semantic-ui-react';
 import homeStyle from '../styles/Home.module.css';
-import { CSSProperties } from 'react';
+import { CSSProperties, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import clientPromise from '../util/mongodb';
+import { io, Socket } from 'socket.io-client';
+import Chat from '../components/main/Chat';
+import { LiveData } from '../models';
+import { BACKGROUND_COLOR, FLEXBOX_NORMAL, MAIN_COLOR, MIDDLE_COLOR } from '../constants';
+import Image from 'next/dist/client/image';
+import AppIcon from '../public/static/logos/logo04.png'
+import FoodRank from '../components/user/FoodRank';
+import LikeChallenge from '../components/user/likes/LikeChallenge';
+import LikeRecipe from '../components/user/likes/LikeRecipe';
+import mainStyle from '../styles/main/Main.module.css';
 
 
 const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
+  const [largeMode, setLargeMode] = useState(false);
+  const [showLikesChallenge, setShowLikesChallenge] = useState(false)
+  const [showLikesRecipe, setShowLikesRecipe] = useState(false)
 
-  const cardStyle: CSSProperties = {
-    border: "solid 2px lightgray",
-    borderRadius: "5px",
-
-    padding: "20px",
-    fontWeight: 700,
-    fontSize: "1.3em",
-    textAlign: "center"
-
-
-  }
   const router = useRouter()
   const clickHandler = async () => {
     const res = await fetch('/api/user/logout');
@@ -30,54 +31,106 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
     }
   }
 
+  const [socket, setSocket] = useState<null | Socket>(null);
+  const [liveData, setLiveData] = useState<LiveData[]>([]);
+
+  useEffect(() => {
+    const newSocket = io(process.env.NEXT_PUBLIC_STATIC_SERVER_URL as string, {
+      path: "/chat"
+    })
+    newSocket.on('message', (message: LiveData | LiveData[]) => {
+      if (Array.isArray(message)) {
+        setLiveData(message)
+      } else {
+        setLiveData(originalData => {
+          return [...originalData, message]
+        })
+      }
+    })
+    setSocket(newSocket);
+    return () => {
+      // cleanup function
+      newSocket.close();
+      console.log("socket closed");
+    }
+  }, [])
 
   return (
-    <div style={{
-      display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh 1vh", justifyContent: "space-between", "minHeight": "70vh"
-    }}>
-      < div style={cardStyle} >
-        <h3>{name} 님 안녕하세요</h3>
-        <p>Email : {email}</p>
+    <div>
+      <div style={{
+        display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "80vh",
+      }}>
+        <div style={FLEXBOX_NORMAL}>
+          < div className={mainStyle.card} style={{ alignItems: "center", justifyContent: "center" }} >
+            <div className={mainStyle.rotate}>
+              <Image src={AppIcon} width="60em" height="60em" alt="요건 다 내꺼 마크" />
 
-      </div >
-      {bmr && (
-        <div style={cardStyle} >
-          <p>기초 대사량 : <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></p>
-          <p>일일 권장 칼로리 : <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></p>
+            </div>
+            <span>{name} 님 </span>
+            <span>안녕하세요!</span>
+          </div >
+          {bmr && (
+            <div className={mainStyle.card} >
+              <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-between" }}>기초 대사량  <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></div>
+              <div>일일 권장 칼로리  <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></div>
+            </div>
+          )
+          }
         </div>
-      )
-      }
-      <div style={{ ...cardStyle, background: "lightgreen", fontSize: "1.3em", color: "whitesmoke" }}>
-        한 달 동안 많이 먹은 음식 Top 3
+        <div className={mainStyle.flex}>
+          <FoodRank foodRank={foodRank} />
+          <div className={mainStyle.card} style={{ justifyContent: "space-around", textAlign: "center", alignItems: "center", fontSize: "1.20em" }}>
+            <span>내가 좋아하는</span>
+            <div className={mainStyle.buttonContainer}>
+              <button onClick={() => { setShowLikesChallenge(true) }}><i className=
+                "thumbs up outline icon" /><span>챌린지</span></button>
+              <button onClick={() => { setShowLikesRecipe(true) }}><i className=
+                "utensils icon" /><span>레시피</span></button>
+
+            </div>
+          </div>
+        </div>
+
+        <div className={mainStyle.card} style={{ fontSize: "1em", }}>
+          <span style={{ fontSize: "1.2em", ...FLEXBOX_NORMAL }}>채팅 / 실시간 현황<button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", width: "30px", height: "30px", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setLargeMode(!largeMode) }}>+</button></span>
+          <br />
+          <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
+        </div>
+
+        <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around" }}>
+          <button className="ui button facebook" onClick={clickHandler}>Logout</button>
+          <Link passHref href="/user/update">
+            <Button color="google plus">회원 정보 수정</Button>
+          </Link>
+        </div>
+
       </div>
-      {foodRank.length !== 0 ? foodRank.map(({ name, count }) => (
-        <div key={name}>
-          {name} : {count}
+      <div className={mainStyle.sideBar} style={{ left: showLikesChallenge ? "50vw" : "100vw" }}>
+        <div onClick={() => { setShowLikesChallenge(false) }}>
+          <button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.1em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesChallenge(false) }}><i className=
+            "thumbs up outline icon" /></button>
+
         </div>
-      )) : <div>일지를 더 작성해주세요!</div>}
-      <Link href="/recipe" passHref>
-        <a style={{ ...cardStyle, backgroundColor: "lightgrey", fontSize: "1.3em", color: "whitesmoke" }}>
-          레시피
-        </a>
-      </Link>
+        <LikeChallenge />
+      </div>
+      <div className={mainStyle.sideBar} style={{ left: showLikesRecipe ? "50vw" : "100vw" }}>
+        <div onClick={() => { setShowLikesRecipe(false) }}>
+          <button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.1em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesRecipe(false) }}><i className=
+            "utensils icon" /></button>
+
+        </div>
+        <LikeRecipe />
+
+      </div>
+      {(showLikesChallenge || showLikesRecipe) && (<div className={mainStyle.cancelArea} onClick={() => {
+        if (showLikesChallenge) setShowLikesChallenge(false);
+        if (showLikesRecipe) setShowLikesRecipe(false);
+      }}>
+
+      </div>)}
 
 
-
-
-
-      <Link href="/challenge" passHref>
-        <a style={{ ...cardStyle, background: "lightgrey", fontSize: "1.3em", color: "whitesmoke" }}>
-          Challenge
-        </a>
-      </Link>
-
-      <button className="ui button facebook" onClick={clickHandler}>Logout</button>
-
-      <Link passHref href="/user/update">
-        <Button color="google plus">회원 정보 수정</Button>
-      </Link> </div >
-
-
+    </div >
   )
 }
 
@@ -144,9 +197,6 @@ export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
   }
 
   return { props: { user, foodRank: [] } }
-
-
-
 
 }
 

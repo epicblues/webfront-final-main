@@ -1,10 +1,12 @@
 import React, { CSSProperties, LegacyRef, MouseEventHandler, MutableRefObject, useRef, useState } from 'react'
 import { checkValid } from '../../util/auth';
-import Bmr, { UserBmr } from '../../components/user/Bmr'
+import Bmr from '../../components/user/Bmr'
 import axios from 'axios';
 import { Button, Form, Header, Input, Label } from 'semantic-ui-react';
 import { NextRouter, useRouter } from 'next/router';
 import FinishPage from '../../components/user/FinishPage';
+import { UserBmr } from '../../models';
+import { MIDDLE_COLOR } from '../../constants';
 
 
 
@@ -17,17 +19,7 @@ const Join = () => {
 
   const name = useRef() as MutableRefObject<HTMLInputElement>;
   const message = useRef() as MutableRefObject<HTMLHeadingElement>;
-  const [userBmr, setUserBmr] = useState<UserBmr>({
-    gender: "1",
-    weight: "",
-    age: "",
-    activity: "",
-    bmr: "",
-    error: "",
-    flag: false,
-    system: "",
-    heightFeet: ""
-  })
+  const [userBmr, setUserBmr] = useState<UserBmr>(new UserBmr)
   const [joinFinished, setJoinFinished] = useState(false);
 
   const changeButtonStyle = (button: HTMLButtonElement, message: string) => {
@@ -38,7 +30,7 @@ const Join = () => {
 
     setTimeout((target: HTMLButtonElement, text: string) => {
       target.textContent = text
-      target.style.backgroundColor = "#00b5ad"
+      target.style.backgroundColor = MIDDLE_COLOR
       target.disabled = false;
 
     }, 2000, button, originalBtnText);
@@ -84,13 +76,12 @@ const Join = () => {
         email: email.current?.value,
         password: password.current?.value,
         name: name.current?.value,
-        bmr: bmrToSend
+        bmr: bmrToSend,
+        type: 'normal'
       }
     )
     if (result.status === "OK") {
-      setTimeout((router: NextRouter) => {
-        router.push('/user/login')
-      }, 5000, router)
+      router.push('/user/oauth/temp')
       setJoinFinished(true);
     }
     else {

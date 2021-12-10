@@ -1,0 +1,76 @@
+.flex {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  /* border: solid 1px; */
+  border-radius: 10px;
+  background: whitesmoke;
+  padding: 20px;
+  font-weight: 700;
+}
+
+.foodName {
+  font-size: 0.88em;
+}
+
+.sideBar {
+  height: 70vh;
+  background-color: whitesmoke;
+  width: 50vw;
+  position: fixed;
+  left: 100vw;
+  top: 3vh;
+  transition: all 500ms;
+  background-color: #eceaea;
+  border: 2px solid rgb(247, 158, 136);
+  border-radius: 20px 0 0 20px;
+  padding: 0px 20px;
+  overflow-y: scroll;
+  scrollbar-width: 0.01px;
+  scrollbar-color: black;
+}
+
+.sideBar > :nth-child(1) {
+  font-size: 2em;
+}
+.sideBar > * {
+  margin-top: 20px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+
+.buttonContainer button {
+  margin: 5px;
+  border-style: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+}
+
+.buttonContainer i {
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+
+.buttonContainer span {
+  font-size: 9px;
+  margin-top: 7px;
+}
+
+.cancelArea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
+}

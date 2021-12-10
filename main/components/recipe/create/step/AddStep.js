@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import createStyles from "../../../../styles/recipe/Create.module.css";
 
 const AddStep = ({ stepData, setStepData }) => {
   const [imgPreview, setImgPreview] = useState(null);
@@ -48,85 +49,76 @@ const AddStep = ({ stepData, setStepData }) => {
   };
 
   return (
-    <div
-      className="ui rounded image"
-      style={{ display: "flex", height: "auto" }}
-    >
-      <div className="container" style={{ width: "100%", margin: "auto" }}>
-        {error && (
-          <p className="errorMsg" style={{ color: "red" }}>
-            지원하지 않는 파일 형식입니다.
-            <i className="frown outline icon"></i>
-          </p>
-        )}
+    <div className={createStyles.addContainer}>
+      {error && (
+        <p className={createStyles.errorMsg}>
+          지원하지 않는 파일 형식입니다.
+          <i className="frown outline icon"></i>
+        </p>
+      )}
+      <div className={createStyles.addFormContainer}>
         <div
+          className={createStyles.imgPreview}
           style={{
-            display: "flex",
+            background: imgPreview
+              ? `url("${imgPreview}") no-repeat center/cover`
+              : "#9e9e9e",
           }}
         >
-          <div
-            className="imgPreview ui rounded image"
-            style={{
-              background: imgPreview
-                ? `url("${imgPreview}") no-repeat center/cover`
-                : "#9e9e9e",
-              width: "200px",
-              height: "200px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              textAlign: "center",
-              color: "white",
-              marginBottom: 10,
-            }}
-          >
-            {!imgPreview && (
-              <>
-                <label
-                  htmlFor="fileUpload"
-                  className="customFileUpload"
-                  style={{ cursor: "pointer", marginBottom: 4 }}
-                >
-                  <i className="images outline huge icon"></i>
-                </label>
-                <input
-                  type="file"
-                  id="fileUpload"
-                  style={{ display: "none" }}
-                  onChange={handleImageChange}
-                  ref={imageRef}
-                />
-                <span>
-                  사진 추가
-                  <br />
-                  jpg / jpeg / png
-                </span>
-              </>
-            )}
-          </div>
-          <textarea
-            ref={inputRef}
-            type="text"
-            name="stepDesc"
-            placeholder="순서에 대한 설명을 입력해 주세요"
-            style={{
-              display: "flex",
-            }}
-          />
-          {imgPreview && (
-            <button
-              type="button"
-              className="ui fluid button"
-              onClick={() => setImgPreview(null)}
-            >
-              사진 삭제
-            </button>
+          {!imgPreview && (
+            <>
+              <label
+                htmlFor="fileUpload"
+                className={createStyles.customFileUpload}
+              >
+                <i
+                  className="plus square outline big icon"
+                  style={{ margin: "0" }}
+                ></i>
+              </label>
+              <input
+                type="file"
+                id="fileUpload"
+                style={{ display: "none" }}
+                onChange={handleImageChange}
+                ref={imageRef}
+              />
+              <span>
+                사진 추가
+                <br /> jpg / jpeg / png
+              </span>
+            </>
           )}
         </div>
-        <button type="button" onClick={handleSubmitStep}>
-          순서등록
-        </button>
+        <textarea
+          ref={inputRef}
+          type="text"
+          name="stepDesc"
+          placeholder="순서에 대한 설명을 입력해 주세요"
+        />
+        <div className={createStyles.btnContainer}>
+          <div
+            className={createStyles.btnWrapperAdd}
+            onClick={handleSubmitStep}
+          >
+            <i className="arrow alternate circle up icon" />
+            <p>추가</p>
+          </div>
+          {imgPreview ? (
+            <div
+              className={createStyles.btnWrapperDel}
+              onClick={() => setImgPreview(null)}
+            >
+              <i className="trash alternate outline icon" />
+              <p>삭제</p>
+            </div>
+          ) : (
+            <div className={createStyles.btnWrapperDel}>
+              <i className="trash alternate outline icon" />
+              <p>삭제</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

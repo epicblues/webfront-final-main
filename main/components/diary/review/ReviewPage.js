@@ -37,13 +37,13 @@ const ReviewPage = ({ diary, setDiary }) => {
   };
 
   return (
-    <div>
+    <div style={{textAlign: 'center', font: 'normal 500 1rem "Noto Sans KR"'}}>
       {<ReviewHeader onAdd={() => setShowAddReview(!showAddReview)} />}
       <AddReview onAdd={addReview} show={showAddReview} setShow={setShowAddReview} diary={diary} setDiary={setDiary} />
       {reviews.length > 0 ? (
         <Reviews reviews={reviews} onDelete={deleteReview} />
       ) : (
-        "No Reviews To Show"
+        "작성된 일기가 없습니다"
       )}
     </div>
   );

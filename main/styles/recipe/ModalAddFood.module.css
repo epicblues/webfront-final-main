@@ -1,0 +1,130 @@
+.container {
+  background-color: white;
+  width: 80vw;
+  height: 40vh;
+  display: grid;
+  grid-template-rows: 33vh 5vh;
+  position: fixed;
+  left: 50%;
+  top: 30%;
+  padding: 0.5rem;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.searchWrapper {
+  grid-template-rows: 2rem 2rem 1.5rem 10vh;
+  overflow-y: auto;
+  padding: 1rem;
+}
+.searchWrapper h3 {
+  margin: 0;
+}
+.searchInput {
+  width: 100%;
+}
+
+.resultHeader {
+  background-color: #dedede;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border-bottom: 1px solid #333333;
+  text-align: center;
+  margin: 0;
+}
+.resultWrapper {
+  width: 100%;
+}
+.products {
+  display: grid;
+  height: 3rem;
+  grid-template-columns: 50% 40% 10%;
+  margin: 0.2rem;
+}
+.products .name {
+  padding: 0.1rem;
+  background-color: #fff0f0;
+}
+.products .mfr {
+  padding: 0.1rem;
+  background-color: #f3f3f3;
+}
+.btnAdd {
+  background-color: #f3f3f3;
+  color: tomato;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartWrapper {
+  display: grid;
+  grid-template-rows: 2rem 10vh;
+  padding: 1rem;
+}
+.cartWrapper h3 {
+  margin: 0;
+}
+.itemWrapper {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  margin: 0.2rem;
+  padding: 0.1rem;
+  place-items: center;
+}
+.itemWrapper .name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  min-width: 30vw;
+  padding: 0.1rem;
+  background-color: #fff0f0;
+}
+.itemWrapper .mfr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  min-width: 30vw;
+  padding: 0.1rem;
+  background-color: #f3f3f3;
+}
+
+.inputWrapper {
+  transform: translate(0, 5vh);
+  display: flex;
+}
+.inputWrapper input {
+  width: 70%;
+}
+.inputWrapper p {
+  background: #f3f3f3;
+  width: 4rem;
+  height: 2rem;
+  border-radius: 0.6rem;
+  border: 1px solid #666666;
+  cursor: pointer;
+  color: #666666;
+  font-weight: bold;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cancelBtn {
+  transform: translate(30vw, 0);
+  background: #ffffff;
+  width: 4rem;
+  height: 2rem;
+  border-radius: 0.6rem;
+  border: 1px solid #666666;
+  cursor: pointer;
+  color: #666666;
+  font-weight: bold;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

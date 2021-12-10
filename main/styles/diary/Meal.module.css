@@ -1,0 +1,293 @@
+/* LookupMeal*/
+.lookupMealWrap {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.lookupMealHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.lookupMealHeader > span {
+    font: normal 600 1.3rem 'Noto Sans KR';
+}
+
+.lookupMealImg {
+    width: 100%;
+    height: 40vh;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    border-radius: 20px;
+}
+
+.lookupMealImg > img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
+
+.lookupMealList {
+    margin: 1rem 0 0.5rem 0;
+    display: flex;
+    text-align: center;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    border-radius: 20px;
+    padding: 1rem 0;
+}
+
+.lookupMealList > div {
+    width: 25%;
+    border-right: solid 1px lightgray;
+}
+
+.lookupMealList > div :last-child {
+    border-right: none;
+}
+
+.lookupMealWrap button {
+    width: 100%;
+    border-radius: 10px;
+    font: normal 500 1rem/22px 'Noto Sans KR';
+
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2 none;
+    color: rgba(0,0,0,.6);
+    text-align: center;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem 0.8rem;
+    text-transform: none;
+    text-shadow: none;
+}
+
+/* AddFood */
+.multiBtn {
+    display: flex;
+    justify-content: left;
+}
+
+.multiBtn P {
+    font: normal 400 1.3rem 'Noto Sans KR';
+}
+
+.AddFoodWrap {
+    padding: 0 1rem 1rem 1rem;
+}
+
+.AddFoodHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    position: relative;
+    align-items: center;
+}
+
+.AddFoodHeader > span {
+  font: normal 600 1.3rem 'Noto Sans KR';
+}
+
+.AddFoodHeader > a {
+    background-color: #ff5656;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: -6px;
+    right: -3px;
+    font: normal 400 0.5rem/1.1rem 'Noto Sans KR';
+}
+
+/* Product */
+.ProductWrap {
+    padding-top: 1rem;
+}
+
+.ProductWrap > div {
+    text-align: left; 
+    margin: 0;
+    color: #ff5656;
+}
+
+.ProductWrap > div span {
+    font-size: 1rem;
+}
+
+.ProductItem {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    padding: 0.5rem 0;
+    border-bottom: solid 1px #9f9f9f;
+}
+
+.ProductItem .header {
+    font: normal 500 1.2rem 'Noto Sans KR';
+}
+
+.ProductItem .description {
+    font: normal 400 1rem 'Noto Sans KR';
+    color: #888;
+}
+
+.ProductItem .calorie {
+    font: normal 400 1.2rem 'Noto Sans KR';
+    color: #888;
+    float: right;
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.ProductItem input {
+    width: 5rem;
+}
+
+.ProductItem span {
+    color: #333;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+.ProductItem i {
+    font-size: 1.6rem;
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 1rem;
+}
+
+/* FoodModal & RecipeModal */
+.modalItem {
+    padding: 0.5rem 0;
+    border-bottom: solid 1px #9f9f9f;
+}
+
+.modalItem > div {
+    text-align: left;
+    display: grid;
+    grid-template-columns: 9.75fr 0.25fr;
+    color: #333;
+}
+
+.modalItem > div svg {
+    margin: 1rem 0 0 1rem;
+}
+
+.modalItem .content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modalItem .header {
+    font: normal 500 1.2rem 'Noto Sans KR';
+}
+
+.modalItem .description {
+    font: normal 400 1rem 'Noto Sans KR';
+    color: #888;
+}
+
+.modalItem .calorie {
+    font: normal 400 1.2rem 'Noto Sans KR';
+    color: #888;
+    float: right;
+    display: flex;
+    align-items: center;
+}
+
+/* Cart */
+.CartWrap {
+
+}
+
+.CartList {
+    display: flex;
+    justify-content: space-between;
+}
+
+.CartList span {
+    font : normal 600 1.2rem 'Noto Sans KR';
+}
+
+.CartList i {
+    margin: 0;
+    font-size: 1.6rem;
+}
+
+.CartWrap button {
+    width: 100%;
+    border-radius: 10px;
+    font: normal 500 1rem/22px 'Noto Sans KR';
+
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: 0;
+    border: none;
+    vertical-align: baseline;
+    background: #e0e1e2 none;
+    color: rgba(0,0,0,.6);
+    text-align: center;
+    text-decoration: none;
+    padding: 0.8rem 1.5rem 0.8rem;
+    text-transform: none;
+    text-shadow: none;
+}
+
+.CartSum {
+    margin-top: 1rem;
+    text-align: center;
+    font : normal 400 1.2rem 'Noto Sans KR';
+    
+}
+
+.CartSum > span {
+    font-weight: 600;
+}
+
+/* review */
+.reviewOpen {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 1rem;
+    text-align: left;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+    background-color: #fff;
+    transition: all;
+    transition-duration: 300ms;
+    z-index: 30;
+}
+
+.reviewModal {
+    margin-top: 3vh;
+    position: relative;
+}
+
+.reviewModalHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.reviewModalForm {
+    width: 100%;
+}
+
+.reviewModalForm > textarea {
+    border: none;
+    width: 100%;
+    height: 100vh;
+}

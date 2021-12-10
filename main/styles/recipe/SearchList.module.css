@@ -1,0 +1,174 @@
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
+/* 모바일 세로*/
+.main {
+  min-height: 100vh;
+  height: auto;
+  background-color: #fff0f0;
+}
+
+.main > h1 {
+  text-align: center;
+}
+
+.loader {
+  margin: 3rem 0;
+  text-align: center;
+}
+
+.container {
+  font-family: "NanumSquare";
+  padding: 0 11vw;
+}
+
+.noLikes {
+  height: 40vh;
+  text-align: center;
+}
+.sadDoge {
+  position: relative;
+}
+
+.card {
+  background-color: white;
+  height: 45vh;
+  border-radius: 15px;
+  display: center;
+  margin-top: 2rem;
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow: hidden;
+}
+
+.cardHeader {
+  -webkit-transition: 0.5s; /*사파리 & 크롬*/
+  -moz-transition: 0.5s; /*파이어폭스*/
+  -ms-transition: 0.5s; /*인터넷 익스플로러*/
+  -o-transition: 0.5s; /*오페라*/
+  transition: 0.5s;
+  width: 78vw;
+  height: 20vh;
+  border-radius: 15px 15px 0 0;
+  background-size: 100% 230vw;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.card:hover .cardHeader {
+  position: relative;
+  opacity: 0.7;
+  height: 10vh;
+}
+
+.cardBodyWrapper {
+  padding: 1rem 1rem;
+}
+
+.hot {
+  display: flex;
+  align-content: center;
+  justify-content: left;
+  height: 1.2rem;
+}
+.iWrapper {
+  margin-right: 0.5rem;
+  width: 1.3rem;
+}
+.hot strong {
+  color: #ff5656;
+}
+
+.cardBodyHeader {
+  line-height: 1.2rem;
+}
+
+.h1 {
+  font-family: "NanumSquare";
+  max-height: 2.3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #111111;
+}
+.cardBodyAuthor {
+  font-family: "NanumSquare";
+  font-size: 1rem;
+  color: #444444;
+  margin: 1rem 0;
+}
+.cardBodyCategory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: 2rem;
+  font-family: "NanumSquare";
+  color: #c36868;
+  background-color: #eddddd;
+  border-radius: 5px;
+  margin: 1rem 0;
+}
+
+.cardBodyDesc {
+  display: none;
+  opacity: 0;
+  color: #333333;
+  line-height: 25px;
+  -webkit-transition: 0.2s ease-in-out; /*사파리&크롬*/
+  -moz-transition: 0.2s ease-in-out; /*파이어폭스*/
+  -ms-transition: 0.2s ease-in-out; /*익스플로러*/
+  -o-transition: 0.2s ease-in-out; /*오페라*/
+  transition: 0.2s ease-in-out;
+  overflow: hidden;
+  height: 180px;
+}
+
+.card:hover .cardBodyDesc {
+  display: unset;
+  opacity: 1;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -ms-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardBodyFooter {
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  width: 75vw;
+  height: 3rem;
+  color: #9fa5a8;
+  transform: translate(-1rem, 0);
+}
+.hr {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid #ff5656;
+}
+.textWrapper {
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  justify-content: space-between;
+}
+.cardIconHit {
+  height: 1rem;
+  padding-left: 1rem;
+  padding-right: 0.2rem;
+  transform: translate(0, 0.15rem);
+}
+.hitSpan {
+  color: #ff5656;
+}
+.cardUploadDate {
+  padding-right: 1rem;
+  vertical-align: auto;
+  margin-right: 2px;
+  float: right;
+}

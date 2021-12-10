@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/dist/client/image";
 
 //  CSS
-import measuringModalStyles from "../../../../styles/MeasuringModal.module.css";
+import measuringModalStyles from "../../../../styles/recipe/MeasuringModal.module.css";
 
 import tip00 from "../../../../public/static/recipe/images/components/measuringModal/tip00.png";
 import tip01 from "../../../../public/static/recipe/images/components/measuringModal/tip01.jpg";

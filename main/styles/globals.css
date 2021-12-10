@@ -78,7 +78,7 @@ input:focus {
 .tabs a {
   font: normal 600 1.2rem "Noto Sans KR";
   color: #999;
-  margin: 0 10px;
+  margin: 0 0.5rem;
 }
 
 .tabs a:hover {
@@ -93,14 +93,11 @@ a.is-active {
 /* Datepicker Custom */
 .react-datepicker__input-container {
   width: 1.5rem !important;
+  margin-right: 0.5rem;
 }
 
 .react-datepicker__input-container input {
   border: none;
-}
-
-.customInput {
-  font-size: 1.4rem;
 }
 
 .customInput .icon {
@@ -108,7 +105,7 @@ a.is-active {
 }
 
 .react-datepicker {
-  transform: scale(1.2);
+  transform: scale(1);
   padding: 1rem;
   font-size: 1rem !important;
   border: none !important;
@@ -149,10 +146,19 @@ a.is-active {
 .react-datepicker__quarter-text:hover,
 .react-datepicker__year-text:hover {
   border-radius: 50% !important;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0 !important;
+}
+
+::selection {
+  /* background-color: #cce2ff; */
+  background-color: #ff5656 !important;
 }
 
 /* dropDown */
+.dropdown-option i {
+  margin: 0 0 0 1rem;
+}
+  
 .dropdown-modal {
   background-color: rgba(0,0,0,0) !important;
   box-shadow: none !important;
@@ -180,7 +186,8 @@ a.is-active {
 }
 
 .managing-option .icon {
-  width: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .dropdown-modal-action {
@@ -191,60 +198,72 @@ a.is-active {
 }
 
 /* Final Total Sum */
-.final-total-sum-wrap {
+.final-total-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   text-align: center;
   border-radius: 20px;
   box-shadow: 1px 1px 3px 1px #dadce0;
-  padding: 1rem 0;
+  padding: 20px 0;
   margin-bottom: 1rem;
+  background: linear-gradient(to bottom, #7ec4df, #6e87dc);
+  color: #fff;
 }
 
-/* Progress Bar */
-.progress {
-  /* background-color: #d8d8d8;
-  border-radius: 20px;
-  position: relative;
-  margin: 0.5rem auto;
-  height: 5px;
-  width: 90%;
-  overflow: hidden; */
+.final-total-wrap .left-side {
+  display: grid;
+  grid-template-columns: 0.2fr 0.8fr;
+}
 
-  background-color: #d8d8d8;
-  border-radius: 50%;
-  position: relative;
-  height: 100px;
-  width: 100px;
+.final-nutrition-total {
+  display: grid;
+  grid-template-rows: repeat(3, 3rem);
+  padding: 0.25rem 2rem 0 1rem;
+}
+
+.final-nutrition-total > div {
+  display: grid;
+  grid-template-columns: 0.55fr 1.5fr;
+  align-items: center;
+}
+
+.final-nutrition-total img {
+  width: 1.2rem;
   margin: 0 auto;
 }
+.final-nutrition-total p {
+  font: normal 400 1.2rem 'Noto Sans KR';
+  text-align: right;
+}
 
-.progress-done {
-  /* background: linear-gradient(315deg, #ff5656, #ffa886);
-  box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 0;
-  opacity: 0;
-  transition: 1s ease 0.3s;
+.final-nutrition-total span {
+  font-weight: 600;
+}
+
+/* Progress */
+.progress {
+  position: relative;
+}
+
+.donut-chart {
+  width: 130px;
+  height: 130px;
+}
+
+.progress .icon {
+  width: 1.2rem;
+  height: 1.2rem;
   position: absolute;
-  top: 0;
-  left: 0; */
-  
-  background: linear-gradient(315deg, #ff5656, #ffa886);
-  box-shadow: 0 3px 3px -5px #ff8484, 0 1px 0.4px #dcd1ff;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 0.8rem;
-  width: 0;
-  opacity: 0;
-  transition: 1s ease 0.3s;
+  top: 23%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.progress p {
   position: absolute;
-  top: 0;
-  left: 0;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* Description + Image */
@@ -253,39 +272,46 @@ a.is-active {
   padding: 1rem;
   margin-bottom: 1rem;
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 100px;
+  grid-template-columns: 1.75fr 1.25fr;
+  grid-template-rows: 120px;
 }
 
 .is-desc p {
-  font: normal 500 1.2rem/22px 'Noto Sans KR';
+  font: normal 600 1.2rem 'Noto Sans KR';
   margin: 0;
 }
 
-.is-desc span {
-  font-size: 1rem;
-}
-
 .is-desc button {
-  background-color: rgba(66, 30, 30, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   border: none;
-  padding: 4px 8px;
+  padding: 0.25rem 0 0.25rem 0.5rem;
   box-shadow: 1px 1px 3px 1px #dadce0;
-  font-size: 0.8rem;
+  font: normal 500 0.8rem 'Noto Sans KR';
   margin-top: 1rem;
-  display: flex;
-  align-items: center;
 }
 
-.is-desc .icon {
+.is-desc button i {
   width: 1rem;
   height: 1rem;
-  margin-left: 0.5rem;
 }
 
-.is-desc-img {
-  background: url(../public/empty.jpg) no-repeat center top / 100%;
+.is-desc-food-img {
+  height: 82%;
+  background: url(../public/burger.png) no-repeat -100% 54% / 106%;
+}
+
+.is-desc-review-img {
+  height: 82%;
+  background: url(../public/pencil.png) no-repeat right 54% / 80%;
+}
+
+.shadow-img {
+  width: 60%;
+  height: 18%;
+  float: right;
+  margin-right: 1rem;
+  background: url(../public/shadow.png) no-repeat center 54% / 100%;
 }
 
 /* Meal */
@@ -324,48 +350,15 @@ a.is-active {
   height: 100%;
   box-sizing: border-box;
   border-radius: 20px;
-}
-/* Add food*/
-.add-food-wrap {
-  padding: 0 1rem 1rem 1rem;
-}
+}  
 
-.add-food-wrap .add-food-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  height: 1.5rem;
-  position: relative;
-}
-
-.add-food-header > span {
-  font: normal 600 1.2rem 'Noto Sans KR';
-}
-
-.add-food-header .icon {
-  margin-right: 0.5rem;
-}
-
-.add-food-header > a {
-  background-color: #ff5656;
-  width: 1.5rem;
-  height: 1.5rem;
-  border-radius: 50%;
-  text-align: center;
-  color: #fff;
-  position: absolute;
-  top: -12px;
-  right: -4px;
-}
-
-/* Review */
-.review-open {
+/* review */
+.reviewOpen {
   position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   height: 100%;
-  /* flex-shrink: 0; */
   margin: 0;
   padding: 0 1rem;
   text-align: left;
@@ -376,22 +369,22 @@ a.is-active {
   z-index: 30;
 }
 
-.review-modal {
+.reviewModal {
   margin-top: 3vh;
   position: relative;
 }
 
-.review-modal-header {
+.reviewModalHeader {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
-  height: 24px;
 }
-.review-modal-form {
+
+.reviewModalForm {
   width: 100%;
 }
 
-.review-modal-form > textarea {
+.reviewModalForm > textarea {
   border: none;
   width: 100%;
   height: 100vh;

@@ -1,14 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, MouseEventHandler } from "react";
 import { getUserOrRedirect } from "../../../util/auth";
 import clientPromise from "../../../util/mongodb";
+import { patchStaticAxios, postStaticAxios } from "../../../util/axios";
+//component
 import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
-import ChallengeModify from "../../../components/challenge/List/ChallengeModify";
-import axios from "axios";
+
+//css
 import { Image } from "semantic-ui-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleLeft, faUser } from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "semantic-ui-react";
+import ChallengeStyles from "../../../styles/challenge/Challenge.module.css";
+import ImageStyle from "../../../styles/challenge/Input.module.css";
+import { useRouter } from "next/dist/client/router";
 
 const ChallengePage = ({ originalChallenge, user }) => {
   const [challenge, setChallenge] = useState(originalChallenge);
+  //좋아요 버튼
+  const router = useRouter();
+  const handleClick = async (event) => {
+    const { data } = await postStaticAxios(
+      "/api/challenge/like?id=" + challenge._id,
+      user.token,
+      {}
+    );
+    const newChallenge = data.challenge;
+    setChallenge((chal) => {
+      const newState = { ...chal };
+      newState.likes = newChallenge.likes;
+      return newState;
+    });
+    // newChallenge로 setChallenge 해서 덮어 쓰거나
+    // setChallenge에서 likes 배열만 바꾸기
+  };
+
+  // 좋아요 취소 버튼
+
+  const handleDislike = async (event) => {
+    const { data } = await patchStaticAxios(
+      "/api/challenge/like?id=" + challenge._id,
+      user.token
+    );
+    const newChallenge = data.challenge;
+    setChallenge((chal) => {
+      const newState = { ...chal };
+      newState.likes = newChallenge.likes;
+      return newState;
+    });
+  };
+
+  const countChallengeDate = () => {
+    const weeks = Math.round(challenge.dateDiff / 7);
+    if (challenge.dateDiff < 7) {
+      return <div>{challenge.dateDiff}일</div>;
+    } else {
+      return <div>{weeks}주</div>;
+    }
+  };
+  const changeDateStr = () => {
+    const newStartDateStr =
+      new Date(challenge.startDate).getFullYear() +
+      "년" +
+      (new Date(challenge.startDate).getMonth() + 1) +
+      "월" +
+      new Date(challenge.startDate).getDate() +
+      "일";
+    const newEndDateStr =
+      new Date(challenge.endDate).getFullYear() +
+      "년" +
+      (new Date(challenge.endDate).getMonth() + 1) +
+      "월" +
+      new Date(challenge.endDate).getDate() +
+      "일";
+    return (
+      <div>
+        {newStartDateStr}~{newEndDateStr}
+      </div>
+    );
+  };
 
   const changeRecipeName = () => {
     switch (challenge.recipe.category) {
@@ -33,9 +103,16 @@ const ChallengePage = ({ originalChallenge, user }) => {
   return (
     <>
       <div className="container">
+        <div style={{ margin: "0" }}>
+          <FontAwesomeIcon
+            icon={faAngleDoubleLeft}
+            className={ImageStyle.image4}
+            onClick={() => router.back()}
+          />
+        </div>
         <div className="image">
           <Image
-            className="challengeImage"
+            className={ImageStyle.mImage}
             src={process.env.NEXT_PUBLIC_STATIC_SERVER_URL + challenge.image}
             layout="fill"
             objectPosition="top"
@@ -43,15 +120,54 @@ const ChallengePage = ({ originalChallenge, user }) => {
         </div>
         <br />
         <h2>{challenge.title}</h2>
+        <div style={{ display: "flex" }}>
+          <div
+            style={{
+              fontSize: "16px",
+              fontWeight: "bold",
+              width: "36px",
+              borderRadius: "0.3rem",
+              textAlign: "center",
+              backgroundColor: "lightgrey",
+              margin: "0 10px",
+            }}
+          >
+            {countChallengeDate()}
+          </div>
+          <div
+            style={{ fontSize: "16px", fontWeight: "bold", marginRight: "5px" }}
+          >
+            <FontAwesomeIcon icon={faUser} className={ImageStyle.image3} />
+            {challenge.participants.length}명
+          </div>
+          {challenge.likes.indexOf(user.id) === -1 ? (
+            <div style={{ fontSize: "16px" }}>
+              <Icon
+                className="heart outline"
+                size="large"
+                onClick={handleClick}
+              />
+              {challenge.likes.length}
+            </div>
+          ) : (
+            <div style={{ fontSize: "16px" }}>
+              <Icon
+                className="heart"
+                color="red"
+                size="large"
+                onClick={handleDislike}
+              />
+              {challenge.likes.length}
+            </div>
+          )}
+        </div>
 
-        <h3>작성자:{challenge.author[0].name}</h3>
-        <h3>
-          시작일: {new Date(challenge.startDate).toLocaleDateString()}
-          <br />
-          종료일:
-          {new Date(challenge.endDate).toLocaleDateString()}
-        </h3>
-
+        <hr className={ChallengeStyles.hr2} />
+        <div style={{ margin: "10px 0" }}>
+          <h3 className={ChallengeStyles.h3Mt}>챌린지 기간</h3>
+          <h3>{changeDateStr(challenge.startDate, challenge.endDate)}</h3>
+        </div>
+        <hr className={ChallengeStyles.hr2} />
         <div>
           {!(challenge.participants.indexOf(user.id) === -1) ? (
             <>
@@ -71,7 +187,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   )}
                   <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
                   <h3>다이어트 완료 조건:{challenge.diet.condition}일</h3>
-                  <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               ) : (
                 <>
@@ -79,28 +194,31 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <h3>챌린지 종류: 레시피</h3>
                   <h3>{changeRecipeName()}</h3>
                   <h3>레시피 완료 조건:{challenge.recipe.uploadCount}회</h3>
-                  <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
               <hr />
               {challenge.author[0]._id === user.id ? (
                 <>
-                  <footer
-                    style={{
-                      position: "fixed",
-                      left: 0,
-                      bottom: "7vh",
-                      width: "100vw",
-                      height: "10vh",
-                      display: "flex",
-                      alignItems: "center",
-                      backgroundColor: "white",
-                      justifyContent: "space-around",
-                      border: "2px solid gray",
-                    }}
-                  >
-                    Menu
-                    <ChallengeModify
+                  <footer className={ChallengeStyles.footer}>
+                    {challenge.likes.indexOf(user.id) === -1 ? (
+                      <div>
+                        <Icon
+                          className="heart outline"
+                          size="large"
+                          onClick={handleClick}
+                        />
+                      </div>
+                    ) : (
+                      <div>
+                        <Icon
+                          className="heart"
+                          color="red"
+                          size="large"
+                          onClick={handleDislike}
+                        />
+                      </div>
+                    )}
+                    <ChallengeCancel
                       user={user}
                       challenge={challenge}
                       setChallenge={setChallenge}
@@ -110,21 +228,27 @@ const ChallengePage = ({ originalChallenge, user }) => {
               ) : (
                 <>
                   <>
-                    <footer
-                      style={{
-                        position: "fixed",
-                        left: 0,
-                        bottom: "7vh",
-                        width: "100vw",
-                        height: "10vh",
-                        display: "flex",
-                        alignItems: "center",
-                        backgroundColor: "white",
-                        justifyContent: "space-around",
-                        border: "2px solid gray",
-                      }}
-                    >
-                      Menu
+                    <footer className={ChallengeStyles.footer}>
+                      {challenge.likes.indexOf(user.id) === -1 ? (
+                        <div style={{ fontSize: "16px" }}>
+                          <Icon
+                            className="heart outline"
+                            size="large"
+                            onClick={handleClick}
+                          />
+                          {challenge.likes.length}
+                        </div>
+                      ) : (
+                        <div style={{ fontSize: "16px" }}>
+                          <Icon
+                            className="heart"
+                            color="red"
+                            size="large"
+                            onClick={handleDislike}
+                          />
+                          {challenge.likes.length}
+                        </div>
+                      )}
                       <ChallengeCancel
                         user={user}
                         challenge={challenge}
@@ -160,25 +284,30 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <h3>챌린지 종류: 레시피 </h3>
                   <h3>{changeRecipeName()}</h3>
                   <h3>레시피 완료 조건:{challenge.recipe.uploadCount}회</h3>
-                  <h3>참가자 인원:{challenge.participants.length}명</h3>
                 </>
               )}
               <hr />
-              <footer
-                style={{
-                  position: "fixed",
-                  left: 0,
-                  bottom: "7vh",
-                  width: "100vw",
-                  height: "10vh",
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "white",
-                  justifyContent: "space-around",
-                  border: "2px solid gray",
-                }}
-              >
-                Menu
+              <footer className={ChallengeStyles.footer}>
+                {challenge.likes.indexOf(user.id) === -1 ? (
+                  <div style={{ fontSize: "16px" }}>
+                    <Icon
+                      className="heart outline"
+                      size="large"
+                      onClick={handleClick}
+                    />
+                    {challenge.likes.length}
+                  </div>
+                ) : (
+                  <div style={{ fontSize: "16px" }}>
+                    <Icon
+                      className="heart"
+                      color="red"
+                      size="large"
+                      onClick={handleDislike}
+                    />
+                    {challenge.likes.length}
+                  </div>
+                )}
                 <ChallengeJoin
                   user={user}
                   challenge={challenge}

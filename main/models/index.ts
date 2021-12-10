@@ -83,3 +83,33 @@ export interface Ingredient {
   food_id: number;
   quantity: number;
 }
+
+export type LiveData = {
+  name: string;
+  message: string;
+  date?: Date;
+};
+
+export class UserBmr {
+  gender: string;
+  heightFeet: number | "";
+  weight: number | "";
+  age: number | "";
+  bmr: number | "";
+  activity: number | "";
+  error: string;
+  flag: boolean;
+  system: string;
+
+  constructor() {
+    this.gender = "1";
+    (this.weight = ""),
+      (this.age = ""),
+      (this.activity = ""),
+      (this.error = ""),
+      (this.flag = false),
+      (this.system = ""),
+      (this.heightFeet = ""),
+      (this.bmr = "");
+  }
+}

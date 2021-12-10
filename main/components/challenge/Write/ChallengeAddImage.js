@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 //css
-
+import { Icon } from "semantic-ui-react";
+import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
+import ImageStyle from "../../../styles/challenge/Input.module.css";
 const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
   //이미지 업로드
@@ -33,6 +35,8 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
       setError(true);
     }
   };
+  // FontAwesome 아이콘
+
   return (
     <div
       className="ui rounded image"
@@ -49,7 +53,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             <i className="frown outline icon"></i>
           </p>
         )}
-        <h3 style={{ textAlign: "left" }}>챌린지를 설명할 사진 추가</h3>
+        <h3 className={ChallengeStyle.h2}>챌린지를 설명할 사진 추가</h3>
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -61,14 +65,14 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                   }") no-repeat center/cover`
                 : 'url("/empty.jpg") no-repeat center/cover',
             width: "100%",
-            height: "10vh",
+            height: "20vh",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
             color: "white",
-            marginBottom: "16px",
+            margin: "20px 0",
             boxShadow: "1px 1px 3px 1px #dadce0",
           }}
         >
@@ -83,7 +87,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                   style={{ display: "none" }}
                   onChange={handleImageUpload}
                 />
-                <i className="huge images outline icon"></i>
+                <Icon name="plus" size="big" color="black" />
               </label>
             </>
           )}

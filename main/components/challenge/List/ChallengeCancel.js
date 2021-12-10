@@ -1,8 +1,10 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
 import axios from "axios";
+import { Router, useRouter } from "next/dist/client/router";
 
 const ChallengeCancel = ({ challenge, setChallenge }) => {
+  const router = useRouter();
   const handleCancel = async (e) => {
     if (confirm("취소하시겠습니까?")) {
       try {
@@ -12,6 +14,7 @@ const ChallengeCancel = ({ challenge, setChallenge }) => {
         console.log(data);
         alert("취소하셨습니다");
         setChallenge({ ...challenge, ...data.challenge });
+        router.push("/challenge");
       } catch (error) {
         alert(error.message);
       }

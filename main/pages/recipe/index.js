@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 
 import clientPromise from "../../util/mongodb";
@@ -18,14 +18,18 @@ const Index = ({ user, filteredHitRecipes, myRecipes }) => {
     tempData += myRecipes[key].hit;
   }
   const [totalHit, setTotalHit] = useState(tempData);
+  const [currentURL, setCurrentURL] = useState("/recipe");
 
   return (
     <div className={mainStyles.container}>
       <Head>
         <title>요건 다 내꺼! - 레시피</title>
       </Head>
-      <Navigation></Navigation>
-      <CardsSwiper filteredHitRecipes={filteredHitRecipes}></CardsSwiper>
+      <Navigation currentURL={currentURL}></Navigation>
+      <CardsSwiper
+        user={user}
+        filteredHitRecipesProps={filteredHitRecipes}
+      ></CardsSwiper>
       <MyDashboard
         countMyRecipes={myRecipes.length}
         totalHit={totalHit}

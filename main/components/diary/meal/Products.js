@@ -2,6 +2,10 @@ import React, { useState, useRef } from "react";
 import axios from "axios";
 import RecipeModal from "./RecipeModal";
 import FoodModal from "./FoodModal";
+import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiDish } from "react-icons/bi";
+import { IoNutritionOutline } from "react-icons/io5";
+
 import { debounce } from "../../../util/axios";
 
 export default function Products({ diary, setDiary, type, }) {
@@ -92,19 +96,17 @@ export default function Products({ diary, setDiary, type, }) {
       >
         <input
           type="text"
-          placeholder="음식 검색하기"
+          placeholder="음식을 검색하세요"
           onChange={(event) => handleSearch(event)}
-          style={{borderRadius: '10px'}}
+    style={{borderRadius: '10px', height: '3rem', font: 'normal 400 1.2rem "Noto Sans KR"'}}
         />
-        <i className="search icon" style={{ right: "8px" }}></i>
+        <i className="search icon" style={{ fontSize:'1.6rem' }}></i>
       </div>
 
-      <div style={{ paddingTop: "1rem" }}>
-        <div
-          className="ui middle aligned selection list"
-          style={{ textAlign: "left" }}
-        >
-          <i className="book icon"></i>레시피
+      <div className={MealStyles.ProductWrap}>
+        <div className="ui middle aligned selection list">
+          <BiDish size='1.2rem' />
+          <span>레시피</span>
           {filteredRecipeData.length !== 0 &&
             filteredRecipeData.map((value, index) => {
               return (
@@ -120,11 +122,9 @@ export default function Products({ diary, setDiary, type, }) {
               );
             })}
         </div>
-        <div
-          className="ui middle aligned selection list"
-          style={{ textAlign: "left" }}
-        >
-          <i className="lemon icon"></i>음식 &amp; 재료
+        <div className="ui middle aligned selection list">
+          <IoNutritionOutline size='1.2rem' />
+          <span>음식 &amp; 재료</span>
           {filteredData.length !== 0 &&
             filteredData.map((value, index) => {
               return (

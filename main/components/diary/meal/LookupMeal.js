@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { PAGE_CART } from "./AddFood";
 import List from "./List";
+import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiChevronLeft, BiEdit } from "react-icons/bi";
 
 const PAGE_PRODUCTS = "products";
-const mealType = ["BREAKFAST", "LUNCH", "DINNER", "SNACK"];
+const mealType = ["아침", "점심", "저녁", "간식"];
 
 const LookupMeal = ({
   diary,
@@ -50,24 +52,19 @@ const LookupMeal = ({
   };
 
   return (
-    
-    <div style={{padding: '0 1rem 1rem 1rem'}}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: "16px"}}>
-        <i
-          className="angle left icon"
-          onClick={(e) => {
-            setWritingMode("DEFAULT");
-          }}
-          style={{fontSize: '1.6rem', marginTop: 6}}
-        ></i>
+    <div className={MealStyles.lookupMealWrap}>
+      <div className={MealStyles.lookupMealHeader}>
+        <BiChevronLeft
+          size='2rem'
+          onClick={(e) => {setWritingMode("DEFAULT")}}
+        />
 
-        <span style={{font:"normal 600 1.2rem 'Noto Sans KR'"}}>
+        <span>
           {mealType[type]}
         </span>
 
-        <i
-          className="edit icon"
-          style={{fontSize: '1.4rem', marginTop: 6}}
+        <BiEdit
+          size='2rem'
           onClick={() =>
             setDiary((diary) => {
               const newDiary = { ...diary };
@@ -76,50 +73,37 @@ const LookupMeal = ({
               return newDiary;
             })
           }
-        >
-        </i>
+        />
       </div>
 
-      <div style={{ width: "100%", height: "40vh", boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '20px'}}>
+      <div className={MealStyles.lookupMealImg}>
         <img
           src={
             diary.meals[type].imageBuffer ||
             process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image
           }
-          style={{ objectFit: "cover", width: "100%", height: "100%", borderRadius: '20px' }}
         />
       </div>
 
-      <div
-        className="ui large horizontal divided list"
-        style={{ display: "flex", textAlign: 'center', boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '20px', padding: '1.6rem 0'}}
-      >
-        <div className="item" style={{ width: "25%" }}>
-          <div className="content" style={{ marginBottom: "8px" }}>
-            칼로리
-          </div>
-          <div className="header">{mealNutritionTotal.kcal}kcal</div>
+      <div className={MealStyles.lookupMealList}>
+        <div>
+          <div>칼로리</div>
+          <div>{mealNutritionTotal.kcal}kcal</div>
         </div>
 
-        <div className="item" style={{ width: "25%" }}>
-          <div className="content" style={{ marginBottom: "8px" }}>
-            탄수화물
-          </div>
-          <div className="header">{mealNutritionTotal.carbs}g</div>
+        <div>
+          <div>탄수화물</div>
+          <div>{mealNutritionTotal.carbs}g</div>
         </div>
 
-        <div className="item" style={{ width: "25%" }}>
-          <div className="content" style={{ marginBottom: "8px" }}>
-            단백질
-          </div>
-          <div className="header">{mealNutritionTotal.prot}g</div>
+        <div>
+          <div>단백질</div>
+          <div>{mealNutritionTotal.prot}g</div>
         </div>
 
-        <div className="item" style={{ width: "25%" }}>
-          <div className="content" style={{ marginBottom: "8px" }}>
-            지방
-          </div>
-          <div className="header">{mealNutritionTotal.fat}g</div>
+        <div>
+          <div>지방</div>
+          <div>{mealNutritionTotal.fat}g</div>
         </div>
       </div>
 
@@ -130,8 +114,6 @@ const LookupMeal = ({
       </div>
 
       <button
-        className="ui fluid button teal"
-        style={{boxShadow: '1px 1px 3px 1px #dadce0', borderRadius: '20px'}}
         onClick={() =>
           setDiary((diary) => {
             const newDiary = { ...diary };

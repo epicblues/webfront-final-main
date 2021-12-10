@@ -1,5 +1,5 @@
 import React from "react";
-import modalBlackoutStyles from "../../../../styles/ModalBlackout.module.css";
+import modalBlackoutStyles from "../../../../styles/recipe/ModalBlackout.module.css";
 
 const MeasuringModalBlackout = ({ handleSetIsMeasuringModalVisible }) => {
   return (

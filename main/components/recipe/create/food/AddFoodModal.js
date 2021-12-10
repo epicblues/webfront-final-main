@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import modalStyles from "../../../../styles/Modal.module.css";
+import modalAddFoodStyles from "../../../../styles/recipe/ModalAddFood.module.css";
 import SelectedFoodMap from "./SelectedFoodMap";
 import { debounce } from "../../../../util/axios";
 
@@ -30,49 +30,79 @@ const AddFoodModal = ({
   };
 
   return (
-    <div className={modalStyles.container}>
-      <div>
-        <h3>재료 검색하기</h3>
-        <input
-          autoFocus={true}
-          type="text"
-          placeholder="음식/제품명 검색하기"
-          onChange={(event) => handleSearch(event)}
-        />
-        {!isDataSelected && (
-          <div>
-            {filteredData.map((value, index) => {
-              return (
-                //  검색 리스트 출력
-                <div className={modalStyles.products} key={Math.random()}>
-                  <div>
-                    <span key={Math.random()}>{value.name}</span>/
-                    <span>{value.mfr}</span>
-                    <button type="button" onClick={() => onSelectBtn(value)}>
-                      선택
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+    <div className={modalAddFoodStyles.container}>
+      {selectedData.length === 0 ? (
+        <div className={modalAddFoodStyles.searchWrapper}>
+          <h3>재료 추가하기</h3>
+          <input
+            className={modalAddFoodStyles.searchInput}
+            autoFocus={true}
+            type="text"
+            placeholder="음식/제품명 검색하기"
+            onChange={(event) => handleSearch(event)}
+          />
+          <div className={modalAddFoodStyles.resultHeader}>
+            <span>이름</span>
+            <span>제조사</span>
           </div>
-        )}
-      </div>
-      <div>
-        <SelectedFoodMap
-          foodData={foodData}
-          setFoodData={setFoodData}
-          selectedData={selectedData}
-          setIsModalVisible={setIsModalVisible}
-          isDataSelected={isDataSelected}
-          nutritionData={nutritionData}
-          setNutritionData={setNutritionData}
-        />
-      </div>
-      <div>
-        <button type="button" onClick={() => onCancelBtn(false)}>
-          취소
-        </button>
+          <div className={modalAddFoodStyles.resultWrapper}>
+            {!isDataSelected && (
+              <>
+                {filteredData.map((value, index) => {
+                  return (
+                    //  검색 리스트 출력
+                    <div
+                      className={modalAddFoodStyles.products}
+                      key={Math.random()}
+                    >
+                      <span
+                        className={modalAddFoodStyles.name}
+                        key={Math.random()}
+                      >
+                        {value.name}
+                      </span>
+                      <span className={modalAddFoodStyles.mfr}>
+                        {value.mfr}
+                      </span>
+                      <div
+                        className={modalAddFoodStyles.btnAdd}
+                        onClick={() => onSelectBtn(value)}
+                      >
+                        <i className="plus circle icon"></i>
+                      </div>
+                    </div>
+                  );
+                })}
+              </>
+            )}
+          </div>
+        </div>
+      ) : (
+        <div className={modalAddFoodStyles.cartWrapper}>
+          <h3>추가할 재료</h3>
+          <div className={modalAddFoodStyles.cartItems}>
+            {selectedData.length === 0 ? null : (
+              <>
+                <SelectedFoodMap
+                  foodData={foodData}
+                  setFoodData={setFoodData}
+                  selectedData={selectedData}
+                  setIsModalVisible={setIsModalVisible}
+                  isDataSelected={isDataSelected}
+                  nutritionData={nutritionData}
+                  setNutritionData={setNutritionData}
+                />
+              </>
+            )}
+          </div>
+        </div>
+      )}
+
+      <div
+        className={modalAddFoodStyles.cancelBtn}
+        onClick={() => onCancelBtn(false)}
+      >
+        <p>취소</p>
       </div>
     </div>
   );

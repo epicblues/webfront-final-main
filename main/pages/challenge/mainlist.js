@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
+import Link from "next/dist/client/link";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
+//css
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
-import ButtonStyle from "../../styles/challenge/Button.module.css";
+import ImageStyle from "../../styles/challenge/Input.module.css";
 
 const MainList = ({ challenges, user }) => {
   const challengeIndexes = [];
@@ -11,6 +15,26 @@ const MainList = ({ challenges, user }) => {
     challengeIndexes.push(i);
   }
   const [challengeIndex, setChallengeIndex] = useState(1);
+
+  const useInfiniteScroll = () => {
+    const [page, setPage] = useState(1);
+    const handleScroll = () => {
+      const scrollHeight = document.documentElement.scrollHeight;
+      const scrollTop = document.documentElement.scrollTop;
+      const innerHeight = window.innerHeight;
+      if (scrollHeight <= scrollTop + innerHeight) {
+        setPage((page) => page + 1);
+      }
+      return;
+    };
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  return page;
 
   const selectChallenges = (index) => {
     const pickedChallenges = [];
@@ -28,7 +52,17 @@ const MainList = ({ challenges, user }) => {
     <>
       <div className="container">
         <div>
-          <h2>챌린지 리스트</h2>
+          <div className={ChallengeStyle.header}>
+            <Link passHref href={"/challenge"}>
+              <FontAwesomeIcon
+                icon={faAngleDoubleLeft}
+                className={ImageStyle.image4}
+              />
+            </Link>
+          </div>
+          <h2 className={ChallengeStyle.h2C}>챌린지 리스트</h2>
+          <hr className={ChallengeStyle.hr3} />
+
           {challenges.length > 0 ? (
             <ChallengeMainList
               challenges={selectChallenges(challengeIndex)}
@@ -37,18 +71,6 @@ const MainList = ({ challenges, user }) => {
           ) : (
             <h2>No Challenges</h2>
           )}
-          {challengeIndexes.map((index) => (
-            <div className={ChallengeStyle.item2} key={index}>
-              <button
-                className={ButtonStyle.listButton}
-                onClick={() => {
-                  setChallengeIndex(index);
-                }}
-              >
-                {index}
-              </button>
-            </div>
-          ))}
         </div>
       </div>
     </>

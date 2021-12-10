@@ -1,11 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
+import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiPlusCircle, BiCheckCircle } from "react-icons/bi";
 
 const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   const inputRef = useRef();
   const [exampleQtt, setExampleQtt] = useState(1);
   const [error, setError] = useState(false);
-
+  const [foodChecked, setFoodChecked] = useState(false);
   const onAddBtn = (food) => {
     const quantity = +inputRef.current.value;
     if (!/^\d{1}$/.test(quantity)) {
@@ -20,38 +22,23 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   };
 
   return (
-    <div className="item" key={index} style={{ padding: "8px 0 8px 0" }}>
-      <div
-        style={{
-          textAlign: "left",
-          display: "grid",
-          gridTemplateColumns: "9.75fr 0.25fr",
-        }}
-      >
-        <div>
+    <div className={MealStyles.modalItem} key={index}>
+      <div>
           <Modal
             onClose={() => handleModal(index)}
             onOpen={() => handleModal(index)}
             open={open[index]}
             trigger={
-              <div
-                className="content"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div className="header">
-                  {value.title}
-                  <div className="description">{value.qtt}인분</div>
-                </div>
-                <div
-                  className="right floated"
-                  style={{ margin: "8px 10px 0 0" }}
-                >
-                  {value.nutrition.kcal}Kcal
-                </div>
-              </div>
+                      <div className={MealStyles.content}>
+                        <div className={MealStyles.header}>
+                          {value.title}
+                          <div className={MealStyles.description}>
+                            {value.qtt}인분</div>
+                        </div>
+                        <div className={MealStyles.calorie}>
+                          {value.nutrition.kcal}Kcal
+                        </div>
+                      </div>
             }
           >
             <Modal.Header>
@@ -180,22 +167,21 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
               />
             </Modal.Actions>
           </Modal>
-        </div>
-        <i
-          className="teal large plus circle icon"
-          onClick={(e) => {
-            console.log(value);
-            const copiedValue = {...value, quantity : value.qtt}
-            addToCart(copiedValue);
-
-            e.currentTarget.className = "green large check circle icon";
-            const targetReverse = (target) => () => {
-              target.className = "teal large plus circle icon";
-            };
-            setTimeout(targetReverse(e.currentTarget), 500);
-          }}
-          style={{ marginTop: "5px" }}
-        ></i>
+          {!foodChecked ? (<BiPlusCircle
+            size='1.5rem'
+            color='#ff5656'
+            onClick={(e) => {
+              console.log("야호!")
+              // console.log(value);
+              const copiedValue = {...value , quantity : 1}
+              addToCart(copiedValue);
+              setFoodChecked(true);
+              setTimeout(() => {
+                setFoodChecked(false)
+              }, 500)
+            }}
+          />) : <BiCheckCircle className='icon' size='1.5rem' color='#ff5656' />
+          }
       </div>
     </div>
   );

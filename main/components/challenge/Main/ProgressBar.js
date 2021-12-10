@@ -8,7 +8,7 @@ const ProgressBar = ({ value, max }) => {
     <div>
       <progress className={ProgressStyle.progress} value={value} max={max} />
       <span style={{ fontWeight: "600px", textAlign: "center" }}>
-        {(value / max) * 100}%
+        {Math.round((value / max) * 100)}
       </span>
     </div>
   );

@@ -5,8 +5,47 @@
   border-radius: 6px;
   font-size: 16px;
 }
+.mImage {
+  width: 100vw;
+  height: 30vh;
+  position: absolute;
+}
 .image {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   color: #4f4f4f;
+}
+.image2 {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 30px;
+  color: white;
+}
+.image3 {
+  width: 20px;
+  height: 20px;
+}
+.image4 {
+  width: 24px;
+  height: 28px;
+  margin: 0;
+}
+.nav {
+  margin-top: 10px;
+  text-align: center;
+  margin: 0 20px;
+  color: #000;
+  font: normal normal normal 1.2rem/22px "Noto Sans KR";
+}
+.navDiv {
+  display: flex;
+  position: fixed;
+  height: 5vh;
+  top: 8vh;
+  z-index: 5;
+  align-items: center;
+  width: 100vw;
+  background-color: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.664);
 }
