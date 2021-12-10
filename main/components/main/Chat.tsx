@@ -21,7 +21,7 @@ const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: { liveData: L
   return (
     <>
       <form onSubmit={(e) => { e.preventDefault() }} style={{ border: "2px solid", borderRadius: "20px", borderColor: MIDDLE_COLOR, padding: "6px", }} >
-        <div style={{ display: 'flex', flexDirection: "column", overflow: "scroll", height: largeMode ? "15vh" : "49px", fontSize: '0.85em', transition: "all 500ms" }} ref={chatRoom} >
+        <div style={{ display: 'flex', flexDirection: "column", overflowY: "scroll", height: largeMode ? "16vh" : "40px", fontSize: '0.85em', transition: "all 500ms" }} ref={chatRoom} >
           {liveData.map((data, index) =>
           (<div style={{ display: 'flex', justifyContent: "space-between", transition: "all 500ms", color: "black" }} key={index}>
             <span style={{ fontWeight: data.name === "Admin" ? 700 : undefined, background: data.name === "Admin" ? MIDDLE_COLOR : undefined, borderRadius: "5px", padding: "0px 2px" }}>{data.name} : {data.message}</span>

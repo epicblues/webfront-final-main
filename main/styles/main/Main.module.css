@@ -29,6 +29,9 @@
   border: 2px solid rgb(247, 158, 136);
   border-radius: 20px 0 0 20px;
   padding: 0px 20px;
+  overflow-y: scroll;
+  scrollbar-width: 0.01px;
+  scrollbar-color: black;
 }
 
 .sideBar > :nth-child(1) {
@@ -62,4 +65,12 @@
 .buttonContainer span {
   font-size: 9px;
   margin-top: 7px;
+}
+
+.cancelArea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 50vw;
+  height: 100vh;
 }
