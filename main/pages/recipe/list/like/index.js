@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navigation from "../../../../components/recipe/index/Navigation";
 
-const index = () => {
+const Index = () => {
   const [currentURL, setCurrentURL] = useState("/recipe/list/like");
   return (
     <div>
@@ -10,4 +10,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

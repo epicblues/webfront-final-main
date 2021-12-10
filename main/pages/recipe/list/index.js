@@ -22,9 +22,9 @@ import { parseDocumentToObject } from "../../../util/date";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 // ICON
-import ci from "../../../public/static/logos/icon_check.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import loader from "../../../public/static/logos/logo04.png";
 
 const Index = ({ user, recipes }) => {
   const [currentURL, setCurrentURL] = useState("/recipe/list");
@@ -76,14 +76,23 @@ const Index = ({ user, recipes }) => {
   return (
     <div className={searchListStyles.main}>
       <Navigation currentURL={currentURL}></Navigation>
-      <Categories />
-      <h1>카테고리 : 전체</h1>
+      <Categories currentURL={currentURL} />
+      <h1>분류 : 전체</h1>
       <InfiniteScroll
         dataLength={recipeList.length}
         next={getMoreRecipes}
         hasMore={hasMore}
-        loader={<h3> 레시피 불러오는 중 ... </h3>}
-        endMessage={<h4>모든 레시피를 다 보여드렸어요!</h4>}
+        loader={
+          <div className={searchListStyles.loader}>
+            <p>불러오는 중.....⏳</p>
+            <Image width="50px" height="50px" src={loader} alt="logo03" />
+          </div>
+        }
+        endMessage={
+          <div className={searchListStyles.loader}>
+            <h4>✔모든 레시피를 다 보여드렸어요✔</h4>
+          </div>
+        }
       >
         <div className={searchListStyles.container}>
           {recipeList.map((card, index) => {

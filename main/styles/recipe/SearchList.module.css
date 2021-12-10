@@ -8,6 +8,11 @@
   text-align: center;
 }
 
+.loader {
+  margin: 3rem 0;
+  text-align: center;
+}
+
 .container {
   font-family: "NanumSquare";
   padding: 0 11vw;

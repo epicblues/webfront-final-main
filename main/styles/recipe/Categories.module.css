@@ -1,14 +1,32 @@
 .container {
-  place-items: center;
+  display: flex;
+  padding: 0 1rem;
+  font: normal 600 1.2rem "Noto Sans KR";
+  white-space: nowrap;
+}
+
+.containerTitle {
+  margin: 0 10px;
+  text-align: center;
+  font-size: 1.2rem;
+  white-space: nowrap;
 }
 
 .ul {
-  text-align: center;
-  display: flex;
-  list-style: none;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  row-gap: 0.5rem;
 }
-.ul li {
+
+.tab {
+  font-size: 1rem;
   text-align: center;
-  margin-right: 1rem;
+  margin: 0 10px;
+  color: #999;
+}
+
+.activated {
+  color: #333;
+  text-decoration: underline 3px #333;
 }
