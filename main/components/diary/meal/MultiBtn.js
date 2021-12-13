@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Button } from "semantic-ui-react";
 import MealStyles from '../../../styles/diary/Meal.module.css';
-
+import { BiChevronLeft } from "react-icons/bi";
 
 const MultiBtn = ({ text, color, onClick }) => {
   Button.propTypes = {
@@ -11,7 +11,7 @@ const MultiBtn = ({ text, color, onClick }) => {
   };
   return (
     <div className={MealStyles.multiBtn} onClick={onClick}>
-      <i className="angle left icon" style={{fontSize:'1.8rem'}}></i>
+      <BiChevronLeft size='2rem' />
       <p style={{color: color}}>{text}</p>
     </div>
   );

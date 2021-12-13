@@ -17,9 +17,9 @@ const getTwoDigitString = (num: number): string | number =>
 export const returnIdToDate = (dateId: string): Date => {
   // dateId "20210430"
 
-  const year = Number(dateId.substr(0, 4));
-  const month = Number(dateId.substr(4, 2)) - 1;
-  const day = Number(dateId.substr(6, 2));
+  const year = Number(dateId.substring(0, 4));
+  const month = Number(dateId.substring(4, 2)) - 1;
+  const day = Number(dateId.substring(6, 2));
   // 서버 시간이 다를 경우 한국 시간으로 return 시켜야 한다.
   const date = getKoreanDate(new Date(year, month, day));
 

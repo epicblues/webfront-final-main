@@ -20,6 +20,14 @@
   padding: 0 11vw;
 }
 
+.noLikes {
+  height: 40vh;
+  text-align: center;
+}
+.sadDoge {
+  position: relative;
+}
+
 .card {
   background-color: white;
   height: 45vh;

@@ -12,6 +12,7 @@ const FoodForm = ({
   setIsModalVisible,
   nutritionData,
   setNutritionData,
+  handleSetIsMeasuringModalVisible,
 }) => {
   const onModalBtn = (active) => {
     setIsModalVisible(active);
@@ -72,8 +73,15 @@ const FoodForm = ({
           </>
         )}
       </div>
-      <div className={createStyles.onModalBtn}>
-        <p onClick={() => onModalBtn(true)}>재료추가하기</p>
+      <div className={createStyles.modalBtnsWrapper}>
+        <div className={createStyles.onModalBtn}>
+          <p onClick={() => onModalBtn(true)}>재료추가하기</p>
+        </div>
+        <div className={createStyles.onMeasuringModal}>
+          <p onClick={() => handleSetIsMeasuringModalVisible(true)}>
+            <i class="question icon"></i>계량팁
+          </p>
+        </div>
       </div>
       <div>
         {isModalVisible && (

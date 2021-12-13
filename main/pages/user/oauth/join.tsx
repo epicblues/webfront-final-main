@@ -85,7 +85,10 @@ const Join = ({ email, type }: { email: string, type: string }) => {
       </form>
       <div style={{ width: "100vw", paddingTop: "5vw", display: 'flex', flexDirection: "column" }}>
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-        <button style={{ ...buttonStyle, padding: "10px 40px", transition: "all 500ms" }} onClick={handleClick} >제출</button>
+        {userBmr.activity > 1000 &&
+          <button style={{ ...buttonStyle, padding: "10px 40px", transition: "all 500ms" }} onClick={handleClick} >제출</button>
+
+        }
       </div>
     </div>
   )

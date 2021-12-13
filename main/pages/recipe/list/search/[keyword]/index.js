@@ -4,9 +4,6 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import Categories from "../../../../../components/recipe/index/Categories";
-import Search from "../../../../../components/recipe/index/Search";
-
 //CSS
 import recipeListStyles from "../../../../../styles/recipe/RecipeList.module.css";
 
@@ -41,8 +38,6 @@ const Index = ({ user, filteredRecipes, keyword }) => {
 
   return (
     <div>
-      <Search />
-      <Categories />
       <h1>검색어 : {keyword}</h1>
       <div>
         <ul className={recipeListStyles.cards}>

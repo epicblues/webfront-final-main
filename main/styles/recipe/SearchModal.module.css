@@ -1,3 +1,21 @@
+.container {
+  color: #111111;
+  background-color: white;
+  width: 80vw;
+  height: 70vh;
+  position: fixed;
+  overflow-y: unset;
+  left: 50%;
+  top: 45%;
+  padding: 1rem;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  border-radius: 0.6rem;
+  display: grid;
+  grid-template-rows: 55% 30% 15%;
+  text-align: center;
+}
+
 .inputWindow {
   display: inline-block;
   width: 366px;

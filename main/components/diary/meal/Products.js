@@ -3,6 +3,8 @@ import axios from "axios";
 import RecipeModal from "./RecipeModal";
 import FoodModal from "./FoodModal";
 import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiDish } from "react-icons/bi";
+import { IoNutritionOutline } from "react-icons/io5";
 
 import { debounce } from "../../../util/axios";
 
@@ -103,7 +105,7 @@ export default function Products({ diary, setDiary, type, }) {
 
       <div className={MealStyles.ProductWrap}>
         <div className="ui middle aligned selection list">
-          <i className="book icon" style={{ fontSize:'1.2rem' }}></i>
+          <BiDish size='1.2rem' />
           <span>레시피</span>
           {filteredRecipeData.length !== 0 &&
             filteredRecipeData.map((value, index) => {
@@ -121,7 +123,7 @@ export default function Products({ diary, setDiary, type, }) {
             })}
         </div>
         <div className="ui middle aligned selection list">
-          <i className="lemon icon" style={{ fontSize:'1.2rem' }}></i>
+          <IoNutritionOutline size='1.2rem' />
           <span>음식 &amp; 재료</span>
           {filteredData.length !== 0 &&
             filteredData.map((value, index) => {

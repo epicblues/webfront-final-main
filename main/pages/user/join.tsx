@@ -177,7 +177,9 @@ const Join = () => {
       </div>
       <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-        <button style={buttonStyle} onClick={handleClick}>제출</button>
+        {userBmr.activity > 1000 &&
+          <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+        }
       </div>
       <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>
 

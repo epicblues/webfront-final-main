@@ -16,6 +16,7 @@ import FoodRank from '../components/user/FoodRank';
 import LikeChallenge from '../components/user/likes/LikeChallenge';
 import LikeRecipe from '../components/user/likes/LikeRecipe';
 import mainStyle from '../styles/main/Main.module.css';
+import ShortNav from '../components/main/ShortNav';
 
 
 const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
@@ -46,7 +47,6 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
           return [...originalData, message]
         })
       }
-
     })
     setSocket(newSocket);
     return () => {
@@ -54,7 +54,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       newSocket.close();
       console.log("socket closed");
     }
-  }, [])
+  }, []) // 빈 배열일 경우 componentDidMount와 같은 효과
 
   return (
     <div>
@@ -93,7 +93,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
         </div>
 
         <div className={mainStyle.card} style={{ fontSize: "1em", }}>
-          <span style={{ fontSize: "1.2em", ...FLEXBOX_NORMAL }}>채팅 / 실시간 현황<button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", width: "30px", height: "30px", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setLargeMode(!largeMode) }}>+</button></span>
+          <span style={{ fontSize: "1.2em", ...FLEXBOX_NORMAL }}>채팅 / 실시간 현황<button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", width: "30px", height: "30px", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setLargeMode(!largeMode) }}>+</button></span>
           <br />
           <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
         </div>
@@ -108,22 +108,28 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       </div>
       <div className={mainStyle.sideBar} style={{ left: showLikesChallenge ? "50vw" : "100vw" }}>
         <div onClick={() => { setShowLikesChallenge(false) }}>
-          <button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesChallenge(false) }}><i className=
-            "icon hand point left outline" /></button>
+          <button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.1em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesChallenge(false) }}><i className=
+            "thumbs up outline icon" /></button>
 
         </div>
         <LikeChallenge />
-
       </div>
       <div className={mainStyle.sideBar} style={{ left: showLikesRecipe ? "50vw" : "100vw" }}>
         <div onClick={() => { setShowLikesRecipe(false) }}>
-          <button style={{ justifySelf: "", background: "pink", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesRecipe(false) }}><i className=
-            "icon hand point left outline" /></button>
+          <button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.1em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesRecipe(false) }}><i className=
+            "utensils icon" /></button>
 
         </div>
         <LikeRecipe />
 
       </div>
+      {(showLikesChallenge || showLikesRecipe) && (<div className={mainStyle.cancelArea} onClick={() => {
+        if (showLikesChallenge) setShowLikesChallenge(false);
+        if (showLikesRecipe) setShowLikesRecipe(false);
+      }}>
+
+      </div>)}
+      <ShortNav />
 
     </div >
   )

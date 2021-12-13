@@ -1,12 +1,13 @@
 import React, { useRef, useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiPlusCircle, BiCheckCircle } from "react-icons/bi";
 
 const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   const inputRef = useRef();
   const [exampleQtt,setExampleQtt] = useState(1);
   const [error, setError] = useState(false);
-
+  const [foodChecked, setFoodChecked] = useState(false);
   const onAddBtn = (food) => {
     const quantity = +(inputRef.current.value);
     if (!/^\d{1,3}$/.test(quantity)) {
@@ -141,21 +142,21 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
               />
             </Modal.Actions>
           </Modal>
-          <i
-            className="#ff5656 plus circle icon"
+          {!foodChecked ? (<BiPlusCircle
+            size='1.5rem'
+            color='#ff5656'
             onClick={(e) => {
-              console.log(value);
+              console.log("야호!")
+              // console.log(value);
               const copiedValue = {...value , quantity : 1}
               addToCart(copiedValue);
-
-              e.currentTarget.className = "green check circle icon";
-              const targetReverse = (target) => () => {
-                target.className = "#ff5656 plus circle icon";
-              };
-              setTimeout(targetReverse(e.currentTarget), 500);
+              setFoodChecked(true);
+              setTimeout(() => {
+                setFoodChecked(false)
+              }, 500)
             }}
-          >
-          </i>
+          />) : <BiCheckCircle className='icon' size='1.5rem' color='#ff5656' />
+          }
       </div>
     </div>
   );
