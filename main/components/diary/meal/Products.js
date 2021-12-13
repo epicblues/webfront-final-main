@@ -3,7 +3,7 @@ import axios from "axios";
 import RecipeModal from "./RecipeModal";
 import FoodModal from "./FoodModal";
 import MealStyles from '../../../styles/diary/Meal.module.css';
-import { BiDish } from "react-icons/bi";
+import { BiDish, BiSearch } from "react-icons/bi";
 import { IoNutritionOutline } from "react-icons/io5";
 
 import { debounce } from "../../../util/axios";
@@ -98,9 +98,9 @@ export default function Products({ diary, setDiary, type, }) {
           type="text"
           placeholder="음식을 검색하세요"
           onChange={(event) => handleSearch(event)}
-    style={{borderRadius: '10px', height: '3rem', font: 'normal 400 1.2rem "Noto Sans KR"'}}
+          style={{borderRadius: '10px', height: '3rem', font: 'normal 400 1.2rem "Noto Sans KR"'}}
         />
-        <i className="search icon" style={{ fontSize:'1.6rem' }}></i>
+        <BiSearch size='1.6rem' style={{position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)'}} />
       </div>
 
       <div className={MealStyles.ProductWrap}>
