@@ -26,6 +26,7 @@ export const Index = ({ user }) => {
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
   const [indexMeasuringModal, setIndexMeasuringModal] = useState(0);
   const handleSetIsMeasuringModalVisible = (active) => {
+    setIndexMeasuringModal(0);
     setIsMeasuringModalVisible(active);
   };
 
@@ -141,6 +142,9 @@ export const Index = ({ user }) => {
               setIsModalVisible={setIsModalVisible}
               nutritionData={nutritionData}
               setNutritionData={setNutritionData}
+              handleSetIsMeasuringModalVisible={
+                handleSetIsMeasuringModalVisible
+              }
             />
           </div>
         );

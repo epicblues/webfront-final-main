@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { getUserOrRedirect } from "../../../../util/auth";
@@ -47,6 +47,7 @@ const Index = ({ user, filteredRecipes }) => {
         return "몰라용";
     }
   }
+
   return (
     <div className={searchListStyles.main}>
       <Navigation currentURL={currentURL}></Navigation>
