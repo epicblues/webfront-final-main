@@ -353,7 +353,7 @@ const ChallengeWrite = ({ user }) => {
       <header style={{ height: "30px" }}>
         {wizardIndex > 1 ? (
           <>
-            <div className={ChallengeStyle.header}>
+            <div className={ChallengeStyle.header2}>
               <div onClick={button2}>
                 <FontAwesomeIcon
                   className={InputStyle.image}
@@ -361,17 +361,19 @@ const ChallengeWrite = ({ user }) => {
                   size="2x"
                 />
               </div>
-              <Link passHref href="/challenge">
-                <h4 className={ChallengeStyle.h4Mb}>취소</h4>
-              </Link>
+              <div style={{ position: "absolute", right: "0" }}>
+                <Link passHref href="/challenge">
+                  <h4 className={ChallengeStyle.h4Mb}>취소</h4>
+                </Link>
+              </div>
             </div>
           </>
         ) : (
-          <div className={ChallengeStyle.h4Mb}>
+          <>
             <Link passHref href="/challenge">
               <h4 className={ChallengeStyle.h4Mb}>취소</h4>
             </Link>
-          </div>
+          </>
         )}
       </header>
       <hr />

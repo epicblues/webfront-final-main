@@ -11,20 +11,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Image } from "semantic-ui-react";
-
+import Navbar from "../../components/challenge/Main/Navbar";
+import Search from "../../components/challenge/Main/Search";
 const NewList = ({ challenges, user }) => {
   return (
     <div>
-      <div className={ChallengeStyle.header}>
+      <div className={ChallengeStyle.header2}>
         <Link passHref href={"/challenge"}>
           <FontAwesomeIcon
             icon={faAngleDoubleLeft}
             className={ImageStyle.image4}
           />
         </Link>
+        <h2 className={ChallengeStyle.h2C}>신규 챌린지</h2>
+        <Search />
       </div>
-      <h2 className={ChallengeStyle.h2C}>신규 챌린지</h2>
-      <hr className={ChallengeStyle.hr2} />
+      <Navbar currentURL={"/challenge/newlist"} />
+
       <div className={ChallengeStyle.container}>
         {challenges.map((challenge) => {
           return (

@@ -11,7 +11,7 @@ import ImageStyle from "../../../styles/challenge/Input.module.css";
 
 const ChallengeMainList = ({ challenges }) => {
   return (
-    <div className={ChallengeStyle.container}>
+    <div className={ChallengeStyle.mainContainer}>
       {challenges.map((challenge) => {
         return (
           <>
