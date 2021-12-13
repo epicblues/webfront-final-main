@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import Router from "next/router";
-import axios from "axios";
-import { debounce } from "../../../util/axios";
 
 // CSS
 import "semantic-ui-css/semantic.min.css";

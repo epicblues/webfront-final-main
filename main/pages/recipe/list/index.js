@@ -55,7 +55,7 @@ const Index = ({ user, recipes }) => {
 
   const [hasMore, setHasMore] = useState(true);
   const [recipeList, setRecipeList] = useState(recipes);
-  const [recipeCounter, setRecipeCounter] = useState(4);
+  const [recipeCounter, setRecipeCounter] = useState(recipeList.length);
 
   // 스크롤 내릴 때마다 api로 recipe data 4개씩 요청하는 로직
   // api 응답이 빈 배열일 경우 setHasMore(false)로 endMessage 출력
