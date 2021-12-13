@@ -18,12 +18,12 @@ const LikeRecipe = () => {
     <div className={likeStyle.container}>
       {recipes.length === 0 && <div>좋아하는 레시피가 없습니다!</div>}
       {recipes.map((recipe: Recipe) =>
-      (<><Link key={recipe._id} href={`/recipe/card/${recipe._id}`} passHref>
+      (<div key={recipe._id}><Link href={`/recipe/card/${recipe._id}`} passHref>
 
-        <i className="icon share"></i>
+        <i className="icon share" ></i>
       </Link>
-        <div>{recipe.title}</div>
-      </>
+        <div >{recipe.title}</div>
+      </div>
       )
       )}
     </div>

@@ -3,7 +3,7 @@ import { getUserOrRedirect } from '../util/auth'
 import Link from 'next/link';
 import { Button, Card, CardHeader, CommentText, Container, TextArea } from 'semantic-ui-react';
 import homeStyle from '../styles/Home.module.css';
-import { CSSProperties, MutableRefObject, useEffect, useRef, useState } from 'react';
+import { CSSProperties, MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import clientPromise from '../util/mongodb';
 import { io, Socket } from 'socket.io-client';
@@ -34,7 +34,6 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
 
   const [socket, setSocket] = useState<null | Socket>(null);
   const [liveData, setLiveData] = useState<LiveData[]>([]);
-
   useEffect(() => {
     const newSocket = io(process.env.NEXT_PUBLIC_STATIC_SERVER_URL as string, {
       path: "/chat"
@@ -79,7 +78,9 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
           }
         </div>
         <div className={mainStyle.flex}>
-          <FoodRank foodRank={foodRank} />
+
+          {useMemo(() => <FoodRank foodRank={foodRank} />, [foodRank])}
+
           <div className={mainStyle.card} style={{ justifyContent: "space-around", textAlign: "center", alignItems: "center", fontSize: "1.20em" }}>
             <span>내가 좋아하는</span>
             <div className={mainStyle.buttonContainer}>
@@ -112,7 +113,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
             "thumbs up outline icon" /></button>
 
         </div>
-        <LikeChallenge />
+        {useMemo(() => <LikeChallenge />, [])}
       </div>
       <div className={mainStyle.sideBar} style={{ left: showLikesRecipe ? "50vw" : "100vw" }}>
         <div onClick={() => { setShowLikesRecipe(false) }}>
@@ -120,7 +121,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
             "utensils icon" /></button>
 
         </div>
-        <LikeRecipe />
+        {useMemo(() => <LikeRecipe />, [])}
 
       </div>
       {(showLikesChallenge || showLikesRecipe) && (<div className={mainStyle.cancelArea} onClick={() => {
@@ -129,7 +130,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       }}>
 
       </div>)}
-      <ShortNav />
+      {useMemo(() => <ShortNav />, [])}
 
     </div >
   )
