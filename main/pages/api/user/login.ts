@@ -36,7 +36,7 @@ const login: NextApiHandler = async (
           activity: result.bmr?.activity,
         },
         secret,
-        { expiresIn: "1h" }
+        { expiresIn: "2h" }
       );
       // 인증 토큰을 생성하고 쿠키에 저장
       res.setHeader(

@@ -1,4 +1,5 @@
 import "semantic-ui-css/semantic.min.css";
+import { BiX } from "react-icons/bi";
 
 const Review = ({ review, onDelete, onToggle }) => {
   return (
@@ -19,10 +20,7 @@ const Review = ({ review, onDelete, onToggle }) => {
           {review.text}
           {""}
         </p>
-        <i className="close icon grey"
-            onClick={() => onDelete(review.id)}
-        >
-        </i>
+        <BiX onClick={() => onDelete(review.id)} size='1.6rem' />
       </div>
   );
 };

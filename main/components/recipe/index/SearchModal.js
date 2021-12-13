@@ -2,15 +2,13 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import Router from "next/router";
 
-// ICON
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
-
 // CSS
-import SearchModalStyles from "../../../styles/recipe/SearchModal.module.css";
+import "semantic-ui-css/semantic.min.css";
+import searchModalStyles from "../../../styles/recipe/SearchModal.module.css";
 
 const SearchModal = ({ handleSetIsSearchModalVisible }) => {
   const { register, handleSubmit } = useForm();
+
   const searchBtnClick = async (data) => {
     const keyword = data.keyword;
     console.log(keyword);
@@ -21,23 +19,32 @@ const SearchModal = ({ handleSetIsSearchModalVisible }) => {
     }
   };
   return (
-    <div className={SearchModalStyles.container}>
-      <form onSubmit={handleSubmit(searchBtnClick)}>
-        <span className={SearchModalStyles.inputWindow}>
+    <div className={searchModalStyles.container}>
+      <div className={searchModalStyles.inputWrapper}>
+        <form
+          onSubmit={handleSubmit(searchBtnClick)}
+          className="ui fluid icon input"
+        >
           <input
-            className={SearchModalStyles.input}
+            className={searchModalStyles.input}
             type="text"
-            placeholder="요리명을 검색해보세요!(예: 감바스)"
+            placeholder="요리명을 검색해보세요!"
+            autoComplete="off"
+            autoFocus
             {...register("keyword")}
-          />
-        </span>
-
-        <button className={SearchModalStyles.button} type="submit">
-          <FontAwesomeIcon icon={faSearch} />
-        </button>
-      </form>
-      <div className={SearchModalStyles.footer}>
-        <div onClick={() => handleSetIsSearchModalVisible(false)}>X</div>
+          ></input>
+          <button className={searchModalStyles.button} type="submit">
+            <i className="search icon" style={{ fontSize: "1.6rem" }}></i>
+          </button>
+        </form>
+      </div>
+      <div className={searchModalStyles.footer}>
+        <div
+          className={searchModalStyles.xBtn}
+          onClick={() => handleSetIsSearchModalVisible(false)}
+        >
+          닫기
+        </div>
       </div>
     </div>
   );

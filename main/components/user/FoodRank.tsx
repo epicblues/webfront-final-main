@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import cardStyle from '../../styles/main/Main.module.css'
 
 interface Props {
@@ -17,6 +17,7 @@ const wordToComponent = (word: string) => {
 
 
 const FoodRank = ({ foodRank }: Props) => {
+  console.log("FoodRank Rendered");
   return (
     <div className={cardStyle.flex} style={{ flexDirection: 'column' }}>
       <div className={cardStyle.card} style={{ fontSize: "1.3em", }}>

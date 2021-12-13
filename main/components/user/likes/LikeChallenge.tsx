@@ -6,6 +6,7 @@ import likeStyle from '../../../styles/main/LikeContent.module.css'
 
 const LikeChallenge = () => {
   // 내가 좋아하는 챌린지 useEffect를 통해서 fetch
+  console.log('likeChallenge rendered');
   const [challenges, setChallenges] = useState([]);
   useEffect(() => {
     (async function fetchData() {
@@ -16,14 +17,12 @@ const LikeChallenge = () => {
   }, [])
 
   return (
-
-
     <div className={likeStyle.container}>
       {challenges.length === 0 && (<div>좋아하는 챌린지가 없습니다!</div>)}
       {challenges.map((challenge: Challenge) =>
-      (<><Link passHref href={`/challenge/list/${challenge._id}`} key={challenge._id}><i className="icon share"></i></Link><div >
+      (<div key={challenge._id}><Link passHref href={`/challenge/list/${challenge._id}`} ><i className="icon share"></i></Link><div >
         {challenge.title}
-      </div></>)
+      </div></div>)
       )}
     </div>
 

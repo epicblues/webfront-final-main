@@ -46,7 +46,15 @@ const Navigation = ({ currentURL }) => {
           className={navigationStyles.tab}
           onClick={() => handleSetIsSearchModalVisible(true)}
         >
-          <p>검색</p>
+          <p
+            className={
+              currentURL === "/recipe/list/search"
+                ? navigationStyles.activated
+                : ""
+            }
+          >
+            검색
+          </p>
         </div>
         {/* 종류 */}
         <Link href="/recipe/list/">

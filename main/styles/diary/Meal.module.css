@@ -101,7 +101,7 @@
     position: absolute;
     top: -6px;
     right: -3px;
-    font: normal 400 0.5rem/1.1rem 'Noto Sans KR';
+    font: normal 400 0.8rem/1.2rem 'Noto Sans KR';
 }
 
 /* Product */
@@ -156,8 +156,8 @@
     margin-left: 0.5rem;
 }
 
-.ProductItem i {
-    font-size: 1.6rem;
+.ProductItem .biX {
+    font-size: 1.8rem;
     width: auto;
     height: auto;
     display: flex;
@@ -176,6 +176,10 @@
     display: grid;
     grid-template-columns: 9.75fr 0.25fr;
     color: #333;
+}
+
+.modalWindow {
+    border-radius: 20px !important;
 }
 
 .modalItem > div svg {
@@ -204,6 +208,74 @@
     align-items: center;
 }
 
+/* Modal */
+.modalHeader {
+    font: normal 500 1.5rem 'Noto Sans KR';
+    background-color: #e3e3e3;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+}
+
+.modalHeader span {
+    margin-left: 0.5rem;
+}
+
+.modalContent {
+    text-align: center;
+    width: 100%;
+}
+
+.modalContent p {
+    font: normal 400 1rem 'Noto Sans KR';
+    color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContent > div > button {
+    border-radius: 20px;
+    margin-left: 1rem;
+    border: none;
+    /* box-shadow: 1px 1px 3px 1px #dadce0; */
+    font: normal 500 1rem 'Noto Sans KR';
+    padding: 0 1rem;
+    background-color: #ff5656;
+    color: #fff;
+}
+
+.modalContent > table {
+    width: 90%;
+    margin: 1rem auto !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+}
+
+.modalContent > table tr {
+    display: flex !important;
+    justify-content: space-between !important;
+    padding: 1rem 0;
+    border-bottom: solid 1px #e3e3e3;
+}
+
+.modalContent > table td:first-child {
+    text-align: left;
+}
+
+.modalContent > table td:last-child {
+    text-align: right;
+}
+
+.modalAction {
+ text-align: right;
+ padding-right: 1rem;
+ margin-bottom: 1rem;
+}
+
 /* Cart */
 .CartWrap {
 
@@ -212,15 +284,11 @@
 .CartList {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .CartList span {
     font : normal 600 1.2rem 'Noto Sans KR';
-}
-
-.CartList i {
-    margin: 0;
-    font-size: 1.6rem;
 }
 
 .CartWrap button {

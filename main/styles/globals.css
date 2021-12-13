@@ -102,6 +102,7 @@ a.is-active {
 
 .customInput .icon {
   vertical-align: middle;
+  font-size: 2rem;
 }
 
 .react-datepicker {
