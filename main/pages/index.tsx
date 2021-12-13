@@ -16,6 +16,7 @@ import FoodRank from '../components/user/FoodRank';
 import LikeChallenge from '../components/user/likes/LikeChallenge';
 import LikeRecipe from '../components/user/likes/LikeRecipe';
 import mainStyle from '../styles/main/Main.module.css';
+import ShortNav from '../components/main/ShortNav';
 
 
 const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
@@ -53,7 +54,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       newSocket.close();
       console.log("socket closed");
     }
-  }, [])
+  }, []) // 빈 배열일 경우 componentDidMount와 같은 효과
 
   return (
     <div>
@@ -128,7 +129,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       }}>
 
       </div>)}
-
+      <ShortNav />
 
     </div >
   )

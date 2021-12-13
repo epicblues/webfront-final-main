@@ -200,7 +200,10 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
         }} onClick={() => { setPageTranslate(0) }}>&lt;&lt;</span>
 
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-        <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+        {userBmr.activity > 1000 &&
+          <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+
+        }
       </div>
 
 

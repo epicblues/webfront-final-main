@@ -11,19 +11,19 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
-@keyframes spinner {
+@keyframes heartbeat {
   from {
-    transform: rotate(0deg);
+    transform: scaleX(0px);
     /* transform: translateY(0px); */
   }
 
   50% {
     /* transform: translateY(20px); */
-    transform: rotate(180deg);
+    transform: scaleX(120%) scaleY(120%) translateY(-10px);
   }
 
   to {
-    transform: rotate(360deg);
+    transform: scaleX(0px);
     /* transform: translateY(0px); */
   }
 }
@@ -46,8 +46,8 @@
 }
 
 .imgContainer > :nth-child(1) {
-  animation: spinner 3s;
-  animation-iteration-count: infinite;
+  animation: heartbeat 1s;
+  animation-iteration-count: 2;
 }
 
 .navWrap p {

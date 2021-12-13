@@ -7,7 +7,7 @@ import { UserBmr } from '../../models';
 
 
 
-const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ userBmr, setUserBmr }) => {
+const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ userBmr, setUserBmr }) => {
   const calculateBMR = () => {
     const { age, weight, heightFeet, gender, } = userBmr;
 
@@ -45,7 +45,7 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
     <i className="frown outline icon"></i>
   </div>)
 
-  const result = <div className="result">{userBmr.bmr}</div>
+  const result = <div className="result">{userBmr.bmr ? userBmr.bmr : "?"}</div>
   const resultAct = <div className="result">{userBmr.activity < 5 ? 0 : userBmr.activity}</div>;
   const activityButton = useRef<HTMLButtonElement>() as React.MutableRefObject<HTMLButtonElement>;
 
@@ -62,7 +62,10 @@ const Bmr: FunctionComponent<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any>
     >
       <div className="ui form">
         <h2 style={{ textAlign: 'center', marginBottom: "20px" }}>기초대사량 &amp; 일일 권장 칼로리</h2>
-        {userBmr.error && error}
+        <h3 style={{ textAlign: "center" }}>
+          {userBmr.error && error}
+
+        </h3>
         <div className="inputwrap inline fields">
           <label className="label">성별</label>
           <label>
