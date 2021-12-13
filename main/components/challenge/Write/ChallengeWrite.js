@@ -231,8 +231,8 @@ const ChallengeWrite = ({ user }) => {
   }
 
   const handleSubmit = async () => {
-    if (vaildateImageUpload()) return;
-    if (!vaildateTitle()) return;
+    if (validateImageUpload()) return;
+    if (!validateTitle()) return;
     if (challenge.startDate === null) {
       return;
     } else if (
@@ -247,10 +247,10 @@ const ChallengeWrite = ({ user }) => {
       const challengeForm = { ...challenge };
       delete challengeForm.imageBuffer;
       if (challenge.type === "diet") {
-        if (!vaildateDailyCalorie()) return;
+        if (!validateDailyCalorie()) return;
         delete challengeForm.recipe;
       } else {
-        if (!vaildateUploadCount()) return;
+        if (!validateUploadCount()) return;
         delete challengeForm.diet;
       }
       const formData = new FormData();
@@ -283,7 +283,12 @@ const ChallengeWrite = ({ user }) => {
           className={InputStyle.image}
         />
         <h4
-          style={{ whiteSpace: "nowrap", position: "relative", right: "40px" }}
+          style={{
+            whiteSpace: "nowrap",
+            position: "relative",
+            right: "40px",
+            top: "22px",
+          }}
         >
           {value}
         </h4>
@@ -304,7 +309,7 @@ const ChallengeWrite = ({ user }) => {
     return newDateDiff;
   };
   //유효성 검사
-  const vaildateTitle = () => {
+  const validateTitle = () => {
     const titleRegex = /^([가-힣\w\d]+[\.\,]?\s?)+$/;
 
     if (!titleRegex.test(challenge.title)) {
@@ -314,7 +319,7 @@ const ChallengeWrite = ({ user }) => {
       return true;
     }
   };
-  const vaildateDailyCalorie = () => {
+  const validateDailyCalorie = () => {
     const dailyCalorieRegex = /^\d{1,4}$/;
     console.log(dailyCalorie.current.value);
     if (!dailyCalorieRegex.test(challenge.diet.dailyCalorie)) {
@@ -324,7 +329,7 @@ const ChallengeWrite = ({ user }) => {
       return true;
     }
   };
-  const vaildateUploadCount = () => {
+  const validateUploadCount = () => {
     const uploadCountRegex = /^\d{1,2}$/;
     console.log(uploadCount.current.value);
     if (!uploadCountRegex.test(challenge.recipe.uploadCount)) {
@@ -334,7 +339,7 @@ const ChallengeWrite = ({ user }) => {
       return true;
     }
   };
-  const vaildateImageUpload = () => {
+  const validateImageUpload = () => {
     if (challenge.image === null) {
       alert("이미지를 반드시 업로드해주세요");
       return true;
@@ -345,7 +350,7 @@ const ChallengeWrite = ({ user }) => {
 
   return (
     <form
-      className="challengeform"
+      className="challengeForm"
       onSubmit={(e) => {
         e.preventDefault();
       }}

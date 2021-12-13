@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import clientPromise from "../../util/mongodb";
@@ -18,8 +18,11 @@ import ImageStyle from "../../styles/challenge/Input.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Icon, Image } from "semantic-ui-react";
+import { useRouter } from "next/router";
 
 const index = ({ challenges, user }) => {
+  const [search, setSearch] = useState(false);
+  const router = useRouter();
   const participatedChallenges = challenges.filter(
     (challenge) =>
       challenge.userId !== user.id &&
@@ -30,7 +33,21 @@ const index = ({ challenges, user }) => {
       <div>
         <div className={ChallengeStyle.header2}>
           <div className={ChallengeStyle.h2C}>참여중인 챌린지</div>
-          <Search challenges={challenges} />
+          <Icon
+            name="angle double left"
+            size="large"
+            className={ImageStyle.back}
+            onClick={() => setSearch(false)}
+          />
+          <Icon
+            name="search"
+            size="large"
+            className={ImageStyle.search}
+            onClick={() => {
+              setSearch(true);
+            }}
+          />
+          {search === true ? <Search setSearch={setSearch} /> : null}
           <div className={ImageStyle.navDiv}>
             <Navbar currentURL={"/challenge"} />
           </div>

@@ -19,7 +19,7 @@ const MainList = ({ challenges, user }) => {
     challengeIndexes.push(i);
   }
   const [challengeIndex, setChallengeIndex] = useState(1);
-
+  const [search, setSearch] = useState(false);
   const selectChallenges = (index) => {
     const pickedChallenges = [];
     for (

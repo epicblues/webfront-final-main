@@ -1,7 +1,10 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import Link from "next/dist/client/link";
+// component
+import Navbar from "../../components/challenge/Main/Navbar";
+import Search from "../../components/challenge/Main/Search";
 //css
 import "semantic-ui-css/semantic.min.css";
 import ListStyle from "../../styles/challenge/List.module.css";
@@ -11,12 +14,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Image } from "semantic-ui-react";
-import Navbar from "../../components/challenge/Main/Navbar";
-import Search from "../../components/challenge/Main/Search";
+import { Icon } from "semantic-ui-react";
+
 const NewList = ({ challenges, user }) => {
+  const [search, setSearch] = useState(false);
+
   return (
     <div>
       <div className={ChallengeStyle.header2}>
+        <Icon
+          name="search"
+          size="large"
+          className={ImageStyle.search}
+          onClick={() => {
+            setSearch(true);
+          }}
+        />
         <Link passHref href={"/challenge"}>
           <FontAwesomeIcon
             icon={faAngleDoubleLeft}
