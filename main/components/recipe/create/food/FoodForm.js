@@ -79,7 +79,7 @@ const FoodForm = ({
         </div>
         <div className={createStyles.onMeasuringModal}>
           <p onClick={() => handleSetIsMeasuringModalVisible(true)}>
-            <i class="question icon"></i>계량팁
+            <i className="question icon"></i>계량팁
           </p>
         </div>
       </div>

@@ -109,8 +109,8 @@ const Index = ({ user, filteredRecipes, keyword }) => {
                     passHref
                   >
                     <a>
-                      <p className={searchListStyles.cardBodyDesc}>
-                        <p className={searchListStyles.cardBodyMouse}>
+                      <div className={searchListStyles.cardBodyDesc}>
+                        <div className={searchListStyles.cardBodyMouse}>
                           -----
                           <FontAwesomeIcon
                             className={searchListStyles.cardBodyMouse}
@@ -126,9 +126,9 @@ const Index = ({ user, filteredRecipes, keyword }) => {
                             icon={faArrowDown}
                           />
                           -----
-                        </p>
+                        </div>
                         {card.desc}
-                      </p>
+                      </div>
                     </a>
                   </Link>
                 </div>
