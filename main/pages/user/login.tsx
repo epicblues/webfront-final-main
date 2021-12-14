@@ -7,6 +7,7 @@ import { Button, Form } from 'semantic-ui-react';
 import Intro from '../../components/user/Intro';
 import { GetServerSideProps } from 'next';
 import { BiEnvelope, BiLockAlt } from 'react-icons/bi';
+import logInStyles from '../../../styles/main/logIn.module.css';
 
 const Login = ({ introSkip }: { introSkip: boolean }) => {
 
