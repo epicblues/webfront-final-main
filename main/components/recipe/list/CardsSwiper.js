@@ -18,7 +18,7 @@ import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
 // ICON
 import ci from "../../../public/static/logos/icon_check.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { UserBmr } from "../../../models";
 
 const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
@@ -28,6 +28,11 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
     filteredHitRecipesProps
   );
   const [isDetailActive, setIsDetailActive] = useState(false);
+  const [activatedDetailIndex, setActivatedDetailIndex] = useState(null);
+  const handleDetailBtnClick = (booleanVal, index) => {
+    setIsDetailActive(booleanVal);
+    setActivatedDetailIndex(index);
+  };
   function renderSwitchCategory(param) {
     switch (param) {
       case "soup":
@@ -64,6 +69,7 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
   useEffect(() => {
     setIsDetailActive(false);
   }, [mainImageIndex]);
+
   return (
     <Swiper
       {...swiperParams}
@@ -75,7 +81,7 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
           <SwiperSlide
             key={card._id}
             className={
-              isDetailActive
+              isDetailActive && activatedDetailIndex === index
                 ? cardsSwiperStyles.cardClick
                 : cardsSwiperStyles.card
             }
@@ -127,14 +133,15 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
                       </div>
                       <strong>요즘 뜨는 레시피!</strong>
                     </div>
-
                     <div className={cardsSwiperStyles.detailBtn}>
-                      {isDetailActive ? (
-                        <span onClick={() => setIsDetailActive(false)}>
+                      {isDetailActive && activatedDetailIndex === index ? (
+                        <span
+                          onClick={() => handleDetailBtnClick(false, index)}
+                        >
                           접기<i className="caret up icon"></i>
                         </span>
                       ) : (
-                        <span onClick={() => setIsDetailActive(true)}>
+                        <span onClick={() => handleDetailBtnClick(true, index)}>
                           자세히보기<i className="caret down icon"></i>
                         </span>
                       )}
@@ -153,55 +160,47 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
 
               {/* 카드 바디 본문 */}
               <div className={cardsSwiperStyles.cardBodyMain}>
-                <Link
-                  href={{
-                    pathname: `/recipe/card/${card._id}`,
-                  }}
-                  as={`/recipe/card/${card._id}`}
-                  passHref
-                >
-                  <a>
-                    <div className={cardsSwiperStyles.cardBodyDesc}>
-                      <div className={cardsSwiperStyles.cardBodyMouse}>
-                        -----
-                        <FontAwesomeIcon
-                          className={cardsSwiperStyles.cardBodyMouse}
-                          icon={faArrowDown}
-                        />
-                        Click!!
-                        <FontAwesomeIcon
-                          className={cardsSwiperStyles.cardBodyMouse}
-                          icon={faMouse}
-                        />
-                        <FontAwesomeIcon
-                          className={cardsSwiperStyles.cardBodyMouse}
-                          icon={faArrowDown}
-                        />
-                        -----
-                      </div>
-                      {card.desc}
-                    </div>
-                  </a>
-                </Link>
+                <div className={cardsSwiperStyles.cardBodyDesc}>
+                  <div className={cardsSwiperStyles.cardBodyMouse}></div>
+                  {card.desc}
+                </div>
               </div>
               {/* 카드 바디 푸터 */}
               <div className={cardsSwiperStyles.cardBodyFooter}>
                 <div className={cardsSwiperStyles.hr}></div>
                 <div className={cardsSwiperStyles.textWrapper}>
-                  <span>
-                    <FontAwesomeIcon
-                      className={cardsSwiperStyles.cardIconHit}
-                      icon={faEye}
-                    />
-                    조회{" "}
-                    <strong className={cardsSwiperStyles.hitSpan}>
-                      {card.hit}
-                    </strong>
-                    회
-                  </span>
-                  <span className={cardsSwiperStyles.cardUploadDate}>
-                    {card.upload_date.slice(0, -14)}
-                  </span>
+                  {isDetailActive && activatedDetailIndex === index ? (
+                    <div className={cardsSwiperStyles.goRecipe}>
+                      <Link
+                        href={{
+                          pathname: `/recipe/card/${card._id}`,
+                        }}
+                        as={`/recipe/card/${card._id}`}
+                        passHref
+                      >
+                        <a>
+                          <p>레시피 보러가기</p>
+                        </a>
+                      </Link>
+                    </div>
+                  ) : (
+                    <>
+                      <span>
+                        <FontAwesomeIcon
+                          className={cardsSwiperStyles.cardIconHit}
+                          icon={faEye}
+                        />
+                        조회{" "}
+                        <strong className={cardsSwiperStyles.hitSpan}>
+                          {card.hit}
+                        </strong>
+                        회
+                      </span>
+                      <span className={cardsSwiperStyles.cardUploadDate}>
+                        {card.upload_date.slice(0, -14)}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

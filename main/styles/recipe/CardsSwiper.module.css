@@ -83,8 +83,17 @@
   }
   .innerHotWrapper {
     display: flex;
+    align-items: center;
   }
   .detailBtn {
+    display: flex;
+    text-align: center;
+    color: #999999;
+    padding: 0.2rem;
+    border-radius: 5px;
+  }
+  .detailBtn i {
+    margin: 0;
   }
   .iWrapper {
     margin-right: 0.5rem;
@@ -151,6 +160,17 @@
     transition: 0.5s ease-in-out;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .goRecipe {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: tomato;
+  }
+  .goRecipe a {
+    color: white;
   }
   .cardBodyMouse {
     text-align: center;
