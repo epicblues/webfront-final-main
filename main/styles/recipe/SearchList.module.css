@@ -136,6 +136,13 @@
   text-overflow: ellipsis;
 }
 
+.cardBodyMouse {
+  text-align: center;
+  height: 1rem;
+  margin: 0 1rem;
+  color: darksalmon;
+}
+
 .cardBodyFooter {
   background-color: white;
   position: absolute;

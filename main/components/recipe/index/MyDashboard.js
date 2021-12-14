@@ -28,9 +28,7 @@ const MyDashBoard = ({ countMyRecipes, totalHit }) => {
         <div className={myDashboardStyles.innerWrapper}>
           <p className={myDashboardStyles.title}>작성글</p>
           <br />
-          <p div className={myDashboardStyles.number}>
-            {countMyRecipes}
-          </p>
+          <p className={myDashboardStyles.number}>{countMyRecipes}</p>
         </div>
         <div className={myDashboardStyles.innerWrapper}>
           <p className={myDashboardStyles.title}>

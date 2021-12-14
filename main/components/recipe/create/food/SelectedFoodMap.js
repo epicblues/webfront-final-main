@@ -41,11 +41,8 @@ const SelectedFoodMap = ({
           </div>
           {selectedData.map((value, index) => {
             return (
-              <>
-                <div
-                  className={modalAddFoodStyles.itemWrapper}
-                  key={Math.random()}
-                >
+              <div key={index}>
+                <div className={modalAddFoodStyles.itemWrapper}>
                   <span className={modalAddFoodStyles.name}>{value.name}</span>
                   <span className={modalAddFoodStyles.mfr}>{value.mfr}</span>
                 </div>
@@ -60,7 +57,7 @@ const SelectedFoodMap = ({
                     <p>확인</p>
                   </div>
                 </div>
-              </>
+              </div>
             );
           })}
         </>

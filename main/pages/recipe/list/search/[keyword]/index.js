@@ -15,7 +15,7 @@ import { parseDocumentToObject } from "../../../../../util/date";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const Index = ({ user, filteredRecipes, keyword }) => {
   // 카테고리 값(Int)에 맞는 카테고리명(String) 표시 함수
@@ -42,6 +42,9 @@ const Index = ({ user, filteredRecipes, keyword }) => {
     }
   }
   const [recipeList, setRecipeList] = useState(filteredRecipes);
+  useEffect(() => {
+    setRecipeList(filteredRecipes);
+  }, [filteredRecipes]);
 
   const [currentURL, setCurrentURL] = useState("/recipe/list/search");
   return (
@@ -106,9 +109,26 @@ const Index = ({ user, filteredRecipes, keyword }) => {
                     passHref
                   >
                     <a>
-                      <p className={searchListStyles.cardBodyDesc}>
+                      <div className={searchListStyles.cardBodyDesc}>
+                        <div className={searchListStyles.cardBodyMouse}>
+                          -----
+                          <FontAwesomeIcon
+                            className={searchListStyles.cardBodyMouse}
+                            icon={faArrowDown}
+                          />
+                          Click!!
+                          <FontAwesomeIcon
+                            className={searchListStyles.cardBodyMouse}
+                            icon={faMouse}
+                          />
+                          <FontAwesomeIcon
+                            className={searchListStyles.cardBodyMouse}
+                            icon={faArrowDown}
+                          />
+                          -----
+                        </div>
                         {card.desc}
-                      </p>
+                      </div>
                     </a>
                   </Link>
                 </div>

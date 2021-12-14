@@ -15,7 +15,7 @@ import DislikeButton from "../../../../components/recipe/DislikeButton";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 // Sad Doge
 import sd from "../../../../public/static/logos/dogeSad.jpg";
@@ -100,9 +100,9 @@ const Index = ({ user, filteredRecipes }) => {
                     {/* 카드 바디 헤더 */}
                     <div className={searchListStyles.cardBodyHeader}>
                       <h1 className={searchListStyles.h1}>{card.title}</h1>
-                      <p className={searchListStyles.cardBodyAuthor}>
+                      <div className={searchListStyles.cardBodyAuthor}>
                         <strong>작성자</strong> | {card.author[0].name}
-                      </p>
+                      </div>
                       <div className={searchListStyles.cardBodyCategory}>
                         <p>#{renderSwitchCategory(card.category)}</p>
                       </div>
@@ -118,9 +118,26 @@ const Index = ({ user, filteredRecipes }) => {
                         passHref
                       >
                         <a>
-                          <p className={searchListStyles.cardBodyDesc}>
+                          <div className={searchListStyles.cardBodyDesc}>
+                            <div className={searchListStyles.cardBodyMouse}>
+                              -----
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faArrowDown}
+                              />
+                              Click!!
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faMouse}
+                              />
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faArrowDown}
+                              />
+                              -----
+                            </div>
                             {card.desc}
-                          </p>
+                          </div>
                         </a>
                       </Link>
                     </div>

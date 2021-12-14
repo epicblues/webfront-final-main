@@ -19,7 +19,7 @@ import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
 // ICON
 import ci from "../../../public/static/logos/icon_check.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { UserBmr } from "../../../models";
 
 const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
@@ -60,14 +60,14 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
       nextEl: navigationNextRef.current,
     },
     // IE, Edge, Firefox(>5) 이벤트 처리용 핸들러
-    onbeforeprint: (swiper) => {
+    onBeforePrint: (swiper) => {
       swiper.params.navigation.prevEl = navigationPrevRef.current;
       swiper.params.navigation.nextEl = navigationNextRef.current;
       swiper.activeIndex = mainImageIndex;
       swiper.navigation.update();
     },
     allowTouchMove: false,
-    speed: 200,
+    speed: 400,
     slidesPerView: 1.3,
     centeredSlides: true,
     loop: true,
@@ -157,9 +157,26 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
                   passHref
                 >
                   <a>
-                    <p className={cardsSwiperStyles.cardBodyDesc}>
+                    <div className={cardsSwiperStyles.cardBodyDesc}>
+                      <div className={cardsSwiperStyles.cardBodyMouse}>
+                        -----
+                        <FontAwesomeIcon
+                          className={cardsSwiperStyles.cardBodyMouse}
+                          icon={faArrowDown}
+                        />
+                        Click!!
+                        <FontAwesomeIcon
+                          className={cardsSwiperStyles.cardBodyMouse}
+                          icon={faMouse}
+                        />
+                        <FontAwesomeIcon
+                          className={cardsSwiperStyles.cardBodyMouse}
+                          icon={faArrowDown}
+                        />
+                        -----
+                      </div>
                       {card.desc}
-                    </p>
+                    </div>
                   </a>
                 </Link>
               </div>

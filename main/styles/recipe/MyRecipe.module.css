@@ -177,14 +177,19 @@
   background: tomato;
   border-radius: 50%;
 }
+.listDate a {
+  color: #333333;
+}
 .listDate {
   grid-row: 1/2;
-  color: #554d4d;
   font-size: 1.1rem;
 }
 .listTitle {
   grid-row: 2/3;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+}
+.listTitle a {
+  color: #333333;
 }
 .listLike {
   display: flex;
