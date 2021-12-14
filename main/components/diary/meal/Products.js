@@ -105,8 +105,10 @@ export default function Products({ diary, setDiary, type, }) {
 
       <div className={MealStyles.ProductWrap}>
         <div className="ui middle aligned selection list">
-          <BiDish size='1.2rem' />
-          <span>레시피</span>
+          <div className={MealStyles.ListTitle}>
+            <BiDish size='1.2rem' />
+            <span>레시피</span>
+          </div>
           {filteredRecipeData.length !== 0 &&
             filteredRecipeData.map((value, index) => {
               return (
@@ -123,8 +125,10 @@ export default function Products({ diary, setDiary, type, }) {
             })}
         </div>
         <div className="ui middle aligned selection list">
-          <IoNutritionOutline size='1.2rem' />
-          <span>음식 &amp; 재료</span>
+          <div className={MealStyles.ListTitle}>
+            <IoNutritionOutline size='1.2rem' />
+            <span>음식 &amp; 재료</span>
+          </div>
           {filteredData.length !== 0 &&
             filteredData.map((value, index) => {
               return (

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import axios from "axios";
 import clientPromise from "../../util/mongodb";
@@ -6,6 +6,8 @@ import { getUserOrRedirect } from "../../util/auth";
 //component
 import MyChallenge from "../../components/challenge/Main/MyChallenge";
 import ProgressBar from "../../components/challenge/Main/ProgressBar";
+import Navbar from "../../components/challenge/Main/Navbar";
+import Search from "../../components/challenge/Main/Search";
 //css
 import "semantic-ui-css/semantic.min.css";
 import ListStyle from "../../styles/challenge/List.module.css";
@@ -15,9 +17,12 @@ import UserStyle from "../../styles/challenge/Input.module.css";
 import ImageStyle from "../../styles/challenge/Input.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { Image } from "semantic-ui-react";
+import { Icon, Image } from "semantic-ui-react";
+import { useRouter } from "next/router";
 
 const index = ({ challenges, user }) => {
+  const [search, setSearch] = useState(false);
+  const router = useRouter();
   const participatedChallenges = challenges.filter(
     (challenge) =>
       challenge.userId !== user.id &&
@@ -27,19 +32,24 @@ const index = ({ challenges, user }) => {
     <>
       <div>
         <div className={ChallengeStyle.header2}>
-          <div className={ChallengeStyle.h2L}>참여중인 챌린지</div>
-
+          <div className={ChallengeStyle.h2C}>참여중인 챌린지</div>
+          <Icon
+            name="angle double left"
+            size="large"
+            className={ImageStyle.back}
+            onClick={() => setSearch(false)}
+          />
+          <Icon
+            name="search"
+            size="large"
+            className={ImageStyle.search}
+            onClick={() => {
+              setSearch(true);
+            }}
+          />
+          {search === true ? <Search setSearch={setSearch} /> : null}
           <div className={ImageStyle.navDiv}>
-            <div className={ImageStyle.nav}>
-              <Link passHref href="/challenge/mainlist">
-                <p>전체</p>
-              </Link>
-            </div>
-            <div className={ImageStyle.nav}>
-              <Link passHref href="/challenge/newlist">
-                <p>신규</p>
-              </Link>
-            </div>
+            <Navbar currentURL={"/challenge"} />
           </div>
         </div>
         <div className={ChallengeStyle.container2}>
@@ -83,20 +93,23 @@ const index = ({ challenges, user }) => {
                             />
                             {challenge.participants.length}명
                           </div>
-                          <Image
-                            style={{
-                              zIndex: "0",
-                              borderRadius: "5%",
-                              height: "80px",
-                              width: "250px",
-                            }}
-                            src={
-                              process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                              challenge.image
-                            }
-                            layout="fill"
-                            objectPosition="top"
-                          />
+                          <div>
+                            <Image
+                              style={{
+                                zIndex: "0",
+                                borderRadius: "5%",
+                                height: "80px",
+                                width: "250px",
+                              }}
+                              src={
+                                process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                                challenge.image
+                              }
+                              layout="fill"
+                              objectFit="cover"
+                              objectPosition="top"
+                            />
+                          </div>
                         </div>
                         <ul className={ListStyle.ul}>
                           <li className={ListStyle.li}>
@@ -152,7 +165,7 @@ const index = ({ challenges, user }) => {
                       }}
                     >
                       <button
-                        className={ButtonStyle.button1}
+                        className={ButtonStyle.button}
                         onClick={async (event) => {
                           const { data: result } = await axios.post(
                             "/api/challenge/validate",

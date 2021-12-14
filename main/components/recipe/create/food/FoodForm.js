@@ -42,7 +42,7 @@ const FoodForm = ({
       <div className={createStyles.selectedFoodMapContainer}>
         {foodData.length === 0 ? (
           <>
-            <Image objectFit="contain" src={doge}></Image>
+            <Image layout="responsive" objectFit="contain" src={doge}></Image>
             <p className={createStyles.emptyP}>🥕재료를 추가해주세요🥕</p>
           </>
         ) : (
@@ -79,7 +79,7 @@ const FoodForm = ({
         </div>
         <div className={createStyles.onMeasuringModal}>
           <p onClick={() => handleSetIsMeasuringModalVisible(true)}>
-            <i class="question icon"></i>계량팁
+            <i className="question icon"></i>계량팁
           </p>
         </div>
       </div>

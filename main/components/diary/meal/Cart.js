@@ -2,7 +2,7 @@ import React from "react";
 import ImageUpload from "./ImageUpload";
 import Product from "./Product";
 import MealStyles from '../../../styles/diary/Meal.module.css';
-import { BiTrash } from "react-icons/bi";
+import { AiOutlineDelete } from "react-icons/ai";
 
 const PAGE_PRODUCTS = "products";
 const PAGE_CART = "cart";
@@ -71,7 +71,7 @@ export default function Cart({ diary, setDiary, page, setPage, type }) {
       <div className={MealStyles.CartList}>
         <span>추가한 음식</span>
         {cart.length > 0 && (
-          <BiTrash onClick={clearCart} size='1.8rem' />
+          <AiOutlineDelete onClick={clearCart} size='1.8rem' />
         )}
       </div>
       <div className="ui middle aligned divided list">

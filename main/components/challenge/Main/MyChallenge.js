@@ -49,20 +49,23 @@ const MyChallenge = ({ challenges, user }) => {
                             />
                             {challenge.participants.length}명
                           </div>
-                          <Image
-                            style={{
-                              zIndex: "0",
-                              borderRadius: "5%",
-                              height: "80px",
-                              width: "250px",
-                            }}
-                            src={
-                              process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                              challenge.image
-                            }
-                            layout="fill"
-                            objectPosition="top"
-                          />
+                          <div>
+                            <Image
+                              style={{
+                                zIndex: "0",
+                                borderRadius: "5%",
+                                height: "80px",
+                                width: "250px",
+                              }}
+                              src={
+                                process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                                challenge.image
+                              }
+                              layout="fill"
+                              objectFit="cover"
+                              objectPosition="top"
+                            />
+                          </div>
                         </div>
 
                         <ul className={ListStyle.ul}>

@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import Link from "next/dist/client/link";
+//component
+import Navbar from "../../components/challenge/Main/Navbar";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
+import Search from "../../components/challenge/Main/Search";
 //css
+import { Icon } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
@@ -15,27 +19,7 @@ const MainList = ({ challenges, user }) => {
     challengeIndexes.push(i);
   }
   const [challengeIndex, setChallengeIndex] = useState(1);
-
-  const useInfiniteScroll = () => {
-    const [page, setPage] = useState(1);
-    const handleScroll = () => {
-      const scrollHeight = document.documentElement.scrollHeight;
-      const scrollTop = document.documentElement.scrollTop;
-      const innerHeight = window.innerHeight;
-      if (scrollHeight <= scrollTop + innerHeight) {
-        setPage((page) => page + 1);
-      }
-      return;
-    };
-  };
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-  return page;
-
+  const [search, setSearch] = useState(false);
   const selectChallenges = (index) => {
     const pickedChallenges = [];
     for (
@@ -52,15 +36,18 @@ const MainList = ({ challenges, user }) => {
     <>
       <div className="container">
         <div>
-          <div className={ChallengeStyle.header}>
+          <div className={ChallengeStyle.header2}>
             <Link passHref href={"/challenge"}>
               <FontAwesomeIcon
                 icon={faAngleDoubleLeft}
                 className={ImageStyle.image4}
               />
             </Link>
+            <h2 className={ChallengeStyle.h2C}>챌린지 리스트</h2>
+            <Search />
           </div>
-          <h2 className={ChallengeStyle.h2C}>챌린지 리스트</h2>
+          <Navbar currentURL={"/challenge/mainlist"} />
+
           <hr className={ChallengeStyle.hr3} />
 
           {challenges.length > 0 ? (

@@ -43,7 +43,7 @@ const Intro = ({ handleClick, loginMode }: { handleClick: Function, loginMode: b
 
 
 
-      <button style={{ paddingLeft: "5px", paddingRight: "10px", backgroundColor: "#00b5ad", fontWeight: "bolder", borderRadius: "5px", color: "white", boxShadow: "none", border: "none", alignSelf: "stretch", height: "40px", marginTop: "10px", fontSize: "1.2em" }} onClick={() => { handleClick() }}>참여하기</button>
+      <button style={{ paddingLeft: "5px", paddingRight: "10px", backgroundColor: "#ff5656", fontWeight: "bolder", borderRadius: "20px", color: "white", boxShadow: "none", border: "none", alignSelf: "stretch", height: "40px", marginTop: "10px", fontSize: "1.2em" }} onClick={() => { handleClick() }}>시작하기</button>
     </div>
   )
 }

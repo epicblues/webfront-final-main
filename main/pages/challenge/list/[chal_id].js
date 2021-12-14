@@ -218,11 +218,11 @@ const ChallengePage = ({ originalChallenge, user }) => {
                         />
                       </div>
                     )}
-                    <ChallengeCancel
+                    {/* <ChallengeCancel
                       user={user}
                       challenge={challenge}
                       setChallenge={setChallenge}
-                    />
+                    /> */}
                   </footer>
                 </>
               ) : (
