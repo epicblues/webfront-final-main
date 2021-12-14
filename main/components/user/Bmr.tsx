@@ -61,7 +61,9 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
       }}
     >
       <div className="ui form">
-        <h2 style={{ textAlign: 'center', marginBottom: "20px" }}>기초대사량 &amp; 일일 권장 칼로리</h2>
+        <h2 style={{ textAlign: 'left', marginBottom: "20px" }}>
+          나의 기초대사량과 <br />하루 권장 칼로리는 몇일까요?
+        </h2>
         <h3 style={{ textAlign: "center" }}>
           {userBmr.error && error}
 
@@ -104,7 +106,7 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
 
           <div className="inputwrap field" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
 
-            <label className="label">나이</label>
+            {/* <label className="label">나이</label> */}
             <input
               type="number"
               value={userBmr.age}
@@ -113,11 +115,12 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
               name="age"
               min="0"
               max="120"
-              placeholder="Age"
+              placeholder="나이"
+              style={{height: '3rem', borderRadius: '10px'}}
             />
           </div>
           <div className="inputwrap field">
-            <label className="label">신장(cm)</label>
+            {/* <label className="label">신장(cm)</label> */}
             <input
               type="number"
               value={userBmr.heightFeet}
@@ -126,11 +129,12 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
               className="heightFeet"
               min="0"
               max="999"
-              placeholder="Height"
+              placeholder="신장(cm)"
+              style={{height: '3rem', borderRadius: '10px'}}
             />
           </div>
           <div className="inputwrap field">
-            <label className="label">체중(kg)</label>
+            {/* <label className="label">체중(kg)</label> */}
             <input
               type="number"
               value={userBmr.weight}
@@ -139,7 +143,8 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
               className="weight"
               min="0"
               max="999"
-              placeholder="Weight"
+              placeholder="체중(kg)"
+              style={{height: '3rem', borderRadius: '10px'}}
             />
           </div>
 
@@ -148,22 +153,22 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
           type="button"
           onClick={calculateBMR}
           className="ui teal fluid button"
-          style={{ marginBottom: 16, backgroundColor: MAIN_COLOR }}
+          style={{ marginBottom: 16, backgroundColor: MAIN_COLOR, borderRadius: '20px', lineHeight: '1.3rem' }}
         >
           기초 대사량 계산하기
         </button>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <div style={{ fontWeight: 700 }}>
+          <div style={{ fontWeight: 700, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Popup
               trigger={
-                <Icon name="circle outline" size="large" color="pink" />
+                <Icon name="circle outline" size="large" style={{color:"#ff5656"}} />
               }
               header="기초대사량"
               content="우리의 심장이 뛰고, 호흡을 하고, 체온을 유지하며, 뇌가 활동을 하는데 필요한 생명 유지를 위한 최소한의 에너지"
             />
-            나의 기초대사량은?
+            <p>나의 기초대사량은?</p>
           </div>
-          <div style={{ color: "whitesmoke", fontSize: "1.2em", fontWeight: 700, background: MAIN_COLOR, padding: "5px", borderRadius: "10px" }}>{result}</div>
+          <div style={{ color: "#ff5656", fontSize: "1.2em", fontWeight: 700 }}>{result}</div>
         </div>
         {userBmr.flag && (
           <div className="workout">
@@ -174,7 +179,7 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
                 onChange={(event) => { handleChange(event); activityButton.current.disabled = false }}
                 name="activity"
                 style={
-                  { fontSize: "1em", fontWeight: 700, padding: "5px", borderRadius: "10px" }
+                  { fontSize: "1rem", fontWeight: 700, padding: "5px", height: '3rem', borderRadius: "10px" }
                 }
               >
                 <option value="">활동 수준을 선택하세요</option>
@@ -194,22 +199,22 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
               ref={activityButton}
               onClick={(event) => { calculateAct(); event.currentTarget.disabled = true }}
               className="ui teal fluid button"
-              style={{ margin: "16px 0 16px 0", background: MAIN_COLOR }}
+              style={{ margin: "16px 0 16px 0", background: MAIN_COLOR,  borderRadius: '20px', lineHeight: '1.3rem' }}
             >
-              하루 권장 섭취량 계산하기
+              하루 권장 칼로리 계산하기
             </button>
-            <div style={{ display: "flex", justifyContent: "space-between" }}>
-              <div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: 'center' }}>
+              <div style={{ fontWeight: 700, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Popup
                   trigger={
-                    <Icon name="circle outline" size="large" color="pink" />
+                    <Icon name="circle outline" size="large" style={{color:"#ff5656"}} />
                   }
-                  header="하루 권장섭취량"
-                  content="일반적으로 성인의 경우 남자 2700kcal, 여자 2000kcal 정도로 개개인마다 활동량, 체중, 성별, 건강 상태 등에 따라 하루 권장 칼로리가 달라진다"
+                  header="하루 권장 칼로리"
+                  content="일반적으로 성인의 경우 남자 2700kcal, 여자 2000kcal 정도로 개개인마다 활동량, 체중, 성별, 건강 상태 등에 따라 하루 권장 섭취량이 달라진다"
                 />
-                나의 하루에 필요한 에너지량은?
+                <p>나의 하루에 필요한 에너지량은?</p>
               </div>
-              <div style={{ color: "whitesmoke", fontSize: "1.2em", fontWeight: 700, background: MAIN_COLOR, padding: "5px", borderRadius: "10px" }}>{resultAct}</div>
+              <div style={{ color: "#ff5656", fontSize: "1.2rem", fontWeight: 700}}>{resultAct}</div>
             </div>
           </div>
         )}

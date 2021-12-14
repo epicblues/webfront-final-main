@@ -3,6 +3,7 @@ import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { BACKGROUND_COLOR, MIDDLE_COLOR } from '../../../constants';
 import AppIcon from '../../../public/static/logos/logo04.png'
 import Image from 'next/dist/client/image';
+import Loading from '../../../components/main/Loading';
 const Temp = () => {
   const router = useRouter();
   const [rotate, setRotate] = useState(false);
@@ -13,12 +14,7 @@ const Temp = () => {
     })
   }, [router])
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "70vh", background: BACKGROUND_COLOR, justifyContent: "center", alignItems: "stretch" }}>
-      <div style={{ alignSelf: "center", transition: "all 3s", transform: rotate ? "rotate(359deg)" : undefined }} >
-        <Image src={AppIcon} alt="메인 아이콘" width='200px' height="200px" />
-      </div>
-
-    </div>
+    <Loading />
   )
 }
 

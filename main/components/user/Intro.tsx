@@ -6,12 +6,14 @@ const Intro = ({ handleClick, loginMode }: { handleClick: Function, loginMode: b
   const container: CSSProperties = {
     display: 'flex',
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     margin: "20px",
     height: "70vh",
     transition: "all 0.3s",
-    transform: loginMode ? "translate(-110%,-60vh)" : 'translate(0%,-60vh)'
+    width: "100vw",
+    marginTop: "40px"
+    // position: "fixed",
 
   }
 
@@ -27,7 +29,7 @@ const Intro = ({ handleClick, loginMode }: { handleClick: Function, loginMode: b
 
   return (
     <div style={container}>
-      <h1>요건 다 내꺼</h1>
+      <img src='/static/logos/logo06.png' alt='요건 다 내꺼' style={{ width: '12rem', margin: '0 auto' }} />
       <h2>
         요리와 건강을 모두 챙겨봅시다!
       </h2>
@@ -43,7 +45,7 @@ const Intro = ({ handleClick, loginMode }: { handleClick: Function, loginMode: b
 
 
 
-      <button style={{ paddingLeft: "5px", paddingRight: "10px", backgroundColor: "#00b5ad", fontWeight: "bolder", borderRadius: "5px", color: "white", boxShadow: "none", border: "none", alignSelf: "stretch", height: "40px", marginTop: "10px", fontSize: "1.2em" }} onClick={() => { handleClick() }}>참여하기</button>
+      <button style={{ paddingLeft: "5px", paddingRight: "10px", backgroundColor: "#ff5656", fontWeight: "bolder", borderRadius: "20px", color: "white", boxShadow: "none", border: "none", alignSelf: "stretch", height: "40px", marginTop: "10px", fontSize: "1.2em" }} onClick={() => { handleClick() }}>시작하기</button>
     </div>
   )
 }

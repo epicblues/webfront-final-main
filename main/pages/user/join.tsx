@@ -3,13 +3,12 @@ import { checkValid } from '../../util/auth';
 import Bmr from '../../components/user/Bmr'
 import axios from 'axios';
 import { Button, Form, Header, Input, Label } from 'semantic-ui-react';
+import { BiUser, BiEnvelope, BiLockOpenAlt, BiLockAlt, BiEditAlt, BiBarChartAlt, BiHappyAlt } from 'react-icons/bi';
 import { NextRouter, useRouter } from 'next/router';
 import FinishPage from '../../components/user/FinishPage';
 import { UserBmr } from '../../models';
 import { MIDDLE_COLOR } from '../../constants';
-
-
-
+import joinStyles from '../../../styles/main/join.module.css';
 
 const Join = () => {
   const router = useRouter();
@@ -42,7 +41,7 @@ const Join = () => {
     const $button = event.currentTarget;
 
     if (!(email.current.disabled && name.current.disabled)) {
-      changeButtonStyle($button, "전부 입력해야 합니다.")
+      changeButtonStyle($button, "상단의 정보를 모두 입력해야 합니다.")
       name.current.focus();
       return;
     }
@@ -109,7 +108,7 @@ const Join = () => {
       email.current.style.color = "black"
     } else {
       // event 변수는 이 함수가 끝나면 사라진다. 따라서 추가적으로 button의 주소를 묶어둬야 한다?
-      changeButtonStyle($button, "이미 가입된 이메일입니다");
+      changeButtonStyle($button, "이미 가입된 이메일입니다.");
     }
 
 
@@ -145,35 +144,67 @@ const Join = () => {
       // borderRadius: "5px",
 
       fontFamily: "-moz-initial",
-
-
     }}>
       <div style={{ display: "flex", flexDirection: 'column', transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none", width: "100vw", padding: "5vw" }}>
+      <img src='/static/logos/logo06.png' alt='요건 다 내꺼' style={{width: '12rem', margin: '0 auto'}} /><br />
         <Form  >
-          <h2 ref={message} style={{ textAlign: "center" }}>회원 가입</h2>
-          <Form.Field>
-            <h3>닉네임</h3>
-            <input type="text" ref={name} placeholder="이름" />
-            <button style={buttonStyle} onClick={nameCheck}>이름 중복 확인</button>
+          <h2 ref={message} style={{ textAlign: "center" }}>처음이신가요?</h2>
+          <Form.Field style={{margin: '0'}}>
+            <div className="ui action input" style={{position: 'relative', marginBottom: '1rem'}}>
+              <input type="text" ref={name} placeholder="닉네임" style={{paddingLeft: '3rem', height: '3rem', borderRadius: '10px'}} />
+              <button className="ui button" onClick={nameCheck} style={{borderTopRightRadius: '10px', borderBottomRightRadius: '10px'}}>중복 확인</button>
+              <BiUser size='1.2rem' style={{position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)'}} />
+            </div>
+          </Form.Field>
+
+          <Form.Field style={{margin: '0'}}>
+            <div className="ui action input" style={{position: 'relative', marginBottom: '1rem'}}>
+              <input type="email" ref={email} placeholder="이메일" style={{paddingLeft: '3rem', height: '3rem', borderRadius: '10px'}} />
+              <button className="ui button" onClick={emailCheck} style={{borderTopRightRadius: '10px', borderBottomRightRadius: '10px'}}>중복 확인</button>
+              <BiEnvelope size='1.2rem' style={{position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)'}} />
+            </div>
           </Form.Field>
 
           <Form.Field>
-            <h3>이메일</h3>
-            <input type="email" ref={email} placeholder="이메일" />
-            <button style={buttonStyle} onClick={emailCheck}>이메일 중복 확인</button>
+            <div style={{position: 'relative', marginBottom: '1rem'}}>
+              <input type="password" ref={password} placeholder="비밀번호" style={{paddingLeft: '3rem', height: '3rem', borderRadius: '10px'}}/>
+              <BiLockOpenAlt size='1.2rem' style={{position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)'}} />
+            </div>
           </Form.Field>
 
           <Form.Field>
-            <h3>비밀번호</h3>
-            <input type="password" ref={password} placeholder="비밀번호" />
-          </Form.Field>
-
-          <Form.Field>
-            <h3>비밀번호 확인</h3>
-            <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" />
+            <div style={{position: 'relative', marginBottom: '1rem'}}>
+              <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={{paddingLeft: '3rem', height: '3rem', borderRadius: '10px'}}/>
+              <BiLockAlt size='1.2rem' style={{position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)'}} />
+            </div>
           </Form.Field>
         </Form>
-        <button style={buttonStyle} onClick={toggleJoinForm}>BMR 작성하기</button>
+        <h4 className="ui horizontal divider header" style={{margin: '1.5rem 0'}}>
+          거의 다 왔어요!
+        </h4>
+
+        <div className="ui unstackable steps" style={{margin: '0 auto', width: '100%'}}>
+          <div className="active step">
+            <BiEditAlt size='2rem' style={{marginRight: '0.25rem'}} />
+            <div className="content">
+              <div className="title">정보 작성</div>
+            </div>
+          </div>
+          <div className="disabled step">
+            <BiBarChartAlt size='2rem' style={{marginRight: '0.25rem'}} />
+            <div className="content">
+              <div className="title">BMR 작성</div>
+            </div>
+          </div>
+          <div className="disabled step">
+            <BiHappyAlt size='2rem' style={{marginRight: '0.25rem'}} />
+            <div className="content">
+              <div className="title">가입 완료</div>
+            </div>
+          </div>
+        </div>
+
+        <button style={buttonStyle} onClick={toggleJoinForm}>다음 단계로 가기</button>
       </div>
       <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />

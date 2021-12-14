@@ -1,0 +1,39 @@
+.nvWrapper {
+  display: flex;
+  width: 100%;
+  height: 49vh;
+  justify-content: space-between;
+  position: absolute;
+}
+.btnWrapper {
+  display: flex;
+  width: 12vw;
+  z-index: 1;
+  backdrop-filter: blur(3px);
+  justify-content: center;
+  align-items: center;
+}
+.btnPrev {
+  position: relative;
+  content: "";
+  display: inline-block;
+  /* By using an em scale, the arrows will size with the font */
+  width: 2rem;
+  height: 2rem;
+  border-left: 0.4rem solid black;
+  border-top: 0.4rem solid black;
+  transform: rotate(-45deg);
+  margin-left: 1rem;
+}
+.btnNext {
+  position: relative;
+  content: "";
+  display: inline-block;
+  /* By using an em scale, the arrows will size with the font */
+  width: 2rem;
+  height: 2rem;
+  border-right: 0.4rem solid black;
+  border-top: 0.4rem solid black;
+  transform: rotate(45deg);
+  margin-right: 1rem;
+}
