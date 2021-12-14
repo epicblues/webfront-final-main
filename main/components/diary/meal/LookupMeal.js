@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { PAGE_CART } from "./AddFood";
 import List from "./List";
 import MealStyles from '../../../styles/diary/Meal.module.css';
-import { BiChevronLeft, BiEdit } from "react-icons/bi";
+import { BiChevronLeft } from "react-icons/bi";
+import { AiOutlineForm } from "react-icons/ai";
 
 const PAGE_PRODUCTS = "products";
 const mealType = ["아침", "점심", "저녁", "간식"];
@@ -63,7 +64,7 @@ const LookupMeal = ({
           {mealType[type]}
         </span>
 
-        <BiEdit
+        <AiOutlineForm
           size='2rem'
           onClick={() =>
             setDiary((diary) => {

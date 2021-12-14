@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 import MealStyles from '../../../styles/diary/Meal.module.css';
-import { BiTachometer, BiSad, BiPlusCircle, BiCheckCircle } from "react-icons/bi";
+import { BiSad, BiPlusCircle, BiCheckCircle } from "react-icons/bi";
 
 const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   const inputRef = useRef();
@@ -46,8 +46,7 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
             }
           >
             <div className={MealStyles.modalHeader}>
-              <BiTachometer size='2rem' />
-              <span>{value.name}</span>
+              {value.name}
             </div>
             <div className={MealStyles.modalContent}>
               {error && (

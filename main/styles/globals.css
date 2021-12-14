@@ -156,8 +156,9 @@ a.is-active {
 }
 
 /* dropDown */
-.dropdown-option i {
+.dropdown-option .change-option {
   margin: 0 0 0 1rem;
+  font-size: 1.6rem;
 }
   
 .dropdown-modal {
@@ -178,17 +179,12 @@ a.is-active {
   font: normal 500 1.2rem 'Noto Sans KR';
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   border-bottom: solid 1px #d8d8d8;
 }
 
 .managing-option:nth-child(3) {
  border-bottom: none;
-}
-
-.managing-option .icon {
-  width: 1.2rem;
-  height: 1.2rem;
 }
 
 .dropdown-modal-action {
@@ -252,10 +248,10 @@ a.is-active {
 }
 
 .progress .icon {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.6rem;
+  height: 1.6rem;
   position: absolute;
-  top: 23%;
+  top: 20%;
   left: 50%;
   transform: translateX(-50%);
 }

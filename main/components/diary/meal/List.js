@@ -37,11 +37,8 @@ const List = ({ product, index }) => {
         }
       >
         <div className={MealStyles.modalHeader}>
-          <BiInfoCircle size='2rem' />
-          <span>
-            {product.title}
-            {product.name}
-          </span>
+          {product.title}
+          {product.name}
         </div>
         <div className={MealStyles.modalContent}>
             <table>

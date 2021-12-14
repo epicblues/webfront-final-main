@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from 'semantic-ui-react'
-// ICON
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUtensils, faDumbbell, faHamburger } from "@fortawesome/free-solid-svg-icons";
+import { MdSyncAlt, MdOutlineTrendingFlat, MdOutlineTrendingUp, MdOutlineTrendingDown } from "react-icons/md";
+
 
 const options = [
   {
@@ -30,13 +29,10 @@ const DropdownMenu = ({selected, setSelected, }) => {
 
   return (
   <div className='dropdown-option'>
-      <i  className='ellipsis vertical icon'
-          onClick={() => {
-                          setIsOpen(!isOpen);
-          }}
-      >
-      </i>
-
+      <MdSyncAlt 
+        className="change-option"
+        onClick={() => {setIsOpen(!isOpen);}}
+      />
       <Modal open={isOpen}
               className='dropdown-modal'
       >
@@ -54,7 +50,7 @@ const DropdownMenu = ({selected, setSelected, }) => {
                     }}
               >
                 <div>유지</div>
-                <FontAwesomeIcon icon={faUtensils} className='icon' />
+                <MdOutlineTrendingFlat size='1.6rem' color="#888" />
               </div>
               <div className='managing-option'
                     onClick={(e) => {
@@ -63,7 +59,7 @@ const DropdownMenu = ({selected, setSelected, }) => {
                     }}
               >
                 <div>감량</div>
-                <FontAwesomeIcon icon={faDumbbell} className='icon' />
+                <MdOutlineTrendingDown size='1.6rem' color="#888" />
               </div>
               <div className='managing-option'
                     onClick={(e) => {
@@ -72,7 +68,7 @@ const DropdownMenu = ({selected, setSelected, }) => {
                     }}
               >
                 <div>증량</div>
-                <FontAwesomeIcon icon={faHamburger} className='icon' />
+                <MdOutlineTrendingUp size='1.6rem' color="#888" />
               </div>
           </div>
           <Button className='dropdown-modal-action'

@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from "react";
+import { BiSad } from "react-icons/bi";
+import { AiOutlinePicture, AiOutlineDelete } from "react-icons/ai";
 
 const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
   const imgPreview = diary.meals[type].imageBuffer;
@@ -39,11 +41,19 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
       className="ui rounded image"
       style={{ display: "flex", height: "auto" }}
     >
-      <div className="container" style={{ width: "100%" }}>
+      <div className="container" style={{ width: "100%"}}>
         {error && (
-          <p className="errorMsg" style={{ color: "red" }}>
-            File not supported
-            <i className="frown outline icon"></i>
+          <p className="errorMsg"
+              style={{
+                font: 'normal 400 1rem "Noto Sans KR"',
+                color: 'red',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+          >
+            지원하지 않는 파일 형식입니다
+            <BiSad size='1.2rem'/>
           </p>
         )}
         <div
@@ -76,7 +86,7 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
                 className="customFileUpload"
                 style={{ cursor: "pointer", marginBottom: 4 }}
               >
-                <i className="huge images outline icon"></i>
+                <AiOutlinePicture size='3rem'/>
               </label>
               <input
                 type="file"
@@ -88,10 +98,7 @@ const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
           )}
           {!diary.meals[type].image || (
             <div style={{ textAlign: "right", marginBottom: "16px" }}>
-              <i
-                className="huge trash alternate icon"
-                onClick={handleImageChange}
-              ></i>
+              <AiOutlineDelete onClick={handleImageChange} size='3rem' />
             </div>
           )}
         </div>
