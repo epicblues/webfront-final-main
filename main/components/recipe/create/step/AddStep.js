@@ -25,6 +25,7 @@ const AddStep = ({ stepData, setStepData }) => {
         ];
         setStepData(stepData);
         setImgPreview(null);
+        inputRef.current.value = "";
       } else {
         alert("순서를 더 이상 추가하실 수 없습니다.");
       }

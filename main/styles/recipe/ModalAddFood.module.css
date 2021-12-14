@@ -71,6 +71,7 @@
   margin: 0.2rem;
   padding: 0.1rem;
   place-items: center;
+  overflow-y: auto;
 }
 .itemWrapper .name {
   display: flex;

@@ -68,7 +68,7 @@
 
   .btnUpdate {
     background: #e4685d;
-    width: 2rem;
+    width: auto;
     border-radius: 6px;
     border: 1px solid #e4685d;
     cursor: pointer;
@@ -90,7 +90,7 @@
 
   .btnDel {
     background: #ffffff;
-    width: 2rem;
+    width: auto;
     border-radius: 6px;
     border: 1px solid #666666;
     cursor: pointer;
@@ -144,21 +144,54 @@
 
 .itemWrapper {
   display: grid;
-  grid-template-columns: 2rem 3rem auto 2rem 4rem 2rem 2rem;
+  width: 92vw;
+  grid-template-columns: 5rem auto 3rem 3rem;
   place-items: center;
   text-align: center;
   border: 1px #666666 solid;
   color: #333333;
   height: 3rem;
   background: linear-gradient(white, #ced4da);
-  column-gap: 0.5rem;
 }
 .items {
   display: grid;
-  grid-template-columns: 2rem 3rem auto 2rem 4rem 2rem 2rem;
+  width: 92vw;
+  grid-template-columns: 5rem auto 3rem 3rem;
+  grid-template-rows: 1fr 1fr;
   place-items: center;
   text-align: center;
   border: 1px #666666 solid;
   background-color: white;
-  column-gap: 0.5rem;
+  height: 6rem;
+}
+
+.listCategory {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  grid-row: 1/3;
+  width: 4rem;
+  height: 4rem;
+  color: white;
+  background: tomato;
+  border-radius: 50%;
+}
+.listDate {
+  grid-row: 1/2;
+  color: #554d4d;
+  font-size: 1.1rem;
+}
+.listTitle {
+  grid-row: 2/3;
+  font-size: 1.2rem;
+}
+.listLike {
+  display: flex;
+  color: #e4685d;
+}
+.listHit {
+  display: flex;
+  grid-row: 2/3;
+  color: #666666;
 }

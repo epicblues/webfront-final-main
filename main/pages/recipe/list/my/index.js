@@ -11,7 +11,7 @@ import myRecipeStyles from "../../../../styles/recipe/MyRecipe.module.css";
 import { postStaticAxios } from "../../../../util/axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import MyNavigation from "../../../../components/recipe/list/MyNavigation";
 
 const Index = ({ user, filteredRecipes }) => {
@@ -117,22 +117,36 @@ const Index = ({ user, filteredRecipes }) => {
           <div className={myRecipeStyles.containerList}>
             <table className={myRecipeStyles.tableContainer}>
               <tr className={myRecipeStyles.itemWrapper}>
-                <th>번호</th>
                 <th>분류</th>
-                <th>제목</th>
+                <th>작성일 / 제목</th>
                 <th>조회</th>
-                <th>작성</th>
-                <th>수정</th>
-                <th>삭제</th>
+                <th>기능</th>
               </tr>
               {recipes.map((card, index) => {
                 return (
                   <tr key={card._id} className={myRecipeStyles.items}>
-                    <td>{card._id}</td>
-                    <td>{renderSwitchCategory(card.category)}</td>
-                    <td>{card.title}</td>
-                    <td>{card.hit}</td>
-                    <td>{card.upload_date.slice(0, -14)}</td>
+                    <td className={myRecipeStyles.listCategory}>
+                      {renderSwitchCategory(card.category)}
+                    </td>
+                    <td className={myRecipeStyles.listDate}>
+                      {card.upload_date.slice(0, -14)}
+                    </td>
+                    <td className={myRecipeStyles.listTitle}>{card.title}</td>
+                    <td className={myRecipeStyles.listLike}>
+                      <FontAwesomeIcon
+                        className={myRecipeStyles.cardIconHit}
+                        icon={faHeart}
+                      />
+                      {card.likes}
+                    </td>
+                    <td className={myRecipeStyles.listHit}>
+                      <FontAwesomeIcon
+                        className={myRecipeStyles.cardIconHit}
+                        icon={faEye}
+                      />
+                      {card.hit}
+                    </td>
+
                     <td>
                       <Link
                         href={{
