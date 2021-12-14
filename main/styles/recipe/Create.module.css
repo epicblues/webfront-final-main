@@ -89,6 +89,7 @@
 
 .selectedFoodMapContainer {
   height: 30vh;
+  overflow-y: auto;
 }
 .selectedFoodMapHeader {
   background-color: #dedede;
