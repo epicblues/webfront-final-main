@@ -116,3 +116,49 @@
   opacity: 0.5;
   transition: 1s all;
 }
+
+.loadingTheme {
+  position: fixed;
+  z-index: 500;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  transition: 1.5s;
+}
+
+@keyframes loading {
+  from {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(2vh);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.loadingTheme > .loadingDots {
+  position: fixed;
+  top: 40vh;
+  left: 40vw;
+  z-index: 600;
+  background-color: whitesmoke;
+  width: 3vw;
+  height: 3vw;
+  border-radius: 50%;
+  animation: loading 1s;
+  animation-iteration-count: infinite;
+}
+
+.loadingDots:nth-child(2) {
+  left: 44vw;
+  animation-delay: 0.2s;
+}
+
+.loadingDots:nth-child(3) {
+  left: 48vw;
+  animation-delay: 0.4s;
+}

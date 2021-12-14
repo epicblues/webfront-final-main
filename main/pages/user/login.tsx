@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Button, Form } from 'semantic-ui-react';
 import Intro from '../../components/user/Intro';
 import { GetServerSideProps } from 'next';
+import Loading from '../../components/main/Loading';
 
 const Login = ({ introSkip }: { introSkip: boolean }) => {
 
@@ -78,6 +79,7 @@ const Login = ({ introSkip }: { introSkip: boolean }) => {
         </Link>
 
       </div>  <Intro handleClick={() => { setLoginMode(true) }} loginMode={loginMode} />
+      {!loginMode && <Loading />}
     </>
 
   )
