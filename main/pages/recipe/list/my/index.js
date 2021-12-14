@@ -118,16 +118,16 @@ const Index = ({ user, filteredRecipes }) => {
             <table className={myRecipeStyles.tableContainer}>
               <tr className={myRecipeStyles.itemWrapper}>
                 <th>번호</th>
-                <th>카테고리</th>
+                <th>분류</th>
                 <th>제목</th>
-                <th>조회수</th>
-                <th>작성일</th>
+                <th>조회</th>
+                <th>작성</th>
                 <th>수정</th>
                 <th>삭제</th>
               </tr>
               {recipes.map((card, index) => {
                 return (
-                  <tr key={card._id} className={myRecipeStyles.itemWrapper}>
+                  <tr key={card._id} className={myRecipeStyles.items}>
                     <td>{card._id}</td>
                     <td>{renderSwitchCategory(card.category)}</td>
                     <td>{card.title}</td>

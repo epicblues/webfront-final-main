@@ -68,7 +68,7 @@
 
   .btnUpdate {
     background: #e4685d;
-    width: auto;
+    width: 2rem;
     border-radius: 6px;
     border: 1px solid #e4685d;
     cursor: pointer;
@@ -90,7 +90,7 @@
 
   .btnDel {
     background: #ffffff;
-    width: auto;
+    width: 2rem;
     border-radius: 6px;
     border: 1px solid #666666;
     cursor: pointer;
@@ -144,8 +144,21 @@
 
 .itemWrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 3fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 2rem 3rem auto 2rem 4rem 2rem 2rem;
   place-items: center;
   text-align: center;
   border: 1px #666666 solid;
+  color: #333333;
+  height: 3rem;
+  background: linear-gradient(white, #ced4da);
+  column-gap: 0.5rem;
+}
+.items {
+  display: grid;
+  grid-template-columns: 2rem 3rem auto 2rem 4rem 2rem 2rem;
+  place-items: center;
+  text-align: center;
+  border: 1px #666666 solid;
+  background-color: white;
+  column-gap: 0.5rem;
 }
