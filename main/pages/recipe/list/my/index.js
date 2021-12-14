@@ -116,79 +116,83 @@ const Index = ({ user, filteredRecipes }) => {
         return (
           <div className={myRecipeStyles.containerList}>
             <table className={myRecipeStyles.tableContainer}>
-              <tr className={myRecipeStyles.itemWrapper}>
-                <th>분류</th>
-                <th>작성일 / 제목</th>
-                <th>조회</th>
-                <th>기능</th>
-              </tr>
+              <thead>
+                <tr className={myRecipeStyles.itemWrapper}>
+                  <th>분류</th>
+                  <th>작성일 / 제목</th>
+                  <th>조회</th>
+                  <th>기능</th>
+                </tr>
+              </thead>
               {recipes.map((card, index) => {
                 return (
-                  <tr key={card._id} className={myRecipeStyles.items}>
-                    <td className={myRecipeStyles.listCategory}>
-                      {renderSwitchCategory(card.category)}
-                    </td>
-                    <td className={myRecipeStyles.listDate}>
-                      <Link
-                        href={{
-                          pathname: `/recipe/card/${card._id}`,
-                        }}
-                        as={`/recipe/card/${card._id}`}
-                        passHref
-                      >
-                        <a>{card.upload_date.slice(0, -14)}</a>
-                      </Link>
-                    </td>
-                    <td className={myRecipeStyles.listTitle}>
-                      <Link
-                        href={{
-                          pathname: `/recipe/card/${card._id}`,
-                        }}
-                        as={`/recipe/card/${card._id}`}
-                        passHref
-                      >
-                        <a>{card.title}</a>
-                      </Link>
-                    </td>
-                    <td className={myRecipeStyles.listLike}>
-                      <FontAwesomeIcon
-                        className={myRecipeStyles.cardIconHit}
-                        icon={faHeart}
-                      />
-                      {card.likes}
-                    </td>
-                    <td className={myRecipeStyles.listHit}>
-                      <FontAwesomeIcon
-                        className={myRecipeStyles.cardIconHit}
-                        icon={faEye}
-                      />
-                      {card.hit}
-                    </td>
-                    <td>
-                      <Link
-                        href={{
-                          pathname: `/recipe/update/${card._id}`,
-                        }}
-                        as={`/recipe/update/${card._id}`}
-                        passHref
-                      >
-                        <a>
-                          <div className={myRecipeStyles.btnUpdate}>수정</div>
-                        </a>
-                      </Link>
-                    </td>
-                    <td>
-                      <div
-                        className={myRecipeStyles.btnDel}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          onDeleteBtn(card);
-                        }}
-                      >
-                        삭제
-                      </div>
-                    </td>
-                  </tr>
+                  <tbody key={card._id}>
+                    <tr className={myRecipeStyles.items}>
+                      <td className={myRecipeStyles.listCategory}>
+                        {renderSwitchCategory(card.category)}
+                      </td>
+                      <td className={myRecipeStyles.listDate}>
+                        <Link
+                          href={{
+                            pathname: `/recipe/card/${card._id}`,
+                          }}
+                          as={`/recipe/card/${card._id}`}
+                          passHref
+                        >
+                          <a>{card.upload_date.slice(0, -14)}</a>
+                        </Link>
+                      </td>
+                      <td className={myRecipeStyles.listTitle}>
+                        <Link
+                          href={{
+                            pathname: `/recipe/card/${card._id}`,
+                          }}
+                          as={`/recipe/card/${card._id}`}
+                          passHref
+                        >
+                          <a>{card.title}</a>
+                        </Link>
+                      </td>
+                      <td className={myRecipeStyles.listLike}>
+                        <FontAwesomeIcon
+                          className={myRecipeStyles.cardIconHit}
+                          icon={faHeart}
+                        />
+                        {card.likes}
+                      </td>
+                      <td className={myRecipeStyles.listHit}>
+                        <FontAwesomeIcon
+                          className={myRecipeStyles.cardIconHit}
+                          icon={faEye}
+                        />
+                        {card.hit}
+                      </td>
+                      <td>
+                        <Link
+                          href={{
+                            pathname: `/recipe/update/${card._id}`,
+                          }}
+                          as={`/recipe/update/${card._id}`}
+                          passHref
+                        >
+                          <a>
+                            <div className={myRecipeStyles.btnUpdate}>수정</div>
+                          </a>
+                        </Link>
+                      </td>
+                      <td>
+                        <div
+                          className={myRecipeStyles.btnDel}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            onDeleteBtn(card);
+                          }}
+                        >
+                          삭제
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
                 );
               })}
             </table>

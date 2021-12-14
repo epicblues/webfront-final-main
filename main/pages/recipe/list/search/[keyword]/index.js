@@ -42,6 +42,9 @@ const Index = ({ user, filteredRecipes, keyword }) => {
     }
   }
   const [recipeList, setRecipeList] = useState(filteredRecipes);
+  useEffect(() => {
+    setRecipeList(filteredRecipes);
+  }, [filteredRecipes]);
 
   const [currentURL, setCurrentURL] = useState("/recipe/list/search");
   return (

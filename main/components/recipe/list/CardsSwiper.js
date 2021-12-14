@@ -157,8 +157,8 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
                   passHref
                 >
                   <a>
-                    <p className={cardsSwiperStyles.cardBodyDesc}>
-                      <p className={cardsSwiperStyles.cardBodyMouse}>
+                    <div className={cardsSwiperStyles.cardBodyDesc}>
+                      <div className={cardsSwiperStyles.cardBodyMouse}>
                         -----
                         <FontAwesomeIcon
                           className={cardsSwiperStyles.cardBodyMouse}
@@ -174,9 +174,9 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
                           icon={faArrowDown}
                         />
                         -----
-                      </p>
+                      </div>
                       {card.desc}
-                    </p>
+                    </div>
                   </a>
                 </Link>
               </div>
