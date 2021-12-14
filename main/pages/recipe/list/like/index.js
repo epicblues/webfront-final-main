@@ -15,7 +15,7 @@ import DislikeButton from "../../../../components/recipe/DislikeButton";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 // Sad Doge
 import sd from "../../../../public/static/logos/dogeSad.jpg";
@@ -119,6 +119,23 @@ const Index = ({ user, filteredRecipes }) => {
                       >
                         <a>
                           <p className={searchListStyles.cardBodyDesc}>
+                            <p className={searchListStyles.cardBodyMouse}>
+                              -----
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faArrowDown}
+                              />
+                              Click!!
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faMouse}
+                              />
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faArrowDown}
+                              />
+                              -----
+                            </p>
                             {card.desc}
                           </p>
                         </a>

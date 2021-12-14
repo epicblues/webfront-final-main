@@ -129,9 +129,27 @@ const Index = ({ user, filteredRecipes }) => {
                       {renderSwitchCategory(card.category)}
                     </td>
                     <td className={myRecipeStyles.listDate}>
-                      {card.upload_date.slice(0, -14)}
+                      <Link
+                        href={{
+                          pathname: `/recipe/card/${card._id}`,
+                        }}
+                        as={`/recipe/card/${card._id}`}
+                        passHref
+                      >
+                        <a>{card.upload_date.slice(0, -14)}</a>
+                      </Link>
                     </td>
-                    <td className={myRecipeStyles.listTitle}>{card.title}</td>
+                    <td className={myRecipeStyles.listTitle}>
+                      <Link
+                        href={{
+                          pathname: `/recipe/card/${card._id}`,
+                        }}
+                        as={`/recipe/card/${card._id}`}
+                        passHref
+                      >
+                        <a>{card.title}</a>
+                      </Link>
+                    </td>
                     <td className={myRecipeStyles.listLike}>
                       <FontAwesomeIcon
                         className={myRecipeStyles.cardIconHit}
@@ -146,7 +164,6 @@ const Index = ({ user, filteredRecipes }) => {
                       />
                       {card.hit}
                     </td>
-
                     <td>
                       <Link
                         href={{

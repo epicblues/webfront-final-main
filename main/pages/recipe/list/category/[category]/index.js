@@ -20,7 +20,7 @@ import { parseDocumentToObject } from "../../../../../util/date";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 import loader from "../../../../../public/static/logos/logo04.png";
 
@@ -152,6 +152,23 @@ const Index = ({ user, filteredRecipes, category }) => {
                       >
                         <a>
                           <p className={searchListStyles.cardBodyDesc}>
+                            <p className={searchListStyles.cardBodyMouse}>
+                              -----
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faArrowDown}
+                              />
+                              Click!!
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faMouse}
+                              />
+                              <FontAwesomeIcon
+                                className={searchListStyles.cardBodyMouse}
+                                icon={faArrowDown}
+                              />
+                              -----
+                            </p>
                             {card.desc}
                           </p>
                         </a>
