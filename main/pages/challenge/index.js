@@ -21,221 +21,188 @@ import { Icon, Image } from "semantic-ui-react";
 import { useRouter } from "next/router";
 
 const index = ({ challenges, user }) => {
-  const [search, setSearch] = useState(false);
   const router = useRouter();
-  const participatedChallenges = challenges.filter(
-    (challenge) =>
-      challenge.userId !== user.id &&
-      challenge.participants.some((participant) => participant === user.id)
+
+  const [participatedChallenges, setParticipatedChallenges] = useState(
+    challenges.filter(
+      (challenge) =>
+        challenge.participants.some((participant) => participant === user.id) ||
+        challenge.userId === user.id
+    )
   );
+
   return (
     <>
       <div>
         <div className={ChallengeStyle.header2}>
-          <div className={ChallengeStyle.h2C}>참여중인 챌린지</div>
           <Icon
             name="angle double left"
             size="large"
             className={ImageStyle.back}
-            onClick={() => setSearch(false)}
+            onClick={() => router.back()}
           />
-          <Icon
-            name="search"
-            size="large"
-            className={ImageStyle.search}
-            onClick={() => {
-              setSearch(true);
-            }}
-          />
-          {search === true ? <Search setSearch={setSearch} /> : null}
-          <div className={ImageStyle.navDiv}>
-            <Navbar currentURL={"/challenge"} />
-          </div>
+          <Search setChallenges={setParticipatedChallenges} />
+          <Navbar currentURL={"/challenge"} />
+          <h2 className={ChallengeStyle.h2L}>참여중인 챌린지</h2>
         </div>
         <div className={ChallengeStyle.container2}>
-          <MyChallenge
-            challenges={challenges}
-            user={user}
-            key={challenges.id}
-          />
-          {challenges.map((challenge) => {
+          {participatedChallenges.map((challenge) => {
             return (
               <>
-                {challenge.userId !== user.id &&
-                challenge.participants.some(
-                  (participant) => participant === user.id
-                ) ? (
+                <Link passHref href={"/challenge/list/" + challenge._id}>
                   <>
-                    <Link passHref href={"/challenge/list/" + challenge._id}>
-                      <div style={{ marginTop: "30px" }}>
-                        <div
-                          className="image-wrap"
-                          style={{
-                            position: "relative",
-                            borderRadius: "0.3rem",
-                          }}
-                        >
-                          <div
-                            key={challenge.id}
-                            style={{
-                              backgroundColor: "gray",
-                              width: "50px",
-                              right: "0",
-                              position: "absolute",
-                              textAlign: "right",
-                              zIndex: "1",
-                              color: "white",
-                            }}
-                          >
-                            <FontAwesomeIcon
-                              icon={faUser}
-                              className={ImageStyle.image2}
-                            />
-                            {challenge.participants.length}명
-                          </div>
-                          <div>
-                            <Image
-                              style={{
-                                zIndex: "0",
-                                borderRadius: "5%",
-                                height: "80px",
-                                width: "250px",
-                              }}
-                              src={
-                                process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                                challenge.image
-                              }
-                              layout="fill"
-                              objectFit="cover"
-                              objectPosition="top"
-                            />
-                          </div>
-                        </div>
-                        <ul className={ListStyle.ul}>
-                          <li className={ListStyle.li}>
-                            <li
-                              className={ChallengeStyle.h2C}
-                              key={challenge.id}
-                            >
-                              챌린지 명:{challenge.title}
-                            </li>
-
-                            <li
-                              className={ChallengeStyle.li}
-                              key={challenge.id}
-                            >
-                              시작일:
-                              {new Date(challenge.startDate).getMonth() +
-                                1 +
-                                "월" +
-                                new Date(challenge.startDate).getDate() +
-                                "일"}
-                            </li>
-                            <li
-                              className={ChallengeStyle.li}
-                              key={challenge.id}
-                            >
-                              종료일:
-                              {new Date(challenge.endDate).getMonth() +
-                                1 +
-                                "월" +
-                                new Date(challenge.endDate).getDate() +
-                                "일"}
-                            </li>
-                            <li
-                              className={ChallengeStyle.li}
-                              key={challenge.id}
-                            >
-                              남은 일수:
-                              {Math.ceil(
-                                (new Date(challenge.endDate).getTime() -
-                                  new Date().getTime()) /
-                                  (1000 * 60 * 60 * 24)
-                              )}
-                              일
-                            </li>
-                          </li>
-                        </ul>
-                      </div>
-                    </Link>
                     <div
+                      className="image-wrap"
                       style={{
-                        display: "flex",
-                        justifyContent: "center",
+                        position: "relative",
+                        borderRadius: "0.3rem",
                       }}
                     >
-                      <button
-                        className={ButtonStyle.button}
-                        onClick={async (event) => {
-                          const { data: result } = await axios.post(
-                            "/api/challenge/validate",
-                            challenge
-                          );
-                          console.log(result);
-                          const button = event.target;
-
-                          button.disabled = true;
-                          if (Array.isArray(result)) {
-                            // 실패했다.
-                            button.textContent = "진행중!";
-                            button.style.color = "white";
-                            setInterval(
-                              (button) => {
-                                button.style.display = "none";
-                              },
-                              2000,
-                              button
-                            );
-                            const progressBar = button.nextElementSibling;
-                            if (progressBar instanceof HTMLElement) {
-                              progressBar.style.display = "block";
-                              const realProgressBar =
-                                progressBar.firstElementChild.firstElementChild;
-                              if (challenge.type === "diet") {
-                                realProgressBar.value = result.length;
-                                realProgressBar.max = challenge.diet.condition;
-                                const span = realProgressBar.nextElementSibling;
-                                span.innerText =
-                                  Math.round(
-                                    (result.length / challenge.diet.condition) *
-                                      100
-                                  ) + " %";
-                              } else {
-                                realProgressBar.value = result.length;
-                                realProgressBar.max =
-                                  challenge.recipe.uploadCount;
-                                const span = realProgressBar.nextElementSibling;
-                                span.innerText =
-                                  Math.round(
-                                    (result.length /
-                                      challenge.recipe.uploadCount) *
-                                      100
-                                  ) + " %";
-                              }
-                            }
-                          } else {
-                            // 성공했다.
-                            button.textContent = "성공!";
-                            button.style.backgroundColor = "blue";
-
-                            setInterval(
-                              (button) => {
-                                button.style.display = "none";
-                              },
-                              2000,
-                              button
-                            );
-                          }
+                      <div
+                        style={{
+                          backgroundColor: "gray",
+                          width: "50px",
+                          right: "0",
+                          position: "absolute",
+                          textAlign: "right",
+                          zIndex: "1",
+                          color: "white",
                         }}
                       >
-                        결과 확인
-                      </button>
-                      <div style={{ display: "none" }}>
-                        <ProgressBar />
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          className={ImageStyle.image2}
+                        />
+                        {challenge.participants.length}명
+                      </div>
+                      <div>
+                        <Image
+                          style={{
+                            zIndex: "0",
+                            borderRadius: "5%",
+                            height: "80px",
+                            width: "250px",
+                          }}
+                          src={
+                            process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                            challenge.image
+                          }
+                          layout="fill"
+                          objectFit="cover"
+                          objectPosition="top"
+                        />
                       </div>
                     </div>
+                    <ul className={ListStyle.ul}>
+                      <li className={ListStyle.li}>
+                        <li className={ChallengeStyle.h2L} key={challenge._id}>
+                          챌린지 명:{challenge.title}
+                        </li>
+
+                        <li className={ChallengeStyle.li}>
+                          시작일:
+                          {new Date(challenge.startDate).getMonth() +
+                            1 +
+                            "월" +
+                            new Date(challenge.startDate).getDate() +
+                            "일"}
+                        </li>
+                        <li className={ChallengeStyle.li}>
+                          종료일:
+                          {new Date(challenge.endDate).getMonth() +
+                            1 +
+                            "월" +
+                            new Date(challenge.endDate).getDate() +
+                            "일"}
+                        </li>
+                        <li className={ChallengeStyle.li}>
+                          남은 일수:
+                          {Math.ceil(
+                            (new Date(challenge.endDate).getTime() -
+                              new Date().getTime()) /
+                              (1000 * 60 * 60 * 24)
+                          )}
+                          일
+                        </li>
+                      </li>
+                    </ul>
                   </>
-                ) : null}
+                </Link>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <button
+                    className={ButtonStyle.button}
+                    onClick={async (event) => {
+                      const {
+                        data: { result },
+                      } = await axios.post(
+                        "/api/challenge/validate",
+                        challenge
+                      );
+                      console.log(result);
+                      const button = event.target;
+
+                      button.disabled = true;
+                      if (Array.isArray(result)) {
+                        // 실패했다.
+                        button.textContent = "진행중!";
+                        button.style.color = "white";
+                        setInterval(
+                          (button) => {
+                            button.style.display = "none";
+                          },
+                          2000,
+                          button
+                        );
+                        const progressBar = button.nextElementSibling;
+                        if (progressBar instanceof HTMLElement) {
+                          progressBar.style.display = "block";
+                          const realProgressBar =
+                            progressBar.firstElementChild.firstElementChild;
+                          if (challenge.type === "diet") {
+                            realProgressBar.value = result.length;
+                            realProgressBar.max = challenge.diet.condition;
+                            const span = realProgressBar.nextElementSibling;
+                            span.innerText =
+                              Math.round(
+                                (result.length / challenge.diet.condition) * 100
+                              ) + " %";
+                          } else {
+                            realProgressBar.value = result.length;
+                            realProgressBar.max = challenge.recipe.uploadCount;
+                            const span = realProgressBar.nextElementSibling;
+                            span.innerText =
+                              Math.round(
+                                (result.length / challenge.recipe.uploadCount) *
+                                  100
+                              ) + " %";
+                          }
+                        }
+                      } else {
+                        // 성공했다.
+                        button.textContent = "성공!";
+                        button.style.backgroundColor = "blue";
+
+                        setInterval(
+                          (button) => {
+                            button.style.display = "none";
+                          },
+                          2000,
+                          button
+                        );
+                      }
+                    }}
+                  >
+                    결과 확인
+                  </button>
+                  <div style={{ display: "none" }}>
+                    <ProgressBar />
+                  </div>
+                </div>
               </>
             );
           })}

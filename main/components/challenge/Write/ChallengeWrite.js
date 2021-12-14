@@ -287,7 +287,7 @@ const ChallengeWrite = ({ user }) => {
             whiteSpace: "nowrap",
             position: "relative",
             right: "40px",
-            top: "22px",
+            top: "20px",
           }}
         >
           {value}

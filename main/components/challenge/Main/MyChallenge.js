@@ -69,7 +69,7 @@ const MyChallenge = ({ challenges, user }) => {
                         </div>
 
                         <ul className={ListStyle.ul}>
-                          <li className={ChallengeStyle.h2C} key={challenge.id}>
+                          <li className={ChallengeStyle.h2L} key={challenge.id}>
                             {challenge.title}
                           </li>
                           <li className={ChallengeStyle.li} key={challenge.id}>

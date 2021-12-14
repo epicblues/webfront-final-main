@@ -321,7 +321,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
     </>
   );
 };
-
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
   const challengeId = Number(ctx.query.chal_id);

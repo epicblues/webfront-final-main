@@ -37,6 +37,7 @@ const MainList = ({ challenges, user }) => {
       <div className="container">
         <div>
           <div className={ChallengeStyle.header2}>
+            <Search />
             <Link passHref href={"/challenge"}>
               <FontAwesomeIcon
                 icon={faAngleDoubleLeft}
@@ -44,12 +45,8 @@ const MainList = ({ challenges, user }) => {
               />
             </Link>
             <h2 className={ChallengeStyle.h2C}>챌린지 리스트</h2>
-            <Search />
           </div>
           <Navbar currentURL={"/challenge/mainlist"} />
-
-          <hr className={ChallengeStyle.hr3} />
-
           {challenges.length > 0 ? (
             <ChallengeMainList
               challenges={selectChallenges(challengeIndex)}

@@ -11,6 +11,7 @@ const handler: NextApiHandler = async (req, res) => {
       .db("webfront")
       .collection("challenge")
       .find({ title: new RegExp(`${title}`) })
+      .limit(6)
       .toArray();
     res.status(200).json({ challenges: searchedChallenges });
   } catch (error: any) {

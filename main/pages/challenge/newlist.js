@@ -22,14 +22,7 @@ const NewList = ({ challenges, user }) => {
   return (
     <div>
       <div className={ChallengeStyle.header2}>
-        <Icon
-          name="search"
-          size="large"
-          className={ImageStyle.search}
-          onClick={() => {
-            setSearch(true);
-          }}
-        />
+        <Search />
         <Link passHref href={"/challenge"}>
           <FontAwesomeIcon
             icon={faAngleDoubleLeft}
@@ -37,15 +30,13 @@ const NewList = ({ challenges, user }) => {
           />
         </Link>
         <h2 className={ChallengeStyle.h2C}>신규 챌린지</h2>
-        <Search />
       </div>
       <Navbar currentURL={"/challenge/newlist"} />
-
       <div className={ChallengeStyle.container}>
         {challenges.map((challenge) => {
           return (
             <>
-              <div key={challenge._id}>
+              <div>
                 <>
                   <Link passHref href={"/challenge/list/" + challenge._id}>
                     <div className={ChallengeStyle.list}>
@@ -57,7 +48,6 @@ const NewList = ({ challenges, user }) => {
                         }}
                       >
                         <div
-                          key={challenge._id}
                           style={{
                             backgroundColor: "gray",
                             width: "50px",
@@ -91,14 +81,11 @@ const NewList = ({ challenges, user }) => {
                       </div>
                       <ul key={challenge._id} className={ListStyle.ul}>
                         <li className={ListStyle.li}>
-                          <li
-                            className={ChallengeStyle.title}
-                            key={challenge._id}
-                          >
+                          <li className={ChallengeStyle.title}>
                             {challenge.title}
                           </li>
 
-                          <li style={{ margin: "0 11px" }} key={challenge.id}>
+                          <li style={{ margin: "0 11px" }}>
                             시작일:
                             {new Date(challenge.startDate).getFullYear() +
                               "년" +
@@ -116,9 +103,9 @@ const NewList = ({ challenges, user }) => {
                               "일"}
                           </li>
                           {challenge.type === "diet" ? (
-                            <li key={challenge._id}>챌린지 종류: 다이어트</li>
+                            <li>챌린지 종류: 다이어트</li>
                           ) : (
-                            <li key={challenge._id}>챌린지 종류: 레시피</li>
+                            <li>챌린지 종류: 레시피</li>
                           )}
                         </li>
                       </ul>
