@@ -20,46 +20,6 @@
     height: 49vh;
   }
 
-  .nvWrapper {
-    display: flex;
-    width: 100%;
-    height: 49vh;
-    justify-content: space-between;
-    position: absolute;
-  }
-  .btnWrapper {
-    display: flex;
-    width: 12vw;
-    z-index: 1;
-    backdrop-filter: blur(3px);
-    justify-content: center;
-    align-items: center;
-  }
-  .btnPrev {
-    position: relative;
-    content: "";
-    display: inline-block;
-    /* By using an em scale, the arrows will size with the font */
-    width: 2rem;
-    height: 2rem;
-    border-left: 0.4rem solid black;
-    border-top: 0.4rem solid black;
-    transform: rotate(-45deg);
-    margin-left: 1rem;
-  }
-  .btnNext {
-    position: relative;
-    content: "";
-    display: inline-block;
-    /* By using an em scale, the arrows will size with the font */
-    width: 2rem;
-    height: 2rem;
-    border-right: 0.4rem solid black;
-    border-top: 0.4rem solid black;
-    transform: rotate(45deg);
-    margin-right: 1rem;
-  }
-
   .card {
     background-color: white;
     height: 45vh;
@@ -86,7 +46,19 @@
     position: relative;
   }
 
-  .card:hover .cardHeader {
+  .cardClick {
+    background-color: white;
+    height: 45vh;
+    border-radius: 15px;
+    display: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+  }
+
+  .cardClick .cardHeader {
     position: relative;
     opacity: 0.7;
     height: 10vh;
@@ -102,10 +74,17 @@
   }
 
   .hot {
-    display: flex;
+    display: grid;
+    width: 100%;
+    grid-template-columns: max-content max-content;
     align-content: center;
-    justify-content: left;
+    justify-content: space-between;
     height: 1.2rem;
+  }
+  .innerHotWrapper {
+    display: flex;
+  }
+  .detailBtn {
   }
   .iWrapper {
     margin-right: 0.5rem;
@@ -162,7 +141,7 @@
     height: 180px;
   }
 
-  .card:hover .cardBodyDesc {
+  .cardClick .cardBodyDesc {
     display: unset;
     opacity: 1;
     -webkit-transition: 0.5s ease-in-out;
