@@ -11,7 +11,7 @@ import myRecipeStyles from "../../../../styles/recipe/MyRecipe.module.css";
 import { postStaticAxios } from "../../../../util/axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import MyNavigation from "../../../../components/recipe/list/MyNavigation";
 
 const Index = ({ user, filteredRecipes }) => {
@@ -132,13 +132,20 @@ const Index = ({ user, filteredRecipes }) => {
                       {card.upload_date.slice(0, -14)}
                     </td>
                     <td className={myRecipeStyles.listTitle}>{card.title}</td>
-                    <td className={myRecipeStyles.listHitIcon}>
+                    <td className={myRecipeStyles.listLike}>
+                      <FontAwesomeIcon
+                        className={myRecipeStyles.cardIconHit}
+                        icon={faHeart}
+                      />
+                      {card.likes}
+                    </td>
+                    <td className={myRecipeStyles.listHit}>
                       <FontAwesomeIcon
                         className={myRecipeStyles.cardIconHit}
                         icon={faEye}
                       />
+                      {card.hit}
                     </td>
-                    <td className={myRecipeStyles.listHit}>{card.hit}</td>
 
                     <td>
                       <Link

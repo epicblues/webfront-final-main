@@ -186,6 +186,12 @@
   grid-row: 2/3;
   font-size: 1.2rem;
 }
+.listLike {
+  display: flex;
+  color: #e4685d;
+}
 .listHit {
+  display: flex;
   grid-row: 2/3;
+  color: #666666;
 }
