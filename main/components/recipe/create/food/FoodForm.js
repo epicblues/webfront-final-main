@@ -42,7 +42,7 @@ const FoodForm = ({
       <div className={createStyles.selectedFoodMapContainer}>
         {foodData.length === 0 ? (
           <>
-            <Image objectFit="contain" src={doge}></Image>
+            <Image layout="responsive" objectFit="contain" src={doge}></Image>
             <p className={createStyles.emptyP}>🥕재료를 추가해주세요🥕</p>
           </>
         ) : (

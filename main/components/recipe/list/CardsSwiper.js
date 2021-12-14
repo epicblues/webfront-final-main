@@ -19,7 +19,7 @@ import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
 // ICON
 import ci from "../../../public/static/logos/icon_check.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { UserBmr } from "../../../models";
 
 const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
@@ -158,6 +158,23 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
                 >
                   <a>
                     <p className={cardsSwiperStyles.cardBodyDesc}>
+                      <p className={cardsSwiperStyles.cardBodyMouse}>
+                        -----
+                        <FontAwesomeIcon
+                          className={cardsSwiperStyles.cardBodyMouse}
+                          icon={faArrowDown}
+                        />
+                        Click!!
+                        <FontAwesomeIcon
+                          className={cardsSwiperStyles.cardBodyMouse}
+                          icon={faMouse}
+                        />
+                        <FontAwesomeIcon
+                          className={cardsSwiperStyles.cardBodyMouse}
+                          icon={faArrowDown}
+                        />
+                        -----
+                      </p>
                       {card.desc}
                     </p>
                   </a>
