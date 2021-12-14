@@ -60,14 +60,14 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
       nextEl: navigationNextRef.current,
     },
     // IE, Edge, Firefox(>5) 이벤트 처리용 핸들러
-    onbeforeprint: (swiper) => {
+    onBeforePrint: (swiper) => {
       swiper.params.navigation.prevEl = navigationPrevRef.current;
       swiper.params.navigation.nextEl = navigationNextRef.current;
       swiper.activeIndex = mainImageIndex;
       swiper.navigation.update();
     },
     allowTouchMove: false,
-    speed: 200,
+    speed: 400,
     slidesPerView: 1.3,
     centeredSlides: true,
     loop: true,
