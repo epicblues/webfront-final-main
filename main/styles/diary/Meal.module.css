@@ -115,8 +115,15 @@
     color: #ff5656;
 }
 
-.ProductWrap > div span {
+.ProductWrap .ListTitle {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.ProductWrap .ListTitle span {
     font-size: 1rem;
+    margin-left: 0.25rem;
 }
 
 .ProductItem {
@@ -212,16 +219,11 @@
 .modalHeader {
     font: normal 500 1.5rem 'Noto Sans KR';
     background-color: #e3e3e3;
-    display: flex;
-    align-items: center;
     padding: 0.5rem;
     margin-bottom: 1rem;
+    text-align: center;
     border-top-left-radius: 20px !important;
     border-top-right-radius: 20px !important;
-}
-
-.modalHeader span {
-    margin-left: 0.5rem;
 }
 
 .modalContent {

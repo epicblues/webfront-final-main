@@ -3,7 +3,7 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
 registerLocale("ko", { ...ko, options: { ...ko.options, weekStartsOn: 1 } }); // 주시작일 - 일요일:0 월요일:1
 import "react-datepicker/dist/react-datepicker.css";
-import { BiCalendarEdit } from "react-icons/bi";
+import { AiOutlineCalendar } from "react-icons/ai";
 import { getDateId, returnIdToDate } from "../../util/date";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -17,7 +17,7 @@ const PickDate = ({ diary, setDiary }) => {
   const CustomInput = ({ value, onClick }) => (
     <div className='customInput' onClick={onClick}>
       {/* {value} */}
-      <BiCalendarEdit className="icon" />
+      <AiOutlineCalendar className="icon" />
     </div>
   );
 

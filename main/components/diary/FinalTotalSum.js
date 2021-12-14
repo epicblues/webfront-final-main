@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Dropdown from "./Dropdown";
 import Progress from "./Progress";
+import { BiCube, BiCylinder, BiPyramid } from "react-icons/bi";
 
 const FinalTotalSum = ({ diary, user, }) => {
   function getTotalNutrients() {
@@ -106,21 +107,24 @@ const FinalTotalSum = ({ diary, user, }) => {
 
         <div className='final-nutrition-total'>
           <div>
-            <img alt='탄수화물' src='/carbs.png' />
+            {/* <img alt='탄수화물' src='/carbs.png' /> */}
+            <BiCube size='1.6rem' />
             <p>
               <span>{finalTotalSum.carbs}</span> / {managingDatas[selected].carbs} g
             </p>
           </div>
 
           <div>
-            <img alt='단백질' src='/protein.png' />
+            {/* <img alt='단백질' src='/protein.png' /> */}
+            <BiCylinder size='1.6rem' />
             <p>
               <span>{finalTotalSum.prot}</span> / {managingDatas[selected].prot} g
             </p>
           </div>
 
           <div>
-            <img alt='지방' src='/fats.png' />
+            {/* <img alt='지방' src='/fats.png' /> */}
+            <BiPyramid size='1.6rem' />
             <p>
               <span>{finalTotalSum.fat}</span> / {managingDatas[selected].fat} g
             </p>
