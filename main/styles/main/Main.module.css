@@ -127,6 +127,11 @@
   transition: 1.5s;
 }
 
+.loadingTheme > :nth-child(4) {
+  width: 100vw;
+  height: 100vh;
+}
+
 @keyframes loading {
   from {
     transform: translateY(0);

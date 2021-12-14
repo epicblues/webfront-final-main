@@ -6,12 +6,14 @@ const Intro = ({ handleClick, loginMode }: { handleClick: Function, loginMode: b
   const container: CSSProperties = {
     display: 'flex',
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     margin: "20px",
     height: "70vh",
     transition: "all 0.3s",
-    transform: loginMode ? "translate(-110%,-60vh)" : 'translate(0%,-60vh)'
+    width: "100vw",
+    marginTop: "40px"
+    // position: "fixed",
 
   }
 
@@ -27,7 +29,7 @@ const Intro = ({ handleClick, loginMode }: { handleClick: Function, loginMode: b
 
   return (
     <div style={container}>
-      <h1>요건 다 내꺼</h1>
+      <img src='/static/logos/logo06.png' alt='요건 다 내꺼' style={{ width: '12rem', margin: '0 auto' }} />
       <h2>
         요리와 건강을 모두 챙겨봅시다!
       </h2>
