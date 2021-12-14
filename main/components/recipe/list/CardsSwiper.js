@@ -1,11 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/dist/client/image";
 
 // swiper
 import { Swiper, SwiperSlide, user } from "swiper/react";
 import "swiper/swiper.min.css";
-import "swiper/components/navigation/navigation.min.css";
 import SwiperCore, { Navigation } from "swiper/core";
 SwiperCore.use([Navigation]);
 
@@ -19,7 +18,7 @@ import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
 // ICON
 import ci from "../../../public/static/logos/icon_check.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { UserBmr } from "../../../models";
 
 const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
@@ -28,6 +27,12 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
   const [filteredHitRecipes, setFilteredHitRecipes] = useState(
     filteredHitRecipesProps
   );
+  const [isDetailActive, setIsDetailActive] = useState(false);
+  const [activatedDetailIndex, setActivatedDetailIndex] = useState(null);
+  const handleDetailBtnClick = (booleanVal, index) => {
+    setIsDetailActive(booleanVal);
+    setActivatedDetailIndex(index);
+  };
   function renderSwitchCategory(param) {
     switch (param) {
       case "soup":
@@ -51,31 +56,19 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
     }
   }
 
-  const navigationPrevRef = useRef(null);
-  const navigationNextRef = useRef(null);
-
   const swiperParams = {
-    navigation: {
-      prevEl: navigationPrevRef.current,
-      nextEl: navigationNextRef.current,
-    },
-    // IE, Edge, Firefox(>5) 이벤트 처리용 핸들러
-    onBeforePrint: (swiper) => {
-      swiper.params.navigation.prevEl = navigationPrevRef.current;
-      swiper.params.navigation.nextEl = navigationNextRef.current;
-      swiper.activeIndex = mainImageIndex;
-      swiper.navigation.update();
-    },
-    allowTouchMove: false,
     speed: 400,
     slidesPerView: 1.3,
     centeredSlides: true,
     loop: true,
-    preventInteractionOnTransition: true,
     spaceBetween: 30,
     onSwiper: setSwiper,
     onSlideChange: (e) => setMainImageIndex(e.activeIndex),
   };
+
+  useEffect(() => {
+    setIsDetailActive(false);
+  }, [mainImageIndex]);
 
   return (
     <Swiper
@@ -83,17 +76,16 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
       ref={setSwiper}
       className={cardsSwiperStyles.container}
     >
-      <div className={cardsSwiperStyles.nvWrapper}>
-        <div className={cardsSwiperStyles.btnWrapper} ref={navigationPrevRef}>
-          <div className={cardsSwiperStyles.btnPrev}></div>
-        </div>
-        <div className={cardsSwiperStyles.btnWrapper} ref={navigationNextRef}>
-          <div className={cardsSwiperStyles.btnNext}></div>
-        </div>
-      </div>
       {filteredHitRecipes.map((card, index) => {
         return (
-          <SwiperSlide key={card._id} className={cardsSwiperStyles.card}>
+          <SwiperSlide
+            key={card._id}
+            className={
+              isDetailActive && activatedDetailIndex === index
+                ? cardsSwiperStyles.cardClick
+                : cardsSwiperStyles.card
+            }
+          >
             {/* 카드 헤더 (이미지) */}
             <div className={cardsSwiperStyles.cardHeader}>
               <Image
@@ -131,10 +123,29 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
               <div className={cardsSwiperStyles.cardBodyHeader}>
                 <div className={cardsSwiperStyles.headerFlex}>
                   <div className={cardsSwiperStyles.hot}>
-                    <div className={cardsSwiperStyles.iWrapper}>
-                      <Image objectFit="contain" src={ci} />
+                    <div className={cardsSwiperStyles.innerHotWrapper}>
+                      <div className={cardsSwiperStyles.iWrapper}>
+                        <Image
+                          layout="intrinsic"
+                          objectFit="contain"
+                          src={ci}
+                        />
+                      </div>
+                      <strong>요즘 뜨는 레시피!</strong>
                     </div>
-                    <strong>요즘 뜨는 레시피</strong>
+                    <div className={cardsSwiperStyles.detailBtn}>
+                      {isDetailActive && activatedDetailIndex === index ? (
+                        <span
+                          onClick={() => handleDetailBtnClick(false, index)}
+                        >
+                          접기<i className="caret up icon"></i>
+                        </span>
+                      ) : (
+                        <span onClick={() => handleDetailBtnClick(true, index)}>
+                          자세히보기<i className="caret down icon"></i>
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
@@ -149,55 +160,47 @@ const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
 
               {/* 카드 바디 본문 */}
               <div className={cardsSwiperStyles.cardBodyMain}>
-                <Link
-                  href={{
-                    pathname: `/recipe/card/${card._id}`,
-                  }}
-                  as={`/recipe/card/${card._id}`}
-                  passHref
-                >
-                  <a>
-                    <div className={cardsSwiperStyles.cardBodyDesc}>
-                      <div className={cardsSwiperStyles.cardBodyMouse}>
-                        -----
-                        <FontAwesomeIcon
-                          className={cardsSwiperStyles.cardBodyMouse}
-                          icon={faArrowDown}
-                        />
-                        Click!!
-                        <FontAwesomeIcon
-                          className={cardsSwiperStyles.cardBodyMouse}
-                          icon={faMouse}
-                        />
-                        <FontAwesomeIcon
-                          className={cardsSwiperStyles.cardBodyMouse}
-                          icon={faArrowDown}
-                        />
-                        -----
-                      </div>
-                      {card.desc}
-                    </div>
-                  </a>
-                </Link>
+                <div className={cardsSwiperStyles.cardBodyDesc}>
+                  <div className={cardsSwiperStyles.cardBodyMouse}></div>
+                  {card.desc}
+                </div>
               </div>
               {/* 카드 바디 푸터 */}
               <div className={cardsSwiperStyles.cardBodyFooter}>
                 <div className={cardsSwiperStyles.hr}></div>
                 <div className={cardsSwiperStyles.textWrapper}>
-                  <span>
-                    <FontAwesomeIcon
-                      className={cardsSwiperStyles.cardIconHit}
-                      icon={faEye}
-                    />
-                    조회{" "}
-                    <strong className={cardsSwiperStyles.hitSpan}>
-                      {card.hit}
-                    </strong>
-                    회
-                  </span>
-                  <span className={cardsSwiperStyles.cardUploadDate}>
-                    {card.upload_date.slice(0, -14)}
-                  </span>
+                  {isDetailActive && activatedDetailIndex === index ? (
+                    <div className={cardsSwiperStyles.goRecipe}>
+                      <Link
+                        href={{
+                          pathname: `/recipe/card/${card._id}`,
+                        }}
+                        as={`/recipe/card/${card._id}`}
+                        passHref
+                      >
+                        <a>
+                          <p>레시피 보러가기</p>
+                        </a>
+                      </Link>
+                    </div>
+                  ) : (
+                    <>
+                      <span>
+                        <FontAwesomeIcon
+                          className={cardsSwiperStyles.cardIconHit}
+                          icon={faEye}
+                        />
+                        조회{" "}
+                        <strong className={cardsSwiperStyles.hitSpan}>
+                          {card.hit}
+                        </strong>
+                        회
+                      </span>
+                      <span className={cardsSwiperStyles.cardUploadDate}>
+                        {card.upload_date.slice(0, -14)}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

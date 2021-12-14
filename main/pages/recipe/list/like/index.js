@@ -52,6 +52,7 @@ const Index = ({ user, filteredRecipes }) => {
     <div className={searchListStyles.main}>
       <Navigation currentURL={currentURL}></Navigation>
       <div className={searchListStyles.container}>
+        <h1>당신이 좋아하는 레시피</h1>
         {recipeList.length === 0 ? (
           <div className={searchListStyles.noLikes}>
             아직 좋아요를 누른 게시물이 없습니다 :(
