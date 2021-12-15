@@ -3,15 +3,14 @@ import { authenticated } from "../../../util/auth";
 import clientPromise from "../../../util/mongodb";
 
 const handler: NextApiHandler = async (req, res) => {
-  const title = req.query.title as string;
+  
 
   try {
     const client = await clientPromise;
     const searchedChallenges = await client
       .db("webfront")
       .collection("challenge")
-      .find({ title: new RegExp(`${title}`) })
-      .limit(6)
+      .find({  endDate: {$gte:new Date()} })
       .toArray();
     res.status(200).json({ challenges: searchedChallenges });
   } catch (error: any) {
