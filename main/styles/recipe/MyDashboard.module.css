@@ -3,7 +3,7 @@
   .container {
     font-family: "NanumSquare";
     background-color: #fff0f0;
-    height: 26vh;
+    height: 30vh;
     text-align: center;
   }
 
@@ -12,7 +12,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
     background-color: white;
-    height: 18vh;
+    height: 25vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
@@ -35,7 +35,7 @@
   }
 
   .title {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #333333;
   }
 
@@ -50,7 +50,7 @@
   .container {
     font-family: "NanumSquare";
     background-color: #fff0f0;
-    height: 26vh;
+    height: 30vh;
     text-align: center;
   }
 
@@ -59,7 +59,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 15px;
     background-color: white;
-    height: 18vh;
+    height: 25vh;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
@@ -82,7 +82,7 @@
   }
 
   .title {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: #333333;
   }
 
