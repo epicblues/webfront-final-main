@@ -168,7 +168,7 @@ const MeasuringModal = ({
                   <p>양파</p>
                   <p>(1/4개=50g)</p>
                 </div>
-                <div className={measuringModalStyles.itemDi3}>
+                <div className={measuringModalStyles.itemDiv3}>
                   <Image src={tip10} alt="image tip10" />
                   <p>무</p>
                   <p>(1토막=약150g)</p>
