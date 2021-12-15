@@ -3,6 +3,8 @@ import { checkValid, getUserOrRedirect } from '../../util/auth';
 import Bmr from '../../components/user/Bmr'
 import axios from 'axios';
 import { Button, Form, Header, Input, Label } from 'semantic-ui-react';
+import { BiUser, BiEnvelope, BiLockOpenAlt, BiLockAlt, BiChevronRight, BiChevronsLeft } from 'react-icons/bi';
+
 import { GetServerSideProps } from 'next';
 import clientPromise from '../../util/mongodb';
 import formStyle from '../../styles/user/form.module.css'
@@ -33,7 +35,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
     }, 2000, button, originalBtnText);
   }
 
-  const buttonStyle: CSSProperties = { marginTop: "10px", border: "0", background: MAIN_COLOR, padding: "10px", borderRadius: "10px", fontWeight: 700, color: "whitesmoke" }
+  const buttonStyle: CSSProperties = { border: "none", background: MAIN_COLOR, borderRadius: "20px", width: '100%', fontWeight: 400, color: "#fff", alignSelf: "stretch", height: "2.8rem", fontSize: "1.2rem"}
   const router = useRouter()
   const name = useRef() as MutableRefObject<HTMLInputElement>;
   const message = useRef() as MutableRefObject<HTMLHeadingElement>;
@@ -47,7 +49,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
     const $button = event.currentTarget
     if (name.current.disabled) {
       name.current.disabled = false;
-      $button.textContent = "닉네임 중복 확인"
+      $button.textContent = "닉네임 중복 확인하기"
       name.current.focus();
     } else {
       if (!/^[가-힣a-zA-Z]{2,12}$/.test(name.current.value)) {
@@ -61,7 +63,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
         name.current.style.backgroundColor = BACKGROUND_COLOR
         $button.textContent = "사용 가능한 닉네임입니다."
         $button.disabled = true;
-        $button.style.backgroundColor = MIDDLE_COLOR
+        $button.style.backgroundColor = "lightgreen"
         name.current.style.border = "0"
         name.current.style.color = "black"
         name.current.style.fontWeight = "700"
@@ -69,7 +71,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
 
       } else {
         // event 변수는 이 함수가 끝나면 사라진다. 따라서 추가적으로 button의 주소를 묶어둬야 한다?
-        changeButtonStyle($button, "이미 존재하는 닉네임입니다");
+        changeButtonStyle($button, "이미 존재하는 닉네임입니다.");
         ($button.previousElementSibling as HTMLInputElement).focus();
       }
     }
@@ -83,8 +85,8 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
       confirmPassword.current.disabled = false;
       password.current.hidden = false;
       confirmPassword.current.hidden = false;
-      (confirmPassword.current.previousElementSibling as HTMLElement).hidden = false;
-      $button.textContent = "비밀번호 확인"
+      // (confirmPassword.current.previousElementSibling as HTMLElement).hidden = false;
+      $button.textContent = "비밀번호 일치 확인하기"
       password.current.focus();
     } else {
       if (!/^.{6,}$/.test(password.current.value)) {
@@ -105,7 +107,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
       password.current.style.borderColor = "green"
       password.current.style.color = "black"
       confirmPassword.current.hidden = true;
-      (confirmPassword.current.previousElementSibling as HTMLElement).hidden = true;
+      // (confirmPassword.current.previousElementSibling as HTMLElement).hidden = true;
       password.current.hidden = true;
       $button.disabled = true;
     }
@@ -115,7 +117,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
     const bmrToSend: Partial<UserBmr> = { ...userBmr, error: '', flag: false, system: "" };
     const $btn = e.currentTarget;
     if (!name.current.disabled) {
-      $btn.textContent = "닉네임 중복 확인을 해야 합니다!"
+      $btn.textContent = "닉네임 중복 확인을 해야 합니다."
       $btn.style.backgroundColor = "red";
       setTimeout(() => {
         $btn.style.backgroundColor = MAIN_COLOR;
@@ -124,7 +126,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
       return;
     }
     if (bmrToSend.activity as number < 5) {
-      setUserBmr({ ...userBmr, error: "기초 대사량 작성 완료해주세요!" })
+      setUserBmr({ ...userBmr, error: "기초 대사량 작성 완료해주세요." })
       return;
     }
 
@@ -148,60 +150,59 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
     }
   }
 
+  const inputIcon: CSSProperties = {
+    position: 'absolute',
+    top: '50%',
+    left: '1rem',
+    transform: 'translateY(-50%)',
+    color: 'rgba(34,36,38,3)',
+    fontSize: '1.7rem'
+  }
+
   return (
 
     <div style={{
       display: 'flex', alignItems: "stretch",
-      // border: "solid 2px lightgray",
-      // borderRadius: "5px",
-      // padding: "16px",
-      // height: "90vh",
       justifyContent: "space-between",
       width: "300vw",
       transition: "0.5s transform", transform: `translateX(${pageTranslate}vw)`,
 
     }}>
       <div className={formStyle.form} >
-        <div style={{ display: 'flex', justifyContent: "space-between", padding: "0px 5px" }} ref={message}>
-          <span>회원 정보 수정</span>
-          <span onClick={() => { type === "normal" ? setPageTranslate(-100) : setPageTranslate(-200) }}> &gt;&gt;</span>
+        <div style={{ display: 'flex', justifyContent: "space-between", alignItems: 'center' }} ref={message}>
+          <span>닉네임</span>
+          <BiChevronRight size='2rem' onClick={() => { type === "normal" ? setPageTranslate(-100) : setPageTranslate(-200) }} />
         </div>
-
         <div className={formStyle["form-field"]}>
-
+          <p style={{ font: "normal 300 1.3rem 'Noto Sans KR'"}}>닉네임을 변경하시겠습니까?</p>
           <input type="text" ref={name} placeholder="이름" disabled />
-          <button style={buttonStyle} onClick={handleNickname}>닉네임 변경하기</button>
-
+          <button style={buttonStyle} onClick={handleNickname}>네, 변경할래요.</button>
         </div>
-
-
       </div>
+
       <div className={formStyle.form}>
-        <div style={{ display: 'flex', justifyContent: "space-between", padding: "0px 5px" }} ref={message}>
-          <span></span>
-          {type === "normal" && <span onClick={() => { setPageTranslate(-200) }}> &gt;&gt;</span>}
+        <div style={{ display: 'flex', justifyContent: "space-between", alignItems: 'center' }} ref={message}>
+          <span>비밀번호</span>
+          {type === "normal" && <BiChevronRight size='2rem' onClick={() => { setPageTranslate(-200) }}/>}
         </div>
 
         <div className={formStyle["form-field"]}>
-          {type === "normal" && <h3>비밀번호</h3>}
-          <input type="password" ref={password} placeholder="비밀번호" disabled hidden />
+          {type === "normal" && <p style={{ font: "normal 300 1.3rem 'Noto Sans KR'"}}>비밀번호를 변경하시겠습니까?</p>}
+          <input type="password" ref={password} placeholder="새 비밀번호" disabled hidden />
         </div>
         <div className={formStyle["form-field"]}>
-          <h3 hidden>비밀번호 확인</h3>
-          <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" disabled hidden />
-          {type === "normal" && <button style={buttonStyle} onClick={handlePassword}>비밀번호를 변경하시겠습니까?</button>}
+          {/* <p hidden style={{ font: "normal 300 1.3rem 'Noto Sans KR'"}}>새 비밀번호를 확인해주세요.</p> */}
+          <input type="password" ref={confirmPassword} placeholder="새 비밀번호 확인" disabled hidden />
+          {type === "normal" && <button style={buttonStyle} onClick={handlePassword}>네, 변경할래요.</button>}
         </div>
       </div>
-      <div style={{ width: "100vw", padding: "16px", display: "flex", flexDirection: "column", height: "90vh", background: BACKGROUND_COLOR }}>
-        <span style={{
-          fontSize: "1.7em",
-          fontWeight: 700,
 
-        }} onClick={() => { setPageTranslate(0) }}>&lt;&lt;</span>
+      <div style={{ width: "100vw", padding: "1rem", display: "flex", flexDirection: "column", background: BACKGROUND_COLOR }}>
+        <BiChevronsLeft size='2rem' onClick={() => { setPageTranslate(0) }} />
 
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
         {userBmr.activity > 1000 &&
-          <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+          <button style={buttonStyle} onClick={handleClick}>변경하기</button>
 
         }
       </div>

@@ -1,4 +1,4 @@
-import React, { LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react'
+import React, { LegacyRef, MutableRefObject, useEffect, useRef, useState, CSSProperties } from 'react'
 import Link from 'next/link';
 import { checkValid } from '../../util/auth';
 import { useRouter } from 'next/dist/client/router';
@@ -7,7 +7,7 @@ import { Button, Form } from 'semantic-ui-react';
 import Intro from '../../components/user/Intro';
 import { GetServerSideProps } from 'next';
 import Loading from '../../components/main/Loading';
-import { BiEnvelope, BiLockAlt } from 'react-icons/bi';
+import { BiErrorCircle, BiEnvelope, BiLockAlt } from 'react-icons/bi';
 import logInStyles from '../../../styles/main/logIn.module.css';
 
 const Login = ({ introSkip }: { introSkip: boolean }) => {
@@ -58,52 +58,142 @@ const Login = ({ introSkip }: { introSkip: boolean }) => {
       password.current.value = '';
 
     }
+  }
 
+  const contentsWrap: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'start',
+    alignItems: "stretch",
+    padding: "1rem",
+    width: "100vw",
+    transition: "all 0.3s",
+  }
+  const title: CSSProperties = {
+    alignSelf: "center",
+    font: "normal 600 2rem 'Noto Sans KR'",
+    marginBottom: '1rem' 
+  }
 
+  const subTitle: CSSProperties = {
+    alignSelf: "center",
+    marginBottom: '1rem',
+    font: "normal 400 1.2rem 'Noto Sans KR'",
+    color: 'red'
+  }
+  const input: CSSProperties = {
+    paddingLeft: '3rem',
+    height: '3rem',
+    borderRadius: '10px'
+  }
+
+  const inputIcon: CSSProperties = {
+    position: 'absolute',
+    top: '50%',
+    left: '1rem',
+    transform: 'translateY(-50%)',
+    color: 'rgba(34,36,38,.15)',
+    fontSize: '1.2rem'
+  }
+  
+  const button: CSSProperties = {
+    backgroundColor: "#ff5656",
+    borderRadius: "20px",
+    color: "white",
+    border: "none",
+    alignSelf: "stretch",
+    height: "2.8rem",
+    fontWeight: 400,
+    fontSize: "1.2rem"
+  }
+
+  const join: CSSProperties = {
+    backgroundColor: "#fff",
+    borderRadius: "20px",
+    // color: "white",
+    border: 'solid 1px rgba(34,36,38,.15)',
+    alignSelf: "stretch",
+    height: "2.8rem",
+    fontWeight: 400,
+    fontSize: "1.2rem",
+    padding: '0 1rem',
+    marginBottom: '1rem',
+  }
+
+  const google: CSSProperties = {
+    backgroundColor: "#eee",
+    borderRadius: "20px",
+    // color: "white",
+    border: 'solid 1px #eee',
+    alignSelf: "stretch",
+    height: "2.8rem",
+    fontWeight: 400,
+    fontSize: "1.2rem",
+    padding: '0 1rem',
+    marginBottom: '1rem',
+    boxSizing: 'border-box',
+  }
+
+  const kakao: CSSProperties = {
+    backgroundColor: "#f9e000",
+    borderRadius: "20px",
+    // color: "white",
+    border: 'solid 1px #f9e000',
+    alignSelf: "stretch",
+    height: "2.8rem",
+    fontWeight: 400,
+    fontSize: "1.2rem",
+    padding: '0 1rem',
+    marginBottom: '1rem',
+  }
+
+  const buttonImg: CSSProperties = {
+    width: '1.3rem',
+    height: '1.3rem',
+    float: 'left'
   }
 
   return (
     <>
-      <div style={{ display: "none", width: "200vw", transform: !loginMode ? "translateX(-3vw)" : "translateX(-103vw)", transition: "all 0.5s", }} ref={container}>
+      <div style={{ display: "none", width: "200vw", transform: !loginMode ? "translateX(0)" : "translateX(-100vw)", transition: "all 0.5s", }} ref={container}>
         <Intro handleClick={() => { setLoginMode(true) }} loginMode={loginMode} />
 
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: "stretch", padding: "1rem", height: '80vh', transition: "all 0.3s", width: "100vw" }}>
-
-          <img src='/static/logos/logo06.png' alt='요건 다 내꺼' style={{ width: '12rem', margin: '0 auto' }} /><br />
-          <div ref={head} style={{ alignSelf: "center", font: "normal 600 1.2rem 'Noto Sans KR'", marginBottom: '1rem' }}></div>
+        <div style={contentsWrap}>
+          <div style={title}>로그인</div>
+          <div ref={head} style={subTitle}></div>
           <Form>
             <div style={{ position: 'relative', marginBottom: '1rem' }}>
-              <input type="email" placeholder="이메일" ref={email} style={{ paddingLeft: '3rem', height: '3rem', borderRadius: '10px' }} />
-              <BiEnvelope size='1.2rem' style={{ position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)' }} />
+              <input type="email" placeholder="이메일" ref={email} style={input} />
+              <BiEnvelope style={inputIcon} />
             </div>
             <div style={{ position: 'relative' }}>
-              <input type="password" placeholder="비밀번호" ref={password} style={{ paddingLeft: '3rem', height: '3rem', borderRadius: '10px' }} />
-              <BiLockAlt size='1.2rem' style={{ position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)' }} />
+              <input type="password" placeholder="비밀번호" ref={password} style={input} />
+              <BiLockAlt style={inputIcon} />
             </div>
           </Form>
           <br />
-          <button className="ui button" onClick={handleClick} style={{ backgroundColor: '#ff5656', color: '#fff', border: 'solid 1px #ff5656', borderRadius: '20px', lineHeight: '1.3rem' }}>
+          <button onClick={handleClick} style={button}>
             로그인
           </button>
           <div className="ui horizontal divider" style={{ margin: '1.5rem 0' }}>
             Or
           </div>
           <Link passHref href="/user/join">
-            <button className="ui button" style={{ backgroundColor: '#fff', border: 'solid 1px rgba(34,36,38,.15)', borderRadius: '20px', marginBottom: '1rem', lineHeight: '1.3rem' }}>
-              <img src='/static/logos/transLogo.png' alt='로그인' style={{ width: '1.3rem', height: '1.3rem', float: 'left' }} />
+            <button style={join}>
+              <img src='/static/logos/transLogo.png' alt='회원가입' style={buttonImg} />
               <span style={{ marginRight: '1rem' }}>회원가입</span>
             </button>
           </Link>
           <Link passHref href="/user/oauth/login/google">
-            <button className="ui button" style={{ backgroundColor: '#eee', border: 'solid 1px #eee', boxSizing: 'border-box', borderRadius: '20px', marginBottom: '1rem', lineHeight: '1.3rem' }}>
-              <img src='/google.png' alt='구글 로그인' style={{ width: '1.3rem', height: '1.3rem', float: 'left' }} />
+            <button style={google}>
+              <img src='/google.png' alt='구글 로그인' style={buttonImg} />
               <span style={{ marginRight: '1rem' }}>구글 로그인</span>
             </button>
           </Link>
 
           <Link passHref href="/user/oauth/login/kakao">
-            <button className="ui button" style={{ backgroundColor: '#f9e000', border: 'solid 1px #f9e000', borderRadius: '20px', lineHeight: '1.3rem' }}>
-              <img src='/kakao.png' alt='카카오 로그인' style={{ width: '1.3rem', height: '1.3rem', float: 'left' }} />
+            <button style={kakao}>
+              <img src='/kakao.png' alt='카카오 로그인' style={buttonImg} />
               <span style={{ marginRight: '1rem' }}>카카오 로그인</span>
             </button>
           </Link>

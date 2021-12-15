@@ -136,75 +136,134 @@ const Join = () => {
 
   }
 
+  const contentsWrap: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'start',
+    alignItems: "stretch",
+    padding: "1rem",
+    width: "100vw",
+    transition: "all 500ms",
+    transform: bmrMode ? "translate(-100vw,0)" : "none",
+  }
+
+  const title: CSSProperties = {
+    alignSelf: "center",
+    font: "normal 600 2rem 'Noto Sans KR'",
+    marginBottom: '1rem' 
+  }
+
+  const subTitle: CSSProperties = {
+    alignSelf: "center",
+    marginBottom: '1rem',
+    font: "normal 400 1.2rem 'Noto Sans KR'",
+    color: 'red'
+  }
+
+  const leftBox: CSSProperties ={
+    borderTopLeftRadius: '10px',
+    borderBottomLeftRadius: '10px'
+  }
+
+  const rightBox: CSSProperties ={
+    borderTopRightRadius: '10px',
+    borderBottomRightRadius: '10px'
+  }
+
+  const input: CSSProperties = {
+    paddingLeft: '3rem',
+    height: '3rem',
+    borderRadius: '10px'
+  }
+
+  const inputIcon: CSSProperties = {
+    position: 'absolute',
+    top: '50%',
+    left: '1rem',
+    transform: 'translateY(-50%)',
+    color: 'rgba(34,36,38,.15)',
+    fontSize: '1.2rem'
+  }
+  
+  const button: CSSProperties = {
+    backgroundColor: "#ff5656",
+    borderRadius: "20px",
+    color: "white",
+    border: "none",
+    alignSelf: "stretch",
+    height: "2.8rem",
+    fontWeight: 400,
+    fontSize: "1.2rem",
+  }
+
   return (
 
     <div style={{
-      display: 'flex', flexDirection: 'row', alignItems: "stretch", width: "300vw",
-      // border: "solid 2px lightgray",
-      // borderRadius: "5px",
+                  display: 'flex',
+                  flexDirection: 'row',
+                  alignItems: "stretch",
+                  width: "300vw",
+                  fontFamily: "-moz-initial",
+                }}
+    >
+      <div style={contentsWrap}>
+        <div style={title}>회원가입</div>
+        <Form>
+          <div className="ui mini unstackable steps" style={{margin: '0 auto 1rem', borderRadius: '10px', width: '100%'}}>
+            <div className="active step" style={leftBox}>
+              <BiEditAlt size='2rem' style={{marginRight: '0.25rem'}} />
+              <div className="content">
+                <div className="title">작성</div>
+              </div>
+            </div>
+            <div className="disabled step">
+              <BiBarChartAlt size='2rem' style={{marginRight: '0.25rem'}} />
+              <div className="content">
+                <div className="title">BMR</div>
+              </div>
+            </div>
+            <div className="disabled step" style={rightBox}>
+              <BiHappyAlt size='2rem' style={{marginRight: '0.25rem'}} />
+              <div className="content">
+                <div className="title">완료</div>
+              </div>
+            </div>
+          </div>
 
-      fontFamily: "-moz-initial",
-    }}>
-      <div style={{ display: "flex", flexDirection: 'column', transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none", width: "100vw", padding: "5vw" }}>
-      <img src='/static/logos/logo06.png' alt='요건 다 내꺼' style={{width: '12rem', margin: '0 auto'}} /><br />
-        <Form  >
-          <h2 ref={message} style={{ textAlign: "center" }}>처음이신가요?</h2>
           <Form.Field style={{margin: '0'}}>
             <div className="ui action input" style={{position: 'relative', marginBottom: '1rem'}}>
-              <input type="text" ref={name} placeholder="닉네임" style={{paddingLeft: '3rem', height: '3rem', borderRadius: '10px'}} />
+              <input type="text" ref={name} placeholder="닉네임" style={input} />
               <button className="ui button" onClick={nameCheck} style={{borderTopRightRadius: '10px', borderBottomRightRadius: '10px'}}>중복 확인</button>
-              <BiUser size='1.2rem' style={{position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)'}} />
+              <BiUser size='1.2rem' style={inputIcon} />
             </div>
           </Form.Field>
 
           <Form.Field style={{margin: '0'}}>
             <div className="ui action input" style={{position: 'relative', marginBottom: '1rem'}}>
-              <input type="email" ref={email} placeholder="이메일" style={{paddingLeft: '3rem', height: '3rem', borderRadius: '10px'}} />
+              <input type="email" ref={email} placeholder="이메일" style={input} />
               <button className="ui button" onClick={emailCheck} style={{borderTopRightRadius: '10px', borderBottomRightRadius: '10px'}}>중복 확인</button>
-              <BiEnvelope size='1.2rem' style={{position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)'}} />
+              <BiEnvelope size='1.2rem' style={inputIcon} />
             </div>
           </Form.Field>
 
           <Form.Field>
             <div style={{position: 'relative', marginBottom: '1rem'}}>
-              <input type="password" ref={password} placeholder="비밀번호" style={{paddingLeft: '3rem', height: '3rem', borderRadius: '10px'}}/>
-              <BiLockOpenAlt size='1.2rem' style={{position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)'}} />
+              <input type="password" ref={password} placeholder="비밀번호" style={input}/>
+              <BiLockOpenAlt size='1.2rem' style={inputIcon} />
             </div>
           </Form.Field>
 
           <Form.Field>
             <div style={{position: 'relative', marginBottom: '1rem'}}>
-              <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={{paddingLeft: '3rem', height: '3rem', borderRadius: '10px'}}/>
-              <BiLockAlt size='1.2rem' style={{position: 'absolute', top: '50%', left: '1rem', transform: 'translateY(-50%)', color: 'rgba(34,36,38,.15)'}} />
+              <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={input}/>
+              <BiLockAlt size='1.2rem' style={inputIcon} />
             </div>
           </Form.Field>
         </Form>
-        <h4 className="ui horizontal divider header" style={{margin: '1.5rem 0'}}>
-          거의 다 왔어요!
-        </h4>
 
-        <div className="ui unstackable steps" style={{margin: '0 auto', width: '100%'}}>
-          <div className="active step">
-            <BiEditAlt size='2rem' style={{marginRight: '0.25rem'}} />
-            <div className="content">
-              <div className="title">정보 작성</div>
-            </div>
-          </div>
-          <div className="disabled step">
-            <BiBarChartAlt size='2rem' style={{marginRight: '0.25rem'}} />
-            <div className="content">
-              <div className="title">BMR 작성</div>
-            </div>
-          </div>
-          <div className="disabled step">
-            <BiHappyAlt size='2rem' style={{marginRight: '0.25rem'}} />
-            <div className="content">
-              <div className="title">가입 완료</div>
-            </div>
-          </div>
-        </div>
-
-        <button style={buttonStyle} onClick={toggleJoinForm}>다음 단계로 가기</button>
+        <button onClick={toggleJoinForm} style={button}>
+          다음 단계로 가기
+        </button>
       </div>
       <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
