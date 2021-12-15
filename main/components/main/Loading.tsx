@@ -11,14 +11,20 @@ const addDots = (textArea: HTMLDivElement) =>
       if (!textArea) reject(new Error("no element"))
       textArea.textContent += ".";
       resolve(textArea);
-    }, 200)
+    }, 150)
   })
 
 const Loading = () => {
   const comment = comments[Math.floor(Math.random() * comments.length)];
   useEffect(() => {
-    const textArea = loadingTheme.current.children[3] as HTMLDivElement;
-    addDots(textArea).then(addDots).then(addDots).then(addDots).then(addDots).then(addDots).catch();
+    const textArea = loadingTheme.current.children[1] as HTMLDivElement;
+    addDots(textArea)
+      .then(addDots)
+      .then(addDots)
+      .then(addDots)
+      .then(addDots)
+      .then(addDots)
+      .catch();
     const timer1 = setTimeout(() => {
       loadingTheme.current.style.opacity = "0"
       setTimeout(() => {
@@ -35,9 +41,10 @@ const Loading = () => {
   const loadingTheme = useRef() as MutableRefObject<HTMLDivElement>
   return (
     <div className={mainStyle.loadingTheme} ref={loadingTheme}>
-      <div className={mainStyle.loadingDots}></div>
-      <div className={mainStyle.loadingDots}></div>
-      <div className={mainStyle.loadingDots}></div>
+      {/* <div className={mainStyle.loadingDots} />
+      <div className={mainStyle.loadingDots} />
+      <div className={mainStyle.loadingDots} /> */}
+      <div className={mainStyle.loadingCircle} />
       <div className={mainStyle.loadingComment}>{comment}</div>
       <Image src={image} alt="loading-theme" />
 

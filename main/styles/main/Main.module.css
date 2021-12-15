@@ -128,7 +128,7 @@
   transition: 1.5s;
 }
 
-.loadingTheme > :nth-child(5) {
+.loadingTheme > :nth-child(3) {
   width: 100vw;
   height: 93vh;
 }
@@ -179,4 +179,29 @@
   font-weight: 700;
   color: whitesmoke;
   font-size: 1.1em;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingCircle {
+  position: fixed;
+  top: 58vh;
+  left: 47vw;
+  width: 7vw;
+  height: 7vw;
+  border-radius: 50%;
+  border: 1.5vw solid #f36666;
+  border-top-color: whitesmoke;
+  animation: spin 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 700;
+  /* background-color: whitesmoke; */
 }

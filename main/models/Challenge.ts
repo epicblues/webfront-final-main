@@ -43,7 +43,7 @@ export class Challenge {
         );
       return { message: "success", result: updateResult.value };
     } else {
-      return { message: "failed", result: result };
+      return { message: "failed", result: result.length };
     }
   }
 
@@ -129,7 +129,7 @@ export class Challenge {
 
       return { message: "success", result: updatedChallenge.value };
     } else {
-      return { message: "failed", result: filteredDiary };
+      return { message: "failed", result: filteredDiary.length };
     }
   }
 }
