@@ -38,7 +38,7 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
         {children}
       </div>
 
-      <footer className={footerNavStyles.footerWrap}>
+      <footer className={footerNavStyles.footerWrap} style={!pageProps.user ? { boxShadow: "0px 0px 0px 0px" } : undefined}>
         {pageProps.user ?
           <div className={footerNavStyles.navWrap}>
             <MiniButton href="/recipe">

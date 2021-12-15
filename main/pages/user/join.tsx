@@ -80,8 +80,11 @@ const Join = () => {
       }
     )
     if (result.status === "OK") {
-      router.push('/user/oauth/temp')
+
       setJoinFinished(true);
+      setTimeout(() => {
+        router.push('/user/login')
+      }, 3000)
     }
     else {
       const status = JSON.parse(result.status);
@@ -150,7 +153,7 @@ const Join = () => {
   const title: CSSProperties = {
     alignSelf: "center",
     font: "normal 600 2rem 'Noto Sans KR'",
-    marginBottom: '1rem' 
+    marginBottom: '1rem'
   }
 
   const subTitle: CSSProperties = {
@@ -160,12 +163,12 @@ const Join = () => {
     color: 'red'
   }
 
-  const leftBox: CSSProperties ={
+  const leftBox: CSSProperties = {
     borderTopLeftRadius: '10px',
     borderBottomLeftRadius: '10px'
   }
 
-  const rightBox: CSSProperties ={
+  const rightBox: CSSProperties = {
     borderTopRightRadius: '10px',
     borderBottomRightRadius: '10px'
   }
@@ -184,7 +187,7 @@ const Join = () => {
     color: 'rgba(34,36,38,.15)',
     fontSize: '1.2rem'
   }
-  
+
   const button: CSSProperties = {
     backgroundColor: "#ff5656",
     borderRadius: "20px",
@@ -199,63 +202,63 @@ const Join = () => {
   return (
 
     <div style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignItems: "stretch",
-                  width: "300vw",
-                  fontFamily: "-moz-initial",
-                }}
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: "stretch",
+      width: "300vw",
+      fontFamily: "-moz-initial",
+    }}
     >
       <div style={contentsWrap}>
         <div style={title}>회원가입</div>
         <Form>
-          <div className="ui mini unstackable steps" style={{margin: '0 auto 1rem', borderRadius: '10px', width: '100%'}}>
+          <div className="ui mini unstackable steps" style={{ margin: '0 auto 1rem', borderRadius: '10px', width: '100%' }}>
             <div className="active step" style={leftBox}>
-              <BiEditAlt size='2rem' style={{marginRight: '0.25rem'}} />
+              <BiEditAlt size='2rem' style={{ marginRight: '0.25rem' }} />
               <div className="content">
                 <div className="title">작성</div>
               </div>
             </div>
             <div className="disabled step">
-              <BiBarChartAlt size='2rem' style={{marginRight: '0.25rem'}} />
+              <BiBarChartAlt size='2rem' style={{ marginRight: '0.25rem' }} />
               <div className="content">
                 <div className="title">BMR</div>
               </div>
             </div>
             <div className="disabled step" style={rightBox}>
-              <BiHappyAlt size='2rem' style={{marginRight: '0.25rem'}} />
+              <BiHappyAlt size='2rem' style={{ marginRight: '0.25rem' }} />
               <div className="content">
                 <div className="title">완료</div>
               </div>
             </div>
           </div>
 
-          <Form.Field style={{margin: '0'}}>
-            <div className="ui action input" style={{position: 'relative', marginBottom: '1rem'}}>
+          <Form.Field style={{ margin: '0' }}>
+            <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
               <input type="text" ref={name} placeholder="닉네임" style={input} />
-              <button className="ui button" onClick={nameCheck} style={{borderTopRightRadius: '10px', borderBottomRightRadius: '10px'}}>중복 확인</button>
+              <button className="ui button" onClick={nameCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
               <BiUser size='1.2rem' style={inputIcon} />
             </div>
           </Form.Field>
 
-          <Form.Field style={{margin: '0'}}>
-            <div className="ui action input" style={{position: 'relative', marginBottom: '1rem'}}>
+          <Form.Field style={{ margin: '0' }}>
+            <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
               <input type="email" ref={email} placeholder="이메일" style={input} />
-              <button className="ui button" onClick={emailCheck} style={{borderTopRightRadius: '10px', borderBottomRightRadius: '10px'}}>중복 확인</button>
+              <button className="ui button" onClick={emailCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
               <BiEnvelope size='1.2rem' style={inputIcon} />
             </div>
           </Form.Field>
 
           <Form.Field>
-            <div style={{position: 'relative', marginBottom: '1rem'}}>
-              <input type="password" ref={password} placeholder="비밀번호" style={input}/>
+            <div style={{ position: 'relative', marginBottom: '1rem' }}>
+              <input type="password" ref={password} placeholder="비밀번호" style={input} />
               <BiLockOpenAlt size='1.2rem' style={inputIcon} />
             </div>
           </Form.Field>
 
           <Form.Field>
-            <div style={{position: 'relative', marginBottom: '1rem'}}>
-              <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={input}/>
+            <div style={{ position: 'relative', marginBottom: '1rem' }}>
+              <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={input} />
               <BiLockAlt size='1.2rem' style={inputIcon} />
             </div>
           </Form.Field>
