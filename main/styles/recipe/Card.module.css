@@ -1,191 +1,779 @@
-.container {
-  background-color: #fff0f0;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
+/* PC , 테블릿 가로 (해상도 1024px ~ )*/
+@media all and (min-width: 1024px) {
+  .container {
+    background-color: #fff0f0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 썸네일 이미지 */
+  .thumbnail {
+    height: 60vh;
+    position: relative;
+  }
+
+  /* 레시피 기본정보 */
+  .header {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  /* 본인글 조회시 나타나는 버튼 */
+  .btnUpdateAndDelete {
+    float: right;
+    display: flex;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 4rem;
+    border: solid 1px #dedede;
+    border-radius: 15px;
+    margin: 0 1px;
+    color: white;
+    background-color: #e4685d;
+  }
+
+  /* 작성자 */
+  .author {
+    display: flex;
+    border: solid 1px #dedede;
+    color: tomato;
+    width: max-content;
+    font-size: 1.1rem;
+    height: max-content;
+    padding: 0.5rem;
+    background-color: #dedede;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .bodyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .category {
+    color: #c36868;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    background-color: #eddddd;
+  }
+  .hit {
+    color: #999999;
+  }
+  .title {
+    font-size: 2rem;
+    color: #333333;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  .desc {
+    font-size: 1.5rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    line-height: 1.6rem;
+  }
+  .date {
+    display: inline-block;
+    color: #999999;
+    transform: translate(84vw);
+  }
+  .uploadDate {
+    margin: 0;
+  }
+
+  /* 레시피 추가정보 및 좋아요 */
+  .hr {
+    height: 0;
+    border: 1px solid #333333;
+    margin: 0.5rem 0;
+  }
+  .infoWrapper {
+    margin-top: 1.5rem;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    place-items: center;
+    text-align: center;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid #aaa;
+  }
+
+  .infoTitle {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaa;
+    color: white;
+    height: 5rem;
+    width: 20vw;
+    font-size: 1.5rem;
+    border-radius: 5px;
+  }
+  .qtt,
+  .duration {
+    font-size: 1.3rem;
+  }
+  .likesWrapper {
+    display: grid;
+    grid-auto-rows: max-content;
+    place-items: center;
+  }
+  .likesCount {
+    display: flex;
+    color: tomato;
+    font-size: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: max-content;
+    padding: 0.4rem 0.5rem;
+    transform: translateX(-0.1rem);
+  }
+
+  /* 레시피 재료 */
+  .igrContainer {
+    background-color: white;
+    padding: 1rem;
+  }
+  .igrContainer h3 {
+    color: tomato;
+  }
+  .igrWrapper {
+    width: 100%;
+    height: auto;
+    color: #333333;
+    margin: 1rem 0;
+    border-bottom: 1px solid #999999;
+  }
+
+  .modalBtn {
+    height: 5rem;
+    font-size: 1.2rem;
+    background-color: tomato;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* 만드는 방법 */
+  .stepsContainer {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  .stepsContainer h3 {
+    margin-bottom: 0;
+  }
+
+  .stepWrapper {
+    margin: 2rem 0;
+  }
+  .stepNo {
+    background-color: tomato;
+    color: white;
+    width: 4rem;
+    padding: 0.2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .stepImg {
+    height: 80vh;
+    position: relative;
+  }
+}
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    background-color: #fff0f0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 썸네일 이미지 */
+  .thumbnail {
+    height: 60vh;
+    position: relative;
+  }
+
+  /* 레시피 기본정보 */
+  .header {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  /* 본인글 조회시 나타나는 버튼 */
+  .btnUpdateAndDelete {
+    float: right;
+    display: flex;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 4rem;
+    border: solid 1px #dedede;
+    border-radius: 15px;
+    margin: 0 1px;
+    color: white;
+    background-color: #e4685d;
+  }
+
+  /* 작성자 */
+  .author {
+    display: flex;
+    border: solid 1px #dedede;
+    color: tomato;
+    width: max-content;
+    font-size: 1.1rem;
+    height: max-content;
+    padding: 0.5rem;
+    background-color: #dedede;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .bodyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .category {
+    color: #c36868;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    background-color: #eddddd;
+  }
+  .hit {
+    color: #999999;
+  }
+  .title {
+    color: #333333;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  .desc {
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    line-height: 1.6rem;
+  }
+  .date {
+    display: inline-block;
+    color: #999999;
+    transform: translate(76vw);
+  }
+  .uploadDate {
+    margin: 0;
+  }
+
+  /* 레시피 추가정보 및 좋아요 */
+  .hr {
+    height: 0;
+    border: 1px solid #333333;
+    margin: 0.5rem 0;
+  }
+  .infoWrapper {
+    margin-top: 1.5rem;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    place-items: center;
+    text-align: center;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid #aaa;
+  }
+
+  .infoTitle {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaa;
+    color: white;
+    height: 5rem;
+    width: 20vw;
+    font-size: 1.5rem;
+    border-radius: 5px;
+  }
+  .qtt,
+  .duration {
+    font-size: 1.3rem;
+  }
+  .likesWrapper {
+    display: grid;
+    grid-auto-rows: max-content;
+    place-items: center;
+  }
+  .likesCount {
+    display: flex;
+    color: tomato;
+    font-size: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: max-content;
+    padding: 0.4rem 0.5rem;
+    transform: translateX(-0.1rem);
+  }
+
+  /* 레시피 재료 */
+  .igrContainer {
+    background-color: white;
+    padding: 1rem;
+  }
+  .igrContainer h3 {
+    color: tomato;
+  }
+  .igrWrapper {
+    width: 100%;
+    height: auto;
+    color: #333333;
+    margin: 1rem 0;
+    border-bottom: 1px solid #999999;
+  }
+
+  .modalBtn {
+    height: 5rem;
+    font-size: 1.2rem;
+    background-color: tomato;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* 만드는 방법 */
+  .stepsContainer {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  .stepsContainer h3 {
+    margin-bottom: 0;
+  }
+
+  .stepWrapper {
+    margin: 2rem 0;
+  }
+  .stepNo {
+    background-color: tomato;
+    color: white;
+    width: 4rem;
+    padding: 0.2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .stepImg {
+    height: 50vh;
+    position: relative;
+  }
+}
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  .container {
+    background-color: #fff0f0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 썸네일 이미지 */
+  .thumbnail {
+    height: 45vh;
+    position: relative;
+  }
+
+  /* 레시피 기본정보 */
+  .header {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  /* 본인글 조회시 나타나는 버튼 */
+  .btnUpdateAndDelete {
+    float: right;
+    display: flex;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 4rem;
+    border: solid 1px #dedede;
+    border-radius: 15px;
+    margin: 0 1px;
+    color: white;
+    background-color: #e4685d;
+  }
+
+  /* 작성자 */
+  .author {
+    display: flex;
+    border: solid 1px #dedede;
+    color: tomato;
+    width: max-content;
+    font-size: 1.1rem;
+    height: max-content;
+    padding: 0.5rem;
+    background-color: #dedede;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .bodyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .category {
+    color: #c36868;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    background-color: #eddddd;
+  }
+  .hit {
+    color: #999999;
+  }
+  .title {
+    color: #333333;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  .desc {
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    line-height: 1.6rem;
+  }
+  .date {
+    display: inline-block;
+    color: #999999;
+    transform: translate(65vw);
+  }
+  .uploadDate {
+    margin: 0;
+  }
+
+  /* 레시피 추가정보 및 좋아요 */
+  .hr {
+    height: 0;
+    border: 1px solid #333333;
+    margin: 0.5rem 0;
+  }
+  .infoWrapper {
+    margin-top: 1.5rem;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    place-items: center;
+    text-align: center;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid #aaa;
+  }
+
+  .infoTitle {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaa;
+    color: white;
+    height: 5rem;
+    width: 20vw;
+    font-size: 1.5rem;
+    border-radius: 5px;
+  }
+  .qtt,
+  .duration {
+    font-size: 1.3rem;
+  }
+  .likesWrapper {
+    display: grid;
+    grid-auto-rows: max-content;
+    place-items: center;
+  }
+  .likesCount {
+    display: flex;
+    color: tomato;
+    font-size: 1.5rem;
+    text-align: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: max-content;
+    padding: 0.4rem 0.5rem;
+    transform: translateX(-0.1rem);
+  }
+
+  /* 레시피 재료 */
+  .igrContainer {
+    background-color: white;
+    padding: 1rem;
+  }
+  .igrContainer h3 {
+    color: tomato;
+  }
+  .igrWrapper {
+    width: 100%;
+    height: auto;
+    color: #333333;
+    margin: 1rem 0;
+    border-bottom: 1px solid #999999;
+  }
+
+  .modalBtn {
+    height: 5rem;
+    font-size: 1.2rem;
+    background-color: tomato;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* 만드는 방법 */
+  .stepsContainer {
+    background-color: white;
+    padding: 1rem;
+  }
+
+  .stepsContainer h3 {
+    margin-bottom: 0;
+  }
+
+  .stepWrapper {
+    margin: 2rem 0;
+  }
+  .stepNo {
+    background-color: tomato;
+    color: white;
+    width: 4rem;
+    padding: 0.2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .stepImg {
+    height: 40vh;
+    position: relative;
+  }
 }
 
-/* 썸네일 이미지 */
-.thumbnail {
-  height: 32vh;
-  position: relative;
-}
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media screen and (max-width: 479px) {
+  .container {
+    background-color: #fff0f0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
 
-/* 레시피 기본정보 */
-.header {
-  background-color: white;
-  padding: 1rem;
-}
+  /* 썸네일 이미지 */
+  .thumbnail {
+    height: 32vh;
+    position: relative;
+  }
 
-/* 본인글 조회시 나타나는 버튼 */
-.btnUpdateAndDelete {
-  float: right;
-  display: flex;
-}
-.btn {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  height: 2.5rem;
-  width: 4rem;
-  border: solid 1px #dedede;
-  border-radius: 15px;
-  margin: 0 1px;
-  color: white;
-  background-color: #e4685d;
-}
+  /* 레시피 기본정보 */
+  .header {
+    background-color: white;
+    padding: 1rem;
+  }
 
-/* 작성자 */
-.author {
-  display: flex;
-  border: solid 1px #dedede;
-  color: tomato;
-  width: max-content;
-  font-size: 1.1rem;
-  height: max-content;
-  padding: 0.5rem;
-  background-color: #dedede;
-  border-radius: 5px;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
-.bodyHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.category {
-  color: #c36868;
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 1.2rem;
-  margin: 0;
-  margin-bottom: 0.5rem;
-  background-color: #eddddd;
-}
-.hit {
-  color: #999999;
-}
-.title {
-  color: #333333;
-  margin: 0;
-  margin-bottom: 0.5rem;
-}
-.desc {
-  color: #aaa;
-  margin-bottom: 0.5rem;
-  line-height: 1.6rem;
-}
-.date {
-  display: inline-block;
-  color: #999999;
-  transform: translate(47vw);
-}
-.uploadDate {
-  margin: 0;
-}
+  /* 본인글 조회시 나타나는 버튼 */
+  .btnUpdateAndDelete {
+    float: right;
+    display: flex;
+  }
+  .btn {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    height: 2.5rem;
+    width: 4rem;
+    border: solid 1px #dedede;
+    border-radius: 15px;
+    margin: 0 1px;
+    color: white;
+    background-color: #e4685d;
+  }
 
-/* 레시피 추가정보 및 좋아요 */
-.hr {
-  height: 0;
-  border: 1px solid #333333;
-  margin: 0.5rem 0;
-}
-.infoWrapper {
-  margin-top: 1.5rem;
-  display: grid;
-  padding: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  place-items: center;
-  text-align: center;
-  border-radius: 15px;
-  background-color: white;
-  border: 2px solid #aaa;
-}
+  /* 작성자 */
+  .author {
+    display: flex;
+    border: solid 1px #dedede;
+    color: tomato;
+    width: max-content;
+    font-size: 1.1rem;
+    height: max-content;
+    padding: 0.5rem;
+    background-color: #dedede;
+    border-radius: 5px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+  }
+  .bodyHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .category {
+    color: #c36868;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    background-color: #eddddd;
+  }
+  .hit {
+    color: #999999;
+  }
+  .title {
+    color: #333333;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+  .desc {
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    line-height: 1.6rem;
+  }
+  .date {
+    display: inline-block;
+    color: #999999;
+    transform: translate(47vw);
+  }
+  .uploadDate {
+    margin: 0;
+  }
 
-.infoTitle {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  background-color: #aaa;
-  color: white;
-  height: 5rem;
-  width: 6rem;
-  font-size: 1.5rem;
-  border-radius: 5px;
-}
-.qtt,
-.duration {
-  font-size: 1.3rem;
-}
-.likesWrapper {
-  display: grid;
-  grid-auto-rows: max-content;
-  place-items: center;
-}
-.likesCount {
-  display: flex;
-  color: tomato;
-  font-size: 1.3rem;
-  text-align: center;
-  justify-content: center;
-  border-radius: 15px;
-  width: max-content;
-  padding: 0.4rem 0.5rem;
-  transform: translateX(-0.1rem);
-}
+  /* 레시피 추가정보 및 좋아요 */
+  .hr {
+    height: 0;
+    border: 1px solid #333333;
+    margin: 0.5rem 0;
+  }
+  .infoWrapper {
+    margin-top: 1.5rem;
+    display: grid;
+    padding: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    place-items: center;
+    text-align: center;
+    border-radius: 15px;
+    background-color: white;
+    border: 2px solid #aaa;
+  }
 
-/* 레시피 재료 */
-.igrContainer {
-  background-color: white;
-  padding: 1rem;
-}
-.igrContainer h3 {
-  color: tomato;
-}
-.igrWrapper {
-  width: 100%;
-  height: auto;
-  color: #333333;
-  margin: 1rem 0;
-  border-bottom: 1px solid #999999;
-}
+  .infoTitle {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    background-color: #aaa;
+    color: white;
+    height: 5rem;
+    width: 6rem;
+    font-size: 1.5rem;
+    border-radius: 5px;
+  }
+  .qtt,
+  .duration {
+    font-size: 1.3rem;
+  }
+  .likesWrapper {
+    display: grid;
+    grid-auto-rows: max-content;
+    place-items: center;
+  }
+  .likesCount {
+    display: flex;
+    color: tomato;
+    font-size: 1.3rem;
+    text-align: center;
+    justify-content: center;
+    border-radius: 15px;
+    width: max-content;
+    padding: 0.4rem 0.5rem;
+    transform: translateX(-0.1rem);
+  }
 
-.modalBtn {
-  height: 5rem;
-  font-size: 1.2rem;
-  background-color: tomato;
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
+  /* 레시피 재료 */
+  .igrContainer {
+    background-color: white;
+    padding: 1rem;
+  }
+  .igrContainer h3 {
+    color: tomato;
+  }
+  .igrWrapper {
+    width: 100%;
+    height: auto;
+    color: #333333;
+    margin: 1rem 0;
+    border-bottom: 1px solid #999999;
+  }
 
-/* 만드는 방법 */
-.stepsContainer {
-  background-color: white;
-  padding: 1rem;
-}
+  .modalBtn {
+    height: 5rem;
+    font-size: 1.2rem;
+    background-color: tomato;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+  }
 
-.stepsContainer h3 {
-  margin-bottom: 0;
-}
+  /* 만드는 방법 */
+  .stepsContainer {
+    background-color: white;
+    padding: 1rem;
+  }
 
-.stepWrapper {
-  margin: 2rem 0;
-}
-.stepNo {
-  background-color: tomato;
-  color: white;
-  width: 4rem;
-  padding: 0.2rem;
-  text-align: center;
-  margin-bottom: 0.5rem;
-}
-.stepImg {
-  height: 30vh;
-  position: relative;
+  .stepsContainer h3 {
+    margin-bottom: 0;
+  }
+
+  .stepWrapper {
+    margin: 2rem 0;
+  }
+  .stepNo {
+    background-color: tomato;
+    color: white;
+    width: 4rem;
+    padding: 0.2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .stepImg {
+    height: 30vh;
+    position: relative;
+  }
 }

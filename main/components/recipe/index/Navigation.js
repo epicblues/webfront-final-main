@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
+//  CSS
 import navigationStyles from "../../../styles/recipe/Navigation.module.css";
 
 // Component
