@@ -1,17 +1,15 @@
-@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
-
-@media screen and (max-width: 1920px) {
+/* PC , 테블릿 가로 (해상도 1024px ~ )*/
+@media all and (min-width: 1024px) {
+}
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+}
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
 }
 
-@media screen and (max-width: 1199px) {
-  /* 타블렛 가로 */
-}
-
-@media screen and (max-width: 899px) {
-  /* 모바일 가로 */
-}
-
-@media screen and (max-width: 599px) {
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media screen and (max-width: 479px) {
   /* 모바일 세로*/
   .main {
     background-color: #fff0f0;
@@ -134,69 +132,69 @@
   .cardUploadDate {
     margin: 0 1rem;
   }
-}
 
-.containerList {
-  margin: 0 1rem;
-  font-family: "NanumSquare";
-  min-height: 100vh;
-}
+  .containerList {
+    margin: 0 1rem;
+    font-family: "NanumSquare";
+    min-height: 100vh;
+  }
 
-.itemWrapper {
-  display: grid;
-  width: 92vw;
-  grid-template-columns: 5rem auto 3rem 3rem;
-  place-items: center;
-  text-align: center;
-  border: 1px #666666 solid;
-  color: #333333;
-  height: 3rem;
-  background: linear-gradient(white, #ced4da);
-}
-.items {
-  display: grid;
-  width: 92vw;
-  grid-template-columns: 5rem auto 3rem 3rem;
-  grid-template-rows: 1fr 1fr;
-  place-items: center;
-  text-align: center;
-  border: 1px #666666 solid;
-  background-color: white;
-  height: 6rem;
-}
+  .itemWrapper {
+    display: grid;
+    width: 92vw;
+    grid-template-columns: 5rem auto 3rem 3rem;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    color: #333333;
+    height: 3rem;
+    background: linear-gradient(white, #ced4da);
+  }
+  .items {
+    display: grid;
+    width: 92vw;
+    grid-template-columns: 5rem auto 3rem 3rem;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    background-color: white;
+    height: 6rem;
+  }
 
-.listCategory {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  grid-row: 1/3;
-  width: 4rem;
-  height: 4rem;
-  color: white;
-  background: tomato;
-  border-radius: 50%;
-}
-.listDate a {
-  color: #333333;
-}
-.listDate {
-  grid-row: 1/2;
-  font-size: 1.1rem;
-}
-.listTitle {
-  grid-row: 2/3;
-  font-size: 1.5rem;
-}
-.listTitle a {
-  color: #333333;
-}
-.listLike {
-  display: flex;
-  color: #e4685d;
-}
-.listHit {
-  display: flex;
-  grid-row: 2/3;
-  color: #666666;
+  .listCategory {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    grid-row: 1/3;
+    width: 4rem;
+    height: 4rem;
+    color: white;
+    background: tomato;
+    border-radius: 50%;
+  }
+  .listDate a {
+    color: #333333;
+  }
+  .listDate {
+    grid-row: 1/2;
+    font-size: 1.1rem;
+  }
+  .listTitle {
+    grid-row: 2/3;
+    font-size: 1.5rem;
+  }
+  .listTitle a {
+    color: #333333;
+  }
+  .listLike {
+    display: flex;
+    color: #e4685d;
+  }
+  .listHit {
+    display: flex;
+    grid-row: 2/3;
+    color: #666666;
+  }
 }

@@ -1,5 +1,7 @@
 /* google font: 'Noto Sans KR', 'Montserrat' */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+/* naver font: 'NanumSquare' */
+@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
 /* reset */
 /* 폰트는 rem으로 통일
 16px = 1rem
@@ -61,7 +63,7 @@ input:focus {
 }
 
 .ui.dimmer {
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* Tab Menu */
@@ -160,12 +162,12 @@ a.is-active {
   margin: 0 0 0 1rem;
   font-size: 1.6rem;
 }
-  
+
 .dropdown-modal {
-  background-color: rgba(0,0,0,0) !important;
+  background-color: rgba(0, 0, 0, 0) !important;
   box-shadow: none !important;
   width: 90% !important;
-  bottom: 0; 
+  bottom: 0;
 }
 
 .dropdown-modal-content {
@@ -176,7 +178,7 @@ a.is-active {
 .dropdown-modal-content > .managing-option {
   display: flex;
   justify-content: space-between;
-  font: normal 500 1.2rem 'Noto Sans KR';
+  font: normal 500 1.2rem "Noto Sans KR";
   display: flex;
   align-items: center;
   padding: 1rem 1.5rem;
@@ -184,14 +186,14 @@ a.is-active {
 }
 
 .managing-option:nth-child(3) {
- border-bottom: none;
+  border-bottom: none;
 }
 
 .dropdown-modal-action {
   border-radius: 10px !important;
   margin: 1rem auto 5rem !important;
   width: 100%;
-  font: normal 500 1.2rem/22px'Noto Sans KR' !important;
+  font: normal 500 1.2rem/22px "Noto Sans KR" !important;
 }
 
 /* Final Total Sum */
@@ -229,7 +231,7 @@ a.is-active {
   margin: 0 auto;
 }
 .final-nutrition-total p {
-  font: normal 400 1.2rem 'Noto Sans KR';
+  font: normal 400 1.2rem "Noto Sans KR";
   text-align: right;
 }
 
@@ -274,7 +276,7 @@ a.is-active {
 }
 
 .is-desc p {
-  font: normal 600 1.2rem 'Noto Sans KR';
+  font: normal 600 1.2rem "Noto Sans KR";
   margin: 0;
 }
 
@@ -284,7 +286,7 @@ a.is-active {
   border: none;
   padding: 0.25rem 0 0.25rem 0.5rem;
   box-shadow: 1px 1px 3px 1px #dadce0;
-  font: normal 500 0.8rem 'Noto Sans KR';
+  font: normal 500 0.8rem "Noto Sans KR";
   margin-top: 1rem;
 }
 
@@ -329,7 +331,7 @@ a.is-active {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  font: normal 500 1.2rem/22px 'Noto Sans KR';
+  font: normal 500 1.2rem/22px "Noto Sans KR";
 }
 
 .meal .icon {
@@ -347,7 +349,7 @@ a.is-active {
   height: 100%;
   box-sizing: border-box;
   border-radius: 20px;
-}  
+}
 
 /* review */
 .reviewOpen {
