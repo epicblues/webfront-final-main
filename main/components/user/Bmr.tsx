@@ -48,7 +48,7 @@ const Bmr: React.FC<{ userBmr: UserBmr, setUserBmr: React.Dispatch<any> }> = ({ 
 
   const title: CSSProperties = {
     textAlign: "left",
-    font: "normal 600 1.5rem 'Noto Sans KR'",
+    font: "normal 600 2rem 'Noto Sans KR'",
     marginBottom: '1rem' 
   }
 

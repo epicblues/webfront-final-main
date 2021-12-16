@@ -20,8 +20,6 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
     transition: "all 0.3s"
   }
 
-
-
   const router = useRouter()
 
   const MIDDLE_WIDTH = 44
@@ -45,8 +43,8 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
         <div className={menuButton.button} style={
           hidden ? {} : {
 
-            bottom: `${record[0][1]}vw`,
-            left: `${record[0][0]}vw`,
+            bottom: `${record[4][1]}vw`,
+            left: `${record[4][0]}vw`,
             opacity: 1
           }}
           onClick={() => { onExit() }}><span>레시피</span>작성</div>
@@ -55,8 +53,8 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
         <div className={menuButton.button} key={index}
           style={
             hidden ? {} : {
-              bottom: `${record[5 - (index + 1)][1]}vw`,
-              left: `${record[5 - (index + 1)][0]}vw`,
+              bottom: `${record[index][1]}vw`,
+              left: `${record[index][0]}vw`,
               opacity: 2
             }}
 
@@ -80,9 +78,6 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
             opacity: 1
           }} onClick={() => { onExit() }}>챌린지<br />작성</div>
       </Link>
-
-
-
 
     </div>
   )

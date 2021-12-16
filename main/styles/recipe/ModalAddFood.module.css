@@ -250,6 +250,16 @@
     align-items: center;
   }
 
+  .onModalBtn {
+    background-color: #fff0f0;
+    padding: 0.5rem;
+    color: #333333;
+    border: solid #333333 1px;
+    border-radius: 10px;
+    width: 10rem;
+    text-align: center;
+  }
+
   .cancelBtn {
     transform: translate(30vw, 0);
     background: #ffffff;
@@ -382,6 +392,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .onModalBtn {
+    background-color: #fff0f0;
+    padding: 0.5rem;
+    color: #333333;
+    border: solid #333333 1px;
+    border-radius: 10px;
+    width: 10rem;
+    text-align: center;
   }
 
   .cancelBtn {
@@ -517,6 +536,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .onModalBtn {
+    background-color: #fff0f0;
+    padding: 0.5rem;
+    color: #333333;
+    border: solid #333333 1px;
+    border-radius: 10px;
+    width: 10rem;
+    text-align: center;
   }
 
   .cancelBtn {

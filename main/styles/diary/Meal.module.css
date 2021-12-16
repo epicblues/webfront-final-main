@@ -273,9 +273,37 @@
 }
 
 .modalAction {
- text-align: right;
- padding-right: 1rem;
- margin-bottom: 1rem;
+    /* text-align: center; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modalAction button {
+    border-radius: 10px;
+    border: none;
+    align-self: stretch;
+    height: 2.8rem;
+    font: normal 400 1.2rem 'Noto Sans KR';
+    width: 30%;
+}
+
+.modalAction button:first-child {
+    background: #fff;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    color: #999;
+    text-decoration: none;
+}
+
+.modalAction button:last-child {
+    background: #ff5656;
+    border: 1px solid #ff5656;
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
 }
 
 /* Cart */

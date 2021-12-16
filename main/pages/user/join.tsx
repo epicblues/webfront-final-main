@@ -60,7 +60,7 @@ const Join = () => {
 
     setBmrMode(true);
   }
-  const buttonStyle: CSSProperties = { alignSelf: "stretch", marginTop: "10px", border: "0", background: "#00b5ad", padding: "10px", borderRadius: "10px", fontWeight: 700, color: "whitesmoke", transition: "all 300ms" }
+  const buttonStyle: CSSProperties = { background: "black", transition: "all 300ms", border: "none", borderRadius: "20px", width: '100%', fontWeight: 400, color: "#fff", alignSelf: "stretch", height: "2.8rem", fontSize: "1.2rem" }
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
 
@@ -200,26 +200,24 @@ const Join = () => {
   }
 
   return (
-    <>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: "stretch",
-        width: "300vw",
-        fontFamily: "-moz-initial",
-        transition: "500ms all",
-        transform: `translateX(${bmrMode && joinFinished ? "-200vw" : bmrMode ? "-100vw" : 0})`
-      }}
-      >
-        <div style={contentsWrap}>
-          <div style={title}>회원가입</div>
-          <Form>
-            <div className="ui mini unstackable steps" style={{ margin: '0 auto 1rem', borderRadius: '10px', width: '100%' }}>
-              <div className="active step" style={leftBox}>
-                <BiEditAlt size='2rem' style={{ marginRight: '0.25rem' }} />
-                <div className="content">
-                  <div className="title">작성</div>
-                </div>
+
+    <div style={{
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: "stretch",
+      width: "300vw",
+      fontFamily: "-moz-initial",
+      WebkitOverflowScrolling: "unset"
+    }}
+    >
+      <div style={contentsWrap}>
+        <div style={title}>회원가입</div>
+        <Form>
+          <div className="ui mini unstackable steps" style={{ margin: '0 auto 1rem', borderRadius: '10px', width: '100%' }}>
+            <div className="active step" style={leftBox}>
+              <BiEditAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+              <div className="content">
+                <div className="title">작성</div>
               </div>
               <div className="disabled step">
                 <BiBarChartAlt size='2rem' style={{ marginRight: '0.25rem' }} />
@@ -251,12 +249,17 @@ const Join = () => {
               </div>
             </Form.Field>
 
-            <Form.Field>
-              <div style={{ position: 'relative', marginBottom: '1rem' }}>
-                <input type="password" ref={password} placeholder="비밀번호" style={input} />
-                <BiLockOpenAlt size='1.2rem' style={inputIcon} />
-              </div>
-            </Form.Field>
+            <button onClick={toggleJoinForm} style={button}>
+              다음 단계로 가기
+            </button>
+          </div>
+          <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
+            <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
+            {userBmr.activity > 1000 &&
+              <button style={buttonStyle} onClick={handleClick}>가입 완료하기</button>
+            }
+          </div>
+          <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>
 
             <Form.Field>
               <div style={{ position: 'relative', marginBottom: '1rem' }}>
@@ -264,24 +267,25 @@ const Join = () => {
                 <BiLockAlt size='1.2rem' style={inputIcon} />
               </div>
             </Form.Field>
-          </Form>
+          </div>
+        </Form>
 
-          <button onClick={toggleJoinForm} style={button}>
-            다음 단계로 가기
-          </button>
-        </div>
-        <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", }}>
-          <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-          {userBmr.activity > 1000 &&
-            <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
-          }
-        </div>
-        <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", }}>
-
-          <FinishPage email={email.current?.value || ""} />
-        </div>
+        <button onClick={toggleJoinForm} style={button}>
+          다음 단계로 가기
+        </button>
       </div>
-    </>
+      <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", }}>
+        <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
+        {userBmr.activity > 1000 &&
+          <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+        }
+      </div>
+      <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", }}>
+
+        <FinishPage email={email.current?.value || ""} />
+      </div>
+    </div>
+
   )
 }
 

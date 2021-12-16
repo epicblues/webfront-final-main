@@ -1,28 +1,46 @@
-import React, { createElement, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/dist/client/router";
 import { getUserOrRedirect } from "../../../util/auth";
 import { postStaticAxios } from "../../../util/axios";
 import Head from "next/head";
 
+// --- Component ---
+// 계량팁 Modal
 import MeasuringModal from "../../../components/recipe/create/food/MeasuringModal";
 import MeasuringModalBlackout from "../../../components/recipe/create/food/MeasuringModalBlackout";
-import AddFoodModalBlackout from "../../../components/recipe/create/food/AddFoodModalBlackout";
 
+// 화면 상단 내비게이터
 import FormNavigator from "../../../components/recipe/create/FormNavigator";
+
+// 등록 마법사 Component
+// wizard 1
+// 따로 분리하지 않음, react-hook-form으로 기본 정보 처리와
+// 페이지 내에서 하위 컴포넌트의 Props 종합하여 FormData 전송하는 역할
+// wizard 2
 import FoodForm from "../../../components/recipe/create/food/FoodForm";
+import AddFoodModalBlackout from "../../../components/recipe/create/food/AddFoodModalBlackout";
+// wizard 3
 import StepForm from "../../../components/recipe/create/step/StepForm";
-
-import Image from "next/image";
-
-//  static image
+// wizard 4
+import ConfirmForm from "../../../components/recipe/create/food/ConfirmForm";
 
 //CSS
 import createStyles from "../../../styles/recipe/Create.module.css";
 
 //  작성폼
 export const Index = ({ user }) => {
-  //  계량 팁 Modal, 렌더링 로직
+  // wizard1 및 최상위 Form의 react-hook-form 함수
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  // 라우터
+  const router = useRouter();
+
+  //  계량 팁 Modal, index에 따른 렌더링 함수
   const [isMeasuringModalVisible, setIsMeasuringModalVisible] = useState(true);
   const [indexMeasuringModal, setIndexMeasuringModal] = useState(0);
   const handleSetIsMeasuringModalVisible = (active) => {
@@ -30,14 +48,13 @@ export const Index = ({ user }) => {
     setIsMeasuringModalVisible(active);
   };
 
-  //  음식 추가 Modal, 렌더링 로직
+  // Wizard2의 FoodForm의 재료추가하기 Modal, 렌더링 로직
   const [isModalVisible, setIsModalVisible] = useState(false);
   const handleSetIsModalVisible = (active) => {
     setIsModalVisible(active);
   };
-  const router = useRouter();
 
-  //  레시피 등록 마법사 페이지 카운터
+  // 레시피 등록 마법사 페이지 카운터 및 이동 버튼
   const [wizardIndex, setWizardIndex] = useState(1);
   const button1 = () => {
     wizardIndex < 4 ? setWizardIndex(wizardIndex + 1) : null;
@@ -45,6 +62,8 @@ export const Index = ({ user }) => {
   const button2 = () => {
     wizardIndex > 1 ? setWizardIndex(wizardIndex - 1) : null;
   };
+
+  // 레시피 마법사 조건부 렌더링 wizard 1~4
   function switchWizardForm(param) {
     switch (param) {
       case 1:
@@ -134,54 +153,28 @@ export const Index = ({ user }) => {
         );
       case 2:
         return (
-          <div className={createStyles.wizard2}>
-            <FoodForm
-              foodData={foodData}
-              setFoodData={setFoodData}
-              isModalVisible={isModalVisible}
-              setIsModalVisible={setIsModalVisible}
-              nutritionData={nutritionData}
-              setNutritionData={setNutritionData}
-              handleSetIsMeasuringModalVisible={
-                handleSetIsMeasuringModalVisible
-              }
-            />
-          </div>
+          <FoodForm
+            foodData={foodData}
+            setFoodData={setFoodData}
+            isModalVisible={isModalVisible}
+            setIsModalVisible={setIsModalVisible}
+            nutritionData={nutritionData}
+            setNutritionData={setNutritionData}
+            handleSetIsMeasuringModalVisible={handleSetIsMeasuringModalVisible}
+          />
         );
       case 3:
         return <StepForm stepData={stepData} setStepData={setStepData} />;
       case 4:
-        return (
-          <div>
-            <div className={createStyles.submits}>
-              <p>대표이미지</p>
-              <div className={createStyles.repImgWrapper}>
-                {stepData.length > 0 ? (
-                  <Image
-                    className={createStyles.repImg}
-                    src={stepData[stepData.length - 1].stepImageData}
-                    translate="yes"
-                    layout="fill"
-                    objectFit="contain"
-                    alt={"Representative Image"}
-                  ></Image>
-                ) : (
-                  <p>조리순서를 추가해주세요</p>
-                )}
-              </div>
-              {stepData.length > 0 ? (
-                <p>🎉작성 완료! 아래의 글쓰기 버튼을 눌러주세요!🎉</p>
-              ) : null}
-            </div>
-          </div>
-        );
+        return <ConfirmForm stepData={stepData} />;
     }
   }
 
-  const [foodData, setFoodData] = useState([]); //  재료 데이터
-  const [stepData, setStepData] = useState([]); //  요리순서 데이터
+  // 데이터
+  const [foodData, setFoodData] = useState([]); //  재료
+  const [stepData, setStepData] = useState([]); //  요리순서
   const [nutritionData, setNutritionData] = useState({
-    //  영양정보 데이터
+    //  영양정보
     kcal: 0,
     carbs: 0,
     sugars: 0,
@@ -193,12 +186,7 @@ export const Index = ({ user }) => {
     sodium: 0,
   });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
+  // react-hook-form의 <form>의 최종 Submit 핸들링
   const submitBtnClick = async (data) => {
     if (foodData.length === 0) {
       alert("재료를 입력해주세요");
@@ -207,6 +195,8 @@ export const Index = ({ user }) => {
     } else {
       const date = new Date();
 
+      // react-hook-form와
+      // 각 컴포넌트에서 모인 데이터들 json형태로 종합
       let finalRecipeData = {
         upload_date: date,
         update_date: date,
@@ -224,16 +214,19 @@ export const Index = ({ user }) => {
           stepData.map((step) => {
             return { desc: step.stepDesc };
           })
-        ),
+        ), // 조리순서 객체 배열
       };
 
+      // FormData 인스턴스 생성 및 데이터 추가
       const formData = new FormData();
       for (let key in finalRecipeData) {
         formData.append(key, finalRecipeData[key]);
       }
+      // 파일명과 stepImageFile (type = file)
       stepData.forEach((step, index) => {
         formData.append(`step_img_${index + 1}`, step.stepImageFile);
       });
+      // API 요청
       try {
         const { data } = await postStaticAxios(
           "/api/recipe/create",
@@ -249,6 +242,7 @@ export const Index = ({ user }) => {
   };
   return (
     <div className={createStyles.container}>
+      {/* SEO를 위한 Head */}
       <Head>
         <title>요건 다 내꺼! - 레시피 작성하기</title>
       </Head>
@@ -270,47 +264,48 @@ export const Index = ({ user }) => {
         />
       )}
       <div className={createStyles.header}>
-        <h1 className={createStyles.h1}>레시피 등록하기</h1>
+        <div className={createStyles.h1}>레시피 등록하기</div>
       </div>
-
+      {/* 상단 내비게이션 */}
       <FormNavigator
         wizardIndex={wizardIndex}
         setWizardIndex={setWizardIndex}
       />
-
+      {/* react-hook-form */}
       <div className={createStyles.wizardContainer}>
         <form onSubmit={handleSubmit(submitBtnClick)}>
           {switchWizardForm(wizardIndex)}
         </form>
-      </div>
-
-      <div className={createStyles.footer}>
-        <button
-          className={createStyles.button2}
-          type="button"
-          onClick={button2}
-        >
-          이전
-        </button>
-        {wizardIndex !== 4 && (
-          <>
+        {/* footer */}
+        <div className={createStyles.footer}>
+          <button
+            className={createStyles.button2}
+            type="button"
+            onClick={button2}
+          >
+            이전
+          </button>
+          {wizardIndex !== 4 && (
+            <>
+              <button
+                className={createStyles.button1}
+                type="button"
+                onClick={button1}
+              >
+                다음
+              </button>
+            </>
+          )}
+          {/* react-hook-form 최종 Submit */}
+          {wizardIndex == 4 && (
             <button
               className={createStyles.button1}
-              type="button"
-              onClick={button1}
+              onClick={handleSubmit(submitBtnClick)}
             >
-              다음
+              글쓰기
             </button>
-          </>
-        )}
-        {wizardIndex == 4 && (
-          <button
-            className={createStyles.button1}
-            onClick={handleSubmit(submitBtnClick)}
-          >
-            글쓰기
-          </button>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

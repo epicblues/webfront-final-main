@@ -138,21 +138,19 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
             </div>
 
             <div className={MealStyles.modalAction}>
-              <Button color="black" onClick={() => handleModal(index)}>
+              <button className='modalButton' onClick={() => handleModal(index)}>
                 취소
-              </Button>
-              <Button
-                content="추가"
-                // labelPosition="right"
-                // icon="checkmark"
-                onClick={() => {
-                  handleModal(index);
-                  const copiedValue = {...value, quantity : exampleQtt}
-                  addToCart(copiedValue);
-                 
-                }}
-                positive
-              />
+              </button>
+              <button
+                  className='modalButton'
+                  onClick={() => {
+                    handleModal(index);
+                    const copiedValue = {...value, quantity : exampleQtt}
+                    addToCart(copiedValue);
+                  }}
+              >
+                추가
+              </button>
             </div>
           </Modal>
           {!foodChecked ? (<BiPlusCircle
