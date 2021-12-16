@@ -16,6 +16,7 @@ export class Challenge {
   participants?: number[];
   diet?: { category: string; uploadCount: string | number; checker: any[] };
   result?: number;
+  winners?: number[];
 
   constructor() {}
 

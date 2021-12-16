@@ -17,6 +17,7 @@ import LikeChallenge from '../components/user/likes/LikeChallenge';
 import LikeRecipe from '../components/user/likes/LikeRecipe';
 import mainStyle from '../styles/main/Main.module.css';
 import ShortNav from '../components/main/ShortNav';
+import MyContents from '../components/main/MyContents';
 
 
 const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
@@ -73,6 +74,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
             <div className={mainStyle.card} >
               <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-between" }}>기초 대사량  <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></div>
               <div>일일 권장 칼로리  <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></div>
+              <MyContents />
             </div>
           )
           }

@@ -147,7 +147,7 @@ const Join = () => {
     padding: "1rem",
     width: "100vw",
     transition: "all 500ms",
-    transform: bmrMode ? "translate(-100vw,0)" : "none",
+    // transform: bmrMode ? "translate(-100vw,0)" : "none",
   }
 
   const title: CSSProperties = {
@@ -200,86 +200,88 @@ const Join = () => {
   }
 
   return (
-
-    <div style={{
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: "stretch",
-      width: "300vw",
-      fontFamily: "-moz-initial",
-    }}
-    >
-      <div style={contentsWrap}>
-        <div style={title}>회원가입</div>
-        <Form>
-          <div className="ui mini unstackable steps" style={{ margin: '0 auto 1rem', borderRadius: '10px', width: '100%' }}>
-            <div className="active step" style={leftBox}>
-              <BiEditAlt size='2rem' style={{ marginRight: '0.25rem' }} />
-              <div className="content">
-                <div className="title">작성</div>
+    <>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: "stretch",
+        width: "300vw",
+        fontFamily: "-moz-initial",
+        transition: "500ms all",
+        transform: `translateX(${bmrMode && joinFinished ? "-200vw" : bmrMode ? "-100vw" : 0})`
+      }}
+      >
+        <div style={contentsWrap}>
+          <div style={title}>회원가입</div>
+          <Form>
+            <div className="ui mini unstackable steps" style={{ margin: '0 auto 1rem', borderRadius: '10px', width: '100%' }}>
+              <div className="active step" style={leftBox}>
+                <BiEditAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+                <div className="content">
+                  <div className="title">작성</div>
+                </div>
+              </div>
+              <div className="disabled step">
+                <BiBarChartAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+                <div className="content">
+                  <div className="title">BMR</div>
+                </div>
+              </div>
+              <div className="disabled step" style={rightBox}>
+                <BiHappyAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+                <div className="content">
+                  <div className="title">완료</div>
+                </div>
               </div>
             </div>
-            <div className="disabled step">
-              <BiBarChartAlt size='2rem' style={{ marginRight: '0.25rem' }} />
-              <div className="content">
-                <div className="title">BMR</div>
+
+            <Form.Field style={{ margin: '0' }}>
+              <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
+                <input type="text" ref={name} placeholder="닉네임" style={input} />
+                <button className="ui button" onClick={nameCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
+                <BiUser size='1.2rem' style={inputIcon} />
               </div>
-            </div>
-            <div className="disabled step" style={rightBox}>
-              <BiHappyAlt size='2rem' style={{ marginRight: '0.25rem' }} />
-              <div className="content">
-                <div className="title">완료</div>
+            </Form.Field>
+
+            <Form.Field style={{ margin: '0' }}>
+              <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
+                <input type="email" ref={email} placeholder="이메일" style={input} />
+                <button className="ui button" onClick={emailCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
+                <BiEnvelope size='1.2rem' style={inputIcon} />
               </div>
-            </div>
-          </div>
+            </Form.Field>
 
-          <Form.Field style={{ margin: '0' }}>
-            <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
-              <input type="text" ref={name} placeholder="닉네임" style={input} />
-              <button className="ui button" onClick={nameCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
-              <BiUser size='1.2rem' style={inputIcon} />
-            </div>
-          </Form.Field>
+            <Form.Field>
+              <div style={{ position: 'relative', marginBottom: '1rem' }}>
+                <input type="password" ref={password} placeholder="비밀번호" style={input} />
+                <BiLockOpenAlt size='1.2rem' style={inputIcon} />
+              </div>
+            </Form.Field>
 
-          <Form.Field style={{ margin: '0' }}>
-            <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
-              <input type="email" ref={email} placeholder="이메일" style={input} />
-              <button className="ui button" onClick={emailCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
-              <BiEnvelope size='1.2rem' style={inputIcon} />
-            </div>
-          </Form.Field>
+            <Form.Field>
+              <div style={{ position: 'relative', marginBottom: '1rem' }}>
+                <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={input} />
+                <BiLockAlt size='1.2rem' style={inputIcon} />
+              </div>
+            </Form.Field>
+          </Form>
 
-          <Form.Field>
-            <div style={{ position: 'relative', marginBottom: '1rem' }}>
-              <input type="password" ref={password} placeholder="비밀번호" style={input} />
-              <BiLockOpenAlt size='1.2rem' style={inputIcon} />
-            </div>
-          </Form.Field>
+          <button onClick={toggleJoinForm} style={button}>
+            다음 단계로 가기
+          </button>
+        </div>
+        <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", }}>
+          <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
+          {userBmr.activity > 1000 &&
+            <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+          }
+        </div>
+        <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", }}>
 
-          <Form.Field>
-            <div style={{ position: 'relative', marginBottom: '1rem' }}>
-              <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={input} />
-              <BiLockAlt size='1.2rem' style={inputIcon} />
-            </div>
-          </Form.Field>
-        </Form>
-
-        <button onClick={toggleJoinForm} style={button}>
-          다음 단계로 가기
-        </button>
+          <FinishPage email={email.current?.value || ""} />
+        </div>
       </div>
-      <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
-        <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-        {userBmr.activity > 1000 &&
-          <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
-        }
-      </div>
-      <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>
-
-        <FinishPage email={email.current?.value || ""} />
-      </div>
-    </div>
-
+    </>
   )
 }
 
