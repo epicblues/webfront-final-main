@@ -879,17 +879,27 @@
 
   /* 마법사 2 */
   .wizard2 {
-    display: grid;
-    place-items: center;
-    grid-template-rows: 25vh 8vh;
-    transition: ease-in-out 1s;
-  }
-  .emptyP {
-    text-align: center;
-  }
-  .modalBtnsWrapper {
     display: flex;
-    column-gap: 1rem;
+    flex-direction: column;
+    transition: ease-in-out 1s;
+    align-items: center;
+  }
+  .dogeAndAdd {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  .doge {
+    width: 30%;
+  }
+  .pleaseAdd {
+    font: normal 600 1.2rem "Noto Sans KR";
+  }
+  .onModalBtn {
+    vertical-align: middle;
+    text-align: center;
+    font: normal 600 1.2rem "Noto Sans KR";
   }
 
   .onMeasuringModal {
@@ -1048,16 +1058,6 @@
     height: 100%;
     position: relative !important;
     object-fit: cover;
-  }
-
-  .onModalBtn {
-    background-color: #fff0f0;
-    padding: 0.5rem;
-    color: #333333;
-    border: solid #333333 1px;
-    border-radius: 10px;
-    width: 10rem;
-    text-align: center;
   }
   /* 하단 버튼 */
   .footer {
