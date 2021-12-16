@@ -24,6 +24,11 @@
   justify-items: center;
   align-items: center;
 }
+.indexCont {
+  display: flex;
+  justify-content: space-between;
+}
+
 .item {
   width: 250px;
   margin: 10px;
@@ -54,6 +59,7 @@
 }
 .container2 {
   margin-top: 7vh;
+  height: auto;
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-columns: auto;

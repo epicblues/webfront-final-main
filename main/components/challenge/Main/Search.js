@@ -15,7 +15,7 @@ const Search = () => {
   const title = useRef();
   const [open, setOpen] = useState(false);
   const router = useRouter();
-
+  const [searched, setSearched] = useState(false);
   const [challenges, setChallenges] = useState([]);
   const [searchedChallenges, setSearchedChallenges] = useState([]);
 
@@ -49,10 +49,16 @@ const Search = () => {
     );
     setSearchedChallenges(filteredChallenges);
     title.current.value = "";
+    setSearched(true);
   };
 
   const handleReset = () => {
     setOpen(false), setSearchedChallenges([]);
+  };
+  const handleKeypress = (e) => {
+    if (e.key == "Enter") {
+      handleClick();
+    }
   };
 
   return (
@@ -77,7 +83,10 @@ const Search = () => {
                 e.preventDefault();
               }}
             >
-              <div className="container" style={{ margin: "10px 10px" }}>
+              <div
+                className="container"
+                style={{ margin: "10px 10px", overflowY: "scroll" }}
+              >
                 <div className={ModalStyle.textC}>
                   <input
                     className={ModalStyle.modalText}
@@ -89,6 +98,7 @@ const Search = () => {
                     onChange={(e) => {
                       setSearchString(e.currentTarget.value);
                     }}
+                    onKeyPress={handleKeypress}
                   />
                   <p ref={titleError}></p>
                   <Icon
@@ -106,9 +116,16 @@ const Search = () => {
                 </div>
               </div>
               <div style={{ marginTop: "10px" }}>
-                {searchedChallenges.length === 0 && searchString === "" ? (
+                {!searched ? (
                   <>
-                    <div className={ModalStyle.modalFont}>검색해 주세요</div>
+                    <h3 className={ModalStyle.modalH3}>
+                      원하는 챌린지를 검색해주세요
+                    </h3>
+                    <Icon
+                      name="trophy"
+                      size="big"
+                      className={ModalStyle.modalTrophy}
+                    />
                   </>
                 ) : (
                   <>
@@ -121,7 +138,6 @@ const Search = () => {
                                 margin: "1rem 1rem",
                               }}
                               key={challenge._id}
-                              onScroll="scroll"
                             >
                               <Link
                                 passHref
@@ -145,10 +161,7 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div
-                                  key={challenge._id}
-                                  className={ModalStyle.participant}
-                                >
+                                <div className={ModalStyle.participant}>
                                   <Icon
                                     name="user"
                                     size="large"
@@ -162,10 +175,7 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div
-                                  className={ModalStyle.title}
-                                  key={challenge._id}
-                                >
+                                <div className={ModalStyle.title}>
                                   {challenge.title}
                                 </div>
                               </Link>
@@ -173,10 +183,7 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div
-                                  key={challenge._id}
-                                  className={ModalStyle.content}
-                                >
+                                <div className={ModalStyle.content}>
                                   시작일 :
                                   {new Date(challenge.startDate).getMonth() +
                                     1 +
@@ -189,10 +196,7 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div
-                                  key={challenge._id}
-                                  className={ModalStyle.content}
-                                >
+                                <div className={ModalStyle.content}>
                                   종료일:
                                   {new Date(challenge.endDate).getMonth() +
                                     1 +
@@ -205,10 +209,7 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div
-                                  key={challenge._id}
-                                  className={ModalStyle.content}
-                                >
+                                <div className={ModalStyle.content}>
                                   {Math.ceil(
                                     (new Date(challenge.endDate).getTime() -
                                       new Date().getTime()) /
@@ -223,13 +224,11 @@ const Search = () => {
                       </div>
                     ) : (
                       <>
-                        <h2 style={{ textAlign: "center" }}>추천 챌린지</h2>
                         <div className={ModalStyle.modalFont}>
-                          검색 결과가 없습니다.
+                          진행중인 챌린지가 없습니다.
                         </div>
-                        <div
-                          style={{ display: "flex", justifyContent: "center" }}
-                        >
+                        <h2 className={ModalStyle.modalH2}>추천 챌린지</h2>
+                        <div>
                           <RecommendChallenge challenges={challenges} />
                         </div>
                       </>
