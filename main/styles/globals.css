@@ -17,12 +17,6 @@
   box-sizing: border-box;
 }
 
-.stop-scrolling {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-}
-
 body {
   font-family: "Noto Sans KR", sans-serif;
   overflow-y: scroll; /*레이아웃 이동현상 방지 스크롤바 표시*/
@@ -318,7 +312,7 @@ a.is-active {
   display: grid;
   grid-template-columns: 5fr 5fr;
   grid-auto-rows: 160px;
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
 }
 
 .meal {
