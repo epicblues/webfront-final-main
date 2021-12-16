@@ -60,7 +60,7 @@ const Join = () => {
 
     setBmrMode(true);
   }
-  const buttonStyle: CSSProperties = { alignSelf: "stretch", marginTop: "10px", border: "0", background: "#00b5ad", padding: "10px", borderRadius: "10px", fontWeight: 700, color: "whitesmoke", transition: "all 300ms" }
+  const buttonStyle: CSSProperties = { background: "black", transition: "all 300ms", border: "none", borderRadius: "20px", width: '100%', fontWeight: 400, color: "#fff", alignSelf: "stretch", height: "2.8rem", fontSize: "1.2rem"}
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
 
@@ -207,6 +207,7 @@ const Join = () => {
       alignItems: "stretch",
       width: "300vw",
       fontFamily: "-moz-initial",
+      WebkitOverflowScrolling: "unset"
     }}
     >
       <div style={contentsWrap}>
@@ -271,7 +272,7 @@ const Join = () => {
       <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
         {userBmr.activity > 1000 &&
-          <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+          <button style={buttonStyle} onClick={handleClick}>가입 완료하기</button>
         }
       </div>
       <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>

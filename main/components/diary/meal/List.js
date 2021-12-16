@@ -147,16 +147,14 @@ const List = ({ product, index }) => {
           {/* <Button color="black" onClick={() => setOpen(false)}>
             닫기
           </Button> */}
-          <Button
-            content="확인"
-            labelPosition="right"
-            icon="checkmark"
+          <button
             onClick={() => {
               setOpen(false);
               // addToCart(value);
             }}
-            positive
-          />
+          >
+            확인
+          </button>
         </div>
       </Modal>
     </div>

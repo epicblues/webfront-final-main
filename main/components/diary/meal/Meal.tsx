@@ -12,7 +12,7 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
         }}
     >
       <img
-          src={diary.meals[type].imageBuffer || ((diary.meals[type].image !== null && process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image) || '/empty.jpg')}
+          src={diary.meals[type].imageBuffer || ((diary.meals[type].image !== null && process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image) || '/serving.png')}
           alt=""
       />
 
@@ -21,10 +21,10 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
       </span>
 
       <BiPlusCircle
-                      className='icon'
-                      style={{
-                        display: diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer ? 'block' : 'none'
-                      }}
+                    className='icon'
+                    style={{
+                      display: diary.meals[type].foods.length === 0 && !diary.meals[type].imageBuffer ? 'block' : 'none'
+                    }}
       />
     </div>
   )

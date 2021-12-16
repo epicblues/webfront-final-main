@@ -9,6 +9,7 @@ const SelectedFoodMap = ({
   isDataSelected,
   nutritionData,
   setNutritionData,
+  handleSetIsMeasuringModalVisible,
 }) => {
   const inputRef = useRef();
   const onAddBtn = (foodObj) => {
@@ -55,6 +56,11 @@ const SelectedFoodMap = ({
                   />
                   <div onClick={() => onAddBtn(value)}>
                     <p>확인</p>
+                  </div>
+                  <div className={modalAddFoodStyles.onMeasuringModal}>
+                    <p onClick={() => handleSetIsMeasuringModalVisible(true)}>
+                      <i className="question icon"></i>계량팁
+                    </p>
                   </div>
                 </div>
               </div>
