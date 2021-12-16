@@ -38,7 +38,7 @@ const FoodForm = ({
     setFoodData(foodData.filter((value) => value !== food));
   };
   return (
-    <>
+    <div className={createStyles.wizard2}>
       <div className={createStyles.selectedFoodMapContainer}>
         {foodData.length === 0 ? (
           <>
@@ -94,7 +94,7 @@ const FoodForm = ({
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 
