@@ -316,7 +316,7 @@ a.is-active {
   display: grid;
   grid-template-columns: 5fr 5fr;
   grid-auto-rows: 160px;
-  grid-gap: 1rem;
+  grid-gap: 1.5rem;
 }
 
 .meal {
