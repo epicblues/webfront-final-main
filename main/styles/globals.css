@@ -10,6 +10,10 @@
 28px = 1.8rem
 32px = 2rem
 */
+
+/* 인풋 border 컬러
+  #dddddd;
+*/
 /* 콘텐츠간 간격은 1rem (margin, padding) */
 * {
   margin: 0;

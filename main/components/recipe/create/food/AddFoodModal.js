@@ -10,6 +10,7 @@ const AddFoodModal = ({
   setIsModalVisible,
   nutritionData,
   setNutritionData,
+  handleSetIsMeasuringModalVisible,
 }) => {
   //  검색필터
   const [filteredData, setFilteredData] = useState([]);
@@ -91,6 +92,9 @@ const AddFoodModal = ({
                   isDataSelected={isDataSelected}
                   nutritionData={nutritionData}
                   setNutritionData={setNutritionData}
+                  handleSetIsMeasuringModalVisible={
+                    handleSetIsMeasuringModalVisible
+                  }
                 />
               </>
             )}

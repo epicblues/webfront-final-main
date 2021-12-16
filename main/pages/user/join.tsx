@@ -207,6 +207,7 @@ const Join = () => {
       alignItems: "stretch",
       width: "300vw",
       fontFamily: "-moz-initial",
+      WebkitOverflowScrolling: "unset"
     }}
     >
       <div style={contentsWrap}>
