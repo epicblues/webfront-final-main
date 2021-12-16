@@ -77,11 +77,6 @@ const FoodForm = ({
         <div className={createStyles.onModalBtn}>
           <p onClick={() => onModalBtn(true)}>재료추가하기</p>
         </div>
-        <div className={createStyles.onMeasuringModal}>
-          <p onClick={() => handleSetIsMeasuringModalVisible(true)}>
-            <i className="question icon"></i>계량팁
-          </p>
-        </div>
       </div>
       <div>
         {isModalVisible && (
@@ -91,6 +86,7 @@ const FoodForm = ({
             setIsModalVisible={setIsModalVisible}
             nutritionData={nutritionData}
             setNutritionData={setNutritionData}
+            handleSetIsMeasuringModalVisible={handleSetIsMeasuringModalVisible}
           />
         )}
       </div>

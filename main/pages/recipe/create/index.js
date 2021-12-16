@@ -264,7 +264,7 @@ export const Index = ({ user }) => {
         />
       )}
       <div className={createStyles.header}>
-        <h1 className={createStyles.h1}>레시피 등록하기</h1>
+        <div className={createStyles.h1}>레시피 등록하기</div>
       </div>
       {/* 상단 내비게이션 */}
       <FormNavigator
@@ -276,37 +276,36 @@ export const Index = ({ user }) => {
         <form onSubmit={handleSubmit(submitBtnClick)}>
           {switchWizardForm(wizardIndex)}
         </form>
-      </div>
-
-      {/* footer */}
-      <div className={createStyles.footer}>
-        <button
-          className={createStyles.button2}
-          type="button"
-          onClick={button2}
-        >
-          이전
-        </button>
-        {wizardIndex !== 4 && (
-          <>
+        {/* footer */}
+        <div className={createStyles.footer}>
+          <button
+            className={createStyles.button2}
+            type="button"
+            onClick={button2}
+          >
+            이전
+          </button>
+          {wizardIndex !== 4 && (
+            <>
+              <button
+                className={createStyles.button1}
+                type="button"
+                onClick={button1}
+              >
+                다음
+              </button>
+            </>
+          )}
+          {/* react-hook-form 최종 Submit */}
+          {wizardIndex == 4 && (
             <button
               className={createStyles.button1}
-              type="button"
-              onClick={button1}
+              onClick={handleSubmit(submitBtnClick)}
             >
-              다음
+              글쓰기
             </button>
-          </>
-        )}
-        {/* react-hook-form 최종 Submit */}
-        {wizardIndex == 4 && (
-          <button
-            className={createStyles.button1}
-            onClick={handleSubmit(submitBtnClick)}
-          >
-            글쓰기
-          </button>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

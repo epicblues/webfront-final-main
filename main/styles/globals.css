@@ -10,17 +10,15 @@
 28px = 1.8rem
 32px = 2rem
 */
+
+/* 인풋 border 컬러
+  #dddddd;
+*/
 /* 콘텐츠간 간격은 1rem (margin, padding) */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-.stop-scrolling {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 body {
