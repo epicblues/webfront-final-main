@@ -3,6 +3,19 @@ import { MongoClient, Document, Db } from "mongodb";
 export class Challenge {
   _id?: number;
   title?: string;
+  startDate?: Date;
+  endDate?: Date;
+  dateDiff?: number;
+  description?: string;
+  userId?: number;
+  type?: string;
+  recipe?: { category: string; uploadCount: string | number; checker: any[] };
+  image?: string;
+  likes?: number[];
+  losers?: number[];
+  participants?: number[];
+  diet?: { category: string; uploadCount: string | number; checker: any[] };
+  result?: number;
 
   constructor() {}
 

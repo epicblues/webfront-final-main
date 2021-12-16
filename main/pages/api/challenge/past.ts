@@ -23,7 +23,7 @@ const handler: NextApiHandler = async (req, res) => {
     // 과거의 챌린지 중에서 winners가 없는 챌린지들을 선별해서
     // 한 번 더 체크한다?
     // 체크하고 loser라는 배열에 userId를 넣어버릴까?
-    console.log(challenges);
+
     const modifiedChallenges = challenges.map(async (challenge, index) => {
       // 이미 승리자나 패배자면 인증할 필요가 없다.
       if (challenge.winners.includes(userId)) return challenge;
@@ -82,7 +82,7 @@ const handler: NextApiHandler = async (req, res) => {
     });
 
     const newChallenges = await Promise.all(modifiedChallenges);
-    console.log(newChallenges);
+
     res.status(200).json({ challenges: newChallenges });
   } catch (error: any) {
     res.status(404).json({ message: error.message });
