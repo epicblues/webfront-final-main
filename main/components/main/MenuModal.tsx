@@ -20,8 +20,6 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
     transition: "all 0.3s"
   }
 
-
-
   const router = useRouter()
 
   const MIDDLE_WIDTH = 44

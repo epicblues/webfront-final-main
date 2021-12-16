@@ -286,6 +286,7 @@ a.is-active {
   box-shadow: 1px 1px 3px 1px #dadce0;
   font: normal 500 0.8rem "Noto Sans KR";
   margin-top: 1rem;
+  width: 40%;
 }
 
 .is-desc button i {
@@ -346,7 +347,7 @@ a.is-active {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  border-radius: 20px;
+  border-radius: 15px;
 }
 
 /* review */
