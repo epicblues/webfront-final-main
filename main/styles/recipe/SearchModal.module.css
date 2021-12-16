@@ -4,7 +4,7 @@
     color: #111111;
     background-color: white;
     width: 80vw;
-    height: 15vh;
+    height: 18vh;
     position: fixed;
     overflow-y: unset;
     left: 50%;
@@ -46,6 +46,9 @@
     overflow-y: auto;
     border-radius: 10px;
     box-shadow: 1px 1px 3px 1px #dadce0;
+  }
+  .errorMsg {
+    color: red;
   }
 
   .footer {
@@ -75,7 +78,7 @@
     color: #111111;
     background-color: white;
     width: 80vw;
-    height: 15vh;
+    height: 18vh;
     position: fixed;
     overflow-y: unset;
     left: 50%;
@@ -111,6 +114,9 @@
   .button i {
     transform: translateX(2px);
   }
+  .errorMsg {
+    color: red;
+  }
 
   .resultContainer {
     min-height: 60%;
@@ -121,6 +127,7 @@
 
   .footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
   }
   .xBtn {
@@ -146,7 +153,7 @@
     color: #111111;
     background-color: white;
     width: 80vw;
-    height: 15vh;
+    height: 18vh;
     position: fixed;
     overflow-y: unset;
     left: 50%;
@@ -182,6 +189,9 @@
   .button i {
     transform: translateX(2px);
   }
+  .errorMsg {
+    color: red;
+  }
 
   .resultContainer {
     min-height: 60%;
@@ -192,6 +202,7 @@
 
   .footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
   }
   .xBtn {
@@ -218,7 +229,7 @@
     color: #111111;
     background-color: white;
     width: 80vw;
-    height: 15vh;
+    height: 18vh;
     position: fixed;
     overflow-y: unset;
     left: 50%;
@@ -254,6 +265,10 @@
   .button i {
     transform: translateX(2px);
   }
+  .errorMsg {
+    color: red;
+    margin: 1rem 0;
+  }
 
   .resultContainer {
     min-height: 60%;
@@ -264,18 +279,18 @@
 
   .footer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
   }
   .xBtn {
     background: #e4685d;
     border-radius: 0.6rem;
     width: fit-content;
     height: fit-content;
-    border: 1px solid #e4685d;
     color: #ffffff;
     font-size: 1.4rem;
     font-weight: bold;
-    margin: 1rem 0;
     padding: 0.5rem 1rem;
     text-decoration: none;
     display: flex;
