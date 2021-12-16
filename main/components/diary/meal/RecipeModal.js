@@ -159,7 +159,7 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
             </div>
 
             <div className={MealStyles.modalAction}>
-              <Button color="black" onClick={() => handleModal(index)}>
+              <Button color="black" className='modalButton' onClick={() => handleModal(index)}>
                 취소
               </Button>
               <Button
@@ -172,6 +172,7 @@ const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
                   addToCart(copiedValue);
                 }}
                 positive
+                className='modalButton'
               />
             </div>
           </Modal>
