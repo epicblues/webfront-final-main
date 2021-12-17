@@ -25,7 +25,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Icon, Image } from "semantic-ui-react";
 
-const index = ({ challenges, user }) => {
+const Index = ({ challenges, user }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const tabClickHandler = (index) => {
@@ -358,4 +358,4 @@ export const getServerSideProps = async (ctx) => {
     props: { user, challenges: JSON.parse(JSON.stringify(challenges)) },
   };
 };
-export default index;
+export default Index;
