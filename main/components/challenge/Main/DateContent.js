@@ -5,8 +5,8 @@ const DateContent = ({ challenges }) => {
   return (
     <Link passHref href={"/challenge/list/" + challenges._id}>
       <ul className={MainStyle.ul}>
-        <li>{challenges.title}</li>
-        <li>
+        <li className={MainStyle.title}>{challenges.title}</li>
+        <li className={MainStyle.li}>
           시작일:
           {new Date(challenges.startDate).getMonth() +
             1 +
@@ -14,7 +14,7 @@ const DateContent = ({ challenges }) => {
             new Date(challenges.startDate).getDate() +
             "일"}
         </li>
-        <li>
+        <li className={MainStyle.li}>
           종료일:
           {new Date(challenges.endDate).getMonth() +
             1 +
@@ -22,7 +22,7 @@ const DateContent = ({ challenges }) => {
             new Date(challenges.endDate).getDate() +
             "일"}
         </li>
-        <li>
+        <li className={MainStyle.li}>
           남은 일수:
           {Math.ceil(
             (new Date(challenges.endDate).getTime() - new Date().getTime()) /

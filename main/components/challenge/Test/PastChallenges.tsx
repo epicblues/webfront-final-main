@@ -8,6 +8,7 @@ interface Props {
 
 const PastChallenge = (challenge: Challenge) => (
   <div key={challenge._id}>
+    
     {challenge.title}
     {challenge.hasOwnProperty("result") ? "실패" : "성공"}
   </div>)

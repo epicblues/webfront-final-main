@@ -45,20 +45,13 @@
   left: 0;
   top: 20px;
 }
-.modalImage {
-  z-index: 1;
-}
+
 .back {
   margin: 0;
   position: absolute;
   left: 0;
 }
-.modalBack {
-  margin: 0;
-  position: absolute;
-  top: 10px;
-  left: 0;
-}
+
 .nav {
   margin-top: 10px;
   text-align: center;
@@ -101,46 +94,9 @@
   bottom: auto;
   right: auto;
 }
-.modalText {
-  font-weight: bold;
-  text-align: center;
-  width: 60vw;
-  height: 50px;
-  border: solid 2px lightgray;
-  border-radius: 6px;
-  font-size: 16px;
-  margin: 0 15px 0 25px;
-  position: relative;
-  left: 10px;
-}
+
 .search2 {
   position: relative;
   top: 10px;
   left: 10px;
-}
-.loader {
-  width: 93vw;
-  height: auto;
-  min-height: 5vh;
-  border: 2px solid lightgray;
-  border-bottom: 0;
-  position: relative;
-  display: flex;
-  justify-content: space-around;
-}
-.loaderText {
-  margin: 0;
-  position: relative;
-  text-align: center;
-  font: normal 500 1.2rem/22px "Noto Sans KR";
-  top: 20px;
-  left: 40px;
-}
-.loaderImage {
-  position: relative;
-  right: 40px;
-  top: 20px;
-  transition: all ease 2s 0s;
-  transform: rotate(360deg);
-  transform-origin: top right;
 }

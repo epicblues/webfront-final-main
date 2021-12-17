@@ -6,20 +6,17 @@
   background-color: gray;
   width: "50px";
   position: absolute;
-  right: 0;
+  left: 30%;
+  top: 0;
+  margin-top: 10px;
   text-align: right;
   z-index: 1;
   color: white;
 }
-.ul {
-  text-align: center;
-  background-color: #fff;
-  position: relative;
-  left: 40%;
-  top: 20%;
-  margin-top: 40%;
-  width: 40%;
+.container {
+  margin: 10px;
 }
+
 .button {
   background-color: #35a2f4;
   color: #fff;
@@ -31,4 +28,53 @@
   text-align: center;
   justify-content: center;
   align-content: center;
+}
+.listAllHead {
+  font: normal 600 1.4rem/24px "Noto Sans KR";
+  text-align: center;
+  position: relative;
+  bottom: 13%;
+}
+.modalBack {
+  margin: 0;
+  position: relative;
+  top: 28%;
+  left: 0;
+}
+.listHead {
+  height: 7vh;
+  border-bottom: 1px solid lightgray;
+}
+.ImageSpace {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 40%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.image {
+  z-index: 0;
+  border-radius: 0.7rem;
+  width: 40%;
+  margin: 10px 0 10px 0;
+}
+.title {
+  margin: 0;
+  position: relative;
+
+  text-align: center;
+  font: normal 600 1.2rem/22px "Noto Sans KR";
+}
+.ul {
+  text-align: center;
+  position: relative;
+  left: 40%;
+  top: 10%;
+  width: 65%;
+  height: 30%;
+  top: 10px;
+}
+.li {
+  font: normal 500 1.1rem/22px "Noto Sans KR";
 }

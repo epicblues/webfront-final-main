@@ -131,13 +131,13 @@ const Search = () => {
                   <>
                     {!(searchedChallenges.length === 0) ? (
                       <div className={ModalStyle.modalContainer}>
-                        {searchedChallenges.map((challenge) => (
+                        {searchedChallenges.map((challenge, index) => (
                           <>
                             <div
                               style={{
                                 margin: "1rem 1rem",
                               }}
-                              key={challenge._id}
+                              key={index}
                             >
                               <Link
                                 passHref
@@ -152,8 +152,6 @@ const Search = () => {
                                       challenge.image
                                     }
                                     layout="fill"
-                                    objectFit="cover"
-                                    objectPosition="top"
                                   />
                                 </div>
                               </Link>

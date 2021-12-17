@@ -5,7 +5,6 @@ import axios from "axios";
 import clientPromise from "../../util/mongodb";
 import { getUserOrRedirect } from "../../util/auth";
 //component
-import MyChallenge from "../../components/challenge/Main/MyChallenge";
 import DateContent from "../../components/challenge/Main/DateContent";
 import ProgressBar from "../../components/challenge/Main/ProgressBar";
 import Navbar from "../../components/challenge/Main/Navbar";
@@ -14,6 +13,7 @@ import RecommendChallenge from "../../components/challenge/Main/RecommendChallen
 import Header from "../../components/challenge/Main/Header";
 import ImageAndParti from "../../components/challenge/Main/ImageAndParti";
 import PastChallenges from "../../components/challenge/test/PastChallenges.tsx";
+import MainModal from "../../components/challenge/Main/MainModal";
 //css
 import "semantic-ui-css/semantic.min.css";
 import MainStyle from "../../styles/challenge/Main.module.css";
@@ -41,6 +41,10 @@ const index = ({ challenges, user }) => {
         challenge.userId === user.id
     )
   );
+  const copiedChallenges = [...participatedChallenges];
+  const smallChallenges = copiedChallenges.slice(0, 3);
+
+  const handleButton = () => {};
   const tabChallenge = [
     {
       tabTitle: (
@@ -126,7 +130,7 @@ const index = ({ challenges, user }) => {
 
   return (
     <>
-      <div>
+      <div style={{ margin: "10px 0" }}>
         <div className={ChallengeStyle.header2}>
           <Icon
             name="angle double left"
@@ -138,17 +142,17 @@ const index = ({ challenges, user }) => {
           <Navbar currentURL={"/challenge"} />
           <h2 className={ChallengeStyle.h2L}>참여중인 챌린지</h2>
         </div>
-        <div>
+        <div style={{ marginTop: "30%", marginBottom: "5%" }}>
           {participatedChallenges.length === 0 ? (
             <>
               <RecommendChallenge challenges={challenges} />
             </>
           ) : (
             <>
-              {participatedChallenges.map((challenge) => {
+              {smallChallenges.map((challenge) => {
                 return (
                   <>
-                    <div key={challenge._id}>
+                    <div style={{ margin: "1rem 0" }} key={challenge._id}>
                       <Link passHref href={"/challenge/list/" + challenge._id}>
                         <>
                           <div
@@ -162,7 +166,8 @@ const index = ({ challenges, user }) => {
                               style={{
                                 backgroundColor: "gray",
                                 width: "50px",
-                                right: "0",
+                                left: "30%",
+                                top: "10%",
                                 position: "absolute",
                                 textAlign: "right",
                                 zIndex: "1",
@@ -181,6 +186,7 @@ const index = ({ challenges, user }) => {
                                 justifyContent: "space-between",
                                 position: "absolute",
                                 top: "40%",
+                                marginLeft: "5%",
                               }}
                             >
                               <Image
@@ -202,7 +208,7 @@ const index = ({ challenges, user }) => {
                               className={ChallengeStyle.h2L}
                               key={challenge._id}
                             >
-                              챌린지 명:{challenge.title}
+                              {challenge.title}
                             </li>
 
                             <li className={ChallengeStyle.li}>
@@ -235,15 +241,15 @@ const index = ({ challenges, user }) => {
                       </Link>
                       <div
                         style={{
-                          position: "absolute",
-                          right: "0",
+                          position: "relative",
+                          left: "53%",
                         }}
                       >
                         <button
                           className={MainStyle.button}
                           onClick={async (event) => {
                             const {
-                              data: { result },
+                              data: { result, message },
                             } = await axios.post(
                               "/api/challenge/validate",
                               challenge
@@ -252,7 +258,7 @@ const index = ({ challenges, user }) => {
                             const button = event.target;
 
                             button.disabled = true;
-                            if (Array.isArray(result)) {
+                            if (message === "failed") {
                               // 실패했다.
                               button.textContent = "진행중!";
                               button.style.color = "white";
@@ -260,7 +266,7 @@ const index = ({ challenges, user }) => {
                                 (button) => {
                                   button.style.display = "none";
                                 },
-                                2000,
+                                100,
                                 button
                               );
                               const progressBar = button.nextElementSibling;
@@ -276,9 +282,7 @@ const index = ({ challenges, user }) => {
                                     realProgressBar.nextElementSibling;
                                   span.innerText =
                                     Math.round(
-                                      (result.length /
-                                        challenge.diet.condition) *
-                                        100
+                                      (result / challenge.diet.condition) * 100
                                     ) + " %";
                                 } else {
                                   realProgressBar.value = realProgressBar.max =
@@ -287,8 +291,7 @@ const index = ({ challenges, user }) => {
                                     realProgressBar.nextElementSibling;
                                   span.innerText =
                                     Math.round(
-                                      (result.length /
-                                        challenge.recipe.uploadCount) *
+                                      (result / challenge.recipe.uploadCount) *
                                         100
                                     ) + " %";
                                 }
@@ -302,7 +305,7 @@ const index = ({ challenges, user }) => {
                                 (button) => {
                                   button.style.display = "none";
                                 },
-                                2000,
+                                100,
                                 button
                               );
                             }
@@ -318,6 +321,7 @@ const index = ({ challenges, user }) => {
                   </>
                 );
               })}
+              <MainModal challenges={participatedChallenges} />
               <PastChallenges />
             </>
           )}

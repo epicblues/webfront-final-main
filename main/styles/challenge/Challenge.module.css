@@ -26,7 +26,6 @@
 }
 .indexCont {
   display: flex;
-  justify-content: space-between;
 }
 
 .item {
