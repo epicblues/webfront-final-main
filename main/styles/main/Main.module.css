@@ -6,6 +6,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  /* justify-content: space-between; */
   /* border: solid 1px; */
   border-radius: 10px;
   background: whitesmoke;
@@ -57,13 +58,8 @@
   padding: 5px;
 }
 
-.buttonContainer i {
-  font-size: 1.2em;
-  margin-left: 5px;
-}
-
 .buttonContainer span {
-  font-size: 9px;
+  font-size: 0.8rem;
   margin-top: 7px;
 }
 
@@ -204,4 +200,29 @@
   animation-timing-function: linear;
   z-index: 700;
   /* background-color: whitesmoke; */
+}
+
+.loadingCircleGlobal {
+  width: 7vw;
+  height: 7vw;
+  border-radius: 50%;
+  border: 1.5vw solid #f36666;
+  border-top-color: whitesmoke;
+  animation: spin 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  /* z-index: 700; */
+  align-self: center;
+  margin: 0.5rem;
+  /* background-color: whitesmoke; */
+}
+
+.contentBar {
+  display: grid;
+  grid-template-columns: 3fr 0.7fr 0.5fr;
+  padding-top: 0.3rem;
+}
+
+.contentBar > :nth-child(2) {
+  color: red;
 }
