@@ -1,5 +1,7 @@
 import React, { useState, useRef } from "react";
+import { BiImageAdd } from "react-icons/bi";
 import createStyles from "../../../../styles/recipe/Create.module.css";
+import Image from "next/image";
 
 const AddStep = ({ stepData, setStepData }) => {
   const [imgPreview, setImgPreview] = useState(null);
@@ -58,24 +60,24 @@ const AddStep = ({ stepData, setStepData }) => {
         </p>
       )}
       <div className={createStyles.addFormContainer}>
-        <div
-          className={createStyles.imgPreview}
-          style={{
-            background: imgPreview
-              ? `url("${imgPreview}") no-repeat center/cover`
-              : "#9e9e9e",
-          }}
-        >
-          {!imgPreview && (
-            <>
+        <div className={createStyles.imgPreviewWrapper}>
+          {imgPreview ? (
+            <Image
+              translate="yes"
+              width="3000"
+              height="3000"
+              objectFit="cover"
+              src={imgPreview}
+              alt="step Image preview"
+            />
+          ) : (
+            <div className={createStyles.imgAddButton}>
               <label
                 htmlFor="fileUpload"
                 className={createStyles.customFileUpload}
               >
-                <i
-                  className="plus square outline big icon"
-                  style={{ margin: "0" }}
-                ></i>
+                <BiImageAdd size="60%" />
+                <span>jpg / jpeg / png</span>
               </label>
               <input
                 type="file"
@@ -84,14 +86,11 @@ const AddStep = ({ stepData, setStepData }) => {
                 onChange={handleImageChange}
                 ref={imageRef}
               />
-              <span>
-                사진 추가
-                <br /> jpg / jpeg / png
-              </span>
-            </>
+            </div>
           )}
         </div>
         <textarea
+          className={createStyles.stepDescTextarea}
           ref={inputRef}
           type="text"
           name="stepDesc"

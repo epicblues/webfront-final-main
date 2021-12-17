@@ -880,6 +880,7 @@
   /* 마법사 2 */
   .wizard2 {
     display: flex;
+    min-height: 20rem;
     flex-direction: column;
     transition: ease-in-out 1s;
     align-items: center;
@@ -959,19 +960,20 @@
 
   /* 마법사 3 - 스텝목록 */
   .stepsWrapper {
-    border: 2px solid #dedede;
-    min-height: 24vh;
-    max-height: 24vh;
+    border: 1px solid #dedede;
+    width: 100%;
+    height: 15rem;
     overflow-y: scroll;
   }
   .stepEmpty {
+    height: 100%;
     text-align: center;
   }
   .stepItem {
     display: grid;
     grid-template-columns: 1fr 5fr 5fr 1fr;
     height: 15vh;
-    border: solid 1px #dedede;
+    border: 1px solid #dddddd;
     align-items: center;
     margin: 0.5rem;
   }
@@ -995,7 +997,7 @@
   /* 마법사 3 - 스텝 추가 */
   .addContainer {
     display: flex;
-    height: auto;
+    width: 100%;
   }
   .errorMsg {
     color: red;
@@ -1004,42 +1006,63 @@
   }
 
   .addFormContainer {
-    display: grid;
-    grid-template-columns: 25vw 50vw 10vw;
+    display: flex;
+    width: 100%;
   }
 
-  .imgPreview {
+  .imgPreviewWrapper {
+    width: 30%;
+  }
+  .imgAddButton {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    background-color: #999999;
     color: white;
-    max-width: 25vw;
+    padding: 0.5rem;
+    font-size: 0.1rem;
+  }
+  .imgPreview {
+    width: 100%;
   }
   .imgPreview span {
     font-size: 0.8rem;
   }
 
   .customFileUpload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     margin: 0;
     text-align: center;
   }
 
-  .btnContainer {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    text-align: center;
+  .stepDescTextarea {
+    padding: 0.5rem;
+    width: 55%;
+    border: 1px solid #dddddd;
   }
 
+  .btnContainer {
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+  }
+
+  .btnWrapperAdd,
+  .btnWrapperDel {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    border: 1px solid #dedede;
+    justify-content: center;
+    align-items: center;
+  }
   .btnWrapperAdd {
-    border: 2px solid #dedede;
     background-color: #fff0f0;
     color: #ff5656;
   }
-
   .btnWrapperDel {
-    border: 2px solid #dedede;
     color: #333333;
   }
 
