@@ -43,7 +43,7 @@
 
 .listButton {
   display: inline-block;
-  border: ;
+  border: 0;
 }
 
 .radioFont {
@@ -70,4 +70,15 @@
 }
 .nav:current {
   text-decoration: underline;
+}
+
+.modalBtn {
+  color: white;
+  font: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
+  height: 2rem;
+  padding: 0.2rem;
+  background-color: #ff5656;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  border-radius: 10px;
+  border: solid transparent;
 }

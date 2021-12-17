@@ -10,6 +10,7 @@ import MultiBtn from "../meal/MultiBtn";
 
 import MealStyles from '../../../styles/diary/Meal.module.css';
 import { BiListUl } from "react-icons/bi";
+import { AiOutlineUnorderedList } from "react-icons/ai";
 
 const mealType = ["아침", "점심", "저녁", "간식"];
 export const [PAGE_PRODUCTS, PAGE_CART] = ["products", "cart"];
@@ -110,7 +111,7 @@ function AddFood({ type, setWritingMode, diary, setDiary, writingMode, user }) {
                         onClick={multiBtn}
               />
               <span>{mealType[type]}</span>
-              <BiListUl            
+              <AiOutlineUnorderedList         
                 size='2rem'
                 onClick={() => navigateTo(PAGE_CART)}
               />

@@ -1,116 +1,217 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import axios from "axios";
 import clientPromise from "../../util/mongodb";
 import { getUserOrRedirect } from "../../util/auth";
 //component
-import MyChallenge from "../../components/challenge/Main/MyChallenge";
+import DateContent from "../../components/challenge/Main/DateContent";
 import ProgressBar from "../../components/challenge/Main/ProgressBar";
+import Navbar from "../../components/challenge/Main/Navbar";
+import Search from "../../components/challenge/Main/Search";
+import RecommendChallenge from "../../components/challenge/Main/RecommendChallenge";
+import Header from "../../components/challenge/Main/Header";
+import ImageAndParti from "../../components/challenge/Main/ImageAndParti";
+import PastChallenges from "../../components/challenge/test/PastChallenges.tsx";
+import MainModal from "../../components/challenge/Main/MainModal";
 //css
 import "semantic-ui-css/semantic.min.css";
+import MainStyle from "../../styles/challenge/Main.module.css";
 import ListStyle from "../../styles/challenge/List.module.css";
 import ButtonStyle from "../../styles/challenge/Button.module.css";
 import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
-import UserStyle from "../../styles/challenge/Input.module.css";
 import ImageStyle from "../../styles/challenge/Input.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { Image } from "semantic-ui-react";
+import { Icon, Image } from "semantic-ui-react";
 
-const index = ({ challenges, user }) => {
-  const participatedChallenges = challenges.filter(
-    (challenge) =>
-      challenge.userId !== user.id &&
-      challenge.participants.some((participant) => participant === user.id)
+const Index = ({ challenges, user }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const tabClickHandler = (index) => {
+    setActiveIndex(index);
+  };
+
+  const router = useRouter();
+
+  const [participatedChallenges, setParticipatedChallenges] = useState(
+    challenges.filter(
+      (challenge) =>
+        challenge.participants.some((participant) => participant === user.id) ||
+        challenge.userId === user.id
+    )
   );
+  const copiedChallenges = [...participatedChallenges];
+  const smallChallenges = copiedChallenges.slice(0, 3);
+
+  const handleButton = () => {};
+  const tabChallenge = [
+    {
+      tabTitle: (
+        <a
+          key="challengeId1"
+          className={activeIndex === 0 ? "is-active" : ""}
+          onClick={() => tabClickHandler(0)}
+        >
+          메인
+        </a>
+      ),
+      tabContent: (
+        <>
+          <div>
+            <Header />
+            <Search setChallenges={setParticipatedChallenges} />
+          </div>
+
+          {participatedChallenges.length === 0 ? (
+            <div className={ChallengeStyle.container2}>
+              <>
+                <RecommendChallenge challenges={challenges} />
+              </>
+            </div>
+          ) : (
+            <>
+              {participatedChallenges.map((challenge) => {
+                <>
+                  <div className={ChallengeStyle.indexCont}>
+                    <ImageAndParti challenge={challenges} />
+                  </div>
+                  <div>
+                    <DateContent challenge={challenges} />
+                  </div>
+                </>;
+              })}
+            </>
+          )}
+        </>
+      ),
+    },
+    {
+      tabTitle: (
+        <a
+          key="challengeId2"
+          className={activeIndex === 1 ? "is-active" : ""}
+          onClick={() => tabClickHandler(1)}
+        >
+          전체
+        </a>
+      ),
+      tabContent: (
+        <>
+          <div>
+            <Header />
+            <Search setChallenges={setParticipatedChallenges} />
+          </div>
+          <div className={ChallengeStyle.mainContainer}>
+            {challenges.map((challenge) => {
+              <>
+                <div className={ChallengeStyle.indexCont}>
+                  <ImageAndParti challenges={challenges} />
+                </div>
+                <div>
+                  <DateContent challenge={challenges} />
+                  {challenge.type === "diet" ? (
+                    <Link passHref href={"/challenge/list/" + challenge._id}>
+                      <li>챌린지 종류: 다이어트</li>
+                    </Link>
+                  ) : (
+                    <Link passHref href={"/challenge/list/" + challenge._id}>
+                      <li>챌린지 종류: 다이어트</li>
+                    </Link>
+                  )}
+                </div>
+              </>;
+            })}
+          </div>
+        </>
+      ),
+    },
+  ];
+
   return (
     <>
-      <div>
+      <div style={{ margin: "10px 0" }}>
         <div className={ChallengeStyle.header2}>
-          <div className={ChallengeStyle.h2L}>참여중인 챌린지</div>
-
-          <div className={ImageStyle.navDiv}>
-            <div className={ImageStyle.nav}>
-              <Link passHref href="/challenge/mainlist">
-                <p>전체</p>
-              </Link>
-            </div>
-            <div className={ImageStyle.nav}>
-              <Link passHref href="/challenge/newlist">
-                <p>신규</p>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className={ChallengeStyle.container2}>
-          <MyChallenge
-            challenges={challenges}
-            user={user}
-            key={challenges.id}
+          <Icon
+            name="angle double left"
+            size="large"
+            className={ImageStyle.back}
+            onClick={() => router.back()}
           />
-          {challenges.map((challenge) => {
-            return (
-              <>
-                {challenge.userId !== user.id &&
-                challenge.participants.some(
-                  (participant) => participant === user.id
-                ) ? (
+          <Search setChallenges={setParticipatedChallenges} />
+          <Navbar currentURL={"/challenge"} />
+          <h2 className={ChallengeStyle.h2L}>참여중인 챌린지</h2>
+        </div>
+        <div style={{ marginTop: "30%", marginBottom: "5%" }}>
+          {participatedChallenges.length === 0 ? (
+            <>
+              <RecommendChallenge challenges={challenges} />
+            </>
+          ) : (
+            <>
+              {smallChallenges.map((challenge) => {
+                return (
                   <>
-                    <Link passHref href={"/challenge/list/" + challenge._id}>
-                      <div style={{ marginTop: "30px" }}>
-                        <div
-                          className="image-wrap"
-                          style={{
-                            position: "relative",
-                            borderRadius: "0.3rem",
-                          }}
-                        >
+                    <div style={{ margin: "1rem 0" }} key={challenge._id}>
+                      <Link passHref href={"/challenge/list/" + challenge._id}>
+                        <>
                           <div
-                            key={challenge.id}
+                            className="image-wrap"
                             style={{
-                              backgroundColor: "gray",
-                              width: "50px",
-                              right: "0",
-                              position: "absolute",
-                              textAlign: "right",
-                              zIndex: "1",
-                              color: "white",
+                              position: "relative",
+                              borderRadius: "0.3rem",
                             }}
                           >
-                            <FontAwesomeIcon
-                              icon={faUser}
-                              className={ImageStyle.image2}
-                            />
-                            {challenge.participants.length}명
-                          </div>
-                          <Image
-                            style={{
-                              zIndex: "0",
-                              borderRadius: "5%",
-                              height: "80px",
-                              width: "250px",
-                            }}
-                            src={
-                              process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                              challenge.image
-                            }
-                            layout="fill"
-                            objectPosition="top"
-                          />
-                        </div>
-                        <ul className={ListStyle.ul}>
-                          <li className={ListStyle.li}>
-                            <li
-                              className={ChallengeStyle.h2C}
-                              key={challenge.id}
+                            <div
+                              style={{
+                                backgroundColor: "gray",
+                                width: "50px",
+                                left: "30%",
+                                top: "10%",
+                                position: "absolute",
+                                textAlign: "right",
+                                zIndex: "1",
+                                color: "white",
+                              }}
                             >
-                              챌린지 명:{challenge.title}
+                              <FontAwesomeIcon
+                                icon={faUser}
+                                className={ImageStyle.image2}
+                              />
+                              {challenge.participants.length}명
+                            </div>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                position: "absolute",
+                                top: "40%",
+                                marginLeft: "5%",
+                              }}
+                            >
+                              <Image
+                                style={{
+                                  zIndex: "0",
+                                  borderRadius: "5%",
+                                  width: "40%",
+                                }}
+                                src={
+                                  process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                                  challenge.image
+                                }
+                                layout="fill"
+                              />
+                            </div>
+                          </div>
+                          <ul className={MainStyle.ul}>
+                            <li
+                              className={ChallengeStyle.h2L}
+                              key={challenge._id}
+                            >
+                              {challenge.title}
                             </li>
 
-                            <li
-                              className={ChallengeStyle.li}
-                              key={challenge.id}
-                            >
+                            <li className={ChallengeStyle.li}>
                               시작일:
                               {new Date(challenge.startDate).getMonth() +
                                 1 +
@@ -118,10 +219,7 @@ const index = ({ challenges, user }) => {
                                 new Date(challenge.startDate).getDate() +
                                 "일"}
                             </li>
-                            <li
-                              className={ChallengeStyle.li}
-                              key={challenge.id}
-                            >
+                            <li className={ChallengeStyle.li}>
                               종료일:
                               {new Date(challenge.endDate).getMonth() +
                                 1 +
@@ -129,10 +227,7 @@ const index = ({ challenges, user }) => {
                                 new Date(challenge.endDate).getDate() +
                                 "일"}
                             </li>
-                            <li
-                              className={ChallengeStyle.li}
-                              key={challenge.id}
-                            >
+                            <li className={ChallengeStyle.li}>
                               남은 일수:
                               {Math.ceil(
                                 (new Date(challenge.endDate).getTime() -
@@ -141,91 +236,95 @@ const index = ({ challenges, user }) => {
                               )}
                               일
                             </li>
-                          </li>
-                        </ul>
-                      </div>
-                    </Link>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                      }}
-                    >
-                      <button
-                        className={ButtonStyle.button1}
-                        onClick={async (event) => {
-                          const { data: result } = await axios.post(
-                            "/api/challenge/validate",
-                            challenge
-                          );
-                          console.log(result);
-                          const button = event.target;
-
-                          button.disabled = true;
-                          if (Array.isArray(result)) {
-                            // 실패했다.
-                            button.textContent = "진행중!";
-                            button.style.color = "white";
-                            setInterval(
-                              (button) => {
-                                button.style.display = "none";
-                              },
-                              2000,
-                              button
-                            );
-                            const progressBar = button.nextElementSibling;
-                            if (progressBar instanceof HTMLElement) {
-                              progressBar.style.display = "block";
-                              const realProgressBar =
-                                progressBar.firstElementChild.firstElementChild;
-                              if (challenge.type === "diet") {
-                                realProgressBar.value = result.length;
-                                realProgressBar.max = challenge.diet.condition;
-                                const span = realProgressBar.nextElementSibling;
-                                span.innerText =
-                                  Math.round(
-                                    (result.length / challenge.diet.condition) *
-                                      100
-                                  ) + " %";
-                              } else {
-                                realProgressBar.value = result.length;
-                                realProgressBar.max =
-                                  challenge.recipe.uploadCount;
-                                const span = realProgressBar.nextElementSibling;
-                                span.innerText =
-                                  Math.round(
-                                    (result.length /
-                                      challenge.recipe.uploadCount) *
-                                      100
-                                  ) + " %";
-                              }
-                            }
-                          } else {
-                            // 성공했다.
-                            button.textContent = "성공!";
-                            button.style.backgroundColor = "blue";
-
-                            setInterval(
-                              (button) => {
-                                button.style.display = "none";
-                              },
-                              2000,
-                              button
-                            );
-                          }
+                          </ul>
+                        </>
+                      </Link>
+                      <div
+                        style={{
+                          position: "relative",
+                          left: "53%",
                         }}
                       >
-                        결과 확인
-                      </button>
-                      <div style={{ display: "none" }}>
-                        <ProgressBar />
+                        <button
+                          className={MainStyle.button}
+                          onClick={async (event) => {
+                            const {
+                              data: { result, message },
+                            } = await axios.post(
+                              "/api/challenge/validate",
+                              challenge
+                            );
+                            console.log(result);
+                            const button = event.target;
+
+                            button.disabled = true;
+                            if (message === "failed") {
+                              // 실패했다.
+                              button.textContent = "진행중!";
+                              button.style.color = "white";
+                              setInterval(
+                                (button) => {
+                                  button.style.display = "none";
+                                },
+                                100,
+                                button
+                              );
+                              const progressBar = button.nextElementSibling;
+                              if (progressBar instanceof HTMLElement) {
+                                progressBar.style.display = "block";
+                                const realProgressBar =
+                                  progressBar.firstElementChild
+                                    .firstElementChild;
+                                if (challenge.type === "diet") {
+                                  realProgressBar.value = realProgressBar.max =
+                                    challenge.diet.condition;
+                                  const span =
+                                    realProgressBar.nextElementSibling;
+                                  span.innerText =
+                                    Math.round(
+                                      (result / challenge.diet.condition) * 100
+                                    ) + " %";
+                                } else {
+                                  realProgressBar.value = realProgressBar.max =
+                                    challenge.recipe.uploadCount;
+                                  const span =
+                                    realProgressBar.nextElementSibling;
+                                  span.innerText =
+                                    Math.round(
+                                      (result / challenge.recipe.uploadCount) *
+                                        100
+                                    ) + " %";
+                                }
+                              }
+                            } else {
+                              // 성공했다.
+                              button.textContent = "성공!";
+                              button.style.backgroundColor = "blue";
+
+                              setInterval(
+                                (button) => {
+                                  button.style.display = "none";
+                                },
+                                100,
+                                button
+                              );
+                            }
+                          }}
+                        >
+                          결과 확인
+                        </button>
+                        <div style={{ display: "none" }}>
+                          <ProgressBar />
+                        </div>
                       </div>
                     </div>
                   </>
-                ) : null}
-              </>
-            );
-          })}
+                );
+              })}
+              <MainModal challenges={participatedChallenges} />
+              <PastChallenges />
+            </>
+          )}
         </div>
       </div>
     </>
@@ -259,4 +358,4 @@ export const getServerSideProps = async (ctx) => {
     props: { user, challenges: JSON.parse(JSON.stringify(challenges)) },
   };
 };
-export default index;
+export default Index;

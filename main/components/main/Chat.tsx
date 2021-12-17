@@ -24,7 +24,7 @@ const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: { liveData: L
         <div style={{ display: 'flex', flexDirection: "column", overflowY: "scroll", height: largeMode ? "16vh" : "40px", fontSize: '0.85em', transition: "all 500ms" }} ref={chatRoom} >
           {liveData.map((data, index) =>
           (<div style={{ display: 'flex', justifyContent: "space-between", transition: "all 500ms", color: "black" }} key={index}>
-            <span style={{ fontWeight: data.name === "Admin" ? 700 : undefined, background: data.name === "Admin" ? MIDDLE_COLOR : undefined, borderRadius: "5px", padding: "0px 2px" }}>{data.name} : {data.message}</span>
+            <span style={{ fontWeight: data.name === "Admin" ? 700 : 400, borderRadius: "5px", padding: "0px 2px" }}>{data.name} : {data.message}</span>
           </div>)
           )}
         </div>
@@ -36,6 +36,12 @@ const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: { liveData: L
             if ($input.value.trim().length === 0) {
               $input.placeholder = "공백입력 불가"
               $input.focus()
+              return;
+            }
+            if (/\<script\>/.test($input.value.trim())) {
+              $input.placeholder = "<script> 입력 불가";
+              $input.focus();
+              $input.value = '';
               return;
             }
             socket?.emit('chat', { name, message: $input.value });

@@ -1,7 +1,10 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import Link from "next/dist/client/link";
+// component
+import Navbar from "../../components/challenge/Main/Navbar";
+import Search from "../../components/challenge/Main/Search";
 //css
 import "semantic-ui-css/semantic.min.css";
 import ListStyle from "../../styles/challenge/List.module.css";
@@ -11,25 +14,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Image } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
 
 const NewList = ({ challenges, user }) => {
+  const [search, setSearch] = useState(false);
+
   return (
     <div>
-      <div className={ChallengeStyle.header}>
+      <div className={ChallengeStyle.header2}>
+        <Search />
         <Link passHref href={"/challenge"}>
           <FontAwesomeIcon
             icon={faAngleDoubleLeft}
             className={ImageStyle.image4}
           />
         </Link>
+        <h2 className={ChallengeStyle.h2C}>신규 챌린지</h2>
       </div>
-      <h2 className={ChallengeStyle.h2C}>신규 챌린지</h2>
-      <hr className={ChallengeStyle.hr2} />
+      <Navbar currentURL={"/challenge/newlist"} />
       <div className={ChallengeStyle.container}>
         {challenges.map((challenge) => {
           return (
             <>
-              <div key={challenge._id}>
+              <div>
                 <>
                   <Link passHref href={"/challenge/list/" + challenge._id}>
                     <div className={ChallengeStyle.list}>
@@ -41,7 +48,6 @@ const NewList = ({ challenges, user }) => {
                         }}
                       >
                         <div
-                          key={challenge._id}
                           style={{
                             backgroundColor: "gray",
                             width: "50px",
@@ -75,14 +81,11 @@ const NewList = ({ challenges, user }) => {
                       </div>
                       <ul key={challenge._id} className={ListStyle.ul}>
                         <li className={ListStyle.li}>
-                          <li
-                            className={ChallengeStyle.title}
-                            key={challenge._id}
-                          >
+                          <li className={ChallengeStyle.title}>
                             {challenge.title}
                           </li>
 
-                          <li style={{ margin: "0 11px" }} key={challenge.id}>
+                          <li style={{ margin: "0 11px" }}>
                             시작일:
                             {new Date(challenge.startDate).getFullYear() +
                               "년" +
@@ -100,9 +103,9 @@ const NewList = ({ challenges, user }) => {
                               "일"}
                           </li>
                           {challenge.type === "diet" ? (
-                            <li key={challenge._id}>챌린지 종류: 다이어트</li>
+                            <li>챌린지 종류: 다이어트</li>
                           ) : (
-                            <li key={challenge._id}>챌린지 종류: 레시피</li>
+                            <li>챌린지 종류: 레시피</li>
                           )}
                         </li>
                       </ul>

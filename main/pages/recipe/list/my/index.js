@@ -11,7 +11,7 @@ import myRecipeStyles from "../../../../styles/recipe/MyRecipe.module.css";
 import { postStaticAxios } from "../../../../util/axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faHeart } from "@fortawesome/free-solid-svg-icons";
 import MyNavigation from "../../../../components/recipe/list/MyNavigation";
 
 const Index = ({ user, filteredRecipes }) => {
@@ -116,48 +116,83 @@ const Index = ({ user, filteredRecipes }) => {
         return (
           <div className={myRecipeStyles.containerList}>
             <table className={myRecipeStyles.tableContainer}>
-              <tr className={myRecipeStyles.itemWrapper}>
-                <th>번호</th>
-                <th>카테고리</th>
-                <th>제목</th>
-                <th>조회수</th>
-                <th>작성일</th>
-                <th>수정</th>
-                <th>삭제</th>
-              </tr>
+              <thead>
+                <tr className={myRecipeStyles.itemWrapper}>
+                  <th>분류</th>
+                  <th>작성일 / 제목</th>
+                  <th>조회</th>
+                  <th>기능</th>
+                </tr>
+              </thead>
               {recipes.map((card, index) => {
                 return (
-                  <tr key={card._id} className={myRecipeStyles.itemWrapper}>
-                    <td>{card._id}</td>
-                    <td>{renderSwitchCategory(card.category)}</td>
-                    <td>{card.title}</td>
-                    <td>{card.hit}</td>
-                    <td>{card.upload_date.slice(0, -14)}</td>
-                    <td>
-                      <Link
-                        href={{
-                          pathname: `/recipe/update/${card._id}`,
-                        }}
-                        as={`/recipe/update/${card._id}`}
-                        passHref
-                      >
-                        <a>
-                          <div className={myRecipeStyles.btnUpdate}>수정</div>
-                        </a>
-                      </Link>
-                    </td>
-                    <td>
-                      <div
-                        className={myRecipeStyles.btnDel}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          onDeleteBtn(card);
-                        }}
-                      >
-                        삭제
-                      </div>
-                    </td>
-                  </tr>
+                  <tbody key={card._id}>
+                    <tr className={myRecipeStyles.items}>
+                      <td className={myRecipeStyles.listCategory}>
+                        {renderSwitchCategory(card.category)}
+                      </td>
+                      <td className={myRecipeStyles.listDate}>
+                        <Link
+                          href={{
+                            pathname: `/recipe/card/${card._id}`,
+                          }}
+                          as={`/recipe/card/${card._id}`}
+                          passHref
+                        >
+                          <a>{card.upload_date.slice(0, -14)}</a>
+                        </Link>
+                      </td>
+                      <td className={myRecipeStyles.listTitle}>
+                        <Link
+                          href={{
+                            pathname: `/recipe/card/${card._id}`,
+                          }}
+                          as={`/recipe/card/${card._id}`}
+                          passHref
+                        >
+                          <a>{card.title}</a>
+                        </Link>
+                      </td>
+                      <td className={myRecipeStyles.listLike}>
+                        <FontAwesomeIcon
+                          className={myRecipeStyles.cardIconHit}
+                          icon={faHeart}
+                        />
+                        {card.likes}
+                      </td>
+                      <td className={myRecipeStyles.listHit}>
+                        <FontAwesomeIcon
+                          className={myRecipeStyles.cardIconHit}
+                          icon={faEye}
+                        />
+                        {card.hit}
+                      </td>
+                      <td>
+                        <Link
+                          href={{
+                            pathname: `/recipe/update/${card._id}`,
+                          }}
+                          as={`/recipe/update/${card._id}`}
+                          passHref
+                        >
+                          <a>
+                            <div className={myRecipeStyles.btnUpdate}>수정</div>
+                          </a>
+                        </Link>
+                      </td>
+                      <td>
+                        <div
+                          className={myRecipeStyles.btnDel}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            onDeleteBtn(card);
+                          }}
+                        >
+                          삭제
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
                 );
               })}
             </table>

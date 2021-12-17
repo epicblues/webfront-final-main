@@ -1,22 +1,83 @@
-.container {
-  display: flex;
-  font: normal 600 1.2rem "Noto Sans KR";
-  padding: 0 1rem;
-  padding-bottom: 1.6rem;
+/* PC , 테블릿 가로 (해상도 1024px ~ )*/
+@media all and (min-width: 1024px) {
+  .container {
+    display: flex;
+    font: normal 600 1.5rem "Noto Sans KR";
+    padding: 0 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .tab {
+    text-align: center;
+    margin: 0 2rem;
+    color: #999;
+  }
+
+  .activated {
+    color: #333;
+    border-bottom: solid 3px #333;
+  }
 }
 
-.url {
-  text-align: center;
-  color: tomato;
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    display: flex;
+    font: normal 600 1.5rem "Noto Sans KR";
+    padding: 0 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .tab {
+    text-align: center;
+    margin: 0 2rem;
+    color: #999;
+  }
+
+  .activated {
+    color: #333;
+    border-bottom: solid 3px #333;
+  }
 }
 
-.tab {
-  text-align: center;
-  margin: 0 10px;
-  color: #999;
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  .container {
+    display: flex;
+    font: normal 600 1.2rem "Noto Sans KR";
+    padding: 0 1rem;
+    padding-bottom: 1.6rem;
+  }
+
+  .tab {
+    text-align: center;
+    margin: 0 10px;
+    color: #999;
+  }
+
+  .activated {
+    color: #333;
+    border-bottom: solid 3px #333;
+  }
 }
 
-.activated {
-  color: #333;
-  border-bottom: solid 3px #333;
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media screen and (max-width: 479px) {
+  .container {
+    display: flex;
+    font: normal 600 1.2rem "Noto Sans KR";
+    padding: 0 1rem;
+    padding-bottom: 1.6rem;
+  }
+
+  .tab {
+    text-align: center;
+    margin: 0 10px;
+    color: #999;
+  }
+
+  .activated {
+    color: #333;
+    border-bottom: solid 3px #333;
+  }
 }

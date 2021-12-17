@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 import MealStyles from '../../../styles/diary/Meal.module.css';
+import { BiInfoCircle } from "react-icons/bi";
 
 const List = ({ product, index }) => {
   const [open, setOpen] = React.useState(false);
@@ -8,6 +9,7 @@ const List = ({ product, index }) => {
   return (
     <div key={index} className={MealStyles.modalItem}>
       <Modal
+        className={MealStyles.modalWindow}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
@@ -34,85 +36,102 @@ const List = ({ product, index }) => {
                   </div>
         }
       >
-        <Modal.Header>
-          <i className="info circle icon"></i>
+        <div className={MealStyles.modalHeader}>
           {product.title}
           {product.name}
-        </Modal.Header>
-        <Modal.Content style={{textAlign: 'center'}}>
-            <table className="ui very basic collapsing celled table" style={{textAlign: 'center', margin: '1.5rem auto 0'}}>
-              <thead>
+        </div>
+        <div className={MealStyles.modalContent}>
+            <table>
+                {/* <thead>
+                  <tr>
+                    <th>영양 성분</th>
+                    <th>총 내용량당</th>
+                  </tr>
+                </thead> */}
+                <tbody>
                 <tr>
-                  <th>영양 성분</th>
-                  <th>제공량</th>
-                  <th>열량</th>
-                  <th>탄수화물</th>
-                  <th>단백질</th>
-                  <th>지방</th>
-                  <th>당</th>
-                  <th>나트륨</th>
-                  <th>트랜스지방</th>
-                  <th>포화지방</th>
-                  <th>콜레스테롤</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>총 내용량당</td>
+                  <td>제공량</td>
                   <td>
                     {product.qtt}
                     {typeof product._id === "number" && `인분`}
                     {product.serve}
                     {product.unit}
                   </td>
+                </tr>
+                <tr>
+                  <td>열량</td>
                   <td>
                     {typeof product._id === "number"
                     ? product.nutrition.kcal
                     : product.kcal}
                     kcal
                   </td>
+                </tr>
+                <tr>
+                  <td>탄수화물</td>
                   <td >
                     {typeof product._id === "number"
                     ? product.nutrition.carbs
                     : product.carbs}
                     g
                   </td>
+                </tr>
+                <tr>
+                  <td>단백질</td>
                   <td>
                     {typeof product._id === "number"
                     ? product.nutrition.prot
                     : product.prot}
                     g
                   </td>
+                </tr>
+                <tr>
+                  <td>지방</td>
                   <td>
                     {typeof product._id === "number"
                     ? product.nutrition.fat
                     : product.fat}
                     g
                   </td>
+                </tr>
+                <tr>
+                  <td>당</td>
                   <td>
                     {typeof product._id === "number"
                     ? product.nutrition.sugars
                     : product.sugars}
                     g
                   </td>
+                </tr>
+                <tr>
+                  <td>나트륨</td>
                   <td>
                     {typeof product._id === "number"
                     ? product.nutrition.sodium
                     : product.sodium}
                     mg
                   </td>
+                </tr>
+                <tr>
+                  <td>트랜스지방</td>
                   <td>
                     {typeof product._id === "number"
                     ? product.nutrition.trnfat
                     : product.trnfat}
                     g
                   </td>
+                </tr>
+                <tr>
+                  <td>포화지방</td>
                   <td>
                     {typeof product._id === "number"
                     ? product.nutrition.stdfat
                     : product.stdfat}
                     g
                   </td>
+                </tr>
+                <tr>
+                  <td>콜레스테롤</td>
                   <td>
                     {typeof product._id === "number"
                     ? product.nutrition.chole
@@ -122,23 +141,21 @@ const List = ({ product, index }) => {
                 </tr>
               </tbody>
             </table>
-        </Modal.Content>
+        </div>
 
-        <Modal.Actions>
-          <Button color="black" onClick={() => setOpen(false)}>
-            취소
-          </Button>
-          <Button
-            content="확인"
-            labelPosition="right"
-            icon="checkmark"
+        <div className={MealStyles.modalAction}>
+          {/* <Button color="black" onClick={() => setOpen(false)}>
+            닫기
+          </Button> */}
+          <button
             onClick={() => {
               setOpen(false);
-              addToCart(value);
+              // addToCart(value);
             }}
-            positive
-          />
-        </Modal.Actions>
+          >
+            확인
+          </button>
+        </div>
       </Modal>
     </div>
   );

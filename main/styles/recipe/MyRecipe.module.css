@@ -1,17 +1,592 @@
-@import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
+/* PC , 테블릿 가로 (해상도 1024px ~ )*/
+@media all and (min-width: 1024px) {
+  .main {
+    background-color: #fff0f0;
+  }
 
-@media screen and (max-width: 1920px) {
+  .container {
+    margin: 0 4vw;
+    font-family: "NanumSquare";
+    display: grid;
+    grid-template-columns: 44vw 44vw;
+    column-gap: 4vw;
+    min-height: 90vh;
+  }
+  .card {
+    display: flex;
+    background-color: white;
+    height: 47vh;
+    border-radius: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+  }
+
+  .cardHeader {
+    -webkit-transition: 0.5s; /*사파리 & 크롬*/
+    -moz-transition: 0.5s; /*파이어폭스*/
+    -ms-transition: 0.5s; /*인터넷 익스플로러*/
+    -o-transition: 0.5s; /*오페라*/
+    transition: 0.5s;
+    width: 24vw;
+    height: 47vh;
+    border-radius: 15px 15px 0 0;
+    background-size: 100% 230vw;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .cardBodyHeader {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    height: 47vh;
+    width: 20vw;
+  }
+
+  .h1 {
+    display: block;
+    font-family: "NanumSquare";
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0.5rem;
+    font-weight: bold;
+    color: #111111;
+  }
+  .cardBodyCategory {
+    margin: 0 0.5rem;
+    font-family: "NanumSquare";
+    color: #554d4d;
+  }
+
+  .btnUpdate {
+    background: #e4685d;
+    width: auto;
+    border-radius: 6px;
+    border: 1px solid #e4685d;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+  }
+  .btnUpdate:active {
+    position: relative;
+    top: 1px;
+  }
+  .cardBodyAuthor {
+    color: #333333;
+  }
+
+  .btnDel {
+    background: #ffffff;
+    width: auto;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    color: #666666;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+  }
+  .btnDel:active {
+    position: relative;
+    top: 1px;
+  }
+
+  .cardBodyFooter {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 75vw;
+    height: 7.5vh;
+    color: #9fa5a8;
+  }
+  .hr {
+    margin: 0.5rem 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #ff5656;
+  }
+
+  .hitCount {
+    margin: 0.2rem 0 0 1rem;
+  }
+  .cardIconHit {
+    height: 1rem;
+    padding-right: 0.2rem;
+    transform: translate(0, 0.15rem);
+  }
+
+  .cardUploadDate {
+    margin: 0 1rem;
+  }
+
+  .containerList {
+    margin: 0 1rem;
+    font-family: "NanumSquare";
+    min-height: 100vh;
+  }
+
+  .itemWrapper {
+    display: grid;
+    width: 95vw;
+    grid-template-columns: 5rem auto 6rem 6rem;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    color: #333333;
+    height: 3rem;
+    background: linear-gradient(white, #ced4da);
+  }
+  .items {
+    display: grid;
+    width: 95vw;
+    grid-template-columns: 5rem auto 6rem 6rem;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    background-color: white;
+    height: 6rem;
+  }
+
+  .listCategory {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    grid-row: 1/3;
+    width: 4rem;
+    height: 4rem;
+    color: white;
+    background: tomato;
+    border-radius: 50%;
+  }
+  .listDate a {
+    color: #333333;
+  }
+  .listDate {
+    grid-row: 1/2;
+    font-size: 1.1rem;
+  }
+  .listTitle {
+    grid-row: 2/3;
+    font-size: 1.5rem;
+  }
+  .listTitle a {
+    color: #333333;
+  }
+  .listLike {
+    display: flex;
+    color: #e4685d;
+  }
+  .listHit {
+    display: flex;
+    grid-row: 2/3;
+    color: #666666;
+  }
+}
+/* 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  .main {
+    background-color: #fff0f0;
+  }
+
+  .container {
+    margin: 0 3vw;
+    font-family: "NanumSquare";
+    display: grid;
+    grid-template-columns: 44vw 44vw;
+    column-gap: 5vw;
+    min-height: 90vh;
+  }
+  .card {
+    display: flex;
+    background-color: white;
+    height: 47vh;
+    border-radius: 15px;
+    display: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+  }
+
+  .cardHeader {
+    -webkit-transition: 0.5s; /*사파리 & 크롬*/
+    -moz-transition: 0.5s; /*파이어폭스*/
+    -ms-transition: 0.5s; /*인터넷 익스플로러*/
+    -o-transition: 0.5s; /*오페라*/
+    transition: 0.5s;
+    width: 24vw;
+    height: 47vh;
+    border-radius: 15px 15px 0 0;
+    background-size: 100% 230vw;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .cardBodyHeader {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.5rem;
+    height: 47vh;
+    width: 20vw;
+  }
+
+  .h1 {
+    display: block;
+    font-family: "NanumSquare";
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0.5rem;
+    font-weight: bold;
+    color: #111111;
+  }
+  .cardBodyCategory {
+    margin: 0 0.5rem;
+    font-family: "NanumSquare";
+    color: #554d4d;
+  }
+
+  .btnUpdate {
+    background: #e4685d;
+    width: auto;
+    border-radius: 6px;
+    border: 1px solid #e4685d;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+  }
+  .btnUpdate:active {
+    position: relative;
+    top: 1px;
+  }
+  .cardBodyAuthor {
+    color: #333333;
+  }
+
+  .btnDel {
+    background: #ffffff;
+    width: auto;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    color: #666666;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+  }
+  .btnDel:active {
+    position: relative;
+    top: 1px;
+  }
+
+  .cardBodyFooter {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 75vw;
+    height: 7.5vh;
+    color: #9fa5a8;
+  }
+  .hr {
+    margin: 0.5rem 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #ff5656;
+  }
+
+  .hitCount {
+    margin: 0.2rem 0 0 1rem;
+  }
+  .cardIconHit {
+    height: 1rem;
+    padding-right: 0.2rem;
+    transform: translate(0, 0.15rem);
+  }
+
+  .cardUploadDate {
+    margin: 0 1rem;
+  }
+
+  .containerList {
+    margin: 0 1rem;
+    font-family: "NanumSquare";
+    min-height: 100vh;
+  }
+
+  .itemWrapper {
+    display: grid;
+    width: 95vw;
+    grid-template-columns: 5rem auto 6rem 6rem;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    color: #333333;
+    height: 3rem;
+    background: linear-gradient(white, #ced4da);
+  }
+  .items {
+    display: grid;
+    width: 95vw;
+    grid-template-columns: 5rem auto 6rem 6rem;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    background-color: white;
+    height: 6rem;
+  }
+
+  .listCategory {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    grid-row: 1/3;
+    width: 4rem;
+    height: 4rem;
+    color: white;
+    background: tomato;
+    border-radius: 50%;
+  }
+  .listDate a {
+    color: #333333;
+  }
+  .listDate {
+    grid-row: 1/2;
+    font-size: 1.1rem;
+  }
+  .listTitle {
+    grid-row: 2/3;
+    font-size: 1.5rem;
+  }
+  .listTitle a {
+    color: #333333;
+  }
+  .listLike {
+    display: flex;
+    color: #e4685d;
+  }
+  .listHit {
+    display: flex;
+    grid-row: 2/3;
+    color: #666666;
+  }
+}
+/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
+@media all and (min-width: 480px) and (max-width: 767px) {
+  .main {
+    background-color: #fff0f0;
+  }
+
+  .container {
+    margin: 0 1rem;
+    font-family: "NanumSquare";
+    display: grid;
+    grid-template-columns: 44vw 44vw;
+    column-gap: 1rem;
+    min-height: 90vh;
+  }
+  .card {
+    background-color: white;
+    height: 42vh;
+    border-radius: 15px;
+    display: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: hidden;
+  }
+
+  .cardHeader {
+    width: 48vw;
+    height: 20vh;
+    border-radius: 15px 15px 0 0;
+    background-size: 100% 230vw;
+    background-repeat: no-repeat;
+    position: relative;
+  }
+
+  .cardBodyHeader {
+    padding-top: 0.5rem;
+  }
+
+  .h1 {
+    display: block;
+    font-family: "NanumSquare";
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0.5rem;
+    font-weight: bold;
+    color: #111111;
+  }
+  .cardBodyCategory {
+    margin: 0 0.5rem;
+    font-family: "NanumSquare";
+    color: #554d4d;
+  }
+
+  .btnUpdate {
+    background: #e4685d;
+    width: auto;
+    border-radius: 6px;
+    border: 1px solid #e4685d;
+    cursor: pointer;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+  }
+  .btnUpdate:active {
+    position: relative;
+    top: 1px;
+  }
+  .cardBodyAuthor {
+    color: #333333;
+  }
+
+  .btnDel {
+    background: #ffffff;
+    width: auto;
+    border-radius: 6px;
+    border: 1px solid #666666;
+    cursor: pointer;
+    color: #666666;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0.5rem;
+  }
+  .btnDel:active {
+    position: relative;
+    top: 1px;
+  }
+
+  .cardBodyFooter {
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    width: 75vw;
+    height: 7.5vh;
+    color: #9fa5a8;
+  }
+  .hr {
+    margin: 0.5rem 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #ff5656;
+  }
+
+  .hitCount {
+    margin: 0.2rem 0 0 1rem;
+  }
+  .cardIconHit {
+    height: 1rem;
+    padding-right: 0.2rem;
+    transform: translate(0, 0.15rem);
+  }
+
+  .cardUploadDate {
+    margin: 0 1rem;
+  }
+
+  .containerList {
+    margin: 0 1rem;
+    font-family: "NanumSquare";
+    min-height: 100vh;
+  }
+
+  .itemWrapper {
+    display: grid;
+    width: 95vw;
+    grid-template-columns: 5rem auto 6rem 6rem;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    color: #333333;
+    height: 3rem;
+    background: linear-gradient(white, #ced4da);
+  }
+  .items {
+    display: grid;
+    width: 95vw;
+    grid-template-columns: 5rem auto 6rem 6rem;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    background-color: white;
+    height: 6rem;
+  }
+
+  .listCategory {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    grid-row: 1/3;
+    width: 4rem;
+    height: 4rem;
+    color: white;
+    background: tomato;
+    border-radius: 50%;
+  }
+  .listDate a {
+    color: #333333;
+  }
+  .listDate {
+    grid-row: 1/2;
+    font-size: 1.1rem;
+  }
+  .listTitle {
+    grid-row: 2/3;
+    font-size: 1.5rem;
+  }
+  .listTitle a {
+    color: #333333;
+  }
+  .listLike {
+    display: flex;
+    color: #e4685d;
+  }
+  .listHit {
+    display: flex;
+    grid-row: 2/3;
+    color: #666666;
+  }
 }
 
-@media screen and (max-width: 1199px) {
-  /* 타블렛 가로 */
-}
-
-@media screen and (max-width: 899px) {
-  /* 모바일 가로 */
-}
-
-@media screen and (max-width: 599px) {
+/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
+@media screen and (max-width: 479px) {
   /* 모바일 세로*/
   .main {
     background-color: #fff0f0;
@@ -134,18 +709,69 @@
   .cardUploadDate {
     margin: 0 1rem;
   }
-}
 
-.containerList {
-  margin: 0 1rem;
-  font-family: "NanumSquare";
-  min-height: 100vh;
-}
+  .containerList {
+    margin: 0 1rem;
+    font-family: "NanumSquare";
+    min-height: 100vh;
+  }
 
-.itemWrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr 3fr 1fr 1fr 1fr 1fr;
-  place-items: center;
-  text-align: center;
-  border: 1px #666666 solid;
+  .itemWrapper {
+    display: grid;
+    width: 92vw;
+    grid-template-columns: 5rem auto 3rem 3rem;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    color: #333333;
+    height: 3rem;
+    background: linear-gradient(white, #ced4da);
+  }
+  .items {
+    display: grid;
+    width: 92vw;
+    grid-template-columns: 5rem auto 3rem 3rem;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+    text-align: center;
+    border: 1px #666666 solid;
+    background-color: white;
+    height: 6rem;
+  }
+
+  .listCategory {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    grid-row: 1/3;
+    width: 4rem;
+    height: 4rem;
+    color: white;
+    background: tomato;
+    border-radius: 50%;
+  }
+  .listDate a {
+    color: #333333;
+  }
+  .listDate {
+    grid-row: 1/2;
+    font-size: 1.1rem;
+  }
+  .listTitle {
+    grid-row: 2/3;
+    font-size: 1.5rem;
+  }
+  .listTitle a {
+    color: #333333;
+  }
+  .listLike {
+    display: flex;
+    color: #e4685d;
+  }
+  .listHit {
+    display: flex;
+    grid-row: 2/3;
+    color: #666666;
+  }
 }

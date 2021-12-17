@@ -3,7 +3,7 @@ import { getUserOrRedirect } from '../util/auth'
 import Link from 'next/link';
 import { Button, Card, CardHeader, CommentText, Container, TextArea } from 'semantic-ui-react';
 import homeStyle from '../styles/Home.module.css';
-import { CSSProperties, MutableRefObject, useEffect, useRef, useState } from 'react';
+import { CSSProperties, MutableRefObject, useEffect, useMemo, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import clientPromise from '../util/mongodb';
 import { io, Socket } from 'socket.io-client';
@@ -16,7 +16,9 @@ import FoodRank from '../components/user/FoodRank';
 import LikeChallenge from '../components/user/likes/LikeChallenge';
 import LikeRecipe from '../components/user/likes/LikeRecipe';
 import mainStyle from '../styles/main/Main.module.css';
-
+import ShortNav from '../components/main/ShortNav';
+import MyContents from '../components/main/MyContents';
+import { BiDish, BiFolderMinus, BiFolderPlus, BiTrophy } from 'react-icons/bi'
 
 const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
   const [largeMode, setLargeMode] = useState(false);
@@ -33,7 +35,6 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
 
   const [socket, setSocket] = useState<null | Socket>(null);
   const [liveData, setLiveData] = useState<LiveData[]>([]);
-
   useEffect(() => {
     const newSocket = io(process.env.NEXT_PUBLIC_STATIC_SERVER_URL as string, {
       path: "/chat"
@@ -42,9 +43,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       if (Array.isArray(message)) {
         setLiveData(message)
       } else {
-        setLiveData(originalData => {
-          return [...originalData, message]
-        })
+        setLiveData(originalData => [...originalData, message])
       }
     })
     setSocket(newSocket);
@@ -53,7 +52,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       newSocket.close();
       console.log("socket closed");
     }
-  }, [])
+  }, []) // 빈 배열일 경우 componentDidMount와 같은 효과
 
   return (
     <div>
@@ -73,26 +72,30 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
             <div className={mainStyle.card} >
               <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-between" }}>기초 대사량  <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></div>
               <div>일일 권장 칼로리  <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></div>
+              <div style={{ marginTop: "1rem" }} >
+                <MyContents />
+              </div>
             </div>
           )
           }
         </div>
         <div className={mainStyle.flex}>
+
           <FoodRank foodRank={foodRank} />
+
           <div className={mainStyle.card} style={{ justifyContent: "space-around", textAlign: "center", alignItems: "center", fontSize: "1.20em" }}>
             <span>내가 좋아하는</span>
             <div className={mainStyle.buttonContainer}>
-              <button onClick={() => { setShowLikesChallenge(true) }}><i className=
-                "thumbs up outline icon" /><span>챌린지</span></button>
-              <button onClick={() => { setShowLikesRecipe(true) }}><i className=
-                "utensils icon" /><span>레시피</span></button>
+              <button onClick={() => { setShowLikesChallenge(true) }}><BiTrophy size="1.8rem" /><span>챌린지</span></button>
+              <button onClick={() => { setShowLikesRecipe(true) }}><BiDish size="1.8rem" /><span>레시피</span></button>
 
             </div>
           </div>
         </div>
 
         <div className={mainStyle.card} style={{ fontSize: "1em", }}>
-          <span style={{ fontSize: "1.2em", ...FLEXBOX_NORMAL }}>채팅 / 실시간 현황<button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", width: "30px", height: "30px", fontSize: "1.2em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setLargeMode(!largeMode) }}>+</button></span>
+          <span style={{ fontSize: "1.3em", ...FLEXBOX_NORMAL, alignItems: "center" }}>채팅 / 실시간 현황<div onClick={() => { setLargeMode(!largeMode) }} style={{ paddingBottom: "0.1rem" }}>
+            {largeMode ? <BiFolderMinus size="2.5rem" /> : <BiFolderPlus size="2.5rem" />}</div></span>
           <br />
           <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
         </div>
@@ -107,16 +110,14 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       </div>
       <div className={mainStyle.sideBar} style={{ left: showLikesChallenge ? "50vw" : "100vw" }}>
         <div onClick={() => { setShowLikesChallenge(false) }}>
-          <button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.1em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesChallenge(false) }}><i className=
-            "thumbs up outline icon" /></button>
+          <button style={{ justifySelf: "", border: "0px", paddingBottom: "3px", }} onClick={() => { setShowLikesChallenge(false) }}><BiTrophy size="3rem" /></button>
 
         </div>
         <LikeChallenge />
       </div>
       <div className={mainStyle.sideBar} style={{ left: showLikesRecipe ? "50vw" : "100vw" }}>
         <div onClick={() => { setShowLikesRecipe(false) }}>
-          <button style={{ justifySelf: "", borderRadius: "30%", border: "3px", borderStyle: "solid", fontSize: "1.1em", fontWeight: 900, paddingBottom: "3px", }} onClick={() => { setShowLikesRecipe(false) }}><i className=
-            "utensils icon" /></button>
+          <button style={{ justifySelf: "", border: "0px", paddingBottom: "3px", }} onClick={() => { setShowLikesRecipe(false) }}><BiDish size="3rem" /></button>
 
         </div>
         <LikeRecipe />
@@ -128,7 +129,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
       }}>
 
       </div>)}
-
+      <ShortNav />
 
     </div >
   )

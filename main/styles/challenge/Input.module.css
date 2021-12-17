@@ -5,6 +5,14 @@
   border-radius: 6px;
   font-size: 16px;
 }
+.text2 {
+  font-weight: bold;
+  width: 50vw;
+  height: 30px;
+  border: solid 2px lightgray;
+  border-radius: 6px;
+  font-size: 16px;
+}
 .mImage {
   width: 100vw;
   height: 30vh;
@@ -14,6 +22,9 @@
   width: 30px;
   height: 30px;
   color: #4f4f4f;
+  position: absolute;
+  left: 0;
+  top: 15px;
 }
 .image2 {
   width: 20px;
@@ -30,7 +41,17 @@
   width: 24px;
   height: 28px;
   margin: 0;
+  position: absolute;
+  left: 0;
+  top: 20px;
 }
+
+.back {
+  margin: 0;
+  position: absolute;
+  left: 0;
+}
+
 .nav {
   margin-top: 10px;
   text-align: center;
@@ -48,4 +69,34 @@
   width: 100vw;
   background-color: #ffffff;
   border-top: 1px solid rgba(0, 0, 0, 0.664);
+}
+.activated {
+  color: #ff5656;
+  border-bottom: solid 3px #ff5656;
+}
+
+.search {
+  position: absolute;
+  right: 0;
+  top: 20px;
+}
+
+.textC {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  left: "10px";
+}
+.actions {
+  height: auto;
+  top: auto;
+  left: auto;
+  bottom: auto;
+  right: auto;
+}
+
+.search2 {
+  position: relative;
+  top: 10px;
+  left: 10px;
 }

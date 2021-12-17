@@ -218,11 +218,11 @@ const ChallengePage = ({ originalChallenge, user }) => {
                         />
                       </div>
                     )}
-                    <ChallengeCancel
+                    {/* <ChallengeCancel
                       user={user}
                       challenge={challenge}
                       setChallenge={setChallenge}
-                    />
+                    /> */}
                   </footer>
                 </>
               ) : (
@@ -321,7 +321,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
     </>
   );
 };
-
 export const getServerSideProps = async (ctx) => {
   const user = await getUserOrRedirect(ctx);
   const challengeId = Number(ctx.query.chal_id);

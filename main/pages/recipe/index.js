@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 
 import clientPromise from "../../util/mongodb";
@@ -9,9 +9,6 @@ import CardsSwiper from "../../components/recipe/list/CardsSwiper";
 import Navigation from "../../components/recipe/index/Navigation";
 import MyDashboard from "../../components/recipe/index/MyDashboard";
 
-// CSS
-import mainStyles from "../../styles/recipe/Main.module.css";
-
 const Index = ({ user, filteredHitRecipes, myRecipes }) => {
   let tempData = 0;
   for (let key in myRecipes) {
@@ -21,7 +18,12 @@ const Index = ({ user, filteredHitRecipes, myRecipes }) => {
   const [currentURL, setCurrentURL] = useState("/recipe");
 
   return (
-    <div className={mainStyles.container}>
+    <div
+      style={{
+        backgroundColor: "#fff0f0",
+        position: "fixed",
+      }}
+    >
       <Head>
         <title>요건 다 내꺼! - 레시피</title>
       </Head>

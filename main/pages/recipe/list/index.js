@@ -11,7 +11,7 @@ import { debounce } from "../../../util/axios";
 
 //  Component
 import Navigation from "../../../components/recipe/index/Navigation";
-import Categories from "../../../components/recipe/index/Categories";
+// import Categories from "../../../components/recipe/index/Categories";
 // LikeButton
 import LikeButton from "../../../components/recipe/LikeButton";
 import DislikeButton from "../../../components/recipe/DislikeButton";
@@ -23,7 +23,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 // ICON
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faMouse, faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import loader from "../../../public/static/logos/logo04.png";
 
 const Index = ({ user, recipes }) => {
@@ -55,7 +55,7 @@ const Index = ({ user, recipes }) => {
 
   const [hasMore, setHasMore] = useState(true);
   const [recipeList, setRecipeList] = useState(recipes);
-  const [recipeCounter, setRecipeCounter] = useState(4);
+  const [recipeCounter, setRecipeCounter] = useState(recipeList.length);
 
   // 스크롤 내릴 때마다 api로 recipe data 4개씩 요청하는 로직
   // api 응답이 빈 배열일 경우 setHasMore(false)로 endMessage 출력
@@ -76,7 +76,7 @@ const Index = ({ user, recipes }) => {
   return (
     <div className={searchListStyles.main}>
       <Navigation currentURL={currentURL}></Navigation>
-      <Categories currentURL={currentURL} />
+      {/* <Categories currentURL={currentURL} /> */}
       <h1>분류 : 전체</h1>
       <InfiniteScroll
         dataLength={recipeList.length}
@@ -152,9 +152,26 @@ const Index = ({ user, recipes }) => {
                       passHref
                     >
                       <a>
-                        <p className={searchListStyles.cardBodyDesc}>
+                        <div className={searchListStyles.cardBodyDesc}>
+                          <div className={searchListStyles.cardBodyMouse}>
+                            -----
+                            <FontAwesomeIcon
+                              className={searchListStyles.cardBodyMouse}
+                              icon={faArrowDown}
+                            />
+                            Click!!
+                            <FontAwesomeIcon
+                              className={searchListStyles.cardBodyMouse}
+                              icon={faMouse}
+                            />
+                            <FontAwesomeIcon
+                              className={searchListStyles.cardBodyMouse}
+                              icon={faArrowDown}
+                            />
+                            -----
+                          </div>
                           {card.desc}
-                        </p>
+                        </div>
                       </a>
                     </Link>
                   </div>

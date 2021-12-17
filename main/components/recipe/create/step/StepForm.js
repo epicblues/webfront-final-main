@@ -3,6 +3,8 @@ import AddStep from "./AddStep";
 import Image from "next/image";
 import createStyles from "../../../../styles/recipe/Create.module.css";
 
+import doge01 from "../../../../public/doge01.jpg";
+
 const StepForm = ({ stepData, setStepData }) => {
   const removeStep = (step) => {
     setStepData(stepData.filter((value) => value !== step));
@@ -11,7 +13,10 @@ const StepForm = ({ stepData, setStepData }) => {
     <div className={createStyles.wizard3}>
       <div className={createStyles.stepsWrapper}>
         {stepData.length === 0 ? (
-          <p className={createStyles.stepEmpty}>요리순서를 입력해주세요</p>
+          <div className={createStyles.stepEmpty}>
+            조리 순서를 추가해주세요.
+            <Image src={doge01} layout="responsive" />
+          </div>
         ) : (
           stepData.map((value, index) => {
             return (

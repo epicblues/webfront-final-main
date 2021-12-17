@@ -2,8 +2,11 @@ import React from "react";
 import AddFoodModal from "./AddFoodModal";
 
 import Image from "next/image";
-import doge from "../../../../public/static/logos/doge.gif";
+import doge from "../../../../public/doge.png";
 import createStyles from "../../../../styles/recipe/Create.module.css";
+
+import "animate.css";
+import { BiBone, BiPlus } from "react-icons/bi";
 
 const FoodForm = ({
   foodData,
@@ -12,6 +15,7 @@ const FoodForm = ({
   setIsModalVisible,
   nutritionData,
   setNutritionData,
+  handleSetIsMeasuringModalVisible,
 }) => {
   const onModalBtn = (active) => {
     setIsModalVisible(active);
@@ -37,14 +41,19 @@ const FoodForm = ({
     setFoodData(foodData.filter((value) => value !== food));
   };
   return (
-    <>
-      <div className={createStyles.selectedFoodMapContainer}>
-        {foodData.length === 0 ? (
-          <>
-            <Image objectFit="contain" src={doge}></Image>
-            <p className={createStyles.emptyP}>🥕재료를 추가해주세요🥕</p>
-          </>
-        ) : (
+    <div className={createStyles.wizard2}>
+      {foodData.length === 0 ? (
+        <div className={createStyles.dogeAndAdd}>
+          <div className={createStyles.pleaseAdd}>
+            아래에 있는 개껌을 눌러 <br />
+            재료를 추가하세요.
+          </div>
+          <div className={createStyles.doge}>
+            <Image layout="responsive" objectFit="contain" src={doge}></Image>
+          </div>
+        </div>
+      ) : (
+        <div className={createStyles.selectedFoodMapContainer}>
           <>
             <div className={createStyles.selectedFoodMapHeader}>
               <span>이름</span>
@@ -70,11 +79,17 @@ const FoodForm = ({
               );
             })}
           </>
-        )}
+        </div>
+      )}
+
+      <div className={createStyles.onModalBtn} onClick={() => onModalBtn(true)}>
+        <BiPlus
+          className="animate__animated animate__bounce"
+          style={{ marginBottom: "0.5rem" }}
+        />
+        <BiBone className="animate__animated animate__bounce" size="2rem" />
       </div>
-      <div className={createStyles.onModalBtn}>
-        <p onClick={() => onModalBtn(true)}>재료추가하기</p>
-      </div>
+
       <div>
         {isModalVisible && (
           <AddFoodModal
@@ -83,10 +98,11 @@ const FoodForm = ({
             setIsModalVisible={setIsModalVisible}
             nutritionData={nutritionData}
             setNutritionData={setNutritionData}
+            handleSetIsMeasuringModalVisible={handleSetIsMeasuringModalVisible}
           />
         )}
       </div>
-    </>
+    </div>
   );
 };
 

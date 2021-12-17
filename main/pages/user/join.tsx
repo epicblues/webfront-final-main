@@ -3,13 +3,12 @@ import { checkValid } from '../../util/auth';
 import Bmr from '../../components/user/Bmr'
 import axios from 'axios';
 import { Button, Form, Header, Input, Label } from 'semantic-ui-react';
+import { BiUser, BiEnvelope, BiLockOpenAlt, BiLockAlt, BiEditAlt, BiBarChartAlt, BiHappyAlt } from 'react-icons/bi';
 import { NextRouter, useRouter } from 'next/router';
 import FinishPage from '../../components/user/FinishPage';
 import { UserBmr } from '../../models';
 import { MIDDLE_COLOR } from '../../constants';
-
-
-
+import joinStyles from '../../../styles/main/join.module.css';
 
 const Join = () => {
   const router = useRouter();
@@ -42,7 +41,7 @@ const Join = () => {
     const $button = event.currentTarget;
 
     if (!(email.current.disabled && name.current.disabled)) {
-      changeButtonStyle($button, "전부 입력해야 합니다.")
+      changeButtonStyle($button, "상단의 정보를 모두 입력해야 합니다.")
       name.current.focus();
       return;
     }
@@ -61,7 +60,7 @@ const Join = () => {
 
     setBmrMode(true);
   }
-  const buttonStyle: CSSProperties = { alignSelf: "stretch", marginTop: "10px", border: "0", background: "#00b5ad", padding: "10px", borderRadius: "10px", fontWeight: 700, color: "whitesmoke", transition: "all 300ms" }
+  const buttonStyle: CSSProperties = { background: "black", transition: "all 300ms", border: "none", borderRadius: "20px", width: '100%', fontWeight: 400, color: "#fff", alignSelf: "stretch", height: "2.8rem", fontSize: "1.2rem" }
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
 
@@ -81,8 +80,11 @@ const Join = () => {
       }
     )
     if (result.status === "OK") {
-      router.push('/user/oauth/temp')
+
       setJoinFinished(true);
+      setTimeout(() => {
+        router.push('/user/login')
+      }, 3000)
     }
     else {
       const status = JSON.parse(result.status);
@@ -109,7 +111,7 @@ const Join = () => {
       email.current.style.color = "black"
     } else {
       // event 변수는 이 함수가 끝나면 사라진다. 따라서 추가적으로 button의 주소를 묶어둬야 한다?
-      changeButtonStyle($button, "이미 가입된 이메일입니다");
+      changeButtonStyle($button, "이미 가입된 이메일입니다.");
     }
 
 
@@ -137,49 +139,148 @@ const Join = () => {
 
   }
 
+  const contentsWrap: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'start',
+    alignItems: "stretch",
+    padding: "1rem",
+    width: "100vw",
+    transition: "all 500ms",
+    // transform: bmrMode ? "translate(-100vw,0)" : "none",
+  }
+
+  const title: CSSProperties = {
+    alignSelf: "center",
+    font: "normal 600 2rem 'Noto Sans KR'",
+    marginBottom: '1rem'
+  }
+
+  const subTitle: CSSProperties = {
+    alignSelf: "center",
+    marginBottom: '1rem',
+    font: "normal 400 1.2rem 'Noto Sans KR'",
+    color: 'red'
+  }
+
+  const leftBox: CSSProperties = {
+    borderTopLeftRadius: '10px',
+    borderBottomLeftRadius: '10px'
+  }
+
+  const rightBox: CSSProperties = {
+    borderTopRightRadius: '10px',
+    borderBottomRightRadius: '10px'
+  }
+
+  const input: CSSProperties = {
+    paddingLeft: '3rem',
+    height: '3rem',
+    borderRadius: '10px'
+  }
+
+  const inputIcon: CSSProperties = {
+    position: 'absolute',
+    top: '50%',
+    left: '1rem',
+    transform: 'translateY(-50%)',
+    color: 'rgba(34,36,38,.15)',
+    fontSize: '1.2rem'
+  }
+
+  const button: CSSProperties = {
+    backgroundColor: "#ff5656",
+    borderRadius: "20px",
+    color: "white",
+    border: "none",
+    alignSelf: "stretch",
+    height: "2.8rem",
+    fontWeight: 400,
+    fontSize: "1.2rem",
+  }
+
   return (
 
     <div style={{
-      display: 'flex', flexDirection: 'row', alignItems: "stretch", width: "300vw",
-      // border: "solid 2px lightgray",
-      // borderRadius: "5px",
-
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: "stretch",
+      width: "300vw",
       fontFamily: "-moz-initial",
+      WebkitOverflowScrolling: "unset"
+    }}
+    >
+      <div style={contentsWrap}>
+        <div style={title}>회원가입</div>
+        <Form>
+          <div className="ui mini unstackable steps" style={{ margin: '0 auto 1rem', borderRadius: '10px', width: '100%' }}>
+            <div className="active step" style={leftBox}>
+              <BiEditAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+              <div className="content">
+                <div className="title">작성</div>
+              </div>
+              <div className="disabled step">
+                <BiBarChartAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+                <div className="content">
+                  <div className="title">BMR</div>
+                </div>
+              </div>
+              <div className="disabled step" style={rightBox}>
+                <BiHappyAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+                <div className="content">
+                  <div className="title">완료</div>
+                </div>
+              </div>
+            </div>
 
+            <Form.Field style={{ margin: '0' }}>
+              <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
+                <input type="text" ref={name} placeholder="닉네임" style={input} />
+                <button className="ui button" onClick={nameCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
+                <BiUser size='1.2rem' style={inputIcon} />
+              </div>
+            </Form.Field>
 
-    }}>
-      <div style={{ display: "flex", flexDirection: 'column', transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none", width: "100vw", padding: "5vw" }}>
-        <Form  >
-          <h2 ref={message} style={{ textAlign: "center" }}>회원 가입</h2>
-          <Form.Field>
-            <h3>닉네임</h3>
-            <input type="text" ref={name} placeholder="이름" />
-            <button style={buttonStyle} onClick={nameCheck}>이름 중복 확인</button>
-          </Form.Field>
+            <Form.Field style={{ margin: '0' }}>
+              <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
+                <input type="email" ref={email} placeholder="이메일" style={input} />
+                <button className="ui button" onClick={emailCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
+                <BiEnvelope size='1.2rem' style={inputIcon} />
+              </div>
+            </Form.Field>
 
-          <Form.Field>
-            <h3>이메일</h3>
-            <input type="email" ref={email} placeholder="이메일" />
-            <button style={buttonStyle} onClick={emailCheck}>이메일 중복 확인</button>
-          </Form.Field>
+            <button onClick={toggleJoinForm} style={button}>
+              다음 단계로 가기
+            </button>
+          </div>
+          <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
+            <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
+            {userBmr.activity > 1000 &&
+              <button style={buttonStyle} onClick={handleClick}>가입 완료하기</button>
+            }
+          </div>
+          <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>
 
-          <Form.Field>
-            <h3>비밀번호</h3>
-            <input type="password" ref={password} placeholder="비밀번호" />
-          </Form.Field>
-
-          <Form.Field>
-            <h3>비밀번호 확인</h3>
-            <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" />
-          </Form.Field>
+            <Form.Field>
+              <div style={{ position: 'relative', marginBottom: '1rem' }}>
+                <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={input} />
+                <BiLockAlt size='1.2rem' style={inputIcon} />
+              </div>
+            </Form.Field>
+          </div>
         </Form>
-        <button style={buttonStyle} onClick={toggleJoinForm}>BMR 작성하기</button>
+
+        <button onClick={toggleJoinForm} style={button}>
+          다음 단계로 가기
+        </button>
       </div>
-      <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
+      <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", }}>
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-        <button style={buttonStyle} onClick={handleClick}>제출</button>
+        {userBmr.activity > 1000 &&
+          <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+        }
       </div>
-      <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>
+      <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", }}>
 
         <FinishPage email={email.current?.value || ""} />
       </div>
