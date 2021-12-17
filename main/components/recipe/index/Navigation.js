@@ -6,13 +6,23 @@ import navigationStyles from "../../../styles/recipe/Navigation.module.css";
 
 // Component
 import SearchModal from "../../../components/recipe/index/SearchModal";
-import SearchModalBlackout from "../../../components/recipe/index/SearchModalBlackout";
+import SearchModalBlackout from "./CategoryModalBlackout";
+import CategoryModal from "./CategoryModal";
+import CategoryModalBlackout from "./CategoryModalBlackout";
 
 const Navigation = ({ currentURL }) => {
+  // 검색 Modal
   const [isSearchModalVisible, setIsSearchModalVisible] = useState(false);
   const handleSetIsSearchModalVisible = (active) => {
     setIsSearchModalVisible(active);
   };
+
+  // 카테고리 Modal
+  const [isCatModalVisible, setIsCatModalVisible] = useState(false);
+  const handleSetIsCatModalVisible = (active) => {
+    setIsCatModalVisible(active);
+  };
+
   return (
     <>
       {isSearchModalVisible && (
@@ -25,10 +35,18 @@ const Navigation = ({ currentURL }) => {
           />
         </>
       )}
+      {isCatModalVisible && (
+        <>
+          <CategoryModal
+            handleSetIsCatModalVisible={handleSetIsCatModalVisible}
+            currentURL={currentURL}
+          />
+          <CategoryModalBlackout
+            handleSetIsCatModalVisible={handleSetIsCatModalVisible}
+          />
+        </>
+      )}
       <div className={navigationStyles.container}>
-        <div className={navigationStyles.tab}>
-          <p className={navigationStyles.url}>레시피 |</p>
-        </div>
         {/* 메인 */}
         <Link href="/recipe/">
           <a>
@@ -43,6 +61,7 @@ const Navigation = ({ currentURL }) => {
             </div>
           </a>
         </Link>
+        {/* 검색 Modal */}
         <div
           className={navigationStyles.tab}
           onClick={() => handleSetIsSearchModalVisible(true)}
@@ -57,22 +76,21 @@ const Navigation = ({ currentURL }) => {
             검색
           </p>
         </div>
-        {/* 종류 */}
-        <Link href="/recipe/list/">
-          <a>
-            <div className={navigationStyles.tab}>
-              <p
-                className={
-                  currentURL === "/recipe/list"
-                    ? navigationStyles.activated
-                    : ""
-                }
-              >
-                카테고리
-              </p>
-            </div>
-          </a>
-        </Link>
+        {/* 카테고리 Modal */}
+        <div
+          className={navigationStyles.tab}
+          onClick={() => handleSetIsCatModalVisible(true)}
+        >
+          <p
+            className={
+              currentURL === "/recipe/list" || currentURL.includes("category")
+                ? navigationStyles.activated
+                : ""
+            }
+          >
+            카테고리
+          </p>
+        </div>
         {/* 즐겨찾기 */}
         <Link href="/recipe/list/like">
           <a>

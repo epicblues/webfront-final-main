@@ -8,7 +8,7 @@ import { debounce } from "../../../../../util/axios";
 
 // Component
 import Navigation from "../../../../../components/recipe/index/Navigation";
-import Categories from "../../../../../components/recipe/index/Categories";
+// import Categories from "../../../../../components/recipe/index/Categories";
 // LikeButton
 import LikeButton from "../../../../../components/recipe/LikeButton";
 import DislikeButton from "../../../../../components/recipe/DislikeButton";
@@ -72,8 +72,7 @@ const Index = ({ user, filteredRecipes, category }) => {
 
   return (
     <div className={searchListStyles.main}>
-      <Navigation currentURL={"/recipe/list"}></Navigation>
-      <Categories currentURL={`/recipe/list/category/${category}`} />
+      <Navigation currentURL={`/recipe/list/category/${category}`}></Navigation>
       <h1>분류 : {renderSwitchCategory(category)}</h1>
       <InfiniteScroll
         dataLength={recipeList.length}
