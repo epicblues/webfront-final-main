@@ -17,7 +17,7 @@ const wordToComponent = (word: string) => {
 
 
 const FoodRank = ({ foodRank }: Props) => {
-  console.log("FoodRank Rendered");
+
   return (
     <div className={cardStyle.flex} style={{ flexDirection: 'column' }}>
       <div className={cardStyle.card} style={{ fontSize: "1.3em", }}>
