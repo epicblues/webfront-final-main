@@ -17,13 +17,13 @@ const MyContents = () => {
   return (
     <>
       <div>
-        참여중인 챌린지? : {myContents?.challenges.length}
+        참여중인 챌린지? : {myContents?.challenges?.length}
       </div>
       <div>
-        작성한 레시피 : {myContents?.recipes.length}
+        작성한 레시피 : {myContents?.recipes?.length}
       </div>
     </>
   )
 }
 
-export default MyContents
+export default React.memo(MyContents) 
