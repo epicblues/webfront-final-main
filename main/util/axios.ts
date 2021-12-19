@@ -41,6 +41,6 @@ export const debounce = (callback: Function, delay: number) => {
     if (timerId) clearTimeout(timerId);
     // callback : 실질적인 비동기 작업(불필요하게 진행하는 것을 clearTimeout을 통해 막는다.)
 
-    setTimeout(callback, delay, event);
+    timerId = setTimeout(callback, delay, event);
   };
 };
