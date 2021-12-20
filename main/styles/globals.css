@@ -331,6 +331,9 @@ a.is-active {
   top: 1rem;
   left: 1rem;
   font: normal 500 1.2rem/22px "Noto Sans KR";
+  border-radius: 15px;
+  padding: 0 0.5rem;
+  background-color: #fff;
 }
 
 .meal .icon {

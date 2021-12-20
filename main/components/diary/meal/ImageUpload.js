@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BiSad } from "react-icons/bi";
 import { AiOutlinePicture, AiOutlineDelete } from "react-icons/ai";
 
-const ImageUpload = ({ diary, setDiary, type, showAdd }) => {
+const ImageUpload = ({ diary, setDiary, type, }) => {
   const imgPreview = diary.meals[type].imageBuffer;
   const [error, setError] = useState(false);
 
