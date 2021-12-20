@@ -45,10 +45,7 @@ const MainModal = ({ challenges }) => {
                     <div key={challenge._id} className={MainStyle.container}>
                       <Link passHref href={"/challenge/list/" + challenge._id}>
                         <>
-                          <div
-                            className="image-wrap"
-                            className={MainStyle.imageWrap}
-                          >
+                          <div className={MainStyle.imageWrap}>
                             <div className={MainStyle.imagePart}>
                               <FaUser size="16" />
                               {challenge.participants.length}명

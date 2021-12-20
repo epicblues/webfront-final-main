@@ -1,10 +1,10 @@
 import { urlObjectKeys } from 'next/dist/shared/lib/utils'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { CSSProperties } from 'react'
+import React, { CSSProperties, useEffect, useState } from 'react'
 import menuButton from '../../styles/main/MenuButton.module.css'
-
-const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) => {
+import mainStyle from "../../styles/main/Main.module.css"
+const MenuModal = ({ onExit, hidden, loading, setLoading }: { onExit: Function, hidden: boolean, loading: boolean, setLoading: Function }) => {
   const backgroundStyle: CSSProperties = {
     position: "fixed",
     left: "0",
@@ -20,24 +20,23 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
     transition: "all 0.3s"
   }
 
-  const router = useRouter()
+  const router = useRouter();
 
-  const MIDDLE_WIDTH = 44
-  const BOTTOM_HEIGHT = 20
+  const MIDDLE_WIDTH = 50
+  const BOTTOM_HEIGHT = 25
   // 위치 조절 상수
   const record = [
-    [MIDDLE_WIDTH, BOTTOM_HEIGHT],
-    [MIDDLE_WIDTH + 30, BOTTOM_HEIGHT + 10],
-    [MIDDLE_WIDTH + 30, BOTTOM_HEIGHT + 25],
-    [MIDDLE_WIDTH, BOTTOM_HEIGHT + 35],
-    [MIDDLE_WIDTH - 30, BOTTOM_HEIGHT + 25],
-    [MIDDLE_WIDTH - 30, BOTTOM_HEIGHT + 10],
+    [MIDDLE_WIDTH, BOTTOM_HEIGHT - 5],
+    [MIDDLE_WIDTH + 25, BOTTOM_HEIGHT + 10],
+    [MIDDLE_WIDTH + 25, BOTTOM_HEIGHT + 35],
+    [MIDDLE_WIDTH, BOTTOM_HEIGHT + 50],
+    [MIDDLE_WIDTH - 25, BOTTOM_HEIGHT + 35],
+    [MIDDLE_WIDTH - 25, BOTTOM_HEIGHT + 10],
   ];
-
   return (
     <div style={hidden ? {
 
-    } : backgroundStyle}>
+    } : backgroundStyle} onClick={() => { onExit() }}>
 
       <Link href={"/recipe/create"} passHref>
         <div className={menuButton.button} style={
@@ -47,7 +46,7 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
             left: `${record[4][0]}vw`,
             opacity: 1
           }}
-          onClick={() => { onExit() }}><span>레시피</span>작성</div>
+          onClick={() => { onExit(); setLoading(true) }}>📚<br /><span>레시피작성</span></div>
       </Link>
       {["아침", "점심", "저녁", "간식"].map((value, index) => (
         <div className={menuButton.button} key={index}
@@ -59,14 +58,12 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
             }}
 
           onClick={() => {
-            onExit(); router.push(
+            onExit(); setLoading(true); router.push(
               `/diary?mode=${index}`
             )
           }}
         >
-          <i className='utensils icon' />
-
-          {value}
+          🥪<br /><span>{value}</span>
         </div>
 
       ))}
@@ -76,9 +73,9 @@ const MenuModal = ({ onExit, hidden }: { onExit: Function, hidden: boolean }) =>
             bottom: `${record[5][1]}vw`,
             left: `${record[5][0]}vw`,
             opacity: 1
-          }} onClick={() => { onExit() }}>챌린지<br />작성</div>
+          }} onClick={() => { onExit(); setLoading(true) }}>🏆<br /><span>챌린지작성</span></div>
       </Link>
-
+      {loading && <div className={mainStyle.loadingCircle} style={{ top: "45vh" }}></div>}
     </div>
   )
 }
