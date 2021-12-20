@@ -1,5 +1,11 @@
 import axios from "axios";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  CSSProperties,
+  Dispatch,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import mainStyle from "../styles/main/Main.module.css";
 
 export const useFetch = <T>(
@@ -21,7 +27,7 @@ export const useFetch = <T>(
 export type LoadingProps = [
   boolean,
   Dispatch<SetStateAction<boolean>>,
-  React.FC<{ top?: string }>
+  React.FC<{ style?: CSSProperties; className?: string }>
 ];
 
 // dependency가 변경되면 loading State를 false로 바꾸는 hook
@@ -29,7 +35,7 @@ export type LoadingProps = [
 // 이벤트 핸들러로 setLoading(true)를 설정하면
 // next의 serverSideProps가 실행되고 props를 변경하기 전 까지
 // loading 상태가 true를 유지한다.
-export const useLoading = (dependency: any): LoadingProps => {
+export const useLoading = (dependency?: any): LoadingProps => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(false);
@@ -38,17 +44,14 @@ export const useLoading = (dependency: any): LoadingProps => {
 
   // JSX의 실제 모습은 Element나  Component를 return 하는 함수
   // 즉 Element 만으로는 JSX로 표현할 수 없다.
-  const LoadingCircle: React.FC<{ top?: string }> = ({ top }) => {
-    return loading
-      ? React.createElement("div", {
-          className: mainStyle.loadingCircleGlobal,
-          style: {
-            position: "fixed",
-            top: "40vh",
-            left: "45vw",
-          },
-        })
-      : null;
-  };
+  const LoadingCircle: React.FC<{ style?: CSSProperties; className?: string }> =
+    ({ style, className }) => {
+      return loading
+        ? React.createElement("div", {
+            className: className ? className : mainStyle.loadingCircleGlobal,
+            style,
+          })
+        : null;
+    };
   return [loading, setLoading, LoadingCircle];
 };

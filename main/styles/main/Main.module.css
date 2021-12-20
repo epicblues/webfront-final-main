@@ -14,10 +14,6 @@
   font-weight: 700;
 }
 
-.foodName {
-  font-size: 0.88em;
-}
-
 .sideBar {
   height: 70vh;
   background-color: whitesmoke;
@@ -91,8 +87,6 @@
   bottom: 10vh;
   left: 0;
   margin: 0 auto;
-  /* background-color: whitesmoke; */
-  padding: 1rem;
   /* transition: all 4s; */
   animation: popUp 1s;
   animation-iteration-count: 2;
@@ -208,7 +202,6 @@
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   z-index: 700;
-  /* background-color: whitesmoke; */
 }
 
 .loadingCircleGlobal {
@@ -220,10 +213,7 @@
   animation: spin 1s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  /* z-index: 700; */
-  align-self: center;
   margin: 0.5rem;
-  /* background-color: whitesmoke; */
 }
 
 .contentBar {
@@ -234,4 +224,22 @@
 
 .contentBar > :nth-child(2) {
   color: red;
+}
+
+.fullFoodName {
+  position: absolute;
+  z-index: 300;
+  bottom: 110%;
+  left: -25%;
+  border: 1px solid black;
+  font-size: 0.8rem;
+  width: 150%;
+  background: white;
+  font-weight: 700;
+  border-radius: 20%;
+}
+
+.foodName {
+  /* position: relative; */
+  font-size: 0.88em;
 }

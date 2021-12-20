@@ -39,7 +39,7 @@ const MenuModal = ({ onExit, hidden, setLoading }: { onExit: Function, hidden: b
     } : backgroundStyle} onClick={() => { onExit() }}>
 
       <Link href={"/recipe/create"} passHref>
-        <>
+        <div>
           <div className={menuButton.button} style={
             hidden ? {} : {
               bottom: `${record[4][1]}vh`,
@@ -51,7 +51,7 @@ const MenuModal = ({ onExit, hidden, setLoading }: { onExit: Function, hidden: b
               bottom: `${record[4][1] - 4}vh`,
               left: `${record[4][0] - 8.5}vw`,
 
-            }}>레시피 작성</div></>
+            }}>레시피 작성</div></div>
       </Link>
       {["아침", "점심", "저녁", "간식"].map((value, index) => (
         <>
@@ -80,7 +80,7 @@ const MenuModal = ({ onExit, hidden, setLoading }: { onExit: Function, hidden: b
       ))}
 
       <Link href={"/challenge/create"} passHref>
-        <>
+        <div>
           <div className={menuButton.button} style={
             hidden ? {} : {
               bottom: `${record[5][1]}vh`,
@@ -91,7 +91,7 @@ const MenuModal = ({ onExit, hidden, setLoading }: { onExit: Function, hidden: b
               bottom: `${record[5][1] - 4}vh`,
               left: `${record[5][0] - 8.5}vw`,
 
-            }}>챌린지 작성</div></>
+            }}>챌린지 작성</div></div>
       </Link>
     </div>
   )

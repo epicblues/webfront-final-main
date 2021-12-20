@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from 'semantic-ui-react'
-import { MdSyncAlt, MdOutlineTrendingFlat, MdOutlineTrendingUp, MdOutlineTrendingDown } from "react-icons/md";
-
+import { MdOutlineTrendingFlat, MdOutlineTrendingUp, MdOutlineTrendingDown } from "react-icons/md";
+import { BiTransferAlt } from "react-icons/bi";
 
 const options = [
   {
@@ -29,7 +29,7 @@ const DropdownMenu = ({selected, setSelected, }) => {
 
   return (
   <div className='dropdown-option'>
-      <MdSyncAlt 
+      <BiTransferAlt
         className="change-option"
         onClick={() => {setIsOpen(!isOpen);}}
       />

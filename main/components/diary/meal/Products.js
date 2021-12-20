@@ -98,7 +98,7 @@ export default function Products({ diary, setDiary, type, }) {
           type="text"
           placeholder="음식을 검색하세요"
           onChange={(event) => handleSearch(event)}
-          style={{borderRadius: '10px', height: '3rem', font: 'normal 400 1.2rem "Noto Sans KR"'}}
+          style={{borderRadius: '10px', height: '3rem', font: 'normal 400 1.2rem "NanumSquare"'}}
         />
         <BiSearch size='1.6rem' style={{position: 'absolute', right: '1rem', top: '50%', transform: 'translateY(-50%)'}} />
       </div>
