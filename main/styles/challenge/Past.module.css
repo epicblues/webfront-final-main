@@ -1,7 +1,26 @@
 .image {
   z-index: 0;
   border-radius: 0.7rem;
-  width: 40%;
+  width: 70%;
   margin: 10px 0 10px 0;
-  height: 50%;
+  height: 70%;
+}
+.imageDiv {
+  width: 50%;
+  position: relative;
+}
+
+.ulDiv {
+  position: relative;
+  right: 20px;
+  top: 5px;
+  margin: 0px;
+}
+.liTitle {
+  font: normal 600 1.2rem/22px "Noto Sans KR";
+}
+.liresult {
+  border: 1px solid;
+  border-radius: 0.7rem;
+  border-color: #fff5f5;
 }
