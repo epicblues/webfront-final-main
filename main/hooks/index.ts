@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useRouter } from "next/router";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import mainStyle from "../styles/main/Main.module.css";
 
 export const useFetch = <T>(
   url: string
@@ -26,12 +26,26 @@ export const useFetch = <T>(
 // loading 상태가 true를 유지한다.
 export const useLoading = (
   dependency: any
-): [boolean, Dispatch<SetStateAction<boolean>>] => {
+): [boolean, Dispatch<SetStateAction<boolean>>, React.FC<{ top?: string }>] => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(false);
     return () => {};
   }, [dependency]);
 
-  return [loading, setLoading];
+  // JSX의 실제 모습은 Element나  Component를 return 하는 함수
+  // 즉 Element 만으로는 JSX로 표현할 수 없다.
+  const LoadingCircle: React.FC<{ top?: string }> = ({ top }) => {
+    return loading
+      ? React.createElement("div", {
+          className: mainStyle.loadingCircleGlobal,
+          style: {
+            position: "fixed",
+            top: "45vh",
+            left: "47vw",
+          },
+        })
+      : null;
+  };
+  return [loading, setLoading, LoadingCircle];
 };

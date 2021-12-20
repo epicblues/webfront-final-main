@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { CSSProperties, useEffect, useState } from 'react'
 import menuButton from '../../styles/main/MenuButton.module.css'
-import mainStyle from "../../styles/main/Main.module.css"
-const MenuModal = ({ onExit, hidden, loading, setLoading }: { onExit: Function, hidden: boolean, loading: boolean, setLoading: Function }) => {
+
+const MenuModal = ({ onExit, hidden, setLoading }: { onExit: Function, hidden: boolean, setLoading: Function, }) => {
   const backgroundStyle: CSSProperties = {
     position: "fixed",
     left: "0",
@@ -40,12 +40,12 @@ const MenuModal = ({ onExit, hidden, loading, setLoading }: { onExit: Function, 
       <Link href={"/recipe/create"} passHref>
         <div className={menuButton.button} style={
           hidden ? {} : {
-
             bottom: `${record[4][1]}vw`,
             left: `${record[4][0]}vw`,
             opacity: 1
           }}
           onClick={() => { onExit(); setLoading(true) }}><span>레시피</span>작성</div>
+
       </Link>
       {["아침", "점심", "저녁", "간식"].map((value, index) => (
         <div className={menuButton.button} key={index}
@@ -68,6 +68,7 @@ const MenuModal = ({ onExit, hidden, loading, setLoading }: { onExit: Function, 
         </div>
 
       ))}
+
       <Link href={"/challenge/create"} passHref>
         <div className={menuButton.button} style={
           hidden ? {} : {
@@ -76,7 +77,6 @@ const MenuModal = ({ onExit, hidden, loading, setLoading }: { onExit: Function, 
             opacity: 1
           }} onClick={() => { onExit(); setLoading(true) }}>챌린지<br />작성</div>
       </Link>
-      {loading && <div className={mainStyle.loadingCircle} style={{ top: "45vh" }}></div>}
     </div>
   )
 }

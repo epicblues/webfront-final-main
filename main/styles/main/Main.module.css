@@ -103,7 +103,7 @@
   font: normal 400 1.2rem "Noto Sans KR";
   color: #fff;
   margin-bottom: 2rem;
-} 
+}
 
 .shortImg {
   margin: 0 auto;
@@ -202,8 +202,8 @@
   width: 7vw;
   height: 7vw;
   border-radius: 50%;
-  border: 1.5vw solid #f36666;
-  border-top-color: whitesmoke;
+  border: 1.5vw solid white;
+  border-top-color: rgb(0, 0, 0, 0);
   animation: spin 1s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
@@ -216,7 +216,7 @@
   height: 7vw;
   border-radius: 50%;
   border: 1.5vw solid #f36666;
-  border-top-color: whitesmoke;
+  border-top-color: rgb(0, 0, 0, 0);
   animation: spin 1s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
