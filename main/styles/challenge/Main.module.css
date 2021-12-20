@@ -32,17 +32,16 @@
 .listAllHead {
   font: normal 600 1.4rem/24px "Noto Sans KR";
   text-align: center;
-  position: relative;
-  bottom: 13%;
+  left: 30%;
+  top: 10px;
+  position: absolute;
 }
 .modalBack {
-  margin: 0;
   position: relative;
-  top: 28%;
   left: 0;
 }
 .listHead {
-  height: 7vh;
+  margin-top: 2rem;
   border-bottom: 1px solid lightgray;
 }
 .ImageSpace {
@@ -80,12 +79,10 @@
 }
 .trigger {
   position: relative;
-  bottom: 10px;
-  width: 60vw;
-  height: 20%;
+  bottom: 1.8rem;
+  padding: 3% 27vw;
   border: 1px solid;
-  padding: 1rem 27vw;
-  border-radius: 0.3rem;
+  border-radius: 0.4rem;
   text-align: center;
   font: normal 500 1.1rem/22px "Noto Sans KR";
 }
@@ -101,4 +98,8 @@
   bottom: 1rem;
   margin: 3px 0;
   font: normal 400 1.1rem/22px "Noto Sans KR";
+}
+.backIcon {
+  position: relative;
+  top: 10px;
 }

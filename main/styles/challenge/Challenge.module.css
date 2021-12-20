@@ -105,7 +105,7 @@
   margin: 0;
   position: relative;
   text-align: center;
-  font: normal 500 1.2rem/22px "Noto Sans KR";
+  font: normal 600 1.2rem/24px "Noto Sans KR";
 }
 
 .h3 {
@@ -189,4 +189,10 @@
   border: 0;
   z-index: 10;
   top: 0;
+}
+.mainTag {
+  position: absolute;
+  left: 1rem;
+  top: 14%;
+  font: normal 500 1.2rem/24px "Noto Sans KR";
 }

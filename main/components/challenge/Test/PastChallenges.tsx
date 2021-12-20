@@ -1,8 +1,9 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image } from 'semantic-ui-react';
 import { Challenge } from '../../../models/Challenge';
 import PastStyles from "../../../styles/challenge/Past.module.css"
+import { debounce } from '../../../util/axios';
 import ImageAndParti from '../Main/ImageAndParti';
 
 interface Props {
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const PastChallenge = (challenge: Challenge ) => (
+  
   <div style={{display:"flex", justifyContent:"center"}} key={challenge._id}>
     <div className={PastStyles.imageDiv} >
     <Image
@@ -55,6 +57,25 @@ const PastChallenge = (challenge: Challenge ) => (
 
 const PastChallenges: React.FC<Props> = () => {
   const [challenges, setChallenges] = useState<Challenge[]>([]);
+  useEffect(() => {
+    const scrollHandler = async () => {
+      const yScroll = window.scrollY;
+      const innerHeight = window.innerHeight;
+      const maxHeight = window.document.body.scrollHeight;
+      if (innerHeight + yScroll > maxHeight) console.log("its bottom!");
+      const { data: { challenges: pastChallenges } } = await axios.get('/api/challenge/past');
+      window.removeEventListener("scroll", scrollHandler);
+      setChallenges(pastChallenges.map((challenge:any) => {
+        
+        return {...challenge, startDate: new Date(challenge.startDate), endDate: new Date(challenge.endDate)}
+      }));
+    };
+    window.addEventListener("scroll", debounce(scrollHandler,1000) );
+
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
   const handleClick = async () => {
     try {
       const { data: { challenges: pastChallenges } } = await axios.get('/api/challenge/past');

@@ -1,24 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
 import clientPromise from "../../util/mongodb";
 import { getUserOrRedirect } from "../../util/auth";
 //component
-import DateContent from "../../components/challenge/Main/DateContent";
 import ProgressBar from "../../components/challenge/Main/ProgressBar";
 import Navbar from "../../components/challenge/Main/Navbar";
 import Search from "../../components/challenge/Main/Search";
 import RecommendChallenge from "../../components/challenge/Main/RecommendChallenge";
-import Header from "../../components/challenge/Main/Header";
-import ImageAndParti from "../../components/challenge/Main/ImageAndParti";
 import PastChallenges from "../../components/challenge/test/PastChallenges.tsx";
 import MainModal from "../../components/challenge/Main/MainModal";
 //css
 import "semantic-ui-css/semantic.min.css";
 import MainStyle from "../../styles/challenge/Main.module.css";
-import ListStyle from "../../styles/challenge/List.module.css";
-import ButtonStyle from "../../styles/challenge/Button.module.css";
 import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
 import ImageStyle from "../../styles/challenge/Input.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -27,7 +22,8 @@ import { Icon, Image } from "semantic-ui-react";
 
 const Index = ({ challenges, user }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  const [title, setTitle] = useState("참여중인 챌린지 전체 보기");
+  const [head, setHead] = useState("진행중인 챌린지");
   const tabClickHandler = (index) => {
     setActiveIndex(index);
   };
@@ -44,89 +40,19 @@ const Index = ({ challenges, user }) => {
   const copiedChallenges = [...participatedChallenges];
   const smallChallenges = copiedChallenges.slice(0, 3);
 
-  const handleButton = () => {};
-  // const tabChallenge = [
-  //   {
-  //     tabTitle: (
-  //       <a
-  //         key="challengeId1"
-  //         className={activeIndex === 0 ? "is-active" : ""}
-  //         onClick={() => tabClickHandler(0)}
-  //       >
-  //         메인
-  //       </a>
-  //     ),
-  //     tabContent: (
-  //       <>
-  //         <div>
-  //           <Header />
-  //           <Search setChallenges={setParticipatedChallenges} />
-  //         </div>
+  useEffect(() => {
+    const scrollHandler = () => {
+      const yScroll = window.scrollY;
+      const innerHeight = window.innerHeight;
+      const maxHeight = window.document.body.scrollHeight;
+      if (innerHeight + yScroll > maxHeight) console.log("its bottom!");
+    };
+    window.addEventListener("scroll", scrollHandler);
 
-  //         {participatedChallenges.length === 0 ? (
-  //           <div className={ChallengeStyle.container2}>
-  //             <>
-  //               <RecommendChallenge challenges={challenges} />
-  //             </>
-  //           </div>
-  //         ) : (
-  //           <>
-  //             {participatedChallenges.map((challenge) => {
-  //               <>
-  //                 <div className={ChallengeStyle.indexCont}>
-  //                   <ImageAndParti challenge={challenges} />
-  //                 </div>
-  //                 <div>
-  //                   <DateContent challenge={challenges} />
-  //                 </div>
-  //               </>;
-  //             })}
-  //           </>
-  //         )}
-  //       </>
-  //     ),
-  //   },
-  //   {
-  //     tabTitle: (
-  //       <a
-  //         key="challengeId2"
-  //         className={activeIndex === 1 ? "is-active" : ""}
-  //         onClick={() => tabClickHandler(1)}
-  //       >
-  //         전체
-  //       </a>
-  //     ),
-  //     tabContent: (
-  //       <>
-  //         <div>
-  //           <Header />
-  //           <Search setChallenges={setParticipatedChallenges} />
-  //         </div>
-  //         <div className={ChallengeStyle.mainContainer}>
-  //           {challenges.map((challenge) => {
-  //             <>
-  //               <div className={ChallengeStyle.indexCont}>
-  //                 <ImageAndParti challenges={challenges} />
-  //               </div>
-  //               <div>
-  //                 <DateContent challenge={challenges} />
-  //                 {challenge.type === "diet" ? (
-  //                   <Link passHref href={"/challenge/list/" + challenge._id}>
-  //                     <li>챌린지 종류: 다이어트</li>
-  //                   </Link>
-  //                 ) : (
-  //                   <Link passHref href={"/challenge/list/" + challenge._id}>
-  //                     <li>챌린지 종류: 다이어트</li>
-  //                   </Link>
-  //                 )}
-  //               </div>
-  //             </>;
-  //           })}
-  //         </div>
-  //       </>
-  //     ),
-  //   },
-  // ];
+    return () => {
+      window.removeEventListener("scroll", scrollHandler);
+    };
+  }, []);
 
   return (
     <>
@@ -140,9 +66,10 @@ const Index = ({ challenges, user }) => {
           />
           <Search setChallenges={setParticipatedChallenges} />
           <Navbar currentURL={"/challenge"} />
-          <h2 className={ChallengeStyle.h2L}>참여중인 챌린지</h2>
+          <h2 className={ChallengeStyle.h2L}>챌린지</h2>
         </div>
-        <div style={{ marginTop: "30%", marginBottom: "5%" }}>
+        <div className={ChallengeStyle.mainTag}>참여중인 챌린지</div>
+        <div style={{ marginTop: "40%", marginBottom: "5%" }}>
           {participatedChallenges.length === 0 ? (
             <>
               <RecommendChallenge challenges={challenges} />
@@ -153,8 +80,11 @@ const Index = ({ challenges, user }) => {
                 return (
                   <>
                     <div style={{ margin: "5% 0 0 0" }} key={challenge._id}>
-                      <Link passHref href={"/challenge/list/" + challenge._id}>
-                        <>
+                      <>
+                        <Link
+                          passHref
+                          href={"/challenge/list/" + challenge._id}
+                        >
                           <div
                             className="image-wrap"
                             style={{
@@ -203,11 +133,20 @@ const Index = ({ challenges, user }) => {
                               />
                             </div>
                           </div>
-                          <ul className={MainStyle.ul}>
+                        </Link>
+                        <ul className={MainStyle.ul}>
+                          <Link
+                            passHref
+                            href={"/challenge/list/" + challenge._id}
+                          >
                             <li className={MainStyle.h2L} key={challenge._id}>
                               {challenge.title}
                             </li>
-
+                          </Link>
+                          <Link
+                            passHref
+                            href={"/challenge/list/" + challenge._id}
+                          >
                             <li className={MainStyle.mainLi}>
                               시작일:
                               {new Date(challenge.startDate).getMonth() +
@@ -216,6 +155,11 @@ const Index = ({ challenges, user }) => {
                                 new Date(challenge.startDate).getDate() +
                                 "일"}
                             </li>
+                          </Link>
+                          <Link
+                            passHref
+                            href={"/challenge/list/" + challenge._id}
+                          >
                             <li className={MainStyle.mainLi}>
                               종료일:
                               {new Date(challenge.endDate).getMonth() +
@@ -224,6 +168,11 @@ const Index = ({ challenges, user }) => {
                                 new Date(challenge.endDate).getDate() +
                                 "일"}
                             </li>
+                          </Link>
+                          <Link
+                            passHref
+                            href={"/challenge/list/" + challenge._id}
+                          >
                             <li className={MainStyle.mainLi}>
                               남은 일수:
                               {Math.ceil(
@@ -233,9 +182,10 @@ const Index = ({ challenges, user }) => {
                               )}
                               일
                             </li>
-                          </ul>
-                        </>
-                      </Link>
+                          </Link>
+                        </ul>
+                      </>
+
                       <div
                         style={{
                           position: "relative",
@@ -320,7 +270,11 @@ const Index = ({ challenges, user }) => {
                 );
               })}
               <div style={{ marginTop: "15%" }}>
-                <MainModal challenges={participatedChallenges} />
+                <MainModal
+                  challenges={participatedChallenges}
+                  title={title}
+                  head={head}
+                />
               </div>
               <PastChallenges />
             </>

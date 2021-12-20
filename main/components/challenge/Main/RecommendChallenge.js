@@ -88,29 +88,33 @@ const RecommendChallenge = ({ challenges }) => {
                 </div>
                 <ul className={ListStyle.ul}>
                   <li className={ListStyle.li}>
-                    <li className={ModalStyle.recTitle}>{challenge.title}</li>
-                    <li className={ChallengeStyle.li}>
-                      {new Date(challenge.endDate).getTime() -
-                        new Date().getTime ===
-                      0 ? (
-                        <>
-                          <div className={ModalStyle.recTime}>
-                            오늘부터 시작
-                          </div>
-                        </>
-                      ) : (
-                        <>
-                          <div className={ModalStyle.recTime}>
-                            {Math.ceil(
-                              (new Date(challenge.endDate).getTime() -
-                                new Date().getTime()) /
-                                (1000 * 60 * 60 * 24)
-                            )}
-                            일 뒤 시작
-                          </div>
-                        </>
-                      )}
-                    </li>
+                    <Link passHref href={"/challenge/list/" + challenge._id}>
+                      <li className={ModalStyle.recTitle}>{challenge.title}</li>
+                    </Link>
+                    <Link passHref href={"/challenge/list/" + challenge._id}>
+                      <li className={ChallengeStyle.li}>
+                        {new Date(challenge.endDate).getTime() -
+                          new Date().getTime ===
+                        0 ? (
+                          <>
+                            <div className={ModalStyle.recTime}>
+                              오늘부터 시작
+                            </div>
+                          </>
+                        ) : (
+                          <>
+                            <div className={ModalStyle.recTime}>
+                              {Math.ceil(
+                                (new Date(challenge.endDate).getTime() -
+                                  new Date().getTime()) /
+                                  (1000 * 60 * 60 * 24)
+                              )}
+                              일 뒤 시작
+                            </div>
+                          </>
+                        )}
+                      </li>
+                    </Link>
                   </li>
                 </ul>
               </div>
