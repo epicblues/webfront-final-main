@@ -1,0 +1,7 @@
+.image {
+  z-index: 0;
+  border-radius: 0.7rem;
+  width: 40%;
+  margin: 10px 0 10px 0;
+  height: 50%;
+}
