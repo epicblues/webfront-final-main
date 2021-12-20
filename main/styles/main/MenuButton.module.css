@@ -1,6 +1,6 @@
 .button {
   position: fixed;
-  bottom: 0;
+  bottom: -10%;
   left: 50%;
   transform: translateX(-50%);
   transition: 400ms all;
@@ -9,7 +9,7 @@
   height: 70px;
   border-radius: 50%;
   background-color: #fff;
-  font-size: 1.2rem;
+  font-size: 2.5rem;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,11 @@
   justify-content: center;
 }
 
-.button span {
-  font-size: 0.7rem;
+.title {
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  /* transform: translateX(-50%); */
+  transition: 400ms all;
 }
