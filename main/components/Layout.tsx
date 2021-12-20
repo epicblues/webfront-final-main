@@ -13,7 +13,7 @@ import { useLoading } from '../hooks'
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
   const [menuModal, setMenuModal] = useState(false)
-  const [loading, setLoading, LoadingCircle] = useLoading(pageProps);
+  const [loading, setLoading, LoadingCircle] = pageProps.loadingProps;
 
 
   return (

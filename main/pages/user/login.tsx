@@ -9,9 +9,10 @@ import { GetServerSideProps } from 'next';
 import Loading from '../../components/main/Loading';
 import { BiErrorCircle, BiEnvelope, BiLockAlt } from 'react-icons/bi';
 import logInStyles from '../../../styles/main/logIn.module.css';
+import { LoadingProps } from '../../hooks';
 
-const Login = ({ introSkip }: { introSkip: boolean }) => {
-
+const Login = ({ introSkip, loadingProps }: { introSkip: boolean, loadingProps: LoadingProps }) => {
+  const [loading, setLoading, LoadingCircle] = loadingProps;
   const email = useRef() as MutableRefObject<HTMLInputElement>;
   const password = useRef() as MutableRefObject<HTMLInputElement>;
   const head = useRef() as MutableRefObject<HTMLHeadingElement>;
@@ -23,10 +24,12 @@ const Login = ({ introSkip }: { introSkip: boolean }) => {
       container.current.style.display = 'flex'
     }, 500)
   }, [])
+
   const handleClick = async () => {
 
     if (!/^[a-zA-Z0-9]+@[a-z]+(\.[a-z]{2,4})+$/.test(email.current.value)) {
       head.current.innerHTML = "이메일 형식이 잘못되었습니다.";
+      setLoading(false);
       email.current.focus();
       return;
     }
@@ -34,6 +37,7 @@ const Login = ({ introSkip }: { introSkip: boolean }) => {
     if (!checkValid(email.current.value, password.current.value)) {
       head.current.innerHTML = "모든 항목을 작성해야 합니다."
       email.current.focus();
+      setLoading(false);
       return;
     };
 
@@ -50,8 +54,10 @@ const Login = ({ introSkip }: { introSkip: boolean }) => {
       if (error.message === "이메일 인증") {
         await axios.post("/api/user/verify", { email: email.current.value })
         head.current.innerHTML = "이메일 인증을 완료해야 합니다. 메일함을 확인해보세요!"
+        setLoading(false);
       } else {
         head.current.innerHTML = error.message
+        setLoading(false);
       }
 
       email.current.value = '';
@@ -72,7 +78,7 @@ const Login = ({ introSkip }: { introSkip: boolean }) => {
   const title: CSSProperties = {
     alignSelf: "center",
     font: "normal 600 2rem 'Noto Sans KR'",
-    marginBottom: '1rem' 
+    marginBottom: '1rem'
   }
 
   const subTitle: CSSProperties = {
@@ -95,7 +101,7 @@ const Login = ({ introSkip }: { introSkip: boolean }) => {
     color: 'rgba(34,36,38,.15)',
     fontSize: '1.2rem'
   }
-  
+
   const button: CSSProperties = {
     backgroundColor: "#ff5656",
     borderRadius: "20px",
@@ -172,27 +178,27 @@ const Login = ({ introSkip }: { introSkip: boolean }) => {
             </div>
           </Form>
           <br />
-          <button onClick={handleClick} style={button}>
+          <button onClick={(e) => { setLoading(true); handleClick(); }} style={button}>
             로그인
           </button>
           <div className="ui horizontal divider" style={{ margin: '1.5rem 0' }}>
             Or
           </div>
           <Link passHref href="/user/join">
-            <button style={join}>
+            <button style={join} onClick={() => { setLoading(true) }}>
               <img src='/static/logos/transLogo.png' alt='회원가입' style={buttonImg} />
               <span style={{ marginRight: '1rem' }}>회원가입</span>
             </button>
           </Link>
           <Link passHref href="/user/oauth/login/google">
-            <button style={google}>
+            <button style={google} onClick={() => { setLoading(true) }}>
               <img src='/google.png' alt='구글 로그인' style={buttonImg} />
               <span style={{ marginRight: '1rem' }}>구글 로그인</span>
             </button>
           </Link>
 
           <Link passHref href="/user/oauth/login/kakao">
-            <button style={kakao}>
+            <button style={kakao} onClick={() => { setLoading(true) }}>
               <img src='/kakao.png' alt='카카오 로그인' style={buttonImg} />
               <span style={{ marginRight: '1rem' }}>카카오 로그인</span>
             </button>
