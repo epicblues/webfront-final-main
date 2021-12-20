@@ -10,6 +10,7 @@ const ShortNav: React.FC<Props> = () => {
 
   useEffect(() => {
     setTimeout(() => {
+      if (!back.current || !nav.current) return;
       back.current.style.opacity = '0'
       nav.current.style.display = 'none'
       back.current.style.zIndex = '-100'

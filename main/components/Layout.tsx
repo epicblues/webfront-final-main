@@ -11,12 +11,15 @@ import AppIcon from '../public/static/logos/logo04.png'
 import MiniButton from './main/NavButton'
 
 import footerNavStyles from '../styles/main/FooterNav.module.css';
-import mainStyles from '../styles/main/Main.module.css'
+import mainStyle from '../styles/main/Main.module.css'
 
 import { BiDish, BiEditAlt, BiTrophy, BiUser } from "react-icons/bi";
+import { useLoading } from '../hooks'
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
   const [menuModal, setMenuModal] = useState(false)
+  const [loading, setLoading] = useLoading(pageProps);
+
 
   return (
     // 모든 페이지에 적용될 레이아웃 디자인 (Header Or Footer)
@@ -41,12 +44,12 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
       <footer className={footerNavStyles.footerWrap} style={!pageProps.user ? { boxShadow: "0px 0px 0px 0px" } : undefined}>
         {pageProps.user ?
           <div className={footerNavStyles.navWrap}>
-            <MiniButton href="/recipe">
+            <MiniButton href="/recipe" onClick={() => { setLoading(true) }}>
               <BiDish size='1.5rem' />
               <p>레시피</p>
             </MiniButton>
 
-            <MiniButton href="/diary">
+            <MiniButton href="/diary" onClick={() => { setLoading(true) }}>
               <BiEditAlt size='1.5rem' />
               <p>다이어리</p>
             </MiniButton>
@@ -61,12 +64,12 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
               </div>
             </ModalButton>
 
-            <MiniButton href="/challenge" >
+            <MiniButton href="/challenge" onClick={() => { setLoading(true) }}>
               <BiTrophy size='1.5rem' />
               <p>챌린지</p>
             </MiniButton>
 
-            <MiniButton href="/">
+            <MiniButton href="/" onClick={() => { setLoading(true) }}>
               <BiUser size='1.5rem' />
               <p>리포트</p>
             </MiniButton>
@@ -77,8 +80,9 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
           )}
 
       </footer>
-      <MenuModal hidden={!menuModal} onExit={() => { setMenuModal(false) }} />
+      <MenuModal loading={loading} setLoading={setLoading} hidden={!menuModal} onExit={() => { setMenuModal(false) }} />
 
+      {loading && <div className={mainStyle.loadingCircle} style={{ top: "45vh" }}></div>}
 
 
     </ >

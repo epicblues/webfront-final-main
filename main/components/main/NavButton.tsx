@@ -1,8 +1,9 @@
+import Link from 'next/link'
 import React from 'react'
 
-const MiniButton = ({ children, href }: { children: any, href: string }) => {
+const MiniButton = ({ children, href, onClick }: { children: any, href: string, onClick: Function }) => {
   return (
-    <a href={href} style={{
+    <Link href={href} passHref><a style={{
       color: "#333",
       alignSelf: "center",
       fontSize: "1.2em",
@@ -11,9 +12,10 @@ const MiniButton = ({ children, href }: { children: any, href: string }) => {
       // borderWidth: "0px 1px",
       // padding: "3px 15px"
     }
-    }>
+    } onClick={() => { onClick() }}>
       {children}
-    </a>
+    </a></Link>
+
   )
 }
 
