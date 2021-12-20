@@ -1,16 +1,25 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { Image } from 'semantic-ui-react';
 import { Challenge } from '../../../models/Challenge';
+import PastStyles from "../../../styles/challenge/Past.module.css"
+import ImageAndParti from '../Main/ImageAndParti';
 
 interface Props {
   userId?: number
 }
 
 const PastChallenge = (challenge: Challenge) => (
-  <div key={challenge._id}>
-    
+  <div style={{ display:"flex", justifyContent:"space-between"}} key={challenge._id}>
+    <div>
+    <Image
+     className={PastStyles.image}
+    src={process.env.NEXT_PUBLIC_STATIC_SERVER_URL + challenge.image}
+    />
     {challenge.title}
+    {challenge.startDate}~{challenge.endDate}
     {challenge.hasOwnProperty("result") ? "실패" : "성공"}
+    </div>
   </div>)
 
 
