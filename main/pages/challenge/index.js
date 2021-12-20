@@ -243,6 +243,7 @@ const Index = ({ challenges, user }) => {
                         style={{
                           position: "relative",
                           left: "53%",
+                          top: "10px",
                         }}
                       >
                         <button
