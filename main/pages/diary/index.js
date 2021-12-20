@@ -24,6 +24,23 @@ export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   "DEFAULT",
 ]; // Diary용 상수 설정
 
+
+const  typeImages = [
+    "/serving.png",
+    "/snack.png",
+    "/bread.png",
+    "/breakfast.png",
+    "/sandwich.png"
+  ];
+const  typeImage =() => typeImages[Math.floor(Math.random() * typeImages.length)]
+
+
+export const ImageContext = React.createContext({
+  typeImages,
+  typeImage
+});
+
+
 const Index = ({ user, fetchedDiary, mode, loadingProps }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [writingMode, setWritingMode] = useState(
@@ -105,7 +122,7 @@ const Index = ({ user, fetchedDiary, mode, loadingProps }) => {
 
   return (
     // Wrapper
-    <>
+    <ImageContext.Provider value={{typeImage,typeImages}}>
       {[0, 1, 2, 3].map((type) => (
         <AddFood
           className="wrap-food"
@@ -136,7 +153,7 @@ const Index = ({ user, fetchedDiary, mode, loadingProps }) => {
           <div>{tabContArr[activeIndex].tabCont}</div>
         </div>
       )}
-    </>
+    </ImageContext.Provider>
     // End of Wrapper
   );
 };

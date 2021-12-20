@@ -1,16 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ImageContext } from '../../../pages/diary';
 import { BiPlusCircle } from "react-icons/bi";
 
 const Meal = ({ diary, type, setWritingMode, user }: any) => {
   const typeName = ["아침", "점심", "저녁", "간식"]
-  const typeImages = [
-                  "/serving.png",
-                  "/snack.png",
-                  "/bread.png",
-                  "/breakfast.png",
-                  "/sandwich.png"
-                ]
-  const typeImage = typeImages[Math.floor(Math.random() * typeImages.length)];
+  const {typeImages, typeImage} = useContext(ImageContext);
   return (
     <div
         className="meal item"
@@ -20,7 +14,7 @@ const Meal = ({ diary, type, setWritingMode, user }: any) => {
         }}
     >
       <img
-          src={diary.meals[type].imageBuffer || ((diary.meals[type].image !== null && process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image) || typeImage)}
+          src={diary.meals[type].imageBuffer || ((diary.meals[type].image !== null && process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image) || typeImage())}
           alt="식단 이미지"
       />
 

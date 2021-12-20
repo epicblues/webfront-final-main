@@ -1,9 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ImageContext } from '../../../pages/diary';
 import { BiSad } from "react-icons/bi";
 import { AiOutlinePicture, AiOutlineDelete } from "react-icons/ai";
 
 const ImageUpload = ({ diary, setDiary, type, }) => {
+  const {typeImages, typeImage} = useContext(ImageContext);
+
   const imgPreview = diary.meals[type].imageBuffer;
   const [error, setError] = useState(false);
 
@@ -66,7 +68,7 @@ const ImageUpload = ({ diary, setDiary, type, }) => {
                     process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
                       diary.meals[type].image
                   }") no-repeat center/cover`
-                : 'url("/empty.jpg") no-repeat center/cover',
+                : `url(${typeImage()})  no-repeat center/cover`,
             width: "100%",
             height: "40vh",
             display: "flex",

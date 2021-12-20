@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { ImageContext } from '../../../pages/diary';
 import { PAGE_CART } from "./AddFood";
 import List from "./List";
 import MealStyles from '../../../styles/diary/Meal.module.css';
@@ -16,6 +17,7 @@ const LookupMeal = ({
   setWritingMode,
   setPage,
 }) => {
+  const {typeImages, typeImage} = useContext(ImageContext);
   const cart = diary.meals[type].foods;
   const navigateTo = (nextPage) => {
     setPage(nextPage);
@@ -81,7 +83,7 @@ const LookupMeal = ({
         <img
           src={
             diary.meals[type].imageBuffer ||
-            process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image
+            diary.meals[type].image!== null ? process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image : typeImage()
           }
         />
       </div>

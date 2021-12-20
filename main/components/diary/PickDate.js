@@ -4,6 +4,7 @@ import ko from "date-fns/locale/ko";
 registerLocale("ko", { ...ko, options: { ...ko.options, weekStartsOn: 1 } }); // 주시작일 - 일요일:0 월요일:1
 import "react-datepicker/dist/react-datepicker.css";
 import { AiOutlineCalendar } from "react-icons/ai";
+import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 import { getDateId, returnIdToDate } from "../../util/date";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -70,15 +71,15 @@ const PickDate = ({ diary, setDiary }) => {
             prevMonthButtonDisabled,
             nextMonthButtonDisabled,
           }) => (
-            <div style={{ margin: "10px", display: "flex", justifyContent: "space-between" }}>
+            <div style={{ display: "flex", justifyContent: "space-around", alignItems: 'center' }}>
               <div onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-                <i className="large grey angle left icon"></i>
+                <BiChevronLeft size='1.6rem' style={{marginTop: '0.5rem'}}/>
               </div>
               <div style={{font: 'normal bold 1.2rem/100% "Montserrat"'}}>
                 {formatDate(date)}
               </div>
               <div onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-                <i className="large grey angle right icon"></i>
+                <BiChevronRight size='1.6rem' style={{marginTop: '0.5rem'}}/>
               </div>
             </div>
           )}
