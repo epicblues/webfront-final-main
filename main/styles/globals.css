@@ -1,6 +1,6 @@
 /* google font: 'Noto Sans KR', 'Montserrat' */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
-/* naver font: 'NanumSquare' */
+/* naver font: 'NanumSquare' 300, 400, 700, 800 */
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
 /* reset */
 /* 폰트는 rem으로 통일
@@ -77,7 +77,7 @@ input:focus {
 
 .tabs a {
   font: normal 600 1.2rem "Noto Sans KR";
-  color: #999;
+  color: #888;
   margin: 0 0.5rem;
 }
 
@@ -229,12 +229,12 @@ a.is-active {
   margin: 0 auto;
 }
 .final-nutrition-total p {
-  font: normal 400 1.2rem "Noto Sans KR";
+  font: normal 400 1.2rem "NanumSquare";
   text-align: right;
 }
 
 .final-nutrition-total span {
-  font-weight: 600;
+  font-weight: 800;
 }
 
 /* Progress */
@@ -257,6 +257,7 @@ a.is-active {
 }
 
 .progress p {
+  font: normal 400 1.2rem "NanumSquare";
   position: absolute;
   bottom: 25%;
   left: 50%;
@@ -274,7 +275,7 @@ a.is-active {
 }
 
 .is-desc p {
-  font: normal 600 1.2rem "Noto Sans KR";
+  font: normal 600 1.2rem/1.5rem "NanumSquare";
   margin: 0;
 }
 
@@ -284,7 +285,7 @@ a.is-active {
   border: none;
   padding: 0.25rem 0 0.25rem 0.5rem;
   box-shadow: 1px 1px 3px 1px #dadce0;
-  font: normal 500 0.8rem "Noto Sans KR";
+  font: normal 600 0.8rem "NanumSquare";
   margin-top: 1rem;
   width: 40%;
 }
@@ -317,7 +318,7 @@ a.is-active {
   display: grid;
   grid-template-columns: 5fr 5fr;
   grid-auto-rows: 160px;
-  grid-gap: 1.5rem;
+  grid-gap: 1rem;
 }
 
 .meal {
@@ -331,6 +332,10 @@ a.is-active {
   top: 1rem;
   left: 1rem;
   font: normal 500 1.2rem/22px "Noto Sans KR";
+  border-radius: 15px;
+  padding: 0 0.5rem;
+  /* box-shadow: 1px 1px 3px 1px #dadce0; */
+  background-color: #fff;
 }
 
 .meal .icon {

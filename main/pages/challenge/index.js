@@ -45,88 +45,88 @@ const Index = ({ challenges, user }) => {
   const smallChallenges = copiedChallenges.slice(0, 3);
 
   const handleButton = () => {};
-  const tabChallenge = [
-    {
-      tabTitle: (
-        <a
-          key="challengeId1"
-          className={activeIndex === 0 ? "is-active" : ""}
-          onClick={() => tabClickHandler(0)}
-        >
-          메인
-        </a>
-      ),
-      tabContent: (
-        <>
-          <div>
-            <Header />
-            <Search setChallenges={setParticipatedChallenges} />
-          </div>
+  // const tabChallenge = [
+  //   {
+  //     tabTitle: (
+  //       <a
+  //         key="challengeId1"
+  //         className={activeIndex === 0 ? "is-active" : ""}
+  //         onClick={() => tabClickHandler(0)}
+  //       >
+  //         메인
+  //       </a>
+  //     ),
+  //     tabContent: (
+  //       <>
+  //         <div>
+  //           <Header />
+  //           <Search setChallenges={setParticipatedChallenges} />
+  //         </div>
 
-          {participatedChallenges.length === 0 ? (
-            <div className={ChallengeStyle.container2}>
-              <>
-                <RecommendChallenge challenges={challenges} />
-              </>
-            </div>
-          ) : (
-            <>
-              {participatedChallenges.map((challenge) => {
-                <>
-                  <div className={ChallengeStyle.indexCont}>
-                    <ImageAndParti challenge={challenges} />
-                  </div>
-                  <div>
-                    <DateContent challenge={challenges} />
-                  </div>
-                </>;
-              })}
-            </>
-          )}
-        </>
-      ),
-    },
-    {
-      tabTitle: (
-        <a
-          key="challengeId2"
-          className={activeIndex === 1 ? "is-active" : ""}
-          onClick={() => tabClickHandler(1)}
-        >
-          전체
-        </a>
-      ),
-      tabContent: (
-        <>
-          <div>
-            <Header />
-            <Search setChallenges={setParticipatedChallenges} />
-          </div>
-          <div className={ChallengeStyle.mainContainer}>
-            {challenges.map((challenge) => {
-              <>
-                <div className={ChallengeStyle.indexCont}>
-                  <ImageAndParti challenges={challenges} />
-                </div>
-                <div>
-                  <DateContent challenge={challenges} />
-                  {challenge.type === "diet" ? (
-                    <Link passHref href={"/challenge/list/" + challenge._id}>
-                      <li>챌린지 종류: 다이어트</li>
-                    </Link>
-                  ) : (
-                    <Link passHref href={"/challenge/list/" + challenge._id}>
-                      <li>챌린지 종류: 다이어트</li>
-                    </Link>
-                  )}
-                </div>
-              </>;
-            })}
-          </div>
-        </>
-      ),
-    },
-  ];
+  //         {participatedChallenges.length === 0 ? (
+  //           <div className={ChallengeStyle.container2}>
+  //             <>
+  //               <RecommendChallenge challenges={challenges} />
+  //             </>
+  //           </div>
+  //         ) : (
+  //           <>
+  //             {participatedChallenges.map((challenge) => {
+  //               <>
+  //                 <div className={ChallengeStyle.indexCont}>
+  //                   <ImageAndParti challenge={challenges} />
+  //                 </div>
+  //                 <div>
+  //                   <DateContent challenge={challenges} />
+  //                 </div>
+  //               </>;
+  //             })}
+  //           </>
+  //         )}
+  //       </>
+  //     ),
+  //   },
+  //   {
+  //     tabTitle: (
+  //       <a
+  //         key="challengeId2"
+  //         className={activeIndex === 1 ? "is-active" : ""}
+  //         onClick={() => tabClickHandler(1)}
+  //       >
+  //         전체
+  //       </a>
+  //     ),
+  //     tabContent: (
+  //       <>
+  //         <div>
+  //           <Header />
+  //           <Search setChallenges={setParticipatedChallenges} />
+  //         </div>
+  //         <div className={ChallengeStyle.mainContainer}>
+  //           {challenges.map((challenge) => {
+  //             <>
+  //               <div className={ChallengeStyle.indexCont}>
+  //                 <ImageAndParti challenges={challenges} />
+  //               </div>
+  //               <div>
+  //                 <DateContent challenge={challenges} />
+  //                 {challenge.type === "diet" ? (
+  //                   <Link passHref href={"/challenge/list/" + challenge._id}>
+  //                     <li>챌린지 종류: 다이어트</li>
+  //                   </Link>
+  //                 ) : (
+  //                   <Link passHref href={"/challenge/list/" + challenge._id}>
+  //                     <li>챌린지 종류: 다이어트</li>
+  //                   </Link>
+  //                 )}
+  //               </div>
+  //             </>;
+  //           })}
+  //         </div>
+  //       </>
+  //     ),
+  //   },
+  // ];
 
   return (
     <>
@@ -152,7 +152,7 @@ const Index = ({ challenges, user }) => {
               {smallChallenges.map((challenge) => {
                 return (
                   <>
-                    <div style={{ margin: "1rem 0" }} key={challenge._id}>
+                    <div style={{ margin: "5% 0 0 0" }} key={challenge._id}>
                       <Link passHref href={"/challenge/list/" + challenge._id}>
                         <>
                           <div
@@ -204,14 +204,11 @@ const Index = ({ challenges, user }) => {
                             </div>
                           </div>
                           <ul className={MainStyle.ul}>
-                            <li
-                              className={ChallengeStyle.h2L}
-                              key={challenge._id}
-                            >
+                            <li className={MainStyle.h2L} key={challenge._id}>
                               {challenge.title}
                             </li>
 
-                            <li className={ChallengeStyle.li}>
+                            <li className={MainStyle.mainLi}>
                               시작일:
                               {new Date(challenge.startDate).getMonth() +
                                 1 +
@@ -219,7 +216,7 @@ const Index = ({ challenges, user }) => {
                                 new Date(challenge.startDate).getDate() +
                                 "일"}
                             </li>
-                            <li className={ChallengeStyle.li}>
+                            <li className={MainStyle.mainLi}>
                               종료일:
                               {new Date(challenge.endDate).getMonth() +
                                 1 +
@@ -227,7 +224,7 @@ const Index = ({ challenges, user }) => {
                                 new Date(challenge.endDate).getDate() +
                                 "일"}
                             </li>
-                            <li className={ChallengeStyle.li}>
+                            <li className={MainStyle.mainLi}>
                               남은 일수:
                               {Math.ceil(
                                 (new Date(challenge.endDate).getTime() -
@@ -242,8 +239,8 @@ const Index = ({ challenges, user }) => {
                       <div
                         style={{
                           position: "relative",
-                          left: "53%",
-                          top: "10px",
+                          left: "56%",
+                          bottom: "0.5rem",
                         }}
                       >
                         <button
@@ -322,7 +319,9 @@ const Index = ({ challenges, user }) => {
                   </>
                 );
               })}
-              <MainModal challenges={participatedChallenges} />
+              <div style={{ marginTop: "15%" }}>
+                <MainModal challenges={participatedChallenges} />
+              </div>
               <PastChallenges />
             </>
           )}

@@ -78,3 +78,27 @@
 .li {
   font: normal 400 1.1rem/22px "Noto Sans KR";
 }
+.trigger {
+  position: relative;
+  bottom: 10px;
+  width: 60vw;
+  height: 20%;
+  border: 1px solid;
+  padding: 1rem 27vw;
+  border-radius: 0.3rem;
+  text-align: center;
+  font: normal 500 1.1rem/22px "Noto Sans KR";
+}
+.h2L {
+  margin: 5px 0;
+  position: relative;
+  bottom: 1rem;
+  text-align: center;
+  font: normal 500 1.2rem/22px "Noto Sans KR";
+}
+.mainLi {
+  position: relative;
+  bottom: 1rem;
+  margin: 3px 0;
+  font: normal 400 1.1rem/22px "Noto Sans KR";
+}

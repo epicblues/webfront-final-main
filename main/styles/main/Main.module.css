@@ -87,8 +87,6 @@
   bottom: 10vh;
   left: 0;
   margin: 0 auto;
-  /* background-color: whitesmoke; */
-  padding: 1rem;
   /* transition: all 4s; */
   animation: popUp 1s;
   animation-iteration-count: 2;
