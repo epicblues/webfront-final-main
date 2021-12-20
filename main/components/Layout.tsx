@@ -9,11 +9,11 @@ import AppIcon from '../public/static/logos/logo04.png'
 import MiniButton from './main/NavButton'
 import footerNavStyles from '../styles/main/FooterNav.module.css';
 import { BiDish, BiEditAlt, BiTrophy, BiUser } from "react-icons/bi";
-import { useLoading } from '../hooks'
+import { LoadingProps, useLoading } from '../hooks'
 
 const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) => {
   const [menuModal, setMenuModal] = useState(false)
-  const [loading, setLoading, LoadingCircle] = pageProps.loadingProps;
+  const [loading, setLoading, LoadingCircle] = pageProps.loadingProps as LoadingProps;
 
 
   return (
@@ -61,7 +61,11 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
       </footer>
       <MenuModal setLoading={setLoading} hidden={!menuModal} onExit={() => { setMenuModal(false) }} />
 
-      <LoadingCircle />
+      <LoadingCircle style={{
+        position: "fixed",
+        top: "40vh",
+        left: "45vw",
+      }} />
 
 
     </ >
