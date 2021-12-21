@@ -14,6 +14,7 @@ const SearchModal = ({ handleSetIsSearchModalVisible }) => {
     const keyword = data.keyword;
     if (keyword) {
       setError(false);
+      handleSetIsSearchModalVisible(false);
       Router.push("/recipe/list/search/" + keyword);
     } else if (keyword === "") {
       setError(true);
@@ -21,26 +22,21 @@ const SearchModal = ({ handleSetIsSearchModalVisible }) => {
   };
   return (
     <div className={searchModalStyles.container}>
-      <div className={searchModalStyles.inputWrapper}>
-        <form
-          onSubmit={handleSubmit(searchBtnClick)}
-          className="ui fluid icon input"
-        >
-          <div>
-            <input
-              className={searchModalStyles.input}
-              type="text"
-              placeholder="요리명을 검색해보세요!"
-              autoComplete="off"
-              autoFocus
-              {...register("keyword")}
-            />
-          </div>
+      <form onSubmit={handleSubmit(searchBtnClick)}>
+        <div className={searchModalStyles.inputWrapper}>
+          <input
+            className={searchModalStyles.input}
+            type="text"
+            placeholder="요리명을 검색해보세요!"
+            autoComplete="off"
+            autoFocus
+            {...register("keyword")}
+          />
           <button className={searchModalStyles.button} type="submit">
             <i className="search icon" style={{ fontSize: "1.6rem" }}></i>
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
       <div className={searchModalStyles.footer}>
         {error && (
           <div className={searchModalStyles.errorMsg}>
