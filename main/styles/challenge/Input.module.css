@@ -100,3 +100,6 @@
   top: 10px;
   left: 10px;
 }
+.fileUpload {
+  z-index: 2;
+}

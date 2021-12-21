@@ -42,94 +42,57 @@ const MainModal = ({ challenges, title, head }) => {
               </div>
               {challenges.map((challenge) => {
                 return (
-                  <>
-                    <div key={challenge._id} className={MainStyle.container}>
-                      <>
-                        <div className={MainStyle.imageWrap}>
-                          <div className={MainStyle.imagePart}>
-                            <FaUser size="16" />
-                            {challenge.participants.length}명
-                          </div>
-                          <Link
-                            passHref
-                            href={"/challenge/list/" + challenge._id}
-                          >
-                            <div className={MainStyle.ImageSpace}>
-                              <Image
-                                className={MainStyle.image}
-                                src={
-                                  process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                                  challenge.image
-                                }
-                                layout="fill"
-                              />
+                  <div key={challenge._id}>
+                    <>
+                      <div className={MainStyle.container}>
+                        <>
+                          <div className={MainStyle.imageWrap}>
+                            <div className={MainStyle.imagePart}>
+                              <FaUser size="16" />
+                              {challenge.participants.length}명
                             </div>
-                          </Link>
-                        </div>
-                        <DateContent challenges={challenge} />
-                      </>
+                            <Link
+                              passHref
+                              href={"/challenge/list/" + challenge._id}
+                            >
+                              <div className={MainStyle.ImageSpace}>
+                                <Image
+                                  className={MainStyle.image}
+                                  src={
+                                    process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                                    challenge.image
+                                  }
+                                  layout="fill"
+                                />
+                              </div>
+                            </Link>
+                          </div>
+                          <DateContent challenges={challenge} />
+                        </>
 
-                      <div
-                        style={{
-                          position: "relative",
-                          left: "58%",
-                          top: "10px",
-                        }}
-                      >
-                        <button
-                          onClick={async (event) => {
-                            const {
-                              data: { result, message },
-                            } = await axios.post(
-                              "/api/challenge/validate",
-                              challenge
-                            );
-                            console.log(result);
-                            const button = event.target;
-                            button.disabled = true;
-                            if (message === "failed") {
-                              //실패했다
-                              button.textContent = "진행중!";
-                              button.style.color = "white";
-                              setInterval(
-                                (button) => {
-                                  button.style.display = "none";
-                                },
-                                2000,
-                                button
+                        <div
+                          style={{
+                            position: "relative",
+                            left: "58%",
+                            top: "10px",
+                          }}
+                        >
+                          <button
+                            className={MainStyle.button}
+                            onClick={async (event) => {
+                              const {
+                                data: { result, message },
+                              } = await axios.post(
+                                "/api/challenge/validate",
+                                challenge
                               );
-                              const progressBar = button.nextElementSibling;
-                              if (progressBar instanceof HTMLElement) {
-                                progressBar.style.display = "block";
-                                const realProgressBar =
-                                  progressBar.firstElementChild
-                                    .firstElementChild;
-
-                                if (challenge.type === "diet") {
-                                  realProgressBar.value = realProgressBar.max =
-                                    challenge.diet.condition;
-                                  const span =
-                                    realProgressBar.nextElementSibling;
-                                  span.innerText =
-                                    Math.round(
-                                      (result / challenge.diet.condition) * 100
-                                    ) + "%";
-                                } else {
-                                  realProgressBar.value = realProgressBar.max =
-                                    challenge.recipe.uploadCount;
-                                  const span =
-                                    realProgressBar.nextElementSibling;
-                                  span.innerText =
-                                    Math.round(
-                                      (result / challenge.recipe.uploadCount) *
-                                        100
-                                    ) + "%";
-                                }
-                              } else {
-                                //성공했다.
-                                button.textContent = "성공!";
-                                button.style.backgroundColor = "blue";
-
+                              console.log(result);
+                              const button = event.target;
+                              button.disabled = true;
+                              if (message === "failed") {
+                                //실패했다
+                                button.textContent = "진행중!";
+                                button.style.color = "white";
                                 setInterval(
                                   (button) => {
                                     button.style.display = "none";
@@ -137,18 +100,63 @@ const MainModal = ({ challenges, title, head }) => {
                                   2000,
                                   button
                                 );
+                                const progressBar = button.nextElementSibling;
+                                if (progressBar instanceof HTMLElement) {
+                                  progressBar.style.display = "block";
+                                  const realProgressBar =
+                                    progressBar.firstElementChild
+                                      .firstElementChild;
+
+                                  if (challenge.type === "diet") {
+                                    realProgressBar.value = result;
+                                    realProgressBar.max =
+                                      challenge.diet.condition;
+                                    const span =
+                                      realProgressBar.nextElementSibling;
+                                    span.innerText =
+                                      Math.round(
+                                        (result / +challenge.diet.condition) *
+                                          100
+                                      ) + "%";
+                                  } else {
+                                    realProgressBar.value = result;
+                                    console.log(typeof result);
+                                    realProgressBar.max =
+                                      +challenge.recipe.uploadCount;
+                                    const span =
+                                      realProgressBar.nextElementSibling;
+                                    span.innerText =
+                                      Math.round(
+                                        (result /
+                                          +challenge.recipe.uploadCount) *
+                                          100
+                                      ) + "%";
+                                  }
+                                } else {
+                                  //성공했다.
+                                  button.textContent = "성공!";
+                                  button.style.backgroundColor = "blue";
+
+                                  setInterval(
+                                    (button) => {
+                                      button.style.display = "none";
+                                    },
+                                    2000,
+                                    button
+                                  );
+                                }
                               }
-                            }
-                          }}
-                        >
-                          결과 확인
-                        </button>
+                            }}
+                          >
+                            결과 확인
+                          </button>
+                        </div>
+                        <div style={{ display: "none" }}>
+                          <ProgressBar />
+                        </div>
                       </div>
-                      <div style={{ display: "none" }}>
-                        <ProgressBar />
-                      </div>
-                    </div>
-                  </>
+                    </>
+                  </div>
                 );
               })}
             </div>

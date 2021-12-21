@@ -72,197 +72,201 @@ const Index = ({ challenges, user }) => {
               <div className={ChallengeStyle.mainTag}>참여중인 챌린지</div>
               {smallChallenges.map((challenge) => {
                 return (
-                  <>
-                    <div style={{ margin: "5% 0 0 0" }} key={challenge._id}>
-                      <>
-                        <Link
-                          passHref
-                          href={"/challenge/list/" + challenge._id}
-                        >
-                          <div
-                            className="image-wrap"
-                            style={{
-                              position: "relative",
-                              borderRadius: "0.3rem",
-                            }}
+                  <div key={challenge._id}>
+                    <>
+                      <div style={{ margin: "5% 0 0 0" }} key={challenge._id}>
+                        <>
+                          <Link
+                            passHref
+                            href={"/challenge/list/" + challenge._id}
                           >
                             <div
+                              className="image-wrap"
                               style={{
-                                backgroundColor: "gray",
-                                width: "50px",
-                                left: "30%",
-                                top: "10%",
-                                position: "absolute",
-                                textAlign: "right",
-                                zIndex: "1",
-                                color: "white",
+                                position: "relative",
+                                borderRadius: "0.3rem",
                               }}
                             >
-                              <FontAwesomeIcon
-                                icon={faUser}
-                                className={ImageStyle.image2}
-                              />
-                              {challenge.participants.length}명
-                            </div>
-                            <div
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                position: "absolute",
-                                top: "40%",
-                                marginLeft: "5%",
-                              }}
-                            >
-                              <Image
+                              <div
                                 style={{
-                                  zIndex: "0",
-                                  borderRadius: "5%",
-                                  width: "40%",
+                                  backgroundColor: "gray",
+                                  width: "50px",
+                                  left: "30%",
+                                  top: "10%",
+                                  position: "absolute",
+                                  textAlign: "right",
+                                  zIndex: "1",
+                                  color: "white",
                                 }}
-                                src={
-                                  process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                                  challenge.image
-                                }
-                                layout="fill"
-                              />
+                              >
+                                <FontAwesomeIcon
+                                  icon={faUser}
+                                  className={ImageStyle.image2}
+                                />
+                                {challenge.participants.length}명
+                              </div>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  position: "absolute",
+                                  top: "40%",
+                                  marginLeft: "5%",
+                                }}
+                              >
+                                <Image
+                                  style={{
+                                    zIndex: "0",
+                                    borderRadius: "5%",
+                                    width: "40%",
+                                  }}
+                                  src={
+                                    process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                                    challenge.image
+                                  }
+                                  layout="fill"
+                                />
+                              </div>
                             </div>
-                          </div>
-                        </Link>
-                        <ul className={MainStyle.ul}>
-                          <Link
-                            passHref
-                            href={"/challenge/list/" + challenge._id}
-                          >
-                            <li className={MainStyle.h2L} key={challenge._id}>
-                              {challenge.title}
-                            </li>
                           </Link>
-                          <Link
-                            passHref
-                            href={"/challenge/list/" + challenge._id}
-                          >
-                            <li className={MainStyle.mainLi}>
-                              시작일:
-                              {new Date(challenge.startDate).getMonth() +
-                                1 +
-                                "월" +
-                                new Date(challenge.startDate).getDate() +
-                                "일"}
-                            </li>
-                          </Link>
-                          <Link
-                            passHref
-                            href={"/challenge/list/" + challenge._id}
-                          >
-                            <li className={MainStyle.mainLi}>
-                              종료일:
-                              {new Date(challenge.endDate).getMonth() +
-                                1 +
-                                "월" +
-                                new Date(challenge.endDate).getDate() +
-                                "일"}
-                            </li>
-                          </Link>
-                          <Link
-                            passHref
-                            href={"/challenge/list/" + challenge._id}
-                          >
-                            <li className={MainStyle.mainLi}>
-                              남은 일수:
-                              {Math.ceil(
-                                (new Date(challenge.endDate).getTime() -
-                                  new Date().getTime()) /
-                                  (1000 * 60 * 60 * 24)
-                              )}
-                              일
-                            </li>
-                          </Link>
-                        </ul>
-                      </>
+                          <ul className={MainStyle.ul}>
+                            <Link
+                              passHref
+                              href={"/challenge/list/" + challenge._id}
+                            >
+                              <li className={MainStyle.h2L} key={challenge._id}>
+                                {challenge.title}
+                              </li>
+                            </Link>
+                            <Link
+                              passHref
+                              href={"/challenge/list/" + challenge._id}
+                            >
+                              <li className={MainStyle.mainLi}>
+                                시작일:
+                                {new Date(challenge.startDate).getMonth() +
+                                  1 +
+                                  "월" +
+                                  new Date(challenge.startDate).getDate() +
+                                  "일"}
+                              </li>
+                            </Link>
+                            <Link
+                              passHref
+                              href={"/challenge/list/" + challenge._id}
+                            >
+                              <li className={MainStyle.mainLi}>
+                                종료일:
+                                {new Date(challenge.endDate).getMonth() +
+                                  1 +
+                                  "월" +
+                                  new Date(challenge.endDate).getDate() +
+                                  "일"}
+                              </li>
+                            </Link>
+                            <Link
+                              passHref
+                              href={"/challenge/list/" + challenge._id}
+                            >
+                              <li className={MainStyle.mainLi}>
+                                남은 일수:
+                                {Math.ceil(
+                                  (new Date(challenge.endDate).getTime() -
+                                    new Date().getTime()) /
+                                    (1000 * 60 * 60 * 24)
+                                )}
+                                일
+                              </li>
+                            </Link>
+                          </ul>
+                        </>
 
-                      <div
-                        style={{
-                          position: "relative",
-                          left: "56%",
-                          bottom: "0.5rem",
-                        }}
-                      >
-                        <button
-                          className={MainStyle.button}
-                          onClick={async (event) => {
-                            const {
-                              data: { result, message },
-                            } = await axios.post(
-                              "/api/challenge/validate",
-                              challenge
-                            );
-                            console.log(result);
-                            const button = event.target;
-
-                            button.disabled = true;
-                            if (message === "failed") {
-                              // 실패했다.
-                              button.textContent = "진행중!";
-                              button.style.color = "white";
-                              setInterval(
-                                (button) => {
-                                  button.style.display = "none";
-                                },
-                                100,
-                                button
-                              );
-                              const progressBar = button.nextElementSibling;
-                              if (progressBar instanceof HTMLElement) {
-                                progressBar.style.display = "block";
-                                const realProgressBar =
-                                  progressBar.firstElementChild
-                                    .firstElementChild;
-                                if (challenge.type === "diet") {
-                                  realProgressBar.value = result;
-                                  realProgressBar.max =
-                                    challenge.diet.condition;
-                                  const span =
-                                    realProgressBar.nextElementSibling;
-                                  span.innerText =
-                                    Math.round(
-                                      (result / challenge.diet.condition) * 100
-                                    ) + " %";
-                                } else {
-                                  realProgressBar.value = result;
-                                  realProgressBar.max =
-                                    challenge.recipe.uploadCount;
-                                  const span =
-                                    realProgressBar.nextElementSibling;
-                                  span.innerText =
-                                    Math.round(
-                                      (result / challenge.recipe.uploadCount) *
-                                        100
-                                    ) + " %";
-                                }
-                              }
-                            } else {
-                              // 성공했다.
-                              button.textContent = "성공!";
-                              button.style.backgroundColor = "blue";
-
-                              setInterval(
-                                (button) => {
-                                  button.style.display = "none";
-                                },
-                                100,
-                                button
-                              );
-                            }
+                        <div
+                          style={{
+                            position: "relative",
+                            left: "56%",
+                            bottom: "0.5rem",
                           }}
                         >
-                          결과 확인
-                        </button>
-                        <div style={{ display: "none" }}>
-                          <ProgressBar />
+                          <button
+                            className={MainStyle.button}
+                            onClick={async (event) => {
+                              const {
+                                data: { result, message },
+                              } = await axios.post(
+                                "/api/challenge/validate",
+                                challenge
+                              );
+                              console.log(result);
+                              const button = event.target;
+
+                              button.disabled = true;
+                              if (message === "failed") {
+                                // 실패했다.
+                                button.textContent = "진행중!";
+                                button.style.color = "white";
+                                setInterval(
+                                  (button) => {
+                                    button.style.display = "none";
+                                  },
+                                  100,
+                                  button
+                                );
+                                const progressBar = button.nextElementSibling;
+                                if (progressBar instanceof HTMLElement) {
+                                  progressBar.style.display = "block";
+                                  const realProgressBar =
+                                    progressBar.firstElementChild
+                                      .firstElementChild;
+                                  if (challenge.type === "diet") {
+                                    realProgressBar.value = result;
+                                    realProgressBar.max =
+                                      challenge.diet.condition;
+                                    const span =
+                                      realProgressBar.nextElementSibling;
+                                    span.innerText =
+                                      Math.round(
+                                        (result / challenge.diet.condition) *
+                                          100
+                                      ) + " %";
+                                  } else {
+                                    realProgressBar.value = result;
+                                    realProgressBar.max =
+                                      challenge.recipe.uploadCount;
+                                    const span =
+                                      realProgressBar.nextElementSibling;
+                                    span.innerText =
+                                      Math.round(
+                                        (result /
+                                          challenge.recipe.uploadCount) *
+                                          100
+                                      ) + " %";
+                                  }
+                                }
+                              } else {
+                                // 성공했다.
+                                button.textContent = "성공!";
+                                button.style.backgroundColor = "blue";
+
+                                setInterval(
+                                  (button) => {
+                                    button.style.display = "none";
+                                  },
+                                  100,
+                                  button
+                                );
+                              }
+                            }}
+                          >
+                            결과 확인
+                          </button>
+                          <div style={{ display: "none" }}>
+                            <ProgressBar />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </>
+                    </>
+                  </div>
                 );
               })}
               <div style={{ marginTop: "15%" }}>

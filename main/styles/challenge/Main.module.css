@@ -18,8 +18,8 @@
 }
 
 .button {
-  background-color: #35a2f4;
-  color: #fff;
+  background-color: #e4685d;
+  color: #ffffff;
   border: 1px;
   border-radius: 0.3rem;
   width: 30%;
@@ -28,6 +28,8 @@
   text-align: center;
   justify-content: center;
   align-content: center;
+  font-size: 1.1rem/22px;
+  font-weight: bold;
 }
 .listAllHead {
   font: normal 600 1.4rem/24px "Noto Sans KR";

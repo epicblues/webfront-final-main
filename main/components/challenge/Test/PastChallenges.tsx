@@ -38,15 +38,23 @@ const PastChallenge = (challenge: Challenge ) => (
        backgroundColor:"#fff5f5",
        font: "normal 600 1.2rem/22px Noto sans KR",
        color:"#F15F5F",
-       width:"80%",
+       width:"90%",
      }}
-     >최종달성율 {challenge.result}% </div> :<div
+
+     >
+       {challenge.type=== "diet"?<div>
+       최종달성율  {(Number(challenge.result)/Number(challenge.diet?.condition))*100} %
+       </div>:
+       <div>
+       최종달성율  {(Number(challenge.result)/Number(challenge.recipe?.uploadCount))*100}%
+         </div>}
+     </div> :<div
      style={{
       border:"1px solid",
       borderRadius:"0.3rem",
       backgroundColor:"#fff5f5",
       font: "normal 600 1.2rem/22px Noto sans KR",
-      color:"#F15F5F",
+      color:"#6B66FF",
       width:"90%",
     }}>최종달성율 100%</div>}</li>
      </ul>

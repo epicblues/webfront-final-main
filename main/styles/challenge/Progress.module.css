@@ -1,8 +1,10 @@
 .progress {
   -webkit-appearance: none;
+  width: 9em;
+  height: 1em;
 }
 .progress::-webkit-progress-bar {
-  background: black;
+  background: #e4685d;
   justify-content: flex-start;
   border-radius: 50px;
   align-items: center;

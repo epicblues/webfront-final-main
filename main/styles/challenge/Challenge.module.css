@@ -129,8 +129,9 @@
 }
 .h4Mb {
   text-align: right;
-  margin: 0px;
-  margin-bottom: 5px;
+  position: relative;
+  bottom: 10px;
+  font: normal 600 1.2rem/24px "Noto Sans KR";
 }
 
 .causion {

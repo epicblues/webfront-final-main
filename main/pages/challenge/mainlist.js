@@ -39,10 +39,12 @@ const MainList = ({ challenges, user }) => {
           <div className={ChallengeStyle.header2}>
             <Search />
             <Link passHref href={"/challenge"}>
-              <FontAwesomeIcon
-                icon={faAngleDoubleLeft}
-                className={ImageStyle.image4}
-              />
+              <>
+                <FontAwesomeIcon
+                  icon={faAngleDoubleLeft}
+                  className={ImageStyle.image4}
+                />
+              </>
             </Link>
             <h2 className={ChallengeStyle.h2C}>챌린지 리스트</h2>
           </div>

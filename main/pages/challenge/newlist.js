@@ -24,10 +24,12 @@ const NewList = ({ challenges, user }) => {
       <div className={ChallengeStyle.header2}>
         <Search />
         <Link passHref href={"/challenge"}>
-          <FontAwesomeIcon
-            icon={faAngleDoubleLeft}
-            className={ImageStyle.image4}
-          />
+          <>
+            <FontAwesomeIcon
+              icon={faAngleDoubleLeft}
+              className={ImageStyle.image4}
+            />
+          </>
         </Link>
         <h2 className={ChallengeStyle.h2C}>신규 챌린지</h2>
       </div>
@@ -39,77 +41,80 @@ const NewList = ({ challenges, user }) => {
               <div>
                 <>
                   <Link passHref href={"/challenge/list/" + challenge._id}>
-                    <div className={ChallengeStyle.list}>
-                      <div
-                        className="image-wrap"
-                        style={{
-                          position: "relative",
-                          borderRadius: "0.3rem",
-                        }}
-                      >
+                    <>
+                      <div className={ChallengeStyle.list}>
                         <div
+                          className="image-wrap"
                           style={{
-                            backgroundColor: "gray",
-                            width: "50px",
-                            right: "0",
-                            position: "absolute",
-                            textAlign: "right",
-                            zIndex: "1",
-                            color: "white",
+                            position: "relative",
+                            borderRadius: "0.3rem",
                           }}
                         >
-                          <FontAwesomeIcon
-                            icon={faUser}
-                            className={ImageStyle.image2}
+                          <div
+                            style={{
+                              backgroundColor: "gray",
+                              width: "50px",
+                              right: "0",
+                              position: "absolute",
+                              textAlign: "right",
+                              zIndex: "1",
+                              color: "white",
+                            }}
+                          >
+                            <FontAwesomeIcon
+                              icon={faUser}
+                              className={ImageStyle.image2}
+                            />
+                            {challenge.participants.length}명
+                          </div>
+                          <Image
+                            style={{
+                              zIndex: "0",
+                              borderRadius: "5%",
+                              height: "80px",
+                              width: "250px",
+                            }}
+                            src={
+                              process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                              challenge.image
+                            }
+                            layout="fill"
+                            objectPosition="top"
                           />
-                          {challenge.participants.length}명
                         </div>
-                        <Image
-                          style={{
-                            zIndex: "0",
-                            borderRadius: "5%",
-                            height: "80px",
-                            width: "250px",
-                          }}
-                          src={
-                            process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                            challenge.image
-                          }
-                          layout="fill"
-                          objectPosition="top"
-                        />
-                      </div>
-                      <ul key={challenge._id} className={ListStyle.ul}>
-                        <li className={ListStyle.li}>
-                          <li className={ChallengeStyle.title}>
-                            {challenge.title}
-                          </li>
 
-                          <li style={{ margin: "0 11px" }}>
-                            시작일:
-                            {new Date(challenge.startDate).getFullYear() +
-                              "년" +
-                              (new Date(challenge.startDate).getMonth() + 1) +
-                              "월" +
-                              new Date(challenge.startDate).getDate() +
-                              "일"}
-                            <br />
-                            종료일:
-                            {new Date(challenge.endDate).getFullYear() +
-                              "년" +
-                              (new Date(challenge.endDate).getMonth() + 1) +
-                              "월" +
-                              new Date(challenge.endDate).getDate() +
-                              "일"}
+                        <ul key={challenge._id} className={ListStyle.ul}>
+                          <li className={ListStyle.li}>
+                            <li className={ChallengeStyle.title}>
+                              {challenge.title}
+                            </li>
+
+                            <li style={{ margin: "0 11px" }}>
+                              시작일:
+                              {new Date(challenge.startDate).getFullYear() +
+                                "년" +
+                                (new Date(challenge.startDate).getMonth() + 1) +
+                                "월" +
+                                new Date(challenge.startDate).getDate() +
+                                "일"}
+                              <br />
+                              종료일:
+                              {new Date(challenge.endDate).getFullYear() +
+                                "년" +
+                                (new Date(challenge.endDate).getMonth() + 1) +
+                                "월" +
+                                new Date(challenge.endDate).getDate() +
+                                "일"}
+                            </li>
+                            {challenge.type === "diet" ? (
+                              <li>챌린지 종류: 다이어트</li>
+                            ) : (
+                              <li>챌린지 종류: 레시피</li>
+                            )}
                           </li>
-                          {challenge.type === "diet" ? (
-                            <li>챌린지 종류: 다이어트</li>
-                          ) : (
-                            <li>챌린지 종류: 레시피</li>
-                          )}
-                        </li>
-                      </ul>
-                    </div>
+                        </ul>
+                      </div>
+                    </>
                   </Link>
                 </>
               </div>

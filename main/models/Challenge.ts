@@ -14,7 +14,7 @@ export class Challenge {
   likes?: number[];
   losers?: number[];
   participants?: number[];
-  diet?: { category: string; uploadCount: string | number; checker: any[] };
+  diet?: { category: string; condition: string | number; checker: any[] };
   result?: number;
   winners?: number[];
 

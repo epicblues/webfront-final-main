@@ -66,18 +66,20 @@ const PopularChallenge = ({ challenges }) => {
                   </div>
                   <div style={{ marginLeft: "10px" }}>
                     <Link passHref href={"/challenge/list/" + challenge._id}>
-                      <Image
-                        style={{
-                          zIndex: "0",
-                          borderRadius: "5%",
-                          width: "45vw",
-                        }}
-                        src={
-                          process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                          challenge.image
-                        }
-                        layout="fill"
-                      />
+                      <>
+                        <Image
+                          style={{
+                            zIndex: "0",
+                            borderRadius: "5%",
+                            width: "45vw",
+                          }}
+                          src={
+                            process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                            challenge.image
+                          }
+                          layout="fill"
+                        />
+                      </>
                     </Link>
                   </div>
                 </div>
