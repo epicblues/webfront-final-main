@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Router from "next/router";
-import { BiSad } from "react-icons/bi";
 
 // CSS
 import "semantic-ui-css/semantic.min.css";
@@ -46,7 +45,6 @@ const SearchModal = ({ handleSetIsSearchModalVisible }) => {
         {error && (
           <div className={searchModalStyles.errorMsg}>
             검색어를 입력해주세요!
-            <BiSad size="1.2rem" />
           </div>
         )}
         <div
