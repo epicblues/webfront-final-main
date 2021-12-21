@@ -1,3 +1,38 @@
+/* Meal */
+.mealItem {
+    border-radius: 20px;
+    position: relative;
+    box-shadow: 1px 1px 3px 1px #dadce0;
+}
+  
+.mealTypeLabel {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font: normal 500 1.2rem/22px "Noto Sans KR";
+    border-radius: 15px;
+    padding: 0 0.5rem;
+    /* box-shadow: 1px 1px 3px 1px #dadce0; */
+    background-color: #fff;
+}
+  
+.mealItem .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1.5rem;
+    height: 1.5rem;
+}
+  
+.mealItem img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    border-radius: 15px;
+}
+
 /* LookupMeal*/
 .lookupMealWrap {
     padding: 0 1rem 1rem 1rem;
@@ -58,7 +93,7 @@
     border: none;
     vertical-align: baseline;
     background: #e0e1e2 none;
-    color: rgba(0,0,0,.6);
+    color: rgba(0,0,0,0.5);
     text-align: center;
     text-decoration: none;
     padding: 0.8rem 1.5rem 0.8rem;
@@ -335,7 +370,7 @@
     border: none;
     vertical-align: baseline;
     background: #e0e1e2 none;
-    color: rgba(0,0,0,.6);
+    color: rgba(0,0,0,0.5);
     text-align: center;
     text-decoration: none;
     padding: 0.8rem 1.5rem 0.8rem;
@@ -352,43 +387,4 @@
 
 .CartSum > span {
     font-weight: 600;
-}
-
-/* review */
-.reviewOpen {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0 1rem;
-    text-align: left;
-    box-shadow: 1px 1px 3px 1px #dadce0;
-    background-color: #fff;
-    transition: all;
-    transition-duration: 300ms;
-    z-index: 30;
-}
-
-.reviewModal {
-    margin-top: 3vh;
-    position: relative;
-}
-
-.reviewModalHeader {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.reviewModalForm {
-    width: 100%;
-    font: normal 400 1rem "NanumSquare";
-}
-
-.reviewModalForm > textarea {
-    border: none;
-    width: 100%;
-    height: 100vh;
 }

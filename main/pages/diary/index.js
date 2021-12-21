@@ -3,27 +3,26 @@ import { getUserOrRedirect } from "../../util/auth";
 import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
-// CSS
-import "semantic-ui-css/semantic.min.css";
-import "animate.css";
-// Date
+// components
 import PickDate from "../../components/diary/PickDate";
-// 영양 섭취 상태
 import FinalTotalSum from "../../components/diary/FinalTotalSum";
-// Review
-import ReviewPage from "../../components/diary/review/ReviewPage";
-// 음식 작성
 import AddFood from "../../components/diary/meal/AddFood";
 import Meal from "../../components/diary/meal/Meal";
+import ReviewPage from "../../components/diary/review/ReviewPage";
+// css
+import "semantic-ui-css/semantic.min.css";
+import "animate.css";
 
+// Diary용 상수 설정
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
   1,
   2,
   3,
   "DEFAULT",
-]; // Diary용 상수 설정
+];
 
+// Diary용 랜덤 이미지 설정
 const  typeImages = [
     "/restaurant_800.png",
     "/serving_800.png",

@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
+// components
 import { ImageContext } from '../../../pages/diary';
+// react-icons
 import { BiSad } from "react-icons/bi";
 import { AiOutlinePicture, AiOutlineDelete } from "react-icons/ai";
 

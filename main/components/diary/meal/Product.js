@@ -1,5 +1,7 @@
-import MealStyles from '../../../styles/diary/Meal.module.css';
+// react-icons
 import { BiX } from "react-icons/bi";
+// css
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const Product = ({ product, index, setQuantity, removeFromCart }) => {
   // 값이 없어서 NaN이 나올 경우

@@ -1,6 +1,7 @@
-import "semantic-ui-css/semantic.min.css";
-import { BiX } from "react-icons/bi";
+// components
 // import TimeStamp from "./TimeStamp";
+// react-icons
+import { BiX } from "react-icons/bi";
 
 const Review = ({ review, onDelete, onToggle }) => {
   return (

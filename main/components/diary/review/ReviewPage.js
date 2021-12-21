@@ -1,12 +1,9 @@
-// import React from 'react'
-import { useState } from "react";
-
+import React, { useState } from "react";
 // components
 import ReviewHeader from "./ReviewHeader";
-import Reviews from "./Reviews";
 import AddReview from "./AddReview";
-
-// CSS
+import Reviews from "./Reviews";
+// css
 import "semantic-ui-css/semantic.min.css";
 import axios from "axios";
 

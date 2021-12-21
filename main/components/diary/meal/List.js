@@ -1,7 +1,10 @@
 import React from "react";
-import { Button, Header, Modal } from "semantic-ui-react";
-import MealStyles from '../../../styles/diary/Meal.module.css';
+// semantic-ui
+import { Modal } from "semantic-ui-react";
+// react-icons
 import { BiInfoCircle } from "react-icons/bi";
+// css
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const List = ({ product, index }) => {
   const [open, setOpen] = React.useState(false);
