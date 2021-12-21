@@ -19,6 +19,4 @@ export async function sendAuthEmail(email: string, key: string) {
 
     html: `<a href='${process.env.NEXT_PUBLIC_STATIC_SERVER_URL}/api/user/auth?email=${email}&key=${key}'>이메일 회원 인증</a>`,
   });
-
-  console.log("메시지 전송 완료: %s", info.messageId);
 }

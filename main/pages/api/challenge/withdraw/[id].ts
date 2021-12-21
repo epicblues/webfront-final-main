@@ -24,7 +24,6 @@ const handler: NextApiHandler = async (req, res) => {
           returnDocument: "after",
         }
       );
-    console.log(result);
     res.status(200).json({ challenge: result.value });
   } catch (error) {
     res.status(404).json({ message: error });

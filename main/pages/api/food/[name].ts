@@ -14,7 +14,6 @@ const handler: NextApiHandler = async (req, res) => {
       .toArray();
     res.status(200).json(foods);
   } catch (error) {
-    console.log(error);
     res.status(404).send("검색 실패");
   }
 };

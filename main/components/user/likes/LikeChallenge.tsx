@@ -7,7 +7,6 @@ import likeStyle from '../../../styles/main/LikeContent.module.css'
 
 const LikeChallenge = () => {
   // 내가 좋아하는 챌린지 useEffect를 통해서 fetch
-  console.log('likeChallenge rendered');
   const [challenges, setChallenges] = useFetch<Challenge[]>('/api/user/like/challenge');
 
   return (

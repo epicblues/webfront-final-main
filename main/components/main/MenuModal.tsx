@@ -54,8 +54,8 @@ const MenuModal = ({ onExit, hidden, setLoading }: { onExit: Function, hidden: b
             }}>레시피 작성</div></div>
       </Link>
       {["아침", "점심", "저녁", "간식"].map((value, index) => (
-        <>
-          <div className={menuButton.button} key={index}
+        <div key={value}>
+          <div className={menuButton.button}
             style={
               hidden ? {} : {
                 bottom: `${record[index][1]}vh`,
@@ -76,7 +76,7 @@ const MenuModal = ({ onExit, hidden, setLoading }: { onExit: Function, hidden: b
             bottom: `${record[index][1] - 4}vh`,
             left: `${record[index][0] - 3}vw`,
 
-          }}>{value}</div></>
+          }}>{value}</div></div>
       ))}
 
       <Link href={"/challenge/create"} passHref>
