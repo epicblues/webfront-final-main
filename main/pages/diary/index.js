@@ -24,22 +24,21 @@ export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   "DEFAULT",
 ]; // Diary용 상수 설정
 
-
 const  typeImages = [
-    "/serving.png",
-    "/snack.png",
-    "/bread.png",
-    "/breakfast.png",
-    "/sandwich.png"
+    "/restaurant_800.png",
+    "/serving_800.png",
+    "/snack_800.png",
+    "/bread_800.png",
+    "/spaghetti_800.png",
+    "/breakfast_800.png",
+    "/sandwich_800.png",
   ];
-const  typeImage =() => typeImages[Math.floor(Math.random() * typeImages.length)]
-
+const typeImage =() => typeImages[Math.floor(Math.random() * typeImages.length)]
 
 export const ImageContext = React.createContext({
   typeImages,
   typeImage
 });
-
 
 const Index = ({ user, fetchedDiary, mode, loadingProps }) => {
   const [activeIndex, setActiveIndex] = useState(0);
