@@ -20,7 +20,6 @@ const Index = ({ user, filteredHitRecipes, myRecipes }) => {
   return (
     <div
       style={{
-        backgroundColor: "#fff0f0",
         position: "fixed",
       }}
     >
