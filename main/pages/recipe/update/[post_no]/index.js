@@ -315,7 +315,6 @@ export const getServerSideProps = async (ctx) => {
     .db("webfront")
     .collection("recipe")
     .findOne({ user_id: user.id, _id: Number(ctx.query.post_no) });
-  console.log(result);
   if (!result) {
     ctx.res.writeHead(302, {
       Location: "/recipe/list/my",
@@ -327,7 +326,6 @@ export const getServerSideProps = async (ctx) => {
     .db("webfront")
     .collection("recipe")
     .findOneAndUpdate({ _id: Number(ctx.query.post_no) }, { $inc: { hit: 1 } });
-  console.log(hitResult);
   const recipe = await client
     .db("webfront")
     .collection("recipe")
