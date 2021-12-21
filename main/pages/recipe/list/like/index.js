@@ -176,7 +176,6 @@ const Index = ({ user, filteredRecipes }) => {
 export const getServerSideProps = async (ctx) => {
   // 유저 인증 로직
   const user = await getUserOrRedirect(ctx);
-  console.log(user);
   const data = await (
     await clientPromise
   )

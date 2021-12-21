@@ -233,7 +233,6 @@ export const Index = ({ user }) => {
           user.token,
           formData
         );
-        console.log(data);
         router.push(`/recipe/card/${data.status}`);
       } catch (error) {
         alert(error);

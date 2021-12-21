@@ -24,7 +24,6 @@ const Index = ({ user, recipe }) => {
   const totalQtt = recipe.ingredients.reduce(function (prev, next) {
     return prev + next.quantity;
   }, 0);
-  console.log(totalQtt);
 
   // Slice()를 위한 데이터 할당
   const uploadDate = recipe.upload_date;
@@ -78,7 +77,6 @@ const Index = ({ user, recipe }) => {
       const res = await postStaticAxios("/api/recipe/delete", user.token, {
         recipe_id: data._id,
       });
-      console.log(res.data.message);
       alert("삭제하였습니다.");
       router.back();
     } else {
@@ -256,7 +254,6 @@ export const getServerSideProps = async (ctx) => {
     .db("webfront")
     .collection("recipe")
     .findOneAndUpdate({ _id: Number(ctx.query.post_no) }, { $inc: { hit: 1 } });
-  console.log(hitResult);
   const recipe = await client
     .db("webfront")
     .collection("recipe")
