@@ -19,14 +19,17 @@ import mainStyle from '../styles/main/Main.module.css';
 import ShortNav from '../components/main/ShortNav';
 import MyContents from '../components/main/MyContents';
 import { BiDish, BiFolderMinus, BiFolderPlus, BiTrophy } from 'react-icons/bi'
+import { LoadingProps } from '../hooks';
 
-const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }> = ({ user: { name, email, bmr, activity }, foodRank }) => {
+const Home: NextPage<{ user: any, foodRank: { name: string, count: number, }[], loadingProps: LoadingProps }> = ({ user: { name, email, bmr, activity }, foodRank, loadingProps: [loading, setLoading] }) => {
+
   const [largeMode, setLargeMode] = useState(false);
   const [showLikesChallenge, setShowLikesChallenge] = useState(false)
   const [showLikesRecipe, setShowLikesRecipe] = useState(false)
 
   const router = useRouter()
   const clickHandler = async () => {
+    setLoading(true);
     const res = await fetch('/api/user/logout');
     if (res.status === 200) {
       router.push('/user/login')
@@ -103,7 +106,7 @@ const Home: NextPage<{ user: any, foodRank: { name: string, count: number }[] }>
         <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around" }}>
           <button className="ui button facebook" onClick={clickHandler}>Logout</button>
           <Link passHref href="/user/update">
-            <Button color="google plus">회원 정보 수정</Button>
+            <Button color="google plus" onClick={() => { setLoading(true) }}>회원 정보 수정</Button>
           </Link>
         </div>
 

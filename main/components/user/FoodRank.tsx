@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import cardStyle from '../../styles/main/Main.module.css'
 
 interface Props {
@@ -8,11 +8,20 @@ interface Props {
   }[]
 }
 
-const wordToComponent = (word: string) => {
+const WordToComponent: React.FC<{ word: string }> = ({ word }) => {
   const wordArray = word.split(' ');
+  const wordTooLong = wordArray.length > 2;
 
-  const component = wordArray.map((value, index) => (<div key={index} className={cardStyle.foodName}>{value}</div>));
-  return (<>{component}</>)
+  const [showFullName, setShowFullName] = useState(false);
+
+  const component = wordArray.slice(0, 2).map((value, index) => (<div key={index} className={cardStyle.foodName}>{value}</div>));
+  return (<div onClick={(e) => {
+    if (wordTooLong) setShowFullName(!showFullName);
+  }} style={{ position: "relative" }}>
+    {component} {wordTooLong &&
+      <div>...</div>}
+    {showFullName && <div className={cardStyle.fullFoodName}>{word}</div>}
+  </div>)
 }
 
 
@@ -24,10 +33,10 @@ const FoodRank = ({ foodRank }: Props) => {
         월간 식단 Top 3
       </div>
 
-      <div className={cardStyle.flex} style={{ padding: "10px", borderRadius: "20px", justifyContent: "space-between", fontWeight: 400, fontSize: "0.9em", }}>
+      <div className={cardStyle.flex} style={{ padding: "10px", borderRadius: "20px", justifyContent: "space-between", fontWeight: 400, fontSize: "0.9em", position: "relative" }}>
         {foodRank.length !== 0 ? foodRank.map(({ name, count }, index) => (
           <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", textAlign: "center", paddingRight: "5px" }} key={name}>
-            {wordToComponent(name.split(',')[0])}
+            {<WordToComponent word={name.replace(/,/g, "")} />}
           </div>
         )) : <div>일지를 더 작성해주세요!</div>}
       </div>

@@ -1,10 +1,28 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import { Socket } from 'socket.io-client';
 import { BACKGROUND_COLOR, FLEXBOX_NORMAL, MAIN_COLOR, MIDDLE_COLOR } from '../../constants';
+import { useLoading } from '../../hooks';
 import { LiveData } from '../../models';
 
-const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: { liveData: LiveData[], socket: Socket, name: string, largeMode: boolean, setLargeMode: Function }) => {
+interface ChatProps {
+  liveData: LiveData[];
+  socket: Socket;
+  name: string;
+  largeMode: boolean;
+  setLargeMode: Function
+}
+
+
+const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: ChatProps) => {
   const chatRoom = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>
+  // component did update 느낌으로 사용해볼까?
+  const [loading, setLoading, LoadingCircle] = useLoading(liveData);
+  // liveData가 fetch를 통해 state를 변화하면(비동기) setLoading(false)작동
+
+  useEffect(() => {
+    setLoading(true);
+  }, [])
+  // 동기적으로 component가 mount 됐을 때만 작동하는 loading
 
   useEffect(() => {
     const chatRoomCur = chatRoom.current
@@ -18,6 +36,7 @@ const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: { liveData: L
     }
     if (!largeMode) setTimeout(() => chatRoomCur.scroll({ top: 10000 }), 500) // 축소 애니메이션이 끝난 뒤에 채팅창 스크롤을 최대한 아래로
   })
+
   return (
     <>
       <form onSubmit={(e) => { e.preventDefault() }} style={{ border: "2px solid", borderRadius: "20px", borderColor: MIDDLE_COLOR, padding: "6px", }} >
@@ -28,6 +47,7 @@ const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: { liveData: L
           </div>)
           )}
         </div>
+        <LoadingCircle style={{ position: "relative", left: "40%" }} />
         <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around", padding: "5px", display: largeMode ? "flex" : "none", }}>
           <input type="text" placeholder="메시지 입력!" style={{ borderColor: MIDDLE_COLOR, height: "2em", borderRadius: "10px", padding: "5px" }} />
           <button onClick={(event) => {

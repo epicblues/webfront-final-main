@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
@@ -54,7 +54,7 @@ const Index = ({ user, fetchedDiary, mode, loadingProps }) => {
     setActiveIndex(index);
   };
   const [isOpen, setIsOpen] = useState(false);
-
+  const [loading, setLoading, LoadingCircle] = loadingProps;
   const tabContArr = [
     {
       tabTitle: (
@@ -146,7 +146,7 @@ const Index = ({ user, fetchedDiary, mode, loadingProps }) => {
             <PickDate
               diary={diary}
               setDiary={setDiary}
-              loadingProps={loadingProps}
+              setLoading={setLoading}
             />
           </div>
           <div>{tabContArr[activeIndex].tabCont}</div>

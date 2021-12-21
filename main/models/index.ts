@@ -103,13 +103,13 @@ export class UserBmr {
 
   constructor() {
     this.gender = "1";
-    (this.weight = ""),
-      (this.age = ""),
-      (this.activity = ""),
-      (this.error = ""),
-      (this.flag = false),
-      (this.system = ""),
-      (this.heightFeet = ""),
-      (this.bmr = "");
+    this.weight = "";
+    this.age = "";
+    this.activity = "";
+    this.error = "";
+    this.flag = false;
+    this.system = "";
+    this.heightFeet = "";
+    this.bmr = "";
   }
 }
