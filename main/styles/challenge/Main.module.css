@@ -103,3 +103,9 @@
   position: relative;
   top: 10px;
 }
+.mainTag {
+  position: relative;
+  left: 1rem;
+  top: 13%;
+  font: normal 600 1.4rem/36px "Noto Sans KR";
+}

@@ -1,18 +1,18 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useCallback } from 'react'
 import { Image } from 'semantic-ui-react';
 import { Challenge } from '../../../models/Challenge';
-import PastStyles from "../../../styles/challenge/Past.module.css"
 import { debounce } from '../../../util/axios';
-import ImageAndParti from '../Main/ImageAndParti';
-
+//css
+import PastStyles from "../../../styles/challenge/Past.module.css"
+import ChallengeStyle from "../../../styles/challenge/Challenge.module.css"
 interface Props {
   userId?: number
 }
 
 const PastChallenge = (challenge: Challenge ) => (
   
-  <div style={{display:"flex", justifyContent:"center"}} key={challenge._id}>
+  <div style={{display:"flex", justifyContent:"center", marginTop:"1rem"}} key={challenge._id}>
     <div className={PastStyles.imageDiv} >
     <Image
      className={PastStyles.image}
@@ -57,45 +57,51 @@ const PastChallenge = (challenge: Challenge ) => (
 
 const PastChallenges: React.FC<Props> = () => {
   const [challenges, setChallenges] = useState<Challenge[]>([]);
-  useEffect(() => {
-    const scrollHandler = async () => {
-      const yScroll = window.scrollY;
-      const innerHeight = window.innerHeight;
-      const maxHeight = window.document.body.scrollHeight;
-      if (innerHeight + yScroll > maxHeight) console.log("its bottom!");
-      const { data: { challenges: pastChallenges } } = await axios.get('/api/challenge/past');
-      window.removeEventListener("scroll", scrollHandler);
-      setChallenges(pastChallenges.map((challenge:any) => {
-        
-        return {...challenge, startDate: new Date(challenge.startDate), endDate: new Date(challenge.endDate)}
-      }));
-    };
-    window.addEventListener("scroll", debounce(scrollHandler,1000) );
+  const handleScroll = useCallback(async () => {
+    const documentElement = document.documentElement;
+    // DOM의 전체 HTML 문서?
 
-    return () => {
-      window.removeEventListener("scroll", scrollHandler);
-    };
-  }, []);
-  const handleClick = async () => {
-    try {
-      const { data: { challenges: pastChallenges } } = await axios.get('/api/challenge/past');
-      setChallenges(pastChallenges.map((challenge:any) => {
-        
-        return {...challenge, startDate: new Date(challenge.startDate), endDate: new Date(challenge.endDate)}
-      }));
+    const scrollHeight = documentElement.scrollHeight
+    // 전체 문서의 scroll과 상관 없는 전체 크기 pixel
+    const scrollY = Math.ceil(window.scrollY)
+    // 전체 문서에서 얼마나 스크롤로 내려왔는가
+    const offsetHeight = Math.ceil(documentElement.offsetHeight);
+    // 전체 문서가 viewport 기준으로 얼마만큼 보여지고 있는가
 
-    } catch (error) {
-      console.error(error);
+    if (scrollHeight <= scrollY + offsetHeight + 60) {
+
+      window.removeEventListener('scroll', handleScroll)
+      try {
+        const { data: { challenges: pastChallenges } } = await axios.get('/api/challenge/past');
+        setChallenges(pastChallenges.map((challenge: any) => {
+
+          return { ...challenge, startDate: new Date(challenge.startDate), endDate: new Date(challenge.endDate) }
+        }));
+
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
+  }, [])
+
+
+  useEffect(() => {
+
+    window.addEventListener('scroll', handleScroll)
+  }, [handleScroll])
+  
   return (
     <div>
       {challenges.length === 0 ?
-        <button onClick={handleClick}>과거 챌린지 보기</button>
+       <div className={ChallengeStyle.bottomTag}>마감된 챌린지</div>
         :
+        <> 
+        <div className={ChallengeStyle.bottomTag}>마감된 챌린지</div>
         <div>
           {challenges.map(PastChallenge)}
-        </div>}
+        </div>
+        </>
+}
     </div>
   )
 }

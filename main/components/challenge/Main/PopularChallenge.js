@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/dist/client/link";
 //css
-import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
-import ImageStyle from "../../../styles/challenge/Input.module.css";
-import ListStyle from "../../../styles/challenge/List.module.css";
-import ModalStyle from "../../../styles/challenge/Modal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Image } from "semantic-ui-react";
 import { Swiper, SwiperSlide, user } from "swiper/react";
+import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
+import ListStyle from "../../../styles/challenge/List.module.css";
+import ModalStyle from "../../../styles/challenge/Modal.module.css";
 import "swiper/swiper.min.css";
-import SwiperCore, { Navigation } from "swiper/core";
 
-const RecommendChallenge = ({ challenges }) => {
-  const [recChallenges, setRecChallenges] = useState([]);
+const PopularChallenge = ({ challenges }) => {
+  const [popularChallenges, setPopularChallenges] = useState([]);
+
   useEffect(() => {
-    if (challenges.length <= 5) return setRecChallenges(challenges);
-
     const copiedChallenges = [...challenges];
-    const selectedChallenges = [];
-
-    for (let i = 0; i < 5; i++) {
-      const randomIndex = Math.floor(Math.random() * copiedChallenges.length);
-      selectedChallenges.push(...copiedChallenges.splice(randomIndex, 1));
-    }
-    setRecChallenges(selectedChallenges);
+    const sortedChallenges = copiedChallenges.filter((challenges) => {
+      return challenges.likes.length > 0;
+    });
+    const filteredChallenges = sortedChallenges.sort((a, b) => {
+      b - a;
+    });
+    setPopularChallenges(filteredChallenges.slice(0, 10));
   }, []);
 
   return (
@@ -36,7 +33,7 @@ const RecommendChallenge = ({ challenges }) => {
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
     >
-      {recChallenges.map((challenge) => (
+      {popularChallenges.map((challenge) => (
         <div key={challenge._id}>
           <SwiperSlide key={challenge._id}>
             <div className={ModalStyle.recContainer}>
@@ -67,7 +64,6 @@ const RecommendChallenge = ({ challenges }) => {
                     />
                     {challenge.participants.length}명
                   </div>
-
                   <div style={{ marginLeft: "10px" }}>
                     <Link passHref href={"/challenge/list/" + challenge._id}>
                       <Image
@@ -123,4 +119,4 @@ const RecommendChallenge = ({ challenges }) => {
   );
 };
 
-export default RecommendChallenge;
+export default PopularChallenge;

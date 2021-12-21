@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
+import Link from "next/dist/client/link";
 import { useRouter } from "next/router";
 import axios from "axios";
 import clientPromise from "../../util/mongodb";
@@ -11,6 +11,7 @@ import Search from "../../components/challenge/Main/Search";
 import RecommendChallenge from "../../components/challenge/Main/RecommendChallenge";
 import PastChallenges from "../../components/challenge/test/PastChallenges.tsx";
 import MainModal from "../../components/challenge/Main/MainModal";
+import PopularChallenge from "../../components/challenge/Main/PopularChallenge";
 //css
 import "semantic-ui-css/semantic.min.css";
 import MainStyle from "../../styles/challenge/Main.module.css";
@@ -18,7 +19,7 @@ import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
 import ImageStyle from "../../styles/challenge/Input.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { Icon, Image } from "semantic-ui-react";
+import { Icon, Image, Popup } from "semantic-ui-react";
 
 const Index = ({ challenges, user }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -40,20 +41,6 @@ const Index = ({ challenges, user }) => {
   const copiedChallenges = [...participatedChallenges];
   const smallChallenges = copiedChallenges.slice(0, 3);
 
-  useEffect(() => {
-    const scrollHandler = () => {
-      const yScroll = window.scrollY;
-      const innerHeight = window.innerHeight;
-      const maxHeight = window.document.body.scrollHeight;
-      if (innerHeight + yScroll > maxHeight) console.log("its bottom!");
-    };
-    window.addEventListener("scroll", scrollHandler);
-
-    return () => {
-      window.removeEventListener("scroll", scrollHandler);
-    };
-  }, []);
-
   return (
     <>
       <div style={{ margin: "10px 0" }}>
@@ -68,14 +55,21 @@ const Index = ({ challenges, user }) => {
           <Navbar currentURL={"/challenge"} />
           <h2 className={ChallengeStyle.h2L}>챌린지</h2>
         </div>
-        <div className={ChallengeStyle.mainTag}>참여중인 챌린지</div>
+
         <div style={{ marginTop: "40%", marginBottom: "5%" }}>
           {participatedChallenges.length === 0 ? (
             <>
-              <RecommendChallenge challenges={challenges} />
+              <div className={MainStyle.mainTag}>추천 챌린지</div>
+              <RecommendChallenge
+                challenges={challenges}
+                key={challenges._id}
+              />
+              <div className={MainStyle.mainTag}>인기 챌린지</div>
+              <PopularChallenge challenges={challenges} key={challenges._id} />
             </>
           ) : (
             <>
+              <div className={ChallengeStyle.mainTag}>참여중인 챌린지</div>
               {smallChallenges.map((challenge) => {
                 return (
                   <>
@@ -224,7 +218,8 @@ const Index = ({ challenges, user }) => {
                                   progressBar.firstElementChild
                                     .firstElementChild;
                                 if (challenge.type === "diet") {
-                                  realProgressBar.value = realProgressBar.max =
+                                  realProgressBar.value = result;
+                                  realProgressBar.max =
                                     challenge.diet.condition;
                                   const span =
                                     realProgressBar.nextElementSibling;
@@ -233,7 +228,8 @@ const Index = ({ challenges, user }) => {
                                       (result / challenge.diet.condition) * 100
                                     ) + " %";
                                 } else {
-                                  realProgressBar.value = realProgressBar.max =
+                                  realProgressBar.value = result;
+                                  realProgressBar.max =
                                     challenge.recipe.uploadCount;
                                   const span =
                                     realProgressBar.nextElementSibling;

@@ -2,14 +2,21 @@
   -webkit-appearance: none;
 }
 .progress::-webkit-progress-bar {
-  background-color: white;
+  background: black;
+  justify-content: flex-start;
   border-radius: 50px;
+  align-items: center;
+  position: relative;
+  display: flex;
 }
 .progress::-webkit-progress-value {
+  animation-duration: 2s;
+  animation-name: forward;
+  box-shadow: 0 10px 40px -10px #fff;
   border-radius: 50px;
-  background-color: lightblue;
+  background: #fff;
 }
-@keyframes progress {
+@keyframes forward {
   from {
     width: 0;
   }
