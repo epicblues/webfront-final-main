@@ -12,11 +12,10 @@ const MenuModal = ({ onExit, hidden, setLoading }: { onExit: Function, hidden: b
     zIndex: 2,
     width: "100%",
     height: "100%",
-    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    backgroundColor: 'rgba(0, 0, 0, 0.9)',
     color: "white",
     // WebkitTransition: 'background ease-in-out 1s',
     // transition: 'background ease-in-out 1s'
-    opacity: '1',
     transition: "all 0.3s"
   }
 

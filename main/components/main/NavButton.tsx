@@ -10,13 +10,10 @@ const MiniButton = ({ children, href, onClick }: { children: any, href: string, 
 
   return (
     <Link href={href} passHref><a style={{
-      color: pathName === href.substring(1) ? "#ff9393" : "#333",
+      color: pathName === href.substring(1) ? "#ff5656" : "#333",
       alignSelf: "center",
       fontSize: "1.2em",
       fontWeight: "bolder",
-      // border: "solid white",
-      // borderWidth: "0px 1px",
-      // padding: "3px 15px"
     }
     } onClick={() => { onClick() }}>
       {children}
