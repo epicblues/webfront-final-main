@@ -121,14 +121,14 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
       </div>
       <div className={mainStyle.sideBar} style={{ left: showLikesChallenge ? "50vw" : "100vw" }}>
         <div onClick={() => { setShowLikesChallenge(false) }}>
-          <button style={{ justifySelf: "", border: "0px", paddingBottom: "3px", }} onClick={() => { setShowLikesChallenge(false) }}><BiTrophy size="3rem" /></button>
+          <button style={{ justifySelf: "", border: "0px", paddingBottom: "3px", background: "whitesmoke" }} onClick={() => { setShowLikesChallenge(false) }}><BiTrophy size="3rem" /></button>
 
         </div>
         <LikeChallenge />
       </div>
       <div className={mainStyle.sideBar} style={{ left: showLikesRecipe ? "50vw" : "100vw" }}>
         <div onClick={() => { setShowLikesRecipe(false) }}>
-          <button style={{ justifySelf: "", border: "0px", paddingBottom: "3px", }} onClick={() => { setShowLikesRecipe(false) }}><BiDish size="3rem" /></button>
+          <button style={{ justifySelf: "", border: "0px", paddingBottom: "3px", background: "whitesmoke" }} onClick={() => { setShowLikesRecipe(false) }}><BiDish size="3rem" /></button>
 
         </div>
         <LikeRecipe />
