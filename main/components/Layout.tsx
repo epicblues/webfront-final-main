@@ -15,8 +15,11 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
   const [menuModal, setMenuModal] = useState(false)
   const [loading, setLoading, LoadingCircle] = pageProps.loadingProps as LoadingProps;
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 85bff66214add9789cfc16d14722fa535cea6fe2
   return (
     // 모든 페이지에 적용될 레이아웃 디자인 (Header Or Footer)
     <>
