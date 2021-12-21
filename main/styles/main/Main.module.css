@@ -22,7 +22,7 @@
   left: 100vw;
   top: 3vh;
   transition: all 500ms;
-  background-color: #eceaea;
+  /* background-color: #eceaea; */
   border: 2px solid rgb(247, 158, 136);
   border-radius: 20px 0 0 20px;
   padding: 0px 20px;
@@ -72,10 +72,10 @@
     -webkit-box-shadow: 0 0 0 0 #f07777;
   }
   70% {
-      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
   }
   100% {
-      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
   }
 }
 
@@ -85,12 +85,12 @@
     box-shadow: 0 0 0 0 #f07777;
   }
   70% {
-      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
-      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
   }
   100% {
-      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
-      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
   }
 }
 
@@ -139,7 +139,7 @@
   height: 100vh;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   transition: 1s all;
 }
 
@@ -253,21 +253,67 @@
   color: red;
 }
 
-.fullFoodName {
-  position: absolute;
-  z-index: 300;
-  bottom: 110%;
-  left: -25%;
-  border: 1px solid black;
-  font-size: 0.8rem;
-  width: 150%;
-  background: white;
-  font-weight: 700;
-  border-radius: 20%;
-  padding-left: 3%;
+.foodName {
+  font-size: 0.88em;
 }
 
-.foodName {
-  /* position: relative; */
-  font-size: 0.88em;
+.foodRankModal {
+  position: fixed;
+  width: 80vw;
+  height: 20vh;
+  left: 10vw;
+  top: 30vh;
+  background-color: whitesmoke;
+  border: 2px solid #f36666;
+  border-radius: 20%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7% 0;
+  font-size: 1.2rem;
+  justify-content: space-between;
+}
+
+.foodRankModal > div:nth-child(1) {
+  text-align: center;
+  font-weight: 700;
+}
+
+.foodRankModal + div {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.4;
+}
+
+.foodRankTable {
+  display: flex;
+  /* justify-content: space-evenly; */
+  width: 90%;
+  align-self: center;
+  justify-content: center;
+  margin: 5%, 0%;
+  padding: 4% 0%;
+  font-size: 0.95rem;
+}
+
+.foodRankTable > div {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 0 0.8rem;
+}
+.foodRankTable > div:nth-child(2) {
+  border: 0;
+}
+.foodRankTable > div:nth-child(3) {
+  border-right: 0;
+}
+
+.foodRankTable > div > div {
+  text-align: center;
 }

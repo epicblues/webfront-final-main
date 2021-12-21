@@ -35,7 +35,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
     }, 2000, button, originalBtnText);
   }
 
-  const buttonStyle: CSSProperties = { border: "none", background: MAIN_COLOR, borderRadius: "20px", width: '100%', fontWeight: 400, color: "#fff", alignSelf: "stretch", height: "2.8rem", fontSize: "1.2rem"}
+  const buttonStyle: CSSProperties = { border: "none", background: MAIN_COLOR, borderRadius: "20px", width: '100%', fontWeight: 400, color: "#fff", alignSelf: "stretch", height: "2.8rem", fontSize: "1.2rem" }
   const router = useRouter()
   const name = useRef() as MutableRefObject<HTMLInputElement>;
   const message = useRef() as MutableRefObject<HTMLHeadingElement>;
@@ -174,7 +174,7 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
           <BiChevronRight size='2rem' onClick={() => { type === "normal" ? setPageTranslate(-100) : setPageTranslate(-200) }} />
         </div>
         <div className={formStyle["form-field"]}>
-          <p style={{ font: "normal 300 1.3rem 'Noto Sans KR'"}}>닉네임을 변경하시겠습니까?</p>
+          <p style={{ font: "normal 300 1.3rem 'Noto Sans KR'" }}>닉네임을 변경하시겠습니까?</p>
           <input type="text" ref={name} placeholder="이름" disabled />
           <button style={buttonStyle} onClick={handleNickname}>네, 변경할래요.</button>
         </div>
@@ -183,11 +183,11 @@ const Join = ({ user, bmr, type }: { user: any, bmr: UserBmr, type: string }) =>
       <div className={formStyle.form}>
         <div style={{ display: 'flex', justifyContent: "space-between", alignItems: 'center' }} ref={message}>
           <span>비밀번호</span>
-          {type === "normal" && <BiChevronRight size='2rem' onClick={() => { setPageTranslate(-200) }}/>}
+          {type === "normal" && <BiChevronRight size='2rem' onClick={() => { setPageTranslate(-200) }} />}
         </div>
 
         <div className={formStyle["form-field"]}>
-          {type === "normal" && <p style={{ font: "normal 300 1.3rem 'Noto Sans KR'"}}>비밀번호를 변경하시겠습니까?</p>}
+          {type === "normal" && <p style={{ font: "normal 300 1.3rem 'Noto Sans KR'" }}>비밀번호를 변경하시겠습니까?</p>}
           <input type="password" ref={password} placeholder="새 비밀번호" disabled hidden />
         </div>
         <div className={formStyle["form-field"]}>
@@ -219,7 +219,6 @@ export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
   const client = await clientPromise;
   const extraUser = await client.db('webfront').collection('user').findOne({ _id: user.id })
 
-  console.log("user:", user);
   return { props: { user, bmr: extraUser?.bmr ? extraUser.bmr : null, type: extraUser?.type } };
 
 }

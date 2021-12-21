@@ -96,7 +96,6 @@ const Join = ({ email, type }: { email: string, type: string }) => {
 
 
 export const getServerSideProps: GetServerSideProps<any> = async (ctx) => {
-  console.log(ctx.query)
   if (!ctx.req.cookies || !ctx.query.type || !ctx.query.email) ctx.res.writeHead(302, {
     Location: "/user/login",
   }).end(); // Oauth 검증을 받은 cookie를 들고 있지 않을 경우;(Google의 경우 remember-me)

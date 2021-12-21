@@ -1,3 +1,4 @@
+// components
 import Review from "./Review";
 
 const Reviews = ({ reviews, onDelete }) => {

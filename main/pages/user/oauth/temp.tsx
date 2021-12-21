@@ -1,8 +1,5 @@
 import { useRouter } from 'next/router'
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
-import { BACKGROUND_COLOR, MIDDLE_COLOR } from '../../../constants';
-import AppIcon from '../../../public/static/logos/logo04.png'
-import Image from 'next/dist/client/image';
+import React, { useEffect, useState } from 'react'
 import Loading from '../../../components/main/Loading';
 const Temp = () => {
   const router = useRouter();

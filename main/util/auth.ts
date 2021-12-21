@@ -19,7 +19,6 @@ export const authenticated =
     } catch (error) {
       // token이 없거나 유효하지 않은 경우
       // 401 status : 인증되지 않은 회원
-      console.log(error);
       res.status(401).json({ status: "no auth" });
     }
   };
@@ -40,7 +39,6 @@ export const getUserOrRedirect = async (
     return user;
   } catch (error) {
     // 토큰 인증이 실패할 경우 redirect
-    console.log(error);
     ctx.res.writeHead(302, {
       Location: "/user/login",
     });
@@ -141,6 +139,6 @@ const createOAuthBuffer = (
   });
 
   const bufferedString = dataBuffer.join("");
-  const splittedBuffer = bufferedString.substr(0, bufferedString.length - 1); // 끝의 & 문자 제거
+  const splittedBuffer = bufferedString.substring(0, bufferedString.length - 1); // 끝의 & 문자 제거
   return splittedBuffer;
 };

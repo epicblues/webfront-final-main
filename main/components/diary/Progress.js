@@ -1,14 +1,18 @@
 import React from "react";
+// react-minimal-pie-chart
 import { PieChart } from "react-minimal-pie-chart";
+// react-icons
 import { AiOutlineFire } from "react-icons/ai";
+// css
+import MainStyles from '../../styles/diary/Main.module.css';
 
 const Progress = ({ done, max }) => {
   const percent = `${((done / max) * 100).toFixed(0)}`;
   return (
-    <div className='progress'>
-    <AiOutlineFire className='icon' />
+    <div className={MainStyles.progress}>
+    <AiOutlineFire className={MainStyles.icon} />
     <PieChart
-      className='donut-chart'
+      className={MainStyles.donutChart}
       data={[
         {
           value: done,

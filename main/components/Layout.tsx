@@ -15,12 +15,10 @@ const Layout: FunctionComponent<{ pageProps: any }> = ({ children, pageProps }) 
   const [menuModal, setMenuModal] = useState(false)
   const [loading, setLoading, LoadingCircle] = pageProps.loadingProps as LoadingProps;
 
-
-
   return (
     // 모든 페이지에 적용될 레이아웃 디자인 (Header Or Footer)
     <>
-      <div style={{ marginTop: '3vh', paddingBottom: '70px', }} onScroll={e => console.log(e)}>
+      <div style={{ marginTop: '3vh', paddingBottom: '70px', }} >
         {children}
       </div>
 

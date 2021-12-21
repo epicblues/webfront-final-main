@@ -41,9 +41,6 @@ const Loading = () => {
   const loadingTheme = useRef() as MutableRefObject<HTMLDivElement>
   return (
     <div className={mainStyle.loadingTheme} ref={loadingTheme}>
-      {/* <div className={mainStyle.loadingDots} />
-      <div className={mainStyle.loadingDots} />
-      <div className={mainStyle.loadingDots} /> */}
       <div className={mainStyle.loadingCircle} />
       <div className={mainStyle.loadingComment}>{comment}</div>
       <Image src={image} alt="loading-theme" />
