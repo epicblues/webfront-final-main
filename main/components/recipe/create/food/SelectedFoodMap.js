@@ -59,7 +59,7 @@ const SelectedFoodMap = ({
                   </div>
                   <div className={modalAddFoodStyles.onMeasuringModal}>
                     <p onClick={() => handleSetIsMeasuringModalVisible(true)}>
-                      <i className="question icon"></i>계량팁
+                      계량팁
                     </p>
                   </div>
                 </div>

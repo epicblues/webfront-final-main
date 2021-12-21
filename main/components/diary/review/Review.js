@@ -1,5 +1,6 @@
 import "semantic-ui-css/semantic.min.css";
 import { BiX } from "react-icons/bi";
+// import TimeStamp from "./TimeStamp";
 
 const Review = ({ review, onDelete, onToggle }) => {
   return (
@@ -17,6 +18,7 @@ const Review = ({ review, onDelete, onToggle }) => {
             }}
       >
         <p>
+          
           {review.text}
           {""}
         </p>

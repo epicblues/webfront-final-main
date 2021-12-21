@@ -67,43 +67,70 @@
   height: 100vh;
 }
 
-@keyframes popUp {
-  from {
-    transform: translateY(0%);
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 #f07777;
   }
-  50% {
-    transform: translateY(-2vh);
+  70% {
+      -webkit-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
   }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
 
-  to {
-    transform: translateY(0%);
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 #f07777;
+    box-shadow: 0 0 0 0 #f07777;
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
   }
 }
 
 .shortNav {
   position: fixed;
-  width: 100%;
-  height: 250px;
-  bottom: 10vh;
+  top: 0;
   left: 0;
-  margin: 0 auto;
-  /* transition: all 4s; */
-  animation: popUp 1s;
-  animation-iteration-count: 2;
   z-index: 20;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 30vh 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
 .shortNav p {
   text-align: center;
   font: normal 400 1.2rem "Noto Sans KR";
   color: #fff;
-  margin-bottom: 2rem;
 }
 
-.shortImg {
+.pulse {
+  margin: 0 45%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.pulse:hover {
+  animation: none;
+}
+
+.tab {
   margin: 0 auto;
-  width: 58px;
-  height: 130px;
-  background: url(../../public/pointing_down.png) no-repeat center top / 100%;
+  width: 51px;
+  height: 72px;
+  background: url(../../public/finger_icon.png) no-repeat center top / 100%;
 }
 
 .shortBack {
@@ -112,7 +139,7 @@
   height: 100vh;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7);
   transition: 1s all;
 }
 
@@ -237,6 +264,7 @@
   background: white;
   font-weight: 700;
   border-radius: 20%;
+  padding-left: 3%;
 }
 
 .foodName {

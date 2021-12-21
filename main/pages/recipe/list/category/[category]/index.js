@@ -60,12 +60,10 @@ const Index = ({ user, filteredRecipes, category }) => {
       `/api/recipe/infiniteScroll/counter?category=${category}&recipeCounter=` +
         recipeCounter
     );
-    console.log(data);
     if (data.length === 0) {
       setHasMore(false);
     } else {
       setRecipeList([...recipeList, ...data]);
-      console.log("ONSCROLL!");
       setRecipeCounter(recipeCounter + 4);
     }
   }, 500);
