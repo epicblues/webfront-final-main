@@ -20,8 +20,9 @@ const ShortNav: React.FC<Props> = () => {
   return (
     <>
       <div className={mainStyle.shortNav} ref={nav}>
-        <p>버튼을 클릭해서<br/>컨텐츠를 작성해보세요!</p>
-        <div className={mainStyle.shortImg}></div>
+        <p>버튼을 클릭해서<br/>컨텐츠를 작성해보세요!</p>        
+        <div className={mainStyle.pulse}></div>
+        <div className={mainStyle.tab}></div>
       </div>
       <div className={mainStyle.shortBack} ref={back} />
     </>

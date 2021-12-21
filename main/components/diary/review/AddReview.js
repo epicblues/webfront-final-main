@@ -1,6 +1,7 @@
 import { useState,useRef } from "react";
 import PickDate from "../PickDate";
 import MultiBtn from "../meal/MultiBtn";
+// import TimeStamp from "./TimeStamp";
 import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const AddReview = ({ onAdd, setShow, show, diary, setDiary }) => {
@@ -25,7 +26,7 @@ const AddReview = ({ onAdd, setShow, show, diary, setDiary }) => {
           <MultiBtn
             color={text.length === 0 ? "#a0a0a0" : "#02b0b0"}
             text={text.length === 0 ? "취소" : "완료"}
-            onClick={(e) =>{onSubmit(e); setText('')}}  
+            onClick={(e) =>{onSubmit(e); setText('')}}
           />
           <PickDate diary={diary} setDiary={setDiary} />
         </div>
