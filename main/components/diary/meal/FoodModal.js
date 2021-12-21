@@ -1,7 +1,10 @@
 import React, { useRef, useState } from "react";
-import { Button, Header, Modal } from "semantic-ui-react";
-import MealStyles from '../../../styles/diary/Meal.module.css';
+// semantic-ui
+import { Modal } from "semantic-ui-react";
+// react-icons
 import { BiSad, BiPlusCircle, BiCheckCircle } from "react-icons/bi";
+// css
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const FoodModal = ({ value, index, handleModal, addToCart, open }) => {
   const inputRef = useRef();

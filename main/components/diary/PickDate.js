@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { getDateId, returnIdToDate } from "../../util/date";
+import axios from "axios";
+// react-datepicker
 import DatePicker, { registerLocale } from "react-datepicker";
 import ko from "date-fns/locale/ko";
 registerLocale("ko", { ...ko, options: { ...ko.options, weekStartsOn: 1 } }); // 주시작일 - 일요일:0 월요일:1
-import "react-datepicker/dist/react-datepicker.css";
+// react-icons
 import { AiOutlineCalendar } from "react-icons/ai";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
-import { getDateId, returnIdToDate } from "../../util/date";
-import axios from "axios";
-import { useRouter } from "next/router";
+// css
+import "react-datepicker/dist/react-datepicker.css";
 
 const PickDate = ({ diary, setDiary, setLoading }) => {
   // Portal Version

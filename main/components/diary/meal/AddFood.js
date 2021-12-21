@@ -1,16 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { postStaticAxios } from "../../../util/axios";
 import { getDateId } from "../../../util/date";
-
+// components
 import Products from "./Products";
 import Cart from "./Cart";
 import LookupMeal from "./LookupMeal";
 import MultiBtn from "../meal/MultiBtn";
-
-import MealStyles from '../../../styles/diary/Meal.module.css';
-import { BiListUl } from "react-icons/bi";
+// react-icons
 import { AiOutlineUnorderedList } from "react-icons/ai";
+// css
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const mealType = ["아침", "점심", "저녁", "간식"];
 export const [PAGE_PRODUCTS, PAGE_CART] = ["products", "cart"];

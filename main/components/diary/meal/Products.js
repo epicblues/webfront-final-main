@@ -1,12 +1,15 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import { debounce } from "../../../util/axios";
+// components
 import RecipeModal from "./RecipeModal";
 import FoodModal from "./FoodModal";
-import MealStyles from '../../../styles/diary/Meal.module.css';
+// react-icons
 import { BiDish, BiSearch } from "react-icons/bi";
 import { IoNutritionOutline } from "react-icons/io5";
+// css
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
-import { debounce } from "../../../util/axios";
 
 export default function Products({ diary, setDiary, type, }) {
   const inputRef = useRef();

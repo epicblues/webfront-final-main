@@ -1,8 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+// components
 import Dropdown from "./Dropdown";
 import Progress from "./Progress";
+// react-icons
 import { BiCube, BiCylinder, BiPyramid } from "react-icons/bi";
+// css
+import MainStyles from '../../styles/diary/Main.module.css';
 
 const FinalTotalSum = ({ diary, user, }) => {
   function getTotalNutrients() {
@@ -93,21 +96,14 @@ const FinalTotalSum = ({ diary, user, }) => {
   });
 
   return (
-    <div className='final-total-wrap'>
-        <div className='left-side'>
-        <Dropdown
-                  selected={selected}
-                  setSelected={setSelected}
-        />
-        <Progress
-                  done={finalTotalSum.kcal}
-                  max={managingDatas[selected].kcal}
-        />
+    <div className={MainStyles.finalTotalWrap}>
+        <div className={MainStyles.leftSide}>
+          <Dropdown selected={selected} setSelected={setSelected} />
+          <Progress done={finalTotalSum.kcal} max={managingDatas[selected].kcal} />
         </div>
 
-        <div className='final-nutrition-total'>
+        <div className={MainStyles.finalNutritionTotal}>
           <div>
-            {/* <img alt='탄수화물' src='/carbs.png' /> */}
             <BiCube size='1.6rem' />
             <p>
               <span>{finalTotalSum.carbs}</span> / {managingDatas[selected].carbs} g
@@ -115,7 +111,6 @@ const FinalTotalSum = ({ diary, user, }) => {
           </div>
 
           <div>
-            {/* <img alt='단백질' src='/protein.png' /> */}
             <BiCylinder size='1.6rem' />
             <p>
               <span>{finalTotalSum.prot}</span> / {managingDatas[selected].prot} g
@@ -123,13 +118,12 @@ const FinalTotalSum = ({ diary, user, }) => {
           </div>
 
           <div>
-            {/* <img alt='지방' src='/fats.png' /> */}
             <BiPyramid size='1.6rem' />
             <p>
               <span>{finalTotalSum.fat}</span> / {managingDatas[selected].fat} g
             </p>
           </div>
-        </div>
+        </div>     
     </div>
   );
 };

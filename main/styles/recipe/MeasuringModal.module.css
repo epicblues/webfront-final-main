@@ -11,7 +11,7 @@
     top: 45%;
     padding: 1rem;
     transform: translate(-50%, -50%);
-    z-index: 4;
+    z-index: 5;
     border-radius: 0.6rem;
     display: grid;
     grid-template-rows: 55% 30% 15%;
@@ -256,7 +256,7 @@
     top: 45%;
     padding: 1rem;
     transform: translate(-50%, -50%);
-    z-index: 4;
+    z-index: 5;
     border-radius: 0.6rem;
     display: grid;
     grid-template-rows: 55% 30% 15%;
@@ -494,7 +494,7 @@
     top: 45%;
     padding: 1rem;
     transform: translate(-50%, -50%);
-    z-index: 4;
+    z-index: 5;
     border-radius: 0.6rem;
     display: grid;
     grid-template-rows: 55% 30% 15%;
@@ -733,7 +733,7 @@
     top: 45%;
     padding: 1rem;
     transform: translate(-50%, -50%);
-    z-index: 4;
+    z-index: 5;
     border-radius: 0.6rem;
     display: grid;
     grid-template-rows: 55% 30% 15%;
