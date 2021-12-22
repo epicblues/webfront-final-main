@@ -1,10 +1,13 @@
+// DislikeButtonCard.tsx
+// recipe/card 내부에서 사용되는 DislikeButton
+
 import React, { MouseEventHandler } from 'react'
 import { patchStaticAxios, postStaticAxios } from '../../../util/axios'
 import likeButtonStyles from '../../../styles/main/LikeButton.module.css'
 
 
 // 좋아요 취소 버튼 (같은 api 주소 하지만 PATCH 메소드를 사용한다.)
-const DislikeButtonSmall = ({ recipe, token, setRecipeData,  }: any) => {
+const DislikeButtonCard = ({ recipe, token, setRecipeData,  }: any) => {
 
     const handleClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
       const { data } = await patchStaticAxios("/api/recipe/like?id=" + recipe._id, token) // patch 지만 데이터가 필요 없기 떄문에 빈객체
@@ -23,4 +26,4 @@ const DislikeButtonSmall = ({ recipe, token, setRecipeData,  }: any) => {
     )
 }
 
-export default DislikeButtonSmall;
+export default DislikeButtonCard;

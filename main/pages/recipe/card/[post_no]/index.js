@@ -9,8 +9,8 @@ import ModalNutrition from "../../../../components/recipe/card/ModalNutrition";
 import { useRouter } from "next/router";
 
 import cardStyles from "../../../../styles/recipe/Card.module.css";
-import LikeButtonSmall from "../../../../components/recipe/card/LikeButtonSmall";
-import DislikeButtonSmall from "../../../../components/recipe/card/DislikeButtonSmall";
+import LikeButtonCard from "../../../../components/recipe/card/LikeButtonCard";
+import DislikeButtonCard from "../../../../components/recipe/card/DislikeButtonCard";
 
 const Index = ({ user, recipe }) => {
   const router = useRouter();
@@ -158,14 +158,14 @@ const Index = ({ user, recipe }) => {
           </div>
           <div className={cardStyles.likesWrapper}>
             {recipeData.likes.includes(user.id) === true ? (
-              <DislikeButtonSmall
+              <DislikeButtonCard
                 setRecipeData={setRecipeData}
                 token={user.token}
                 user={user}
                 recipe={recipeData}
               />
             ) : (
-              <LikeButtonSmall
+              <LikeButtonCard
                 setRecipeData={setRecipeData}
                 token={user.token}
                 user={user}

@@ -45,15 +45,8 @@ const Index = ({ challenges, user }) => {
     <>
       <div style={{ margin: "10px 0" }}>
         <div className={ChallengeStyle.header2}>
-          <Icon
-            name="angle double left"
-            size="large"
-            className={ImageStyle.back}
-            onClick={() => router.back()}
-          />
           <Search setChallenges={setParticipatedChallenges} />
           <Navbar currentURL={"/challenge"} />
-          <h2 className={ChallengeStyle.h2L}>챌린지</h2>
         </div>
 
         <div style={{ marginTop: "40%", marginBottom: "5%" }}>
@@ -74,7 +67,14 @@ const Index = ({ challenges, user }) => {
                 return (
                   <div key={challenge._id}>
                     <>
-                      <div style={{ margin: "5% 0 0 0" }} key={challenge._id}>
+                      <div
+                        style={{
+                          position: "relative",
+                          bottom: "7vh",
+                          margin: "5% 0 0 0",
+                        }}
+                        key={challenge._id}
+                      >
                         <>
                           <Link
                             passHref
@@ -269,7 +269,7 @@ const Index = ({ challenges, user }) => {
                   </div>
                 );
               })}
-              <div style={{ marginTop: "15%" }}>
+              <div style={{ marginTop: "10%" }}>
                 <MainModal
                   challenges={participatedChallenges}
                   title={title}

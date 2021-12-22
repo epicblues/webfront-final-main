@@ -5,7 +5,7 @@ import ImageStyle from "../../../styles/challenge/Input.module.css";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 import { Icon } from "semantic-ui-react";
 
-const Header = () => {
+const Header = ({ title }) => {
   return (
     <div>
       <div className={ChallengeStyle.header2}>
@@ -15,7 +15,7 @@ const Header = () => {
           className={ImageStyle.back}
           onClick={() => router.back()}
         />
-        <h2 className={ChallengeStyle.h2L}>참여중인 챌린지</h2>
+        <h2 className={ChallengeStyle.h2L}>{title}</h2>
       </div>
     </div>
   );

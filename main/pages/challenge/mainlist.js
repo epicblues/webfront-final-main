@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
-import Link from "next/dist/client/link";
+
 //component
 import Navbar from "../../components/challenge/Main/Navbar";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
 import Search from "../../components/challenge/Main/Search";
 //css
-import { Icon } from "semantic-ui-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
+
 import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
 import ImageStyle from "../../styles/challenge/Input.module.css";
 
@@ -38,17 +36,19 @@ const MainList = ({ challenges, user }) => {
         <div>
           <div className={ChallengeStyle.header2}>
             <Search />
-            <Link passHref href={"/challenge"}>
-              <>
-                <FontAwesomeIcon
-                  icon={faAngleDoubleLeft}
-                  className={ImageStyle.image4}
-                />
-              </>
-            </Link>
-            <h2 className={ChallengeStyle.h2C}>챌린지 리스트</h2>
+            <Navbar currentURL={"/challenge/mainlist"} />
           </div>
-          <Navbar currentURL={"/challenge/mainlist"} />
+          <div
+            style={{
+              position: "relative",
+              top: "4vh",
+              display: "flex",
+              justifyContent: "center",
+              font: " normal 600 1.4rem/24px Noto Sans KR",
+            }}
+          >
+            챌린지 리스트
+          </div>
           {challenges.length > 0 ? (
             <ChallengeMainList
               challenges={selectChallenges(challengeIndex)}
