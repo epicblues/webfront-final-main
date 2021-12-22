@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { BiQuestionMark } from 'react-icons/bi';
 import { RankedFood } from '../../pages';
-import cardStyle from '../../styles/main/Main.module.css'
+import mainStyle from '../../styles/main/Main.module.css';
 import FoodRankInfo from './FoodRankInfo';
 import FoodRankModal from './FoodRankModal';
 
@@ -23,7 +23,7 @@ const WordToComponent: React.FC<{
 
   const [showFoodModal, setShowFoodModal] = useState(false);
 
-  const component = wordArray.slice(0, 2).map((value, index) => (<div key={index} className={cardStyle.foodName}>{value}</div>));
+  const component = wordArray.slice(0, 2).map((value, index) => (<div key={index}>{value}</div>));
   return (<div onClick={({ currentTarget: elem }) => {
     if (!showFoodModal) {
 
@@ -51,14 +51,15 @@ const WordToComponent: React.FC<{
 const FoodRank = ({ foodRank }: Props) => {
 
   return (
-    <div className={cardStyle.flex} style={{ flexDirection: 'column' }}>
-      <div className={cardStyle.card} style={{ fontSize: "1.3em", flexDirection: "row" }}>
-        <FoodRankInfo />월간 식단 Top 3
+    <div className={mainStyle.foodRankWrap}>
+      <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center'}}>
+        <FoodRankInfo />
+        <p>월간 식단 TOP 3</p>
       </div>
 
-      <div className={cardStyle.flex} style={{ padding: "10px", borderRadius: "20px", justifyContent: "space-between", fontWeight: 400, fontSize: "0.9em", }}>
+      <div>
         {foodRank.length !== 0 ? foodRank.map(({ name, count, nutrition }, index) => (
-          <div style={{ display: "flex", justifyContent: "center", flexDirection: "column", textAlign: "center", paddingRight: "5px" }} key={name}>
+          <div style={{ display: "flex", justifyContent: 'space-between', textAlign: "center"}} key={name}>
             {<WordToComponent word={name.replace(/,/g, "")} nutrition={nutrition} />}
           </div>
         )) : <div>일지를 더 작성해주세요!</div>}

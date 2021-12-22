@@ -23,6 +23,11 @@ import { ImCancelCircle } from 'react-icons/im'
 import { LoadingProps } from '../hooks';
 import MiniChat from '../components/main/MiniChat';
 import { MdOutlineCancelPresentation } from 'react-icons/md';
+// react-icons
+import { AiOutlineFire } from "react-icons/ai";
+import { BiExit, BiChevronRight, BiHeart, BiStar, BiMessageSquareAdd, BiMessageSquareMinus } from "react-icons/bi";
+import { IoFootstepsOutline } from "react-icons/io5";
+import { FiSettings } from "react-icons/fi";
 
 export interface RankedFood {
   name: string; count: number; nutrition: {
@@ -70,52 +75,86 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
 
   return (
     <div>
-      <div style={{
-        display: "flex", flexDirection: "column", alignItems: "stretch", margin: "1vh", justifyContent: "space-between", "minHeight": "80vh",
-      }}>
-        <div style={FLEXBOX_NORMAL}>
-          < div className={mainStyle.card} style={{ alignItems: "center", justifyContent: "center" }} >
-            <div className={mainStyle.rotate}>
-              <Image src={AppIcon} width="60em" height="60em" alt="요건 다 내꺼 마크" />
+      <div className={mainStyle.reportWrap}>
 
+        <div className={mainStyle.reportHeader}>
+          <div className={mainStyle.headerTop}>
+            <div className={mainStyle.text}>
+              {name} 님 안녕하세요!
             </div>
-            <span>{name} 님 </span>
-            <span>안녕하세요!</span>
-          </div >
-          {bmr && (
-            <div className={mainStyle.card} >
-              <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-between" }}>기초 대사량  <span style={{ color: "red", fontWeight: "bolder" }}>{bmr}kcal</span></div>
-              <div>일일 권장 칼로리  <span style={{ color: "red", fontWeight: "bolder" }}>{activity}kcal</span></div>
-              <div style={{ marginTop: "1rem" }} >
-                <MyContents />
-              </div>
-            </div>
-          )
-          }
-        </div>
-        <div className={mainStyle.flex}>
-
-          <FoodRank foodRank={foodRank} />
-
-          <div className={mainStyle.card} style={{ justifyContent: "space-around", textAlign: "center", alignItems: "center", fontSize: "1.20em" }}>
-            <span>내가 좋아하는</span>
-            <div className={mainStyle.buttonContainer}>
-              <button onClick={() => { setShowLikesChallenge(true) }}><BiTrophy size="1.8rem" /><span>챌린지</span></button>
-              <button onClick={() => { setShowLikesRecipe(true) }}><BiDish size="1.8rem" /><span>레시피</span></button>
-
+            <div className={mainStyle.icon}>
+              <BiExit size='1.5rem' onClick={clickHandler} />
+              <Link passHref href="/user/update">
+                <FiSettings size='1.4rem' onClick={() => { setLoading(true) }} />
+              </Link>
             </div>
           </div>
+        </div >
+        {bmr && (
+          <div className={mainStyle.bmrWrap}>
+            <div className={mainStyle.bmrInfo}>
+              <div>기초 대사량</div>
+              <div className={mainStyle.important}>{bmr}</div>
+            </div>
+            <div className={mainStyle.bmrInfo}>
+              <div>하루 권장량</div>
+              <div className={mainStyle.important}>{activity}</div>
+            </div>
+          </div>
+        )
+        }
+
+        <div className={mainStyle.contentsWrap}>
+          <div className={mainStyle.contentsList}>
+            <div className={mainStyle.contentsTitle}>
+              <BiDish size="1.55rem" style={{ margin: '0 auto' }} />
+              <p>작성 레시피</p>
+            </div>
+          </div>
+
+          <div className={mainStyle.contentsList} onClick={() => { setShowLikesRecipe(true) }}>
+            <div className={mainStyle.contentsTitle}>
+              <BiHeart size="1.5rem" style={{ margin: '0 auto' }} />
+              <p>찜한 레시피</p>
+            </div>
+          </div>
+
+          <div className={mainStyle.contentsList}>
+            <div className={mainStyle.contentsTitle}>
+              <BiTrophy size="1.5rem" style={{ margin: '0 auto' }} />
+              <p>참여 챌린지</p>
+            </div>
+          </div>
+
+          <div className={mainStyle.contentsList} onClick={() => { setShowLikesChallenge(true) }}>
+            <div className={mainStyle.contentsTitle}>
+              <BiStar size="1.5rem" style={{ margin: '0 auto' }} />
+              <p>관심 챌린지</p>
+            </div>
+          </div>
+
+          {/* <MyContents /> */}
         </div>
 
+        <FoodRank foodRank={foodRank} />
 
-        <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around" }}>
-          <button className="ui button facebook" onClick={clickHandler}>Logout</button>
-          <Link passHref href="/user/update">
-            <Button color="google plus" onClick={() => { setLoading(true) }}>회원 정보 수정</Button>
-          </Link>
-        </div>
 
       </div>
+      <div>
+
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: "center" }}>
+          <div onClick={() => { setLargeMode(!largeMode) }}>
+            {largeMode ? <BiMessageSquareMinus size="1.6rem" /> : <BiMessageSquareAdd size="1.6rem" />}
+          </div>
+        </div>
+        <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
+
+
+
+      </div>
+
+
+
       <div className={mainStyle.sideBar} style={{ left: showLikesChallenge ? "50vw" : "100vw" }}>
         <div onClick={() => { setShowLikesChallenge(false) }}>
           <button style={{ justifySelf: "", border: "0px", paddingBottom: "3px", background: "whitesmoke" }} onClick={() => { setShowLikesChallenge(false) }}><BiTrophy size="3rem" /></button>
