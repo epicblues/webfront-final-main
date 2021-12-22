@@ -1,5 +1,3 @@
-// components
-import TimeStamp from "./TimeStamp";
 // react-icons
 import { BiX } from "react-icons/bi";
 
@@ -19,7 +17,6 @@ const Review = ({ review, onDelete, onToggle }) => {
             }}
       >
         <p>
-          <TimeStamp />
           {review.text}
           {""}
         </p>
