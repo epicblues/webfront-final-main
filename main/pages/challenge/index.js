@@ -43,7 +43,7 @@ const Index = ({ challenges, user }) => {
 
   return (
     <>
-      <div style={{ margin: "10px 0" }}>
+      <div style={{ padding: "1rem" }}>
         <div className={ChallengeStyle.header2}>
           <Search />
           <Navbar currentURL={"/challenge"} />

@@ -46,7 +46,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
         marginBottom: "0px",
       }}
     >
-      <div className="container" style={{ width: "100%" }}>
+      <div className="container" style={{ width: "100%", height: "50%" }}>
         {error && (
           <p
             className="errorMsg"
@@ -63,6 +63,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
           </p>
         )}
         <h3 className={ChallengeStyle.h2}>챌린지를 설명할 사진 추가</h3>
+
         <div
           className="imagePreview ui rounded image"
           style={{
@@ -72,7 +73,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                     challenge.imageBuffer ||
                     process.env.NEXT_PUBLIC_STATIC_SERVER_URL + challenge.image
                   }") no-repeat center/cover`
-                : 'url("/empty.jpg") no-repeat center/cover',
+                : null,
             width: "100%",
             height: "20vh",
             display: "flex",
@@ -82,6 +83,8 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             textAlign: "center",
             color: "white",
             margin: "20px 0",
+            borderRadius: "0.3rem",
+            backgroundColor: "#EAEAEA",
             boxShadow: "1px 1px 3px 1px #dadce0",
           }}
         >
@@ -98,6 +101,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                 />
                 <Icon name="camera" size="big" color="black" />
               </label>
+              <span className={ChallengeStyle.span}>사진 추가</span>
             </>
           )}
           {!challenge.image || (

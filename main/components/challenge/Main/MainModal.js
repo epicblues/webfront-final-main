@@ -121,7 +121,7 @@ const MainModal = ({ challenges, title, head }) => {
                                   } else {
                                     realProgressBar.value = result;
                                     realProgressBar.max =
-                                      +challenge.recipe.uploadCount;
+                                      challenge.recipe.uploadCount;
                                     const span =
                                       realProgressBar.nextElementSibling;
                                     span.innerText =
