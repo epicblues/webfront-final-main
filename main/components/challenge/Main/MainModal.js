@@ -55,16 +55,19 @@ const MainModal = ({ challenges, title, head }) => {
                               passHref
                               href={"/challenge/list/" + challenge._id}
                             >
-                              <div className={MainStyle.ImageSpace}>
-                                <Image
-                                  className={MainStyle.image}
-                                  src={
-                                    process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                                    challenge.image
-                                  }
-                                  layout="fill"
-                                />
-                              </div>
+                              <>
+                                <div className={MainStyle.ImageSpace}>
+                                  <Image
+                                    className={MainStyle.image}
+                                    src={
+                                      process.env
+                                        .NEXT_PUBLIC_STATIC_SERVER_URL +
+                                      challenge.image
+                                    }
+                                    layout="fill"
+                                  />
+                                </div>
+                              </>
                             </Link>
                           </div>
                           <DateContent challenges={challenge} />
@@ -86,7 +89,7 @@ const MainModal = ({ challenges, title, head }) => {
                                 "/api/challenge/validate",
                                 challenge
                               );
-                              console.log(result);
+
                               const button = event.target;
                               button.disabled = true;
                               if (message === "failed") {
@@ -97,7 +100,7 @@ const MainModal = ({ challenges, title, head }) => {
                                   (button) => {
                                     button.style.display = "none";
                                   },
-                                  2000,
+                                  100,
                                   button
                                 );
                                 const progressBar = button.nextElementSibling;
@@ -115,7 +118,7 @@ const MainModal = ({ challenges, title, head }) => {
                                       realProgressBar.nextElementSibling;
                                     span.innerText =
                                       Math.round(
-                                        (result / +challenge.diet.condition) *
+                                        (result / challenge.diet.condition) *
                                           100
                                       ) + "%";
                                   } else {
@@ -127,31 +130,39 @@ const MainModal = ({ challenges, title, head }) => {
                                     span.innerText =
                                       Math.round(
                                         (result /
-                                          +challenge.recipe.uploadCount) *
+                                          challenge.recipe.uploadCount) *
                                           100
                                       ) + "%";
                                   }
-                                } else {
-                                  //성공했다.
-                                  button.textContent = "성공!";
-                                  button.style.backgroundColor = "blue";
-
-                                  setInterval(
-                                    (button) => {
-                                      button.style.display = "none";
-                                    },
-                                    2000,
-                                    button
-                                  );
                                 }
+                              } else {
+                                //성공했다.
+                                button.textContent = "성공!";
+                                button.style.backgroundColor = "blue";
+
+                                setInterval(
+                                  (button) => {
+                                    button.style.display = "none";
+                                  },
+                                  1000,
+                                  button
+                                );
+                                const span = button.nextElementSibling;
+                                span.textContent = "챌린지 달성";
+                                span.style.backgroundColor = "blue";
                               }
                             }}
                           >
                             결과 확인
                           </button>
-                        </div>
-                        <div style={{ display: "none" }}>
-                          <ProgressBar />
+                          <div
+                            style={{
+                              display: "none",
+                            }}
+                          >
+                            <ProgressBar />
+                            <span></span>
+                          </div>
                         </div>
                       </div>
                     </>

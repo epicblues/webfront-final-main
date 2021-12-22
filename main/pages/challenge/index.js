@@ -43,7 +43,7 @@ const Index = ({ challenges, user }) => {
 
   return (
     <>
-      <div style={{ padding: "1rem" }}>
+      <div style={{ padding: "1rem  " }}>
         <div className={ChallengeStyle.header2}>
           <Search />
           <Navbar currentURL={"/challenge"} />
@@ -71,7 +71,7 @@ const Index = ({ challenges, user }) => {
                         style={{
                           position: "relative",
                           bottom: "7vh",
-                          margin: "5% 0 0 0",
+                          margin: "1rem 0 0 0",
                         }}
                         key={challenge._id}
                       >
@@ -91,7 +91,7 @@ const Index = ({ challenges, user }) => {
                                 style={{
                                   backgroundColor: "gray",
                                   width: "50px",
-                                  left: "30%",
+                                  left: "33%",
                                   top: "10%",
                                   position: "absolute",
                                   textAlign: "right",
@@ -118,7 +118,7 @@ const Index = ({ challenges, user }) => {
                                   style={{
                                     zIndex: "0",
                                     borderRadius: "5%",
-                                    width: "40%",
+                                    width: "45%",
                                   }}
                                   src={
                                     process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
@@ -155,28 +155,32 @@ const Index = ({ challenges, user }) => {
                               passHref
                               href={"/challenge/list/" + challenge._id}
                             >
-                              <li className={MainStyle.mainLi}>
-                                종료일:
-                                {new Date(challenge.endDate).getMonth() +
-                                  1 +
-                                  "월" +
-                                  new Date(challenge.endDate).getDate() +
-                                  "일"}
-                              </li>
+                              <>
+                                <li className={MainStyle.mainLi}>
+                                  종료일:
+                                  {new Date(challenge.endDate).getMonth() +
+                                    1 +
+                                    "월" +
+                                    new Date(challenge.endDate).getDate() +
+                                    "일"}
+                                </li>
+                              </>
                             </Link>
                             <Link
                               passHref
                               href={"/challenge/list/" + challenge._id}
                             >
-                              <li className={MainStyle.mainLi}>
-                                남은 일수:
-                                {Math.ceil(
-                                  (new Date(challenge.endDate).getTime() -
-                                    new Date().getTime()) /
-                                    (1000 * 60 * 60 * 24)
-                                )}
-                                일
-                              </li>
+                              <>
+                                <li className={MainStyle.mainLi}>
+                                  남은 일수:
+                                  {Math.ceil(
+                                    (new Date(challenge.endDate).getTime() -
+                                      new Date().getTime()) /
+                                      (1000 * 60 * 60 * 24)
+                                  )}
+                                  일
+                                </li>
+                              </>
                             </Link>
                           </ul>
                         </>
@@ -197,7 +201,7 @@ const Index = ({ challenges, user }) => {
                                 "/api/challenge/validate",
                                 challenge
                               );
-                              console.log(result);
+
                               const button = event.target;
 
                               button.disabled = true;
@@ -255,6 +259,10 @@ const Index = ({ challenges, user }) => {
                                   100,
                                   button
                                 );
+                                const div = button.nextElementSibling;
+
+                                div.textContent = "챌린지 달성!";
+                                div.style.backgroundColor = "blue";
                               }
                             }}
                           >

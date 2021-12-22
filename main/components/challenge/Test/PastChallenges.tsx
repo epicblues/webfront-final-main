@@ -83,7 +83,7 @@ const PastChallenges: React.FC<Props> = () => {
     const offsetHeight = Math.ceil(documentElement.offsetHeight);
     // 전체 문서가 viewport 기준으로 얼마만큼 보여지고 있는가
 
-    if (scrollHeight <= scrollY + offsetHeight ) {
+    if (scrollHeight <= scrollY + offsetHeight + 60) {
 
       window.removeEventListener('scroll', handleScroll)
       try {
