@@ -39,17 +39,19 @@ const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: ChatProps) =>
 
   return (
     <>
-      <form onSubmit={(e) => { e.preventDefault() }} style={{ border: "2px solid", borderRadius: "20px", borderColor: MIDDLE_COLOR, padding: "6px", }} >
-        <div style={{ display: 'flex', flexDirection: "column", overflowY: "scroll", height: largeMode ? "16vh" : "40px", fontSize: '0.85em', transition: "all 500ms" }} ref={chatRoom} >
+      <form onSubmit={(e) => { e.preventDefault() }} style={{ padding: "6px", }} >
+        <div style={{ display: 'flex', flexDirection: "column", height: largeMode ? "50vh" : "40px", overflowY: "scroll", overflowX: "hidden", fontSize: '1em', transition: "all 500ms" }} ref={chatRoom} >
           {liveData.map((data, index) =>
           (<div style={{ display: 'flex', justifyContent: "space-between", transition: "all 500ms", color: "black" }} key={index}>
-            <span style={{ fontWeight: data.name === "Admin" ? 700 : 400, borderRadius: "5px", padding: "0px 2px" }}>{data.name} : {data.message}</span>
+            <span style={{ fontWeight: data.name === "Admin" ? 700 : 400, borderRadius: "5px", padding: "2px 2px", width: "100vw" }}>{data.name} : {data.message}</span>
           </div>)
           )}
         </div>
-        <LoadingCircle style={{ position: "relative", left: "40%" }} />
-        <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around", padding: "5px", display: largeMode ? "flex" : "none", }}>
-          <input type="text" placeholder="메시지 입력!" style={{ borderColor: MIDDLE_COLOR, height: "2em", borderRadius: "10px", padding: "5px" }} />
+        {/* <LoadingCircle style={{ position: "relative", left: "40%" }} /> */}
+
+        {/* 입력 컴포넌트 */}
+        <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around", padding: "5px", display: largeMode ? "flex" : "none", fontSize: "1.2rem", paddingTop: "15px", paddingRight: "15px" }}>
+          <input type="text" placeholder="메시지 입력!" style={{ borderColor: MIDDLE_COLOR, height: "2em", width: "60vw", borderRadius: "10px", padding: "5px" }} maxLength={30} />
           <button onClick={(event) => {
             const $btn = event.currentTarget;
             const $input = $btn.previousElementSibling as HTMLInputElement;
@@ -67,7 +69,7 @@ const Chat = ({ liveData, socket, name, largeMode, setLargeMode }: ChatProps) =>
             socket?.emit('chat', { name, message: $input.value });
             $input.value = '';
 
-          }} style={{ border: 0, background: MAIN_COLOR, borderRadius: "10px", padding: "5px 10px", fontWeight: 700, color: "whitesmoke" }}>전송</button>
+          }} style={{ border: 0, background: MAIN_COLOR, borderRadius: "10px", padding: "5px 10px", fontWeight: 700, color: "whitesmoke", width: "15vw" }}>전송</button>
         </div>
 
       </form >

@@ -18,8 +18,11 @@ import LikeRecipe from '../components/user/likes/LikeRecipe';
 import mainStyle from '../styles/main/Main.module.css';
 import ShortNav from '../components/main/ShortNav';
 import MyContents from '../components/main/MyContents';
-import { BiDish, BiFolderMinus, BiFolderPlus, BiTrophy } from 'react-icons/bi'
+import { BiChat, BiDish, BiFolderMinus, BiFolderPlus, BiTrophy } from 'react-icons/bi'
+import { ImCancelCircle } from 'react-icons/im'
 import { LoadingProps } from '../hooks';
+import MiniChat from '../components/main/MiniChat';
+import { MdOutlineCancelPresentation } from 'react-icons/md';
 
 export interface RankedFood {
   name: string; count: number; nutrition: {
@@ -104,12 +107,6 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
           </div>
         </div>
 
-        <div className={mainStyle.card} style={{ fontSize: "1em", }}>
-          <span style={{ fontSize: "1.3em", ...FLEXBOX_NORMAL, alignItems: "center" }}>채팅 / 실시간 현황<div onClick={() => { setLargeMode(!largeMode) }} style={{ paddingBottom: "0.1rem" }}>
-            {largeMode ? <BiFolderMinus size="2.5rem" /> : <BiFolderPlus size="2.5rem" />}</div></span>
-          <br />
-          <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
-        </div>
 
         <div style={{ ...FLEXBOX_NORMAL, justifyContent: "space-around" }}>
           <button className="ui button facebook" onClick={clickHandler}>Logout</button>
@@ -140,8 +137,15 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
       }}>
 
       </div>)}
+      <MiniChat liveData={liveData} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
       <ShortNav />
 
+      <div className={mainStyle.fullChat} style={{ fontSize: "1em", transform: `translateX(${largeMode ? -100 : 0}vw)` }}>
+        <span style={{ fontSize: "1.3em", ...FLEXBOX_NORMAL, alignItems: "center", paddingTop: "1rem", fontWeight: 700 }}>채팅 / 실시간 현황<div onClick={() => { setLargeMode(!largeMode) }} style={{ paddingBottom: "0.1rem", borderRadius: "50%", background: "#f36666", padding: "0.6vh" }}>
+          <MdOutlineCancelPresentation size="3rem" /></div></span>
+        <br />
+        <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
+      </div>
     </div >
   )
 }
