@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
+import ButtonStyle from "../../../styles/challenge/Button.module.css";
 import { postStaticAxios } from "../../../util/axios";
 
 const ChallengeJoin = ({ challenge, setChallenge, user }) => {
@@ -24,9 +25,9 @@ const ChallengeJoin = ({ challenge, setChallenge, user }) => {
   };
 
   return (
-    <Button type="submit" color="twitter" onClick={handleJoin}>
+    <button type="submit" className={ButtonStyle.button2} onClick={handleJoin}>
       참가하기
-    </Button>
+    </button>
   );
 };
 

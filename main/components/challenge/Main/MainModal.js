@@ -120,7 +120,6 @@ const MainModal = ({ challenges, title, head }) => {
                                       ) + "%";
                                   } else {
                                     realProgressBar.value = result;
-                                    console.log(typeof result);
                                     realProgressBar.max =
                                       +challenge.recipe.uploadCount;
                                     const span =

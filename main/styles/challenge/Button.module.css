@@ -1,16 +1,11 @@
 .button {
-  background-color: #35a2f4;
-  color: #fff;
+  background-color: #e4685d;
+  color: #ffffff;
   border: 1px;
   border-radius: 0.3rem;
-  width: 100px;
-  height: 30px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-  margin-top: 10px;
-  position: absolute;
+  width: 80%;
+  height: 5vh;
+  font: normal 600 1.2rem/22px "Noto Sans KR";
 }
 .button2 {
   background-color: #e4685d;

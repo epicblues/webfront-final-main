@@ -32,23 +32,13 @@ const MainList = ({ challenges, user }) => {
 
   return (
     <>
-      <div className="container">
+      <div className="container" style={{ margin: "0 1rem" }}>
         <div>
           <div className={ChallengeStyle.header2}>
             <Search />
             <Navbar currentURL={"/challenge/mainlist"} />
           </div>
-          <div
-            style={{
-              position: "relative",
-              top: "4vh",
-              display: "flex",
-              justifyContent: "center",
-              font: " normal 600 1.4rem/24px Noto Sans KR",
-            }}
-          >
-            챌린지 리스트
-          </div>
+          <div className={ChallengeStyle.newTitle}>챌린지 리스트</div>
           {challenges.length > 0 ? (
             <ChallengeMainList
               challenges={selectChallenges(challengeIndex)}

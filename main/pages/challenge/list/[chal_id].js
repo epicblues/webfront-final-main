@@ -242,7 +242,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
                             size="large"
                             onClick={handleClick}
                           />
-                          {challenge.likes.length}
                         </div>
                       ) : (
                         <div style={{ fontSize: "16px" }}>
@@ -252,7 +251,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
                             size="large"
                             onClick={handleDislike}
                           />
-                          {challenge.likes.length}
                         </div>
                       )}
                       <ChallengeCancel
@@ -269,30 +267,55 @@ const ChallengePage = ({ originalChallenge, user }) => {
             <>
               {challenge.type === "diet" ? (
                 <>
-                  <h3>챌린지 조건</h3>
-                  <h3>챌린지 종류: 다이어트</h3>
+                  <div className={DetailStyles.tag}>챌린지 조건</div>
+                  <div className={DetailStyles.content}>
+                    챌린지 종류: 다이어트
+                  </div>
                   {challenge.diet.kind === "plusKcal" ? (
                     <>
-                      <h3>다이어트 종류: 벌크업 </h3>
+                      <div className={DetailStyles.content}>
+                        다이어트 종류: 벌크업{" "}
+                      </div>
                     </>
                   ) : (
                     <>
-                      <h3>다이어트 종류: 컷팅 </h3>
+                      <div className={DetailStyles.content}>
+                        다이어트 종류: 컷팅{" "}
+                      </div>
                     </>
                   )}
-                  <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
-                  <h3>다이어트 완료 조건:{challenge.diet.condition}일</h3>
-                  <h3>참가자 인원:{challenge.participants.length}명</h3>
+                  <div className={DetailStyles.content}>
+                    하루 섭취량:{challenge.diet.dailyCalorie} Kcal
+                  </div>
+                  <div className={DetailStyles.content}>
+                    다이어트 완료 조건:{challenge.diet.condition}일 작성
+                  </div>
+                  <hr className={ChallengeStyles.hr2} />
+                  <div className={DetailStyles.tag}> 챌린지 설명</div>
+                  <div className={DetailStyles.content}>
+                    {challenge.description}
+                  </div>
                 </>
               ) : (
                 <>
-                  <h3>챌린지 조건</h3>
-                  <h3>챌린지 종류: 레시피 </h3>
-                  <h3>{changeRecipeName()}</h3>
-                  <h3>레시피 완료 조건:{challenge.recipe.uploadCount}회</h3>
+                  <div className={DetailStyles.tag}>챌린지 조건</div>
+                  <div className={DetailStyles.content}>
+                    챌린지 종류: 레시피{" "}
+                  </div>
+                  <div className={DetailStyles.content}>
+                    {changeRecipeName()}
+                  </div>
+                  <div className={DetailStyles.content}>
+                    레시피 완료 조건:{challenge.recipe.uploadCount}회 작성
+                  </div>
+                  <hr className={ChallengeStyles.hr2} />
+                  <div className={DetailStyles.tag}> 챌린지 설명</div>
+                  <div className={DetailStyles.content}>
+                    {challenge.description}
+                  </div>
                 </>
               )}
-              <hr />
+
               <footer className={ChallengeStyles.footer}>
                 {challenge.likes.indexOf(user.id) === -1 ? (
                   <div style={{ fontSize: "16px" }}>
@@ -301,7 +324,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
                       size="large"
                       onClick={handleClick}
                     />
-                    {challenge.likes.length}
                   </div>
                 ) : (
                   <div style={{ fontSize: "16px" }}>
@@ -311,7 +333,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
                       size="large"
                       onClick={handleDislike}
                     />
-                    {challenge.likes.length}
                   </div>
                 )}
                 <ChallengeJoin

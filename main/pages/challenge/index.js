@@ -276,7 +276,7 @@ const Index = ({ challenges, user }) => {
                   head={head}
                 />
               </div>
-              <PastChallenges />
+              <PastChallenges participatedChallenges={participatedChallenges} />
             </>
           )}
         </div>
