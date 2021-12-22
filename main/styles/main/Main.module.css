@@ -1,31 +1,98 @@
-.flex {
-  display: flex;
-  justify-content: space-around;
+.reportWrap {
+  padding: 0 1rem;
 }
 
-.card {
+.reportHeader {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* border: solid 1px; */
-  border-radius: 10px;
-  background: whitesmoke;
-  padding: 20px;
-  font-weight: 700;
+  /* border-bottom: solid 1px #ccc; */
+  padding-bottom: 1rem;
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerTop .text {
+  font: normal 800 1.4rem "NanumSquare";
+}
+
+.headerTop .icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bmrWrap {
+  display: flex;
+  background-color: #eee;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.bmrWrap .bmrInfo {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-right: solid 1px #333;
+  font: normal 400 1rem "NanumSquare";
+}
+
+.bmrWrap .bmrInfo:last-child {
+  border-right: none;
+}
+
+.bmrWrap .important {
+  font: normal 800 1rem "NanumSquare";
+  color: #ff5656;
+} 
+
+.foodRankWrap {
+  margin-bottom: 1rem;
+}
+
+.contentsWrap {
+  display: flex;
+  /* box-shadow: 1px 1px 3px 1px #dadce0; */
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 1rem;
+}
+.contentsList {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.contentsTitle {
+  display: flex;
+  margin: 0 auto;
+  /* justify-content: start; */
+  /* align-items: center;*/
+  flex-direction: column;
+}
+
+.contentsTitle p {
+  font: normal 400 0.9rem "Noto Sans KR";
+  margin-top: 0.5rem;
 }
 
 .sideBar {
-  height: 70vh;
+  height: 100vh;
   background-color: whitesmoke;
-  width: 50vw;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  width: 100vw;
   position: fixed;
   left: 100vw;
-  top: 3vh;
+  top: 0;
   transition: all 500ms;
   /* background-color: #eceaea; */
-  border: 2px solid rgb(247, 158, 136);
-  border-radius: 20px 0 0 20px;
-  padding: 0px 20px;
+  /* border: 2px solid rgb(247, 158, 136); */
+  /* border-radius: 20px 0 0 20px; */
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  padding: 0px 1rem;
   overflow-y: scroll;
   scrollbar-width: 0.01px;
   scrollbar-color: black;
