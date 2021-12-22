@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { BiQuestionMark } from 'react-icons/bi';
+import { BiQuestionMark, BiMedal } from 'react-icons/bi';
 import { RankedFood } from '../../pages';
 import mainStyle from '../../styles/main/Main.module.css';
 import FoodRankInfo from './FoodRankInfo';
@@ -22,7 +22,20 @@ const WordToComponent: React.FC<{
   const wordTooLong = wordArray.length > 2;
 
   const [showFoodModal, setShowFoodModal] = useState(false);
-
+  // const medalImg = [
+  //   {
+  //     image:
+  //     "/1st.png",
+  //   },
+  //   {
+  //     image:
+  //     "/2nd.png",
+  //   },
+  //   {
+  //     image:
+  //       "/3rd.png",
+  //   },
+  // ];
   const component = wordArray.slice(0, 2).map((value, index) => (<div key={index}>{value}</div>));
   return (<div onClick={({ currentTarget: elem }) => {
     if (!showFoodModal) {
@@ -52,17 +65,21 @@ const FoodRank = ({ foodRank }: Props) => {
 
   return (
     <div className={mainStyle.foodRankWrap}>
-      <div style={{display: 'flex', justifyContent: 'left', alignItems: 'center'}}>
+      <div className={mainStyle.rankTitle}>
+        <p>많이 먹은 음식 TOP 3</p>
         <FoodRankInfo />
-        <p>월간 식단 TOP 3</p>
       </div>
 
-      <div>
+      <div className={mainStyle.rankList}>
         {foodRank.length !== 0 ? foodRank.map(({ name, count, nutrition }, index) => (
-          <div style={{ display: "flex", justifyContent: 'space-between', textAlign: "center"}} key={name}>
-            {<WordToComponent word={name.replace(/,/g, "")} nutrition={nutrition} />}
+          <div className={mainStyle.rankOrder} key={name}>
+            <div className={mainStyle.rankMedal}></div>
+            {/* <WordToComponent word={name.replace(/,/g, "")} nutrition={nutrition} /> */}
+            <div>{name}</div>
+            <div className={mainStyle.orderCount}>{count}</div>
           </div>
-        )) : <div>일지를 더 작성해주세요!</div>}
+        )) : <div>식단을 기록하면 볼 수 있어요.</div>
+        }
       </div>
     </div>
   )

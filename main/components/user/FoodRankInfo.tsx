@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BsFillQuestionCircleFill } from 'react-icons/bs'
+import { BiDotsVerticalRounded } from 'react-icons/bi'
 import mainStyle from '../../styles/main/Main.module.css'
 const FoodRankInfo = () => {
   const [show, setShow] = useState(false)
@@ -19,9 +19,9 @@ const FoodRankInfo = () => {
 
 
     }}>
-      <BsFillQuestionCircleFill />
+      <BiDotsVerticalRounded />
       {show && <div className={mainStyle.foodRankInfo}>
-        내가 한달 동안 많이 선택한 레시피 / 음식 입니다!
+        한 달 동안 식단에 가장 많이 추가된 레시피 또는 음식 입니다.
       </div>}
     </div>
   )

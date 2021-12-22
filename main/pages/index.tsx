@@ -18,15 +18,11 @@ import LikeRecipe from '../components/user/likes/LikeRecipe';
 import mainStyle from '../styles/main/Main.module.css';
 import ShortNav from '../components/main/ShortNav';
 import MyContents from '../components/main/MyContents';
-import { BiChat, BiDish, BiFolderMinus, BiFolderPlus, BiTrophy } from 'react-icons/bi'
-import { ImCancelCircle } from 'react-icons/im'
 import { LoadingProps } from '../hooks';
 import MiniChat from '../components/main/MiniChat';
-import { MdOutlineCancelPresentation } from 'react-icons/md';
 // react-icons
-import { AiOutlineFire } from "react-icons/ai";
-import { BiExit, BiChevronRight, BiHeart, BiStar, BiMessageSquareAdd, BiMessageSquareMinus } from "react-icons/bi";
-import { IoFootstepsOutline } from "react-icons/io5";
+import { BiChat, BiDish, BiTrophy } from 'react-icons/bi'
+import { BiExit, BiX, BiChevronRight, BiHeart, BiStar } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
 
 export interface RankedFood {
@@ -138,20 +134,8 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
 
         <FoodRank foodRank={foodRank} />
 
-
       </div>
-      <div>
-
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: "center" }}>
-          <div onClick={() => { setLargeMode(!largeMode) }}>
-            {largeMode ? <BiMessageSquareMinus size="1.6rem" /> : <BiMessageSquareAdd size="1.6rem" />}
-          </div>
-        </div>
-        <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
-
-
-
-      </div>
+      
 
 
 
@@ -179,10 +163,11 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
       <MiniChat liveData={liveData} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
       <ShortNav />
 
-      <div className={mainStyle.fullChat} style={{ fontSize: "1em", transform: `translateX(${largeMode ? -100 : 0}vw)` }}>
-        <span style={{ fontSize: "1.3em", ...FLEXBOX_NORMAL, alignItems: "center", paddingTop: "1rem", fontWeight: 700 }}>채팅 / 실시간 현황<div onClick={() => { setLargeMode(!largeMode) }} style={{ paddingBottom: "0.1rem", borderRadius: "50%", background: "#f36666", padding: "0.6vh" }}>
-          <MdOutlineCancelPresentation size="3rem" /></div></span>
-        <br />
+      <div className={mainStyle.fullChat} style={{ transform: `translateX(${largeMode ? -100 : 0}vw)` }}>
+        <div className={mainStyle.chatHeader}>
+          <div>채팅 &amp; 공지</div>
+          <BiX size='2rem' onClick={() => { setLargeMode(!largeMode) }} />
+        </div>
         <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
       </div>
     </div >

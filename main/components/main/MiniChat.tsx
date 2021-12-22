@@ -1,5 +1,7 @@
 import React, { MutableRefObject, useEffect, useRef } from 'react'
-import { BiChat } from 'react-icons/bi'
+import { IoChatbubbleOutline } from "react-icons/io5";
+import { BsChatDots } from "react-icons/bs";
+
 import { Socket } from 'socket.io-client'
 import { LiveData } from '../../models'
 import mainStyle from '../../styles/main/Main.module.css'
@@ -16,15 +18,14 @@ const MiniChat: React.FC<ChatProps> = ({ liveData, name, largeMode, setLargeMode
     if (largeMode) return;
     if (liveData.length !== 0) {
       const newData = liveData[liveData.length - 1];
-      notice.current.innerHTML = `<div>${newData.name}</div> &nbsp; ${newData.message}`;
+      notice.current.innerHTML = `${newData.name}:&nbsp; ${newData.message}`;
       notice.current.style.opacity = '1';
       debounce(() => {
         setTimeout(() => {
           if (!notice.current) return;
           notice.current.style.opacity = '0'
-
         })
-      }, 6000)()
+      }, 6000)
     }
   }, [liveData, largeMode])
   return (
@@ -35,7 +36,7 @@ const MiniChat: React.FC<ChatProps> = ({ liveData, name, largeMode, setLargeMode
 
       </div>
       <div onClick={() => { setLargeMode(!largeMode) }}>
-        <BiChat size={"5vh"} />
+        <BsChatDots size='2rem'/>
       </div>
     </div>
 
