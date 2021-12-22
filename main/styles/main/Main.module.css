@@ -1,31 +1,33 @@
 .flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  
+  
 }
 
 .card {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* border: solid 1px; */
   border-radius: 10px;
   background: whitesmoke;
-  padding: 20px;
-  font-weight: 700;
+  padding: 1rem;
+  font-weight: 700; */
 }
 
 .sideBar {
-  height: 70vh;
+  height: 100vh;
   background-color: whitesmoke;
-  width: 50vw;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  width: 100vw;
   position: fixed;
   left: 100vw;
-  top: 3vh;
+  top: 0;
   transition: all 500ms;
   /* background-color: #eceaea; */
-  border: 2px solid rgb(247, 158, 136);
-  border-radius: 20px 0 0 20px;
-  padding: 0px 20px;
+  /* border: 2px solid rgb(247, 158, 136); */
+  /* border-radius: 20px 0 0 20px; */
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  padding: 0px 1rem;
   overflow-y: scroll;
   scrollbar-width: 0.01px;
   scrollbar-color: black;
