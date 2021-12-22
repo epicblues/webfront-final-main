@@ -19,6 +19,7 @@ const ProgressBar = ({ value, max }) => {
           ? 0
           : Math.round((value / max) * 100)}
       </span>
+      <div></div>
     </div>
   );
 };

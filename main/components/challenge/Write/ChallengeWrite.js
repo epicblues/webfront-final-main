@@ -376,7 +376,7 @@ const ChallengeWrite = ({ user }) => {
         ) : (
           <>
             <Link passHref href="/challenge">
-              <h4 className={ChallengeStyle.h4Mb}>취소</h4>
+              <h4 className={ChallengeStyle.h4Mr}>취소</h4>
             </Link>
           </>
         )}

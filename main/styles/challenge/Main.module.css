@@ -82,11 +82,12 @@
 .trigger {
   position: relative;
   bottom: 3rem;
-  padding: 3% 27vw;
+  padding: 1rem 20%;
   border: 1px solid;
   border-radius: 0.4rem;
   text-align: center;
-  font: normal 500 1.1rem/22px "Noto Sans KR";
+  font: normal 500 1.2rem/24px "Noto Sans KR";
+  margin: 0 10px;
 }
 .h2L {
   margin: 5px 0;

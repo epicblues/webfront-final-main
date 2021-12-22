@@ -4,15 +4,17 @@ import Link from 'next/dist/client/link';
 import { Image } from 'semantic-ui-react';
 import { Challenge } from '../../../models/Challenge';
 import { debounce } from '../../../util/axios';
+
 //css
+import MainStyle from "../../../styles/challenge/Main.module.css"
 import PastStyles from "../../../styles/challenge/Past.module.css"
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css"
+
 interface Props {
   userId?: number
 }
 
 const PastChallenge = (challenge: Challenge ) => (
-  
   <div style={{display:"flex", justifyContent:"center", marginTop:"1rem"}} key={challenge._id}>
     <Link passHref href={"/challenge/list/" + challenge._id}>
     <>    
@@ -22,7 +24,6 @@ const PastChallenge = (challenge: Challenge ) => (
     src={process.env.NEXT_PUBLIC_STATIC_SERVER_URL as string + challenge.image}
     />
     </div>
-    
     <div className={PastStyles.ulDiv}>
       <ul>
       <li style={{font:"normal 600 1.2rem/22px Noto Sans KR"}}> 
@@ -82,7 +83,7 @@ const PastChallenges: React.FC<Props> = () => {
     const offsetHeight = Math.ceil(documentElement.offsetHeight);
     // 전체 문서가 viewport 기준으로 얼마만큼 보여지고 있는가
 
-    if (scrollHeight <= scrollY + offsetHeight ) {
+    if (scrollHeight <= scrollY + offsetHeight + 60) {
 
       window.removeEventListener('scroll', handleScroll)
       try {
@@ -108,10 +109,16 @@ const PastChallenges: React.FC<Props> = () => {
   return (
     <div>
       {challenges.length === 0 ?
-       <div className={ChallengeStyle.bottomTag}>마감된 챌린지</div>
+        <>      
+        
+       <div className={ChallengeStyle.bottomTag}>종료된 챌린지</div>
+       <div className={ChallengeStyle.scrollTag}>챌린지가 존재하지 않습니다.</div>
+       
+       </>
+
         :
         <> 
-        <div className={ChallengeStyle.bottomTag}>마감된 챌린지</div>
+        <div className={ChallengeStyle.bottomTag}>종료된 챌린지</div>
         <div>
           {challenges.map(PastChallenge)}
         </div>

@@ -19,7 +19,7 @@ const NewList = ({ challenges, user }) => {
   const [search, setSearch] = useState(false);
 
   return (
-    <div>
+    <div style={{ margin: "0 1rem 1rem 1rem" }}>
       <div className={ChallengeStyle.header2}>
         <Search />
         <Navbar currentURL={"/challenge/newlist"} />
@@ -28,88 +28,83 @@ const NewList = ({ challenges, user }) => {
       <div className={ChallengeStyle.container}>
         {challenges.map((challenge) => {
           return (
-            <>
-              <div>
-                <>
-                  <Link passHref href={"/challenge/list/" + challenge._id}>
-                    <>
-                      <div className={ChallengeStyle.list}>
+            <div key={challenge._id}>
+              <>
+                <Link passHref href={"/challenge/list/" + challenge._id}>
+                  <>
+                    <div className={ChallengeStyle.list}>
+                      <div
+                        className="image-wrap"
+                        style={{
+                          position: "relative",
+                          borderRadius: "0.3rem",
+                        }}
+                      >
                         <div
-                          className="image-wrap"
                           style={{
-                            position: "relative",
-                            borderRadius: "0.3rem",
+                            backgroundColor: "gray",
+                            width: "50px",
+                            right: "0",
+                            position: "absolute",
+                            textAlign: "right",
+                            zIndex: "1",
+                            color: "white",
                           }}
                         >
-                          <div
-                            style={{
-                              backgroundColor: "gray",
-                              width: "50px",
-                              right: "0",
-                              position: "absolute",
-                              textAlign: "right",
-                              zIndex: "1",
-                              color: "white",
-                            }}
-                          >
-                            <FontAwesomeIcon
-                              icon={faUser}
-                              className={ImageStyle.image2}
-                            />
-                            {challenge.participants.length}명
-                          </div>
-                          <Image
-                            style={{
-                              zIndex: "0",
-                              borderRadius: "5%",
-                              height: "80px",
-                              width: "250px",
-                            }}
-                            src={
-                              process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                              challenge.image
-                            }
-                            layout="fill"
-                            objectPosition="top"
+                          <FontAwesomeIcon
+                            icon={faUser}
+                            className={ImageStyle.image2}
                           />
+                          {challenge.participants.length}명
                         </div>
-
-                        <ul key={challenge._id} className={ListStyle.ul}>
-                          <li className={ListStyle.li}>
-                            <li className={ChallengeStyle.title}>
-                              {challenge.title}
-                            </li>
-
-                            <li style={{ margin: "0 11px" }}>
-                              시작일:
-                              {new Date(challenge.startDate).getFullYear() +
-                                "년" +
-                                (new Date(challenge.startDate).getMonth() + 1) +
-                                "월" +
-                                new Date(challenge.startDate).getDate() +
-                                "일"}
-                              <br />
-                              종료일:
-                              {new Date(challenge.endDate).getFullYear() +
-                                "년" +
-                                (new Date(challenge.endDate).getMonth() + 1) +
-                                "월" +
-                                new Date(challenge.endDate).getDate() +
-                                "일"}
-                            </li>
-                            {challenge.type === "diet" ? (
-                              <li>챌린지 종류: 다이어트</li>
-                            ) : (
-                              <li>챌린지 종류: 레시피</li>
-                            )}
-                          </li>
-                        </ul>
+                        <Image
+                          style={{
+                            zIndex: "0",
+                            borderRadius: "5%",
+                            height: "80px",
+                            width: "45vw",
+                          }}
+                          src={
+                            process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                            challenge.image
+                          }
+                          layout="fill"
+                        />
                       </div>
-                    </>
-                  </Link>
-                </>
-              </div>
-            </>
+
+                      <ul className={ListStyle.ul}>
+                        <li className={ChallengeStyle.content}>
+                          {challenge.title}
+                        </li>
+
+                        <li style={{ margin: "0 11px" }}>
+                          시작일:
+                          {new Date(challenge.startDate).getFullYear() +
+                            "년" +
+                            (new Date(challenge.startDate).getMonth() + 1) +
+                            "월" +
+                            new Date(challenge.startDate).getDate() +
+                            "일"}
+                          <br />
+                          종료일:
+                          {new Date(challenge.endDate).getFullYear() +
+                            "년" +
+                            (new Date(challenge.endDate).getMonth() + 1) +
+                            "월" +
+                            new Date(challenge.endDate).getDate() +
+                            "일"}
+                        </li>
+                        {challenge.type === "diet" ? (
+                          <li>챌린지 종류: 다이어트</li>
+                        ) : (
+                          <li>챌린지 종류: 레시피</li>
+                        )}
+                      </ul>
+                    </div>
+                  </>
+                </Link>
+              </>
+            </div>
           );
         })}
       </div>

@@ -11,7 +11,7 @@ import ImageStyle from "../../../styles/challenge/Input.module.css";
 
 const ChallengeMainList = ({ challenges }) => {
   return (
-    <div className={ChallengeStyle.mainContainer}>
+    <div className={ChallengeStyle.container}>
       {challenges.map((challenge) => {
         return (
           <div key={challenge._id}>
@@ -49,7 +49,7 @@ const ChallengeMainList = ({ challenges }) => {
                           zIndex: "0",
                           borderRadius: "5%",
                           height: "80px",
-                          width: "250px",
+                          width: "45vw",
                         }}
                         src={
                           process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
@@ -59,7 +59,7 @@ const ChallengeMainList = ({ challenges }) => {
                       />
                     </div>
                     <ul className={ListStyle.ul}>
-                      <li className={ChallengeStyle.title} key={challenge.id}>
+                      <li className={ChallengeStyle.content} key={challenge.id}>
                         {challenge.title}
                       </li>
 

@@ -92,6 +92,7 @@
 .search {
   position: absolute;
   right: 0;
+  z-index: 3;
   top: 20px;
 }
 .participant {
