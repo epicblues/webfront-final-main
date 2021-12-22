@@ -19,7 +19,6 @@ import cardsSwiperStyles from "../../../styles/recipe/CardsSwiper.module.css";
 import ci from "../../../public/static/logos/icon_check.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { UserBmr } from "../../../models";
 
 const CardsSwiper = ({ filteredHitRecipesProps, user }) => {
   const [swiper, setSwiper] = useState(null);

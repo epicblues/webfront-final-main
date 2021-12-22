@@ -10,7 +10,7 @@ import { Image, Modal, Icon } from "semantic-ui-react";
 import { FaUser, FaAngleDoubleLeft } from "react-icons/fa";
 import MainStyle from "../../../styles/challenge/Main.module.css";
 
-const MainModal = ({ challenges }) => {
+const MainModal = ({ challenges, title, head }) => {
   const [open, setOpen] = useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -26,38 +26,35 @@ const MainModal = ({ challenges }) => {
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={
-          <label className={MainStyle.trigger}>참여중인 챌린지 전체 보기</label>
+        closeIcon={
+          <Icon
+            className={MainStyle.backIcon}
+            name="angle double left"
+            size="big"
+          />
         }
+        trigger={<label className={MainStyle.trigger}>{title}</label>}
         content={
           <>
             <div>
-              <form>
-                <div className={MainStyle.listHead}>
-                  <div className={MainStyle.modalBack}>
-                    <Icon
-                      name="angle double left"
-                      size="big"
-                      onClick={handleClose}
-                    />
-                  </div>
-                  <div className={MainStyle.listAllHead}>진행중인 챌린지</div>
-                </div>
-                {challenges.map((challenge) => {
-                  return (
+              <div className={MainStyle.listHead}>
+                <div className={MainStyle.listAllHead}>{head}</div>
+              </div>
+              {challenges.map((challenge) => {
+                return (
+                  <div key={challenge._id}>
                     <>
-                      <div key={challenge._id} className={MainStyle.container}>
-                        <Link
-                          passHref
-                          href={"/challenge/list/" + challenge._id}
-                        >
-                          <>
-                            <div className={MainStyle.imageWrap}>
-                              <div className={MainStyle.imagePart}>
-                                <FaUser size="16" />
-                                {challenge.participants.length}명
-                              </div>
-
+                      <div className={MainStyle.container}>
+                        <>
+                          <div className={MainStyle.imageWrap}>
+                            <div className={MainStyle.imagePart}>
+                              <FaUser size="16" />
+                              {challenge.participants.length}명
+                            </div>
+                            <Link
+                              passHref
+                              href={"/challenge/list/" + challenge._id}
+                            >
                               <div className={MainStyle.ImageSpace}>
                                 <Image
                                   className={MainStyle.image}
@@ -68,10 +65,11 @@ const MainModal = ({ challenges }) => {
                                   layout="fill"
                                 />
                               </div>
-                            </div>
-                            <DateContent challenges={challenge} />
-                          </>
-                        </Link>
+                            </Link>
+                          </div>
+                          <DateContent challenges={challenge} />
+                        </>
+
                         <div
                           style={{
                             position: "relative",
@@ -80,6 +78,7 @@ const MainModal = ({ challenges }) => {
                           }}
                         >
                           <button
+                            className={MainStyle.button}
                             onClick={async (event) => {
                               const {
                                 data: { result, message },
@@ -109,26 +108,27 @@ const MainModal = ({ challenges }) => {
                                       .firstElementChild;
 
                                   if (challenge.type === "diet") {
-                                    realProgressBar.value =
-                                      realProgressBar.max =
-                                        challenge.diet.condition;
+                                    realProgressBar.value = result;
+                                    realProgressBar.max =
+                                      challenge.diet.condition;
                                     const span =
                                       realProgressBar.nextElementSibling;
                                     span.innerText =
                                       Math.round(
-                                        (result / challenge.diet.condition) *
+                                        (result / +challenge.diet.condition) *
                                           100
                                       ) + "%";
                                   } else {
-                                    realProgressBar.value =
-                                      realProgressBar.max =
-                                        challenge.recipe.uploadCount;
+                                    realProgressBar.value = result;
+                                    console.log(typeof result);
+                                    realProgressBar.max =
+                                      +challenge.recipe.uploadCount;
                                     const span =
                                       realProgressBar.nextElementSibling;
                                     span.innerText =
                                       Math.round(
                                         (result /
-                                          challenge.recipe.uploadCount) *
+                                          +challenge.recipe.uploadCount) *
                                           100
                                       ) + "%";
                                   }
@@ -156,9 +156,9 @@ const MainModal = ({ challenges }) => {
                         </div>
                       </div>
                     </>
-                  );
-                })}
-              </form>
+                  </div>
+                );
+              })}
             </div>
           </>
         }

@@ -51,6 +51,7 @@ const Index = ({ user, filteredRecipes, keyword }) => {
     <div className={searchListStyles.main}>
       <Navigation currentURL={currentURL}></Navigation>
       <h1>검색어 : {keyword}</h1>
+      <div className={searchListStyles.headerBar}></div>
       <div className={searchListStyles.container}>
         {recipeList.map((card, index) => {
           return (

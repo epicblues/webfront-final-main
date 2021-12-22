@@ -115,7 +115,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
             className={ImageStyle.mImage}
             src={process.env.NEXT_PUBLIC_STATIC_SERVER_URL + challenge.image}
             layout="fill"
-            objectPosition="top"
           />
         </div>
         <br />

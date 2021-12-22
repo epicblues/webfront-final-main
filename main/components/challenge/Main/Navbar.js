@@ -42,21 +42,6 @@ const Navbar = ({ currentURL }) => {
           </div>
         </a>
       </Link>
-      <Link href="/challenge/popularlist">
-        <a>
-          <div className={NavStyles.nav}>
-            <p
-              className={
-                currentURL === "/challenge/popularlist"
-                  ? NavStyles.activated
-                  : ""
-              }
-            >
-              인기
-            </p>
-          </div>
-        </a>
-      </Link>
     </div>
   );
 };

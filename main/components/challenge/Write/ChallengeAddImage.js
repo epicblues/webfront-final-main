@@ -48,8 +48,17 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
     >
       <div className="container" style={{ width: "100%" }}>
         {error && (
-          <p className="errorMsg" style={{ color: "red" }}>
-            File not supported
+          <p
+            className="errorMsg"
+            style={{
+              font: 'normal 400 1rem "Noto Sans KR"',
+              color: "red",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            지원하지 않는 파일 형식입니다.
             <i className="frown outline icon"></i>
           </p>
         )}
@@ -87,7 +96,7 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
                   style={{ display: "none" }}
                   onChange={handleImageUpload}
                 />
-                <Icon name="plus" size="big" color="black" />
+                <Icon name="camera" size="big" color="black" />
               </label>
             </>
           )}

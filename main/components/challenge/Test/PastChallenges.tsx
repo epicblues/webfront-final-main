@@ -1,16 +1,18 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState,useCallback } from 'react'
 import { Image } from 'semantic-ui-react';
 import { Challenge } from '../../../models/Challenge';
+import { debounce } from '../../../util/axios';
+//css
 import PastStyles from "../../../styles/challenge/Past.module.css"
-import ImageAndParti from '../Main/ImageAndParti';
-
+import ChallengeStyle from "../../../styles/challenge/Challenge.module.css"
 interface Props {
   userId?: number
 }
 
 const PastChallenge = (challenge: Challenge ) => (
-  <div style={{display:"flex", justifyContent:"center"}} key={challenge._id}>
+  
+  <div style={{display:"flex", justifyContent:"center", marginTop:"1rem"}} key={challenge._id}>
     <div className={PastStyles.imageDiv} >
     <Image
      className={PastStyles.image}
@@ -36,15 +38,23 @@ const PastChallenge = (challenge: Challenge ) => (
        backgroundColor:"#fff5f5",
        font: "normal 600 1.2rem/22px Noto sans KR",
        color:"#F15F5F",
-       width:"80%",
+       width:"90%",
      }}
-     >최종달성율 {challenge.result}% </div> :<div
+
+     >
+       {challenge.type=== "diet"?<div>
+       최종달성율  {(Number(challenge.result)/Number(challenge.diet?.condition))*100} %
+       </div>:
+       <div>
+       최종달성율  {(Number(challenge.result)/Number(challenge.recipe?.uploadCount))*100}%
+         </div>}
+     </div> :<div
      style={{
       border:"1px solid",
       borderRadius:"0.3rem",
       backgroundColor:"#fff5f5",
       font: "normal 600 1.2rem/22px Noto sans KR",
-      color:"#F15F5F",
+      color:"#6B66FF",
       width:"90%",
     }}>최종달성율 100%</div>}</li>
      </ul>
@@ -55,26 +65,51 @@ const PastChallenge = (challenge: Challenge ) => (
 
 const PastChallenges: React.FC<Props> = () => {
   const [challenges, setChallenges] = useState<Challenge[]>([]);
-  const handleClick = async () => {
-    try {
-      const { data: { challenges: pastChallenges } } = await axios.get('/api/challenge/past');
-      setChallenges(pastChallenges.map((challenge:any) => {
-        
-        return {...challenge, startDate: new Date(challenge.startDate), endDate: new Date(challenge.endDate)}
-      }));
+  const handleScroll = useCallback(async () => {
+    const documentElement = document.documentElement;
+    // DOM의 전체 HTML 문서?
 
-    } catch (error) {
-      console.error(error);
+    const scrollHeight = documentElement.scrollHeight
+    // 전체 문서의 scroll과 상관 없는 전체 크기 pixel
+    const scrollY = Math.ceil(window.scrollY)
+    // 전체 문서에서 얼마나 스크롤로 내려왔는가
+    const offsetHeight = Math.ceil(documentElement.offsetHeight);
+    // 전체 문서가 viewport 기준으로 얼마만큼 보여지고 있는가
+
+    if (scrollHeight <= scrollY + offsetHeight + 60) {
+
+      window.removeEventListener('scroll', handleScroll)
+      try {
+        const { data: { challenges: pastChallenges } } = await axios.get('/api/challenge/past');
+        setChallenges(pastChallenges.map((challenge: any) => {
+
+          return { ...challenge, startDate: new Date(challenge.startDate), endDate: new Date(challenge.endDate) }
+        }));
+
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
+  }, [])
+
+
+  useEffect(() => {
+
+    window.addEventListener('scroll', handleScroll)
+  }, [handleScroll])
+  
   return (
     <div>
       {challenges.length === 0 ?
-        <button onClick={handleClick}>과거 챌린지 보기</button>
+       <div className={ChallengeStyle.bottomTag}>마감된 챌린지</div>
         :
+        <> 
+        <div className={ChallengeStyle.bottomTag}>마감된 챌린지</div>
         <div>
           {challenges.map(PastChallenge)}
-        </div>}
+        </div>
+        </>
+}
     </div>
   )
 }

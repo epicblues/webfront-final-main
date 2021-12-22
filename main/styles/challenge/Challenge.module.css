@@ -105,7 +105,7 @@
   margin: 0;
   position: relative;
   text-align: center;
-  font: normal 500 1.2rem/22px "Noto Sans KR";
+  font: normal 600 1.2rem/24px "Noto Sans KR";
 }
 
 .h3 {
@@ -129,8 +129,9 @@
 }
 .h4Mb {
   text-align: right;
-  margin: 0px;
-  margin-bottom: 5px;
+  position: relative;
+  bottom: 10px;
+  font: normal 600 1.2rem/24px "Noto Sans KR";
 }
 
 .causion {
@@ -187,6 +188,18 @@
   background-color: white;
   justify-content: center;
   border: 0;
-  z-index: 10;
+  z-index: 2;
   top: 0;
+}
+.mainTag {
+  position: absolute;
+  left: 1rem;
+  top: 13%;
+  font: normal 500 1.4rem/36px "Noto Sans KR";
+}
+.bottomTag {
+  position: relative;
+  left: 1rem;
+  top: 75%;
+  font: normal 600 1.4rem/36px "Noto Sans KR";
 }
