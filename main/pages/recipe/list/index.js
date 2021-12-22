@@ -76,6 +76,7 @@ const Index = ({ user, recipes }) => {
       <Navigation currentURL={currentURL}></Navigation>
       {/* <Categories currentURL={currentURL} /> */}
       <h1>분류 : 전체</h1>
+      <div className={searchListStyles.headerBar}></div>
       <InfiniteScroll
         dataLength={recipeList.length}
         next={getMoreRecipes}

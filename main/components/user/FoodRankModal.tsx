@@ -12,7 +12,7 @@ interface Props {
 }
 
 const FoodRankModal: React.FC<Props> = ({ word, nutrition: { kcal, carbs, fat, prot } }) => {
-  return (<>
+  return (<div style={{ transition: "opacity 0.2s ease", opacity: "0" }}>
     <div className={cardStyle.foodRankModal}>
       <div>{word.split(' ').length > 3 ? <><div>{word.split(' ').slice(0, 3).join(' ')}</div><div>{word.split(' ').slice(3).join(' ')}</div></> : word}</div>
       <div className={cardStyle.foodRankTable}>
@@ -24,7 +24,7 @@ const FoodRankModal: React.FC<Props> = ({ word, nutrition: { kcal, carbs, fat, p
     </div>
     <div />
 
-  </>
+  </div>
   )
 }
 
