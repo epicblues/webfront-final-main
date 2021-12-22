@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+// semantic-ui
 import { Modal, Button } from 'semantic-ui-react'
-import { MdSyncAlt, MdOutlineTrendingFlat, MdOutlineTrendingUp, MdOutlineTrendingDown } from "react-icons/md";
-
+// react-icons
+import { MdOutlineTrendingFlat, MdOutlineTrendingUp, MdOutlineTrendingDown } from "react-icons/md";
+import { BiTransferAlt } from "react-icons/bi";
+// css
+import MainStyles from '../../styles/diary/Main.module.css';
 
 const options = [
   {
@@ -28,22 +32,22 @@ const DropdownMenu = ({selected, setSelected, }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-  <div className='dropdown-option'>
-      <MdSyncAlt 
-        className="change-option"
+  <div className={MainStyles.dropdownOption}>
+      <BiTransferAlt
+        className={MainStyles.changeOption}
         onClick={() => {setIsOpen(!isOpen);}}
       />
       <Modal open={isOpen}
-              className='dropdown-modal'
+              className={MainStyles.dropdownModal}
       >
-          <div className='dropdown-modal-content'
+          <div className={MainStyles.dropdownModalContent}
                 defaultValue={options[selected].value}
                 onChange={(e) => {
                                   setSelected(['유지','감량','증량'].indexOf(e.target.innerText))
                 }}
           >
 
-              <div className='managing-option'
+              <div className={MainStyles.managingOption}
                     onClick={(e) => {
                                     setSelected(0);
                                     setIsOpen(false)
@@ -52,7 +56,7 @@ const DropdownMenu = ({selected, setSelected, }) => {
                 <div>유지</div>
                 <MdOutlineTrendingFlat size='1.6rem' color="#888" />
               </div>
-              <div className='managing-option'
+              <div className={MainStyles.managingOption}
                     onClick={(e) => {
                                     setSelected(1);
                                     setIsOpen(false)
@@ -61,7 +65,7 @@ const DropdownMenu = ({selected, setSelected, }) => {
                 <div>감량</div>
                 <MdOutlineTrendingDown size='1.6rem' color="#888" />
               </div>
-              <div className='managing-option'
+              <div className={MainStyles.managingOption}
                     onClick={(e) => {
                                     setSelected(2);
                                     setIsOpen(false)
@@ -71,7 +75,7 @@ const DropdownMenu = ({selected, setSelected, }) => {
                 <MdOutlineTrendingUp size='1.6rem' color="#888" />
               </div>
           </div>
-          <Button className='dropdown-modal-action'
+          <Button className={MainStyles.dropdownModalAction}
                   onClick={() => setIsOpen(!isOpen)}
           >
             취소

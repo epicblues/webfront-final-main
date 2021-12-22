@@ -9,8 +9,8 @@ import ModalNutrition from "../../../../components/recipe/card/ModalNutrition";
 import { useRouter } from "next/router";
 
 import cardStyles from "../../../../styles/recipe/Card.module.css";
-import LikeButtonSmall from "../../../../components/recipe/card/LikeButtonSmall";
-import DislikeButtonSmall from "../../../../components/recipe/card/DislikeButtonSmall";
+import LikeButtonCard from "../../../../components/recipe/card/LikeButtonCard";
+import DislikeButtonCard from "../../../../components/recipe/card/DislikeButtonCard";
 
 const Index = ({ user, recipe }) => {
   const router = useRouter();
@@ -24,7 +24,6 @@ const Index = ({ user, recipe }) => {
   const totalQtt = recipe.ingredients.reduce(function (prev, next) {
     return prev + next.quantity;
   }, 0);
-  console.log(totalQtt);
 
   // Slice()를 위한 데이터 할당
   const uploadDate = recipe.upload_date;
@@ -78,7 +77,6 @@ const Index = ({ user, recipe }) => {
       const res = await postStaticAxios("/api/recipe/delete", user.token, {
         recipe_id: data._id,
       });
-      console.log(res.data.message);
       alert("삭제하였습니다.");
       router.back();
     } else {
@@ -149,7 +147,7 @@ const Index = ({ user, recipe }) => {
         <div className={cardStyles.infoWrapper}>
           <div className={cardStyles.infoTitle}>분량</div>
           <div className={cardStyles.infoTitle}>조리시간</div>
-          <div>
+          <div className={cardStyles.infoTitle}>
             좋아요
             <br />
             (Click!)
@@ -160,14 +158,14 @@ const Index = ({ user, recipe }) => {
           </div>
           <div className={cardStyles.likesWrapper}>
             {recipeData.likes.includes(user.id) === true ? (
-              <DislikeButtonSmall
+              <DislikeButtonCard
                 setRecipeData={setRecipeData}
                 token={user.token}
                 user={user}
                 recipe={recipeData}
               />
             ) : (
-              <LikeButtonSmall
+              <LikeButtonCard
                 setRecipeData={setRecipeData}
                 token={user.token}
                 user={user}
@@ -256,7 +254,6 @@ export const getServerSideProps = async (ctx) => {
     .db("webfront")
     .collection("recipe")
     .findOneAndUpdate({ _id: Number(ctx.query.post_no) }, { $inc: { hit: 1 } });
-  console.log(hitResult);
   const recipe = await client
     .db("webfront")
     .collection("recipe")

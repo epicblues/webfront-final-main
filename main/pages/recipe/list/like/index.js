@@ -53,6 +53,7 @@ const Index = ({ user, filteredRecipes }) => {
       <Navigation currentURL={currentURL}></Navigation>
       <div className={searchListStyles.container}>
         <h1>당신이 좋아하는 레시피</h1>
+        <div className={searchListStyles.headerBar}></div>
         {recipeList.length === 0 ? (
           <div className={searchListStyles.noLikes}>
             아직 좋아요를 누른 게시물이 없습니다 :(
@@ -176,7 +177,6 @@ const Index = ({ user, filteredRecipes }) => {
 export const getServerSideProps = async (ctx) => {
   // 유저 인증 로직
   const user = await getUserOrRedirect(ctx);
-  console.log(user);
   const data = await (
     await clientPromise
   )

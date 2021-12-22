@@ -3,8 +3,7 @@
   .container {
     color: #111111;
     background-color: white;
-    width: 80vw;
-    height: 18vh;
+    width: 80%;
     position: fixed;
     overflow-y: unset;
     left: 50%;
@@ -12,59 +11,54 @@
     padding: 1rem;
     transform: translate(-50%, -50%);
     z-index: 4;
-    border-radius: 0.6rem;
-    display: grid;
-    grid-template-rows: 50% 50%;
+    border-radius: 15px;
     text-align: center;
   }
 
   .inputWrapper {
+    display: flex;
     height: 3rem;
     box-shadow: 1px 1px 3px 1px #dadce0;
-    border-radius: 10px;
   }
   .input {
     height: 3rem;
-    width: 62vw;
+    width: 100%;
     font: normal 400 1.2rem "Note Sans KR";
+    border: solid 1px #999999;
+    padding: 0.5rem;
   }
   .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: tomato;
-    padding: 0.2rem;
-    height: 3rem;
     background-color: white;
-    box-shadow: 1px 1px 3px 1px #dadce0;
-    border-radius: 10px;
     border: solid transparent;
+    width: 15%;
   }
   .button i {
-    transform: translateX(2px);
-  }
-
-  .resultContainer {
-    min-height: 60%;
-    overflow-y: auto;
-    border-radius: 10px;
-    box-shadow: 1px 1px 3px 1px #dadce0;
+    margin: 0;
   }
   .errorMsg {
     color: red;
+    margin-top: 1rem;
   }
 
   .footer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
   }
   .xBtn {
+    margin-top: 1rem;
     background: #e4685d;
-    border-radius: 0.6rem;
-    width: 10vw;
+    border-radius: 10px;
+    width: fit-content;
     height: fit-content;
-    border: 1px solid #e4685d;
     color: #ffffff;
     font-size: 1.4rem;
     font-weight: bold;
-    margin: 1rem 0;
     padding: 0.5rem 1rem;
     text-decoration: none;
     display: flex;
@@ -77,8 +71,7 @@
   .container {
     color: #111111;
     background-color: white;
-    width: 80vw;
-    height: 18vh;
+    width: 80%;
     position: fixed;
     overflow-y: unset;
     left: 50%;
@@ -86,60 +79,54 @@
     padding: 1rem;
     transform: translate(-50%, -50%);
     z-index: 4;
-    border-radius: 0.6rem;
-    display: grid;
-    grid-template-rows: 50% 50%;
+    border-radius: 15px;
     text-align: center;
   }
 
   .inputWrapper {
+    display: flex;
     height: 3rem;
     box-shadow: 1px 1px 3px 1px #dadce0;
-    border-radius: 10px;
   }
   .input {
     height: 3rem;
-    width: 62vw;
+    width: 100%;
     font: normal 400 1.2rem "Note Sans KR";
+    border: solid 1px #999999;
+    padding: 0.5rem;
   }
   .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: tomato;
-    padding: 0.2rem;
-    height: 3rem;
     background-color: white;
-    box-shadow: 1px 1px 3px 1px #dadce0;
-    border-radius: 10px;
     border: solid transparent;
+    width: 15%;
   }
   .button i {
-    transform: translateX(2px);
+    margin: 0;
   }
   .errorMsg {
     color: red;
-  }
-
-  .resultContainer {
-    min-height: 60%;
-    overflow-y: auto;
-    border-radius: 10px;
-    box-shadow: 1px 1px 3px 1px #dadce0;
+    margin-top: 1rem;
   }
 
   .footer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: center;
   }
   .xBtn {
+    margin-top: 1rem;
     background: #e4685d;
-    border-radius: 0.6rem;
-    width: 10vw;
+    border-radius: 10px;
+    width: fit-content;
     height: fit-content;
-    border: 1px solid #e4685d;
     color: #ffffff;
     font-size: 1.4rem;
     font-weight: bold;
-    margin: 1rem 0;
     padding: 0.5rem 1rem;
     text-decoration: none;
     display: flex;
@@ -152,8 +139,7 @@
   .container {
     color: #111111;
     background-color: white;
-    width: 80vw;
-    height: 18vh;
+    width: 80%;
     position: fixed;
     overflow-y: unset;
     left: 50%;
@@ -161,60 +147,54 @@
     padding: 1rem;
     transform: translate(-50%, -50%);
     z-index: 4;
-    border-radius: 0.6rem;
-    display: grid;
-    grid-template-rows: 50% 50%;
+    border-radius: 15px;
     text-align: center;
   }
 
   .inputWrapper {
+    display: flex;
     height: 3rem;
     box-shadow: 1px 1px 3px 1px #dadce0;
-    border-radius: 10px;
   }
   .input {
     height: 3rem;
-    width: 62vw;
+    width: 100%;
     font: normal 400 1.2rem "Note Sans KR";
+    border: solid 1px #999999;
+    padding: 0.5rem;
   }
   .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: tomato;
-    padding: 0.2rem;
-    height: 3rem;
     background-color: white;
-    box-shadow: 1px 1px 3px 1px #dadce0;
-    border-radius: 10px;
     border: solid transparent;
+    width: 15%;
   }
   .button i {
-    transform: translateX(2px);
+    margin: 0;
   }
   .errorMsg {
     color: red;
-  }
-
-  .resultContainer {
-    min-height: 60%;
-    overflow-y: auto;
-    border-radius: 10px;
-    box-shadow: 1px 1px 3px 1px #dadce0;
+    margin-top: 1rem;
   }
 
   .footer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
+    align-items: center;
   }
   .xBtn {
+    margin-top: 1rem;
     background: #e4685d;
-    border-radius: 0.6rem;
+    border-radius: 10px;
     width: fit-content;
     height: fit-content;
-    border: 1px solid #e4685d;
     color: #ffffff;
     font-size: 1.4rem;
     font-weight: bold;
-    margin: 1rem 0;
     padding: 0.5rem 1rem;
     text-decoration: none;
     display: flex;
@@ -228,8 +208,7 @@
   .container {
     color: #111111;
     background-color: white;
-    width: 80vw;
-    height: 18vh;
+    width: 80%;
     position: fixed;
     overflow-y: unset;
     left: 50%;
@@ -237,55 +216,49 @@
     padding: 1rem;
     transform: translate(-50%, -50%);
     z-index: 4;
-    border-radius: 0.6rem;
-    display: grid;
-    grid-template-rows: 50% 50%;
+    border-radius: 15px;
     text-align: center;
   }
 
   .inputWrapper {
+    display: flex;
     height: 3rem;
     box-shadow: 1px 1px 3px 1px #dadce0;
-    border-radius: 10px;
   }
   .input {
     height: 3rem;
-    width: 62vw;
+    width: 100%;
     font: normal 400 1.2rem "Note Sans KR";
+    border: solid 1px #999999;
+    padding: 0.5rem;
   }
   .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: tomato;
-    padding: 0.2rem;
-    height: 3rem;
     background-color: white;
-    box-shadow: 1px 1px 3px 1px #dadce0;
-    border-radius: 10px;
     border: solid transparent;
+    width: 15%;
   }
   .button i {
-    transform: translateX(2px);
+    margin: 0;
   }
   .errorMsg {
     color: red;
-    margin: 1rem 0;
-  }
-
-  .resultContainer {
-    min-height: 60%;
-    overflow-y: auto;
-    border-radius: 10px;
-    box-shadow: 1px 1px 3px 1px #dadce0;
+    margin-top: 1rem;
   }
 
   .footer {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
   }
   .xBtn {
+    margin-top: 1rem;
     background: #e4685d;
-    border-radius: 0.6rem;
+    border-radius: 10px;
     width: fit-content;
     height: fit-content;
     color: #ffffff;

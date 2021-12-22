@@ -10,6 +10,7 @@ const ShortNav: React.FC<Props> = () => {
 
   useEffect(() => {
     setTimeout(() => {
+      if (!back.current || !nav.current) return;
       back.current.style.opacity = '0'
       nav.current.style.display = 'none'
       back.current.style.zIndex = '-100'
@@ -19,7 +20,9 @@ const ShortNav: React.FC<Props> = () => {
   return (
     <>
       <div className={mainStyle.shortNav} ref={nav}>
-        버튼을 클릭해서 컨텐츠를 작성해보세요!
+        <p>버튼을 클릭해서<br/>컨텐츠를 작성해보세요!</p>        
+        <div className={mainStyle.pulse}></div>
+        <div className={mainStyle.tab}></div>
       </div>
       <div className={mainStyle.shortBack} ref={back} />
     </>

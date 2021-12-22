@@ -1,16 +1,18 @@
 import React from "react";
+// react-minimal-pie-chart
 import { PieChart } from "react-minimal-pie-chart";
-// import { VscFlame } from "react-icons/vsc";
+// react-icons
 import { AiOutlineFire } from "react-icons/ai";
+// css
+import MainStyles from '../../styles/diary/Main.module.css';
 
 const Progress = ({ done, max }) => {
   const percent = `${((done / max) * 100).toFixed(0)}`;
   return (
-    <div className='progress'>
-    {/* <VscFlame className='icon'/> */}
-    <AiOutlineFire className='icon' />
+    <div className={MainStyles.progress}>
+    <AiOutlineFire className={MainStyles.icon} />
     <PieChart
-      className='donut-chart'
+      className={MainStyles.donutChart}
       data={[
         {
           value: done,
@@ -26,8 +28,7 @@ const Progress = ({ done, max }) => {
       animate
       label={({ dataEntry }) => dataEntry.value + "/" + max}
       labelStyle={{
-        fontSize: '1rem',
-        fontWeight: '600',
+        font: 'normal 800 1rem "NanumSquare"',
         fill: '#fff',
       }}
       labelPosition={0}

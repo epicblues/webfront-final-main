@@ -1,19 +1,22 @@
+import { useRouter } from 'next/dist/client/router'
+import Link from 'next/link'
 import React from 'react'
 
-const MiniButton = ({ children, href }: { children: any, href: string }) => {
+const MiniButton = ({ children, href, onClick }: { children: any, href: string, onClick: Function }) => {
+  const router = useRouter();
+  const pathName = router.asPath.split('/')[1]; // recipe diary challenge
+
   return (
-    <a href={href} style={{
-      color: "#333",
+    <Link href={href} passHref><a style={{
+      color: pathName === href.substring(1) ? "#ff5656" : "#333",
       alignSelf: "center",
       fontSize: "1.2em",
       fontWeight: "bolder",
-      // border: "solid white",
-      // borderWidth: "0px 1px",
-      // padding: "3px 15px"
     }
-    }>
+    } onClick={() => { onClick() }}>
       {children}
-    </a>
+    </a></Link>
+
   )
 }
 

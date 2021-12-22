@@ -1,7 +1,10 @@
 import PropTypes from "prop-types";
+// semantic-ui
 import { Button } from "semantic-ui-react";
-import MealStyles from '../../../styles/diary/Meal.module.css';
+// react-icons
 import { BiChevronLeft } from "react-icons/bi";
+// css
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const MultiBtn = ({ text, color, onClick }) => {
   Button.propTypes = {

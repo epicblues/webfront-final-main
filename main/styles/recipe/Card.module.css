@@ -1,7 +1,6 @@
 /* PC , 테블릿 가로 (해상도 1024px ~ )*/
 @media all and (min-width: 1024px) {
   .container {
-    background-color: #fff0f0;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -16,7 +15,7 @@
   /* 레시피 기본정보 */
   .header {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
 
   /* 본인글 조회시 나타나는 버튼 */
@@ -41,14 +40,11 @@
   /* 작성자 */
   .author {
     display: flex;
-    border: solid 1px #dedede;
     color: tomato;
     width: max-content;
     font-size: 1.1rem;
     height: max-content;
     padding: 0.5rem;
-    background-color: #dedede;
-    border-radius: 5px;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -83,9 +79,9 @@
     line-height: 1.6rem;
   }
   .date {
-    display: inline-block;
+    display: flex;
+    justify-content: right;
     color: #999999;
-    transform: translate(84vw);
   }
   .uploadDate {
     margin: 0;
@@ -100,12 +96,10 @@
   .infoWrapper {
     margin-top: 1.5rem;
     display: grid;
-    padding: 1rem;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    column-gap: 3px;
     place-items: center;
-    text-align: center;
-    border-radius: 15px;
     background-color: white;
     border: 2px solid #aaa;
   }
@@ -117,36 +111,25 @@
     align-items: center;
     background-color: #aaa;
     color: white;
-    height: 5rem;
-    width: 20vw;
+    width: 100%;
+    height: 100%;
     font-size: 1.5rem;
-    border-radius: 5px;
   }
   .qtt,
   .duration {
     font-size: 1.3rem;
   }
-  .likesWrapper {
-    display: grid;
-    grid-auto-rows: max-content;
-    place-items: center;
-  }
+
   .likesCount {
-    display: flex;
     color: tomato;
-    font-size: 1.5rem;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    width: max-content;
+    font-size: 1.3rem;
     padding: 0.4rem 0.5rem;
-    transform: translateX(-0.1rem);
   }
 
   /* 레시피 재료 */
   .igrContainer {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
   .igrContainer h3 {
     color: tomato;
@@ -171,7 +154,7 @@
   /* 만드는 방법 */
   .stepsContainer {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
 
   .stepsContainer h3 {
@@ -197,7 +180,6 @@
 /* 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .container {
-    background-color: #fff0f0;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -212,7 +194,7 @@
   /* 레시피 기본정보 */
   .header {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
 
   /* 본인글 조회시 나타나는 버튼 */
@@ -237,14 +219,11 @@
   /* 작성자 */
   .author {
     display: flex;
-    border: solid 1px #dedede;
     color: tomato;
     width: max-content;
     font-size: 1.1rem;
     height: max-content;
     padding: 0.5rem;
-    background-color: #dedede;
-    border-radius: 5px;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -277,9 +256,9 @@
     line-height: 1.6rem;
   }
   .date {
-    display: inline-block;
+    display: flex;
+    justify-content: right;
     color: #999999;
-    transform: translate(76vw);
   }
   .uploadDate {
     margin: 0;
@@ -294,12 +273,10 @@
   .infoWrapper {
     margin-top: 1.5rem;
     display: grid;
-    padding: 1rem;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    column-gap: 3px;
     place-items: center;
-    text-align: center;
-    border-radius: 15px;
     background-color: white;
     border: 2px solid #aaa;
   }
@@ -311,36 +288,25 @@
     align-items: center;
     background-color: #aaa;
     color: white;
-    height: 5rem;
-    width: 20vw;
+    width: 100%;
+    height: 100%;
     font-size: 1.5rem;
-    border-radius: 5px;
   }
   .qtt,
   .duration {
     font-size: 1.3rem;
   }
-  .likesWrapper {
-    display: grid;
-    grid-auto-rows: max-content;
-    place-items: center;
-  }
+
   .likesCount {
-    display: flex;
     color: tomato;
-    font-size: 1.5rem;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    width: max-content;
+    font-size: 1.3rem;
     padding: 0.4rem 0.5rem;
-    transform: translateX(-0.1rem);
   }
 
   /* 레시피 재료 */
   .igrContainer {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
   .igrContainer h3 {
     color: tomato;
@@ -365,7 +331,7 @@
   /* 만드는 방법 */
   .stepsContainer {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
 
   .stepsContainer h3 {
@@ -391,7 +357,6 @@
 /* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
 @media all and (min-width: 480px) and (max-width: 767px) {
   .container {
-    background-color: #fff0f0;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -406,7 +371,7 @@
   /* 레시피 기본정보 */
   .header {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
 
   /* 본인글 조회시 나타나는 버튼 */
@@ -431,14 +396,11 @@
   /* 작성자 */
   .author {
     display: flex;
-    border: solid 1px #dedede;
     color: tomato;
     width: max-content;
     font-size: 1.1rem;
     height: max-content;
     padding: 0.5rem;
-    background-color: #dedede;
-    border-radius: 5px;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -471,9 +433,9 @@
     line-height: 1.6rem;
   }
   .date {
-    display: inline-block;
+    display: flex;
+    justify-content: right;
     color: #999999;
-    transform: translate(65vw);
   }
   .uploadDate {
     margin: 0;
@@ -488,12 +450,10 @@
   .infoWrapper {
     margin-top: 1.5rem;
     display: grid;
-    padding: 1rem;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    column-gap: 3px;
     place-items: center;
-    text-align: center;
-    border-radius: 15px;
     background-color: white;
     border: 2px solid #aaa;
   }
@@ -505,36 +465,25 @@
     align-items: center;
     background-color: #aaa;
     color: white;
-    height: 5rem;
-    width: 20vw;
+    width: 100%;
+    height: 100%;
     font-size: 1.5rem;
-    border-radius: 5px;
   }
   .qtt,
   .duration {
     font-size: 1.3rem;
   }
-  .likesWrapper {
-    display: grid;
-    grid-auto-rows: max-content;
-    place-items: center;
-  }
+
   .likesCount {
-    display: flex;
     color: tomato;
-    font-size: 1.5rem;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    width: max-content;
+    font-size: 1.3rem;
     padding: 0.4rem 0.5rem;
-    transform: translateX(-0.1rem);
   }
 
   /* 레시피 재료 */
   .igrContainer {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
   .igrContainer h3 {
     color: tomato;
@@ -559,7 +508,7 @@
   /* 만드는 방법 */
   .stepsContainer {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
 
   .stepsContainer h3 {
@@ -586,7 +535,6 @@
 /* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
 @media screen and (max-width: 479px) {
   .container {
-    background-color: #fff0f0;
     padding: 1rem;
     display: flex;
     flex-direction: column;
@@ -601,7 +549,7 @@
   /* 레시피 기본정보 */
   .header {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
 
   /* 본인글 조회시 나타나는 버튼 */
@@ -626,14 +574,11 @@
   /* 작성자 */
   .author {
     display: flex;
-    border: solid 1px #dedede;
     color: tomato;
     width: max-content;
     font-size: 1.1rem;
     height: max-content;
     padding: 0.5rem;
-    background-color: #dedede;
-    border-radius: 5px;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -666,9 +611,9 @@
     line-height: 1.6rem;
   }
   .date {
-    display: inline-block;
+    display: flex;
+    justify-content: right;
     color: #999999;
-    transform: translate(47vw);
   }
   .uploadDate {
     margin: 0;
@@ -683,12 +628,10 @@
   .infoWrapper {
     margin-top: 1.5rem;
     display: grid;
-    padding: 1rem;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
+    column-gap: 3px;
     place-items: center;
-    text-align: center;
-    border-radius: 15px;
     background-color: white;
     border: 2px solid #aaa;
   }
@@ -700,36 +643,25 @@
     align-items: center;
     background-color: #aaa;
     color: white;
-    height: 5rem;
-    width: 6rem;
+    width: 100%;
+    height: 100%;
     font-size: 1.5rem;
-    border-radius: 5px;
   }
   .qtt,
   .duration {
     font-size: 1.3rem;
   }
-  .likesWrapper {
-    display: grid;
-    grid-auto-rows: max-content;
-    place-items: center;
-  }
+
   .likesCount {
-    display: flex;
     color: tomato;
     font-size: 1.3rem;
-    text-align: center;
-    justify-content: center;
-    border-radius: 15px;
-    width: max-content;
     padding: 0.4rem 0.5rem;
-    transform: translateX(-0.1rem);
   }
 
   /* 레시피 재료 */
   .igrContainer {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
   .igrContainer h3 {
     color: tomato;
@@ -754,7 +686,7 @@
   /* 만드는 방법 */
   .stepsContainer {
     background-color: white;
-    padding: 1rem;
+    margin: 1rem 0;
   }
 
   .stepsContainer h3 {

@@ -1,3 +1,6 @@
+// ModalNutrition.js
+// recipe/card 상세페이지 내부 영양정보 확인 Modal
+
 import React, { useState } from "react";
 
 import modalNutritionStyles from "../../../styles/recipe/ModalNutrition.module.css";

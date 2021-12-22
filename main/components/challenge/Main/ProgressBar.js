@@ -7,9 +7,19 @@ const ProgressBar = ({ value, max }) => {
   return (
     <div>
       <progress className={ProgressStyle.progress} value={value} max={max} />
-      <span style={{ fontWeight: "600px", textAlign: "center" }}>
-        {Math.round((value / max) * 100)}
+      <span
+        style={{
+          display: "flex",
+          textAlign: "center",
+          position: "relative",
+          left: "15%",
+        }}
+      >
+        {Number.isNaN(Math.round((value / max) * 100))
+          ? 0
+          : Math.round((value / max) * 100)}
       </span>
+      <div></div>
     </div>
   );
 };

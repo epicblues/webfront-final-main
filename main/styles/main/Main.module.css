@@ -1,35 +1,148 @@
-.flex {
-  display: flex;
-  justify-content: space-around;
+.reportWrap {
+  padding: 0 1rem;
 }
 
-.card {
+.reportHeader {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
-  /* border: solid 1px; */
-  border-radius: 10px;
-  background: whitesmoke;
-  padding: 20px;
-  font-weight: 700;
+  /* border-bottom: solid 1px #ccc; */
+  padding-bottom: 1rem;
 }
 
-.foodName {
-  font-size: 0.88em;
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerTop .text {
+  font: normal 800 1.4rem "NanumSquare";
+}
+
+.headerTop .icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.bmrWrap {
+  display: flex;
+  background-color: #eee;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.bmrWrap .bmrInfo {
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-right: solid 1px #333;
+  font: normal 400 1rem "NanumSquare";
+}
+
+.bmrWrap .bmrInfo:last-child {
+  border-right: none;
+}
+
+.bmrWrap .important {
+  font: normal 800 1rem "NanumSquare";
+  color: #ff5656;
+} 
+
+.foodRankWrap {
+  margin-bottom: 1rem;
+}
+
+.contentsWrap {
+  display: flex;
+  /* box-shadow: 1px 1px 3px 1px #dadce0; */
+  border-bottom: solid 1px #ccc;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+.contentsList {
+  width: 25%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.contentsTitle {
+  display: flex;
+  margin: 0 auto;
+  /* justify-content: start; */
+  /* align-items: center;*/
+  flex-direction: column;
+}
+
+.contentsTitle p {
+  font: normal 400 0.9rem "Noto Sans KR";
+  margin-top: 0.5rem;
+}
+
+.foodRankWrap {
+
+}
+
+.rankTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+.rankTitle p {
+  font: normal 400 1.2rem "Noto Sans KR";
+  margin: 0;
+}
+
+.rankList {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+}
+
+.rankOrder {
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  align-items: center;
+  border-bottom: solid 1px #ddd;
+}
+
+.rankMedal {
+  margin: 0 auto;
+  width: 20px;
+  height: 20px;
+  background: url(../../public/1st.png) no-repeat left top / 70%;
+}
+
+.rankOrder:last-child {
+  border: none;
+}
+
+.orderCount {
+  text-align: right;
+  font-weight: 600;
 }
 
 .sideBar {
-  height: 70vh;
+  height: 100vh;
   background-color: whitesmoke;
-  width: 50vw;
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  width: 100vw;
   position: fixed;
   left: 100vw;
-  top: 3vh;
+  top: 0;
   transition: all 500ms;
-  background-color: #eceaea;
-  border: 2px solid rgb(247, 158, 136);
-  border-radius: 20px 0 0 20px;
-  padding: 0px 20px;
+  /* background-color: #eceaea; */
+  /* border: 2px solid rgb(247, 158, 136); */
+  /* border-radius: 20px 0 0 20px; */
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  padding: 0px 1rem;
   overflow-y: scroll;
   scrollbar-width: 0.01px;
   scrollbar-color: black;
@@ -71,35 +184,70 @@
   height: 100vh;
 }
 
-@keyframes popUp {
-  from {
-    transform: translateY(0%);
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 #f07777;
   }
-  50% {
-    transform: translateY(-2vh);
+  70% {
+    -webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
   }
+  100% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}
 
-  to {
-    transform: translateY(0%);
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 #f07777;
+    box-shadow: 0 0 0 0 #f07777;
+  }
+  70% {
+    -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+  }
+  100% {
+    -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
   }
 }
 
 .shortNav {
   position: fixed;
-  width: 40vw;
-  height: 100px;
-  border: 0.5px solid black;
-  border-radius: 30%;
-  bottom: 10vh;
-  left: 30vw;
-  background-color: whitesmoke;
-  padding: 10px;
-  text-align: center;
-  padding-top: 20px;
-  /* transition: all 4s; */
-  animation: popUp 1s;
-  animation-iteration-count: 2;
+  top: 0;
+  left: 0;
   z-index: 20;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  padding: 30vh 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.shortNav p {
+  text-align: center;
+  font: normal 400 1.2rem "Noto Sans KR";
+  color: #fff;
+}
+
+.pulse {
+  margin: 0 45%;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.pulse:hover {
+  animation: none;
+}
+
+.tab {
+  margin: 0 auto;
+  width: 51px;
+  height: 72px;
+  background: url(../../public/finger_icon.png) no-repeat center top / 100%;
 }
 
 .shortBack {
@@ -108,8 +256,7 @@
   height: 100vh;
   left: 0;
   top: 0;
-  background-color: rgba(128, 128, 128, 0.747);
-  opacity: 0.5;
+  background-color: rgba(0, 0, 0, 0.9);
   transition: 1s all;
 }
 
@@ -193,13 +340,12 @@
   width: 7vw;
   height: 7vw;
   border-radius: 50%;
-  border: 1.5vw solid #f36666;
-  border-top-color: whitesmoke;
+  border: 1.5vw solid white;
+  border-top-color: rgb(0, 0, 0, 0);
   animation: spin 1s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   z-index: 700;
-  /* background-color: whitesmoke; */
 }
 
 .loadingCircleGlobal {
@@ -207,14 +353,11 @@
   height: 7vw;
   border-radius: 50%;
   border: 1.5vw solid #f36666;
-  border-top-color: whitesmoke;
+  border-top-color: rgb(0, 0, 0, 0);
   animation: spin 1s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  /* z-index: 700; */
-  align-self: center;
   margin: 0.5rem;
-  /* background-color: whitesmoke; */
 }
 
 .contentBar {
@@ -225,4 +368,171 @@
 
 .contentBar > :nth-child(2) {
   color: red;
+}
+
+.foodName {
+  font-size: 0.88em;
+}
+
+.foodRankModal {
+  position: fixed;
+  width: 80vw;
+  height: 20vh;
+  right: 10vw;
+  top: 30vh;
+  background-color: whitesmoke;
+  border: 2px solid #f36666;
+  border-radius: 20%;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7% 0;
+  font-size: 1.2rem;
+  justify-content: space-between;
+}
+
+.foodRankModal > div:nth-child(1) {
+  text-align: center;
+  font-weight: 700;
+}
+
+.foodRankModal + div {
+  background-color: black;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.4;
+}
+
+.foodRankTable {
+  display: flex;
+  /* justify-content: space-evenly; */
+  width: 90%;
+  align-self: center;
+  justify-content: center;
+  margin: 5%, 0%;
+  padding: 4% 0%;
+  font-size: 0.95rem;
+}
+
+.foodRankTable > div {
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  padding: 0 0.8rem;
+}
+.foodRankTable > div:nth-child(2) {
+  border: 0;
+}
+.foodRankTable > div:nth-child(3) {
+  border-right: 0;
+}
+
+.foodRankTable > div > div {
+  text-align: center;
+}
+
+.foodRankInfo {
+  position: absolute;
+  bottom: 2rem;
+  right: 0;
+  width: 10rem;
+  background-color: #fff;
+  box-shadow: 1px 1px 3px 1px #dadce0;
+  font-size: 1rem;
+  z-index: 20;
+  padding: 1rem;
+  border-radius: 10px;
+  font-weight: 400;
+  text-align: center;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  opacity: 0;
+}
+
+.miniChat {
+  position: fixed;
+  bottom: 8vh;
+  width: 100%;
+  padding: 0 4rem 1rem 1rem;
+}
+
+.miniChat > div:nth-child(1) {
+  transition: 0.2s ease opacity;
+  opacity: 1;
+  width: 100%;
+  font: normal 600 1rem 'Noto Sans KR';
+
+}
+
+.miniChat > div:nth-child(2) {
+  position: fixed;
+  bottom: 8vh;
+  right: 0;
+  width: 6.5vh;
+  height: 6.5vh;
+  border-radius: 50%;
+}
+
+.fullChat {
+  position: fixed;
+  left: 100%;
+  top: 0;
+  height: 100vh;
+  background-color: #fff;
+  transition: 0.2s ease all;
+}
+
+.chatHeader {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px #ddd;
+}
+
+.chatHeader > div {
+  font: normal 600 1.2rem 'Noto Sans KR';
+}
+  
+.sendWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  border-top: solid 1px #ccc;
+  padding-top: 1rem;
+  padding-right: 1rem;
+}
+
+.sendInput {
+  border-radius: 10px;
+  border: solid 1px #ccc;
+  align-self: stretch;
+  height: 2.8rem;
+  font: 400 1.2rem "NanumSquare";
+  text-align: left;
+  padding: 0.7rem 1rem;
+  background: #fff;
+  
+  width: 80%;
+}
+
+.sendButton {
+  border-radius: 10px;
+  border: none;
+  align-self: stretch;
+  height: 2.8rem;
+  font: normal 400 1.2rem 'NanumSquare';
+  background: #ff5656;
+  border: 1px solid #ff5656;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+
+  width: 20%;
 }

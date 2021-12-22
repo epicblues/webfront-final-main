@@ -9,17 +9,18 @@ import FinishPage from '../../components/user/FinishPage';
 import { UserBmr } from '../../models';
 import { MIDDLE_COLOR } from '../../constants';
 import joinStyles from '../../../styles/main/join.module.css';
+import { useLoading } from '../../hooks';
 
 const Join = () => {
   const router = useRouter();
   const email = useRef() as MutableRefObject<HTMLInputElement>;
   const password = useRef() as MutableRefObject<HTMLInputElement>;
   const confirmPassword = useRef() as MutableRefObject<HTMLInputElement>;
-
   const name = useRef() as MutableRefObject<HTMLInputElement>;
   const message = useRef() as MutableRefObject<HTMLHeadingElement>;
   const [userBmr, setUserBmr] = useState<UserBmr>(new UserBmr)
   const [joinFinished, setJoinFinished] = useState(false);
+  const [loading, setLoading, LoadingCircle] = useLoading(joinFinished);
 
   const changeButtonStyle = (button: HTMLButtonElement, message: string) => {
     const originalBtnText = button.textContent;
@@ -39,9 +40,10 @@ const Join = () => {
 
   const toggleJoinForm: MouseEventHandler<HTMLButtonElement> = (event) => {
     const $button = event.currentTarget;
-
     if (!(email.current.disabled && name.current.disabled)) {
+
       changeButtonStyle($button, "상단의 정보를 모두 입력해야 합니다.")
+      // $p.innerHTML = "상단의 정보를 모두 입력해야 합니다."
       name.current.focus();
       return;
     }
@@ -63,7 +65,7 @@ const Join = () => {
   const buttonStyle: CSSProperties = { background: "black", transition: "all 300ms", border: "none", borderRadius: "20px", width: '100%', fontWeight: 400, color: "#fff", alignSelf: "stretch", height: "2.8rem", fontSize: "1.2rem" }
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = async (event) => {
-
+    setLoading(true);
     const bmrToSend: Partial<UserBmr> = { ...userBmr, error: '', flag: false, system: "" };
 
     if (bmrToSend.activity as number < 5) {
@@ -96,22 +98,41 @@ const Join = () => {
 
   const emailCheck: MouseEventHandler<HTMLButtonElement> = async (event) => {
     const $button = event.currentTarget
+    const $p = $button.parentElement?.nextElementSibling as HTMLParagraphElement
 
     if (!/^[A-Za-z0-9]{3,}@([a-z0-9]+\.)+[a-z]{2,4}$/.test(email.current.value)) {
-      changeButtonStyle($button, "이메일 주소를 잘못 입력하셨습니다.")
+
+      // changeButtonStyle($button, "이메일 주소를 잘못 입력하셨습니다.")
+      $p.innerText = "이메일 주소를 잘못 입력하셨습니다.";
+      $p.style.paddingBottom = "1rem"
+      setTimeout(() => {
+        $p.innerText = ''
+        $p.style.paddingBottom = "0rem"
+      }, 2000)
       email.current.focus();
       return;
     }
     const { data } = await axios.post('/api/user/email', { email: email.current.value });
     if (data.message) {
       email.current.disabled = true;
-      $button.textContent = "사용 가능한 이메일입니다."
+      $p.textContent = "사용 가능한 이메일입니다."
+      $p.style.paddingBottom = "1rem"
+      $p.style.color = "lightgreen"
+      $button.textContent = "확인 완료"
       $button.style.backgroundColor = "lightgreen"
+      $button.disabled = true;
       email.current.style.borderColor = "green"
       email.current.style.color = "black"
     } else {
       // event 변수는 이 함수가 끝나면 사라진다. 따라서 추가적으로 button의 주소를 묶어둬야 한다?
-      changeButtonStyle($button, "이미 가입된 이메일입니다.");
+      // changeButtonStyle($button, "이미 가입된 이메일입니다.");
+      $p.innerText = "이미 가입된 이메일입니다."
+      $p.style.paddingBottom = "1rem"
+      setTimeout(() => {
+        $p.innerText = ''
+        $p.style.paddingBottom = "0rem"
+      }, 3000)
+      email.current.focus();
     }
 
 
@@ -119,22 +140,38 @@ const Join = () => {
   }
   const nameCheck: MouseEventHandler<HTMLButtonElement> = async (event) => {
     const $button = event.currentTarget
-
+    const $p = $button.parentElement?.nextElementSibling as HTMLParagraphElement
     if (!/^[가-힣a-zA-Z]{2,12}$/.test(name.current.value)) {
-      changeButtonStyle($button, "숫자, 특수문자 입력 불가(12자 이내)")
+      $p.textContent = "숫자, 특수문자 입력 불가 (12자 이내)";
+      $p.style.paddingBottom = "1rem"
+      setTimeout(() => {
+        $p.innerText = ''
+        $p.style.paddingBottom = "0rem"
+      }, 3000)
       name.current.focus();
       return;
     }
     const { data } = await axios.post('/api/user/name', { name: name.current.value });
     if (data.message) {
       name.current.disabled = true;
-      $button.textContent = "사용 가능한 닉네임입니다."
+      $button.textContent = "확인 완료"
+      $p.textContent = "사용 가능한 닉네임입니다."
+      $p.style.paddingBottom = "1rem"
+      $p.style.color = "lightgreen"
       $button.style.backgroundColor = "lightgreen"
+      $button.disabled = true;
       name.current.style.borderColor = "green"
       name.current.style.color = "black"
     } else {
       // event 변수는 이 함수가 끝나면 사라진다. 따라서 추가적으로 button의 주소를 묶어둬야 한다?
-      changeButtonStyle($button, "이미 존재하는 닉네임입니다");
+      $p.textContent = "이미 존재하는 닉네임입니다.";
+      $p.style.paddingBottom = "1rem"
+      setTimeout(() => {
+        $p.innerText = ''
+        $p.style.paddingBottom = "0rem"
+      }, 3000)
+      name.current.focus();
+
     }
 
   }
@@ -147,7 +184,7 @@ const Join = () => {
     padding: "1rem",
     width: "100vw",
     transition: "all 500ms",
-    // transform: bmrMode ? "translate(-100vw,0)" : "none",
+    transform: bmrMode ? "translate(-100vw,0)" : "none",
   }
 
   const title: CSSProperties = {
@@ -199,6 +236,12 @@ const Join = () => {
     fontSize: "1.2rem",
   }
 
+
+  const hiddenMessage: CSSProperties = {
+    paddingBottom: "0rem",
+    paddingLeft: "1rem",
+    color: "red"
+  }
   return (
 
     <div style={{
@@ -219,71 +262,75 @@ const Join = () => {
               <div className="content">
                 <div className="title">작성</div>
               </div>
-              <div className="disabled step">
-                <BiBarChartAlt size='2rem' style={{ marginRight: '0.25rem' }} />
-                <div className="content">
-                  <div className="title">BMR</div>
-                </div>
-              </div>
-              <div className="disabled step" style={rightBox}>
-                <BiHappyAlt size='2rem' style={{ marginRight: '0.25rem' }} />
-                <div className="content">
-                  <div className="title">완료</div>
-                </div>
+            </div>
+            <div className="disabled step">
+              <BiBarChartAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+              <div className="content">
+                <div className="title">BMR</div>
               </div>
             </div>
-
-            <Form.Field style={{ margin: '0' }}>
-              <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
-                <input type="text" ref={name} placeholder="닉네임" style={input} />
-                <button className="ui button" onClick={nameCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
-                <BiUser size='1.2rem' style={inputIcon} />
+            <div className="disabled step" style={rightBox}>
+              <BiHappyAlt size='2rem' style={{ marginRight: '0.25rem' }} />
+              <div className="content">
+                <div className="title">완료</div>
               </div>
-            </Form.Field>
-
-            <Form.Field style={{ margin: '0' }}>
-              <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
-                <input type="email" ref={email} placeholder="이메일" style={input} />
-                <button className="ui button" onClick={emailCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
-                <BiEnvelope size='1.2rem' style={inputIcon} />
-              </div>
-            </Form.Field>
-
-            <button onClick={toggleJoinForm} style={button}>
-              다음 단계로 가기
-            </button>
+            </div>
           </div>
-          <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
-            <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
-            {userBmr.activity > 1000 &&
-              <button style={buttonStyle} onClick={handleClick}>가입 완료하기</button>
-            }
-          </div>
-          <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>
 
-            <Form.Field>
-              <div style={{ position: 'relative', marginBottom: '1rem' }}>
-                <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={input} />
-                <BiLockAlt size='1.2rem' style={inputIcon} />
-              </div>
-            </Form.Field>
-          </div>
+          <Form.Field style={{ margin: '0' }}>
+            <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
+              <input type="text" ref={name} placeholder="닉네임" style={input} />
+              <button className="ui button" onClick={nameCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
+              <BiUser size='1.2rem' style={inputIcon} />
+            </div>
+            <p style={hiddenMessage} />
+          </Form.Field>
+
+          <Form.Field style={{ margin: '0' }}>
+            <div className="ui action input" style={{ position: 'relative', marginBottom: '1rem' }}>
+              <input type="email" ref={email} placeholder="이메일" style={input} />
+              <button className="ui button" onClick={emailCheck} style={{ borderTopRightRadius: '10px', borderBottomRightRadius: '10px' }}>중복 확인</button>
+              <BiEnvelope size='1.2rem' style={inputIcon} />
+            </div>
+            <p style={hiddenMessage} />
+          </Form.Field>
+
+          <Form.Field>
+            <div style={{ position: 'relative', marginBottom: '1rem' }}>
+              <input type="password" ref={password} placeholder="비밀번호" style={input} />
+              <BiLockOpenAlt size='1.2rem' style={inputIcon} />
+            </div>
+            <p style={hiddenMessage} />
+          </Form.Field>
+
+          <Form.Field>
+            <div style={{ position: 'relative', marginBottom: '1rem' }}>
+              <input type="password" ref={confirmPassword} placeholder="비밀번호 확인" style={input} />
+              <BiLockAlt size='1.2rem' style={inputIcon} />
+            </div>
+            <p style={hiddenMessage} />
+          </Form.Field>
         </Form>
 
         <button onClick={toggleJoinForm} style={button}>
           다음 단계로 가기
         </button>
       </div>
-      <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", }}>
+      <div style={{ display: "flex", flexDirection: 'column', width: "100vw", padding: "5vw", transition: "all 500ms", transform: bmrMode ? "translate(-100vw,0)" : "none" }}>
         <Bmr userBmr={userBmr} setUserBmr={setUserBmr} />
         {userBmr.activity > 1000 &&
-          <button style={{ alignSelf: "center", marginTop: "10px" }} className="ui button facebook" onClick={handleClick}>제출</button>
+          <button style={buttonStyle} onClick={handleClick}>가입 완료하기</button>
         }
       </div>
-      <div style={{ width: "100vw", padding: "5vw", transition: "all 500ms", }}>
+      <div style={{ width: "100vw", height: "100vh", padding: "5vw", transition: "all 500ms", transform: joinFinished ? "translate(-200vw,0)" : "none" }}>
 
         <FinishPage email={email.current?.value || ""} />
       </div>
+      <LoadingCircle style={{
+        position: "fixed",
+        top: "40vh",
+        left: "45vw",
+      }} />
     </div>
 
   )

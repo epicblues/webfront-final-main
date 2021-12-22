@@ -1,4 +1,5 @@
-import "semantic-ui-css/semantic.min.css";
+// react-icons
+import { BiChevronRight } from "react-icons/bi";
 
 const ReviewHeader = ({ onAdd }) => {
   return (
@@ -9,7 +10,7 @@ const ReviewHeader = ({ onAdd }) => {
           건강과 감정을 기록하세요<br />
           <button  onClick={() => {onAdd()}}>
             일기 작성
-            <i className='right angle icon'></i>
+            <BiChevronRight size='1rem' style={{verticalAlign: 'bottom'}} />
           </button>
         </p>
         <div>

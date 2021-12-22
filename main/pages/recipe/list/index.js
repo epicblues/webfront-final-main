@@ -63,12 +63,10 @@ const Index = ({ user, recipes }) => {
     const { data } = await axios.get(
       "/api/recipe/infiniteScroll/listAll/" + recipeCounter
     );
-    console.log(data);
     if (data.length === 0) {
       setHasMore(false);
     } else {
       setRecipeList([...recipeList, ...data]);
-      console.log("ONSCROLL!");
       setRecipeCounter(recipeCounter + 4);
     }
   }, 500);
@@ -78,6 +76,7 @@ const Index = ({ user, recipes }) => {
       <Navigation currentURL={currentURL}></Navigation>
       {/* <Categories currentURL={currentURL} /> */}
       <h1>분류 : 전체</h1>
+      <div className={searchListStyles.headerBar}></div>
       <InfiniteScroll
         dataLength={recipeList.length}
         next={getMoreRecipes}

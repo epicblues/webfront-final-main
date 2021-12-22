@@ -19,7 +19,7 @@
 
   50% {
     /* transform: translateY(20px); */
-    transform: scaleX(120%) scaleY(120%) translateY(-10px);
+    transform: scaleX(100%) scaleY(100%) translateY(-5px);
   }
 
   to {
@@ -53,5 +53,5 @@
 .navWrap p {
   font: normal 400 0.8rem "Noto Sans KR";
   margin-top: 2px;
-  color: #333;
+  /* color: #333; */
 }

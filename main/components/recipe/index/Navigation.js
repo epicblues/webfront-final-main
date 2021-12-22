@@ -5,8 +5,8 @@ import Link from "next/link";
 import navigationStyles from "../../../styles/recipe/Navigation.module.css";
 
 // Component
-import SearchModal from "../../../components/recipe/index/SearchModal";
-import SearchModalBlackout from "./CategoryModalBlackout";
+import SearchModal from "./SearchModal";
+import SearchModalBlackout from "./SearchModalBlackout";
 import CategoryModal from "./CategoryModal";
 import CategoryModalBlackout from "./CategoryModalBlackout";
 

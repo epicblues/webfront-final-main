@@ -15,7 +15,7 @@ const Search = () => {
   const title = useRef();
   const [open, setOpen] = useState(false);
   const router = useRouter();
-  const [searched, setSearched] = useState(false);
+
   const [challenges, setChallenges] = useState([]);
   const [searchedChallenges, setSearchedChallenges] = useState([]);
 
@@ -49,16 +49,10 @@ const Search = () => {
     );
     setSearchedChallenges(filteredChallenges);
     title.current.value = "";
-    setSearched(true);
   };
 
   const handleReset = () => {
     setOpen(false), setSearchedChallenges([]);
-  };
-  const handleKeypress = (e) => {
-    if (e.key == "Enter") {
-      handleClick();
-    }
   };
 
   return (
@@ -83,10 +77,7 @@ const Search = () => {
                 e.preventDefault();
               }}
             >
-              <div
-                className="container"
-                style={{ margin: "10px 10px", overflowY: "scroll" }}
-              >
+              <div className="container" style={{ margin: "10px 10px" }}>
                 <div className={ModalStyle.textC}>
                   <input
                     className={ModalStyle.modalText}
@@ -98,7 +89,6 @@ const Search = () => {
                     onChange={(e) => {
                       setSearchString(e.currentTarget.value);
                     }}
-                    onKeyPress={handleKeypress}
                   />
                   <p ref={titleError}></p>
                   <Icon
@@ -116,28 +106,22 @@ const Search = () => {
                 </div>
               </div>
               <div style={{ marginTop: "10px" }}>
-                {!searched ? (
+                {searchedChallenges.length === 0 && searchString === "" ? (
                   <>
-                    <h3 className={ModalStyle.modalH3}>
-                      원하는 챌린지를 검색해주세요
-                    </h3>
-                    <Icon
-                      name="trophy"
-                      size="big"
-                      className={ModalStyle.modalTrophy}
-                    />
+                    <div className={ModalStyle.modalFont}>검색해 주세요</div>
                   </>
                 ) : (
                   <>
                     {!(searchedChallenges.length === 0) ? (
                       <div className={ModalStyle.modalContainer}>
-                        {searchedChallenges.map((challenge, index) => (
+                        {searchedChallenges.map((challenge) => (
                           <>
                             <div
                               style={{
                                 margin: "1rem 1rem",
                               }}
-                              key={index}
+                              key={challenge._id}
+                              onScroll="scroll"
                             >
                               <Link
                                 passHref
@@ -152,6 +136,8 @@ const Search = () => {
                                       challenge.image
                                     }
                                     layout="fill"
+                                    objectFit="cover"
+                                    objectPosition="top"
                                   />
                                 </div>
                               </Link>
@@ -159,7 +145,10 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div className={ModalStyle.participant}>
+                                <div
+                                  key={challenge._id}
+                                  className={ModalStyle.participant}
+                                >
                                   <Icon
                                     name="user"
                                     size="large"
@@ -173,7 +162,10 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div className={ModalStyle.title}>
+                                <div
+                                  className={ModalStyle.title}
+                                  key={challenge._id}
+                                >
                                   {challenge.title}
                                 </div>
                               </Link>
@@ -181,7 +173,10 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div className={ModalStyle.content}>
+                                <div
+                                  key={challenge._id}
+                                  className={ModalStyle.content}
+                                >
                                   시작일 :
                                   {new Date(challenge.startDate).getMonth() +
                                     1 +
@@ -194,7 +189,10 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div className={ModalStyle.content}>
+                                <div
+                                  key={challenge._id}
+                                  className={ModalStyle.content}
+                                >
                                   종료일:
                                   {new Date(challenge.endDate).getMonth() +
                                     1 +
@@ -207,7 +205,10 @@ const Search = () => {
                                 passHref
                                 href={"/challenge/list/" + challenge._id}
                               >
-                                <div className={ModalStyle.content}>
+                                <div
+                                  key={challenge._id}
+                                  className={ModalStyle.content}
+                                >
                                   {Math.ceil(
                                     (new Date(challenge.endDate).getTime() -
                                       new Date().getTime()) /
@@ -222,11 +223,13 @@ const Search = () => {
                       </div>
                     ) : (
                       <>
+                        <h2 style={{ textAlign: "center" }}>추천 챌린지</h2>
                         <div className={ModalStyle.modalFont}>
-                          진행중인 챌린지가 없습니다.
+                          검색 결과가 없습니다.
                         </div>
-                        <h2 className={ModalStyle.modalH2}>추천 챌린지</h2>
-                        <div>
+                        <div
+                          style={{ display: "flex", justifyContent: "center" }}
+                        >
                           <RecommendChallenge challenges={challenges} />
                         </div>
                       </>

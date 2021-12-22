@@ -11,22 +11,22 @@ const FinishPage = ({ email }: { email: string }) => {
     // justifyContent: "space-evenly",
     alignItems: "center",
     background: "white",
-    height: "80vh"
+    height: "100vh"
   }
 
   const title: CSSProperties = {
     width: '100%',
     textAlign: 'left',
     font: "normal 600 2rem 'Noto Sans KR'",
-    marginBottom: '1rem' 
+    marginBottom: '1rem'
   }
 
-  const leftBox: CSSProperties ={
+  const leftBox: CSSProperties = {
     borderTopLeftRadius: '10px',
     borderBottomLeftRadius: '10px'
   }
 
-  const rightBox: CSSProperties ={
+  const rightBox: CSSProperties = {
     borderTopRightRadius: '10px',
     borderBottomRightRadius: '10px'
   }
@@ -52,21 +52,21 @@ const FinishPage = ({ email }: { email: string }) => {
   return (
     <div style={container}>
       <div style={title}>축하합니다! <br /> 회원 가입을 완료했어요.</div>
-      <div className="ui mini unstackable steps" style={{margin: '0 auto 1rem', borderRadius: '10px', width: '100%'}}>
+      <div className="ui mini unstackable steps" style={{ margin: '0 auto 1rem', borderRadius: '10px', width: '100%' }}>
         <div className="disabled step" style={leftBox}>
-          <BiEditAlt size='2rem' style={{marginRight: '0.25rem'}} />
+          <BiEditAlt size='2rem' style={{ marginRight: '0.25rem' }} />
           <div className="content">
             <div className="title">작성</div>
           </div>
         </div>
         <div className="disabled step">
-          <BiBarChartAlt size='2rem' style={{marginRight: '0.25rem'}} />
+          <BiBarChartAlt size='2rem' style={{ marginRight: '0.25rem' }} />
           <div className="content">
             <div className="title">BMR</div>
           </div>
         </div>
         <div className="active step" style={rightBox}>
-          <BiHappyAlt size='2rem' style={{marginRight: '0.25rem'}} />
+          <BiHappyAlt size='2rem' style={{ marginRight: '0.25rem' }} />
           <div className="content">
             <div className="title">완료</div>
           </div>
@@ -74,12 +74,12 @@ const FinishPage = ({ email }: { email: string }) => {
       </div>
 
       <div style={item}>
-          <span style={emphasize}>{email}</span>로
-          <br />
-          인증 메일을 보냈습니다.
-          <br />
-          이메일을 확인하세요!
-        <img className='animate__animated animate__tada' src='/clap.png' style={{width: '54%', position: 'absolute', bottom: '10%', right: '10%'}}/>
+        <span style={emphasize}>{email}</span>로
+        <br />
+        인증 메일을 보냈습니다.
+        <br />
+        이메일을 확인하세요!
+        <img className='animate__animated animate__tada' src='/clap.png' style={{ width: '54%', position: 'absolute', bottom: '10%', right: '10%' }} />
       </div>
     </div>
   )

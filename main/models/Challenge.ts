@@ -14,7 +14,7 @@ export class Challenge {
   likes?: number[];
   losers?: number[];
   participants?: number[];
-  diet?: { category: string; uploadCount: string | number; checker: any[] };
+  diet?: { category: string; condition: string | number; checker: any[] };
   result?: number;
   winners?: number[];
 
@@ -38,7 +38,6 @@ export class Challenge {
       })
       .sort({ upload_date: 1 })
       .toArray();
-    console.log(result);
     if (result.length >= +challenge.recipe.uploadCount) {
       // 레시피 챌린지 성공
       const updateResult = await client
@@ -107,7 +106,6 @@ export class Challenge {
     const category = challenge.diet.kind; // plusKcal vs minusKcal
     const targetCalorie = +challenge.diet.dailyCalorie; //  목표칼로리
     const condition = +challenge.diet.condition; // 조건 일 수
-    console.log("필터링 이전 : ", result);
     // 해당 일의 다이어리 4개 식사가 완성되어 있어야 한다. (칼로리가 있어야 한다.)
     const filteredDiary = result.filter((diary) => {
       return (
@@ -119,8 +117,6 @@ export class Challenge {
           : diary.total.calories <= targetCalorie)
       );
     });
-
-    console.log("필터링 이후 : ", filteredDiary);
 
     if (filteredDiary.length >= condition) {
       // db에 성공했으니 winners로 push 해야함

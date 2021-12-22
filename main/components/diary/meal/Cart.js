@@ -1,8 +1,11 @@
 import React from "react";
+// components
 import ImageUpload from "./ImageUpload";
 import Product from "./Product";
-import MealStyles from '../../../styles/diary/Meal.module.css';
+// react-icons
 import { AiOutlineDelete } from "react-icons/ai";
+// css
+import MealStyles from '../../../styles/diary/Meal.module.css';
 
 const PAGE_PRODUCTS = "products";
 const PAGE_CART = "cart";

@@ -11,20 +11,26 @@ const MyDashBoard = ({ countMyRecipes, totalHit }) => {
     <div className={myDashboardStyles.container}>
       <div className={myDashboardStyles.wrapper}>
         <div className={myDashboardStyles.innerWrapper}>
-          <Link href="/recipe/list/my">
-            <a>
-              <div className={myDashboardStyles.imgWrapper}>
+          <div className={myDashboardStyles.title}>
+            <Link href="/recipe/list/my">
+              <a>
                 <Image
                   src={ottogiBoy}
-                  layout="fill"
-                  objectFit="cover"
+                  layout="intrinsic"
+                  objectFit="scale-down"
                   alt="ottogiBoy"
                 ></Image>
-              </div>
-              <p className={myDashboardStyles.number}>내 레시피</p>
-            </a>
-          </Link>
+              </a>
+            </Link>
+          </div>
+
+          <p className={myDashboardStyles.number}>
+            <Link href="/recipe/list/my">
+              <a>내 레시피 </a>
+            </Link>
+          </p>
         </div>
+
         <div className={myDashboardStyles.innerWrapper}>
           <p className={myDashboardStyles.title}>작성글</p>
           <br />

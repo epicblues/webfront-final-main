@@ -12,13 +12,20 @@ const handler: NextApiHandler = async (req, res) => {
     const challenges = await client
       .db("webfront")
       .collection("challenge")
-      .find({
-        $or: [{ participants: userId }, { userId }],
-      })
-      .filter({
-        $or: [{ endDate: { $lte: new Date() } }, { winners: userId }],
-        // 과거의 챌린지 또는 현재 완료된 챌린지를 가져온다.
-      })
+      .aggregate([
+        {
+          $match: {
+            $or: [{ participants: userId }, { userId }],
+          },
+        },
+        {
+          $match: {
+            $or: [{ endDate: { $lte: new Date() } }, { winners: userId }],
+          },
+          // 과거의 챌린지 또는 현재 완료된 챌린지를 가져온다.
+        },
+      ])
+
       .toArray();
     // 과거의 챌린지 중에서 winners가 없는 챌린지들을 선별해서
     // 한 번 더 체크한다?

@@ -37,10 +37,10 @@ const RecommendChallenge = ({ challenges }) => {
       onSlideChange={() => console.log("slide change")}
     >
       {recChallenges.map((challenge) => (
-        <>
-          <SwiperSlide>
+        <div key={challenge._id}>
+          <SwiperSlide key={challenge._id}>
             <div className={ModalStyle.recContainer}>
-              <div key={challenge._id}>
+              <div>
                 <div
                   className="image-wrap"
                   style={{
@@ -67,28 +67,31 @@ const RecommendChallenge = ({ challenges }) => {
                     />
                     {challenge.participants.length}명
                   </div>
+
                   <div style={{ marginLeft: "10px" }}>
                     <Link passHref href={"/challenge/list/" + challenge._id}>
-                      <Image
-                        style={{
-                          zIndex: "0",
-                          borderRadius: "5%",
-                          width: "45vw",
-                        }}
-                        src={
-                          process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
-                          challenge.image
-                        }
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition="top"
-                      />
+                      <>
+                        <Image
+                          style={{
+                            zIndex: "0",
+                            borderRadius: "5%",
+                            width: "45vw",
+                          }}
+                          src={
+                            process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                            challenge.image
+                          }
+                          layout="fill"
+                        />
+                      </>
                     </Link>
                   </div>
                 </div>
                 <ul className={ListStyle.ul}>
-                  <li className={ListStyle.li}>
+                  <Link passHref href={"/challenge/list/" + challenge._id}>
                     <li className={ModalStyle.recTitle}>{challenge.title}</li>
+                  </Link>
+                  <Link passHref href={"/challenge/list/" + challenge._id}>
                     <li className={ChallengeStyle.li}>
                       {new Date(challenge.endDate).getTime() -
                         new Date().getTime ===
@@ -111,12 +114,12 @@ const RecommendChallenge = ({ challenges }) => {
                         </>
                       )}
                     </li>
-                  </li>
+                  </Link>
                 </ul>
               </div>
             </div>
           </SwiperSlide>
-        </>
+        </div>
       ))}
     </Swiper>
   );

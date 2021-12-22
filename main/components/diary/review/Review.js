@@ -1,4 +1,4 @@
-import "semantic-ui-css/semantic.min.css";
+// react-icons
 import { BiX } from "react-icons/bi";
 
 const Review = ({ review, onDelete, onToggle }) => {

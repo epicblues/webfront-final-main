@@ -1,30 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import { getDateId, parseDocumentToObject } from "../../util/date";
 import clientPromise, { getNextSequence } from "../../util/mongodb";
 import { Diary } from "../../models";
-// CSS
-import "semantic-ui-css/semantic.min.css";
-import 'animate.css';
-// Date
+// components
 import PickDate from "../../components/diary/PickDate";
-// 영양 섭취 상태
 import FinalTotalSum from "../../components/diary/FinalTotalSum";
-// Review
-import ReviewPage from "../../components/diary/review/ReviewPage";
-// 음식 작성
 import AddFood from "../../components/diary/meal/AddFood";
 import Meal from "../../components/diary/meal/Meal";
+import ReviewPage from "../../components/diary/review/ReviewPage";
+// css
+import "semantic-ui-css/semantic.min.css";
+import "animate.css";
 
+// Diary용 상수 설정
 export const [BREAKFAST, LUNCH, DINNER, SNACK, DEFAULT] = [
   0,
   1,
   2,
   3,
   "DEFAULT",
-]; // Diary용 상수 설정
+];
 
-const Index = ({ user, fetchedDiary, mode, }) => {
+// Diary용 랜덤 이미지 설정
+const  typeImages = [
+    "/restaurant_800.png",
+    "/serving_800.png",
+    "/snack_800.png",
+    "/bread_800.png",
+    "/spaghetti_800.png",
+    "/breakfast_800.png",
+    "/sandwich_800.png",
+  ];
+const typeImage =() => typeImages[Math.floor(Math.random() * typeImages.length)]
+
+export const ImageContext = React.createContext({
+  typeImages,
+  typeImage
+});
+
+const Index = ({ user, fetchedDiary, mode, loadingProps }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [writingMode, setWritingMode] = useState(
     mode !== null ? mode : "DEFAULT"
@@ -38,7 +53,7 @@ const Index = ({ user, fetchedDiary, mode, }) => {
     setActiveIndex(index);
   };
   const [isOpen, setIsOpen] = useState(false);
-
+  const [loading, setLoading, LoadingCircle] = loadingProps;
   const tabContArr = [
     {
       tabTitle: (
@@ -53,20 +68,21 @@ const Index = ({ user, fetchedDiary, mode, }) => {
       tabCont: (
         <div>
           <FinalTotalSum diary={diary} user={user} />
-          <div className='is-desc'>
+          <div className="is-desc">
             <p>
-              오늘 무엇을 드셨나요?<br />
+              오늘 무엇을 드셨나요?
+              <br />
               식단을 기록하세요
             </p>
             <div>
-              <div className='is-desc-food-img
-                        animate__animated animate__pulse'
-              >
-              </div>
-              <div className='shadow-img'></div>
+              <div
+                className="is-desc-food-img
+                        animate__animated animate__pulse"
+              ></div>
+              <div className="shadow-img"></div>
             </div>
           </div>
-          <div className="meal-container"> 
+          <div className="meal-container">
             {[0, 1, 2, 3].map((type) => (
               <Meal
                 diary={diary}
@@ -104,7 +120,7 @@ const Index = ({ user, fetchedDiary, mode, }) => {
 
   return (
     // Wrapper
-    <>
+    <ImageContext.Provider value={{typeImage,typeImages}}>
       {[0, 1, 2, 3].map((type) => (
         <AddFood
           className="wrap-food"
@@ -126,12 +142,16 @@ const Index = ({ user, fetchedDiary, mode, }) => {
                 return section.tabTitle;
               })}
             </div>
-            <PickDate diary={diary} setDiary={setDiary} />
+            <PickDate
+              diary={diary}
+              setDiary={setDiary}
+              setLoading={setLoading}
+            />
           </div>
           <div>{tabContArr[activeIndex].tabCont}</div>
         </div>
       )}
-    </>
+    </ImageContext.Provider>
     // End of Wrapper
   );
 };
@@ -142,7 +162,7 @@ export const getServerSideProps = async (ctx) => {
 
     // 당일 다이어리를 가져오는 로직
     const client = await clientPromise;
-    console.log(ctx.query);
+    console.log("hello", ctx.query);
     const loadedDiary = await client
       .db("webfront")
       .collection("diary")
@@ -152,6 +172,7 @@ export const getServerSideProps = async (ctx) => {
     if (loadedDiary === null) {
       const diaryId = await getNextSequence("diary", client);
       const initialDiary = new Diary(user.id);
+      console.log("initial Diary : ", initialDiary);
       await client
         .db("webfront")
         .collection("diary")
