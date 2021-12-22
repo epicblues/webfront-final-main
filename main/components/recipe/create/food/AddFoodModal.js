@@ -1,3 +1,6 @@
+// AddFoodModal.js
+// 재료 추가하기 Modal Component
+
 import React, { useState } from "react";
 import axios from "axios";
 import modalAddFoodStyles from "../../../../styles/recipe/ModalAddFood.module.css";
