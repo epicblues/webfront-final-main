@@ -31,15 +31,16 @@ export type LoadingProps = [
 ];
 
 // dependency가 변경되면 loading State를 false로 바꾸는 hook
-// 보통 pageProps를 변경하는 컴포넌트(보통 next/link next/router)에
-// 이벤트 핸들러로 setLoading(true)를 설정하면
-// next의 serverSideProps가 실행되고 props를 변경하기 전 까지
-// loading 상태가 true를 유지한다.
+// 상태가 비동기적으로 변경되는 state를 dependency로 넣는다.
+// 대표적인 예시 : Root Component의 pageProps.(next/router가 pageProps를 변경하기 까지 시간이 걸린다.)
+// 함수를 사용하는 컴포넌트에서는 특정 비동기 요청을 하기 직전에 loading을 true로 설정한다.
 export const useLoading = (dependency?: any): LoadingProps => {
   const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    // 비동기 요청이 끝나면 dependency의 변경을 감지하고
+    // useEffect가 발동해서 다시 loading을 false로 전환
     setLoading(false);
-    return () => {};
   }, [dependency]);
 
   // JSX의 실제 모습은 Element나  Component를 return 하는 함수
