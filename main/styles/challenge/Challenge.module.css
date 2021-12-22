@@ -14,7 +14,7 @@
   grid-auto-rows: auto;
   justify-items: center;
   align-items: center;
-  margin-top: 12vh;
+  margin-top: 8vh;
 }
 .modalContainer {
   display: grid;
@@ -45,7 +45,8 @@
   grid-auto-rows: auto;
   justify-items: center;
   align-items: center;
-  margin: 10px;
+  position: relative;
+  top: 3vh;
 }
 
 .item2 {
@@ -91,9 +92,6 @@
   background-color: lightgray;
 }
 .h2,
-.title {
-  font: normal 500 1.2rem/22px "Noto Sans KR";
-}
 .h2C {
   text-align: center;
   margin: 20px, 0;
@@ -180,26 +178,29 @@
   border: 1px bold lightgray;
 }
 .header2 {
-  position: fixed;
-  width: 100vw;
-  height: 8vh;
   display: flex;
   align-items: center;
-  background-color: white;
   justify-content: center;
-  border: 0;
-  z-index: 2;
-  top: 0;
 }
 .mainTag {
   position: absolute;
   left: 1rem;
-  top: 13%;
-  font: normal 500 1.4rem/36px "Noto Sans KR";
+  top: 8%;
+  font: normal 600 1.4rem/36px "Noto Sans KR";
 }
 .bottomTag {
   position: relative;
   left: 1rem;
   top: 75%;
   font: normal 600 1.4rem/36px "Noto Sans KR";
+}
+.newTitle {
+  text-align: center;
+  position: relative;
+  top: 3vh;
+  margin-bottom: 1rem;
+  font: normal 600 1.4rem/24px "Noto Sans KR";
+}
+.title {
+  font: normal 600 1.4rem/24px "Noto Sans KR";
 }
