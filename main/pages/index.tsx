@@ -18,8 +18,11 @@ import LikeRecipe from '../components/user/likes/LikeRecipe';
 import mainStyle from '../styles/main/Main.module.css';
 import ShortNav from '../components/main/ShortNav';
 import MyContents from '../components/main/MyContents';
-import { BiDish, BiFolderMinus, BiFolderPlus, BiTrophy } from 'react-icons/bi'
+import { BiChat, BiDish, BiFolderMinus, BiFolderPlus, BiTrophy } from 'react-icons/bi'
+import { ImCancelCircle } from 'react-icons/im'
 import { LoadingProps } from '../hooks';
+import MiniChat from '../components/main/MiniChat';
+import { MdOutlineCancelPresentation } from 'react-icons/md';
 // react-icons
 import { AiOutlineFire } from "react-icons/ai";
 import { BiExit, BiChevronRight, BiHeart, BiStar, BiMessageSquareAdd, BiMessageSquareMinus } from "react-icons/bi";
@@ -74,80 +77,80 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
     <div>
       <div className={mainStyle.reportWrap}>
 
-          <div className={mainStyle.reportHeader}>  
-            <div className={mainStyle.headerTop}>
-              <div className={mainStyle.text}>
-                {name} 님 안녕하세요!
-              </div>
-              <div className={mainStyle.icon}>
-                <BiExit size='1.5rem' onClick={clickHandler} />
-                <Link passHref href="/user/update">
-                  <FiSettings size='1.4rem' onClick={() => { setLoading(true) }} />
-                </Link>
-              </div>
+        <div className={mainStyle.reportHeader}>
+          <div className={mainStyle.headerTop}>
+            <div className={mainStyle.text}>
+              {name} 님 안녕하세요!
             </div>
-          </div >
-            {bmr && (
-                <div className={mainStyle.bmrWrap}>
-                  <div className={mainStyle.bmrInfo}>
-                      <div>기초 대사량</div>
-                      <div className={mainStyle.important}>{bmr}</div>
-                  </div>
-                  <div className={mainStyle.bmrInfo}>
-                      <div>하루 권장량</div>
-                      <div className={mainStyle.important}>{activity}</div>
-                  </div>
-                </div>
-              )
-            }
-
-          <div className={mainStyle.contentsWrap}>
-            <div className={mainStyle.contentsList}>
-                <div className={mainStyle.contentsTitle}>
-                  <BiDish size="1.55rem" style={{margin: '0 auto'}} />
-                  <p>작성 레시피</p>
-                </div>
+            <div className={mainStyle.icon}>
+              <BiExit size='1.5rem' onClick={clickHandler} />
+              <Link passHref href="/user/update">
+                <FiSettings size='1.4rem' onClick={() => { setLoading(true) }} />
+              </Link>
             </div>
-
-            <div className={mainStyle.contentsList} onClick={() => { setShowLikesRecipe(true) }}>
-                <div className={mainStyle.contentsTitle}>
-                  <BiHeart size="1.5rem" style={{margin: '0 auto'}} />
-                  <p>찜한 레시피</p>
-                </div>
+          </div>
+        </div >
+        {bmr && (
+          <div className={mainStyle.bmrWrap}>
+            <div className={mainStyle.bmrInfo}>
+              <div>기초 대사량</div>
+              <div className={mainStyle.important}>{bmr}</div>
             </div>
-
-            <div className={mainStyle.contentsList}>
-                <div className={mainStyle.contentsTitle}>
-                  <BiTrophy size="1.5rem" style={{margin: '0 auto'}} />
-                  <p>참여 챌린지</p>
-                </div>
+            <div className={mainStyle.bmrInfo}>
+              <div>하루 권장량</div>
+              <div className={mainStyle.important}>{activity}</div>
             </div>
+          </div>
+        )
+        }
 
-            <div className={mainStyle.contentsList} onClick={() => { setShowLikesChallenge(true) }}>
-                <div className={mainStyle.contentsTitle}>
-                  <BiStar size="1.5rem" style={{margin: '0 auto'}} />
-                  <p>관심 챌린지</p>
-                </div>
+        <div className={mainStyle.contentsWrap}>
+          <div className={mainStyle.contentsList}>
+            <div className={mainStyle.contentsTitle}>
+              <BiDish size="1.55rem" style={{ margin: '0 auto' }} />
+              <p>작성 레시피</p>
             </div>
-
-            {/* <MyContents /> */}
           </div>
 
-          <FoodRank foodRank={foodRank} />
+          <div className={mainStyle.contentsList} onClick={() => { setShowLikesRecipe(true) }}>
+            <div className={mainStyle.contentsTitle}>
+              <BiHeart size="1.5rem" style={{ margin: '0 auto' }} />
+              <p>찜한 레시피</p>
+            </div>
+          </div>
 
+          <div className={mainStyle.contentsList}>
+            <div className={mainStyle.contentsTitle}>
+              <BiTrophy size="1.5rem" style={{ margin: '0 auto' }} />
+              <p>참여 챌린지</p>
+            </div>
+          </div>
 
+          <div className={mainStyle.contentsList} onClick={() => { setShowLikesChallenge(true) }}>
+            <div className={mainStyle.contentsTitle}>
+              <BiStar size="1.5rem" style={{ margin: '0 auto' }} />
+              <p>관심 챌린지</p>
+            </div>
+          </div>
+
+          {/* <MyContents /> */}
         </div>
+
+        <FoodRank foodRank={foodRank} />
+
+
+      </div>
       <div>
 
-        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: "center"}}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: "center" }}>
           <div onClick={() => { setLargeMode(!largeMode) }}>
-          {largeMode ? <BiMessageSquareMinus size="1.6rem" /> : <BiMessageSquareAdd size="1.6rem" />}
+            {largeMode ? <BiMessageSquareMinus size="1.6rem" /> : <BiMessageSquareAdd size="1.6rem" />}
           </div>
         </div>
         <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
-      
-      
-      
+
+
+
       </div>
 
 
@@ -173,8 +176,15 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
       }}>
 
       </div>)}
+      <MiniChat liveData={liveData} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
       <ShortNav />
 
+      <div className={mainStyle.fullChat} style={{ fontSize: "1em", transform: `translateX(${largeMode ? -100 : 0}vw)` }}>
+        <span style={{ fontSize: "1.3em", ...FLEXBOX_NORMAL, alignItems: "center", paddingTop: "1rem", fontWeight: 700 }}>채팅 / 실시간 현황<div onClick={() => { setLargeMode(!largeMode) }} style={{ paddingBottom: "0.1rem", borderRadius: "50%", background: "#f36666", padding: "0.6vh" }}>
+          <MdOutlineCancelPresentation size="3rem" /></div></span>
+        <br />
+        <Chat liveData={liveData} socket={socket as Socket} name={name} largeMode={largeMode} setLargeMode={setLargeMode} />
+      </div>
     </div >
   )
 }
