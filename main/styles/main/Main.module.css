@@ -317,3 +317,23 @@
 .foodRankTable > div > div {
   text-align: center;
 }
+
+.foodRankInfo {
+  position: absolute;
+  bottom: 30px;
+  right: -8rem;
+  /* height: 4rem; */
+  background-color: whitesmoke;
+  width: 10rem;
+  font-size: 0.8rem;
+  z-index: 20;
+  padding: 0.3rem;
+  border-radius: 10px;
+  border: #f07777 solid 2px;
+  font-weight: 400;
+  text-align: center;
+  transition-property: opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+  opacity: 0;
+}

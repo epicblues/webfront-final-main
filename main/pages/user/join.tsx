@@ -104,8 +104,10 @@ const Join = () => {
 
       // changeButtonStyle($button, "이메일 주소를 잘못 입력하셨습니다.")
       $p.innerText = "이메일 주소를 잘못 입력하셨습니다.";
+      $p.style.paddingBottom = "1rem"
       setTimeout(() => {
         $p.innerText = ''
+        $p.style.paddingBottom = "0rem"
       }, 2000)
       email.current.focus();
       return;
@@ -114,6 +116,7 @@ const Join = () => {
     if (data.message) {
       email.current.disabled = true;
       $p.textContent = "사용 가능한 이메일입니다."
+      $p.style.paddingBottom = "1rem"
       $p.style.color = "lightgreen"
       $button.textContent = "확인 완료"
       $button.style.backgroundColor = "lightgreen"
@@ -124,8 +127,10 @@ const Join = () => {
       // event 변수는 이 함수가 끝나면 사라진다. 따라서 추가적으로 button의 주소를 묶어둬야 한다?
       // changeButtonStyle($button, "이미 가입된 이메일입니다.");
       $p.innerText = "이미 가입된 이메일입니다."
+      $p.style.paddingBottom = "1rem"
       setTimeout(() => {
         $p.innerText = ''
+        $p.style.paddingBottom = "0rem"
       }, 3000)
       email.current.focus();
     }
@@ -138,8 +143,10 @@ const Join = () => {
     const $p = $button.parentElement?.nextElementSibling as HTMLParagraphElement
     if (!/^[가-힣a-zA-Z]{2,12}$/.test(name.current.value)) {
       $p.textContent = "숫자, 특수문자 입력 불가 (12자 이내)";
+      $p.style.paddingBottom = "1rem"
       setTimeout(() => {
         $p.innerText = ''
+        $p.style.paddingBottom = "0rem"
       }, 3000)
       name.current.focus();
       return;
@@ -149,6 +156,7 @@ const Join = () => {
       name.current.disabled = true;
       $button.textContent = "확인 완료"
       $p.textContent = "사용 가능한 닉네임입니다."
+      $p.style.paddingBottom = "1rem"
       $p.style.color = "lightgreen"
       $button.style.backgroundColor = "lightgreen"
       $button.disabled = true;
@@ -157,8 +165,10 @@ const Join = () => {
     } else {
       // event 변수는 이 함수가 끝나면 사라진다. 따라서 추가적으로 button의 주소를 묶어둬야 한다?
       $p.textContent = "이미 존재하는 닉네임입니다.";
+      $p.style.paddingBottom = "1rem"
       setTimeout(() => {
         $p.innerText = ''
+        $p.style.paddingBottom = "0rem"
       }, 3000)
       name.current.focus();
 
@@ -228,7 +238,7 @@ const Join = () => {
 
 
   const hiddenMessage: CSSProperties = {
-    paddingBottom: "1rem",
+    paddingBottom: "0rem",
     paddingLeft: "1rem",
     color: "red"
   }

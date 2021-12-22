@@ -1,189 +1,48 @@
-/* PC , 테블릿 가로 (해상도 1024px ~ )*/
-@media all and (min-width: 1024px) {
-  .container {
-    font-family: "NanumSquare";
-
-    height: 30vh;
-    text-align: center;
-  }
-
-  .wrapper {
-    margin: 1rem 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px;
-    background-color: white;
-    height: 25vh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .innerWrapper {
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    border: 5px #fff0f0 solid;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    margin: 0.5rem 0.5rem;
-    padding: 0.2rem 0.2rem;
-  }
-
-  .imgWrapper {
-    height: 7vh;
-    position: relative;
-  }
-
-  .title {
-    font-size: 1.5rem;
-    color: #333333;
-  }
-
-  .number {
-    font-size: 1.5rem;
-    color: #ff5656;
-    font: bold;
-  }
-}
-/* 테블릿 세로 (해상도 768px ~ 1023px)*/
-@media all and (min-width: 768px) and (max-width: 1023px) {
-  .container {
-    font-family: "NanumSquare";
-
-    height: 30vh;
-    text-align: center;
-  }
-
-  .wrapper {
-    margin: 1rem 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px;
-    background-color: white;
-    height: 25vh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .innerWrapper {
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    border: 5px #fff0f0 solid;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    margin: 0.5rem 0.5rem;
-    padding: 0.2rem 0.2rem;
-  }
-
-  .imgWrapper {
-    height: 7vh;
-    position: relative;
-  }
-
-  .title {
-    font-size: 1.5rem;
-    color: #333333;
-  }
-
-  .number {
-    font-size: 1.5rem;
-    color: #ff5656;
-    font: bold;
-  }
-}
-/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
-@media all and (min-width: 480px) and (max-width: 767px) {
-  .container {
-    font-family: "NanumSquare";
-
-    height: 26vh;
-    text-align: center;
-  }
-
-  .wrapper {
-    margin: 1rem 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px;
-    background-color: white;
-    height: 18vh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .innerWrapper {
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    border: 5px #fff0f0 solid;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    margin: 0.5rem 0.5rem;
-    padding: 0.2rem 0.2rem;
-  }
-
-  .imgWrapper {
-    height: 7vh;
-    position: relative;
-  }
-
-  .title {
-    font-size: 1.1rem;
-    color: #333333;
-  }
-
-  .number {
-    font-size: 1.5rem;
-    color: #ff5656;
-    font: bold;
-  }
+.container {
+  font-family: "NanumSquare";
+  text-align: center;
 }
 
-/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
-@media screen and (max-width: 479px) {
-  .container {
-    font-family: "NanumSquare";
+.wrapper {
+  margin: 0 1rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 15px;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
 
-    height: 26vh;
-    text-align: center;
-  }
+.innerWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 30%;
+  border-radius: 15px;
+  border: 4px #fff0f0 solid;
+  padding: 0.2rem 0.2rem;
+}
 
-  .wrapper {
-    margin: 1rem 1rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 15px;
-    background-color: white;
-    height: 18vh;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #333333;
+  width: 100%;
+  max-width: 20vh;
+  height: 100%;
+  margin: 0;
+}
 
-  .innerWrapper {
-    display: flex;
-    flex-direction: column;
-    border-radius: 15px;
-    border: 5px #fff0f0 solid;
-    position: relative;
-    align-items: center;
-    justify-content: center;
-    margin: 0.5rem 0.5rem;
-    padding: 0.2rem 0.2rem;
-  }
+.number {
+  font-size: 1.4rem;
+  color: #ff5656;
+  font: bold;
+}
 
-  .imgWrapper {
-    height: 7vh;
-    position: relative;
-  }
-
-  .title {
-    font-size: 1.1rem;
-    color: #333333;
-  }
-
-  .number {
-    font-size: 1.5rem;
-    color: #ff5656;
-    font: bold;
-  }
+.number a {
+  color: #ff5656;
 }
