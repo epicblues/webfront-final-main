@@ -1,3 +1,7 @@
+// ConfirmForm.js
+// recipe/create의 switchWizardForm 함수 내부 컴포넌트
+// wizard 4에 해당
+
 import React from "react";
 import Image from "next/image";
 import createStyles from "../../../../styles/recipe/Create.module.css";

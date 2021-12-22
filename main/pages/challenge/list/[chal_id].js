@@ -5,14 +5,15 @@ import { patchStaticAxios, postStaticAxios } from "../../../util/axios";
 //component
 import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
-
+import Header from "../../../components/challenge/Main/Header";
 //css
 import { Image } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleLeft, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "semantic-ui-react";
 import ChallengeStyles from "../../../styles/challenge/Challenge.module.css";
 import ImageStyle from "../../../styles/challenge/Input.module.css";
+import DetailStyles from "../../../styles/challenge/Detail.module.css";
 import { useRouter } from "next/dist/client/router";
 
 const ChallengePage = ({ originalChallenge, user }) => {
@@ -50,10 +51,14 @@ const ChallengePage = ({ originalChallenge, user }) => {
     });
   };
 
-  const countChallengeDate = () => {
-    const weeks = Math.round(challenge.dateDiff / 7);
-    if (challenge.dateDiff < 7) {
-      return <div>{challenge.dateDiff}일</div>;
+  const countChallengeDate = (endDate) => {
+    const dateCount = Math.round(
+      (new Date(challenge.endDate).getTime() - new Date().getTime()) /
+        (1000 * 60 * 60 * 24)
+    );
+    const weeks = Math.round(dateCount / 7);
+    if (dateCount < 7) {
+      return <div>{dateCount}일</div>;
     } else {
       return <div>{weeks}주</div>;
     }
@@ -83,34 +88,28 @@ const ChallengePage = ({ originalChallenge, user }) => {
   const changeRecipeName = () => {
     switch (challenge.recipe.category) {
       case "noodle":
-        return <h3>레시피 종류: 면/파스타</h3>;
+        return <div>레시피 종류 : 면/파스타</div>;
       case "soup":
-        return <h3>레시피 종류: 국/탕/찌개</h3>;
+        return <div>레시피 종류 : 국/탕/찌개</div>;
       case "dessert":
-        return <h3>레시피 종류: 디저트</h3>;
+        return <div>레시피 종류 : 디저트</div>;
       case "rice":
-        return <h3>레시피 종류: 밥/볶음밥</h3>;
+        return <div>레시피 종류 : 밥/볶음밥</div>;
       case "kimchi":
-        return <h3>레시피 종류: 김치</h3>;
+        return <div>레시피 종류 : 김치</div>;
       case "grill":
-        return <h3>레시피 종류: 구이</h3>;
+        return <div>레시피 종류 : 구이</div>;
       case "etc":
-        return <h3>레시피 종류: 기타</h3>;
+        return <div>레시피 종류 : 기타</div>;
       default:
-        return <h3>없음</h3>;
+        return <div>없음</div>;
     }
   };
   return (
     <>
-      <div className="container">
-        <div style={{ margin: "0" }}>
-          <FontAwesomeIcon
-            icon={faAngleDoubleLeft}
-            className={ImageStyle.image4}
-            onClick={() => router.back()}
-          />
-        </div>
-        <div className="image">
+      <div className={DetailStyles.container}>
+        <div style={{ margin: "0" }}></div>
+        <div className={DetailStyles.image}>
           <Image
             className={ImageStyle.mImage}
             src={process.env.NEXT_PUBLIC_STATIC_SERVER_URL + challenge.image}
@@ -118,53 +117,46 @@ const ChallengePage = ({ originalChallenge, user }) => {
           />
         </div>
         <br />
-        <h2>{challenge.title}</h2>
+        <div className={DetailStyles.title}>{challenge.title}</div>
+        <div className={DetailStyles.date}>{countChallengeDate()}</div>
         <div style={{ display: "flex" }}>
           <div
             style={{
-              fontSize: "16px",
-              fontWeight: "bold",
-              width: "36px",
-              borderRadius: "0.3rem",
-              textAlign: "center",
-              backgroundColor: "lightgrey",
-              margin: "0 10px",
+              font: "normal 600 1rem/24px Noto Sans KR",
+              marginRight: "5px",
             }}
           >
-            {countChallengeDate()}
-          </div>
-          <div
-            style={{ fontSize: "16px", fontWeight: "bold", marginRight: "5px" }}
-          >
-            <FontAwesomeIcon icon={faUser} className={ImageStyle.image3} />
+            <Icon className="user" size="large" />
             {challenge.participants.length}명
           </div>
           {challenge.likes.indexOf(user.id) === -1 ? (
-            <div style={{ fontSize: "16px" }}>
+            <div style={{ font: "normal 600 1rem/24px Noto Sans KR" }}>
               <Icon
                 className="heart outline"
                 size="large"
                 onClick={handleClick}
               />
-              {challenge.likes.length}
+              {challenge.likes.length}개
             </div>
           ) : (
-            <div style={{ fontSize: "16px" }}>
+            <div style={{ font: "normal 600 1rem/24px Noto Sans KR" }}>
               <Icon
                 className="heart"
                 color="red"
                 size="large"
                 onClick={handleDislike}
               />
-              {challenge.likes.length}
+              {challenge.likes.length}개
             </div>
           )}
         </div>
 
         <hr className={ChallengeStyles.hr2} />
         <div style={{ margin: "10px 0" }}>
-          <h3 className={ChallengeStyles.h3Mt}>챌린지 기간</h3>
-          <h3>{changeDateStr(challenge.startDate, challenge.endDate)}</h3>
+          <div className={DetailStyles.tag}>챌린지 기간</div>
+          <div className={DetailStyles.content}>
+            {changeDateStr(challenge.startDate, challenge.endDate)}
+          </div>
         </div>
         <hr className={ChallengeStyles.hr2} />
         <div>
@@ -172,30 +164,50 @@ const ChallengePage = ({ originalChallenge, user }) => {
             <>
               {challenge.type === "diet" ? (
                 <>
-                  <h3>챌린지 조건</h3>
-                  <h3>챌린지 종류: 다이어트</h3>
+                  <div className={DetailStyles.tag}>챌린지 조건</div>
+                  <div className={DetailStyles.content}>
+                    챌린지 종류 : 다이어트
+                  </div>
 
                   {challenge.diet.kind === "plusKcal" ? (
                     <>
-                      <h3>다이어트 종류: 벌크업 </h3>
+                      <div className={DetailStyles.content}>
+                        다이어트 종류 : 벌크업{" "}
+                      </div>
                     </>
                   ) : (
                     <>
-                      <h3>다이어트 종류: 컷팅 </h3>
+                      <div className={DetailStyles.content}>
+                        다이어트 종류 : 컷팅{" "}
+                      </div>
                     </>
                   )}
-                  <h3>하루 섭취량:{challenge.diet.dailyCalorie} Kcal</h3>
-                  <h3>다이어트 완료 조건:{challenge.diet.condition}일</h3>
+                  <div className={DetailStyles.content}>
+                    하루 섭취량 : {challenge.diet.dailyCalorie} Kcal
+                  </div>
+                  <div className={DetailStyles.content}>
+                    다이어트 완료조건 : {challenge.diet.condition}일 작성
+                  </div>
                 </>
               ) : (
                 <>
-                  <h3>챌린지 조건</h3>
-                  <h3>챌린지 종류: 레시피</h3>
-                  <h3>{changeRecipeName()}</h3>
-                  <h3>레시피 완료 조건:{challenge.recipe.uploadCount}회</h3>
+                  <div className={DetailStyles.tag}>챌린지 조건</div>
+                  <div className={DetailStyles.content}>
+                    챌린지 종류 : 레시피
+                  </div>
+                  <div className={DetailStyles.content}>
+                    {changeRecipeName()}
+                  </div>
+                  <div className={DetailStyles.content}>
+                    레시피 완료조건 : {challenge.recipe.uploadCount}회 작성
+                  </div>
                 </>
               )}
-              <hr />
+              <hr className={ChallengeStyles.hr2} />
+              <div className={DetailStyles.tag}> 챌린지 설명</div>
+              <div className={DetailStyles.content}>
+                {challenge.description}
+              </div>
               {challenge.author[0]._id === user.id ? (
                 <>
                   <footer className={ChallengeStyles.footer}>
@@ -217,11 +229,6 @@ const ChallengePage = ({ originalChallenge, user }) => {
                         />
                       </div>
                     )}
-                    {/* <ChallengeCancel
-                      user={user}
-                      challenge={challenge}
-                      setChallenge={setChallenge}
-                    /> */}
                   </footer>
                 </>
               ) : (

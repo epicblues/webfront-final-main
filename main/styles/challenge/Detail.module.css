@@ -1,0 +1,29 @@
+.title {
+  font: normal 600 1.6rem/36px "Noto Sans KR";
+}
+.icon {
+  font: "normal 600 1rem/24px Noto Sans KR";
+}
+.date {
+  font: normal 600 1rem/24px Noto Sans KR;
+  width: 10%;
+  border-width: 0.3rem;
+  text-align: center;
+  background-color: lightgrey;
+  margin: 3px 10px;
+}
+.tag {
+  font: normal 600 1.3rem/24px Noto Sans KR;
+  margin-bottom: 3px;
+}
+.content {
+  font: normal 500 1.1rem/24px Noto Sans KR;
+}
+.container {
+  margin: 0 1rem 1rem 1rem;
+}
+.mImage {
+  width: 100vw;
+  height: 30vh;
+  position: absolute;
+}

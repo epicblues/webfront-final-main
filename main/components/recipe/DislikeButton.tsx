@@ -1,3 +1,6 @@
+// DislikeButton.tsx
+// CardSwiper 컴포넌트 내부에서 사용되는 DislikeButton
+
 import React, { MouseEventHandler } from 'react'
 import { patchStaticAxios, postStaticAxios } from '../../util/axios'
 import likeButtonStyles from '../../styles/main/LikeButton.module.css'

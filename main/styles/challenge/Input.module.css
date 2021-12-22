@@ -61,14 +61,11 @@
 }
 .navDiv {
   display: flex;
-  position: fixed;
-  height: 5vh;
-  top: 8vh;
+  position: absolute;
   z-index: 2;
   align-items: center;
   width: 100vw;
-  background-color: #ffffff;
-  border-top: 1px solid rgba(0, 0, 0, 0.664);
+  background-color: white;
 }
 .activated {
   color: #ff5656;
@@ -76,9 +73,11 @@
 }
 
 .search {
-  position: absolute;
-  right: 0;
-  top: 20px;
+  position: relative;
+  left: 45vw;
+  top: 2%;
+  z-index: 3;
+  background-color: white;
 }
 
 .textC {

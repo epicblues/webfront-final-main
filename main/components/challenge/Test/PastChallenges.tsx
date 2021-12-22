@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState,useCallback } from 'react'
+import Link from 'next/dist/client/link';
 import { Image } from 'semantic-ui-react';
 import { Challenge } from '../../../models/Challenge';
 import { debounce } from '../../../util/axios';
@@ -13,12 +14,15 @@ interface Props {
 const PastChallenge = (challenge: Challenge ) => (
   
   <div style={{display:"flex", justifyContent:"center", marginTop:"1rem"}} key={challenge._id}>
+    <Link passHref href={"/challenge/list/" + challenge._id}>
+    <>    
     <div className={PastStyles.imageDiv} >
     <Image
      className={PastStyles.image}
     src={process.env.NEXT_PUBLIC_STATIC_SERVER_URL as string + challenge.image}
     />
     </div>
+    
     <div className={PastStyles.ulDiv}>
       <ul>
       <li style={{font:"normal 600 1.2rem/22px Noto Sans KR"}}> 
@@ -59,6 +63,8 @@ const PastChallenge = (challenge: Challenge ) => (
     }}>최종달성율 100%</div>}</li>
      </ul>
     </div>
+    </>
+   </Link>
   </div>
   )   
 
@@ -76,7 +82,7 @@ const PastChallenges: React.FC<Props> = () => {
     const offsetHeight = Math.ceil(documentElement.offsetHeight);
     // 전체 문서가 viewport 기준으로 얼마만큼 보여지고 있는가
 
-    if (scrollHeight <= scrollY + offsetHeight + 60) {
+    if (scrollHeight <= scrollY + offsetHeight ) {
 
       window.removeEventListener('scroll', handleScroll)
       try {
@@ -96,6 +102,7 @@ const PastChallenges: React.FC<Props> = () => {
   useEffect(() => {
 
     window.addEventListener('scroll', handleScroll)
+    return ;  
   }, [handleScroll])
   
   return (
