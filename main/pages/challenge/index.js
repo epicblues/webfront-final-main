@@ -45,7 +45,7 @@ const Index = ({ challenges, user }) => {
     <>
       <div style={{ margin: "10px 0" }}>
         <div className={ChallengeStyle.header2}>
-          <Search setChallenges={setParticipatedChallenges} />
+          <Search />
           <Navbar currentURL={"/challenge"} />
         </div>
 
