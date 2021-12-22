@@ -109,8 +109,13 @@ const PastChallenges: React.FC<Props> = () => {
   return (
     <div>
       {challenges.length === 0 ?
-     
-       <div className={ChallengeStyle.bottomTag}>종료된 챌린지가 없습니다.</div>
+        <>      
+        
+       <div className={ChallengeStyle.bottomTag}>종료된 챌린지</div>
+       <div className={ChallengeStyle.scrollTag}>챌린지가 존재하지 않습니다.</div>
+       
+       </>
+
         :
         <> 
         <div className={ChallengeStyle.bottomTag}>종료된 챌린지</div>

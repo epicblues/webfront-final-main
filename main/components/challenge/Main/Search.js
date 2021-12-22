@@ -15,6 +15,7 @@ const ChallengeSearch = () => {
   const title = useRef();
   const [open, setOpen] = useState(false);
   const router = useRouter();
+
   //유효성 검사
   const validateTitle = () => {
     const titleRegex = /^([가-힣\w\d]+[\.\,]?\s?)+$/;

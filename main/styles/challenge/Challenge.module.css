@@ -194,6 +194,12 @@
   top: 75%;
   font: normal 600 1.4rem/36px "Noto Sans KR";
 }
+.scrollTag {
+  position: relative;
+  left: 1rem;
+  top: 75%;
+  font: normal 600 1.4rem/36px "Noto Sans KR";
+}
 .newTitle {
   text-align: center;
   position: relative;
