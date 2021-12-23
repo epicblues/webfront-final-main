@@ -44,6 +44,7 @@ const Search = () => {
 
   const handleClick = async () => {
     const searchString = title.current.value;
+
     const filteredChallenges = challenges.filter((challenge) =>
       new RegExp(`${searchString}`).test(challenge.title)
     );
@@ -100,7 +101,7 @@ const Search = () => {
                     }}
                     onKeyPress={handleKeypress}
                   />
-                  <p ref={titleError}></p>
+
                   <Icon
                     name="search"
                     size="big"
@@ -115,6 +116,7 @@ const Search = () => {
                   />
                 </div>
               </div>
+              <p style={{ textAlign: "center" }} ref={titleError}></p>
               <div style={{ marginTop: "10px" }}>
                 {!searched ? (
                   <>
@@ -153,8 +155,6 @@ const Search = () => {
                                         challenge.image
                                       }
                                       layout="fill"
-                                      objectFit="cover"
-                                      objectPosition="top"
                                     />
                                   </div>
                                 </Link>

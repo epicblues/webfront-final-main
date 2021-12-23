@@ -89,7 +89,7 @@ const MainModal = ({ challenges, title, head }) => {
                                 "/api/challenge/validate",
                                 challenge
                               );
-
+                              console.log(result);
                               const button = event.target;
                               button.disabled = true;
                               if (message === "failed") {

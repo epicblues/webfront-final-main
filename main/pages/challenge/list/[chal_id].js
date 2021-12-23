@@ -322,7 +322,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
 
               <footer className={ChallengeStyles.footer}>
                 {challenge.likes.indexOf(user.id) === -1 ? (
-                  <div style={{ fontSize: "16px" }}>
+                  <div style={{ fontSize: "16px", marginBottom: "1.5rem" }}>
                     <Icon
                       className="heart outline"
                       size="large"
@@ -330,7 +330,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     />
                   </div>
                 ) : (
-                  <div style={{ fontSize: "16px" }}>
+                  <div style={{ fontSize: "16px", marginBottom: "1.5rem" }}>
                     <Icon
                       className="heart"
                       color="red"
