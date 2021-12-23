@@ -76,12 +76,12 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
         <div className={mainStyle.reportHeader}>
           <div className={mainStyle.headerTop}>
             <div className={mainStyle.text}>
-              {name} 님 안녕하세요!
+              {name} 님 <br/>안녕하세요!
             </div>
             <div className={mainStyle.icon}>
-              <BiExit size='1.5rem' onClick={clickHandler} />
+              <BiExit size='1.7rem' onClick={clickHandler} />
               <Link passHref href="/user/update">
-                <FiSettings size='1.4rem' onClick={() => { setLoading(true) }} />
+                <FiSettings size='1.6rem' onClick={() => { setLoading(true) }} />
               </Link>
             </div>
           </div>
@@ -103,28 +103,28 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
         <div className={mainStyle.contentsWrap}>
           <div className={mainStyle.contentsList}>
             <div className={mainStyle.contentsTitle}>
-              <BiDish size="1.55rem" style={{ margin: '0 auto' }} />
+              <BiDish size="2rem" style={{ margin: '0 auto' }} />
               <p>작성 레시피</p>
             </div>
           </div>
 
           <div className={mainStyle.contentsList} onClick={() => { setShowLikesRecipe(true) }}>
             <div className={mainStyle.contentsTitle}>
-              <BiHeart size="1.5rem" style={{ margin: '0 auto' }} />
+              <BiHeart size="2rem" style={{ margin: '0 auto' }} />
               <p>찜한 레시피</p>
             </div>
           </div>
 
           <div className={mainStyle.contentsList}>
             <div className={mainStyle.contentsTitle}>
-              <BiTrophy size="1.5rem" style={{ margin: '0 auto' }} />
+              <BiTrophy size="2rem" style={{ margin: '0 auto' }} />
               <p>참여 챌린지</p>
             </div>
           </div>
 
           <div className={mainStyle.contentsList} onClick={() => { setShowLikesChallenge(true) }}>
             <div className={mainStyle.contentsTitle}>
-              <BiStar size="1.5rem" style={{ margin: '0 auto' }} />
+              <BiStar size="2rem" style={{ margin: '0 auto' }} />
               <p>관심 챌린지</p>
             </div>
           </div>
