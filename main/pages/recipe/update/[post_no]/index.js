@@ -6,13 +6,10 @@ import clientPromise from "../../../../util/mongodb";
 import { getUserOrRedirect } from "../../../../util/auth";
 import Head from "next/head";
 import Image from "next/image";
-
 import AddFoodModalBlackout from "../../../../components/recipe/create/food/AddFoodModalBlackout";
-
 import FormNavigator from "../../../../components/recipe/create/FormNavigator";
 import FoodForm from "../../../../components/recipe/create/food/FoodForm";
 import StepForm from "../../../../components/recipe/create/step/StepForm";
-
 import createStyles from "../../../../styles/recipe/Create.module.css";
 
 const Index = ({ user, recipe }) => {
