@@ -1,4 +1,4 @@
-import React, { useState, useRef, forwardRef } from "react";
+import React, { useState, useRef } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import Link from "next/link";
 import { postStaticAxios } from "../../../util/axios";
@@ -145,6 +145,8 @@ const ChallengeWrite = ({ user }) => {
                   alignContent: "center",
                   height: "10vh",
                   marginTop: "10px",
+                  position: "relative",
+                  right: "5px",
                 }}
               >
                 <ReactDatePicker
@@ -182,6 +184,8 @@ const ChallengeWrite = ({ user }) => {
                   alignContent: "center",
                   height: "10vh",
                   marginTop: "10px",
+                  position: "relative",
+                  right: "5px",
                 }}
               >
                 <ReactDatePicker
@@ -355,47 +359,49 @@ const ChallengeWrite = ({ user }) => {
         e.preventDefault();
       }}
     >
-      <header style={{ height: "30px" }}>
-        {wizardIndex > 1 ? (
-          <>
-            <div className={ChallengeStyle.header2}>
-              <div onClick={button2}>
-                <FontAwesomeIcon
-                  className={InputStyle.image}
-                  icon={faAngleDoubleLeft}
-                  size="2x"
-                />
-              </div>
-              <div style={{ position: "absolute", right: "0" }}>
-                <Link passHref href="/challenge">
-                  <h4 className={ChallengeStyle.h4Mb}>취소</h4>
-                </Link>
-              </div>
-            </div>
-          </>
-        ) : (
-          <>
-            <Link passHref href="/challenge">
-              <h4 className={ChallengeStyle.h4Mr}>취소</h4>
-            </Link>
-          </>
-        )}
-      </header>
-      <hr />
       {switchWizardForm(wizardIndex)}
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          gap: " 1rem",
+        }}
+      >
         {wizardIndex !== 4 && (
-          <button
-            className={ButtonStyles.button2}
-            type="submit"
-            color="twitter"
-            onClick={button1}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              width: "90%",
+            }}
           >
-            다음 ({wizardIndex}/4)
-          </button>
+            <button
+              className={ButtonStyles.button1}
+              type="submit"
+              onClick={button2}
+            >
+              이전
+            </button>
+            <button
+              className={ButtonStyles.button2}
+              type="submit"
+              onClick={button1}
+            >
+              다음 ({wizardIndex}/4)
+            </button>
+          </div>
         )}
+
         {wizardIndex == 4 && (
           <>
+            <button
+              className={ButtonStyles.button1}
+              type="submit"
+              onClick={button2}
+            >
+              이전
+            </button>
             <button
               className={ButtonStyles.button2}
               type="submit"

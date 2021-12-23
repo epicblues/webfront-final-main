@@ -49,19 +49,26 @@ const Index = ({ challenges, user }) => {
           <Navbar currentURL={"/challenge"} />
         </div>
 
-        <div style={{ marginTop: "40%", marginBottom: "5%" }}>
-          {participatedChallenges.length === 0 ? (
+        {participatedChallenges.length === 0 ? (
+          <div style={{ marginTop: "20%", marginBottom: "5%" }}>
             <>
-              <div className={MainStyle.mainTag}>추천 챌린지</div>
-              <RecommendChallenge
-                challenges={challenges}
-                key={challenges._id}
-              />
-              <div className={MainStyle.mainTag}>인기 챌린지</div>
-              <PopularChallenge challenges={challenges} key={challenges._id} />
+              <div>
+                <div className={MainStyle.mainTag}>추천 챌린지</div>
+                <RecommendChallenge
+                  challenges={challenges}
+                  key={challenges._id}
+                />
+                <div className={MainStyle.mainTag}>인기 챌린지</div>
+                <PopularChallenge
+                  challenges={challenges}
+                  key={challenges._id}
+                />
+              </div>
             </>
-          ) : (
-            <>
+          </div>
+        ) : (
+          <>
+            <div style={{ marginTop: "40%", marginBottom: "5%" }}>
               <div className={ChallengeStyle.mainTag}>참여중인 챌린지</div>
               {smallChallenges.map((challenge) => {
                 return (
@@ -259,10 +266,10 @@ const Index = ({ challenges, user }) => {
                                   100,
                                   button
                                 );
-                                const div = button.nextElementSibling;
+                                const span = button.nextElementSibling;
 
-                                div.textContent = "챌린지 달성!";
-                                div.style.backgroundColor = "blue";
+                                span.textContent = "챌린지 달성!";
+                                span.style.backgroundColor = "blue";
                               }
                             }}
                           >
@@ -270,6 +277,7 @@ const Index = ({ challenges, user }) => {
                           </button>
                           <div style={{ display: "none" }}>
                             <ProgressBar />
+                            <span></span>
                           </div>
                         </div>
                       </div>
@@ -285,9 +293,9 @@ const Index = ({ challenges, user }) => {
                 />
               </div>
               <PastChallenges participatedChallenges={participatedChallenges} />
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

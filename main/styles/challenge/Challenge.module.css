@@ -232,3 +232,8 @@
 .content {
   font: normal 600 1.2rem/24px Noto Sans KR;
 }
+.mainTitle {
+  position: relative;
+  top: 10vh;
+  font: normal 600 1.6rem/36px "Noto Sans KR";
+}

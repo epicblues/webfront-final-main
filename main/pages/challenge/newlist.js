@@ -19,7 +19,7 @@ const NewList = ({ challenges, user }) => {
   const [search, setSearch] = useState(false);
 
   return (
-    <div style={{ margin: "0 1rem 1rem 1rem" }}>
+    <div style={{ padding: "1rem" }}>
       <div className={ChallengeStyle.header2}>
         <Search />
         <Navbar currentURL={"/challenge/newlist"} />
@@ -30,9 +30,9 @@ const NewList = ({ challenges, user }) => {
           return (
             <div key={challenge._id}>
               <>
-                <Link passHref href={"/challenge/list/" + challenge._id}>
-                  <>
-                    <div className={ChallengeStyle.list}>
+                <div className={ChallengeStyle.list}>
+                  <Link passHref href={"/challenge/list/" + challenge._id}>
+                    <>
                       <div
                         className="image-wrap"
                         style={{
@@ -71,7 +71,10 @@ const NewList = ({ challenges, user }) => {
                           layout="fill"
                         />
                       </div>
-
+                    </>
+                  </Link>
+                  <Link passHref href={"/challenge/list/" + challenge._id}>
+                    <>
                       <ul className={ListStyle.ul}>
                         <li className={ChallengeStyle.content}>
                           {challenge.title}
@@ -100,9 +103,9 @@ const NewList = ({ challenges, user }) => {
                           <li>챌린지 종류: 레시피</li>
                         )}
                       </ul>
-                    </div>
-                  </>
-                </Link>
+                    </>
+                  </Link>
+                </div>
               </>
             </div>
           );

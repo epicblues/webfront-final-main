@@ -81,10 +81,9 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            color: "white",
+            color: "#EAEAEA",
             margin: "20px 0",
             borderRadius: "0.3rem",
-            backgroundColor: "#EAEAEA",
             boxShadow: "1px 1px 3px 1px #dadce0",
           }}
         >

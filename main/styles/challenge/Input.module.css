@@ -1,7 +1,7 @@
 .text {
   font-weight: bold;
   width: 70vw;
-  border: solid 2px lightgray;
+  border: solid 2px #ccc;
   border-radius: 6px;
   font-size: 16px;
 }
@@ -9,7 +9,7 @@
   font-weight: bold;
   width: 50vw;
   height: 30px;
-  border: solid 2px lightgray;
+  border: solid 2px #ccc;
   border-radius: 6px;
   font-size: 16px;
 }

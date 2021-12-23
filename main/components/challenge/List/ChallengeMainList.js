@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import Link from "next/dist/client/link";
 import axios from "axios";
 //css
 import { Image } from "semantic-ui-react";
@@ -16,16 +16,16 @@ const ChallengeMainList = ({ challenges }) => {
         return (
           <div key={challenge._id}>
             <>
-              <Link passHref href={"/challenge/list/" + challenge._id}>
-                <>
-                  <div className={ChallengeStyle.list}>
-                    <div
-                      className="image-wrap"
-                      style={{
-                        position: "relative",
-                        borderRadius: "0.3rem",
-                      }}
-                    >
+              <div className={ChallengeStyle.list}>
+                <div
+                  className="image-wrap"
+                  style={{
+                    position: "relative",
+                    borderRadius: "0.3rem",
+                  }}
+                >
+                  <Link passHref href={"/challenge/list/" + challenge._id}>
+                    <>
                       <div
                         key={challenge.id}
                         style={{
@@ -57,7 +57,12 @@ const ChallengeMainList = ({ challenges }) => {
                         }
                         layout="fill"
                       />
-                    </div>
+                    </>
+                  </Link>
+                </div>
+
+                <Link passHref href={"/challenge/list/" + challenge._id}>
+                  <>
                     <ul className={ListStyle.ul}>
                       <li className={ChallengeStyle.content} key={challenge.id}>
                         {challenge.title}
@@ -86,9 +91,9 @@ const ChallengeMainList = ({ challenges }) => {
                         <li key={challenge.id}>챌린지 종류: 레시피</li>
                       )}
                     </ul>
-                  </div>
-                </>
-              </Link>
+                  </>
+                </Link>
+              </div>
             </>
           </div>
         );

@@ -8,25 +8,29 @@
   font: normal 600 1.2rem/22px "Noto Sans KR";
 }
 .button2 {
-  background-color: #e4685d;
-  color: #ffffff;
-  border: 1px;
-  border-radius: 0.3rem;
-  width: 90%;
-  height: 5vh;
-  font: normal 600 1.2rem/22px "Noto Sans KR";
+  background: #ff5656;
+  border: 1px solid #ff5656;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  width: 30%;
+  border-radius: 10px;
+  border: none;
+  align-self: stretch;
+  height: 2.8rem;
+  font: normal 400 1.2rem "NanumSquare";
 }
 .button1 {
-  background-color: #35a2f4;
-  color: #fff;
-  border: 1px;
-  border-radius: 0.3rem;
-  width: 80px;
-  height: 20px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-content: center;
+  background: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  color: #888;
+  text-decoration: none;
+  width: 30%;
+  border-radius: 10px;
+  align-self: stretch;
+  height: 2.8rem;
+  font: normal 400 1.2rem "NanumSquare";
 }
 
 .listButton {
