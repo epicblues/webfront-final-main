@@ -216,7 +216,7 @@ const Search = () => {
                                         new Date().getTime()) /
                                         (1000 * 60 * 60 * 24)
                                     )}
-                                    일 뒤 시작
+                                    일 남음
                                   </div>
                                 </Link>
                               </div>

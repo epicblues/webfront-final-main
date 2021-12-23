@@ -97,9 +97,7 @@ const RecommendChallenge = ({ challenges }) => {
                         new Date().getTime ===
                       0 ? (
                         <>
-                          <div className={ModalStyle.recTime}>
-                            오늘부터 시작
-                          </div>
+                          <div className={ModalStyle.recTime}>오늘</div>
                         </>
                       ) : (
                         <>
@@ -109,7 +107,7 @@ const RecommendChallenge = ({ challenges }) => {
                                 new Date().getTime()) /
                                 (1000 * 60 * 60 * 24)
                             )}
-                            일 뒤 시작
+                            일 남음
                           </div>
                         </>
                       )}
