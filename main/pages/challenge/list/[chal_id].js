@@ -52,16 +52,12 @@ const ChallengePage = ({ originalChallenge, user }) => {
   };
 
   const countChallengeDate = (endDate) => {
-    const dateCount = Math.round(
+    const dateCount = Math.ceil(
       (new Date(challenge.endDate).getTime() - new Date().getTime()) /
         (1000 * 60 * 60 * 24)
     );
-    const weeks = Math.round(dateCount / 7);
-    if (dateCount < 7) {
-      return <div>{dateCount}일</div>;
-    } else {
-      return <div>{weeks}주</div>;
-    }
+
+    return <div>{dateCount}일</div>;
   };
   const changeDateStr = () => {
     const newStartDateStr =
@@ -236,7 +232,9 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <>
                     <footer className={ChallengeStyles.footer}>
                       {challenge.likes.indexOf(user.id) === -1 ? (
-                        <div style={{ fontSize: "16px" }}>
+                        <div
+                          style={{ fontSize: "16px", marginBottom: "1.5rem" }}
+                        >
                           <Icon
                             className="heart outline"
                             size="large"
@@ -244,7 +242,9 @@ const ChallengePage = ({ originalChallenge, user }) => {
                           />
                         </div>
                       ) : (
-                        <div style={{ fontSize: "16px" }}>
+                        <div
+                          style={{ fontSize: "16px", marginBottom: "1.5rem" }}
+                        >
                           <Icon
                             className="heart"
                             color="red"
@@ -318,7 +318,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
 
               <footer className={ChallengeStyles.footer}>
                 {challenge.likes.indexOf(user.id) === -1 ? (
-                  <div style={{ fontSize: "16px" }}>
+                  <div style={{ fontSize: "16px", marginBottom: "1.5rem" }}>
                     <Icon
                       className="heart outline"
                       size="large"
@@ -326,7 +326,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     />
                   </div>
                 ) : (
-                  <div style={{ fontSize: "16px" }}>
+                  <div style={{ fontSize: "16px", marginBottom: "1.5rem" }}>
                     <Icon
                       className="heart"
                       color="red"

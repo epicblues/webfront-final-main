@@ -6,7 +6,7 @@
   background-color: gray;
   width: "50px";
   position: absolute;
-  left: 30%;
+  left: 31%;
   top: 0;
   margin-top: 10px;
   text-align: right;
@@ -85,6 +85,7 @@
   padding: 1rem 20%;
   border: 1px solid;
   border-radius: 0.4rem;
+  box-shadow: 2px 2px 2px #ccc;
   text-align: center;
   font: normal 500 1.2rem/24px "Noto Sans KR";
   margin: 0 10px;
