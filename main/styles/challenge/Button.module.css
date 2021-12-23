@@ -18,6 +18,7 @@
   border: none;
   align-self: stretch;
   height: 2.8rem;
+  margin-top: 1rem;
   font: normal 400 1.2rem "NanumSquare";
 }
 .button1 {
@@ -31,6 +32,7 @@
   align-self: stretch;
   height: 2.8rem;
   font: normal 400 1.2rem "NanumSquare";
+  margin-top: 1rem;
 }
 
 .listButton {

@@ -120,6 +120,7 @@
 .h3 {
   text-align: center;
   margin-bottom: 5px;
+  font: normal 600 1.4rem/36px "Noto Sans KR";
 }
 .h3Mt {
   margin-top: 10px;
@@ -128,12 +129,13 @@
   text-align: center;
   margin: 0px;
   height: 20px;
+  font: normal 500 1.3rem/24px "Noto Sans KR";
 }
 .h4Mt {
   text-align: center;
 
   margin-top: 10px;
-
+  font: normal 500 1.2rem/24px "Noto Sans KR";
   height: 20px;
 }
 .h4Mb {
@@ -150,8 +152,7 @@
   font: normal 600 1.2rem/24px "Noto Sans KR";
 }
 .causion {
-  font-size: medium;
-  font-weight: 900;
+  font: normal 600 1.2rem/24px "Noto Sans KR";
   color: red;
   display: flex;
   justify-content: center;

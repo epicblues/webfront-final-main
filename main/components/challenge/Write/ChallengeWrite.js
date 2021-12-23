@@ -97,6 +97,7 @@ const ChallengeWrite = ({ user }) => {
                     display: "flex",
                     justifyContent: "center",
                     textAlign: "center",
+                    font: "normal 600 1.4rem/36px Noto Sans KR",
                   }}
                 >
                   챌린지의 간략한 설명
