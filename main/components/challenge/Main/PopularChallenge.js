@@ -88,6 +88,11 @@ const PopularChallenge = ({ challenges }) => {
                     <li className={ModalStyle.recTitle}>{challenge.title}</li>
                   </Link>
                   <Link passHref href={"/challenge/list/" + challenge._id}>
+                    <li className={ModalStyle.recTime}>
+                      좋아요 수: {challenge.likes.length}개
+                    </li>
+                  </Link>
+                  <Link passHref href={"/challenge/list/" + challenge._id}>
                     <li className={ChallengeStyle.li}>
                       {new Date(challenge.endDate).getTime() -
                         new Date().getTime ===

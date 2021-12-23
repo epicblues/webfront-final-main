@@ -71,7 +71,7 @@ const ChallengeCondition = ({
         <h4 className={ChallengeStyle.h4}>챌린지의 종류</h4>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div className={ButtonStyles.radiowrap}>
-            <label>
+            <label className={ButtonStyles.radioFont}>
               <input
                 type="radio"
                 id="1"
@@ -83,7 +83,7 @@ const ChallengeCondition = ({
               다이어트
             </label>
             <br />
-            <label>
+            <label className={ButtonStyles.radioFont}>
               <input
                 type="radio"
                 id="2"
@@ -109,7 +109,9 @@ const ChallengeCondition = ({
                     checked={challenge.diet.kind === "plusKcal"}
                     onChange={handleDiet}
                   />
-                  <label>체중증가 다이어트</label>
+                  <label className={ButtonStyles.radioFont}>
+                    체중증가 다이어트
+                  </label>
                   <br />
                   <input
                     type="radio"
@@ -118,7 +120,9 @@ const ChallengeCondition = ({
                     checked={challenge.diet.kind === "minusKcal"}
                     onChange={handleDiet}
                   />
-                  <label>체중감량 다이어트</label>
+                  <label className={ButtonStyles.radioFont}>
+                    체중감량 다이어트
+                  </label>
                 </div>
               </div>
             </div>
@@ -173,9 +177,9 @@ const ChallengeCondition = ({
       {challenge.type === "diet" ? (
         <>
           <div style={{ marginTop: "10px", marginBottom: "10px" }}>
-            <h4 className={ChallengeStyle.h4}>
+            <div className={ButtonStyles.radioFont}>
               다이어트 조건 ( 기준: 하루, Kcal)
-            </h4>
+            </div>
           </div>
           <div
             style={{
@@ -200,7 +204,7 @@ const ChallengeCondition = ({
       ) : null}
       {challenge.type === "diet" && (
         <>
-          <h4 className={ChallengeStyle.h4Mt}>다이어트 완료 일수</h4>
+          <h4 className={ButtonStyles.radioFont}>다이어트 완료 일수</h4>
           <div
             style={{
               display: "flex",
