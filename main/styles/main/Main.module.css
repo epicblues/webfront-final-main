@@ -15,7 +15,7 @@
 }
 
 .headerTop .text {
-  font: normal 800 1.4rem "NanumSquare";
+  font: normal 800 1.4rem/1.8rem "NanumSquare";
 }
 
 .headerTop .icon {
@@ -29,6 +29,7 @@
   background-color: #eee;
   padding: 1rem 0;
   margin-bottom: 1rem;
+  border-radius: 5px;
 }
 
 .bmrWrap .bmrInfo {
@@ -81,7 +82,7 @@
 }
 
 .foodRankWrap {
-
+  
 }
 
 .rankTitle {
@@ -93,7 +94,7 @@
 }
 
 .rankTitle p {
-  font: normal 400 1.2rem "Noto Sans KR";
+  font: normal 600 1.2rem "Noto Sans KR";
   margin: 0;
 }
 
@@ -103,6 +104,7 @@
   flex-direction: column;
   border-radius: 15px;
   box-shadow: 1px 1px 3px 1px #dadce0;
+  padding: 0 0.5rem;
 }
 
 .rankOrder {
@@ -119,6 +121,10 @@
 
 .rankOrder:last-child {
   border: none;
+}
+
+.orderName {
+  font: normal 400 1rem "Noto Sans KR";
 }
 
 .orderCount {
@@ -224,11 +230,11 @@
 
 .shortNav p {
   text-align: center;
-  font: normal 400 1.2rem "Noto Sans KR";
+  font: normal 400 1.4rem "Noto Sans KR";
   color: #fff;
 }
 
-.pulse {
+/* .pulse {
   margin: 0 45%;
   width: 22px;
   height: 22px;
@@ -238,13 +244,27 @@
 
 .pulse:hover {
   animation: none;
+} */
+
+@keyframes upDown {
+  from {
+    transform: translateY(0);
+  }
+  70% {
+    transform: translateY(250%);
+  }
+  to {
+    transform: translateY(230%);
+  }
 }
 
 .tab {
   margin: 0 auto;
-  width: 51px;
+  width: 72px;
   height: 72px;
-  background: url(../../public/finger_icon.png) no-repeat center top / 100%;
+  background: url(../../public/finger_tab_icon.png) no-repeat center top / 100%;
+
+  animation: upDown 2.5s 1;
 }
 
 .shortBack {
@@ -462,16 +482,15 @@
   transition: 0.2s ease opacity;
   opacity: 1;
   width: 100%;
-  font: normal 600 1rem 'Noto Sans KR';
+  font: normal 600 1rem 'NanumSquare';
 
 }
 
 .miniChat > div:nth-child(2) {
   position: fixed;
-  bottom: 8vh;
+  bottom: 10%;
   right: 0;
   width: 6.5vh;
-  height: 6.5vh;
   border-radius: 50%;
 }
 
