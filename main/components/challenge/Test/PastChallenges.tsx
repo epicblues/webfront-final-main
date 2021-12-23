@@ -6,7 +6,7 @@ import { Challenge } from '../../../models/Challenge';
 import { debounce } from '../../../util/axios';
 
 //css
-import MainStyle from "../../../styles/challenge/Main.module.css"
+
 import PastStyles from "../../../styles/challenge/Past.module.css"
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css"
 
@@ -36,10 +36,12 @@ const PastChallenge = (challenge: Challenge ) => (
            +challenge.endDate?.getDate()}
      </li>
      <br/>
-     <li> {challenge.hasOwnProperty("result") ? <div 
+     <li> {challenge.hasOwnProperty("result") ? 
+     <div 
      style={{
        border:"1px solid",
        borderRadius:"0.3rem",
+       boxShadow:"2px 2px 2px #ccc",
        backgroundColor:"#fff5f5",
        font: "normal 600 1.2rem/22px Noto sans KR",
        color:"#F15F5F",
@@ -47,13 +49,16 @@ const PastChallenge = (challenge: Challenge ) => (
      }}
 
      >
-       {challenge.type=== "diet"?<div>
-       최종달성율  {(Number(challenge.result)/Number(challenge.diet?.condition))*100} %
-       </div>:
+       
+       {challenge.type=== "diet"?(
        <div>
-       최종달성율  {(Number(challenge.result)/Number(challenge.recipe?.uploadCount))*100}%
-         </div>}
-     </div> :<div
+        최종달성율  {(Number(challenge.result)/Number(challenge.diet?.condition))*100} %
+       </div>):(
+       <div>
+        최종달성율  {(Number(challenge.result)/Number(challenge.recipe?.uploadCount))*100}%
+         </div>)}
+     </div> :
+     <div
      style={{
       border:"1px solid",
       borderRadius:"0.3rem",
@@ -61,7 +66,9 @@ const PastChallenge = (challenge: Challenge ) => (
       font: "normal 600 1.2rem/22px Noto sans KR",
       color:"#6B66FF",
       width:"90%",
-    }}>최종달성율 100%</div>}</li>
+    }}>
+      최종달성율 100%
+      </div>}</li>
      </ul>
     </div>
     </>

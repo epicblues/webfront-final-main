@@ -101,7 +101,7 @@
 }
 .h2 {
   margin: 2rem 0;
-  font: normal 600 1.3rem/24px "Noto Sans KR";
+  font: normal 600 1.5rem/24px "Noto Sans KR";
 }
 .h2C {
   text-align: center;
@@ -120,7 +120,7 @@
 .h3 {
   text-align: center;
   margin-bottom: 5px;
-  font: normal 600 1.4rem/36px "Noto Sans KR";
+  font: normal 600 1.5rem/36px "Noto Sans KR";
 }
 .h3Mt {
   margin-top: 10px;
@@ -131,11 +131,18 @@
   height: 20px;
   font: normal 500 1.3rem/24px "Noto Sans KR";
 }
+.h4T {
+  text-align: center;
+  position: relative;
+  top: 10%;
+  height: 1rem;
+  font: normal 500 1.3rem/24px "Noto Sans KR";
+}
 .h4Mt {
   text-align: center;
 
   margin-top: 10px;
-  font: normal 500 1.2rem/24px "Noto Sans KR";
+  font: normal 500 1.3rem/24px "Noto Sans KR";
   height: 20px;
 }
 .h4Mb {
@@ -172,6 +179,7 @@
   width: 100vw;
   text-align: center;
   overflow: hidden;
+  padding: 1rem;
 }
 
 .header {

@@ -94,13 +94,13 @@ const MainModal = ({ challenges, title, head }) => {
                               button.disabled = true;
                               if (message === "failed") {
                                 //실패했다
-                                button.textContent = "진행중!";
-                                button.style.color = "white";
+
                                 setInterval(
                                   (button) => {
                                     button.style.display = "none";
                                   },
                                   100,
+
                                   button
                                 );
                                 const progressBar = button.nextElementSibling;
@@ -144,7 +144,7 @@ const MainModal = ({ challenges, title, head }) => {
                                   (button) => {
                                     button.style.display = "none";
                                   },
-                                  1000,
+                                  100,
                                   button
                                 );
                                 const span = button.nextElementSibling;

@@ -214,8 +214,7 @@ const Index = ({ challenges, user }) => {
                               button.disabled = true;
                               if (message === "failed") {
                                 // 실패했다.
-                                button.textContent = "진행중!";
-                                button.style.color = "white";
+
                                 setInterval(
                                   (button) => {
                                     button.style.display = "none";

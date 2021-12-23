@@ -166,7 +166,7 @@ const Search = () => {
                                     <Icon
                                       name="user"
                                       size="large"
-                                      color="black"
+                                      color="white"
                                       className={ModalStyle.modalImage}
                                     />
                                     {challenge.participants.length}명

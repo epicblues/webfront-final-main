@@ -52,16 +52,12 @@ const ChallengePage = ({ originalChallenge, user }) => {
   };
 
   const countChallengeDate = (endDate) => {
-    const dateCount = Math.round(
+    const dateCount = Math.ceil(
       (new Date(challenge.endDate).getTime() - new Date().getTime()) /
         (1000 * 60 * 60 * 24)
     );
-    const weeks = Math.round(dateCount / 7);
-    if (dateCount < 7) {
-      return <div>{dateCount}일</div>;
-    } else {
-      return <div>{weeks}주</div>;
-    }
+
+    return <div>{dateCount}일</div>;
   };
   const changeDateStr = () => {
     const newStartDateStr =

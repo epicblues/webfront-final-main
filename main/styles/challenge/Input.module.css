@@ -1,8 +1,8 @@
 .text {
   font-weight: bold;
-  width: 70vw;
-  border: solid 2px #ccc;
-  border-radius: 6px;
+  width: 80vw;
+  border: 2px solid white;
+  border-bottom: 2px solid #ff5656;
   font-size: 16px;
 }
 .text2 {
@@ -12,6 +12,14 @@
   border: solid 2px #ccc;
   border-radius: 6px;
   font-size: 16px;
+}
+.textArea {
+  font-weight: bold;
+  width: 80vw;
+  height: 15vh;
+  border: 2px solid #ff5656;
+  border-radius: 10px;
+  font-size: 1.1rem;
 }
 .mImage {
   width: 100vw;

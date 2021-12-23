@@ -54,7 +54,7 @@ const ChallengeCondition = ({
   };
 
   return (
-    <div className="challengeCondition" style={{ marginTop: "10px" }}>
+    <div className="challengeCondition" style={{ padding: "1rem" }}>
       <h3 className={ChallengeStyle.h3}>챌린지 조건</h3>
       <div className={ChallengeStyle.causion}>
         주의!
@@ -193,7 +193,7 @@ const ChallengeCondition = ({
                 className={InputStyles.text}
                 type="number"
                 name="dailyCalorie"
-                placeholder="       하루 섭취량을 적어주세요"
+                placeholder="하루 섭취량을 적어주세요"
                 value={challenge.diet.dailyCalorie}
                 onChange={handleDiet}
                 ref={dailyCalorie}
