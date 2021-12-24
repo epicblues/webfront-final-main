@@ -48,7 +48,7 @@
 .bmrWrap .important {
   font: normal 800 1rem "NanumSquare";
   color: #ff5656;
-} 
+}
 
 .foodRankWrap {
   margin-bottom: 1rem;
@@ -76,13 +76,18 @@
   flex-direction: column;
 }
 
+.contentsTitle > p > p {
+  color: #ff5656;
+  margin-top: 0.1rem;
+  font-weight: 800;
+}
+
 .contentsTitle p {
   font: normal 400 0.9rem "Noto Sans KR";
   margin-top: 0.5rem;
 }
 
 .foodRankWrap {
-  
 }
 
 .rankTitle {
@@ -482,8 +487,7 @@
   transition: 0.2s ease opacity;
   opacity: 1;
   width: 100%;
-  font: normal 600 1rem 'NanumSquare';
-
+  font: normal 600 1rem "NanumSquare";
 }
 
 .miniChat > div:nth-child(2) {
@@ -512,9 +516,9 @@
 }
 
 .chatHeader > div {
-  font: normal 600 1.2rem 'Noto Sans KR';
+  font: normal 600 1.2rem "Noto Sans KR";
 }
-  
+
 .sendWrap {
   width: 100%;
   display: flex;
@@ -534,7 +538,7 @@
   text-align: left;
   padding: 0.7rem 1rem;
   background: #fff;
-  
+
   width: 80%;
 }
 
@@ -543,7 +547,7 @@
   border: none;
   align-self: stretch;
   height: 2.8rem;
-  font: normal 400 1.2rem 'NanumSquare';
+  font: normal 400 1.2rem "NanumSquare";
   background: #ff5656;
   border: 1px solid #ff5656;
   cursor: pointer;
