@@ -18,7 +18,7 @@
 }
 
 .button {
-  background-color: #ff5656;
+  background-color: #e4685d;
   color: #ffffff;
   border: 1px;
   border-radius: 0.3rem;
@@ -35,7 +35,7 @@
   font: normal 600 1.4rem/24px "Noto Sans KR";
   text-align: center;
   left: 30%;
-  top: 10px;
+  top: 1.7rem;
   position: absolute;
 }
 .modalBack {
@@ -112,4 +112,8 @@
   left: 1rem;
   top: 13%;
   font: normal 600 1.4rem/36px "Noto Sans KR";
+}
+.success {
+  font: "normal 600 1.2rem Noto Sans KR";
+  text-align: left;
 }

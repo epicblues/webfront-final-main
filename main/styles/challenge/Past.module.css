@@ -1,9 +1,9 @@
 .image {
   z-index: 0;
   border-radius: 0.7rem;
-  width: 70%;
+  width: 85%;
   margin: 10px 0 10px 0;
-  height: 70%;
+  height: 85%;
 }
 .imageDiv {
   width: 50%;
@@ -12,7 +12,6 @@
 
 .ulDiv {
   position: relative;
-  right: 20px;
   top: 5px;
   margin: 0px;
 }

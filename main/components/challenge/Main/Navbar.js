@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/dist/client/link";
-import { Route } from "next/dist/server/router";
 import NavStyles from "../../../styles/challenge/Input.module.css";
 const Navbar = ({ currentURL }) => {
   return (

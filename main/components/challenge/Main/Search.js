@@ -123,11 +123,9 @@ const Search = () => {
                     <h3 className={ModalStyle.modalH3}>
                       원하는 챌린지를 검색해주세요
                     </h3>
-                    <Icon
-                      name="trophy"
-                      size="big"
-                      className={ModalStyle.modalTrophy}
-                    />
+                    <div style={{ position: "relative", left: "40%" }}>
+                      <img src="/trophy.png" width="50vw" />
+                    </div>
                   </>
                 ) : (
                   <>

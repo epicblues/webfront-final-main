@@ -22,6 +22,7 @@ const MainModal = ({ challenges, title, head }) => {
           borderRadius: "0.7rem",
           minHeight: "50vh",
           height: "auto",
+          padding: "1rem",
         }}
         onClose={() => setOpen(false)}
         onOpen={() => setOpen(true)}

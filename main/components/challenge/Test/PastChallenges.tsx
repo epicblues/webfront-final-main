@@ -12,7 +12,7 @@ interface Props {
 }
 
 const PastChallenge = (challenge: Challenge ) => (
-  <div style={{display:"flex", justifyContent:"center", marginTop:"1rem"}} key={challenge._id}>
+  <div style={{display:"flex", justifyContent:"center", padding:"1rem"}} key={challenge._id}>
     <Link passHref href={"/challenge/list/" + challenge._id}>
     <>    
     <div className={PastStyles.imageDiv} >
