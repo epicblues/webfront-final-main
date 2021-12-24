@@ -1,5 +1,4 @@
-/* PC , 테블릿 가로 (해상도 1024px ~ )*/
-@media all and (min-width: 1024px) {
+@media all and (min-width: 768px) {
   .container {
     color: #111111;
     background-color: white;
@@ -12,9 +11,10 @@
     padding: 1rem;
     transform: translate(-50%, -50%);
     z-index: 5;
-    border-radius: 0.6rem;
+    border-radius: 10px;
     display: grid;
-    grid-template-rows: 55% 30% 15%;
+    grid-template-rows: 85% 15%;
+    grid-template-columns: 50% 50%;
     text-align: center;
   }
 
@@ -23,255 +23,8 @@
     place-items: center;
   }
   .headerImg {
-    width: 12vw;
-    display: grid;
-    place-items: center;
-  }
-  .itemDiv {
-    margin: 0;
-  }
-  .itemDiv1 {
-    width: 10vw;
-  }
-  .itemDiv2 {
-    width: 10vw;
-  }
-  .itemDiv3 {
-    width: 8vw;
-  }
-
-  .contentBody {
-    display: grid;
-    place-items: center;
-  }
-  .contentBody h1 {
-    font-size: 2rem;
-    margin: 0;
-    line-height: 0.5rem;
-  }
-  .contentBody p {
-    margin-top: -1rem;
-    color: #444444;
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-  }
-
-  .content1 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    column-gap: 1rem;
-  }
-
-  .content2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-    column-gap: 1rem;
-  }
-
-  .content3 {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    row-gap: 2rem;
-    column-gap: 0.5rem;
-  }
-  .content3 p {
-    margin: 0;
-  }
-
-  .contentFooter0 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-  }
-  .contentFooter0 .button1 {
-    background: #e4685d;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #e4685d;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
     display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter0 .button1:active {
-    position: relative;
-    top: 2px;
-  }
-  .contentFooter0 .button2 {
-    background: #ffffff;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #666666;
-    cursor: pointer;
-    color: #666666;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter0 .button2:active {
-    position: relative;
-    top: 2px;
-  }
-
-  .contentFooter1 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-  }
-  .contentFooter1 .button1 {
-    background: #e4685d;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #e4685d;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter1 .button1:active {
-    position: relative;
-    top: 2px;
-  }
-  .contentFooter1 .button2 {
-    background: #ffffff;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #666666;
-    cursor: pointer;
-    color: #666666;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter1 .button2:active {
-    position: relative;
-    top: 2px;
-  }
-
-  .contentFooter2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-  }
-  .contentFooter2 .button1 {
-    background: #e4685d;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #e4685d;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter2 .button1:active {
-    position: relative;
-    top: 2px;
-  }
-  .contentFooter2 .button2 {
-    background: #ffffff;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #666666;
-    cursor: pointer;
-    color: #666666;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter2 .button2:active {
-    position: relative;
-    top: 2px;
-  }
-
-  .contentFooter3 {
-    display: grid;
-    place-items: center;
-  }
-  .contentFooter3 .button1 {
-    background: #e4685d;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #e4685d;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter3 .button1:active {
-    position: relative;
-    top: 2px;
-  }
-}
-/* 테블릿 세로 (해상도 768px ~ 1023px)*/
-@media all and (min-width: 768px) and (max-width: 1023px) {
-  .container {
-    color: #111111;
-    background-color: white;
-    width: 80vw;
-    height: 70vh;
-    position: fixed;
-    overflow-y: unset;
-    left: 50%;
-    top: 45%;
-    padding: 1rem;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-    border-radius: 0.6rem;
-    display: grid;
-    grid-template-rows: 55% 30% 15%;
-    text-align: center;
-  }
-
-  .contentHeader {
-    display: grid;
-    place-items: center;
-  }
-  .headerImg {
-    display: grid;
-    place-items: center;
-    width: 35vw;
-    height: 35vh;
+    width: 30%;
   }
   .itemDiv {
     margin: 0;
@@ -282,14 +35,14 @@
     place-items: center;
   }
   .contentBody h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     margin: 0;
     line-height: 0.5rem;
   }
   .contentBody p {
     margin-top: -1rem;
     color: #444444;
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.8rem;
   }
 
@@ -322,13 +75,15 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
+    grid-column: 1/3;
   }
   .contentFooter0 .button1 {
-    background: #e4685d;
-    width: 30vw;
+    background: #ff5656;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
-    border: 1px solid #e4685d;
+    border: 1px solid #ff5656;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.4rem;
@@ -345,7 +100,8 @@
   }
   .contentFooter0 .button2 {
     background: #ffffff;
-    width: 30vw;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
     border: 1px solid #666666;
@@ -368,13 +124,15 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
+    grid-column: 1/3;
   }
   .contentFooter1 .button1 {
-    background: #e4685d;
-    width: 30vw;
+    background: #ff5656;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
-    border: 1px solid #e4685d;
+    border: 1px solid #ff5656;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.4rem;
@@ -391,7 +149,8 @@
   }
   .contentFooter1 .button2 {
     background: #ffffff;
-    width: 30vw;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
     border: 1px solid #666666;
@@ -414,13 +173,15 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     place-items: center;
+    grid-column: 1/3;
   }
   .contentFooter2 .button1 {
-    background: #e4685d;
-    width: 30vw;
+    background: #ff5656;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
-    border: 1px solid #e4685d;
+    border: 1px solid #ff5656;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.4rem;
@@ -437,7 +198,8 @@
   }
   .contentFooter2 .button2 {
     background: #ffffff;
-    width: 30vw;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
     border: 1px solid #666666;
@@ -459,251 +221,15 @@
   .contentFooter3 {
     display: grid;
     place-items: center;
+    grid-column: 1/3;
   }
   .contentFooter3 .button1 {
-    background: #e4685d;
-    width: 30vw;
+    background: #ff5656;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
-    border: 1px solid #e4685d;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter3 .button1:active {
-    position: relative;
-    top: 2px;
-  }
-}
-/* 모바일 가로, 테블릿 세로 (해상도 480px ~ 767px)*/
-@media all and (min-width: 480px) and (max-width: 767px) {
-  .container {
-    color: #111111;
-    background-color: white;
-    width: 80vw;
-    height: 70vh;
-    position: fixed;
-    overflow-y: unset;
-    left: 50%;
-    top: 45%;
-    padding: 1rem;
-    transform: translate(-50%, -50%);
-    z-index: 5;
-    border-radius: 0.6rem;
-    display: grid;
-    grid-template-rows: 55% 30% 15%;
-    text-align: center;
-  }
-
-  .contentHeader {
-    display: grid;
-    place-items: center;
-  }
-  .headerImg {
-    display: grid;
-    place-items: center;
-    width: 40vw;
-    height: 40vh;
-  }
-  .itemDiv {
-    margin: 0;
-  }
-
-  .contentBody {
-    display: grid;
-    place-items: center;
-  }
-  .contentBody h1 {
-    font-size: 2rem;
-    margin: 0;
-    line-height: 0.5rem;
-  }
-  .contentBody p {
-    margin-top: -1rem;
-    color: #444444;
-    font-size: 1.2rem;
-    line-height: 1.8rem;
-  }
-
-  .content1 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    column-gap: 1rem;
-  }
-
-  .content2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-    column-gap: 1rem;
-  }
-
-  .content3 {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    row-gap: 2rem;
-    column-gap: 0.5rem;
-  }
-  .content3 p {
-    margin: 0;
-  }
-
-  .contentFooter0 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-  }
-  .contentFooter0 .button1 {
-    background: #e4685d;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #e4685d;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter0 .button1:active {
-    position: relative;
-    top: 2px;
-  }
-  .contentFooter0 .button2 {
-    background: #ffffff;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #666666;
-    cursor: pointer;
-    color: #666666;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter0 .button2:active {
-    position: relative;
-    top: 2px;
-  }
-
-  .contentFooter1 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-  }
-  .contentFooter1 .button1 {
-    background: #e4685d;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #e4685d;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter1 .button1:active {
-    position: relative;
-    top: 2px;
-  }
-  .contentFooter1 .button2 {
-    background: #ffffff;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #666666;
-    cursor: pointer;
-    color: #666666;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter1 .button2:active {
-    position: relative;
-    top: 2px;
-  }
-
-  .contentFooter2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    place-items: center;
-  }
-  .contentFooter2 .button1 {
-    background: #e4685d;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #e4685d;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter2 .button1:active {
-    position: relative;
-    top: 2px;
-  }
-  .contentFooter2 .button2 {
-    background: #ffffff;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #666666;
-    cursor: pointer;
-    color: #666666;
-    font-size: 1.4rem;
-    font-weight: bold;
-    padding: 1rem 0.5rem;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .contentFooter2 .button2:active {
-    position: relative;
-    top: 2px;
-  }
-
-  .contentFooter3 {
-    display: grid;
-    place-items: center;
-  }
-  .contentFooter3 .button1 {
-    background: #e4685d;
-    width: 30vw;
-    height: 3.5rem;
-    border-radius: 0.6rem;
-    border: 1px solid #e4685d;
+    border: 1px solid #ff5656;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.4rem;
@@ -720,8 +246,7 @@
   }
 }
 
-/* 모바일 가로, 테블릿 세로 (해상도 ~ 479px)*/
-@media screen and (max-width: 479px) {
+@media all and (max-width: 767px) {
   .container {
     color: #111111;
     background-color: white;
@@ -734,7 +259,7 @@
     padding: 1rem;
     transform: translate(-50%, -50%);
     z-index: 5;
-    border-radius: 0.6rem;
+    border-radius: 10px;
     display: grid;
     grid-template-rows: 55% 30% 15%;
     text-align: center;
@@ -745,10 +270,8 @@
     place-items: center;
   }
   .headerImg {
-    display: grid;
-    place-items: center;
-    width: 40vw;
-    height: 40vh;
+    display: flex;
+    width: 30%;
   }
   .itemDiv {
     margin: 0;
@@ -801,11 +324,12 @@
     place-items: center;
   }
   .contentFooter0 .button1 {
-    background: #e4685d;
-    width: 9.5rem;
+    background: #ff5656;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
-    border: 1px solid #e4685d;
+    border: 1px solid #ff5656;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.4rem;
@@ -822,7 +346,8 @@
   }
   .contentFooter0 .button2 {
     background: #ffffff;
-    width: 9.5rem;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
     border: 1px solid #666666;
@@ -847,11 +372,12 @@
     place-items: center;
   }
   .contentFooter1 .button1 {
-    background: #e4685d;
-    width: 9.5rem;
+    background: #ff5656;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
-    border: 1px solid #e4685d;
+    border: 1px solid #ff5656;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.4rem;
@@ -868,7 +394,8 @@
   }
   .contentFooter1 .button2 {
     background: #ffffff;
-    width: 9.5rem;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
     border: 1px solid #666666;
@@ -893,11 +420,12 @@
     place-items: center;
   }
   .contentFooter2 .button1 {
-    background: #e4685d;
-    width: 9.5rem;
+    background: #ff5656;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
-    border: 1px solid #e4685d;
+    border: 1px solid #ff5656;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.4rem;
@@ -914,7 +442,8 @@
   }
   .contentFooter2 .button2 {
     background: #ffffff;
-    width: 9.5rem;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
     border: 1px solid #666666;
@@ -938,11 +467,12 @@
     place-items: center;
   }
   .contentFooter3 .button1 {
-    background: #e4685d;
-    width: 9.5rem;
+    background: #ff5656;
+    width: 80%;
+    max-width: 400px;
     height: 3.5rem;
     border-radius: 0.6rem;
-    border: 1px solid #e4685d;
+    border: 1px solid #ff5656;
     cursor: pointer;
     color: #ffffff;
     font-size: 1.4rem;

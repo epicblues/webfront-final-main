@@ -43,16 +43,16 @@ const MeasuringModal = ({
             </div>
             <div className={measuringModalStyles.contentFooter0}>
               <div
-                className={measuringModalStyles.button1}
-                onClick={() => setIndexMeasuringModal(1)}
-              >
-                네,좋아요!
-              </div>
-              <div
                 className={measuringModalStyles.button2}
                 onClick={() => onXBtn(false)}
               >
                 괜찮아요
+              </div>
+              <div
+                className={measuringModalStyles.button1}
+                onClick={() => setIndexMeasuringModal(1)}
+              >
+                네,좋아요!
               </div>
             </div>
           </>
@@ -97,16 +97,16 @@ const MeasuringModal = ({
             </div>
             <div className={measuringModalStyles.contentFooter1}>
               <div
-                className={measuringModalStyles.button1}
-                onClick={() => setIndexMeasuringModal(2)}
-              >
-                다음으로
-              </div>
-              <div
                 className={measuringModalStyles.button2}
                 onClick={() => onXBtn(false)}
               >
                 그만볼래요
+              </div>
+              <div
+                className={measuringModalStyles.button1}
+                onClick={() => setIndexMeasuringModal(2)}
+              >
+                다음으로
               </div>
             </div>
           </>
@@ -144,16 +144,16 @@ const MeasuringModal = ({
                 이전
               </button> */}
               <div
-                className={measuringModalStyles.button1}
-                onClick={() => setIndexMeasuringModal(3)}
-              >
-                다음으로
-              </div>
-              <div
                 className={measuringModalStyles.button2}
                 onClick={() => onXBtn(false)}
               >
                 그만볼래요
+              </div>
+              <div
+                className={measuringModalStyles.button1}
+                onClick={() => setIndexMeasuringModal(3)}
+              >
+                다음으로
               </div>
             </div>
           </>
