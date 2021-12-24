@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 // components
-import { ImageContext } from '../../../pages/diary';
+import { ImageContext } from "../../../pages/diary";
 import { PAGE_CART } from "./AddFood";
 import List from "./List";
 // react-icons
 import { BiChevronLeft } from "react-icons/bi";
 import { AiOutlineForm } from "react-icons/ai";
 // css
-import MealStyles from '../../../styles/diary/Meal.module.css';
+import MealStyles from "../../../styles/diary/Meal.module.css";
 
 const PAGE_PRODUCTS = "products";
 const mealType = ["아침", "점심", "저녁", "간식"];
@@ -20,7 +20,7 @@ const LookupMeal = ({
   setWritingMode,
   setPage,
 }) => {
-  const {typeImages, typeImage} = useContext(ImageContext);
+  const { typeImages, typeImage } = useContext(ImageContext);
   const cart = diary.meals[type].foods;
   const navigateTo = (nextPage) => {
     setPage(nextPage);
@@ -61,16 +61,16 @@ const LookupMeal = ({
     <div className={MealStyles.lookupMealWrap}>
       <div className={MealStyles.lookupMealHeader}>
         <BiChevronLeft
-          size='2rem'
-          onClick={(e) => {setWritingMode("DEFAULT")}}
+          size="2rem"
+          onClick={(e) => {
+            setWritingMode("DEFAULT");
+          }}
         />
 
-        <span>
-          {mealType[type]}
-        </span>
+        <span>{mealType[type]}</span>
 
         <AiOutlineForm
-          size='2rem'
+          size="2rem"
           onClick={() =>
             setDiary((diary) => {
               const newDiary = { ...diary };
@@ -86,7 +86,10 @@ const LookupMeal = ({
         <img
           src={
             diary.meals[type].imageBuffer ||
-            diary.meals[type].image!== null ? process.env.NEXT_PUBLIC_STATIC_SERVER_URL + diary.meals[type].image : typeImage()
+            (diary.meals[type].image !== null
+              ? process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
+                diary.meals[type].image
+              : typeImage())
           }
         />
       </div>

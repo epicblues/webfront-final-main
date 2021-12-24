@@ -20,7 +20,7 @@ const DislikeButton = ({ recipeId, token, filterData, index }: any) => {
     }
   
     return (
-      <button className={likeButtonStyles.dislike} onClick={handleClick}>
+      <button aria-label='Dislike Button' className={likeButtonStyles.dislike} onClick={handleClick}>
              <i className="heart icon"></i>
       </button>
     )

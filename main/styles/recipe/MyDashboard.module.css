@@ -20,7 +20,7 @@
   justify-content: space-between;
   width: 30%;
   border-radius: 15px;
-  border: 4px #fff0f0 solid;
+  border: 1px #ff5656 solid;
   padding: 0.2rem 0.2rem;
 }
 
@@ -40,7 +40,6 @@
 .number {
   font-size: 1.4rem;
   color: #ff5656;
-  font: bold;
 }
 
 .number a {

@@ -31,7 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: tomato;
+    color: #ff5656;
     background-color: white;
     border: solid transparent;
     width: 15%;
@@ -52,7 +52,7 @@
   }
   .xBtn {
     margin-top: 1rem;
-    background: #e4685d;
+    background: #ff5656;
     border-radius: 10px;
     width: fit-content;
     height: fit-content;
@@ -99,7 +99,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: tomato;
+    color: #ff5656;
     background-color: white;
     border: solid transparent;
     width: 15%;
@@ -120,7 +120,7 @@
   }
   .xBtn {
     margin-top: 1rem;
-    background: #e4685d;
+    background: #ff5656;
     border-radius: 10px;
     width: fit-content;
     height: fit-content;
@@ -167,7 +167,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: tomato;
+    color: #ff5656;
     background-color: white;
     border: solid transparent;
     width: 15%;
@@ -188,7 +188,7 @@
   }
   .xBtn {
     margin-top: 1rem;
-    background: #e4685d;
+    background: #ff5656;
     border-radius: 10px;
     width: fit-content;
     height: fit-content;
@@ -236,7 +236,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: tomato;
+    color: #ff5656;
     background-color: white;
     border: solid transparent;
     width: 15%;
@@ -257,7 +257,7 @@
   }
   .xBtn {
     margin-top: 1rem;
-    background: #e4685d;
+    background: #ff5656;
     border-radius: 10px;
     width: fit-content;
     height: fit-content;

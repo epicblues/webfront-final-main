@@ -9,22 +9,24 @@ import clientPromise from '../util/mongodb';
 import { io, Socket } from 'socket.io-client';
 import Chat from '../components/main/Chat';
 import { LiveData } from '../models';
-import { BACKGROUND_COLOR, FLEXBOX_NORMAL, MAIN_COLOR, MIDDLE_COLOR } from '../constants';
-import Image from 'next/dist/client/image';
-import AppIcon from '../public/static/logos/logo04.png'
 import FoodRank from '../components/user/FoodRank';
 import LikeChallenge from '../components/user/likes/LikeChallenge';
 import LikeRecipe from '../components/user/likes/LikeRecipe';
 import mainStyle from '../styles/main/Main.module.css';
 import ShortNav from '../components/main/ShortNav';
 import MyContents from '../components/main/MyContents';
-import { LoadingProps } from '../hooks';
+import { LoadingProps, useFetch } from '../hooks';
 import MiniChat from '../components/main/MiniChat';
 // react-icons
 import { BiChat, BiDish, BiTrophy } from 'react-icons/bi'
 import { BiExit, BiX, BiChevronRight, BiHeart, BiStar } from "react-icons/bi";
 import { FiSettings } from "react-icons/fi";
-
+import { Challenge } from '../models/Challenge';
+import { Recipe } from '../models/Recipe';
+interface MyContents {
+  challenges: Challenge[],
+  recipes: Recipe[]
+}
 export interface RankedFood {
   name: string; count: number; nutrition: {
     kcal: number,
@@ -40,6 +42,7 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
   const [showLikesChallenge, setShowLikesChallenge] = useState(false)
   const [showLikesRecipe, setShowLikesRecipe] = useState(false)
 
+  const [myContents, setMyContents] = useFetch<MyContents>('/api/user/mycontents');
   const router = useRouter()
   const clickHandler = async () => {
     setLoading(true);
@@ -76,7 +79,7 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
         <div className={mainStyle.reportHeader}>
           <div className={mainStyle.headerTop}>
             <div className={mainStyle.text}>
-              {name} 님 <br/>안녕하세요!
+              {name} 님 <br />안녕하세요!
             </div>
             <div className={mainStyle.icon}>
               <BiExit size='1.7rem' onClick={clickHandler} />
@@ -102,10 +105,13 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
 
         <div className={mainStyle.contentsWrap}>
           <div className={mainStyle.contentsList}>
-            <div className={mainStyle.contentsTitle}>
-              <BiDish size="2rem" style={{ margin: '0 auto' }} />
-              <p>작성 레시피</p>
-            </div>
+            <Link href={'/recipe/list/my'} passHref>
+              <div className={mainStyle.contentsTitle}>
+                <BiDish size="2rem" style={{ margin: '0 auto' }} />
+                <p>작성 레시피<p>{myContents ? myContents.recipes.length : null}</p></p>
+
+              </div>
+            </Link>
           </div>
 
           <div className={mainStyle.contentsList} onClick={() => { setShowLikesRecipe(true) }}>
@@ -116,11 +122,13 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
           </div>
 
           <div className={mainStyle.contentsList}>
-            <div className={mainStyle.contentsTitle}>
-              <BiTrophy size="2rem" style={{ margin: '0 auto' }} />
-              <p>참여 챌린지</p>
-            </div>
-          </div>
+            <Link href={'/challenge'} passHref>
+              <div className={mainStyle.contentsTitle}>
+                <BiTrophy size="2rem" style={{ margin: '0 auto' }} />
+                <p>참여 챌린지<p>{myContents ? myContents.challenges.length : null}</p></p>
+
+              </div>
+            </Link></div>
 
           <div className={mainStyle.contentsList} onClick={() => { setShowLikesChallenge(true) }}>
             <div className={mainStyle.contentsTitle}>
@@ -128,14 +136,12 @@ const Home: NextPage<{ user: any, foodRank: RankedFood[], loadingProps: LoadingP
               <p>관심 챌린지</p>
             </div>
           </div>
-
-          {/* <MyContents /> */}
         </div>
 
         <FoodRank foodRank={foodRank} />
 
       </div>
-      
+
 
 
 

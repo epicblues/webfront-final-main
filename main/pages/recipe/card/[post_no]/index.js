@@ -140,7 +140,7 @@ const Index = ({ user, recipe }) => {
             등록일: {uploadDate.slice(0, -14)}
           </p>
           <p className={cardStyles.updateDate}>
-            {updateDate ? `최종수정일: ${updateDate.slice(0, -14)}` : ""}
+            {updateDate ? `(최종수정: ${updateDate.slice(0, -14)})` : null}
           </p>
         </div>
         <div className={cardStyles.hr}></div>

@@ -5,9 +5,6 @@ const MyNavigation = ({ activeIndex, onTabBtn }) => {
   return (
     <div className={navigationStyles.container}>
       <div className={navigationStyles.tab}>
-        <p className={navigationStyles.url}>MY 레시피 |</p>
-      </div>
-      <div className={navigationStyles.tab}>
         <p
           className={activeIndex === 0 ? navigationStyles.activated : ""}
           onClick={() => onTabBtn(0)}

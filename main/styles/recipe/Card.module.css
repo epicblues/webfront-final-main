@@ -34,13 +34,13 @@
     border-radius: 15px;
     margin: 0 1px;
     color: white;
-    background-color: #e4685d;
+    background-color: #ff5656;
   }
 
   /* 작성자 */
   .author {
     display: flex;
-    color: tomato;
+    color: #ff5656;
     width: max-content;
     font-size: 1.1rem;
     height: max-content;
@@ -121,7 +121,7 @@
   }
 
   .likesCount {
-    color: tomato;
+    color: #ff5656;
     font-size: 1.3rem;
     padding: 0.4rem 0.5rem;
   }
@@ -132,7 +132,7 @@
     margin: 1rem 0;
   }
   .igrContainer h3 {
-    color: tomato;
+    color: #ff5656;
   }
   .igrWrapper {
     width: 100%;
@@ -145,7 +145,7 @@
   .modalBtn {
     height: 5rem;
     font-size: 1.2rem;
-    background-color: tomato;
+    background-color: #ff5656;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -165,7 +165,7 @@
     margin: 2rem 0;
   }
   .stepNo {
-    background-color: tomato;
+    background-color: #ff5656;
     color: white;
     width: 4rem;
     padding: 0.2rem;
@@ -213,13 +213,13 @@
     border-radius: 15px;
     margin: 0 1px;
     color: white;
-    background-color: #e4685d;
+    background-color: #ff5656;
   }
 
   /* 작성자 */
   .author {
     display: flex;
-    color: tomato;
+    color: #ff5656;
     width: max-content;
     font-size: 1.1rem;
     height: max-content;
@@ -298,7 +298,7 @@
   }
 
   .likesCount {
-    color: tomato;
+    color: #ff5656;
     font-size: 1.3rem;
     padding: 0.4rem 0.5rem;
   }
@@ -309,7 +309,7 @@
     margin: 1rem 0;
   }
   .igrContainer h3 {
-    color: tomato;
+    color: #ff5656;
   }
   .igrWrapper {
     width: 100%;
@@ -322,7 +322,7 @@
   .modalBtn {
     height: 5rem;
     font-size: 1.2rem;
-    background-color: tomato;
+    background-color: #ff5656;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -342,7 +342,7 @@
     margin: 2rem 0;
   }
   .stepNo {
-    background-color: tomato;
+    background-color: #ff5656;
     color: white;
     width: 4rem;
     padding: 0.2rem;
@@ -390,13 +390,13 @@
     border-radius: 15px;
     margin: 0 1px;
     color: white;
-    background-color: #e4685d;
+    background-color: #ff5656;
   }
 
   /* 작성자 */
   .author {
     display: flex;
-    color: tomato;
+    color: #ff5656;
     width: max-content;
     font-size: 1.1rem;
     height: max-content;
@@ -475,7 +475,7 @@
   }
 
   .likesCount {
-    color: tomato;
+    color: #ff5656;
     font-size: 1.3rem;
     padding: 0.4rem 0.5rem;
   }
@@ -486,7 +486,7 @@
     margin: 1rem 0;
   }
   .igrContainer h3 {
-    color: tomato;
+    color: #ff5656;
   }
   .igrWrapper {
     width: 100%;
@@ -499,7 +499,7 @@
   .modalBtn {
     height: 5rem;
     font-size: 1.2rem;
-    background-color: tomato;
+    background-color: #ff5656;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -519,7 +519,7 @@
     margin: 2rem 0;
   }
   .stepNo {
-    background-color: tomato;
+    background-color: #ff5656;
     color: white;
     width: 4rem;
     padding: 0.2rem;
@@ -568,13 +568,13 @@
     border-radius: 15px;
     margin: 0 1px;
     color: white;
-    background-color: #e4685d;
+    background-color: #ff5656;
   }
 
   /* 작성자 */
   .author {
     display: flex;
-    color: tomato;
+    color: #ff5656;
     width: max-content;
     font-size: 1.1rem;
     height: max-content;
@@ -653,7 +653,7 @@
   }
 
   .likesCount {
-    color: tomato;
+    color: #ff5656;
     font-size: 1.3rem;
     padding: 0.4rem 0.5rem;
   }
@@ -664,7 +664,7 @@
     margin: 1rem 0;
   }
   .igrContainer h3 {
-    color: tomato;
+    color: #ff5656;
   }
   .igrWrapper {
     width: 100%;
@@ -677,7 +677,7 @@
   .modalBtn {
     height: 5rem;
     font-size: 1.2rem;
-    background-color: tomato;
+    background-color: #ff5656;
     color: white;
     padding: 1rem;
     text-align: center;
@@ -697,7 +697,7 @@
     margin: 2rem 0;
   }
   .stepNo {
-    background-color: tomato;
+    background-color: #ff5656;
     color: white;
     width: 4rem;
     padding: 0.2rem;

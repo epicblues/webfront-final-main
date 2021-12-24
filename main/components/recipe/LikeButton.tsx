@@ -18,7 +18,7 @@ const LikeButton = ({ recipeId, token, filterData, index }: any) => {
   }
 
   return (
-    <button className={likeButtonStyles.like} onClick={handleClick}>
+    <button aria-label='Like Button' className={likeButtonStyles.like} onClick={handleClick}>
       <i className="heart outline icon"></i>
     </button>
   )
