@@ -1,5 +1,5 @@
 import { React } from "react";
-import { Header, Icon, Popup } from "semantic-ui-react";
+import { Icon, Popup } from "semantic-ui-react";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 import ButtonStyles from "../../../styles/challenge/Radio.module.css";
 import InputStyles from "../../../styles/challenge/Input.module.css";

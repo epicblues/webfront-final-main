@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Link from "next/dist/client/link";
 //css
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
-import ImageStyle from "../../../styles/challenge/Input.module.css";
 import ListStyle from "../../../styles/challenge/List.module.css";
 import ModalStyle from "../../../styles/challenge/Modal.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +9,6 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Image } from "semantic-ui-react";
 import { Swiper, SwiperSlide, user } from "swiper/react";
 import "swiper/swiper.min.css";
-import SwiperCore, { Navigation } from "swiper/core";
 
 const RecommendChallenge = ({ challenges }) => {
   const [recChallenges, setRecChallenges] = useState([]);

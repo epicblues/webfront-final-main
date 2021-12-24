@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/dist/client/link";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -19,7 +19,7 @@ import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
 import ImageStyle from "../../styles/challenge/Input.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { Icon, Image, Popup } from "semantic-ui-react";
+import { Image } from "semantic-ui-react";
 
 const Index = ({ challenges, user }) => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -34,8 +34,12 @@ const Index = ({ challenges, user }) => {
   const [participatedChallenges, setParticipatedChallenges] = useState(
     challenges.filter(
       (challenge) =>
-        challenge.participants.some((participant) => participant === user.id) ||
-        challenge.userId === user.id
+        (challenge.participants.some(
+          (participant) => participant === user.id
+        ) &&
+          challenge.winners.indexOf(user.id) === -1) ||
+        (challenge.userId === user.id &&
+          challenge.winners.indexOf(user.id) === -1)
     )
   );
   const copiedChallenges = [...participatedChallenges];
@@ -239,6 +243,8 @@ const Index = ({ challenges, user }) => {
                                         (result / challenge.diet.condition) *
                                           100
                                       ) + " %";
+                                    span.style.font =
+                                      "normal 600 1rem/24px Noto Sans KR";
                                   } else {
                                     realProgressBar.value = result;
                                     realProgressBar.max =
@@ -251,13 +257,14 @@ const Index = ({ challenges, user }) => {
                                           challenge.recipe.uploadCount) *
                                           100
                                       ) + " %";
+                                    span.style.font =
+                                      "normal 600 1rem/24px Noto Sans KR";
                                   }
                                 }
                               } else {
                                 // 성공했다.
                                 button.textContent = "성공!";
                                 button.style.backgroundColor = "blue";
-
                                 setInterval(
                                   (button) => {
                                     button.style.display = "none";
@@ -265,10 +272,12 @@ const Index = ({ challenges, user }) => {
                                   100,
                                   button
                                 );
-                                const span = button.nextElementSibling;
-
-                                span.textContent = "챌린지 달성!";
-                                span.style.backgroundColor = "blue";
+                                const $result =
+                                  button.nextElementSibling.nextElementSibling;
+                                $result.textContent = "챌린지 성공!";
+                                $result.style.color = "#6799FF";
+                                $result.style.font =
+                                  "normal 600 1.2rem/24px Noto Sans KR";
                               }
                             }}
                           >
@@ -276,8 +285,8 @@ const Index = ({ challenges, user }) => {
                           </button>
                           <div style={{ display: "none" }}>
                             <ProgressBar />
-                            <span></span>
                           </div>
+                          <div></div>
                         </div>
                       </div>
                     </>

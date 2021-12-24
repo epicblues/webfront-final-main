@@ -6,11 +6,8 @@ import clientPromise from "../../util/mongodb";
 import Navbar from "../../components/challenge/Main/Navbar";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
 import Search from "../../components/challenge/Main/Search";
-
 //css
-
 import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
-import ImageStyle from "../../styles/challenge/Input.module.css";
 
 const MainList = ({ challenges, user }) => {
   const challengeIndexes = [];

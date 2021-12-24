@@ -21,6 +21,22 @@
   margin-top: 1rem;
   font: normal 400 1.2rem "NanumSquare";
 }
+.join {
+  background: #ff5656;
+  border: 1px solid #ff5656;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+  width: 30%;
+  border-radius: 10px;
+  border: none;
+  align-self: center;
+  height: 2.8rem;
+  position: relative;
+  left: 1.2rem;
+  bottom: 0.3rem;
+  font: normal 400 1.2rem "NanumSquare";
+}
 .button1 {
   background: #fff;
   border: 1px solid #ccc;

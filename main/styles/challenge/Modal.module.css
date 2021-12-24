@@ -43,7 +43,7 @@
 .content {
   position: relative;
   bottom: 0.9rem;
-  font: normal 500 1rem/22px "Noto Sans KR";
+  font: normal 700 1rem/24px "NanumSquare";
 }
 .modalImageDiv {
   z-index: 0;
@@ -167,5 +167,5 @@
   position: relative;
   text-align: left;
   left: 5%;
-  font: normal 500 1.1rem/22px "Noto Sans KR";
+  font: normal 700 1.2rem/24px "NanumSquare";
 }

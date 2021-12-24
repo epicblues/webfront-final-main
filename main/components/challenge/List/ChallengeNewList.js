@@ -1,9 +1,5 @@
 import { React } from "react";
-
-import ListStyle from "../../../styles/challenge/List.module.css";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
-import ImageStyle from "../../../styles/challenge/Input.module.css";
-import { Image } from "semantic-ui-react";
 
 const ChallengeNewList = () => {
   return (

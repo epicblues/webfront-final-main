@@ -2,7 +2,6 @@ import { React, useState } from "react";
 //css
 import { Icon } from "semantic-ui-react";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
-import ImageStyle from "../../../styles/challenge/Input.module.css";
 const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
   //이미지 업로드

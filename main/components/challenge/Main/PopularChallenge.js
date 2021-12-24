@@ -4,7 +4,7 @@ import Link from "next/dist/client/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Image } from "semantic-ui-react";
-import { Swiper, SwiperSlide, user } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
 import ListStyle from "../../../styles/challenge/List.module.css";
 import ModalStyle from "../../../styles/challenge/Modal.module.css";

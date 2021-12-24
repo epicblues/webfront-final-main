@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from "react";
+import { React, useState } from "react";
 import { getUserOrRedirect } from "../../util/auth";
 import clientPromise from "../../util/mongodb";
 import Link from "next/dist/client/link";
@@ -13,7 +13,6 @@ import ImageStyle from "../../styles/challenge/Input.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Image } from "semantic-ui-react";
-import { Icon } from "semantic-ui-react";
 
 const NewList = ({ challenges, user }) => {
   const [search, setSearch] = useState(false);

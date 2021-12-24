@@ -1,15 +1,13 @@
-import React, { useState, MouseEventHandler } from "react";
+import React, { useState } from "react";
 import { getUserOrRedirect } from "../../../util/auth";
 import clientPromise from "../../../util/mongodb";
 import { patchStaticAxios, postStaticAxios } from "../../../util/axios";
 //component
 import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
-import Header from "../../../components/challenge/Main/Header";
+
 //css
 import { Image } from "semantic-ui-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "semantic-ui-react";
 import ChallengeStyles from "../../../styles/challenge/Challenge.module.css";
 import ImageStyle from "../../../styles/challenge/Input.module.css";
@@ -233,7 +231,11 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     <footer className={ChallengeStyles.footer}>
                       {challenge.likes.indexOf(user.id) === -1 ? (
                         <div
-                          style={{ fontSize: "16px", marginBottom: "1.5rem" }}
+                          style={{
+                            fontSize: "16px",
+                            position: "relative",
+                            bottom: "0.3rem",
+                          }}
                         >
                           <Icon
                             className="heart outline"
@@ -243,7 +245,11 @@ const ChallengePage = ({ originalChallenge, user }) => {
                         </div>
                       ) : (
                         <div
-                          style={{ fontSize: "16px", marginBottom: "1.5rem" }}
+                          style={{
+                            fontSize: "16px",
+                            position: "relative",
+                            bottom: "0.3rem",
+                          }}
                         >
                           <Icon
                             className="heart"
@@ -318,7 +324,13 @@ const ChallengePage = ({ originalChallenge, user }) => {
 
               <footer className={ChallengeStyles.footer}>
                 {challenge.likes.indexOf(user.id) === -1 ? (
-                  <div style={{ fontSize: "16px", marginBottom: "1.5rem" }}>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      position: "relative",
+                      bottom: "0.3rem",
+                    }}
+                  >
                     <Icon
                       className="heart outline"
                       size="large"
@@ -326,7 +338,13 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     />
                   </div>
                 ) : (
-                  <div style={{ fontSize: "16px", marginBottom: "1.5rem" }}>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      position: "relative",
+                      bottom: "0.3rem",
+                    }}
+                  >
                     <Icon
                       className="heart"
                       color="red"

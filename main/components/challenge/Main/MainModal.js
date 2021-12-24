@@ -7,7 +7,7 @@ import ProgressBar from "./ProgressBar";
 //css
 import "semantic-ui-css/semantic.min.css";
 import { Image, Modal, Icon } from "semantic-ui-react";
-import { FaUser, FaAngleDoubleLeft } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import MainStyle from "../../../styles/challenge/Main.module.css";
 
 const MainModal = ({ challenges, title, head }) => {
@@ -90,6 +90,7 @@ const MainModal = ({ challenges, title, head }) => {
                                 challenge
                               );
                               console.log(result);
+
                               const button = event.target;
                               button.disabled = true;
                               if (message === "failed") {
@@ -121,6 +122,8 @@ const MainModal = ({ challenges, title, head }) => {
                                         (result / challenge.diet.condition) *
                                           100
                                       ) + "%";
+                                    span.style.font =
+                                      "normal 600 1rem/24px Noto Sans KR";
                                   } else {
                                     realProgressBar.value = result;
                                     realProgressBar.max =
@@ -133,13 +136,14 @@ const MainModal = ({ challenges, title, head }) => {
                                           challenge.recipe.uploadCount) *
                                           100
                                       ) + "%";
+                                    span.style.font =
+                                      "normal 600 1rem/24px Noto Sans KR";
                                   }
                                 }
                               } else {
                                 //성공했다.
                                 button.textContent = "성공!";
                                 button.style.backgroundColor = "blue";
-
                                 setInterval(
                                   (button) => {
                                     button.style.display = "none";
@@ -147,9 +151,12 @@ const MainModal = ({ challenges, title, head }) => {
                                   100,
                                   button
                                 );
-                                const span = button.nextElementSibling;
-                                span.textContent = "챌린지 달성";
-                                span.style.backgroundColor = "blue";
+                                const $result =
+                                  button.nextElementSibling.nextElementSibling;
+                                $result.innerText = "챌린지 성공";
+                                $result.style.color = "#6799FF";
+                                $result.style.font =
+                                  "normal 600 1.2rem/24px Noto Sans KR";
                               }
                             }}
                           >
@@ -161,8 +168,8 @@ const MainModal = ({ challenges, title, head }) => {
                             }}
                           >
                             <ProgressBar />
-                            <span></span>
                           </div>
+                          <div></div>
                         </div>
                       </div>
                     </>

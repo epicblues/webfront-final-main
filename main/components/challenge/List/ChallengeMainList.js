@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/dist/client/link";
-import axios from "axios";
 //css
 import { Image } from "semantic-ui-react";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";

@@ -1,6 +1,5 @@
 import React, { useState, useRef } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
-import Link from "next/link";
 import { postStaticAxios } from "../../../util/axios";
 import ko from "date-fns/locale/ko";
 // component

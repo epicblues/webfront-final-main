@@ -1,7 +1,6 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
 import axios from "axios";
-import { Router, useRouter } from "next/dist/client/router";
+import { useRouter } from "next/dist/client/router";
 import ButtonStyle from "../../../styles/challenge/Button.module.css";
 const ChallengeCancel = ({ challenge, setChallenge }) => {
   const router = useRouter();
@@ -23,11 +22,7 @@ const ChallengeCancel = ({ challenge, setChallenge }) => {
     }
   };
   return (
-    <button
-      type="submit"
-      className={ButtonStyle.button2}
-      onClick={handleCancel}
-    >
+    <button type="submit" className={ButtonStyle.join} onClick={handleCancel}>
       취소하기
     </button>
   );
