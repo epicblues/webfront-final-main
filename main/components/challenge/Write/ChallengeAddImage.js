@@ -2,7 +2,6 @@ import { React, useState } from "react";
 //css
 import { Icon } from "semantic-ui-react";
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css";
-import ImageStyle from "../../../styles/challenge/Input.module.css";
 const ChallengeAddImage = ({ challenge, setChallenge }) => {
   const [error, setError] = useState(false);
   //이미지 업로드
@@ -81,10 +80,8 @@ const ChallengeAddImage = ({ challenge, setChallenge }) => {
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",
-            color: "white",
             margin: "20px 0",
             borderRadius: "0.3rem",
-            backgroundColor: "#EAEAEA",
             boxShadow: "1px 1px 3px 1px #dadce0",
           }}
         >

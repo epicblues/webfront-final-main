@@ -3,10 +3,7 @@ import React, { useEffect, useState,useCallback } from 'react'
 import Link from 'next/dist/client/link';
 import { Image } from 'semantic-ui-react';
 import { Challenge } from '../../../models/Challenge';
-import { debounce } from '../../../util/axios';
-
 //css
-import MainStyle from "../../../styles/challenge/Main.module.css"
 import PastStyles from "../../../styles/challenge/Past.module.css"
 import ChallengeStyle from "../../../styles/challenge/Challenge.module.css"
 
@@ -15,7 +12,7 @@ interface Props {
 }
 
 const PastChallenge = (challenge: Challenge ) => (
-  <div style={{display:"flex", justifyContent:"center", marginTop:"1rem"}} key={challenge._id}>
+  <div style={{display:"flex", justifyContent:"center", padding:"1rem"}} key={challenge._id}>
     <Link passHref href={"/challenge/list/" + challenge._id}>
     <>    
     <div className={PastStyles.imageDiv} >
@@ -28,7 +25,7 @@ const PastChallenge = (challenge: Challenge ) => (
       <ul>
       <li style={{font:"normal 600 1.2rem/22px Noto Sans KR"}}> 
       {challenge.title}</li>
-      <li style={{font:"normal 500 1rem/22px Noto Sans KR"}}> {challenge.startDate?.getFullYear()+"."+ 
+      <li style={{font:"normal 400 1.2rem/22px NanumSquare"}}> {challenge.startDate?.getFullYear()+"."+ 
            (challenge.startDate?.getMonth() as number+1)+"."
            +challenge.startDate?.getDate()}
            ~{challenge.endDate?.getFullYear()+"."
@@ -36,32 +33,39 @@ const PastChallenge = (challenge: Challenge ) => (
            +challenge.endDate?.getDate()}
      </li>
      <br/>
-     <li> {challenge.hasOwnProperty("result") ? <div 
+     <li> {challenge.hasOwnProperty("result") ? 
+     <div 
      style={{
        border:"1px solid",
        borderRadius:"0.3rem",
+       boxShadow:"2px 2px 2px #ccc",
        backgroundColor:"#fff5f5",
-       font: "normal 600 1.2rem/22px Noto sans KR",
+       font: "normal 600 1.2rem/22px Noto Sans KR",
        color:"#F15F5F",
-       width:"90%",
+       width:"80%",
      }}
 
      >
-       {challenge.type=== "diet"?<div>
-       최종달성율  {(Number(challenge.result)/Number(challenge.diet?.condition))*100} %
-       </div>:
+       
+       {challenge.type=== "diet"?(
        <div>
-       최종달성율  {(Number(challenge.result)/Number(challenge.recipe?.uploadCount))*100}%
-         </div>}
-     </div> :<div
+        최종달성율  {(Number(challenge.result)/Number(challenge.diet?.condition))*100} %
+       </div>):(
+       <div>
+        최종달성율  {(Number(challenge.result)/Number(challenge.recipe?.uploadCount))*100}%
+         </div>)}
+     </div> :
+     <div
      style={{
       border:"1px solid",
       borderRadius:"0.3rem",
       backgroundColor:"#fff5f5",
-      font: "normal 600 1.2rem/22px Noto sans KR",
+      font: "normal 600 1.2rem/22px Noto Sans KR",
       color:"#6B66FF",
-      width:"90%",
-    }}>최종달성율 100%</div>}</li>
+      width:"80%",
+    }}>
+      최종달성율 100%
+      </div>}</li>
      </ul>
     </div>
     </>

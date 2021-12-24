@@ -19,10 +19,11 @@ const FoodRankInfo = () => {
 
 
     }}>
-      <BiDotsVerticalRounded />
-      {show && <div className={mainStyle.foodRankInfo}>
+      <BiDotsVerticalRounded size='1.2rem' style={{ marginTop: '0.25rem' }} />
+      {/* <div></div> */}
+      {show && <><div className={mainStyle.foodRankInfo}>
         한 달 동안 식단에 가장 많이 추가된 레시피 또는 음식 입니다.
-      </div>}
+      </div><div style={{ position: "fixed", left: "0", top: "0", width: "100vw", height: "100vh" }}></div></>}
     </div>
   )
 }

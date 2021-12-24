@@ -23,9 +23,10 @@ const MiniChat: React.FC<ChatProps> = ({ liveData, name, largeMode, setLargeMode
       debounce(() => {
         setTimeout(() => {
           if (!notice.current) return;
+
           notice.current.style.opacity = '0'
         })
-      }, 6000)
+      }, 5000)();
     }
   }, [liveData, largeMode])
   return (
@@ -36,7 +37,7 @@ const MiniChat: React.FC<ChatProps> = ({ liveData, name, largeMode, setLargeMode
 
       </div>
       <div onClick={() => { setLargeMode(!largeMode) }}>
-        <BsChatDots size='2rem'/>
+        <BsChatDots size='2rem' />
       </div>
     </div>
 

@@ -18,7 +18,7 @@ const LikeButtonCard = ({ recipe, token, setRecipeData  }: any) => {
   }
 
   return (
-    <button className={likeButtonStyles.likeSmall} onClick={handleClick}>
+    <button aria-label='Like Button' className={likeButtonStyles.likeSmall} onClick={handleClick}>
       <i className="heart outline icon"></i>
     </button>
   )

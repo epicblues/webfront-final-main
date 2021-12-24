@@ -7,9 +7,7 @@ import Navbar from "../../components/challenge/Main/Navbar";
 import ChallengeMainList from "../../components/challenge/List/ChallengeMainList";
 import Search from "../../components/challenge/Main/Search";
 //css
-
 import ChallengeStyle from "../../styles/challenge/Challenge.module.css";
-import ImageStyle from "../../styles/challenge/Input.module.css";
 
 const MainList = ({ challenges, user }) => {
   const challengeIndexes = [];
@@ -32,7 +30,7 @@ const MainList = ({ challenges, user }) => {
 
   return (
     <>
-      <div className="container" style={{ margin: "0 1rem" }}>
+      <div className="container" style={{ padding: "1rem" }}>
         <div>
           <div className={ChallengeStyle.header2}>
             <Search />
@@ -45,7 +43,7 @@ const MainList = ({ challenges, user }) => {
               user={user}
             />
           ) : (
-            <h2>No Challenges</h2>
+            <div className={ChallengeStyle.mainTitle}>챌린지가 없습니다. </div>
           )}
         </div>
       </div>

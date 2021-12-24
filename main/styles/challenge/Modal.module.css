@@ -38,12 +38,12 @@
 .title {
   position: relative;
   bottom: 0.9rem;
-  font: normal 500 1.1rem/22px "Noto Sans KR";
+  font: normal 600 1.05rem/24px "Noto Sans KR";
 }
 .content {
   position: relative;
   bottom: 0.9rem;
-  font: normal 500 1rem/22px "Noto Sans KR";
+  font: normal 700 1rem/24px "NanumSquare";
 }
 .modalImageDiv {
   z-index: 0;
@@ -91,9 +91,9 @@
 }
 .search {
   position: absolute;
-  right: 0;
+  right: 1rem;
   z-index: 3;
-  top: 20px;
+  top: 1.7rem;
 }
 .participant {
   background-color: gray;
@@ -103,7 +103,7 @@
   z-index: 1;
   color: white;
   position: relative;
-  left: 25.5vw;
+  left: 26vw;
   bottom: 10vh;
 }
 .modalFont {
@@ -167,5 +167,5 @@
   position: relative;
   text-align: left;
   left: 5%;
-  font: normal 600 1.1rem/22px;
+  font: normal 700 1.2rem/24px "NanumSquare";
 }

@@ -2,6 +2,8 @@
   -webkit-appearance: none;
   width: 9em;
   height: 1em;
+  position: relative;
+  right: 0.7rem;
 }
 .progress::-webkit-progress-bar {
   background: #e4685d;

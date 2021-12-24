@@ -1,15 +1,13 @@
-import React, { useState, MouseEventHandler } from "react";
+import React, { useState } from "react";
 import { getUserOrRedirect } from "../../../util/auth";
 import clientPromise from "../../../util/mongodb";
 import { patchStaticAxios, postStaticAxios } from "../../../util/axios";
 //component
 import ChallengeJoin from "../../../components/challenge/List/ChallengeJoin";
 import ChallengeCancel from "../../../components/challenge/List/ChallengeCancel";
-import Header from "../../../components/challenge/Main/Header";
+
 //css
 import { Image } from "semantic-ui-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "semantic-ui-react";
 import ChallengeStyles from "../../../styles/challenge/Challenge.module.css";
 import ImageStyle from "../../../styles/challenge/Input.module.css";
@@ -52,16 +50,12 @@ const ChallengePage = ({ originalChallenge, user }) => {
   };
 
   const countChallengeDate = (endDate) => {
-    const dateCount = Math.round(
+    const dateCount = Math.ceil(
       (new Date(challenge.endDate).getTime() - new Date().getTime()) /
         (1000 * 60 * 60 * 24)
     );
-    const weeks = Math.round(dateCount / 7);
-    if (dateCount < 7) {
-      return <div>{dateCount}일</div>;
-    } else {
-      return <div>{weeks}주</div>;
-    }
+
+    return <div>{dateCount}일</div>;
   };
   const changeDateStr = () => {
     const newStartDateStr =
@@ -236,7 +230,13 @@ const ChallengePage = ({ originalChallenge, user }) => {
                   <>
                     <footer className={ChallengeStyles.footer}>
                       {challenge.likes.indexOf(user.id) === -1 ? (
-                        <div style={{ fontSize: "16px" }}>
+                        <div
+                          style={{
+                            fontSize: "16px",
+                            position: "relative",
+                            bottom: "0.3rem",
+                          }}
+                        >
                           <Icon
                             className="heart outline"
                             size="large"
@@ -244,7 +244,13 @@ const ChallengePage = ({ originalChallenge, user }) => {
                           />
                         </div>
                       ) : (
-                        <div style={{ fontSize: "16px" }}>
+                        <div
+                          style={{
+                            fontSize: "16px",
+                            position: "relative",
+                            bottom: "0.3rem",
+                          }}
+                        >
                           <Icon
                             className="heart"
                             color="red"
@@ -318,7 +324,13 @@ const ChallengePage = ({ originalChallenge, user }) => {
 
               <footer className={ChallengeStyles.footer}>
                 {challenge.likes.indexOf(user.id) === -1 ? (
-                  <div style={{ fontSize: "16px" }}>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      position: "relative",
+                      bottom: "0.3rem",
+                    }}
+                  >
                     <Icon
                       className="heart outline"
                       size="large"
@@ -326,7 +338,13 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     />
                   </div>
                 ) : (
-                  <div style={{ fontSize: "16px" }}>
+                  <div
+                    style={{
+                      fontSize: "16px",
+                      position: "relative",
+                      bottom: "0.3rem",
+                    }}
+                  >
                     <Icon
                       className="heart"
                       color="red"

@@ -2,15 +2,82 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 /* naver font: 'NanumSquare' (300, 400, 700, 800) */
 @import url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css?family=NanumSquare");
-/* 폰트는 rem으로 통일
+
+/*
+콘텐츠간 간격, 여백
+margin, padding, gap: 1rem;
+*/
+/*
+color:
+#ff5656 //메인
+#ccc //라이트그레이
+#333 //블랙
+#fff //화이트
+*/
+/*
+font size -> rem
 16px = 1rem
 24px = 1.5rem
 25px = 1.6rem
 28px = 1.8rem
 32px = 2rem
 */
-/* input border color: #dddddd; */
-/* 콘텐츠간 margin, padding: 1rem; */
+/*
+기본 버튼
+button {
+  border-radius: 10px;
+  border: none;
+  align-self: stretch;
+  height: 2.8rem;
+  font: normal 400 1.2rem "NanumSquare";
+  width: 자유롭게%;
+}
+
+버튼 2개 나란히 있는 경우
+div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+div button {
+  width: 30%;
+}
+
+취소, 이전, 싫음 버튼: 왼쪽
+div button:first-child {
+  background: #fff;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  color: #888;
+  text-decoration: none;
+}
+
+확인, 다음, 좋음 버튼: 오른쪽
+div button:last-child {
+  background: #ff5656;
+  border: 1px solid #ff5656;
+  cursor: pointer;
+  color: #fff;
+  text-decoration: none;
+}
+*/
+/*
+기본 인풋
+input {
+  border-radius: 10px;
+  border: solid 1px #ccc;
+  align-self: stretch;
+  height: 2.8rem;
+  font: 400 1.2rem "NanumSquare";
+  text-align: left;
+  padding: 0.7rem 1rem;
+  background: #fff;
+  width: 자유롭게%;
+}
+*/
+
 /* reset */
 * {
   margin: 0;

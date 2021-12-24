@@ -56,6 +56,7 @@ export class Challenge {
         );
       return { message: "success", result: updateResult.value };
     } else {
+      console.log(result);
       return { message: "failed", result: result.length };
     }
   }
