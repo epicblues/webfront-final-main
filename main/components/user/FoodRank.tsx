@@ -13,54 +13,17 @@ interface Props {
 const medalImg = [
   {
     image:
-    "/1st.png",
+      "/1st.png",
   },
   {
     image:
-    "/2nd.png",
+      "/2nd.png",
   },
   {
     image:
       "/3rd.png",
   },
 ];
-
-const WordToComponent: React.FC<{
-  word: string, nutrition: {
-    kcal: number,
-    carbs: number,
-    prot: number,
-    fat: number
-  }
-}> = ({ word, nutrition }) => {
-  const wordArray = word.split(' ');
-  const wordTooLong = wordArray.length > 2;
-
-  const [showFoodModal, setShowFoodModal] = useState(false);
- 
-  const component = wordArray.slice(0, 2).map((value, index) => (<div key={index}>{value}</div>));
-  return (<div onClick={({ currentTarget: elem }) => {
-    if (!showFoodModal) {
-
-      setTimeout(() => {
-        (elem.children[elem.children.length - 1] as HTMLElement).style.opacity = "1"
-      })
-      setShowFoodModal(true);
-      return;
-    }
-
-    (elem.children[elem.children.length - 1] as HTMLElement).style.opacity = "0"
-
-    setTimeout(() => {
-      setShowFoodModal(!showFoodModal);
-    }, 200)
-
-  }}>
-    {component} {wordTooLong &&
-      <div>...</div>}
-    {showFoodModal && <FoodRankModal word={word} nutrition={nutrition} />}
-  </div>)
-}
 
 
 const FoodRank = ({ foodRank }: Props) => {
@@ -77,8 +40,9 @@ const FoodRank = ({ foodRank }: Props) => {
           <div className={mainStyle.rankOrder} key={name}>
             <img src={medalImg[index].image} className={mainStyle.rankMedal} />
             {/* <WordToComponent word={name.replace(/,/g, "")} nutrition={nutrition} /> */}
-            <div className={mainStyle.orderName}>{name}</div>
+            <div className={mainStyle.orderName}>{name.split('(')[0]}</div>
             <div className={mainStyle.orderCount}>{count}</div>
+
           </div>
         )) : <div>식단을 기록하면 볼 수 있어요.</div>
         }
