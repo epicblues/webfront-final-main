@@ -6,6 +6,9 @@ import Link from "next/link";
 import { getUserOrRedirect } from "../../../../util/auth";
 import clientPromise from "../../../../util/mongodb";
 
+// Sad Doge
+import sd from "../../../../public/static/logos/dogeSad.jpg";
+
 //  CSS
 import myRecipeStyles from "../../../../styles/recipe/MyRecipe.module.css";
 import { postStaticAxios } from "../../../../util/axios";
@@ -251,7 +254,16 @@ const Index = ({ user, filteredRecipes }) => {
         onTabBtn={onTabBtn}
         activeIndex={activeIndex}
       ></MyNavigation>
-      {switchViewByIndex(activeIndex)}
+      {recipes.length === 0 ? (
+        <div className={myRecipeStyles.noLikes}>
+          아직 좋아요를 누른 게시물이 없습니다 :(
+          <div className={myRecipeStyles.sadDoge}>
+            <Image src={sd} width="479" height="266" />
+          </div>
+        </div>
+      ) : (
+        switchViewByIndex(activeIndex)
+      )}
     </div>
   );
 };
