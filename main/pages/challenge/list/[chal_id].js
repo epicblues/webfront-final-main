@@ -180,7 +180,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     하루 섭취량 : {challenge.diet.dailyCalorie} Kcal
                   </div>
                   <div className={DetailStyles.content}>
-                    다이어트 완료조건 : {challenge.diet.condition}일 작성
+                    챌린지 완료조건 : {challenge.diet.condition}일 작성
                   </div>
                 </>
               ) : (
@@ -193,7 +193,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     {changeRecipeName()}
                   </div>
                   <div className={DetailStyles.content}>
-                    레시피 완료조건 : {challenge.recipe.uploadCount}회 작성
+                    챌린지 완료조건 : {challenge.recipe.uploadCount}회 작성
                   </div>
                 </>
               )}
@@ -294,7 +294,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     하루 섭취량:{challenge.diet.dailyCalorie} Kcal
                   </div>
                   <div className={DetailStyles.content}>
-                    다이어트 완료 조건:{challenge.diet.condition}일 작성
+                    챌린지 완료 조건:{challenge.diet.condition}일 작성
                   </div>
                   <hr className={ChallengeStyles.hr2} />
                   <div className={DetailStyles.tag}> 챌린지 설명</div>
@@ -312,7 +312,7 @@ const ChallengePage = ({ originalChallenge, user }) => {
                     {changeRecipeName()}
                   </div>
                   <div className={DetailStyles.content}>
-                    레시피 완료 조건:{challenge.recipe.uploadCount}회 작성
+                    챌린지 완료 조건:{challenge.recipe.uploadCount}회 작성
                   </div>
                   <hr className={ChallengeStyles.hr2} />
                   <div className={DetailStyles.tag}> 챌린지 설명</div>
