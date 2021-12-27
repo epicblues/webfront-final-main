@@ -26,7 +26,7 @@ const PastChallenge = (challenge: Challenge ) => (
       bottom: "75%",
       position: "absolute",                  
       textAlign: "right",
-    zIndex: "1",
+       zIndex : 1,
     color: "white"
   }}>
     <FaUser size="16px" color='white' />
@@ -78,8 +78,9 @@ const PastChallenge = (challenge: Challenge ) => (
       font: "normal 600 1.1rem/24px Noto Sans KR",
       color:"#fff",
       width:"35vw",
-      textAlign:"center"
-    }}>
+      textAlign:"center",
+      marginLeft:"5px",
+          }}>
       최종달성율 100%
       </div>}</li>
      </ul>
