@@ -158,7 +158,7 @@ const ChallengeWrite = ({ user }) => {
                   }}
                   customInput={<DateCustomImage />}
                   selectsStart
-                  // minDate={new Date()}
+                  minDate={new Date()}
                   startDate={challenge.startDate}
                   endDate={challenge.endDate}
                   withPortal

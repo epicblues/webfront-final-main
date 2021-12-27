@@ -46,7 +46,7 @@ const ChallengeMainList = ({ challenges }) => {
                       style={{
                         zIndex: "0",
                         borderRadius: "5%",
-                        height: "80px",
+                        height: "13vh",
                         width: "45vw",
                       }}
                       src={

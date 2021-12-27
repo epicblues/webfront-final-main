@@ -30,7 +30,7 @@ const MainList = ({ challenges, user }) => {
 
   return (
     <>
-      <div className="container" style={{ padding: "1rem" }}>
+      <div className="container" style={{ padding: "1rem", height: "30%" }}>
         <div>
           <div className={ChallengeStyle.header2}>
             <Search />
