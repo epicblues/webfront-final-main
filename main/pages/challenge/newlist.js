@@ -60,7 +60,7 @@ const NewList = ({ challenges, user }) => {
                           zIndex: "0",
                           borderRadius: "5%",
                           height: "13vh",
-                          width: "45vw",
+                          width: "42vw",
                         }}
                         src={
                           process.env.NEXT_PUBLIC_STATIC_SERVER_URL +
