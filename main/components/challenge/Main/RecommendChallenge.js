@@ -46,25 +46,27 @@ const RecommendChallenge = ({ challenges }) => {
                     borderRadius: "0.3rem",
                   }}
                 >
-                  <div
-                    style={{
-                      backgroundColor: "gray",
-                      width: "54px",
-                      height: "20px",
-                      top: "0",
-                      right: "0",
-                      position: "absolute",
-                      textAlign: "right",
-                      zIndex: "1",
-                      color: "white",
-                    }}
-                  >
-                    <FontAwesomeIcon
-                      icon={faUser}
-                      className={ModalStyle.recImage}
-                    />
-                    {challenge.participants.length}명
-                  </div>
+                  <Link passHref href={"/challenge/list/" + challenge._id}>
+                    <div
+                      style={{
+                        backgroundColor: "gray",
+                        width: "54px",
+                        height: "20px",
+                        top: "0",
+                        right: "0",
+                        position: "absolute",
+                        textAlign: "right",
+                        zIndex: "1",
+                        color: "white",
+                      }}
+                    >
+                      <FontAwesomeIcon
+                        icon={faUser}
+                        className={ModalStyle.recImage}
+                      />
+                      {challenge.participants.length}명
+                    </div>
+                  </Link>
 
                   <div style={{ marginLeft: "10px" }}>
                     <Link passHref href={"/challenge/list/" + challenge._id}>
