@@ -23,7 +23,7 @@
 ## 백엔드
 
 ### Node.js(Express + Socket.io)
-
+- https://github.com/epicblues/webfront-static-server
 - AWS EC2를 통한 배포
 - 이미지 파일 관리가 요구되는 폼 데이터 요청 처리
 - 메인 페이지 실시간 공지/채팅
@@ -34,7 +34,7 @@
 ### MongoDB Atlas
 
 - 클라우드 지원.
-- 회원, 핵심 컨텐츠 데이터 저장.
+- 이미지를 제외한 핵심 컨텐츠 데이터 저장.
 - 이미지 파일 메타 데이터 저장(URL)
 
 # 애플리케이션 핵심 기능
@@ -51,16 +51,15 @@
 ## 목표 달성 챌린지
 
 - 레시피, 다이어트 일지 관련 챌린지
-- 독립된 챌린지(하루 물 2L 이상 마시기)
 - 다른 사용자가 작성한 챌린지에 참여 가능
 - 챌린지 참여/생성/완료 시 실시간 공지
 
 # 기타 정보
 
-- 고유의 id를 가진 Schema : User, Recipe, Challenge, Diary
+- 회원 관리 이원화 
+  - OAuth 인증 (이메일, 비밀번호를 요구하지 않는 간편 로그인)
+  - 이메일 인증(인증 이메일을 통한 이메일 도용 방지)
+- 페이지 네비게이션 바를 활용한 컨텐츠 접근성 향상
+- HTTPS 도메인 활용
 
-- Recipe, Challenge, Diary 는 User의 Id를 참조한다
 
-- (임시)이미지의 경로 및 파일명 : /public/static/{recipe,challenge,diary}*사용자ID*게시물ID\_{기타정보}.jpg
-
-- 기타 정보 예시 : Recipe(조리 순서에 해당하는 이미지), Diary(아침 점심 저녁 간식에 해당하는 이미지)
